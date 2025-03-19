@@ -28,7 +28,7 @@ ms.reviewer: mattmcinnes
 
 ### [Basics](#tab/sizebasic)
 
-vCPUs (Qty.) and Memory for each size
+vCPUs (Qty.) and Memory for each size.
 
 | Size Name | vCPUs (Qty.) | Memory (GB) |
 | --- | --- | --- |
@@ -47,7 +47,7 @@ vCPUs (Qty.) and Memory for each size
 
 ### [Local Storage](#tab/sizestoragelocal)
 
-Local (temp) storage info for each size
+Local (temp) storage info for each size.
 
 | Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GB) | Temp Disk Random Read<sup>1</sup> IOPS | Temp Disk Sequential Read<sup>1</sup> Throughput (MB/s) | Temp Disk Random Write<sup>1</sup> IOPS | Temp Disk Sequential Write<sup>1</sup> Throughput (MB/s) |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -73,7 +73,7 @@ Local (temp) storage info for each size
 
 ### [Remote Storage](#tab/sizestorageremote)
 
-Remote (uncached) storage info for each size
+Remote (uncached) storage info for each size.
 
 | Size Name | Max Remote Storage Disks (Qty.) | Uncached Premium SSD Disk IOPS | Uncached Premium SSD Throughput (MB/s) | Uncached Premium SSD Burst<sup>1</sup> IOPS | Uncached Premium SSD Burst<sup>1</sup> Throughput (MB/s) | Uncached Ultra Disk and Premium SSD v2 IOPS | Uncached Ultra Disk and Premium SSD v2 Throughput (MB/s) | Uncached Burst<sup>1</sup> Ultra Disk and Premium SSD v2 IOPS | Uncached Burst<sup>1</sup> Ultra Disk and Premium SSD v2 Disk Throughput (MB/s) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -103,7 +103,7 @@ Remote (uncached) storage info for each size
 
 ### [Network](#tab/sizenetwork)
 
-Network interface info for each size
+Network interface info for each size.
 
 | Size Name | Max NICs (Qty.) | Max Network Bandwidth (Mb/s) |
 | --- | --- | --- |
@@ -128,7 +128,7 @@ Network interface info for each size
 
 ### [Accelerators](#tab/sizeaccelerators)
 
-Accelerator (GPUs, FPGAs, etc.) info for each size
+Accelerator (GPUs, FPGAs, etc.) info for each size.
 
 > [!NOTE]
 > No accelerators are present in this series.
