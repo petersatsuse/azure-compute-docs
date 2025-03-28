@@ -27,7 +27,7 @@ Azure virtual machines can be used in various ways. Some examples are:
 ## Product comparison
 The number of virtual machines that your application uses can scale up and out to whatever is required to meet your needs. Azure offers several automatic scaling systems and instance types based on the size of your workload.
 
-[!INCLUDE [product-comparison-table](./includes/product-comparison-table.md)]
+[!INCLUDE [product-comparison-table](./includes/product-comparison-table-large.md)]
 
 ## What do I need to think about before creating a virtual machine?
 There's always a multitude of [design considerations](/azure/architecture/reference-architectures/n-tier/linux-vm) when you build out an application infrastructure in Azure. These aspects of a virtual machine are important to think about before you start:
