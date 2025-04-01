@@ -81,6 +81,50 @@ New-AzVM -Name MyVm -Credential $vmCred -SecurityType Standard
 
 This section discusses Trusted Launch supported features and deployments.
 
+### What is Trusted Launch as default (TLaD)?
+Trusted launch as default is now available as public preview for Virtual Machines (VM) and Virtual Machine Scale Sets (VMSS) in REST API. 
+
+Trusted launch as default in REST API is a fast and zero-touch means of improving the security posture of new Gen2 based Azure VM and VMSS deployments. With Trusted Launch as default, any new Gen2 VM or VMSS created via REST API will by default result in Trusted Launch VM, which automatically enables secureboot and vTPM.
+
+#### How do I onboard to Trusted Launch as default preview?
+1. Use PowerShell and run the following commands.
+
+    % Connect-AzAccount
+
+    % Set-AzContext -SubscriptionId "\<your subscription id>"
+
+2. Register your subscription(s) running the command below in PowerShell. 
+
+    % Register-azproviderFeature -ProviderNamespace "Microsoft.Compute" -FeatureName "TrustedLaunchByDefaultPreview"
+
+3. Verify subscription registration running the command below in PowerShell.
+
+    % Get-azproviderFeature -ProviderNamespace "Microsoft.Compute" -FeatureName "TrustedLaunchByDefaultPreview"
+
+    If your registered subscription appears in the output, then your subscription has been registered.  
+
+4. Execute your existing deployment script (Azure SDK, Terraform, or another method that is NOT Azure Portal, CLI or PowerShell) as is to create a new Gen2 VM or VM Scaleset (VMSS). The new VM/VMSS just created using the registered subscription will result in a Trusted Launch VM/VMSS.
+
+(Note: To simplify the preview onboarding experience to Trusted Launch as default, we require your subscription to be registered. However, once Trusted Launch as default in REST becomes generally available, subscription registration is not required. You must update the API version for just the VM/VMSS creation blocks in your deployment script.)
+
+#### How do I offboard from Trusted Launch as default preview?
+1. Use PowerShell and run the following commands.
+
+    % Connect-AzAccount
+
+    % Set-AzContext -SubscriptionId "\<your subscription id>"
+
+2. Unregister your subscription(s) running the command below in PowerShell. 
+
+    % Unregister-azproviderFeature -ProviderNamespace "Microsoft.Compute" -FeatureName "TrustedLaunchByDefaultPreview"
+
+3. Verify subscription registration running the command below in PowerShell.
+ 
+    % Get-azproviderFeature -ProviderNamespace "Microsoft.Compute" -FeatureName "TrustedLaunchByDefaultPreview"
+
+    If your subscription doesn’t appear in the output, then your subscription has been unregistered.  
+
+
 ### Is Azure Compute Gallery supported by Trusted Launch?
 
 Trusted Launch now allows images to be created and shared through the [Azure Compute Gallery](trusted-launch-portal.md#trusted-launch-vm-supported-images) (formerly Shared Image Gallery). The image source can be:
