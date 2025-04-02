@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/6ba7cc5f-ff6b-458c-a109-23e4344b678b)---
+---
 title: Azure Windows VM Agent overview 
 description: Learn how to install and detect the Azure Windows VM Agent to manage your virtual machine's interaction with the Azure fabric controller.
 ms.topic: how-to
