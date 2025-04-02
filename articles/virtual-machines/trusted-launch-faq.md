@@ -82,9 +82,9 @@ New-AzVM -Name MyVm -Credential $vmCred -SecurityType Standard
 This section discusses Trusted Launch supported features and deployments.
 
 ### What is Trusted Launch as default (TLaD)?
-Trusted launch as default is now available as public preview for Virtual Machines (VM) and Virtual Machine Scale Sets (VMSS) in REST API. 
+Trusted launch as default is now available as public preview for Virtual Machines (VM) and Virtual Machine Scale Sets in REST API. 
 
-Trusted launch as default in REST API is a fast and zero-touch means of improving the security posture of new Gen2 based Azure VM and VMSS deployments. With Trusted Launch as default, any new Gen2 VM or VMSS created via REST API will by default result in Trusted Launch VM, which automatically enables secureboot and vTPM.
+Trusted launch as default in REST API is a fast and zero-touch means of improving the security posture of new Gen2 based Azure VM and Virtual Machine Scale Sets deployments. With Trusted Launch as default, any new Gen2 Virtual Machine or Virtual Machine Scale Sets created via REST API will by default result in Trusted Launch VM, which automatically enables secureboot and vTPM.
 
 #### How do I onboard to Trusted Launch as default preview?
 1. Use PowerShell and run the following commands.
@@ -93,19 +93,19 @@ Trusted launch as default in REST API is a fast and zero-touch means of improvin
 
     % Set-AzContext -SubscriptionId "\<your subscription id>"
 
-2. Register your subscription(s) running the command below in PowerShell. 
+2. Register your subscription running the command in PowerShell. 
 
     % Register-azproviderFeature -ProviderNamespace "Microsoft.Compute" -FeatureName "TrustedLaunchByDefaultPreview"
 
-3. Verify subscription registration running the command below in PowerShell.
+3. Verify subscription registration running the command in PowerShell.
 
     % Get-azproviderFeature -ProviderNamespace "Microsoft.Compute" -FeatureName "TrustedLaunchByDefaultPreview"
 
-    If your registered subscription appears in the output, then your subscription has been registered.  
+    If your registered subscription appears in the output, the subscription is registered.  
 
-4. Execute your existing deployment script (Azure SDK, Terraform, or another method that is NOT Azure Portal, CLI or PowerShell) as is to create a new Gen2 VM or VM Scaleset (VMSS). The new VM/VMSS just created using the registered subscription will result in a Trusted Launch VM/VMSS.
+4. Execute your existing deployment script (Azure SDK, Terraform, or another method that is NOT Azure portal, CLI, or PowerShell) as is to create a new Gen2 VM or Virtual Machine Scale Sets. The new Virtual machine/Virtual Machine Scale Sets created using the registered subscription results in a Trusted Launch Virtual Machine/Virtual Machine Scale Sets.
 
-(Note: To simplify the preview onboarding experience to Trusted Launch as default, we require your subscription to be registered. However, once Trusted Launch as default in REST becomes generally available, subscription registration is not required. You must update the API version for just the VM/VMSS creation blocks in your deployment script.)
+(Note: To simplify the preview onboarding experience to Trusted Launch as default, we require your subscription to be registered. However, once Trusted Launch as default in REST becomes generally available, subscription registration isn't required. You must update the API version for just the Virtual machine/Virtual Machine Scale Sets creation blocks in your deployment script.)
 
 #### How do I offboard from Trusted Launch as default preview?
 1. Use PowerShell and run the following commands.
@@ -114,15 +114,15 @@ Trusted launch as default in REST API is a fast and zero-touch means of improvin
 
     % Set-AzContext -SubscriptionId "\<your subscription id>"
 
-2. Unregister your subscription(s) running the command below in PowerShell. 
+2. Unregister your subscription running the command in PowerShell. 
 
     % Unregister-azproviderFeature -ProviderNamespace "Microsoft.Compute" -FeatureName "TrustedLaunchByDefaultPreview"
 
-3. Verify subscription registration running the command below in PowerShell.
+3. Verify subscription registration running the command in PowerShell.
  
     % Get-azproviderFeature -ProviderNamespace "Microsoft.Compute" -FeatureName "TrustedLaunchByDefaultPreview"
 
-    If your subscription doesn’t appear in the output, then your subscription has been unregistered.  
+    If your subscription doesn’t appear in the output, then your subscription is unregistered.  
 
 
 ### Is Azure Compute Gallery supported by Trusted Launch?
@@ -452,7 +452,7 @@ This deployment error happens when the snapshot or restore point provided is ina
 
 The above can happen if a user or workload running on the virtual machine sets the lock on vTPM or modifies critical vTPM indices that leaves the vTPM in an invalid state. 
 
-Retrying with the same snapshot/restore point will result in the same failure. 
+Retrying with the same snapshot/restore point results in the same failure. 
 
 To resolve this: 
 
@@ -592,9 +592,9 @@ Package certificates, composed of .p7b (Full Certificate Authority) and .cer (In
 
 ### What Microsoft owned trusted certificates are built into Azure VMs ? 
 For Windows VMs, Windows CA certificate is built in UEFI firmware. For Linux VMs, Microsoft UEFI CA certificate is built in UEFI firmware.
-For Azure Linux VMs only, an additional ‘Azure Services Linux Kmod PCA’ certificate is also added in in UEFI firmware for all Linux distributions. Linux Kmod PCA is used to sign Microsoft owned kernel modules.
+For Azure Linux VMs only, an additional "Azure Services Linux Kmod PCA" certificate is also added in in UEFI firmware for all Linux distributions. Linux Kmod PCA is used to sign Microsoft owned kernel modules.
 
-Linux Kmod PCA certificate is added to make customer experience smoother when using Microsoft solutions like Azure Site Recovery (ASR) which installs a kernel module. The ASR kernel module will load without any customer action to supply a key as ASR kernel module is signed using the trusted ‘Azure Services Linux Kmod PCA’ certificate.
+Linux Kmod PCA certificate is added to make customer experience smoother when using Microsoft solutions like Azure Site Recovery (ASR) which installs a kernel module. The ASR kernel module will load without any customer action to supply a key as ASR kernel module is signed using the trusted "Azure Services Linux Kmod PCA" certificate.
 
 #### Download instructions
 Package certificates, composed of .p7b and .cer  reveal the signing and certificate authority. Copy the relevant content and use certificate tooling to inspect and assess details of certificates.
