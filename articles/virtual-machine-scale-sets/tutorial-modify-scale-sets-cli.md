@@ -5,7 +5,7 @@ author: ju-shim
 ms.author: jushiman
 ms.topic: how-to
 ms.service: azure-virtual-machine-scale-sets
-ms.date: 06/04/2025
+ms.date: 04/06/2025
 ms.reviewer: mimckitt
 ms.custom: mimckitt, devx-track-azurecli, linux-related-content, innovation-engine
 ---
