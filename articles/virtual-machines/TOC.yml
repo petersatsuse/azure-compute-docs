@@ -422,7 +422,7 @@
         - name: Mdsv2 Medium Memory series
           href: ./sizes/memory-optimized/mdsv2-mm-series.md
         - name: Msv2 and Mdsv2 migration guide
-          href: ./migration/sizes/retirement/msv2-mdsv2-retirement.md
+          href: ./sizes/retirement/msv2-mdsv2-retirement.md
         - name: Mv2 series
           href: ./sizes/memory-optimized/mv2-series.md
         - name: M series

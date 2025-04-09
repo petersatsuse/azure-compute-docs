@@ -6687,7 +6687,7 @@
         },
         {
             "source_path_from_root": "/articles/virtual-machines/msv2-mdsv2-isolated-retirement.md",
-            "redirect_url": "/azure/virtual-machines/migration/sizes/retirement/msv2-mdsv2-retirement",
+            "redirect_url": "/azure/virtual-machines/sizes/retirement/msv2-mdsv2-retirement",
             "redirect_document_id": true
         },
         {
