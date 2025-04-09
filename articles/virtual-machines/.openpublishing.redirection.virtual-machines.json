@@ -6526,11 +6526,6 @@
             "redirect_document_id": true
         },
         {
-            "source_path_from_root": "/articles/virtual-machines/sizes/memory-optimized/mbsv3-mbdsv3-series.md",
-            "redirect_url": "/azure/virtual-machines/sizes/memory-optimized/mbsv3-series",
-            "redirect_document_id": true
-        },
-        {
             "source_path_from_root": "/articles/virtual-machines/sizes/nm-ads-ma35d-series.md",
             "redirect_url": "/azure/virtual-machines/sizes/fpga-accelerated/nm-ads-ma35d-series",
             "redirect_document_id": true
@@ -6687,12 +6682,7 @@
         },
         {
             "source_path_from_root": "/articles/virtual-machines/m-series.md",
-            "redirect_url": "/azure/virtual-machines/migration/sizes/memory-optimized/m-series",
-            "redirect_document_id": true
-        },
-        {
-            "source_path_from_root": "/articles/virtual-machines/m-series.md",
-            "redirect_url": "/azure/virtual-machines/migration/sizes/memory-optimized/m-series",
+            "redirect_url": "/azure/virtual-machines/sizes/memory-optimized/m-series",
             "redirect_document_id": true
         },
         {
@@ -6702,27 +6692,27 @@
         },
         {
             "source_path_from_root": "/articles/virtual-machines/msv2-mdsv2-series.md",
-            "redirect_url": "/azure/virtual-machines/migration/sizes/memory-optimized/msv2-mm-series",
+            "redirect_url": "/azure/virtual-machines/sizes/memory-optimized/msv2-mm-series",
             "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/virtual-machines/msv3-mdsv3-medium-series.md",
-            "redirect_url": "/azure/virtual-machines/migration/sizes/memory-optimized/msv3-mm-series",
+            "redirect_url": "/azure/virtual-machines/sizes/memory-optimized/msv3-mm-series",
             "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/virtual-machines/mv2-series.md",
-            "redirect_url": "/azure/virtual-machines/migration/sizes/memory-optimized/mv2-series",
+            "redirect_url": "/azure/virtual-machines/sizes/memory-optimized/mv2-series",
             "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/virtual-machines/sizes/memory-optimized/msv3-mdsv3-high-memory-series.md",
-            "redirect_url": "/azure/virtual-machines/migration/sizes/memory-optimized/msv3-hm-series",
+            "redirect_url": "/azure/virtual-machines/sizes/memory-optimized/msv3-hm-series",
             "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/virtual-machines/sizes/memory-optimized/mbsv3-mbdsv3-series.md",
-            "redirect_url": "/azure/virtual-machines/migration/sizes/memory-optimized/mbsv3-series",
+            "redirect_url": "/azure/virtual-machines/sizes/memory-optimized/mbsv3-series",
             "redirect_document_id": false
         }
     ]

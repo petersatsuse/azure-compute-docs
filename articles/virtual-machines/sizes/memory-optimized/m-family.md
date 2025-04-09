@@ -63,7 +63,7 @@ ms.author: mattmcinnes
 
 [!INCLUDE [msv3-hm-series-specs](./includes/msv3-hm-series-specs.md)]
 
-#### [Mdsv3-HM-series](#tab/mdsv3mm)
+#### [Mdsv3-HM-series](#tab/mdsv3hm)
 [!INCLUDE [mdsv3-series](./includes/mdsv3-hm-series-summary.md)]
 
 [View the full Mdsv3-HM-series page](./mdsv3-hm-series.md)
