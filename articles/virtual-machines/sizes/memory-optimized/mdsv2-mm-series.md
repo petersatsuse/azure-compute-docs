@@ -26,7 +26,7 @@ ms.reviewer: mattmcinnes
 
 vCPUs (Qty.) and Memory for each size
 
-| Size Name | vCPUs (Qty.) | Memory (GB) |
+| Size Name | vCPUs (Qty.) | Memory (GiB) |
 | --- | --- | --- |
 | Standard_M32dms_v2 | 32 | 875 |
 | Standard_M64ds_v2 | 64 | 1024 |

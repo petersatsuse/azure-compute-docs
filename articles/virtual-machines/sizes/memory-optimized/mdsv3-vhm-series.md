@@ -26,7 +26,7 @@ ms.reviewer: mattmcinnes
 
 vCPUs (Qty.) and Memory for each size
 
-| Size Name | vCPUs (Qty.) | Memory (GB) |
+| Size Name | vCPUs (Qty.) | Memory (GiB) |
 | --- | --- | --- |
 | Standard_M896ixds_32_v3 | 896 | 30,400 |
 | Standard_M1792ixds_32_v3 | 1,792 | 30,400 |

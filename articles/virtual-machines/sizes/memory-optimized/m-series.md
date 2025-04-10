@@ -26,7 +26,7 @@ ms.reviewer: mattmcinnes
 
 vCPUs (Qty.) and Memory for each size
 
-| Size Name | vCPUs (Qty.) | Memory (GB) |
+| Size Name | vCPUs (Qty.) | Memory (GiB) |
 | --- | --- | --- |
 | Standard_M8ms | 8 | 218.75 |
 | Standard_M16ms | 16 | 437.5 |

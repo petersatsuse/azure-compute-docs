@@ -26,7 +26,7 @@ ms.reviewer: mattmcinnes
 
 vCPUs (Qty.) and Memory for each size
 
-| Size Name | vCPUs (Qty.) | Memory (GB) |
+| Size Name | vCPUs (Qty.) | Memory (GiB) |
 | --- | --- | --- |
 | Standard_M208s_v2 | 208 | 2,850 |
 | Standard_M208ms_v2 | 208 | 5,700 |

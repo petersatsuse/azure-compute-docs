@@ -28,7 +28,7 @@ vCPUs (Qty.) and Memory for each size
 
 #### Msv3 High Memory series (NVMe)
 
-| Size Name | vCPUs (Qty.) | Memory (GB) |
+| Size Name | vCPUs (Qty.) | Memory (GiB) |
 | --- | --- | --- |
 | Standard_M416s_6_v3 | 416 | 5,696 |
 | Standard_M416s_8_v3 | 416 | 7,600 |
@@ -39,7 +39,7 @@ vCPUs (Qty.) and Memory for each size
 
 #### Msv3 High Memory series (SCSI)
 
-| Size Name | vCPUs (Qty.) | Memory (GB) |
+| Size Name | vCPUs (Qty.) | Memory (GiB) |
 | --- | --- | --- |
 | Standard_M416s_6_v3 | 416 | 5,696 |
 | Standard_M416s_8_v3 | 416 | 7,600 |
