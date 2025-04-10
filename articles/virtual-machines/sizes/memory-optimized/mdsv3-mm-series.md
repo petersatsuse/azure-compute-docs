@@ -1,5 +1,5 @@
 ---
-title: Mdsv3 size series
+title: Mdsv3 Medium Memory size series
 description: Information on and specifications of the Mdsv3-series sizes
 author: mattmcinnes
 ms.service: azure-virtual-machines
@@ -10,12 +10,12 @@ ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
 ---
 
-# Mdsv3 sizes series
+# Mdsv3 Medium Memory sizes series
 
-[!INCLUDE [mdsv3-summary](./includes/mdsv3-mm-series-summary.md)]
+[!INCLUDE [mdsv3-mm-summary](./includes/mdsv3-mm-series-summary.md)]
 
 ## Host specifications
-[!INCLUDE [mdsv3-series-specs](./includes/mdsv3-mm-series-specs.md)]
+[!INCLUDE [mdsv3-mm-series-specs](./includes/mdsv3-mm-series-specs.md)]
 
 ## Feature support
 [Premium Storage](../../premium-storage-performance.md): Supported <br>[Premium Storage caching](../../premium-storage-performance.md): Supported <br>[Live Migration](../../maintenance-and-updates.md): Not Supported <br>[Memory Preserving Updates](../../maintenance-and-updates.md): Not Supported <br>[Generation 2 VMs](../../generation-2.md): Supported <br>[Generation 1 VMs](../../generation-2.md): Not Supported <br>[Accelerated Networking](/azure/virtual-network/create-virtual-machine-accelerated-networking): Supported <br>[Ephemeral OS Disk](../../ephemeral-os-disks.md): Supported <br>[Nested Virtualization](/virtualization/hyper-v-on-windows/user-guide/nested-virtualization): Not Supported <br>[Hibernation](../../hibernate-resume.md): Not Supported <br>

@@ -1,5 +1,5 @@
 ---
-title: Msv3-hm size series
+title: Msv3 High Memory size series
 description: Information on and specifications of the Msv3-hm-series sizes
 author: mattmcinnes
 ms.service: azure-virtual-machines
@@ -10,7 +10,7 @@ ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
 ---
 
-# Msv3-hm sizes series
+# Msv3 High Memory sizes series
 
 [!INCLUDE [msv3-hm-summary](./includes/msv3-hm-series-summary.md)]
 
