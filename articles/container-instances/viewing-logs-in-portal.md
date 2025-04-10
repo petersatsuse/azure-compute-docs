@@ -71,7 +71,7 @@ Now you’re ready to run your container group with Log Analytics.
 
 For more information about querying logs and configuring alerts in Azure Monitor logs, see: 
 
-* [Understanding log searches in Azure Monitor logs](/azure-monitor/logs/log-query-overview)
+* [Understanding log searches in Azure Monitor logs](/azure/azure-monitor/logs/log-query-overview)
 
 * [Unified alerts in Azure Monitor](/azure/azure-monitor/alerts/alerts-overview)
 
@@ -79,7 +79,7 @@ For more information about querying logs and configuring alerts in Azure Monitor
 
 For information about monitoring container instance CPU and memory resources, see: 
 
-* [Monitor Azure Container Instances](../container-instances/monitor-azure-container-instances.md)
+* [Monitor Azure Container Instances](/azure/container-instances/monitor-azure-container-instances)
 
  
 
