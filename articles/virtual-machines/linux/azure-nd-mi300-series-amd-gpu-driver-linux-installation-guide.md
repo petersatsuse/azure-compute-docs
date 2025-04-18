@@ -17,11 +17,11 @@ ms.reviewer: vikancha
 
 **Applies to:** :heavy_check_mark: Linux VMs
 
-This document outlines the steps for installing the AMD Linux Driver to harness the capabilities of the GPU on an ND MI300X v5 Linux instance provided by Microsoft Azure. 
+This document outlines the steps for installing and upgrading the AMD Linux Driver to harness the capabilities of the GPU on an ND MI300X v5 Linux instance provided by Microsoft Azure.  Three key scenarios are covered:
 
-* [Installing/Ugrading using Marketplace Image](#image)
-* [Linux Driver Installation](#driver-install)
-* [Linux Driver Upgrade](#driver-upgrade)
+* [Installing/Upgrading ROCm via the Marketplace Image](#image) - Recommended
+* [Installing ROCm in Ubuntu 22.04](#driver-install)
+* [Upgrading ROCm in Ubuntu 22.04](#driver-upgrade)
 
 
 ## Version Requirements
@@ -35,7 +35,7 @@ This document outlines the steps for installing the AMD Linux Driver to harness 
 - **Secure Boot**: Disabled
 
 <a id="image"></a>
-## *Recommended* - Installing/Ugrading using AzureHPC 
+## Installing/Upgrading ROCm using AzureHPC Marketplace Image - *Recommended*
 
 Using the AzureHPC Marketplace Image is the recommended approach.  The image already has the AMD and Infiniband drivers pre-installed.  You can deploy either via the CLI or the Azure portal.
 
@@ -46,7 +46,7 @@ Follow [this link](https://azuremarketplace.microsoft.com/en-us/marketplace/apps
 ![Marketplace Image](media/n-series-driver-setup/azurehpc-image.png)
 
 <a id="driver-install"></a>
-## Linux Driver Installation on Ubuntu 22.04
+## Installing ROCm in Ubuntu 22.04
 
 ### Verify Linux Distro
 
@@ -148,7 +148,7 @@ Device  Node  IDs              Temp        Power     Partitions          SCLK   
 ```
 
 <a id="driver-upgrade"></a>
-## Linux Driver Upgrade on Ubuntu 22.04
+## Upgrading ROCm in Ubuntu 22.04
 
 Remove the ```amdgpu``` kernel module and uninstall rocm.
 ```bash
