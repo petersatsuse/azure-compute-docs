@@ -54,7 +54,7 @@ For basic specs, storage capacities, and disk details, see [GPU Windows VM sizes
 
 | OS | Driver |
 | -------- |------------- |
-| Windows 11 64-bit 21H2, 22H2, 23H2<br/><br/>Windows 10 64-bit 21H2, 22H2, 20H2 <br/><br/> | [23.Q3](https://download.microsoft.com/download/0/8/1/081db0c3-d2c0-44ae-be45-90a63610b16e/AMD-Azure-NVv4-Driver-23Q3-win10-win11.exe) (.exe) |
+| Windows 11 64-bit 21H2, 22H2, 23H2, 24H2<br/><br/>Windows 10 64-bit 21H2, 22H2, 20H2 <br/><br/> | [23.Q3](https://download.microsoft.com/download/0/8/1/081db0c3-d2c0-44ae-be45-90a63610b16e/AMD-Azure-NVv4-Driver-23Q3-win10-win11.exe) (.exe) |
 | Windows Server 2022, Windows 11 EMS <br/><br/> | [23.Q3](https://download.microsoft.com/download/2/d/3/2d328d15-4188-4fdb-8912-fb300a212dfc/AMD-Azure-NVv4-Driver-23Q3-winsvr2022.exe) (.exe)
 | Windows Server 2019, Windows 10 EMS <br/><br/> | [23.Q3](https://download.microsoft.com/download/e/8/8/e88bb244-b8e8-47cc-9f86-9ba2632b3cb6/AMD-Azure-NVv4-Driver-23Q3-winsvr2019.exe) (.exe)
 

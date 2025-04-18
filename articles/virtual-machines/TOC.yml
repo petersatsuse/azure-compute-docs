@@ -283,8 +283,8 @@
           href: ./sizes/general-purpose/dcasv5-series.md
         - name: DCadsv5 series
           href: ./sizes/general-purpose/dcadsv5-series.md
-        - name: DCesv5 series
-          href: ./sizes/general-purpose/dcesv5-series.md
+        - name: DCesv6 series
+          href: ./sizes/general-purpose/dcesv6-series.md
         - name: DCedsv5 series
           href: ./sizes/general-purpose/dcedsv5-series.md
         - name: DCas_cc_v5 series
@@ -390,7 +390,7 @@
           href: ./sizes/memory-optimized/ec-family.md
         - name: ECasv5 and ECadsv5 series
           href: ecasv5-ecadsv5-series.md
-        - name: ECesv5 and ECedsv5 series
+        - name: ECesv6 series
           href: ecesv5-ecedsv5-series.md
         - name: ECas_cc_v5 and ECads_cc_v5 series
           href: ecasccv5-ecadsccv5-series.md
@@ -2222,6 +2222,32 @@
   - name: Monitor metadata
     displayName: instance metadata service IMDS
     href: instance-metadata-service.md
+  - name: Metadata Security Protocol
+    items:
+    - name: Overview
+      href: Metadata-Security-Protocol/overview.md
+    - name: MSP Configuration
+      href: Metadata-Security-Protocol/configuration.md
+    - name: Deploy a Virtual Machine or Virtual Machine Scale Sets With MSP
+      href: Metadata-Security-Protocol/greenfield.md
+    - name: Enable MSP on Existing Virtual Machine or Virtual Machine Scale Sets
+      href: Metadata-Security-Protocol/brownfield.md
+    - name: Other Examples
+      items:
+        - name: MSP via Portal
+          href: Metadata-Security-Protocol/other-examples/portal.md
+        - name: Disable MSP
+          href: Metadata-Security-Protocol/other-examples/disable.md
+        - name: Reset Latched Key
+          href: Metadata-Security-Protocol/other-examples/key-reset.md
+        - name: Create Rules From Audit Logs
+          href: Metadata-Security-Protocol/other-examples/audit-logs-to-rules.md
+    - name: Advanced Configuration
+      href: Metadata-Security-Protocol/advanced-configuration.md
+    - name: Troubleshooting Guide
+      href: Metadata-Security-Protocol/troubleshoot-guide.md
+    - name: MSP FAQs
+      href: Metadata-Security-Protocol/faq.md 
   - name: Get usage metrics with REST
     href: ./linux/metrics-vm-usage-rest.md
   - name: Boot diagnostics

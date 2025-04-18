@@ -262,9 +262,11 @@ Downloading external file (<myFile>) to local file (xxxxx.0.customizer.fp) [atte
 
 #### Cause
 
-The file name or location is incorrect, or the location isn't reachable.
+The file name or location is incorrect, or the location isn't reachable. 
 
 #### Solution
+
+> **Note:** Certain file repositories may use unsupported cipher suites, causing download errors with Azure Image Builder. Store files and scripts in an Azure storage account to ensure secure cipher suites and accessibility by Azure Image Builder. For more information on how to store your files in Azure storage accounts, refer to the following documentation: [Storage account overview](https://learn.microsoft.com/azure/storage/common/storage-account-overview).
 
 Ensure that the file is reachable. Verify that the name and location are correct.
 
