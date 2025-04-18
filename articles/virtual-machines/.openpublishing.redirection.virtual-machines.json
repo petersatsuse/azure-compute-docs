@@ -1672,17 +1672,17 @@
         },
         {
             "source_path_from_root": "/articles/virtual-machines/linux/openshift-origin.md",
-            "redirect_url": "/azure/openshift/intro-openshift",
+            "redirect_url": "/azure/virtual-machines/linux/openshift-container-platform-4x",
             "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/virtual-machines/linux/openshift-get-started.md",
-            "redirect_url": "/azure/openshift/intro-openshift",
+            "redirect_url": "/azure/virtual-machines/linux/openshift-container-platform-4x",
             "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/virtual-machines/linux/openshift-okd.md",
-            "redirect_url": "/azure/openshift/intro-openshift",
+            "redirect_url": "/azure/virtual-machines/linux/openshift-container-platform-4x",
             "redirect_document_id": false
         },
         {

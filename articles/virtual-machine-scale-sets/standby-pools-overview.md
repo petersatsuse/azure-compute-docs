@@ -17,6 +17,13 @@ Standby pools for Virtual Machine Scale Sets enables you to increase scaling per
 
 If maintaining a standby pool of running virtual machines, the machines are immediately ready to receive traffic after being moved into the scale set. If maintaining a standby pool of stopped (deallocated) virtual machines, the virtual machines are automatically started after moving into the scale set. Since they have already completed all the provisioning steps, the only delay in being ready to take traffic is the time it takes to start the machine. 
 
+### Feature Registration 
+Register the standby pool resource provider with your subscription using Azure Cloud Shell. Registration can take up to 30 minutes to successfully show as registered. You can rerun the below commands to determine when the feature is successfully registered. 
+
+```azurepowershell-interactive
+Register-AzResourceProvider -ProviderNamespace Microsoft.StandbyPool
+```
+
 ## Prerequisites
 
 To allow standby pools to create and manage virtual machines in your subscription, assign the appropriate permissions to the standby pool resource provider. 

@@ -40,7 +40,7 @@ The [NCads H100 v5-Series](./ncads-h100-v5.md) is another SKU in the same produc
 ## Steps to change VM size 
 
 1. Choose a series and size. Refer to the above tables for Microsoft’s recommendation. You can also file a support request if more assistance is needed.
-2. [Request quota for the new target VM](/azure/azure-portal/supportability/per-vm-quota-requests)).
+2. [Request quota for the new target VM](/azure/azure-portal/supportability/per-vm-quota-requests).
 3. You can [resize the virtual machine](resize-vm.md). 
 
    
