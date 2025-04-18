@@ -46,12 +46,12 @@ landingContent:
     linkLists:
       - linkListType: whats-new
         links:
-          - text: Scale-in policy
-            url: virtual-machine-scale-sets-scale-in-policy.md
-          - text: Terminate notification
-            url: virtual-machine-scale-sets-terminate-notification.md
-          - text: Instance protection
-            url: virtual-machine-scale-sets-instance-protection.md
+          - text: Automatic instance repairs
+            url: virtual-machine-scale-sets-automatic-instance-repairs.md
+          - text: Improve allocation with Instance Mix
+            url: instance-mix-overview.md
+          - text: Standby Pools
+            url: standby-pools-overview.md
 
   # Card
   - title: Step-by-step guides
