@@ -1,16 +1,16 @@
 ---
-title: DCesv5 size series
-description: Information on and specifications of the DCesv5-series sizes
-author: mattmcinnes
+title: DCesv6 size series
+description: Information on and specifications of the DCesv6-series sizes
+author: simranparkhe
 ms.service: azure-virtual-machines
 ms.subservice: sizes
 ms.topic: conceptual
-ms.date: 07/31/2024
-ms.author: mattmcinnes
-ms.reviewer: mattmcinnes
+ms.date: 04/15/2025
+ms.author: simranparkhe
+ms.reviewer: simranparkhe
 ---
 
-# DCesv5 sizes series
+# DCesv6 sizes series
 
 [!INCLUDE [dcesv5-summary](./includes/dcesv5-series-summary.md)]
 
@@ -28,14 +28,15 @@ vCPUs (Qty.) and Memory for each size
 
 | Size Name | vCPUs (Qty.) | Memory (GB) |
 | --- | --- | --- |
-| Standard_DC2es_v5 | 2 | 8 |
-| Standard_DC4es_v5 | 4 | 16 |
-| Standard_DC8es_v5 | 8 | 32 |
-| Standard_DC16es_v5 | 16 | 64 |
-| Standard_DC32es_v5 | 32 | 128 |
-| Standard_DC48es_v5 | 48 | 192 |
-| Standard_DC64es_v5 | 64 | 256 |
-| Standard_DC96es_v5 | 96 | 384 |
+| Standard_DC2es_v6 | 2 | 8 |
+| Standard_DC4es_v6 | 4 | 16 |
+| Standard_DC8es_v6 | 8 | 32 |
+| Standard_DC16es_v6 | 16 | 64 |
+| Standard_DC32es_v6 | 32 | 128 |
+| Standard_DC48es_v6 | 48 | 192 |
+| Standard_DC64es_v6 | 64 | 256 |
+| Standard_DC96es_v6 | 96 | 384 |
+| Standard_DC128es_v6 | 128 | 512 |
 
 #### VM Basics resources
 - [Check vCPU quotas](../../../virtual-machines/quotas.md)
@@ -55,16 +56,17 @@ Local (temp) storage info for each size
 
 Remote (uncached) storage info for each size
 
-| Size Name | Max Remote Storage Disks (Qty.) | Uncached Premium SSD Disk IOPS | Uncached Premium SSD Throughput (MB/s) | Uncached Premium SSD Burst<sup>1</sup> IOPS | Uncached Premium SSD Burst<sup>1</sup> Throughput (MB/s) |
-| --- | --- | --- | --- | --- | --- |
-| Standard_DC2es_v5 | 4 | 3750 | 80 | 10000 | 1200 |
-| Standard_DC4es_v5 | 8 | 6400 | 140 | 20000 | 1200 |
-| Standard_DC8es_v5 | 16 | 12800 | 300 | 20000 | 1200 |
-| Standard_DC16es_v5 | 32 | 25600 | 600 | 40000 | 1200 |
-| Standard_DC32es_v5 | 32 | 51200 | 860 | 80000 | 2000 |
-| Standard_DC48es_v5 | 32 | 76800 | 1320 | 80000 | 3000 |
-| Standard_DC64es_v5 | 32 | 80000 | 1740 | 80000 | 3000 |
-| Standard_DC96es_v5 | 32 | 80000 | 2600 | 120000 | 4000 |
+| Size Name | Max Remote Storage Disks (Qty.) | Uncached Premium SSD Disk IOPS | Uncached Premium SSD Throughput (MB/s) 
+| --- | --- | --- | --- |
+| Standard_DC2es_v6 | 8 | 3750 | 106 |
+| Standard_DC4es_v6 | 12 | 6400 | 212 |
+| Standard_DC8es_v6 | 24 | 12800 | 424 |
+| Standard_DC16es_v6 | 48 | 25600 | 848 |
+| Standard_DC32es_v6 | 64 | 51200 | 1696 |
+| Standard_DC48es_v6 | 64 | 76800 | 2544 |
+| Standard_DC64es_v6 | 64 | 102400 | 3392 |
+| Standard_DC96es_v6 | 64 | 153600 | 4000 |
+| Standard_DC128es_v6 | 64 | 204800 | 4000 |
 
 #### Storage resources
 - [Introduction to Azure managed disks](../../../virtual-machines/managed-disks-overview.md)
@@ -72,7 +74,6 @@ Remote (uncached) storage info for each size
 - [Share an Azure managed disk](../../../virtual-machines/disks-shared.md)
 
 #### Table definitions
-- <sup>1</sup>Some sizes support [bursting](../../disk-bursting.md) to temporarily increase disk performance. Burst speeds can be maintained for up to 30 minutes at a time.
 
 - Storage capacity is shown in units of GiB or 1024^3 bytes. When you compare disks measured in GB (1000^3 bytes) to disks measured in GiB (1024^3) remember that capacity numbers given in GiB may appear smaller. For example, 1023 GiB = 1098.4 GB.
 - Disk throughput is measured in input/output operations per second (IOPS) and MBps where MBps = 10^6 bytes/sec.
@@ -86,14 +87,15 @@ Network interface info for each size
 
 | Size Name | Max NICs (Qty.) | Max Network Bandwidth (Mb/s) |
 | --- | --- | --- |
-| Standard_DC2es_v5 | 2 | 3000 |
-| Standard_DC4es_v5 | 2 | 5000 |
-| Standard_DC8es_v5 | 4 | 5000 |
-| Standard_DC16es_v5 | 8 | 10000 |
-| Standard_DC32es_v5 | 8 | 12500 |
-| Standard_DC48es_v5 | 8 | 15000 |
-| Standard_DC64es_v5 | 8 | 20000 |
-| Standard_DC96es_v5 | 8 | 30000 |
+| Standard_DC2es_v6 | 2 | 12500 |
+| Standard_DC4es_v6 | 2 | 12500 |
+| Standard_DC8es_v6 | 4 | 12500 |
+| Standard_DC16es_v6 | 8 | 12500 |
+| Standard_DC32es_v6 | 8 | 16000 |
+| Standard_DC48es_v6 | 8 | 24000 |
+| Standard_DC64es_v6 | 8 | 30000 |
+| Standard_DC96es_v6 | 8 | 41000 |
+| Standard_DC128es_v6 | 8 | 54000 |
 
 #### Networking resources
 - [Virtual networks and virtual machines in Azure](/azure/virtual-network/network-overview)

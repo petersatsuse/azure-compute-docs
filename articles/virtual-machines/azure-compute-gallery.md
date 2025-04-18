@@ -243,7 +243,7 @@ For example, let's say you have an image of a 127 GB OS disk, that only occupies
    } 
    ```
 
-- Set `BlockDeletionBeforeEndOfLife` to block deletion of the image before it's *end of life* date, ensuring protection against accidental deletion. Set this feature through [Rest API `blockdeletionbeforeendoflife`](https://learn.microsoft.com/rest/api/compute/gallery-image-versions/create-or-update?view=rest-compute&tabs=HTTP#galleryimageversionsafetyprofile).
+- Set `BlockDeletionBeforeEndOfLife` to block deletion of the image before it's *end of life* date, ensuring protection against accidental deletion. Set this feature through [Rest API `blockdeletionbeforeendoflife`](/rest/api/compute/gallery-image-versions/create-or-update?view=rest-compute&preserve-view=true&tabs=HTTP#galleryimageversionsafetyprofile).
 
 
 ## SDK support

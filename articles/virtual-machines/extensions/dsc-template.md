@@ -78,7 +78,7 @@ resource configuration_dscext 'Microsoft.Compute/virtualMachines/extensions@2024
       }
     }
     protectedSettings: {
-      configurationArguements: {
+      configurationArguments: {
         arg2: arg2
       }
     }

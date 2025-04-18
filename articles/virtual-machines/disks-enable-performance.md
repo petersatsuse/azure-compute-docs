@@ -1,27 +1,26 @@
 ---
-title: Preview - Increase performance of Premium SSDs and Standard SSD/HDDs
+title: Increase performance of Premium SSDs and Standard SSD/HDDs
 description: Increase the performance of Azure Premium SSDs and Standard SSD/HDDs using performance plus.
 author: roygara
 ms.service: azure-disk-storage
 ms.topic: how-to
-ms.date: 12/09/2024
+ms.date: 04/15/2025
 ms.author: rogarana
 ms.custom: devx-track-azurepowershell, innovation-engine
 ---
 
-# Preview - Increase IOPS and throughput limits for Azure Premium SSDs and Standard SSD/HDDs
+# Increase IOPS and throughput limits for Azure Premium SSDs and Standard SSD/HDDs
 
-The Input/Output Operations Per Second (IOPS) and throughput limits for Azure Premium solid-state drives (SSD), Standard SSDs, and Standard hard disk drives (HDD) that are 513 GiB and larger can be increased by enabling performance plus. Enabling performance plus (preview) improves the experience for workloads that require high IOPS and throughput, such as database and transactional workloads. There's no extra charge for enabling performance plus on a disk.
+The Input/Output Operations Per Second (IOPS) and throughput limits for Azure Premium solid-state drives (SSD), Standard SSDs, and Standard hard disk drives (HDD) that are 513 GiB and larger can be increased by enabling performance plus. Enabling performance plus improves the experience for workloads that require high IOPS and throughput, such as database and transactional workloads. There's no extra charge for enabling performance plus on a disk.
 
 Once enabled, the IOPS and throughput limits for an eligible disk increase to the higher maximum limits. To see the new IOPS and throughput limits for eligible disks, consult the columns that begin with "*Expanded" in the [Scalability and performance targets for VM disks](disks-scalability-targets.md) article.
 
 ## Limitations
 
-- Can only be enabled on Standard HDD, Standard SSD, and Premium SSD managed disks that are 513 GiB or larger.
-- Can only be enabled on new disks.
-    - To work around this, create a snapshot of your disk, then create a new disk from the snapshot.
-- Not supported for disks recovered with Azure Site Recovery or Azure Backup.
-- Can't be enabled in the Azure portal.
+- Can only be enabled on Standard HDD, Standard SSD, and Premium SSD managed disks that are 513 GiB or larger
+- Can only be enabled on new disks
+    - To work around this, create a snapshot of your disk, then create a new disk from the snapshot
+- Not supported for disks recovered with Azure Site Recovery
 
 ## Prerequisites
 
@@ -329,3 +328,19 @@ Results:
 ```text
 VM NonExistentVM not found. Skipping disk attachment.
 ```
+
+# [Azure portal](#tab/portal)
+
+### Create a new disk with performance plus enabled
+
+1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Search for and navigate to **Disks** and create a new disk.
+1. On **Basics**, fill out the required fields.
+1. Select the **Source type** that you'd like.
+1. Then select **Change size** and select the disk type you'd like and choose a size larger than 513 GiB.
+1. Proceed to **Advanced** and select the checkbox next to **Enable performance plus**.
+1. Select **Review + create** and then deploy your disk.
+
+:::image type="content" source="media/disks-enable-performance/disks-performance-plus-enable.png" alt-text="Screenshot of disks advanced page in the disk portal deployment." lightbox="media/disks-enable-performance/disks-performance-plus-enable.png":::
+
+---

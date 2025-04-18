@@ -1137,7 +1137,7 @@ Example document:
       "publisher":"planPublisher"
    },
    "sku":"Windows-Server-2012-R2-Datacenter",
-   "subscriptionId":"8d10da13-8125-4ba9-a717-bf7490507b3d",
+   "subscriptionId":"aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e",
    "timeStamp":{
       "createdOn":"11/30/20 21:19:19 -0000",
       "expiresOn":"11/30/20 21:19:24 -0000"
