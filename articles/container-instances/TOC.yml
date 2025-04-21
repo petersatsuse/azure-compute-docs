@@ -7,7 +7,7 @@
   - name: Resources and Quota Limits
     href: container-instances-resource-and-quota-limits.md
   - name: Support Policy for ACI
-    href: aci-support-policy.md
+    href: azure-container-instances-support-policy.md
 - name: Quickstarts
   expanded: true
   items:
