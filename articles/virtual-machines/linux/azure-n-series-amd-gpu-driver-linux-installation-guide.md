@@ -75,7 +75,7 @@ Add yourself to the render and video group using the following command:
 $ sudo usermod -a -G render,video $LOGNAME
 ```
 
-### 3.5 Kernel headers and development packages
+### 3.4 Kernel headers and development packages
 
 The driver package uses Dynamic Kernel Module Support (DKMS) to build the amdgpu-dkms module for installed kernels. This requires the installation of Linux kernel headers and modules for each kernel. These are installed automatically with the kernel. However, if you use multiple kernel versions or download kernel images without the meta-packages, you might need to install them manually.
 
@@ -83,7 +83,7 @@ The driver package uses Dynamic Kernel Module Support (DKMS) to build the amdgpu
 $ sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
 ```
 
-### 3.6 Verifying GPU Card in Linux&reg;
+### 3.5 Verifying GPU Card in Linux&reg;
 
 The output should the GPU card.
 
@@ -95,14 +95,14 @@ c3:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Device 7461
 >[!NOTE]
 > 7461 is the Virtual Function Device ID. This confirms that the Virtual Machine is configured with the AMD Radeon&trade; PRO V710 GPU.
 
-### 3.7 Virtual Machine Update
+### 3.6 Virtual Machine Update
 
 On an NVv5-V710 GPU Linux instance running Ubuntu 22.04 OS, run the update: 
 ```bash
 $ sudo apt update
 ```
 
-### 3.8 Exclude AMD GPU Driver
+### 3.7 Exclude AMD GPU Driver
 
 To install the latest AMD Linux driver, it's crucial to exclude the default AMD GPU driver found in Linux OS distributions such as Ubuntu or RHEL. The default AMD GPU driver in Linux OS distributions isn't certified for use with the AMD Radeon&trade; PRO V710 GPU on an NVv5-V710 GPU Linux instance. This Linux driver, on the other hand, is optimized explicitly for Azure NVv5-V710 GPU Linux workloads. Follow the steps below to exclude the driver: 
 
@@ -131,7 +131,7 @@ Whenever you update (add or remove) the exclude by modifying "/etc/modprobe.d", 
 $ sudo update-initramfs -uk all
 ```
 
-### 3.9 Reboot
+### 3.8 Reboot
 
 After restarting the Virtual Machine, the default AMD GPU driver in Ubuntu Linux distributions does not load because we excluded it. To confirm that the driver isn't loaded, run the command "lsmod | grep amdgpu" to check if the amdgpu driver is loaded. If there's no output, the driver isn't loaded, and you can proceed. However, if the driver has remained loaded, return to the previous step to double-check that the amdgpu driver has been excluded correctly.
 
