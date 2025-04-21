@@ -46,7 +46,6 @@ You can deploy a scale set with a Windows Server image or Linux image such as RH
 
 1. On the **Networking** page, under **Load balancing**, select **Azure load balancer**.
 1. In **Select a load balancer**, select a load balancer or create a new one.
-1. For **Select a backend pool**, select **Create new**, type *myBackendPool*, then select **Create**.
 
 :::image type="content" source="media/quickstart-guides/quick-start-portal-2.png" alt-text="A screenshot of the Networking tab in the Azure portal during the Virtual Machine Scale Set creation process.":::
 
