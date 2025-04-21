@@ -2,7 +2,7 @@
 title: AMD GPU Linux Drivers on Azure ND MI300x v5-series
 description: Setting up AMD GPU Drivers in Linux on Azure ND MI300x v5-series.
 services: virtual-machines
-author: marccharest-MSFT
+author: marccharest
 ms.service: azure-virtual-machines
 ms.subservice: sizes
 ms.collection: linux
