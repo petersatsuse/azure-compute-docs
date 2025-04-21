@@ -329,7 +329,7 @@ To roll-back changes from Trusted launch to previous known good configuration, y
 1. **OS Image**: Navigate to `Operating system` under `Settings`. Click on `Change image reference.
     :::image type="content" source="./media/trusted-launch/02-vmss-portal-os-change.png" alt-text="Screenshot of the scale set OS image change.":::
 
-2.  Update the OS Image reference to last known good configuration.
+2. Update the OS Image reference to last known good configuration.
     :::image type="content" source="./media/trusted-launch/02-vmss-portal-os-change-01.png" alt-text="Screenshot of the OS image change options.":::
 
 3. **Security type**: Navigate to `Configuration` page under `Settings` -> Update the security type drop-down on `Configuration` page from `Trusted launch` to `Standard` for disabling Trusted Launch security configuration. Click `Yes` to confirm changes.
@@ -340,7 +340,6 @@ To roll-back changes from Trusted launch to previous known good configuration, y
 
 5. Update the VM instances manually if Scale set uniform [upgrade mode](../virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy.md) is set to `Manual`.
     :::image type="content" source="./media/trusted-launch/06-vmss-portal-update-instances.png" alt-text="Screenshot of the scale set instance update.":::
-
 
 ### [Template](#tab/template)
 
