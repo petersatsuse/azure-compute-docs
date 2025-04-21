@@ -52,7 +52,7 @@ Following steps details how to enable Trusted launch on existing uniform scale s
     :::image type="content" source="./media/trusted-launch/02-vmss-portal-os-change.png" alt-text="Screenshot of the scale set OS image change.":::
     :::image type="content" source="./media/trusted-launch/02-vmss-portal-os-change-01.png" alt-text="Screenshot of the OS image change options.":::
 
-3. **Security type**: Click on **Standard** `Security type` on `Overview` page of scale set OR navigate to `Configuration` under `Settings`. Update the security type drop-down on `Configuration` page from Standard to Trusted launch with `Enable secure boot` and `Enable vTPM` checked to enable Trusted Launch security configuration.
+3. **Security type**: Click on **Standard** `Security type` on `Overview` page of scale set OR navigate to `Configuration` under `Settings`. Update the security type drop-down on `Configuration` page from `Standard` to `Trusted launch` with `Enable secure boot` and `Enable vTPM` checked to enable Trusted Launch security configuration. Click `Yes` to confirm changes.
 
 > [!NOTE]
 >
@@ -60,6 +60,7 @@ Following steps details how to enable Trusted launch on existing uniform scale s
 > - **Secure Boot** should be enabled (not enabled by default) if you aren't using custom unsigned kernel or drivers. Secure Boot preserves boot integrity and enables foundational security for VM.
 
     :::image type="content" source="./media/trusted-launch/03-vmss-portal-click-security-type.png" alt-text="Screenshot of the overview page.":::
+
     :::image type="content" source="./media/trusted-launch/04-vmss-portal-apply-security-type.png" alt-text="Screenshot of the security type drop-down.":::
 
 4. Validate the changes on the `Overview` page of scale set.
@@ -318,6 +319,22 @@ Make sure the latest [Azure PowerShell](/powershell/azure/install-azps-windows) 
 ## Roll-back
 
 To roll-back changes from Trusted launch to previous known good configuration, you need to set `securityType` of Scale set to **Standard**.
+
+### [Portal](#tab/portal)
+
+1. **OS Image**: Navigate to `Operating system` under `Settings`. Update the OS Image reference to last known good configuration.
+    :::image type="content" source="./media/trusted-launch/02-vmss-portal-os-change.png" alt-text="Screenshot of the scale set OS image change.":::
+    :::image type="content" source="./media/trusted-launch/02-vmss-portal-os-change-01.png" alt-text="Screenshot of the OS image change options.":::
+
+2. **Security type**: Navigate to `Configuration` page under `Settings`. Update the security type drop-down on `Configuration` page from `Trusted launch` to `Standard` for disabling Trusted Launch security configuration. Click `Yes` to confirm changes.
+    :::image type="content" source="./media/trusted-launch/02-vmss-portal-rollback.png" alt-text="Screenshot of the security type drop-down.":::
+
+3. Validate the changes on the `Overview` page of scale set.
+    :::image type="content" source="./media/trusted-launch/03-vmss-portal-rollback.png" alt-text="Screenshot of the validation on overview page.":::
+
+4. Update the VM instances manually if Scale set uniform [upgrade mode](../virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy.md) is set to `Manual`.
+    :::image type="content" source="./media/trusted-launch/06-vmss-portal-update-instances.png" alt-text="Screenshot of the scale set instance update.":::
+
 
 ### [Template](#tab/template)
 
