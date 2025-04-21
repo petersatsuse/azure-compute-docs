@@ -43,7 +43,7 @@ Via the CLI (```az vm create```) specify the image with ```--image microsoft-dsv
 
 Follow [this link](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/microsoft-dsvm.ubuntu-hpc) to deploy via the Azure portal. Click "Get It Now" and choose "Ubuntu HPC 22.04 ROCm."
 
-![Marketplace Image](media/n-series-driver-setup/azurehpc-image.png)
+<img src="media/n-series-driver-setup/azurehpc-image.png" alt="Marketplace Image" width="600">
 
 <a id="driver-install"></a>
 ## Installing ROCm in Ubuntu 22.04
