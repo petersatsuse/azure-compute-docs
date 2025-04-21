@@ -184,3 +184,19 @@ If your VM's long-lived key is lost, it no longer communicates with Instance Met
 
 > [!Note]
 > If sending multiple requests or otherwise using automation you must ensure that the values you send are strictly monotonically increasing or else no change may be applied. 
+
+## General Error Codes
+
+|Error Code | Error Message | Action |
+|--|--|--|
+| `ProxyAgentNotSupportedInRegion` |Creation of VMs or VM Scale Sets with ProxyAgent feature is not supported in this region. |Please choose a supported region |
+| `SubscriptionNotEnabledForProxyAgentFeature` | The subscription is not registered for the private preview of ProxyAgent feature. | Register the feature flag: https://learn.microsoft.com/en-us/azure/virtual-machines/metadata-security-protocol/overview#register-the-feature-flags |
+| `BadRequest` | The property `securityProfile.proxyAgentSettings.wireServer.inVMAccessControlProfileReferenceId` cannot be used together with property `securityProfile.proxyAgentSettings.wireServer.mode'` OR he property `securityProfile.proxyAgentSettings.imds.inVMAccessControlProfileReferenceId` cannot be used together with property `securityProfile.proxyAgentSettings.imds.mode`. | Fix parameter |
+| `BadRequest` | The value `securityProfile.proxyAgentSettings.keyIncarnationId` can only be incremented. | Fix parameter | 
+| `BadRequest` | The value of parameter `securityProfile.proxyAgentSettings.wireServer.mode` is invalid OR The value of parameter `securityProfile.proxyAgentSettings.imds.mode` is invalid | Provide a valid value: `Audit`, `Enable`, `Disabled` |
+| `InvalidParameter` | The resource id '{0}' is not a valid gallery `inVMAccessControlProfile` reference. A gallery `inVMAccessControlProfile` reference should be a valid resource identifier, of the format: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/inVMAccessControlProfiles/{profileName}/versions/{version}' | Fix the parameter value |
+| `BadRequest` /`GalleryInVMAccessControlProfileNotMatchOSDisk` | Current Gallery `InVMAccessControlProfile` Version {0} supports OS {1}, while current OSDisk's OS is {2}. | Fix the parameter value | 
+| `BadRequest`/`GalleryInVMAccessControlProfileNotMatchHostEndpointType` | Current Gallery `InVMAccessControlProfile` Version {0} is for host endpoint {1}, while current referred by {2}. | Fix parameter value |
+| `InVMAccessControlProfileNotFound` | The gallery `InVMAccessControlProfile` '{0}' is not available. Verify that the `InVMAccessControlProfileReferenceId` passed in is correct. | Check that the profile exists and is replicated in the regions where VM/VMSS exists. | 
+| `InVMAccessControlProfileNotFound` | Failed to prepare the `InVMAccessControlProfile` '{0}' metadata for one or more resources due to an error: '{1}'. | This error occurs because the user accidentally deleted the profile in the middle of the VM/VMSS operation. | 
+
