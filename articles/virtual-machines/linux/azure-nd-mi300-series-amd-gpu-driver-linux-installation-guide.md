@@ -17,7 +17,7 @@ ms.reviewer: vikancha
 
 **Applies to:** :heavy_check_mark: Linux VMs
 
-This document outlines the steps for installing and upgrading the AMD Linux Driver to harness the capabilities of the GPU on an ND MI300X v5 Linux instance provided by Microsoft Azure.  Three key scenarios are covered:
+This document outlines the steps for installing and upgrading the AMD Linux Driver on an Azure ND MI300X v5 VM instance.Three key scenarios are covered:
 
 * [Installing/Upgrading ROCm via the Marketplace Image](#image) - Recommended
 * [Installing ROCm in Ubuntu 22.04](#driver-install)
@@ -37,11 +37,11 @@ This document outlines the steps for installing and upgrading the AMD Linux Driv
 <a id="image"></a>
 ## Installing/Upgrading ROCm using AzureHPC Marketplace Image - *Recommended*
 
-Using the AzureHPC Marketplace Image is the recommended approach.  The image already has the AMD and Infiniband drivers pre-installed.  You can deploy either via the CLI or the Azure portal.
+Using the AzureHPC Marketplace Image is the recommended approach. The image already has the AMD and Infiniband drivers preinstalled. You can deploy either via the CLI or the Azure portal.
 
-Via the CLI (i.e. ```az vm create```) specify the image with ```--image microsoft-dsvm:ubuntu-hpc:2204-rocm:latest```.
+Via the CLI (```az vm create```) specify the image with ```--image microsoft-dsvm:ubuntu-hpc:2204-rocm:latest```.
 
-Follow [this link](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/microsoft-dsvm.ubuntu-hpc) to deploy via the Azure portal. Click "Get It Now" and choose "Ubuntu HPC 22.04 ROCm".  
+Follow [this link](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/microsoft-dsvm.ubuntu-hpc) to deploy via the Azure portal. Click "Get It Now" and choose "Ubuntu HPC 22.04 ROCm."
 
 ![Marketplace Image](media/n-series-driver-setup/azurehpc-image.png)
 
@@ -62,7 +62,7 @@ Output is similar to the following example
 
 ### Downgrade Linux Kernel
 
-To check the kernel version of your Linux system, use the below command:
+To check the kernel version of your Linux system, use the following command:
 ```bash
 uname -srmv
 ```
@@ -79,7 +79,7 @@ Downgrade to the 5.15 version of the Linux kernel
  sudo apt install -y linux-image-5.15.0-1073-azure
 ```
 
-Upgrade the default grub menu option. The HASH below is tied to the kernel revision count, i.e. XXXX in 5.15.0-XXXX-azure.  It can be found in /boot/grub/grub.cfg
+Upgrade the default grub menu option. The HASH is tied to the kernel revision count (XXXX in 5.15.0-XXXX-azure). It can be found in /boot/grub/grub.cfg
 
 ```bash
 sudo sed -i "s|GRUB_DEFAULT=.*|GRUB_DEFAULT='gnulinux-advanced-5cec22f9-d9ef-44de-8258-c171f96f3dc4>gnulinux-5.15.0-1073-azure-advanced-5cec22f9-d9ef-44de-8258-c171f96f3dc4'|g" /etc/default/grub
