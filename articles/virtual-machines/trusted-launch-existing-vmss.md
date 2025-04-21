@@ -73,9 +73,9 @@ Following steps details how to enable Trusted launch on existing uniform scale s
 
 ### [Template](#tab/template)
 
-Following steps details using an [ARM template](/azure/azure-resource-manager/templates/overview) to enable Trusted launch on existing Virtual machine Scale set uniform.
+Following steps details using an [ARM template](/azure/azure-resource-manager/templates/overview) to enable Trusted launch on existing uniform scale set.
 
-Make the following modifications to your existing ARM template deployment code. For complete template, refer to [Quickstart Trusted launch Scale set ARM template](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.compute/vmss-trustedlaunch-windows/azuredeploy.json).
+Make the following modifications to enable Trusted launch using existing ARM template deployment code. For complete template, refer to [Quickstart Trusted launch Scale set ARM template](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.compute/vmss-trustedlaunch-windows/azuredeploy.json).
 
 > [!IMPORTANT]
 >
@@ -196,7 +196,7 @@ Make the following modifications to your existing ARM template deployment code. 
 
 This section steps through using the Azure CLI to enable Trusted launch on existing Azure Scale set Uniform resource.
 
-Make sure that you've installed the latest [Azure CLI](/cli/azure/install-az-cli2) and are logged in to an Azure account with [az login](/cli/azure/reference-index).
+Make sure latest version of [Azure CLI](/cli/azure/install-az-cli2) is installed and logged in to an Azure account with [az login](/cli/azure/reference-index).
 
 > [!NOTE]
 >
@@ -330,7 +330,7 @@ To roll-back changes from Trusted launch to previous known good configuration, y
     :::image type="content" source="./media/trusted-launch/02-vmss-portal-rollback.png" alt-text="Screenshot of the security type drop-down.":::
 
 3. Validate the changes on the `Overview` page of scale set.
-    :::image type="content" source="./media/trusted-launch/03-vmss-portal-rollback.png" alt-text="Screenshot of the validation on overview page.":::
+    :::image type="content" source="./media/trusted-launch/03-vmss-portal-rollback.png" alt-text="Screenshot of the validation of rollback on overview page.":::
 
 4. Update the VM instances manually if Scale set uniform [upgrade mode](../virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy.md) is set to `Manual`.
     :::image type="content" source="./media/trusted-launch/06-vmss-portal-update-instances.png" alt-text="Screenshot of the scale set instance update.":::
