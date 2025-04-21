@@ -65,7 +65,7 @@ Following steps details how to enable Trusted launch on existing uniform scale s
     > - **vTPM** is enabled by default.
     > - **Secure Boot** should be enabled (not enabled by default) if you aren't using custom unsigned kernel or drivers. Secure Boot preserves boot integrity and enables foundational security for VM.
 
-    :::image type="content" source="./media/trusted-launch/04-vmss-portal-apply-security-type.png" alt-text="Screenshot of the security type drop-down.":::
+    :::image type="content" source="./media/trusted-launch/04-vmss-portal-apply-security-type.png" alt-text="Screenshot of the Trusted launch security type drop-down.":::
 
 6. Validate the changes on the `Overview` page of scale set.
     :::image type="content" source="./media/trusted-launch/05-vmss-portal-validate-security-type.png" alt-text="Screenshot of the validation on overview page.":::
@@ -333,7 +333,7 @@ To roll-back changes from Trusted launch to previous known good configuration, y
     :::image type="content" source="./media/trusted-launch/02-vmss-portal-os-change-01.png" alt-text="Screenshot of the OS image change options.":::
 
 3. **Security type**: Navigate to `Configuration` page under `Settings` -> Update the security type drop-down on `Configuration` page from `Trusted launch` to `Standard` for disabling Trusted Launch security configuration. Click `Yes` to confirm changes.
-    :::image type="content" source="./media/trusted-launch/02-vmss-portal-rollback.png" alt-text="Screenshot of the security type drop-down.":::
+    :::image type="content" source="./media/trusted-launch/02-vmss-portal-rollback.png" alt-text="Screenshot of the Standard security type drop-down.":::
 
 4. Validate the changes on the `Overview` page of scale set.
     :::image type="content" source="./media/trusted-launch/03-vmss-portal-rollback.png" alt-text="Screenshot of the validation of rollback on overview page.":::
