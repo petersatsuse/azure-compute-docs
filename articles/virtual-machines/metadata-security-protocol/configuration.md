@@ -61,7 +61,7 @@ All configuration is managed via new properties in the `securityProfile` section
 
 `ProxyAgentSettings` is the new property in the VM model for Azure VM and Virtual Machine Scale Sets to configure MSP feature.
 
-| `ProxyAgentSettings` property | Type | Default | Details  |
+| Parameter Name | Type | Default | Details  |
 |--|--|--|--|
 | `enabled`| `Bool` | `false` | Specifies whether MSP feature should be enabled on the virtual machine or virtual machine scale set. Default is `false`. This property controls: <ul><li>Applying other settings</li><li>Platform latched key generation</li><li>Automatic GPA Installation (when `true`) / Uninstallation (when `false`) on Windows VM/Virtual Machine Scale Sets</li></ul> |
 | `imds` | HostEndpointSettings | N/A | IMDS specific configuration. See [Per-Metadata Service Configuration](#per-metadata-service-configuration). |
