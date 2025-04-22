@@ -4,7 +4,7 @@ description: Overview of metadata security protocol.
 author: minnielahoti
 ms.service: azure-virtual-machines
 ms.topic: how-to
-ms.date: 04/20/2025
+ms.date: 04/22/2025
 ms.author: minnielahoti
 ms.reviewer: azmetadatadev
 ---
@@ -39,36 +39,6 @@ The following are not supported yet:
 > - Compatability with Azure Backup 
 > - ARM64 
 
-## How to Configure MSP
-
-### Register the feature flags
-
-To use MSP in preview, register the following flag using the `az feature register` command.
-
-```azurecli-interactive
-az feature register --namespace Microsoft.Compute --name ProxyAgentPreview
-```
-
-Verify the registration status by using the `az feature show` command. It takes a few minutes for the status to show *Registered*:
-
-```azurecli-interactive
-az feature show --namespace Microsoft.Compute --name ProxyAgentPreview
-```
-
-When the status reflects *Registered*, refresh the registration of the *Microsoft.Compute* resource provider by using the `az provider register` command:
-
-```azurecli-interactive
-az provider register --namespace Microsoft.Compute
-```
-Once you are registered in the feature flag you can configure MSP via: 
-
-- [ARM Templates](./other-examples/arm-templates.md)
-- REST API 
-- PowerShell
-- [Azure portal](./other-examples/portal.md)
-
-For details on how to configure MSP, visit  [MSP Configuration](./configuration.md) page. 
-
 ## Enhanced Security
 
 ### Implementation
@@ -90,6 +60,10 @@ enables the GPA to verify the identity of the in-guest software that made the re
 - By default, the existing authorization levels are enforced: IMDS is open to all users and Wireserver is root / admin only.
   - Today this restriction is accomplished with firewall rules in the guest. This is still a default-open mechanism, because if that rule can be disabled or bypassed for any reason the metadata service still accepts the request. The AuthN mechanism enabled here default-closed. Bypassing interception maliciously or by error doesn't grant access to the metadata service.
 - Advanced AuthZ configuration to authorize specific in-guest processes and users to access only specific endpoints is supported by defining a custom allowlist with Role Based Access Control (RBAC) semantics.
+
+
+
+For details on how to configure MSP, visit  [MSP Configuration](./configuration.md) page. 
 
 ## Getting Audit Logs
 
