@@ -41,6 +41,7 @@ Once you are registered in the feature flag you can configure MSP via:
 - PowerShell
 - [Azure portal](./other-examples/portal.md)
 
+
 ## Concepts
 
 | Term | Definition |
@@ -72,6 +73,7 @@ All configuration is managed via new properties in the `securityProfile` section
 Protections for each metadata service can be individually configured. The schema is the same for each service.
 
 > Inline and linked configurations are mutually exclusive on a per-service basis.
+
 
 #### Inline Configuration
 
@@ -152,6 +154,15 @@ The `inVMAccessControlProfiles` resource type defines a per-service configuratio
 }
 ```
 
+
+## Getting Audit Logs
+
+In `Audit` and `Enforce` modes, audit logs are generated on the local disk.
+
+| OS Family | Audit Log Location |
+|--|--|
+| Linux | `/var/lib/azure-proxy-agent/ProxyAgent.Connection.log` |
+| Windows | `C:\WindowsAzure\ProxyAgent\Logs\ProxyAgent.Connection.log` |
 
 ## Recommended Progression
 

@@ -61,18 +61,7 @@ enables the GPA to verify the identity of the in-guest software that made the re
   - Today this restriction is accomplished with firewall rules in the guest. This is still a default-open mechanism, because if that rule can be disabled or bypassed for any reason the metadata service still accepts the request. The AuthN mechanism enabled here default-closed. Bypassing interception maliciously or by error doesn't grant access to the metadata service.
 - Advanced AuthZ configuration to authorize specific in-guest processes and users to access only specific endpoints is supported by defining a custom allowlist with Role Based Access Control (RBAC) semantics.
 
-
-
 For details on how to configure MSP, visit  [MSP Configuration](./configuration.md) page. 
-
-## Getting Audit Logs
-
-In `Audit` and `Enforce` modes, audit logs are generated on the local disk.
-
-| OS Family | Audit Log Location |
-|--|--|
-| Linux | `/var/lib/azure-proxy-agent/ProxyAgent.Connection.log` |
-| Windows | `C:\WindowsAzure\ProxyAgent\Logs\ProxyAgent.Connection.log` |
 
 
 ## Related Content
