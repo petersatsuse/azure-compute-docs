@@ -73,7 +73,7 @@ For details on how to configure MSP, visit  [MSP Configuration](./configuration.
 
 ### Implementation
 
-The GPA hardens against these types of attacks by:
+The Guest Proxy Agent (GPA) hardens against these types of attacks by:
 
 - Limiting metadata access to a subset of the VM (applying the principle of least privileged access).
 - Switching from a "default-open" to "default-closed" model. For instance, with nested virtualization, a misconfigured L2
