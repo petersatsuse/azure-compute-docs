@@ -198,5 +198,5 @@ If your VM's long-lived key is lost, it no longer communicates with Instance Met
 | `BadRequest` /`GalleryInVMAccessControlProfileNotMatchOSDisk` | Current Gallery `InVMAccessControlProfile` Version {0} supports OS {1}, while current OSDisk's OS is {2}. | Fix the parameter value | 
 | `BadRequest`/`GalleryInVMAccessControlProfileNotMatchHostEndpointType` | Current Gallery `InVMAccessControlProfile` Version {0} is for host endpoint {1}, while current referred by {2}. | Fix parameter value |
 | `InVMAccessControlProfileNotFound` | The gallery `InVMAccessControlProfile` '{0}' is not available. Verify that the `InVMAccessControlProfileReferenceId` passed in is correct. | Check that the profile exists and is replicated in the regions where VM/VMSS exists. | 
-| `InVMAccessControlProfileNotFound` | Failed to prepare the `InVMAccessControlProfile` '{0}' metadata for one or more resources due to an error: '{1}'. | This error occurs because the user accidentally deleted the profile in the middle of the VM/VMSS operation. | 
+| `InVMAccessControlProfileNotFound` | Failed to prepare the `InVMAccessControlProfile` '{0}' metadata for one or more resources due to an error: '{1}'. | Create a new profile and start over | 
 
