@@ -28,30 +28,13 @@ To leverage the GPU capabilities of the new Azure NVv710 series VMs running Linu
 
 If you prefer to install AMD GPU drivers manually, this article outlines the supported operating systems, drivers, and provides installation and verification steps.
 
-Only GPU drivers published by Microsoft are supported on NVv710 VMs. Avoid installing GPU drivers from other sources.
-
-For specifications, storage capacities, and disk details, refer to [GPU Linux VM sizes]().
-
 ### 1. Installation Guide
 
 #### 1.1 Introduction
 
-This article outlines the steps for installing the AMD Linux Driver to harness the capabilities of the AMD Radeon&trade; PRO V710 GPU on an NVv5-V710 GPU Linux instance provided by Microsoft Azure. Subsequent sections provide detailed Linux driver installation instructions for users who wish to perform inference using ROCm on the NVv5-V710 GPU Linux instance.
-#### Ubuntu Version-Specific Instructions
-
-When installing ROCm, ensure you are using the correct package URL based on your Ubuntu version. The only difference between Ubuntu 22.04 and 24.04 is the codename used in the download URL.
-
-**Download URL Codenames:**
-
-| Ubuntu Version | Codename | Example URL Segment         |
-|----------------|----------|-----------------------------|
-| 22.04          | `jammy`  | `.../ubuntu/jammy/...`      |
-| 24.04          | `noble`  | `.../ubuntu/noble/...`      |
-
-> **Note:** Replace `jammy` or `noble` in the download URL according to your Ubuntu version to ensure proper installation of ROCm.
-
-Refer to the [official ROCm installation guide](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.3/install/quick-start.html) for the full set of instructions.
-
+Here are the steps for installing the AMD Linux Driver to harness the capabilities of the AMD Radeon&trade; PRO V710 GPU on an NVv5-V710 GPU Linux instance provided by Microsoft Azure. Subsequent sections provide detailed Linux driver installation instructions for users who wish to perform inference using ROCm on the NVv5-V710 GPU Linux instance.
+> **Note:** This page outlines installation instructions for **Ubuntu**.  
+> For any other Linux distributions, please refer to the official [AMD ROCm documentation](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.3/install/quick-start.html)
 ### 2. Linux Driver Installation
 #### 2.1 Supported Linux Distros
 
@@ -131,30 +114,29 @@ On an NVv5-V710 GPU Linux instance running Ubuntu 22.04 OS, run the update:
 $ sudo apt update
 ```
 
-#### 3.7 Exclude AMDGPU Driver
+#### 3.7 Blacklist amdgpu Driver
 
-Before installing the latest AMD Linux driver, it's important to **exclude** the default AMDGPU driver. The default driver, present in Linux distributions like Ubuntu or RHEL, is not certified for use with the **AMD Radeon™ PRO V710 GPU** on an **NVv5-V710 GPU Linux instance**. The driver optimized for Azure NVv5-V710 GPU workloads should be used instead.
+Before installing the latest AMD Linux driver, it's important to **blacklist** the default AMDGPU driver. The default driver, present in Linux distributions like Ubuntu or RHEL, is not certified for use with the **AMD Radeon™ PRO V710 GPU** on an **NVv5-V710 GPU Linux instance**. The driver optimized for Azure NVv5-V710 GPU workloads should be used instead.
 
-##### Check if the Driver is Already Excluded
+##### Check if the Driver is Already Blacklisted
 
-To check if the AMDGPU driver is already excluded, run the following command:
+To check if the amdgpu driver is already blacklisted, run the following command:
 
 ```bash
 grep amdgpu /etc/modprobe.d/* -rn
 ```
-    If the driver is excluded, you don't need to modify anything else.
-    Be careful with entries that start with #blacklist amdgpu – this means the driver is not blacklisted
+If the driver is blacklisted, you don't need to modify anything else. Be careful with entries that start with #blacklist amdgpu – this means the driver is not blacklisted
 
 
-##### Exclude the AMDGPU Driver
-To install the latest driver, you must exclude the default AMDGPU driver. Follow these steps:
+##### Blacklist the amdgpu Driver
+To install the latest driver, you must blacklisted the default AMDGPU driver. Follow these steps:
 
 Open the /etc/modprobe.d/blacklist.conf file to edit:
 ```bash 
 sudo vim /etc/modprobe.d/blacklist.conf
 ```
 
-Add the following line to exclude the AMDGPU driver:
+Add the following line to blacklist the amdgpu driver:
 ```bash
 blacklist amdgpu
 ```
@@ -163,12 +145,28 @@ After updating the blacklist.conf file, run the following command to apply the c
 ```bash
 $ sudo update-initramfs -uk all
 ```
-This ensures the changes take effect and the driver is properly excluded.
+This ensures the changes take effect and the driver is properly blacklisted.
 #### 3.8 Reboot
 
-After restarting the Virtual Machine, the default AMD GPU driver in Ubuntu Linux distributions does not load because we excluded it. To confirm that the driver isn't loaded, run the command "lsmod | grep amdgpu" to check if the amdgpu driver is loaded. If there's no output, the driver isn't loaded, and you can proceed. However, if the driver has remained loaded, return to the previous step to double-check that the amdgpu driver has been excluded correctly.
+After restarting the Virtual Machine, the default amdgpu driver in Ubuntu Linux distributions does not load because we blacklisted it. To confirm that the driver isn't loaded, run the command "lsmod | grep amdgpu" to check if the amdgpu driver is loaded. If there's no output, the driver isn't loaded, and you can proceed. However, if the driver has remained loaded, return to the previous step to double-check that the amdgpu driver has been blacklisted correctly.
 
 ### 4. AMD Driver Installation
+
+#### Ubuntu Version-Specific Instructions
+
+When installing ROCm, ensure you are using the correct package URL based on your Ubuntu version. The only difference between Ubuntu 22.04 and 24.04 is the codename used in the download URL.
+
+**Download URL Codenames:**
+
+| Ubuntu Version | Codename | Example URL Segment         |
+|----------------|----------|-----------------------------|
+| 22.04          | `jammy`  | `.../ubuntu/jammy/...`      |
+| 24.04          | `noble`  | `.../ubuntu/noble/...`      |
+
+> **Note:** Replace `jammy` or `noble` in the download URL according to your Ubuntu version to ensure proper installation of ROCm.
+
+Refer to the [official ROCm installation guide](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.3/install/quick-start.html) for the full set of instructions.
+
 
 #### 4.1 Installation
 
@@ -195,14 +193,11 @@ sudo amdgpu-install --usecase=rocm
 >[!NOTE]
 > If needed, this can be used to create a script to automate the installation process.
 
-#### 4.2 Load AMD GPU driver
+#### 4.2 Load amdgpu driver
 
 ```bash
 $ sudo modprobe amdgpu
 ```
-
->[!NOTE]
-> The AMD GPU driver needs to be loaded on every boot.
 
 Review the output of **" dmesg | grep amdgpu "** to confirm that the GPU driver is loaded and initialized successfully.
 
@@ -219,7 +214,11 @@ $ sudo dmesg | grep amdgpu
 [ 66.689542] amdgpu 045b:00:00.0: amdgpu: CP RS64 enable
 ```
 
-#### 4.2.1 Run AMD-SMI to confirm the driver is loaded successfully 
+#### 4.3 Un-Blacklist the driver
+
+Repeat the steps in section 3.7 
+
+Run AMD-SMI to confirm the driver is loaded successfully 
 
 ```bash
 $ amd-smi monitor
@@ -236,7 +235,7 @@ GPU  POWER  GPU_TEMP  MEM_TEMP  GFX_UTIL  GFX_CLOCK  MEM_UTIL  MEM_CLOCK  ENC_UT
 ### 1. Installation Guide
 #### 1.1 Introduction
 
-This article outlines the steps install the AMD Linux Driver to leverage the power of the AMD Radeon™ PRO V710 GPU on an NVv5-V710 GPU Linux instance offered by Microsoft Azure. The Linux Driver installation also includes installing the ROCm™ Libraries, graphic libraries, and Development Tools. Subsequent sections of the document will thoroughly discuss the driver installation of the graphics use case
+Here are the steps for installing the AMD Linux Driver to leverage the power of the AMD Radeon™ PRO V710 GPU on an NVv5-V710 GPU Linux instance offered by Microsoft Azure. The Linux Driver installation also includes installing the ROCm™ Libraries, graphic libraries, and Development Tools. Subsequent sections of the document will thoroughly discuss the driver installation of the graphics use case
 
 ### 2. Linux Driver Prerequisites
 #### 2.1 Supported Linux Distros
@@ -262,14 +261,16 @@ DISTRIB_DESCRIPTION="Ubuntu 22.04"
 PRETTY_NAME="Ubuntu 22.04 LTS" 
 ```
 Please ensure your Linux distribution and kernel version are listed in the table above.  
-Note: Refer to the troubleshooting section at the end of the document for instructions on how to set the 
-6.5 kernel as the default (at every boot time) on the NvV5 V710 GPU instance. 
+>[!Note]
+>Refer to the troubleshooting section at the end of the document for instructions on how to set the 
+>6.5 kernel as the default (at every boot time) on the NvV5 V710 GPU instance. 
+
 >[!Note]
 >If you plan to run the graphics workload, use the Linux distribution with graphics enabled (e.g., Ubuntu-22.04-desktop-amd64.iso).
 ### 3. Troubleshooting
 This section will outline troubleshooting techniques to address issues that may arise during the driver installation process.
-If you are using the Kernel 6.8, follow the below steps to remove it
-Run the following command
+If you are using the Kernel 6.8, follow the below steps to downgrade to kernel 6.5.
+Run the following command to check for installed kernels on the VM
 ```bash
 $ dpkg --list | egrep -i --color 'linux-image|linux-headers|linux-modules' | awk '{ print $2 }'
 ```
@@ -383,31 +384,31 @@ On an NVv5-V710 GPU Linux instance running Ubuntu 22.04 OS, run the update:
 ```bash
 $ sudo apt update
 ```
-#### 4.7 Exclude AMDGPU Driver
+#### 4.7 Blacklist amdgpu Driver
 
 Before installing the latest AMD Linux driver, it's important to **blacklist** the default AMDGPU driver. The default driver, present in Linux distributions like Ubuntu or RHEL, is not certified for use with the **AMD Radeon™ PRO V710 GPU** on an **NVv5-V710 GPU Linux instance**. The driver optimized for Azure NVv5-V710 GPU workloads should be used instead.
 
-##### Check if the Driver is Already Excluded
+##### Check if the Driver is Already Blacklisted
 
-To check if the AMDGPU driver is already excluded, run the following command:
+To check if the AMDGPU driver is already blacklisted, run the following command:
 
 ```bash
 grep amdgpu /etc/modprobe.d/* -rn
 ```
 
-    If the driver is excluded, you don't need to modify anything else.
-    Be careful with entries that start with #blacklist amdgpu – this means the driver is not blacklisted
+If the driver is blacklisted, you don't need to modify anything else.
+Be careful with entries that start with #blacklist amdgpu – this means the driver is not blacklisted
 
 
-##### Exclude the AMDGPU Driver
-To install the latest driver, you must exclude the default AMDGPU driver. Follow these steps:
+##### Blacklist the amdgpu Driver
+To install the latest driver, you must blacklist the default amdgpu driver. Follow these steps:
 
 Open the /etc/modprobe.d/blacklist.conf file to edit:
 ```bash 
 sudo vim /etc/modprobe.d/blacklist.conf
 ```
 
-Add the following line to exclude the AMDGPU driver:
+Add the following line to blacklist the AMDGPU driver:
 ```bash
 blacklist amdgpu
 ```
@@ -416,28 +417,28 @@ After updating the blacklist.conf file, run the following command to apply the c
 ```bash
 $ sudo update-initramfs -uk all
 ```
-This ensures the changes take effect and the driver is properly excluded.
+This ensures the changes take effect and the driver is properly blacklisted.
 #### 4.8 Reboot
 
-After restarting the virtual machine, the default **AMDGPU driver** in Ubuntu Linux distributions shouldn't load because we previously excluded it. To confirm that the driver is not loaded, use the following command:
+After restarting the virtual machine, the default **amdgpu driver** in Ubuntu Linux distributions shouldn't load because we previously blacklisted it. To confirm that the driver is not loaded, use the following command:
 
 ```bash
 lsmod | grep amdgpu
 ```
 
 ##### Uninstallation Steps
-If you need to uninstall the existing AMDGPU driver, follow these steps:
+If you need to uninstall the existing amdgpu driver, follow these steps:
 
 Check DKMS status:
 ```bash
 dkms status
 ```
-Uninstall the AMDGPU driver:
+Uninstall the amdgpu driver:
 ```bash
 sudo amdgpu-install --uninstall
 sudo amdgpu-uninstall
 ```
-Remove the AMDGPU installation package:
+Remove the amdgpu installation package:
 ```bash
 sudo apt autoremove --purge amdgpu-install
 ```
@@ -449,7 +450,7 @@ Check DKMS status again to ensure the driver has been uninstalled:
 ```bash
 dkms status
 ```
-This ensures the old AMDGPU driver is fully removed from the system before installing the new driver.
+This ensures the old amdgpu driver is fully removed from the system before installing the new driver.
 
 
 ### 5. AMD Driver Installation
@@ -474,15 +475,15 @@ sudo apt-get install /tmp/amdgpu-install_6.1.60104-1_all.deb
 # Install the driver
 sudo amdgpu-install --usecase=workstation,rocm,amf --opencl=rocr --vulkan=pro --no-32 --accept-eula
 ```
-#### 5.2 Load AMD GPU driver
-After installation, load the AMD GPU Driver
+#### 5.2 Load amdgpu driver
+After installation, load the amdgpu Driver
 
 ```bash
 $ sudo modprobe amdgpu
 ```
 
 >[!NOTE]
-> The AMD GPU driver needs to be loaded on every boot.
+> The amdgpu driver needs to be loaded on every boot.
 
 You can verify the driver is loaded and initialized successfully with
 ```bash
@@ -654,7 +655,7 @@ After installation, reboot the virtual machine to apply changes:
 sudo reboot
 ```
 #### 6.6 Load Driver
-Once the system is back up, load the AMD GPU driver using the following commands:
+Once the system is back up, load the amdgpu driver using the following commands:
 ```bash
 $ sudo systemctl stop gdm   
 $ sudo modprobe amdgpu  
