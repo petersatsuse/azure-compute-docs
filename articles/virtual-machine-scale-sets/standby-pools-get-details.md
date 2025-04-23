@@ -7,7 +7,7 @@ ms.service: azure-virtual-machine-scale-sets
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/5/2024
+ms.date: 4/23/2025
 ms.reviewer: ju-shim
 ---
 
@@ -228,7 +228,7 @@ Type                         : Microsoft.StandbyPool/standbyVirtualMachinePools/
 ### [REST](#tab/rest)
 
 ```HTTP
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyVirtualMachinePoolName}/runtimeViews/{runtimeView}?api-version=2024-03-01
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyVirtualMachinePoolName}/runtimeViews/{runtimeView}?api-version=2025-03-01
 
 {
   "properties": {
@@ -405,7 +405,7 @@ Statuses[1]       :
 ### [REST](#tab/rest)
 
 ```HTTP
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM/instanceView?api-version=2024-07-01
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM/instanceView?api-version=2025-03-01
 
 {
   "bootDiagnostics": {},

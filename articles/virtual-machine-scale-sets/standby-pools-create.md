@@ -7,7 +7,7 @@ ms.service: azure-virtual-machine-scale-sets
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/5/2024
+ms.date: 4/23/2025
 ms.reviewer: ju-shim
 ---
 
@@ -147,7 +147,7 @@ param minReadyCapacity int = 5
 param vmState string = 'Deallocated'
 param virtualMachineScaleSetId string = '/subscriptions/{subscriptionID}/resourceGroups/StandbyPools/providers/Microsoft.Compute/virtualMachineScaleSets/myScaleSet}'
 
-resource standbyPool 'Microsoft.standbypool/standbyvirtualmachinepools@2024-03-01' = {
+resource standbyPool 'Microsoft.standbypool/standbyvirtualmachinepools@2025-03-01' = {
   name: standbyPoolName
   location: location
   properties: {
@@ -165,7 +165,7 @@ resource standbyPool 'Microsoft.standbypool/standbyvirtualmachinepools@2024-03-0
 Create a standby pool and associate it with an existing scale set using [Create or Update](/rest/api/standbypool/standby-virtual-machine-pools/create-or-update).
 
 ```HTTP
-PUT https://management.azure.com/subscriptions/{subscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/myStandbyPool?api-version=2024-03-01
+PUT https://management.azure.com/subscriptions/{subscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/myStandbyPool?api-version=2025-03-01
 {
 "type": "Microsoft.StandbyPool/standbyVirtualMachinePools",
 "name": "myStandbyPool",
