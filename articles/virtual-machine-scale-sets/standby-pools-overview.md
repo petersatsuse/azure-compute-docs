@@ -7,7 +7,7 @@ ms.service: azure-virtual-machine-scale-sets
 ms.custom:
   - ignite-2024
 ms.topic: conceptual
-ms.date: 11/5/2024
+ms.date: 4/23/2025
 ms.reviewer: ju-shim
 ---
 
@@ -68,7 +68,7 @@ The maximum ready capacity is a user defined parameter. This setting tells the s
 
 ## Virtual machine states
 
-The virtual machines in the standby pool can be kept in a running or stopped (deallocated) state. 
+The virtual machines in the standby pool can be kept in a running, hibernated, or stopped (deallocated) state. 
 
 **Deallocated:** Deallocated virtual machines are shut down and keep any associated disks, network interfaces, and any static IPs. [Ephemeral OS disks](../virtual-machines/ephemeral-os-disks.md) don't support the deallocated state. 
 
@@ -77,6 +77,10 @@ The virtual machines in the standby pool can be kept in a running or stopped (de
 **Running:** Using virtual machines in a running state is recommended when latency and reliability requirements are strict. Virtual machines in a running state remain fully provisioned. 
 
 :::image type="content" source="media/standby-pools/running-vm-pool.png" alt-text="A screenshot showing the workflow when using running virtual machine pools.":::
+
+**Hibernated:** Using virtual machines in a hibernated state is recommended for systems with long boot times due to memory intensive applications. These applications can be initialized on VMs and hibernated. These hibernated VMs can then be quickly started when needed, with the applications already up and running in the desired state.
+
+:::image type="content" source="media/standby-pools/hibernated-vm-pool.png" alt-text="A screenshot showing the workflow when using hibernated virtual machine pools.":::
 
 
 ## Availability zones
@@ -89,7 +93,6 @@ When a scale out is triggered in one of the zones, a virtual machine in the pool
 Users are charged based on the resources deployed in the standby pool. For example, virtual machines in a running state incur compute, networking, and storage costs. Virtual machines in a deallocated state doesn't incur any compute costs, but any persistent disks or networking configurations continue incur cost. Thus, a pool of running virtual machines will incur more cost than a pool of deallocated virtual machines. For more information on virtual machine billing, see [states and billing status of Azure Virtual Machines](../virtual-machines/states-billing.md).
 
 ## Unsupported configurations
-- Creating or attaching a standby pool to a Virtual Machine Scale Set using Azure Spot instances.
 - Creating or attaching a standby pool to a Virtual Machine Scale Set with Azure autoscale enabled. 
 - Creating or attaching a standby pool to a Virtual Machine Scale Set with a fault domain greater than 1. 
 - Creating or attaching a standby pool to a Virtual Machine Scale Set in a different region. 
