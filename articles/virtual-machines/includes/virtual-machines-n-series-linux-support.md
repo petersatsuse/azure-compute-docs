@@ -47,6 +47,8 @@ For more information on the specific vGPU and driver branch versions, visit the 
 >NVs_v3 VMs only support **vGPU 16 or lower** driver version.
 >>
 > GRID Driver 17.3 currently supports only NCasT4_v3 series of VMs. To use this driver, [download and install GRID Driver 17.3 manually](https://download.microsoft.com/download/7/e/c/7ec792c9-3654-4f78-b1a0-41a48e10ca6d/NVIDIA-Linux-x86_64-550.127.05-grid-azure.run) . 
+>>
+> GRID drivers are having issues with installation on Azure Kernel 6.11, to unblock, please downgrade the kernel to 6.8. Please visit the [known issues page](https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/hpccompute-gpu-linux#known-issues) for more information.
 
 Visit [GitHub](https://raw.githubusercontent.com/Azure/azhpc-extensions/refs/heads/master/NvidiaGPU/Nvidia-GPU-Linux-Resources.json) for the complete list of all previous Nvidia GRID driver links.
 
