@@ -190,7 +190,7 @@ If your VM's long-lived key is lost, it no longer communicates with Instance Met
 |Error Code | Error Message | Action |
 |--|--|--|
 | `ProxyAgentNotSupportedInRegion` |Creation of VMs or Virtual Machine Scale Sets with ProxyAgent feature isn't supported in this region. |Please choose a supported region |
-| `SubscriptionNotEnabledForProxyAgentFeature` | The subscription is not registered for the private preview of ProxyAgent feature. | Register the feature flag: https://learn.microsoft.com/en-us/azure/virtual-machines/metadata-security-protocol/overview#register-the-feature-flags |
+| `SubscriptionNotEnabledForProxyAgentFeature` | The subscription is not registered for the private preview of ProxyAgent feature. | Register the feature flag: https://learn.microsoft.com/azure/virtual-machines/metadata-security-protocol/overview#register-the-feature-flags |
 | `BadRequest` | The property `securityProfile.proxyAgentSettings.wireServer.inVMAccessControlProfileReferenceId` can't be used together with property `securityProfile.proxyAgentSettings.wireServer.mode'` OR the property `securityProfile.proxyAgentSettings.imds.inVMAccessControlProfileReferenceId` can't be used together with property `securityProfile.proxyAgentSettings.imds.mode`. | Fix parameter |
 | `BadRequest` | The value `securityProfile.proxyAgentSettings.keyIncarnationId` can only be incremented. | Fix parameter | 
 | `BadRequest` | The value of parameter `securityProfile.proxyAgentSettings.wireServer.mode` is invalid OR The value of parameter `securityProfile.proxyAgentSettings.imds.mode` is invalid | Provide a valid value: `Audit`, `Enable`, `Disabled` |
