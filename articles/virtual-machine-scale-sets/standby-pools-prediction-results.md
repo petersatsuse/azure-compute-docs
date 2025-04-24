@@ -61,6 +61,8 @@ az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
       ]
    }
   "name": "latest",
+  "predictionForcastInfo":
+  "predictionForcastStartTime":
   "provisioningState": "Succeeded",
   "resourceGroup": "myResourceGroup",
   "type": "Microsoft.StandbyPool/standbyVirtualMachinePools/runtimeViews"
@@ -75,7 +77,7 @@ az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
 Get-AzStandbyVMPoolStatus -ResourceGroupName myResourceGroup -Name myStandbyPool
 
 Id: /subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/mmyStandbyPool/runtimeViews/latest
-InstanceCountSummary: {{
+InstanceCountSummary: {
         "instanceCountsByState": [
         {
             "state": "Creating",
@@ -111,7 +113,6 @@ InstanceCountSummary: {{
         }
        ]
      }
-  }
 Name                         : latest
 PredictionForecastInfo       : 
 PredictionForecastStartTime  : 2025-02-14T01:34:59.228Z
