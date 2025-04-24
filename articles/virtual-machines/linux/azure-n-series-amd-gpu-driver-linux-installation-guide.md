@@ -22,12 +22,12 @@ ms.reviewer: vikancha
 >For latest updated guided on instructions to setup ROCm drivers, please refer to AMDs pages here -
 >[Quick start installation guide - ROCm installation(Linux)](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.3/install/quick-start.html),
 >[ROCm release history - ROCm Documentation](https://rocm.docs.amd.com/en/latest/release/versions.html#rocm-release-history)
-
-## AMD Radeon™ PRO V710 NVv5 Linux Installation Guide (ROCM)
+## NVadsV710_v5 Series
 To leverage the GPU capabilities of the new Azure NVv710 series VMs running Linux, AMD GPU drivers need to be installed. The [AMD GPU Driver Extension]() facilitates the installation of AMD GPU drivers on NVv710-series VMs. You can manage the extension using the Azure portal, Azure PowerShell, or Azure Resource Manager templates. Refer to the [AMD GPU Driver Extension]() documentation for details on supported operating systems and deployment steps.
 
 If you prefer to install AMD GPU drivers manually, this article outlines the supported operating systems, drivers, and provides installation and verification steps.
 
+### ROC
 ### 1. Installation Guide
 
 #### 1.1 Introduction
@@ -116,7 +116,7 @@ $ sudo apt update
 
 #### 3.7 Blacklist amdgpu Driver
 
-Before installing the latest AMD Linux driver, it's important to **blacklist** the default AMDGPU driver. The default driver, present in Linux distributions like Ubuntu or RHEL, is not certified for use with the **AMD Radeon™ PRO V710 GPU** on an **NVv5-V710 GPU Linux instance**. The driver optimized for Azure NVv5-V710 GPU workloads should be used instead.
+Before installing the latest AMD Linux driver, it's important to **blacklist** the default amdgpu driver. The default driver, present in Linux distributions like Ubuntu or RHEL, is not certified for use with the **AMD Radeon™ PRO V710 GPU** on an **NVv5-V710 GPU Linux instance**. The driver optimized for Azure NVv5-V710 GPU workloads should be used instead.
 
 ##### Check if the Driver is Already Blacklisted
 
@@ -129,7 +129,7 @@ If the driver is blacklisted, you don't need to modify anything else. Be careful
 
 
 ##### Blacklist the amdgpu Driver
-To install the latest driver, you must blacklisted the default AMDGPU driver. Follow these steps:
+To install the latest driver, you must blacklisted the default amdgpu driver. Follow these steps:
 
 Open the /etc/modprobe.d/blacklist.conf file to edit:
 ```bash 
@@ -151,44 +151,37 @@ This ensures the changes take effect and the driver is properly blacklisted.
 After restarting the Virtual Machine, the default amdgpu driver in Ubuntu Linux distributions does not load because we blacklisted it. To confirm that the driver isn't loaded, run the command "lsmod | grep amdgpu" to check if the amdgpu driver is loaded. If there's no output, the driver isn't loaded, and you can proceed. However, if the driver has remained loaded, return to the previous step to double-check that the amdgpu driver has been blacklisted correctly.
 
 ### 4. AMD Driver Installation
-
-#### Ubuntu Version-Specific Instructions
-
-When installing ROCm, ensure you are using the correct package URL based on your Ubuntu version. The only difference between Ubuntu 22.04 and 24.04 is the codename used in the download URL.
-
-**Download URL Codenames:**
-
-| Ubuntu Version | Codename | Example URL Segment         |
-|----------------|----------|-----------------------------|
-| 22.04          | `jammy`  | `.../ubuntu/jammy/...`      |
-| 24.04          | `noble`  | `.../ubuntu/noble/...`      |
-
-> **Note:** Replace `jammy` or `noble` in the download URL according to your Ubuntu version to ensure proper installation of ROCm.
-
-Refer to the [official ROCm installation guide](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.3/install/quick-start.html) for the full set of instructions.
-
-
 #### 4.1 Installation
 
 The following steps demonstrate the use of the amdgpu-install script for a single-version driver installation. To install the latest ROCm driver, run the following commands on your terminal:
-```bash
-# URL to the directory listing 
-BASE_URL="https://repo.radeon.com/amdgpu-install/latest/ubuntu/jammy/" 
+<details>
+  <summary><strong>Ubuntu 22.04</strong></summary>
 
-# Fetch the directory listing and find the latest .deb file 
-LATEST_DEB=$(wget -qO- $BASE_URL | grep -oP 'amdgpu-install_\d+\.\d+\.\d+-\d+_all\.deb' | head -n 1) 
-
-# Download the latest .deb file 
-wget "${BASE_URL}${LATEST_DEB}"
-
-# install the driver installer 
-sudo apt install ./${LATEST_DEB}
-
+  ```bash
+  sudo apt update
+sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
+sudo apt install python3-setuptools python3-wheel
+sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+wget https://repo.radeon.com/amdgpu-install/6.3.3/ubuntu/jammy/amdgpu-install_6.3.60303-1_all.deb
+sudo apt install ./amdgpu-install_6.3.60303-1_all.deb
 sudo apt update
-
-#install the driver 
-sudo amdgpu-install --usecase=rocm
+sudo apt install amdgpu-dkms rocm
 ```
+  </details> 
+  <details>
+  <summary><strong>Ubuntu 24.04</strong></summary>
+
+  ```bash
+  sudo apt update
+sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
+sudo apt install python3-setuptools python3-wheel
+sudo usermod -a -G render,video $LOGNAME # Add the current user to the render and video groups
+wget https://repo.radeon.com/amdgpu-install/6.3.3/ubuntu/noble/amdgpu-install_6.3.60303-1_all.deb
+sudo apt install ./amdgpu-install_6.3.60303-1_all.deb
+sudo apt update
+sudo apt install amdgpu-dkms rocm
+```
+  </details> 
 
 >[!NOTE]
 > If needed, this can be used to create a script to automate the installation process.
@@ -216,7 +209,35 @@ $ sudo dmesg | grep amdgpu
 
 #### 4.3 Un-Blacklist the driver
 
-Repeat the steps in section 3.7 
+If the `amdgpu` driver was previously blacklisted, follow the steps below to un-blacklist it and ensure the system uses the correct driver.
+
+### Repeat the Steps from Section 3.7:
+
+**Search for any file that blacklists `amdgpu`:**
+
+   ```bash
+   grep amdgpu /etc/modprobe.d/* -rn
+   ```
+If the driver is blacklisted, you don't need to modify anything else. Be careful with entries that start with #blacklist amdgpu – this means the driver is not blacklisted
+##### Blacklist the amdgpu Driver
+To install the latest driver, you must blacklisted the default amdgpu driver. Follow these steps:
+
+Open the /etc/modprobe.d/blacklist.conf file to edit:
+```bash 
+sudo vim /etc/modprobe.d/blacklist.conf
+```
+
+Add the following line to blacklist the amdgpu driver:
+```bash
+blacklist amdgpu
+```
+
+After updating the blacklist.conf file, run the following command to apply the changes:
+```bash
+$ sudo update-initramfs -uk all
+```
+This ensures the changes take effect and the driver is properly blacklisted.
+
 
 Run AMD-SMI to confirm the driver is loaded successfully 
 
@@ -229,8 +250,7 @@ GPU  POWER  GPU_TEMP  MEM_TEMP  GFX_UTIL  GFX_CLOCK  MEM_UTIL  MEM_CLOCK  ENC_UT
   0   11 W     43 °C     58 °C      84 %   1814 MHz       1 %     96 MHz       N/A    812 MHz       N/A    512 MHz  UNTHROTTLED           0           0            0     227 MB    25476 MB  N/A Mb/s
 ```
 
-## AMD Radeon™ PRO V710 NVv5 Linux Installation Guide for Graphics + ROCM
-
+## Graphics+ROCM
 
 ### 1. Installation Guide
 #### 1.1 Introduction
@@ -284,36 +304,12 @@ linux-image-azure
 linux-modules-6.5.0-1025-azure 
 linux-modules-6.8.0-1020-azure 
 ```
-Use the below commands to purge the kernel 6.8
-```bash
-$ sudo apt purge linux-headers-6.8.0-1025-azure linux-image-6.8.0-1025-azure linux-modules-6.8.0
-1025-azure 
-```
->[!Note]
-> Add any reference to 6.8 over the purge command other than this to completly remove the Kernel version 6.8`
-#### 3.1 Loading Kernel 6.5 by default on boot
-When the NVv5-V710 GPU Linux instance is launched, the OS boots to the 6.8.0-1015-azure kernel instead of the 6.5.0-1025-azure kernel. The GRUB settings need to be modified to boot into the 6.5.0-1025-azure kernel.
+If you see any kernel **other than 6.5**, please try installing kernel 6.5 using the following command:
 
-to check the currently installed kernels, use the below command
-```bash
-$ dpkg --list | egrep -i --color 'linux-image' | awk '{ print $2 }'
-```
-Output is similar to the following example
-```bash
-Linux-image-6.5.0-1025-azure 
-linux-image-6.8.0-1015-azure 
-linux-image-azure
-```
-
->[!Note]
->Follow the below section if 6.5 kernel doesn't exist, otherwise skip it
-#### 3.2 Install Kernel 6.5 manually
-
-Use the following command
-```bash
-sudo apt install linux-image-6.5.0-1025-azure
-```
-Open the grub settings and modify the GRUB_DEFAULT="0" to GRUB_DEFAULT="Advanced options for 
+ ```bash
+ sudo apt install linux-image-6.5.0-1025-azure
+ ```
+ Open the grub settings and modify the GRUB_DEFAULT="0" to GRUB_DEFAULT="Advanced options for 
 Ubuntu>Ubuntu, with Linux 6.5.0-1025-azure"
 ```bash
 $ sudo vim /etc/default/grub 
@@ -336,6 +332,40 @@ $ uname -a
 Linux AMDUbuntuTestMachine 6.5.0-1025-azure #26~22.04.1-Ubuntu SMP Thu Jul 11 
 22:33:04 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux 
 ```
+Use the below commands to purge the kernel 6.8
+```bash
+$ sudo apt purge linux-headers-6.8.0-1025-azure linux-image-6.8.0-1025-azure linux-modules-6.8.0
+1025-azure 
+```
+>[!Note]
+> If you see any other kernels other than 6.5 please add it to the purge command above to remove all other kernels expect 6.5
+
+You can add please verify that only 6.5 kernel is present by running the command
+```bash
+dpkg --list | egrep -i --color 'linux-image|linux-headers|linux-modules' | awk '{ print $2 }
+```
+Output is similar to the following example
+```bash
+linux-image-6.5.0-1025-azure
+linux-modules-6.5.0-1025-azure 
+```
+#### 3.1 Loading Kernel 6.5 by default on boot
+When the NVv5-V710 GPU Linux instance is launched, the OS boots to the 6.8.0-1015-azure kernel instead of the 6.5.0-1025-azure kernel. The GRUB settings need to be modified to boot into the 6.5.0-1025-azure kernel.
+
+to check the currently installed kernels, use the below command
+```bash
+$ dpkg --list | egrep -i --color 'linux-image' | awk '{ print $2 }'
+```
+Output is similar to the following example
+```bash
+Linux-image-6.5.0-1025-azure 
+linux-image-6.8.0-1015-azure 
+linux-image-azure
+```
+
+>[!Note]
+>Follow the below section if 6.5 kernel doesn't exist, otherwise skip it
+
 ### 4. Prerequisites
 >[!Note]
 > The disk size must be greater than 64GB to ensure optimal performance and compatibility.
@@ -386,11 +416,11 @@ $ sudo apt update
 ```
 #### 4.7 Blacklist amdgpu Driver
 
-Before installing the latest AMD Linux driver, it's important to **blacklist** the default AMDGPU driver. The default driver, present in Linux distributions like Ubuntu or RHEL, is not certified for use with the **AMD Radeon™ PRO V710 GPU** on an **NVv5-V710 GPU Linux instance**. The driver optimized for Azure NVv5-V710 GPU workloads should be used instead.
+Before installing the latest AMD Linux driver, it's important to **blacklist** the default amdgpu driver. The default driver, present in Linux distributions like Ubuntu or RHEL, is not certified for use with the **AMD Radeon™ PRO V710 GPU** on an **NVv5-V710 GPU Linux instance**. The driver optimized for Azure NVv5-V710 GPU workloads should be used instead.
 
 ##### Check if the Driver is Already Blacklisted
 
-To check if the AMDGPU driver is already blacklisted, run the following command:
+To check if the amdgpu driver is already blacklisted, run the following command:
 
 ```bash
 grep amdgpu /etc/modprobe.d/* -rn
@@ -401,14 +431,14 @@ Be careful with entries that start with #blacklist amdgpu – this means the dri
 
 
 ##### Blacklist the amdgpu Driver
-To install the latest driver, you must blacklist the default amdgpu driver. Follow these steps:
+ If the `amdgpu` driver is **not already blacklisted**, please follow the steps below to blacklist it.
 
 Open the /etc/modprobe.d/blacklist.conf file to edit:
 ```bash 
 sudo vim /etc/modprobe.d/blacklist.conf
 ```
 
-Add the following line to blacklist the AMDGPU driver:
+Add the following line to blacklist the amdgpu driver:
 ```bash
 blacklist amdgpu
 ```
@@ -426,39 +456,11 @@ After restarting the virtual machine, the default **amdgpu driver** in Ubuntu Li
 lsmod | grep amdgpu
 ```
 
-##### Uninstallation Steps
-If you need to uninstall the existing amdgpu driver, follow these steps:
-
-Check DKMS status:
-```bash
-dkms status
-```
-Uninstall the amdgpu driver:
-```bash
-sudo amdgpu-install --uninstall
-sudo amdgpu-uninstall
-```
-Remove the amdgpu installation package:
-```bash
-sudo apt autoremove --purge amdgpu-install
-```
-Reboot the system:
-```bash
-sudo reboot
-```
-Check DKMS status again to ensure the driver has been uninstalled:
-```bash
-dkms status
-```
-This ensures the old amdgpu driver is fully removed from the system before installing the new driver.
-
-
 ### 5. AMD Driver Installation
 #### 5.1 Installation
 
 The following steps demonstrate the use of the amdgpu-install script for a single-version driver installation.These instructions install ROCm version **6.1.4** on **Ubuntu 22.04 (Jammy)**.
 ```bash
-
 # Upgrade the system
 sudo apt upgrade
 
@@ -501,19 +503,77 @@ Example output:
 [ 66.685733] amdgpu: ATOM BIOS: 113-D7190300-104 
 [ 66.689542] amdgpu 045b:00:00.0: amdgpu: CP RS64 enable
 ```
+#### 5.2.1 Un-Blacklist the driver
 
-#### 5.2.1 Verify with AMD-SMI
+##### Check if the Driver is Already Blacklisted
 
-To confirm that the driver is running successfully, use:
+To check if the amdgpu driver is already blacklisted, run the following command:
+
+```bash
+grep amdgpu /etc/modprobe.d/* -rn
+```
+
+If the driver is blacklisted, you don't need to modify anything else.
+Be careful with entries that start with #blacklist amdgpu – this means the driver is not blacklisted
+
+
+##### Blacklist the amdgpu Driver
+ If the `amdgpu` driver is **not already blacklisted**, please follow the steps below to blacklist it.
+
+Open the /etc/modprobe.d/blacklist.conf file to edit:
+```bash 
+sudo vim /etc/modprobe.d/blacklist.conf
+```
+
+Add the following line to blacklist the amdgpu driver:
+```bash
+blacklist amdgpu
+```
+
+After updating the blacklist.conf file, run the following command to apply the changes:
+```bash
+$ sudo update-initramfs -uk all
+```
+This ensures the changes take effect and the driver is properly blacklisted.
+
+
+Run AMD-SMI to confirm the driver is loaded successfully 
+
 ```bash
 $ amd-smi monitor
 ```
-Example Output:
 ```bash
 GPU  POWER  GPU_TEMP  MEM_TEMP  GFX_UTIL  GFX_CLOCK  MEM_UTIL  MEM_CLOCK  ENC_UTIL  ENC_CLOCK  DEC_UTIL  DEC_CLOCK     THROTTLE  SINGLE_ECC  DOUBLE_ECC  PCIE_REPLAY  VRAM_USED  VRAM_TOTAL   PCIE_BW 
 
   0   11 W     43 °C     58 °C      84 %   1814 MHz       1 %     96 MHz       N/A    812 MHz       N/A    512 MHz  UNTHROTTLED           0           0            0     227 MB    25476 MB  N/A Mb/s
 ```
+
+##### Uninstallation Steps
+If you need to uninstall the existing amdgpu driver, follow these steps:
+
+Check DKMS status:
+```bash
+dkms status
+```
+Uninstall the amdgpu driver:
+```bash
+sudo amdgpu-install --uninstall
+sudo amdgpu-uninstall
+```
+Remove the amdgpu installation package:
+```bash
+sudo apt autoremove --purge amdgpu-install
+```
+Reboot the system:
+```bash
+sudo reboot
+```
+Check DKMS status again to ensure the driver has been uninstalled:
+```bash
+dkms status
+```
+This ensures the old amdgpu driver is fully removed from the system before installing the new driver.
+
 ### 6. x11 Remote Server Confirguration
 After installing the AMD Graphics Linux drivers with , the default graphical interface (Xserver) does not 
 utilize hardware acceleration. As a solution, a virtual display should be created with hardware 
