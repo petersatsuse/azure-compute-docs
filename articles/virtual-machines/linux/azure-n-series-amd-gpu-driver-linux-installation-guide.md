@@ -13,7 +13,7 @@ ms.author: v-nmagatala
 ms.reviewer: vikancha
 ---
 
-# Install AMD GPU drivers on N-series VMs running Linux
+# Install AMD GPU drivers on NVads V710-series VMs running Linux
 
 **Applies to:** :heavy_check_mark: Linux VMs
 
@@ -22,12 +22,12 @@ ms.reviewer: vikancha
 >For latest updated guided on instructions to setup ROCm drivers, please refer to AMDs pages here -
 >[Quick start installation guide - ROCm installation(Linux)](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.3/install/quick-start.html),
 >[ROCm release history - ROCm Documentation](https://rocm.docs.amd.com/en/latest/release/versions.html#rocm-release-history)
-## NVadsV710_v5 Series
-To leverage the GPU capabilities of the new Azure NVv710 series VMs running Linux, amdgpu drivers need to be installed. The [AMD GPU Driver Extension]() facilitates the installation of amdgpu drivers on NVv710-series VMs. You can manage the extension using the Azure portal, Azure PowerShell, or Azure Resource Manager templates. Refer to the [AMD GPU Driver Extension]() documentation for details on supported operating systems and deployment steps.
+## NVads V710-series
+To leverage the GPU capabilities of the new Azure NVads V710-series VMs running Linux, amdgpu drivers need to be installed. The [AMD GPU Driver Extension]() facilitates the installation of amdgpu drivers on NVv710-series VMs. You can manage the extension using the Azure portal, Azure PowerShell, or Azure Resource Manager templates. Refer to the [AMD GPU Driver Extension]() documentation for details on supported operating systems and deployment steps.
 
 If you prefer to install amdgpu drivers manually, this article outlines the supported operating systems, drivers, and provides installation and verification steps.
 
-### ROC
+### ROCm
 ### 1. Installation Guide
 
 #### 1.1 Introduction
