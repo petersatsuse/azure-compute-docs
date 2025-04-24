@@ -23,9 +23,9 @@ ms.reviewer: vikancha
 >[Quick start installation guide - ROCm installation(Linux)](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.3/install/quick-start.html),
 >[ROCm release history - ROCm Documentation](https://rocm.docs.amd.com/en/latest/release/versions.html#rocm-release-history)
 ## NVadsV710_v5 Series
-To leverage the GPU capabilities of the new Azure NVv710 series VMs running Linux, AMD GPU drivers need to be installed. The [AMD GPU Driver Extension]() facilitates the installation of AMD GPU drivers on NVv710-series VMs. You can manage the extension using the Azure portal, Azure PowerShell, or Azure Resource Manager templates. Refer to the [AMD GPU Driver Extension]() documentation for details on supported operating systems and deployment steps.
+To leverage the GPU capabilities of the new Azure NVv710 series VMs running Linux, amdgpu drivers need to be installed. The [AMD GPU Driver Extension]() facilitates the installation of amdgpu drivers on NVv710-series VMs. You can manage the extension using the Azure portal, Azure PowerShell, or Azure Resource Manager templates. Refer to the [AMD GPU Driver Extension]() documentation for details on supported operating systems and deployment steps.
 
-If you prefer to install AMD GPU drivers manually, this article outlines the supported operating systems, drivers, and provides installation and verification steps.
+If you prefer to install amdgpu drivers manually, this article outlines the supported operating systems, drivers, and provides installation and verification steps.
 
 ### ROC
 ### 1. Installation Guide
@@ -209,35 +209,40 @@ $ sudo dmesg | grep amdgpu
 
 #### 4.3 Un-Blacklist the driver
 
-If the `amdgpu` driver was previously blacklisted, follow the steps below to un-blacklist it and ensure the system uses the correct driver.
+To enable the `amdgpu` driver, you must remove any blacklist entry preventing it from being used.
 
-### Repeat the Steps from Section 3.7:
+##### Search for the blacklist entry
 
-**Search for any file that blacklists `amdgpu`:**
+Run the following command to find any file that contains `blacklist amdgpu`:
 
-   ```bash
-   grep amdgpu /etc/modprobe.d/* -rn
-   ```
-If the driver is blacklisted, you don't need to modify anything else. Be careful with entries that start with #blacklist amdgpu – this means the driver is not blacklisted
-##### Blacklist the amdgpu Driver
-To install the latest driver, you must blacklisted the default amdgpu driver. Follow these steps:
-
-Open the /etc/modprobe.d/blacklist.conf file to edit:
-```bash 
-sudo vim /etc/modprobe.d/blacklist.conf
+```bash
+grep amdgpu /etc/modprobe.d/* -rn
 ```
-
-Add the following line to blacklist the amdgpu driver:
+If the driver is blacklisted, you will see output similar to:
+```bash
+/etc/modprobe.d/blacklist.conf:10:blacklist amdgpu
+```
+##### Remove the blacklist line
+Open the file listed in the output:
+```bash
+sudo nano /etc/modprobe.d/blacklist.conf
+```
+Delete the line that says:
 ```bash
 blacklist amdgpu
 ```
-
-After updating the blacklist.conf file, run the following command to apply the changes:
+Save and exit the file
+##### Update initramfs
+Update the initramfs so the changes are applied on the next boot:
 ```bash
-$ sudo update-initramfs -uk all
+sudo update-initramfs -uk all
 ```
-This ensures the changes take effect and the driver is properly blacklisted.
-
+##### Reboot the system
+Reboot the machine to load the updated configuration:
+```bash
+sudo reboot
+```
+After rebooting, the `amdgpu` driver should no longer be blacklisted and will be available for use.
 
 Run AMD-SMI to confirm the driver is loaded successfully 
 
@@ -249,7 +254,6 @@ GPU  POWER  GPU_TEMP  MEM_TEMP  GFX_UTIL  GFX_CLOCK  MEM_UTIL  MEM_CLOCK  ENC_UT
 
   0   11 W     43 °C     58 °C      84 %   1814 MHz       1 %     96 MHz       N/A    812 MHz       N/A    512 MHz  UNTHROTTLED           0           0            0     227 MB    25476 MB  N/A Mb/s
 ```
-
 ### Graphics+ROCM
 
 ### 1. Installation Guide
@@ -505,37 +509,40 @@ Example output:
 ```
 #### 5.2.1 Un-Blacklist the driver
 
-##### Check if the Driver is Already Blacklisted
+To enable the `amdgpu` driver, you must remove any blacklist entry preventing it from being used.
 
-To check if the amdgpu driver is already blacklisted, run the following command:
+##### Search for the blacklist entry
+
+Run the following command to find any file that contains `blacklist amdgpu`:
 
 ```bash
 grep amdgpu /etc/modprobe.d/* -rn
 ```
-
-If the driver is blacklisted, you don't need to modify anything else.
-Be careful with entries that start with #blacklist amdgpu – this means the driver is not blacklisted
-
-
-##### Blacklist the amdgpu Driver
- If the `amdgpu` driver is **not already blacklisted**, please follow the steps below to blacklist it.
-
-Open the /etc/modprobe.d/blacklist.conf file to edit:
-```bash 
-sudo vim /etc/modprobe.d/blacklist.conf
+If the driver is blacklisted, you will see output similar to:
+```bash
+/etc/modprobe.d/blacklist.conf:10:blacklist amdgpu
 ```
-
-Add the following line to blacklist the amdgpu driver:
+##### Remove the blacklist line
+Open the file listed in the output:
+```bash
+sudo nano /etc/modprobe.d/blacklist.conf
+```
+Delete the line that says:
 ```bash
 blacklist amdgpu
 ```
-
-After updating the blacklist.conf file, run the following command to apply the changes:
+Save and exit the file
+##### Update initramfs
+Update the initramfs so the changes are applied on the next boot:
 ```bash
-$ sudo update-initramfs -uk all
+sudo update-initramfs -uk all
 ```
-This ensures the changes take effect and the driver is properly blacklisted.
-
+##### Reboot the system
+Reboot the machine to load the updated configuration:
+```bash
+sudo reboot
+```
+After rebooting, the `amdgpu` driver should no longer be blacklisted and will be available for use.
 
 Run AMD-SMI to confirm the driver is loaded successfully 
 
@@ -547,33 +554,6 @@ GPU  POWER  GPU_TEMP  MEM_TEMP  GFX_UTIL  GFX_CLOCK  MEM_UTIL  MEM_CLOCK  ENC_UT
 
   0   11 W     43 °C     58 °C      84 %   1814 MHz       1 %     96 MHz       N/A    812 MHz       N/A    512 MHz  UNTHROTTLED           0           0            0     227 MB    25476 MB  N/A Mb/s
 ```
-
-##### Uninstallation Steps
-If you need to uninstall the existing amdgpu driver, follow these steps:
-
-Check DKMS status:
-```bash
-dkms status
-```
-Uninstall the amdgpu driver:
-```bash
-sudo amdgpu-install --uninstall
-sudo amdgpu-uninstall
-```
-Remove the amdgpu installation package:
-```bash
-sudo apt autoremove --purge amdgpu-install
-```
-Reboot the system:
-```bash
-sudo reboot
-```
-Check DKMS status again to ensure the driver has been uninstalled:
-```bash
-dkms status
-```
-This ensures the old amdgpu driver is fully removed from the system before installing the new driver.
-
 ### 6. x11 Remote Server Confirguration
 After installing the AMD Graphics Linux drivers with , the default graphical interface (Xserver) does not 
 utilize hardware acceleration. As a solution, a virtual display should be created with hardware 
@@ -730,3 +710,29 @@ x11vnc --forever -find
 This will search for the active X display and user credentials (XAUTH) automatically.
 >[!Note]
 >This setup is only compatible with the supported Ubuntu Desktop image. These instructions do not work for Ubuntu Server images. 
+
+### Uninstallation Steps
+If you need to uninstall the existing amdgpu driver, follow these steps:
+
+Check DKMS status:
+```bash
+dkms status
+```
+Uninstall the amdgpu driver:
+```bash
+sudo amdgpu-install --uninstall
+sudo amdgpu-uninstall
+```
+Remove the amdgpu installation package:
+```bash
+sudo apt autoremove --purge amdgpu-install
+```
+Reboot the system:
+```bash
+sudo reboot
+```
+Check DKMS status again to ensure the driver has been uninstalled:
+```bash
+dkms status
+```
+This ensures the old amdgpu driver is fully removed from the system before installing the new driver.
