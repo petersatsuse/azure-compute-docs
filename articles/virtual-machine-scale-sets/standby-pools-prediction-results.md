@@ -25,66 +25,6 @@ az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
 {
   "id": "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/myStandbyPool/runtimeViews/latest",
     {
-      "zone": 1
-    },
-      "instanceCountsByState": [
-        {
-          "count": 5,
-          "state": "Creating"
-        },
-        {
-          "count": 0,
-          "state": "Starting"
-        },
-        {
-          "count": 5,
-          "state": "Running"
-        },
-        {
-          "count": 0,
-          "state": "Deallocating"
-        },
-        {
-          "count": 10,
-          "state": "Deallocated"
-        },
-        {
-          "count": 0,
-          "state": "Deleting"
-        }
-      ],
-      "zone": 2
-    },
-    {
-      "instanceCountsByState": [
-        {
-          "count": 0,
-          "state": "Creating"
-        },
-        {
-          "count": 10,
-          "state": "Starting"
-        },
-        {
-          "count": 0,
-          "state": "Running"
-        },
-        {
-          "count": 5,
-          "state": "Deallocating"
-        },
-        {
-          "count": 5,
-          "state": "Deallocated"
-        },
-        {
-          "count": 0,
-          "state": "Deleting"
-        }
-      ],
-      "zone": 3
-    },
-    {
       "instanceCountsByState": [
         {
           "count": 0,
@@ -95,22 +35,31 @@ az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
           "state": "Starting"
         },
         {
-          "count": 5,
+          "count": 0,
           "state": "Running"
         },
         {
-          "count": 10,
+          "count": 0,
           "state": "Deallocating"
         },
         {
-          "count": 3,
+          "count": 10,
           "state": "Deallocated"
         },
+         {
+            "state": "Hibernating",
+            "count": 0
+        },
         {
-          "count": 5,
+            "state": "Hibernated",
+            "count": 0
+        },
+        {
+          "count": 0,
           "state": "Deleting"
         }
-      ],
+      ]
+   }
   "name": "latest",
   "provisioningState": "Succeeded",
   "resourceGroup": "myResourceGroup",
@@ -127,67 +76,6 @@ Get-AzStandbyVMPoolStatus -ResourceGroupName myResourceGroup -Name myStandbyPool
 
 Id: /subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/mmyStandbyPool/runtimeViews/latest
 InstanceCountSummary: {{
-        {
-        "zone": 1
-        },
-        "instanceCountsByState": [
-        {
-            "state": "Creating",
-            "count": 0
-        },
-        {
-            "state": "Starting",
-            "count": 5
-        },
-        {
-            "state": "Running",
-            "count": 0
-        },
-        {
-            "state": "Deallocating",
-            "count": 10
-        },
-        {
-            "state": "Deallocated",
-            "count": 5
-        },
-        {
-            "state": "Deleting",
-            "count": 0
-        }
-        ],
-        "zone": 2
-        },
-        {
-        "instanceCountsByState": [
-        {
-            "state": "Creating",
-            "count": 5
-        },
-        {
-            "state": "Starting",
-            "count": 0
-        },
-        {
-            "state": "Running",
-            "count": 5
-        },
-        {
-            "state": "Deallocating",
-            "count": 10
-        },
-        {
-            "state": "Deallocated",
-            "count": 0
-        },
-        {
-            "state": "Deleting",
-            "count": 0
-        }
-        ],
-        "zone": 3
-        },
-        {
         "instanceCountsByState": [
         {
             "state": "Creating",
@@ -199,26 +87,41 @@ InstanceCountSummary: {{
         },
         {
             "state": "Running",
-            "count": 5
+            "count": 0
         },
         {
             "state": "Deallocating",
-            "count": 10
+            "count": 0
         },
         {
             "state": "Deallocated",
-            "count": 5
+            "count": 10
+        },
+         {
+            "state": "Hibernating",
+            "count": 0
+        },
+        {
+            "state": "Hibernated",
+            "count": 0
         },
         {
             "state": "Deleting",
             "count": 0
         }
-        ]
+       ]
      }
   }
 Name                         : latest
+PredictionForecastInfo       :
+PredictionForecastStartTime  :
 ProvisioningState            : Succeeded
 ResourceGroupName            : myResourceGroup
+StatusCode                   : HealthState/healthy
+StatusMessage                :
+SystemDataCreatedAt          :
+SystemDataCreatedBy          :
+SystemDataCreatedByType      :
 Type                         : Microsoft.StandbyPool/standbyVirtualMachinePools/runtimeViews
 
 ```
