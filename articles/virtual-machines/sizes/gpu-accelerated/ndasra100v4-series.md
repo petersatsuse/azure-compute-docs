@@ -39,7 +39,7 @@ Local (temp) storage info for each size
 
 | Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GiB) |
 | --- | --- | --- |
-| Standard_ND96asr_A100_v4 | 1 | 6000 |
+| Standard_ND96asr_v4 | 1 | 6000 |
 
 #### Storage resources
 - [Introduction to Azure managed disks](../../../virtual-machines/managed-disks-overview.md)
