@@ -224,32 +224,32 @@ Extension execution output is logged to the following file. Refer to this file t
 | 14 | Operation unsuccessful | Check the execution output log. |
 
 ### Known issues
-1. GRID driver 16.x and 17.x are having installation issues on Azure Kernel 6.11. Nvidia is working on solving this issue, meanwhile, downgrade the azure Kernel to 6.8 by following the below steps. Please try to reinstall the drivers manually/using extension after downgrading the kernel to 6.8.
+1. GRID driver 16.x and 17.x are having installation issues on Azure kernel 6.11. Nvidia is working on solving this issue, meanwhile, downgrade the Azure kernel to 6.8 by following these steps. Try to reinstall the drivers manually or by using an extension after downgrading the kernel to 6.8.
 ```
-// get the installed kernel, if 6.11 is installed downgrade it to 6.8
+// Get the installed kernel. If kernel 6.11 is installed,  downgrade it to 6.8.
 uname -a
 
-// install 6.8 kernel, 6.11  is not supported
+// Install  kernel 6.8. Note that kernel  6.11  is not supported.
 $ sudo apt install linux-image-6.8.0-1015-azure
 
-// get the list of installed kernels
+// Get the list of installed kernels.
 dpkg --list | egrep -i --color 'linux-image|linux-headers|linux-modules' | awk '{ print $2 }'
 
-// please uninstall any kernels with 6.11
+// Uninstall any 6.11 kernels.
 sudo apt purge linux-headers-6.11.0-1013-azure  linux-image-6.11.0-1013-azure  linux-modules-6.11.0-1013-azure
 
-// run the below command to ensure only 6.8 images, headers and modules are installed and no other version are present.
+// Run the following command to ensure only 6.8 images, headers, and modules are installed and no other versions are present.
 dpkg --list | egrep -i --color 'linux-image|linux-headers|linux-modules' | awk '{ print $2 }'
 
-// results of above command should look something like this:
+// Results from the previous command:
 linux-headers-6.8.0-1015-azure
 linux-image-6.8.0-1015-azure
 linux-modules-6.8.0-1015-azure
 
-//Open the grub settings and modify the GRUB_DEFAULT="0" to GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux 6.8.0-1015-azure"
+// Open the grub settings and modify the GRUB_DEFAULT="0" to GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux 6.8.0-1015-azure".
 $ sudo vim /etc/default/grub 
  
-// this is how the the grub file should look
+// The grub file will look like the following:
 GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux 6.8.0-1015-azure"
 GRUB_TIMEOUT_STYLE=hidden
 GRUB_TIMEOUT=0
@@ -258,15 +258,15 @@ GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
 GRUB_CMDLINE_LINUX=""
 ///////////////////
 
-// update GRUB and reboot
+// Update GRUB and reboot.
 $ sudo update-grub && sudo update-grub2
 $ sudo reboot
 
-// resintall the driver after reboot.
+// Reinstall the driver after reboot.
 ```
 
-3. `NvidiaGpuDriverLinux` currently installs the latest drivers `17.5` GRID drivers which is having issues with CUDA on A10 series. NVIDIA is working on solving this issue, meanwhile, use GRID driver `16.5` by passing a runtime setting to the extension.
-   
+2. `NvidiaGpuDriverLinux` currently installs the latest `17.5` GRID drivers, which is having issues with CUDA on A10 series. NVIDIA is working on solving this issue, meanwhile, use GRID driver `16.5` by passing a runtime setting to the extension.
+
 ```azurecli
 az vm extension set  --resource-group <rg-name> --vm-name <vm-name>  --name NvidiaGpuDriverLinux --publisher Microsoft.HpcCompute --settings "{'driverVersion':'535.161'}"
 ```
@@ -317,7 +317,7 @@ az vm extension set  --resource-group <rg-name> --vm-name <vm-name>  --name Nvid
   }
 }
 ```
-3. Grid 17.5 linux driver has a bug where it impacts CUDA related workload. Error signature typically involves CUDA devices unavailable. While Azure is working to resolve this issue, use GRID driver 16.5 to continue running your workload. 
+4. Grid 17.5 linux driver has a bug where it impacts CUDA related workload. Error signature typically involves CUDA devices unavailable. While Azure is working to resolve this issue, use GRID driver 16.5 to continue running your workload. 
 ### Support
 
 If you need more help at any point in this article, contact the Azure experts on the [MSDN Azure and Stack Overflow forums](https://azure.microsoft.com/support/community/). Alternatively, you can file an Azure support incident. Go to [Azure support](https://azure.microsoft.com/support/options/) and select **Get support**. For information about using Azure support, read the [Azure support FAQ](https://azure.microsoft.com/support/faq/).
