@@ -35,15 +35,15 @@ az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
           "state": "Starting"
         },
         {
-          "count": 0,
+          "count": 1,
           "state": "Running"
         },
         {
-          "count": 0,
+          "count": 3,
           "state": "Deallocating"
         },
         {
-          "count": 10,
+          "count": 7,
           "state": "Deallocated"
         },
          {
@@ -87,15 +87,15 @@ InstanceCountSummary: {{
         },
         {
             "state": "Running",
-            "count": 0
+            "count": 1
         },
         {
             "state": "Deallocating",
-            "count": 0
+            "count": 3
         },
         {
             "state": "Deallocated",
-            "count": 10
+            "count": 7
         },
          {
             "state": "Hibernating",
@@ -113,8 +113,8 @@ InstanceCountSummary: {{
      }
   }
 Name                         : latest
-PredictionForecastInfo       :
-PredictionForecastStartTime  :
+PredictionForecastInfo       : 
+PredictionForecastStartTime  : 2025-02-14T01:34:59.228Z
 ProvisioningState            : Succeeded
 ResourceGroupName            : myResourceGroup
 StatusCode                   : HealthState/healthy
@@ -147,15 +147,15 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
           },
           {
             "state": "Running",
-            "count": 0
+            "count": 2
           },
           {
             "state": "Deallocating",
-            "count": 0
+            "count": 3
           },
           {
             "state": "Deallocated",
-            "count": 20
+            "count": 15
           },
           {
             "state": "Hibernating",
