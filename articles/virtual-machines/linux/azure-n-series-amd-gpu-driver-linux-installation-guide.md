@@ -250,7 +250,7 @@ GPU  POWER  GPU_TEMP  MEM_TEMP  GFX_UTIL  GFX_CLOCK  MEM_UTIL  MEM_CLOCK  ENC_UT
   0   11 W     43 °C     58 °C      84 %   1814 MHz       1 %     96 MHz       N/A    812 MHz       N/A    512 MHz  UNTHROTTLED           0           0            0     227 MB    25476 MB  N/A Mb/s
 ```
 
-## Graphics+ROCM
+### Graphics+ROCM
 
 ### 1. Installation Guide
 #### 1.1 Introduction
