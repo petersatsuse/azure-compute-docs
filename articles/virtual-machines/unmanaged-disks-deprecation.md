@@ -18,7 +18,7 @@ With managed disks, you don't have to worry about managing storage accounts for 
 
 ## How does this affect me?
 
-- After September 30, 2025, customers will no longer be able to start IaaS VMs by using unmanaged disks. Any VMs that are still running or allocated will be stopped and deallocated.
+- After September 30, 2025, customers won't be able to start IaaS VMs using unmanaged disks. Any VMs that are still running or allocated will be stopped and deallocated.
 
 ## What is being retired?
 
