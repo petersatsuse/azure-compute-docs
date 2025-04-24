@@ -22,15 +22,23 @@ Sign in to the [Azure portal](https://portal.azure.com).
 You can deploy a scale set with a Windows Server image or Linux image such as RHEL, Ubuntu, or SLES.
 
 1. In the Azure portal search bar, search for and select **Virtual Machine Scale Sets**.
+   
 2. Select **Create** on the **Virtual Machine Scale Sets** page.
-3. In the **Basics** tab, under **Project details**, make sure the correct subscription is selected and create a new resource group called *myVMSSResourceGroup*.
-4. Under **Scale set details**, set *myScaleSet* for your scale set name and select a **Region** that is close to your area.
-5. Under **Orchestration**, select *Flexible* Orchestration Mode.
-6. Under **Security type**, select *Trusted launch virtual machines*.
-7. Under **Scaling**, keep it the Scaling mode as *Manual*.
-8. Under **Instance count**, set the **initial instance count** field to *5*. You can set this number up to 1000
-9. Under **Instance details**, select a marketplace image for **Image**. Select any of the Supported Distros.
-10. Under **Administrator account** configure the admin username and set up an associated password or SSH public key.
+   
+5. In the **Basics** tab, under **Project details**, make sure the correct subscription is selected and create a new resource group called *myVMSSResourceGroup*.
+   
+7. Under **Scale set details**, set *myScaleSet* for your scale set name and select a **Region** that is close to your area.
+   
+9. Under **Orchestration**, select *Flexible* Orchestration Mode.
+    
+11. Under **Security type**, select *Trusted launch virtual machines*.
+    
+13. Under **Scaling**, keep it the Scaling mode as *Manual*.
+    
+15. Under **Instance count**, set the **initial instance count** field to *5*. You can set this number up to 1000
+    
+17. Under **Instance details**, select a marketplace image for **Image**. Select any of the Supported Distros.
+18. Under **Administrator account** configure the admin username and set up an associated password or SSH public key.
       - A **Password** must be at least 12 characters long and meet three out of the four following complexity requirements: one lower case character, one upper case character, one number, and one special character. For more information, see [username and password requirements](../virtual-machines/windows/faq.yml#what-are-the-password-requirements-when-creating-a-vm-).
       - If you select a Linux OS disk image, you can instead choose **SSH public key**. You can use an existing key or create a new one. In this example, we will have Azure generate a new key pair for us. For more information on generating key pairs, see [create and use SSH keys](../virtual-machines/linux/mac-create-ssh-keys.md).
 
