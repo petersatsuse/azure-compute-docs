@@ -22,6 +22,7 @@ If you have been creating generalized custom images, using cloud-init to do prov
 
 Some examples, of issues with provisioning:
 
+- Cloud-init reports failure that is returned by Compute Resource Provider API on error.
 - VM gets stuck at 'creating' for 40 minutes, and the VM creation is marked as failed.
 - `CustomData` does not get processed.
 - The ephemeral disk fails to mount.
@@ -30,6 +31,74 @@ Some examples, of issues with provisioning:
 - Swap file or partition failures.
 
 This article steps you through how to troubleshoot cloud-init. For more in-depth details, see [cloud-init deep dive](./cloud-init-deep-dive.md).
+
+## Troubleshooting failures reported by cloud-init and logged as error
+
+Cloud-init emits structured errors when reporting failure to Azure during provisioning.  These include a reason and supporting data (such as timestamp, VM identifier, documentation URL, etc.) to help investigate the failure.
+
+### reason = failure to find DHCP interface
+
+No network interface was found.
+
+**Action**: Ensure Azure kernel is installed.
+
+### reason = failure to obtain DHCP lease
+
+In rare cases, DHCP may not respond in a timely manner.
+
+**Action**: Delete and re-provision VM.  Rebooting may work as well.
+
+### reason = failure to find primary DHCP interface
+
+Primary DHCP interface was not found.
+
+**Action**: Ensure primary network interface is eth0 and it is not being renamed.
+
+### reason = connection timeout querying IMDS
+
+In rare cases, connections to IMDS may timeout due to platform issues.
+
+**Action**: Validate VM's outbound network access is not being blocked by firewall.  Delete and re-provision VM.
+
+### reason = read timeout querying IMDS
+
+In rare cases, connections to IMDS may timeout.
+
+**Action**: Validate VM's outbound network access is not being blocked by firewall.  Delete and re-provision VM.
+
+### reason = unexpected metadata parsing ovf-env.xml
+
+Malformed VM metadata in `ovf-env.xml`.  This should never happen.
+
+**Action**: Report unexpected failure to cloud-init's [GitHub issue tracker](https://github.com/canonical/cloud-init/issues/new?template=bug.md).
+
+### reason = error waiting for host shutdown
+
+Failure during host shutdown handling.  This should never happen.
+
+**Action**: Report unexpected failure to cloud-init's [GitHub issue tracker](https://github.com/canonical/cloud-init/issues/new?template=bug.md).
+
+### reason = azure-proxy-agent not found
+
+The `azure-proxy-agent` binary is missing.
+
+**Action**: Install the Azure proxy agent.
+
+### reason = azure-proxy-agent status failure
+
+Proxy agent reported a status error.
+
+**Action**: Review proxy agent logs and update if needed.
+
+### reason = unhandled exception
+
+An unexpected error occurred inside cloud-init.
+
+**Action**: Report unexpected failure to cloud-init's [GitHub issue tracker](https://github.com/canonical/cloud-init/issues/new?template=bug.md).
+
+# Troubleshooting other failures unreported by cloud-init
+
+Depending on the failure, consider these steps.
 
 ## <a id="step1"></a> Step 1: Test the deployment without `customData`
 
