@@ -32,6 +32,53 @@ Run the following Azure CLI command to get the health state of your standby pool
 ```azurecli
 az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
 ```
+**Output**
+```azurecli
+{
+  "id": "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/myStandbyPool/runtimeViews/latest",
+    {
+      "instanceCountsByState": [
+        {
+          "count": 0,
+          "state": "Creating"
+        },
+        {
+          "count": 0,
+          "state": "Starting"
+        },
+        {
+          "count": 1,
+          "state": "Running"
+        },
+        {
+          "count": 3,
+          "state": "Deallocating"
+        },
+        {
+          "count": 7,
+          "state": "Deallocated"
+        },
+         {
+            "state": "Hibernating",
+            "count": 0
+        },
+        {
+            "state": "Hibernated",
+            "count": 0
+        },
+        {
+          "count": 0,
+          "state": "Deleting"
+        }
+      ]
+   }
+  "name": "latest",
+  "resourceGroup": "myResourceGroup",
+
+  "type": "Microsoft.StandbyPool/standbyVirtualMachinePools/runtimeViews"
+}
+
+```
 
 The response will include details such as instance counts by state, provisioning state, and overall health status:
 
