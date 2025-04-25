@@ -18,12 +18,12 @@ ms.reviewer: vikancha
 **Applies to:** :heavy_check_mark: Linux VMs
 
 >[!Note]
->For the use of Azure GPU Driver extension to install drivers and toolkits, please refer to the following page for instructions - [AMD GPU Driver Extensions for Linux]().
+>For the use of Azure GPU Driver extension to install drivers and toolkits, please refer to the following page for instructions - [AMD GPU Driver Extensions for Linux](articles/virtual-machines/extensions/hpccompute-amd-gpu-linux.md).
 >For latest updated guided on instructions to setup ROCm drivers, please refer to AMDs pages here -
 >[Quick start installation guide - ROCm installation(Linux)](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.3/install/quick-start.html),
 >[ROCm release history - ROCm Documentation](https://rocm.docs.amd.com/en/latest/release/versions.html#rocm-release-history)
 ## NVads V710-series
-To leverage the GPU capabilities of the new Azure NVads V710-series VMs running Linux, amdgpu drivers need to be installed. The [AMD GPU Driver Extension]() facilitates the installation of amdgpu drivers on NVv710-series VMs. You can manage the extension using the Azure portal, Azure PowerShell, or Azure Resource Manager templates. Refer to the [AMD GPU Driver Extension]() documentation for details on supported operating systems and deployment steps.
+To leverage the GPU capabilities of the new Azure NVads V710-series VMs running Linux, amdgpu drivers need to be installed. The [AMD GPU Driver Extension](articles/virtual-machines/extensions/hpccompute-amd-gpu-linux.md) facilitates the installation of amdgpu drivers on NVv710-series VMs. You can manage the extension using the Azure portal, Azure PowerShell, or Azure Resource Manager templates. Refer to the [AMD GPU Driver Extension](articles/virtual-machines/extensions/hpccompute-amd-gpu-linux.md) documentation for details on supported operating systems and deployment steps.
 
 If you prefer to install amdgpu drivers manually, this article outlines the supported operating systems, drivers, and provides installation and verification steps.
 
@@ -209,8 +209,7 @@ $ sudo dmesg | grep amdgpu
 
 #### 4.3 Un-Blacklist the driver
 
-To enable the `amdgpu` driver, you must remove any blacklist entry preventing it from being used.
-
+To automatically load the `amdgpu` driver on every reboot of the VM, we need to remove any blacklist entry that is preventing it from loading automatically.
 ##### Search for the blacklist entry
 
 Run the following command to find any file that contains `blacklist amdgpu`:
@@ -294,64 +293,57 @@ Please ensure your Linux distribution and kernel version are listed in the table
 ### 3. Troubleshooting
 This section will outline troubleshooting techniques to address issues that may arise during the driver installation process.
 If you are using the Kernel 6.8, follow the below steps to downgrade to kernel 6.5.
-Run the following command to check for installed kernels on the VM
-```bash
-$ dpkg --list | egrep -i --color 'linux-image|linux-headers|linux-modules' | awk '{ print $2 }'
-```
-Output is similar to the following example
-```bash
-linux-headers-6.8.0-1020-azure 
-linux-headers-azure 
-linux-image-6.5.0-1025-azure 
-linux-image-6.8.0-1020-azure 
-linux-image-azure 
-linux-modules-6.5.0-1025-azure 
-linux-modules-6.8.0-1020-azure 
-```
-If you see any kernel **other than 6.5**, please try installing kernel 6.5 using the following command:
 
- ```bash
- sudo apt install linux-image-6.5.0-1025-azure
- ```
- Open the grub settings and modify the GRUB_DEFAULT="0" to GRUB_DEFAULT="Advanced options for 
-Ubuntu>Ubuntu, with Linux 6.5.0-1025-azure"
-```bash
-$ sudo vim /etc/default/grub 
-GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux 6.5.0-1025-azure" 
-GRUB_TIMEOUT_STYLE=hidden 
-GRUB_TIMEOUT=0 
-GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian` 
-GRUB_CMDLINE_LINUX_DEFAULT="quiet splash" 
-GRUB_CMDLINE_LINUX=""
-```
+##### Check Loaded Kernels: 
 
-Update grub and reboot using the below command
+Run the following command to list the loaded kernels
 ```bash
-$ sudo update-grub && sudo update-grub2 
-$ sudo reboot
+dpkg --list | egrep -i --color 'linux-image|linux-headers|linux-modules' | awk '{ print $2 }'
 ```
-After rebooting, check the kernel version to ensure the OS is booted to the respective kernel
-```bash
-$ uname -a 
-Linux AMDUbuntuTestMachine 6.5.0-1025-azure #26~22.04.1-Ubuntu SMP Thu Jul 11 
-22:33:04 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux 
-```
-Use the below commands to purge the kernel 6.8
-```bash
-$ sudo apt purge linux-headers-6.8.0-1025-azure linux-image-6.8.0-1025-azure linux-modules-6.8.0
-1025-azure 
-```
->[!Note]
-> If you see any other kernels other than 6.5 please add it to the purge command above to remove all other kernels expect 6.5
+Review the output to see the currently loaded kernels.
 
-You can add please verify that only 6.5 kernel is present by running the command
+##### Install Kernel 6.5: 
+
+If Kernel 6.5 is not loaded, install it using
 ```bash
-dpkg --list | egrep -i --color 'linux-image|linux-headers|linux-modules' | awk '{ print $2 }
+sudo apt install linux-image-6.5.0-1025-azure
 ```
-Output is similar to the following example
+##### Purge Kernels Above 6.5: 
+
+Use the following command to purge kernels above version 6.5
+```bash
+sudo apt purge linux-headers-6.8.0-1025-azure linux-image-6.8.0-1025-azure linux-modules-6.8.0-1025-azure
+```
+##### Verify Kernel Version: 
+
+Please verify that only Kernel 6.5 is present by running
+```bash
+dpkg --list | egrep -i --color 'linux-image|linux-headers|linux-modules' | awk '{ print $2 }'
+```
+The output should be similar to the following example:
 ```bash
 linux-image-6.5.0-1025-azure
-linux-modules-6.5.0-1025-azure 
+linux-headers-6.5.0-1025-azure
+linux-modules-6.5.0-1025-azure
+```
+##### Modify GRUB Settings: 
+
+Open the GRUB settings and change GRUB_DEFAULT="0" to GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux 6.5.0-1025-azure"
+```bash
+GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux 6.5.0-1025-azure"
+```
+##### Update GRUB and Reboot: 
+
+Update GRUB and reboot the system using
+```bash
+sudo update-grub
+sudo reboot
+```
+##### Validate Kernel Version: 
+
+After rebooting, validate the kernel version using
+```bash
+uname -a
 ```
 #### 3.1 Loading Kernel 6.5 by default on boot
 When the NVv5-V710 GPU Linux instance is launched, the OS boots to the 6.8.0-1015-azure kernel instead of the 6.5.0-1025-azure kernel. The GRUB settings need to be modified to boot into the 6.5.0-1025-azure kernel.
