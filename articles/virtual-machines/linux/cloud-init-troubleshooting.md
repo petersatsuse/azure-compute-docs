@@ -38,7 +38,7 @@ Cloud-init emits structured errors when reporting failure to Azure during provis
 
 | Reason | Description | Action |
 |:---|:---|:---|
-| failure to find DHCP interface | No network interface was found. | Delete and re-provision VM.  If issue persists, ensure networking drivers or Azure-specific kernel is installed and check boot diagnostics to verify eth0 is enumerated. |
+| failure to find DHCP interface | No network interface was found. | Delete and re-create VM.  If issue persists, ensure networking drivers or Azure-specific kernel is installed and check boot diagnostics to verify eth0 is enumerated. |
 | failure to obtain DHCP lease | DHCP service fails to respond due to transient platform issue. | Delete and re-provision VM. |
 | failure to find primary DHCP interface | Primary DHCP interface was not found. | Check boot diagnostics to ensure primary network interface is named `eth0` and it is not renamed. |
 | connection timeout querying IMDS | Connections to IMDS may timeout due to transient platform issue or OS firewall configuration. | Delete and re-provision VM.  If issue persists, validate OS firewall is not preventing access to IMDS.  |
