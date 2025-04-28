@@ -41,7 +41,7 @@ Cloud-init emits structured errors when reporting failure to Azure during provis
 | failure to find DHCP interface | No network interface was found. | Delete and re-create VM.  If issue persists, ensure networking drivers or Azure-specific kernel is installed and check boot diagnostics to verify eth0 is enumerated. |
 | failure to obtain DHCP lease | DHCP service fails to respond due to transient platform issue. | Delete and re-provision VM. |
 | failure to find primary DHCP interface | Primary DHCP interface was not found. | Check boot diagnostics to ensure primary network interface is named `eth0` and it is not renamed. |
-| connection timeout querying IMDS | Connections to IMDS may timeout due to transient platform issue or OS firewall configuration. | Delete and re-provision VM.  If issue persists, validate OS firewall is not preventing access to IMDS.  |
+| connection timeout querying IMDS | Connections to IMDS may timeout due to transient platform issue, NSG, or OS firewall configuration. | Delete and re-create VM.  If issue persists, validate that NSG or OS firewall is not preventing access to IMDS.  |
 | read timeout querying IMDS | Connections to IMDS may timeout due to transient platform issue or OS firewall configuration. | Delete and re-provision VM. If issue persists, validate OS firewall is not preventing access to IMDS. |
 | unexpected metadata parsing ovf-env.xml | Malformed VM metadata in `ovf-env.xml`. | Report to cloud-init issue tracker (see below). |
 | error waiting for host shutdown | Failure during host shutdown handling. | Report to cloud-init issue tracker (see below). |
