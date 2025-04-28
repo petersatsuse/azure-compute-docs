@@ -36,65 +36,24 @@ This article steps you through how to troubleshoot cloud-init. For more in-depth
 
 Cloud-init emits structured errors when reporting failure to Azure during provisioning.  These include a reason and supporting data (such as timestamp, VM identifier, documentation URL, etc.) to help investigate the failure.
 
-### reason = failure to find DHCP interface
+| Reason | Description | Action |
+|:---|:---|:---|
+| failure to find DHCP interface | No network interface was found. | Delete and re-provision VM.  If issue persists, ensure networking drivers or Azure-specific kernel is installed and check boot diagnostics to verify eth0 is enumerated. |
+| failure to obtain DHCP lease | DHCP service fails to respond due to transient platform issue. | Delete and re-provision VM. |
+| failure to find primary DHCP interface | Primary DHCP interface was not found. | Check boot diagnostics to ensure primary network interface is named `eth0` and it is not renamed. |
+| connection timeout querying IMDS | Connections to IMDS may timeout due to transient platform issue or OS firewall configuration. | Delete and re-provision VM.  If issue persists, validate OS firewall is not preventing access to IMDS.  |
+| read timeout querying IMDS | Connections to IMDS may timeout due to transient platform issue or OS firewall configuration. | Delete and re-provision VM. If issue persists, validate OS firewall is not preventing access to IMDS. |
+| unexpected metadata parsing ovf-env.xml | Malformed VM metadata in `ovf-env.xml`. | Report to cloud-init issue tracker (see below). |
+| error waiting for host shutdown | Failure during host shutdown handling. | Report to cloud-init issue tracker (see below). |
+| azure-proxy-agent not found | The `azure-proxy-agent` binary is missing. | Ensure Azure proxy agent is installed in the image. For more troubleshooting, check out [MSP troubleshooting guide](https://learn.microsoft.com/en-us/azure/virtual-machines/metadata-security-protocol/troubleshoot-guide). |
+| azure-proxy-agent status failure | Proxy agent reported a status error. | Review proxy agent logs and update if needed. For more troubleshooting, check out [MSP troubleshooting guide](https://learn.microsoft.com/en-us/azure/virtual-machines/metadata-security-protocol/troubleshoot-guide). |
+| unhandled exception | An unexpected error occurred inside cloud-init. | Report to cloud-init issue tracker (see below). |
 
-No network interface was found.
+If any of these issues persist on subsequent retries, it is usually due to a misconfiguration in the image.
 
-**Action**: Ensure Azure kernel is installed.
+For help enabling and checking boot diagnostics, see [Boot Diagnostics](https://learn.microsoft.com/en-us/azure/virtual-machines/boot-diagnostics).
 
-### reason = failure to obtain DHCP lease
-
-In rare cases, DHCP may not respond in a timely manner.
-
-**Action**: Delete and re-provision VM.  Rebooting may work as well.
-
-### reason = failure to find primary DHCP interface
-
-Primary DHCP interface was not found.
-
-**Action**: Ensure primary network interface is eth0 and it is not being renamed.
-
-### reason = connection timeout querying IMDS
-
-In rare cases, connections to IMDS may timeout due to platform issues.
-
-**Action**: Validate VM's outbound network access is not being blocked by firewall.  Delete and re-provision VM.
-
-### reason = read timeout querying IMDS
-
-In rare cases, connections to IMDS may timeout.
-
-**Action**: Validate VM's outbound network access is not being blocked by firewall.  Delete and re-provision VM.
-
-### reason = unexpected metadata parsing ovf-env.xml
-
-Malformed VM metadata in `ovf-env.xml`.  This should never happen.
-
-**Action**: Report unexpected failure to cloud-init's [GitHub issue tracker](https://github.com/canonical/cloud-init/issues/new?template=bug.md).
-
-### reason = error waiting for host shutdown
-
-Failure during host shutdown handling.  This should never happen.
-
-**Action**: Report unexpected failure to cloud-init's [GitHub issue tracker](https://github.com/canonical/cloud-init/issues/new?template=bug.md).
-
-### reason = azure-proxy-agent not found
-
-The `azure-proxy-agent` binary is missing.
-
-**Action**: Install the Azure proxy agent.
-
-### reason = azure-proxy-agent status failure
-
-Proxy agent reported a status error.
-
-**Action**: Review proxy agent logs and update if needed.
-
-### reason = unhandled exception
-
-An unexpected error occurred inside cloud-init.
-
-**Action**: Report unexpected failure to cloud-init's [GitHub issue tracker](https://github.com/canonical/cloud-init/issues/new?template=bug.md).
+If there is reason to believe it is is a cloud-init issue, please report issue to [cloud-init GitHub issue tracker](https://github.com/canonical/cloud-init/issues/).
 
 # Troubleshooting other failures unreported by cloud-init
 
