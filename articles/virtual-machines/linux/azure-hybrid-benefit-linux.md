@@ -74,7 +74,6 @@ Within these offers, associated images are described as "Pay-As-You-Go".
 * [Red Hat Enterprise Linux (RHEL)](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/redhat.rh-rhel?tab=Overview)
 * [Red Hat Enterprise Linux (RHEL) for SAP Apps](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/redhat.rhel-sap-apps?tab=Overview)
 * [RHEL for SAP with HA and Update Services](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/redhat.rhel-sap-ha?tab=Overview)
-* [RHEL for SAP with HA and Update Services](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/redhat.rh-rhel-sap-haus?tab=PlansAndPrice)
 * [Red Hat Enterprise Linux (RHEL) with High Availability (HA) Add-On](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/redhat.rhel-ha?tab=Overview)
 * [Red Hat Enterprise Linux (RHEL) Arm64](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/redhat.rhel-arm64?tab=Overview)
 * [Red Hat Enterprise Linux Confidential VM](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/redhat.rhel-cvm?tab=Overview)
