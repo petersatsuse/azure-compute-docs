@@ -24,7 +24,7 @@ Some examples, of issues with provisioning:
 
 - Cloud-init reports failure that is returned by Compute Resource Provider API on error.
 - VM gets stuck at 'creating' for 40 minutes, and the VM creation is marked as failed.
-- [Custom data](https://learn.microsoft.com/en-us/azure/virtual-machines/custom-data) or [User data](https://learn.microsoft.com/en-us/azure/virtual-machines/user-data) does not get processed.
+- [Custom data](/azure/virtual-machines/custom-data) or [User data](/azure/virtual-machines/user-data) does not get processed.
 - The ephemeral disk fails to mount (for VM skus that come with SCSI resource disks).
 - Users do not get created, or there are user access issues.
 - Networking is not set up correctly.
