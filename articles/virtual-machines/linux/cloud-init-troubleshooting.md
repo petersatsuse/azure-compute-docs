@@ -49,11 +49,9 @@ Cloud-init emits structured errors when reporting failure to Azure during provis
 | azure-proxy-agent status failure | Proxy agent reported a status error. | Review proxy agent logs and update if needed. For more troubleshooting, check out [MSP troubleshooting guide](https://learn.microsoft.com/en-us/azure/virtual-machines/metadata-security-protocol/troubleshoot-guide). |
 | unhandled exception | An unexpected error occurred inside cloud-init. | Report to cloud-init issue tracker (see below). |
 
-If any of these issues persist on subsequent retries, it is usually due to a misconfiguration in the image.
-
 For help enabling and checking boot diagnostics, see [Boot Diagnostics](https://learn.microsoft.com/en-us/azure/virtual-machines/boot-diagnostics).
 
-If there is reason to believe it is is a cloud-init issue, please report issue to [cloud-init GitHub issue tracker](https://github.com/canonical/cloud-init/issues/).
+If any of these issues persist on subsequent attempts at provisioning, it is usually due to a misconfiguration in the image. If there is reason to believe there is a cloud-init issue, please report it to [cloud-init GitHub issue tracker](https://github.com/canonical/cloud-init/issues/).
 
 # Troubleshooting other failures unreported by cloud-init
 
