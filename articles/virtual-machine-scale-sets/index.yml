@@ -36,7 +36,7 @@ landingContent:
         links:
           - text: Azure CLI
             url: flexible-virtual-machine-scale-sets-cli.md
-          - text: Azure Portal
+          - text: Azure portal
             url: flexible-virtual-machine-scale-sets-portal.md
           - text: Azure PowerShell
             url: flexible-virtual-machine-scale-sets-powershell.md
