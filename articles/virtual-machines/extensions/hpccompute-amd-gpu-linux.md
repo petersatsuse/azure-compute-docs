@@ -15,12 +15,12 @@ author: magatala-MSFT
 ---
 # AMD GPU Driver Extension for Linux
 
-This extension installs AMD GPU drivers on Linux N-series virtual machines (VMs). Depending on the VM family, the extension installs CUDA or GRID drivers. When you install AMD drivers by using this extension, you're accepting and agreeing to the terms of the [AMD End-User License Agreement](https://www.amd.com/en/legal/eula/amd-software-eula.html). During the installation process, the VM might reboot to complete the driver setup.
+This extension installs AMD GPU drivers on Linux N-series virtual machines (VMs). Depending on the VM family. When you install AMD drivers by using this extension, you're accepting and agreeing to the terms of the [AMD End-User License Agreement](https://www.amd.com/en/legal/eula/amd-software-eula.html). During the installation process, the VM might reboot to complete the driver setup.
 
-Instructions on manual installation of the drivers and the current supported versions are available. An extension is also available to install AMD GPU drivers on [Linux N-series VMs]().
+Instructions on manual installation of the drivers and the current supported versions are available. An extension is also available to install AMD GPU drivers on [Linux N-series VMs](../virtual-machines/linux/azure-n-series-amd-gpu-driver-linux-installation-guide.md).
 
 > [!NOTE]
-> With Secure Boot enabled, all OS boot components (boot loader, kernel, kernel drivers) must be signed by trusted publishers (key trusted by the system). Secure Boot is not supported using Windows or Linux extensions. For more information on manually installing GPU drivers with Secure Boot enabled, see [Azure N-series GPU driver setup for Linux]().
+> With Secure Boot enabled, all OS boot components (boot loader, kernel, kernel drivers) must be signed by trusted publishers (key trusted by the system). Secure Boot is not supported using Windows or Linux extensions. For more information on manually installing GPU drivers with Secure Boot enabled, see [Azure N-series GPU driver setup for Linux](../articles/virtual-machines/linux/azure-n-series-amd-gpu-driver-linux-installation-guide.md).
 >
 > The GPU driver extensions do not automatically update the driver after the extension is installed. If you need to move to a newer driver version then either manually download and install the driver or remove and add the extension again.
 >
@@ -110,7 +110,7 @@ You can deploy Azure AMD VM extensions in the Azure portal.
   
 1. Verify that the extension was added to the list of installed extensions.
 
-   :::image type="content" source="./media/amd-ext-portal/verify-extension.png" alt-text="Screenshot that shows the new extension in the list of extensions for the V M.":::
+   :::image type="content" source="./media/amd-ext-portal/verify-extension-linux.png" alt-text="Screenshot that shows the new extension in the list of extensions for the V M.":::
 
 ### Azure Resource Manager template
 
@@ -215,5 +215,5 @@ Extension execution output is logged to the following file. Refer to this file t
 
 ## Next steps
 
-- For more information about extensions, see [Virtual machine extensions and features for Linux]().
-- For more information about N-series VMs, see [GPU optimized virtual machine sizes]().
+- For more information about extensions, see [Virtual machine extensions and features for Linux](../articles/virtual-machines/linux/azure-n-series-amd-gpu-driver-linux-installation-guide.md).
+- For more information about N-series VMs, see [GPU optimized virtual machine sizes](../sizes-gpu.md).

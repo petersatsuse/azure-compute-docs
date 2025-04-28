@@ -18,12 +18,12 @@ ms.reviewer: vikancha
 **Applies to:** :heavy_check_mark: Linux VMs
 
 >[!Note]
->For the use of Azure GPU Driver extension to install drivers and toolkits, please refer to the following page for instructions - [AMD GPU Driver Extensions for Linux](articles/virtual-machines/extensions/hpccompute-amd-gpu-linux.md).
+>For the use of Azure GPU Driver extension to install drivers and toolkits, please refer to the following page for instructions - [AMD GPU Driver Extensions for Linux](/Repos/azure-compute-docs-pr/articles/virtual-machines/extensions/hpccompute-amd-gpu-linux.md).
 >For latest updated guided on instructions to setup ROCm drivers, please refer to AMDs pages here -
 >[Quick start installation guide - ROCm installation(Linux)](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.3/install/quick-start.html),
 >[ROCm release history - ROCm Documentation](https://rocm.docs.amd.com/en/latest/release/versions.html#rocm-release-history)
 ## NVads V710-series
-To leverage the GPU capabilities of the new Azure NVads V710-series VMs running Linux, amdgpu drivers need to be installed. The [AMD GPU Driver Extension](articles/virtual-machines/extensions/hpccompute-amd-gpu-linux.md) facilitates the installation of amdgpu drivers on NVv710-series VMs. You can manage the extension using the Azure portal, Azure PowerShell, or Azure Resource Manager templates. Refer to the [AMD GPU Driver Extension](articles/virtual-machines/extensions/hpccompute-amd-gpu-linux.md) documentation for details on supported operating systems and deployment steps.
+To leverage the GPU capabilities of the new Azure NVads V710-series VMs running Linux, amdgpu drivers need to be installed. The [AMD GPU Driver Extension](/articles/virtual-machines/extensions/hpccompute-amd-gpu-linux.md) facilitates the installation of amdgpu drivers on NVv710-series VMs. You can manage the extension using the Azure portal, Azure PowerShell, or Azure Resource Manager templates. Refer to the [AMD GPU Driver Extension](articles/virtual-machines/extensions/hpccompute-amd-gpu-linux.md) documentation for details on supported operating systems and deployment steps.
 
 If you prefer to install amdgpu drivers manually, this article outlines the supported operating systems, drivers, and provides installation and verification steps.
 
