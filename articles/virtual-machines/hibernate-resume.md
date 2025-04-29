@@ -44,7 +44,7 @@ Supported operating systems, OS specific limitations, and configuration procedur
 VM sizes with up to 64-GB RAM from the following General Purpose VM series support hibernation.
 - [Dasv5-series](dasv5-dadsv5-series.md) 
 - [Dadsv5-series](dasv5-dadsv5-series.md) 
-- [Dsv5-series](../virtual-machines/dv5-dsv5-series.md)
+- [Dsv5-series](../virtual-machines/sizes/general-purpose/dsv5-series.md)
 - [Ddsv5-series](ddv5-ddsv5-series.md)
 - [Easv5-series](easv5-eadsv5-series.md)
 - [Eadsv5-series](easv5-eadsv5-series.md)
