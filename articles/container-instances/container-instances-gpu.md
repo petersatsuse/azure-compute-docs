@@ -7,7 +7,7 @@ author: tomvcassidy
 ms.service: azure-container-instances
 ms.custom: devx-track-azurecli
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ---
 
 # Deploy container instances that use GPU resources
@@ -65,7 +65,7 @@ When deploying GPU resources, set CPU and memory resources appropriate for the w
 
 * **Deployment time** - Creation of a container group containing GPU resources takes up to **8-10 minutes**. This is due to the additional time to provision and configure a GPU VM in Azure.
 
-* **Pricing** - Similar to container groups without GPU resources, Azure bills for resources consumed over the *duration* of a container group with GPU resources. The duration is calculated from the time to pull your first container's image until the container group terminates. It does not include the time to deploy the container group.
+* **Pricing** - Similar to container groups without GPU resources, Azure bills for resources consumed over the *duration* of a container group with GPU resources. The duration is calculated from the time to pull your first container's image until the container group terminates. It doesn't include the time to deploy the container group.
 
   See [pricing details](https://azure.microsoft.com/pricing/details/container-instances/).
 

@@ -26,9 +26,6 @@ To learn more about previous-gen sizes, retirement, and the status states of pre
 
 |Series name                 | Status                 | Migration guide   |
 |----------------------------|------------------------|-------------------|
-| Basic A-series             | [Capacity limited](./retirement-overview.md#capacity-limited) | [Av1-series Retirement](./migration-guides/av1-series-retirement.md) |
-| Standard A-series          | [Capacity limited](./retirement-overview.md#capacity-limited) | [Av1-series Retirement](./migration-guides/av1-series-retirement.md) |
-| Compute-intensive A-series | [Capacity limited](./retirement-overview.md#capacity-limited) | [Av1-series Retirement](./migration-guides/av1-series-retirement.md) |
 | B-series (V1)              | [Capacity limited](./retirement-overview.md#capacity-limited) | 
 | Standard D-series          | [Capacity limited](./retirement-overview.md#capacity-limited) | 
 | Preview DC-series          | [Capacity limited](./retirement-overview.md#capacity-limited) |

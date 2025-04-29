@@ -7,14 +7,14 @@ ms.service: azure-container-instances
 ms.custom: devx-track-azurecli
 services: container-instances
 ms.author: tomcassidy
-ms.date: 05/03/2022
+ms.date: 08/29/2024
 ---
 
 # Configure a NAT gateway for static IP address for outbound traffic from a container group
 
 Setting up a [container group](container-instances-container-groups.md) with an external-facing IP address allows external clients to use the IP address to access a container in the group. For example, a browser can access a web app running in a container. However, currently a container group uses a different IP address for outbound traffic. This egress IP address isn't exposed programmatically, which makes container group monitoring and configuration of client firewall rules more complex.
 
-This article provides steps to configure a container group in a [virtual network](container-instances-virtual-network-concepts.md) integrated with a [Network Address Translation (NAT) gateway](/azure/virtual-network/nat-gateway/nat-overview). By configuring a NAT gateway to SNAT a subnet address range delegated to Azure Container Instances (ACI), you can identify outbound traffic from your container groups. The container group egress traffic will use the public IP address of the NAT gateway. A single NAT gateway can be used by multiple container groups deployed in the virtual network's subnet delegated to ACI.
+This article provides steps to configure a container group in a [virtual network](container-instances-virtual-network-concepts.md) integrated with a [Network Address Translation (NAT) gateway](/azure/virtual-network/nat-gateway/nat-overview). By configuring a NAT gateway to SNAT a subnet address range delegated to Azure Container Instances (ACI), you can identify outbound traffic from your container groups. The container group egress traffic uses the public IP address of the NAT gateway. Multiple container groups deployed in the virtual network's subnet can use a single NAT gateway.
 
 In this article, you use the Azure CLI to create the resources for this scenario:
 
@@ -37,7 +37,7 @@ You then validate egress from example container groups through the NAT gateway.
 
 ## Get started
 
-This tutorial makes use of a randomized variable. If you are using an existing resource group, modify the value of this variable appropriately.
+This tutorial makes use of a randomized variable. If you used an existing resource group, modify the value of this variable appropriately.
 
 :::code language="azurecli" source="~/azure_cli_scripts/container-instances/nat-gateway.sh" id="variable":::
 
@@ -62,7 +62,7 @@ Create the container group with the [az container create][az-container-create] c
 
 In the following sections, use the Azure CLI to deploy an Azure NAT gateway in the virtual network. For background, see [Quickstart: Create a NAT gateway using Azure CLI](/azure/virtual-network/nat-gateway/quickstart-create-nat-gateway-cli).
 
-First, use the [az network vnet public-ip create][az-network-public-ip-create] to create a public IP address for the NAT gateway. This will be used to access the Internet. You will receive a warning about an upcoming breaking change where Standard SKU IP addresses will be availability zone aware by default. You can learn more about the use of availability zones and public IP addresses [here](/azure/virtual-network/ip-services/virtual-network-network-interface-addresses).
+First, use the [az network vnet public-ip create][az-network-public-ip-create] to create a public IP address for the NAT gateway. The gateway uses this public IP to access the Internet. You receive a warning about an upcoming breaking change where Standard SKU IP addresses are availability zone aware by default. You can learn more about the use of availability zones and public IP addresses [here](/azure/virtual-network/ip-services/virtual-network-network-interface-addresses).
 
 :::code language="azurecli" source="~/azure_cli_scripts/container-instances/nat-gateway.sh" id="publicip":::
 
@@ -78,7 +78,7 @@ Use the following [az network nat gateway create][az-network-nat-gateway-create]
 
 ## Configure NAT service for source subnet
 
-We'll configure the source subnet **aci-subnet** to use a specific NAT gateway resource **myNATgateway** with [az network vnet subnet update][az-network-vnet-subnet-update]. This command will activate the NAT service on the specified subnet.
+We configure the source subnet **aci-subnet** to use a specific NAT gateway resource **myNATgateway** with [az network vnet subnet update][az-network-vnet-subnet-update]. This command activates the NAT service on the specified subnet.
 
 :::code language="azurecli" source="~/azure_cli_scripts/container-instances/nat-gateway.sh" id="subnet":::
 
@@ -106,7 +106,7 @@ This IP address should match the public IP address created in the first step of 
 
 ## Clean up resources
 
-When no longer needed, you can use [az group delete](/cli/azure/group) to remove the resource group and all related resources as follows. The `--no-wait` parameter returns control to the prompt without waiting for the operation to complete. The `--yes` parameter confirms that you wish to delete the resources without an additional prompt to do so.
+When no longer needed, you can use [az group delete](/cli/azure/group) to remove the resource group and all related resources as follows. The `--no-wait` parameter returns control to the prompt without waiting for the operation to complete. The `--yes` parameter confirms that you wish to delete the resources without another prompt to do so.
 
 ```azurecli-interactive
 az group delete --name $resourceGroup --yes --no-wait

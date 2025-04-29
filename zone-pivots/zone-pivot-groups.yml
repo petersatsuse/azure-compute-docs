@@ -1,0 +1,10 @@
+### YamlMime:ZonePivotGroups
+groups:
+- id: empty
+  title: empty
+  prompt: empty
+  pivots:
+  - id: empty1
+    title: empty1
+  - id: empty2
+    title: empty2

@@ -38,6 +38,7 @@ The following are some best practices you can use to reduce the cost of your vir
 - Use [Azure Spot virtual machines](spot-vms.md) where you can
 - For Windows virtual machines, consider [Azure Hybrid Benefit for Windows Server](windows/hybrid-use-benefit-licensing.md) to save cost on licensing
 - Use [cost alerts](/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending) to monitor usage and spending
+- Automate shutdown of underutilized VMs, for example CPU utilization below 10% for 1 hour, by using alerts, [action groups, and Automation runbooks](/azure/automation/automation-create-alert-triggered-runbook)
 - Minimize idle instances by configuring [autoscaling](../virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview.md)
 - Configure Azure Bastion for operational access
 

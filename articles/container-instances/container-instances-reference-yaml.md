@@ -6,7 +6,7 @@ ms.topic: reference
 ms.service: azure-container-instances
 services: container-instances
 ms.author: tomcassidy
-ms.date: 06/06/2022
+ms.date: 08/29/2024
 ---
 
 # YAML reference: Azure Container Instances
@@ -177,8 +177,8 @@ The following tables describe the values you need to set in the schema.
 
 |  Name | Type | Required | Value |
 |  ---- | ---- | ---- | ---- |
-|  type | enum | No | The type of identity used for the container group. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the container group. - SystemAssigned, UserAssigned, SystemAssigned, UserAssigned, None |
-|  userAssignedIdentities | object | No | The list of user identities associated with the container group. The user identity dictionary key references will be Azure Resource Manager resource IDs in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. |
+|  type | enum | No | The type of identity used for the container group. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' removes any identities from the container group. - SystemAssigned, UserAssigned, SystemAssigned, UserAssigned, None |
+|  userAssignedIdentities | object | No | The list of user identities associated with the container group. The user identity dictionary key references are Azure Resource Manager resource IDs in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. |
 
 ### ContainerGroupProperties object
 
@@ -189,7 +189,7 @@ The following tables describe the values you need to set in the schema.
 |  restartPolicy | enum | No | Restart policy for all containers within the container group. - `Always` Always restart- `OnFailure` Restart on failure- `Never` Never restart. - Always, OnFailure, Never |
 |  ipAddress | object | No | The IP address type of the container group. - [IpAddress object](#ipaddress-object) |
 |  osType | enum | Yes | The operating system type required by the containers in the container group. - Windows or Linux |
-|  volumes | array | No | The list of volumes that can be mounted by containers in this container group. - [Volume object](#volume-object) |
+|  volumes | array | No | The list of volumes that containers in this container group can mount. - [Volume object](#volume-object) |
 |  diagnostics | object | No | The diagnostic information for a container group. - [ContainerGroupDiagnostics object](#containergroupdiagnostics-object) |
 |  subnetIds | object | No | The subnet information for a container group. - [ContainerGroupSubnetIds object](#containergroupsubnetids-object) |
 |  dnsConfig | object | No | The DNS config information for a container group. - [DnsConfiguration object](#dnsconfiguration-object) |
@@ -219,7 +219,7 @@ The following tables describe the values you need to set in the schema.
 |  Name | Type | Required | Value |
 |  ---- | ---- | ---- | ---- |
 |  ports | array | Yes | The list of ports exposed on the container group. - [Port object](#port-object) |
-|  type | enum | Yes | Specifies if the IP is exposed to the public internet or private VNET. - Public or Private |
+|  type | enum | Yes | Specifies if the IP is exposed to the public internet or private virtual network. - Public or Private |
 |  ip | string | No | The IP exposed to the public internet. |
 |  dnsNameLabel | string | No | The Dns name label for the IP. |
 
@@ -302,7 +302,7 @@ The following tables describe the values you need to set in the schema.
 
 |  Name | Type | Required | Value |
 |  ---- | ---- | ---- | ---- |
-|  directory | string | No | Target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name. |
+|  directory | string | No | Target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory is the git repository. Otherwise, if specified, the volume contains the git repository in the subdirectory with the given name. |
 |  repository | string | Yes | Repository URL |
 |  revision | string | No | Commit hash for the specified revision. |
 

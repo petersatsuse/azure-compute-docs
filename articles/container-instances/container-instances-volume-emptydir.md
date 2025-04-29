@@ -6,7 +6,7 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ---
 
 # Mount an emptyDir volume in Azure Container Instances
@@ -26,7 +26,7 @@ Some example uses for an *emptyDir* volume:
 * Checkpointing during long-running tasks
 * Store data retrieved by a sidecar container and served by an application container
 
-Data in an *emptyDir* volume is persisted through container crashes. Containers that are restarted, however, are not guaranteed to persist the data in an *emptyDir* volume. If you stop a container group, the *emptyDir* volume is not persisted.
+Data in an *emptyDir* volume is persisted through container crashes. Containers that are restarted, however, aren't guaranteed to persist the data in an *emptyDir* volume. If you stop a container group, the *emptyDir* volume isn't persisted.
 
 The maximum size of a Linux *emptyDir* volume is 50 GB.
 

@@ -8,9 +8,9 @@ metadata:
   description: Azure Container Instances (ACI) allows you to run Docker containers in a managed, serverless cloud environment, without having to set up VMs, clusters, or orchestrators.
   ms.service: azure-container-instances
   ms.topic: landing-page 
-  author: dlepow 
-  ms.author: danlep 
-  ms.date: 09/25/2019
+  author: tomvcassidy 
+  ms.author: tomcassidy 
+  ms.date: 08/29/2024
 
 
 landingContent:
@@ -84,7 +84,7 @@ landingContent:
     linkLists:
       - linkListType: tutorial
         links:
-          - text: Deploy a confidential container group - resource manager
+          - text: Deploy a confidential container group - Resource Manager
             url: container-instances-tutorial-deploy-confidential-containers-cce-arm.md
           - text: Deploy a confidential container group - portal
             url: container-instances-tutorial-deploy-confidential-container-default-portal.md

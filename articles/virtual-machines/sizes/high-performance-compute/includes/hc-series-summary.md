@@ -5,8 +5,8 @@ author: mattmcinnes
 ms.topic: include
 ms.service: azure-virtual-machines
 ms.subservice: sizes
-ms.date: 08/01/2024
-ms.author: mattmcinnes
+ms.date: 01/31/2025
+ms.author: padmalathas
 ms.reviewer: mattmcinnes
 ms.custom: include file
 ---

@@ -4,9 +4,9 @@ description: This article describes how to run PowerShell scripts within an Azur
 services: automation
 ms.service: azure-virtual-machines
 ms.collection: windows
-author: nikhilpatel909
+author: GabstaMSFT
 ms.author: jushiman
-ms.date: 03/10/2023
+ms.date: 12/02/2024
 ms.topic: how-to
 ms.reviewer: jushiman
 ms.custom: devx-track-azurecli
@@ -24,21 +24,19 @@ This capability is useful in all scenarios where you want to run a script within
 
 ## Prerequisites
 
-### **Windows OS’ Supported**
-| **Windows OS** |	**x64** |
-|:----|:----:|
-| Windows 10 |	Supported |
-| Windows 11 |	Supported |
-| Windows Server 2008 SP2 |	Supported |
-| Windows Server 2008 R2 |	Supported |
-| Windows Server 2012 |	Supported |
-| Windows Server 2012 R2 |	Supported |
-| Windows Server 2016 |	Supported |
-| Windows Server 2016 Core |	Supported |
-| Windows Server 2019 |	Supported |
-| Windows Server 2019 Core |	Supported |
-| Windows Server 2022 |	Supported |
-| Windows Server 2022 Core |	Supported |
+### **Windows Operating Systems Supported**
+| OS Version | x64 | ARM64 |
+|:-----|:-----:|:-----:|
+| Windows 10 | Supported | Supported |
+| Windows 11 | Supported | Supported |
+| Windows Server 2016 | Supported | Supported |
+| Windows Server 2016 Core | Supported | Supported |
+| Windows Server 2019 | Supported | Supported |
+| Windows Server 2019 Core | Supported | Supported |
+| Windows Server 2022 | Supported | Supported |
+| Windows Server 2022 Core | Supported | Supported |
+| Windows Server 2025 | Supported | Supported |
+| Windows Server 2025 Core | Supported | Supported |
 
 ## Restrictions
 
@@ -52,7 +50,7 @@ The following restrictions apply when you're using Run Command:
 * You can't cancel a running script.
 * The maximum time a script can run is 90 minutes. After that, it will time out.
 * Outbound connectivity from the VM is required to return the results of the script.
-* It isn't recommended to run a script that will cause a stop or update of the VM Agent. This can let the extension in a Transitioning state, leading to a timeout.
+* It isn't recommended to run a script that will cause a stop or update of the VM Agent. This can let the extension in a Transitioning state, leading to a time-out.
 
 > [!NOTE]
 > To function correctly, Run Command requires connectivity (port 443) to Azure public IP addresses. If the extension doesn't have access to these endpoints, the scripts might run successfully but not return the results. If you're blocking traffic on the virtual machine, you can use [service tags](/azure/virtual-network/network-security-groups-overview#service-tags) to allow traffic to Azure public IP addresses by using the `AzureCloud` tag.
@@ -83,6 +81,9 @@ The entity was not found in this Azure location
 | **SetRDPPort** | Sets the default or user-specified port number for Remote Desktop connections. Enables firewall rules for inbound access to the port. |
 
 ## Azure CLI
+
+> [!NOTE]
+> Depending on which modality is used to execute, some escaping may be needed. For example, if you're executing the command in a PowerShell session, the path to the script file will need to have quotes.
 
 The following example uses the [az vm run-command](/cli/azure/vm/run-command#az-vm-run-command-invoke) command to run a shell script on an Azure Windows VM.
 
@@ -138,18 +139,21 @@ When troubleshooting action run command for Windows environments, refer to the *
 
 ### Known issues
 
-Your Action Run Command Extension might fail to execute in your Windows environment if the command contains reserved characters. For example:
+* Your Action Run Command Extension might fail to execute in your Windows environment if the command contains reserved characters. For example:
 
-If the `&` symbol is passed in the parameter of your command such as the below PowerShell script, it might fail.
+    If the `&` symbol is passed in the parameter of your command such as the below PowerShell script, it might fail.
 
-```powershell-interactive    
-$paramm='abc&jj'
-Invoke-AzVMRunCommand -ResourceGroupName AzureCloudService1 -Name test -CommandId 'RunPowerShellScript' -ScriptPath C:\data\228332902\PostAppConfig.ps1 -Parameter @{"Prefix" = $paramm}
-```
+    ```powershell-interactive    
+    $paramm='abc&jj'
+    Invoke-AzVMRunCommand -ResourceGroupName AzureCloudService1 -Name test -CommandId 'RunPowerShellScript' -ScriptPath     C:\data\228332902\PostAppConfig.ps1 -Parameter @{"Prefix" = $paramm}
+    ```
 
-Use the `^` character to escape the `&` in the argument, such as `$paramm='abc^&jj'`
+    Use the `^` character to escape the `&` in the argument, such as `$paramm='abc^&jj'`
 
-The Run Command extension might also fail to execute if command to be executed contains "\n" in the path, as it will be treated as a new line. For example, `C:\Windows\notepad.exe` contains the `\n` in the file path. Consider replacing `\n` with `\N` in your path.
+* The Run Command extension might also fail to execute if command to be executed contains "\n" in the path, as it will be treated as a new line. For example, `C:\Windows\notepad.exe` contains the `\n` in the file path. Consider replacing `\n` with `\N` in your path.
+
+* Ensure you don't have any custom setting in the registry key `HKLM\SOFTWARE\Microsoft\Command Processor\AutoRun` (detailed [here](/windows-server/administration/windows-commands/cmd)). This could trigger during the RunCommand Extension install or enable phases and cause an error like *'XYZ is not recognized as an internal or external command, operable program or batch file'*.
+
 
 ### Action Run Command Removal
 

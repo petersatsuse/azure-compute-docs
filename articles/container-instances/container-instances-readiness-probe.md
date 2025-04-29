@@ -1,13 +1,13 @@
 ---
 title: Set up readiness probe on container instance
-description: Learn how to configure a probe to ensure containers in Azure Container Instances receive requests only when they are ready
+description: Learn how to configure a probe to ensure containers in Azure Container Instances receive requests only when they're ready
 ms.topic: how-to
 ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 ms.custom:
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ---
 
 # Configure readiness probes
@@ -70,9 +70,9 @@ node /usr/src/app/index.js & (sleep 240; touch /tmp/ready); wait
 
 ### Readiness command
 
-This YAML file defines a `readinessProbe` which supports an `exec` readiness command that acts as the readiness check. This example readiness command tests for the existence of the `ready` file in the `/tmp` directory.
+This YAML file defines a `readinessProbe` that supports an `exec` readiness command that acts as the readiness check. This example readiness command tests for the existence of the `ready` file in the `/tmp` directory.
 
-When the `ready` file doesn't exist, the readiness command exits with a non-zero value; the container continues running but can't be accessed. When the command exits successfully with exit code 0, the container is ready to be accessed.
+When the `ready` file doesn't exist, the readiness command exits with a nonzero value; the container continues running but can't be accessed. When the command exits successfully with exit code 0, the container is ready to be accessed.
 
 The `periodSeconds` property designates the readiness command should execute every 5 seconds. The readiness probe runs for the lifetime of the container group.
 

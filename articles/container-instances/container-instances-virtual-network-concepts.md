@@ -6,7 +6,7 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ---
 
 # Virtual network scenarios and resources
@@ -39,9 +39,8 @@ Container groups deployed into an Azure virtual network enable scenarios like:
 
 ## Other limitations
 
-* To deploy container groups to a subnet, the subnet can't contain other resource types. Remove all existing resources from an existing subnet prior to deploying container groups to it, or create a new subnet.
+* To deploy container groups to a subnet, the subnet can't contain other resource types. Remove all existing resources from an existing subnet before deploying container groups to it, or create a new subnet.
 * To deploy container groups to a subnet, the subnet and the container group must be on the same Azure subscription.
-* You can't enable a [liveness probe](container-instances-liveness-probe.md) or [readiness probe](container-instances-readiness-probe.md) in a container group deployed to a virtual network.
 * Due to the additional networking resources involved, deployments to a virtual network are typically slower than deploying a standard container instance.
 * Outbound connections to port 25 and 19390 aren't supported at this time. Port 19390 needs to be opened in your Firewall for connecting to ACI from Azure portal when container groups are deployed in virtual networks.
 * For inbound connections, the firewall should also allow all ip addresses within the virtual network.
@@ -66,7 +65,7 @@ The subnet that you use for container groups can contain only container groups. 
 
 ### Network profile
 
-[!INCLUDE [network profile callout](./includes/network-profile/network-profile-callout.md)]
+[!INCLUDE [network profile callout](./includes/network-profile-callout.md)]
 
 A network profile is a network configuration template for Azure resources. It specifies certain network properties for the resource, for example, the subnet into which it should be deployed. When you first use the [az container create][az-container-create] command to deploy a container group to a subnet (and thus a virtual network), Azure creates a network profile for you. You can then use that network profile for future deployments to the subnet. 
 
@@ -79,7 +78,7 @@ The following diagram depicts several container groups deployed to a subnet dele
 ## Next steps
 
 * For deployment examples with the Azure CLI, see [Deploy container instances into an Azure virtual network](container-instances-vnet.md).
-* To deploy a new virtual network, subnet, network profile, and container group using a Resource Manager template, see [Create an Azure container group with VNet](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.containerinstance/aci-vnet).
+* To deploy a new virtual network, subnet, network profile, and container group using a Resource Manager template, see [Create an Azure container group with virtual network](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.containerinstance/aci-vnet).
 * When using the [Azure portal](container-instances-quickstart-portal.md) to create a container instance, you can also provide settings for a new or existing virtual network on the **Networking** tab.
 
 

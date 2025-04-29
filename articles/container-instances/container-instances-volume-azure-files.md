@@ -6,7 +6,7 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ms.custom: mvc, devx-track-azurecli
 ---
 
@@ -18,7 +18,7 @@ By default, Azure Container Instances are stateless. If the container is restart
 
 * Azure Storage doesn't support SMB mounting of file share using managed identity
 * You can only mount Azure Files shares to Linux containers. Review more about the differences in feature support  for Linux and Windows container groups in the [overview](container-instances-overview.md#linux-and-windows-containers).
-* Azure file share volume mount requires the Linux container run as *root* .
+* Azure file share volume mount requires the Linux container run as *root*.
 * Azure File share volume mounts are limited to CIFS support.
 
 > [!NOTE]
@@ -92,7 +92,7 @@ The `--dns-name-label` value must be unique within the Azure region where you cr
 
 ## Manage files in mounted volume
 
-Once the container starts up, you can use the simple web app deployed via the Microsoft aci-hellofiles image to create small text files in the Azure file share at the mount path you specified. Obtain the web app's fully qualified domain name (FQDN) with the [az container show][az-container-show] command:
+Once the container starts up, you can use the web app deployed via the Microsoft aci-hellofiles image to create small text files in the Azure file share at the mount path you specified. Obtain the web app's fully qualified domain name (FQDN) with the [az container show][az-container-show] command:
 
 ```azurecli-interactive
 az container show --resource-group $ACI_PERS_RESOURCE_GROUP \
@@ -242,7 +242,7 @@ az deployment group create --resource-group myResourceGroup --template-file depl
 
 To mount multiple volumes in a container instance, you must deploy using an [Azure Resource Manager template](/azure/templates/microsoft.containerinstance/containergroups), a YAML file, or another programmatic method. To use a template or YAML file, provide the share details and define the volumes by populating the `volumes` array in the `properties` section of the file. 
 
-For example, if you created two Azure Files shares named *share1* and *share2* in storage account *myStorageAccount*, the `volumes` array in a Resource Manager template would appear similar to the following:
+For example, if you created two Azure Files shares named *share1* and *share2* in storage account *myStorageAccount*, the `volumes` array in a Resource Manager template would appear similar to the following example:
 
 ```JSON
 "volumes": [{

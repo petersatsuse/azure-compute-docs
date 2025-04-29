@@ -6,7 +6,7 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ---
 
 # Security considerations for Azure Container Instances
@@ -17,8 +17,7 @@ This article introduces security considerations for using Azure Container Instan
 > * **Security recommendations** for managing images and secrets for Azure Container Instances
 > * **Considerations for the container ecosystem** throughout the container lifecycle, for any container platform
 
-For comprehensive recommendations that will help you improve the security posture of your deployment, see the [Azure security baseline for Container Instances](security-baseline.md).
-
+For comprehensive recommendations that help you improve the security posture of your deployment, see the [Azure security baseline for Container Instances](security-baseline.md).
 
 ## Security recommendations for Azure Container Instances
 
@@ -26,7 +25,7 @@ For comprehensive recommendations that will help you improve the security postur
 
 Containers are built from images that are stored in one or more repositories. These repositories can belong to a public registry, like [Docker Hub](https://hub.docker.com), or to a private registry. An example of a private registry is the [Docker Trusted Registry](https://docs.docker.com/datacenter/dtr/), which can be installed on-premises or in a virtual private cloud. You can also use cloud-based private container registry services, including [Azure Container Registry](/azure/container-registry/container-registry-intro). 
 
-A publicly available container image does not guarantee security. Container images consist of multiple software layers, and each software layer might have vulnerabilities. To help reduce the threat of attacks, you should store and retrieve images from a private registry, such as Azure Container Registry or Docker Trusted Registry. In addition to providing a managed private registry, Azure Container Registry supports [service principal-based authentication](/azure/container-registry/container-registry-authentication) through Microsoft Entra ID for basic authentication flows. This authentication includes role-based access for read-only (pull), write (push), and other permissions.
+A publicly available container image doesn't guarantee security. Container images consist of multiple software layers, and each software layer might have vulnerabilities. To help reduce the threat of attacks, you should store and retrieve images from a private registry, such as Azure Container Registry or Docker Trusted Registry. In addition to providing a managed private registry, Azure Container Registry supports [service principal-based authentication](/azure/container-registry/container-registry-authentication) through Microsoft Entra ID for basic authentication flows. This authentication includes role-based access for read-only (pull), write (push), and other permissions.
 
 ### Monitor and scan container images
 
@@ -38,7 +37,7 @@ Security monitoring and image scanning solutions such as [Twistlock](https://azu
 
 ### Protect credentials
 
-Containers can spread across several clusters and Azure regions. So, you must secure credentials required for logins or API access, such as passwords or tokens. Ensure that only privileged users can access those containers in transit and at rest. Inventory all credential secrets, and then require developers to use emerging secrets-management tools that are designed for container platforms.  Make sure that your solution includes encrypted databases, TLS encryption for secrets data in transit, and least-privilege [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview). [Azure Key Vault](/azure/key-vault/general/security-features) is a cloud service that safeguards encryption keys and secrets (such as certificates, connection strings, and passwords) for containerized applications. Because this data is sensitive and business critical, secure access to your key vaults so that only authorized applications and users can access them.
+Containers can spread across several clusters and Azure regions. So, you must secure credentials required for logins or API access, such as passwords or tokens. Ensure that only privileged users can access those containers in transit and at rest. Inventory all credential secrets, and then require developers to use emerging secrets-management tools that are designed for container platforms. Make sure that your solution includes encrypted databases, TLS encryption for secrets data in transit, and least-privilege [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview). [Azure Key Vault](/azure/key-vault/general/security-features) is a cloud service that safeguards encryption keys and secrets (such as certificates, connection strings, and passwords) for containerized applications. Because this data is sensitive and business critical, secure access to your key vaults so that only authorized applications and users can access them.
 
 ## Considerations for the container ecosystem
 
@@ -73,19 +72,19 @@ An extension of ensuring that your environment uses only approved images is to p
 
 ### Ensure the integrity of images throughout the lifecycle 
 
-Part of managing security throughout the container lifecycle is to ensure the integrity of the container images in the registry and as they are altered or deployed into production. 
+Part of managing security throughout the container lifecycle is to ensure the integrity of the container images in the registry and as they're altered or deployed into production. 
 
-* Images with vulnerabilities, even minor, should not be allowed to run in a production environment. Ideally, all images deployed in production should be saved in a private registry accessible to a select few. Keep the number of production images small to ensure that they can be managed effectively.
+* Images with vulnerabilities, even minor, shouldn't be allowed to run in a production environment. Ideally, all images deployed in production should be saved in a private registry accessible to a select few. Keep the number of production images small to ensure that they can be managed effectively.
 
 * Because it’s hard to pinpoint the origin of software from a publicly available container image, build images from the source to ensure knowledge of the origin of the layer. When a vulnerability surfaces in a self-built container image, customers can find a quicker path to a resolution. With a public image, customers would need to find the root of a public image to fix it or get another secure image from the publisher. 
 
-* A thoroughly scanned image deployed in production is not guaranteed to be up-to-date for the lifetime of the application. Security vulnerabilities might be reported for layers of the image that were not previously known or were introduced after the production deployment. 
+* A thoroughly scanned image deployed in production isn't guaranteed to be up-to-date for the lifetime of the application. Security vulnerabilities might be reported for layers of the image that weren't previously known or were introduced after the production deployment. 
 
-  Periodically audit images deployed in production to identify images that are out of date or have not been updated in a while. You might use blue-green deployment methodologies and rolling upgrade mechanisms to update container images without downtime. You can scan images by using tools described in the preceding section. 
+  Periodically audit images deployed in production to identify images that are out of date or haven't been updated in a while. You might use blue-green deployment methodologies and rolling upgrade mechanisms to update container images without downtime. You can scan images by using tools described in the preceding section. 
 
 * Use a continuous integration (CI) pipeline with integrated security scanning to build secure images and push them to your private registry. The vulnerability scanning built into the CI solution ensures that images that pass all the tests are pushed to the private registry from which production workloads are deployed. 
 
-  A CI pipeline failure ensures that vulnerable images are not pushed to the private registry that’s used for production workload deployments. It also automates image security scanning if there’s a significant number of images. Otherwise, manually auditing images for security vulnerabilities can be painstakingly lengthy and error prone. 
+  A CI pipeline failure ensures that vulnerable images aren't pushed to the private registry that’s used for production workload deployments. It also automates image security scanning if there’s a significant number of images. Otherwise, manually auditing images for security vulnerabilities can be painstakingly lengthy and error prone. 
 
 ### Enforce least privileges in runtime 
 
@@ -142,7 +141,7 @@ Maintain an accurate audit trail of administrative access to your container ecos
 
 ## Next steps
 
-* See the [Azure security baseline for Container Instances](security-baseline.md) for comprehensive recommendations that will help you improve the security posture of your deployment.
+* See the [Azure security baseline for Container Instances](security-baseline.md) for comprehensive recommendations that help you improve the security posture of your deployment.
 
 * Learn more about using [Microsoft Defender for Cloud](/azure/security-center/container-security) for real-time threat detection in your containerized environments.
 

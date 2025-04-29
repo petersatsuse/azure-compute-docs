@@ -17,7 +17,7 @@ ms.reviewer: jushim
 
 **Applies to:** :heavy_check_mark: Linux VMs
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://go.microsoft.com/fwlink/?linkid=2275458)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://go.microsoft.com/fwlink/?linkid=2286415)
 
 This article walks you through how to deploy an NGINX web server, Azure MySQL Flexible Server, and PHP (the LEMP stack) on an Ubuntu Linux VM in Azure. To see the LEMP server in action, you can optionally install and configure a WordPress site. In this tutorial you learn how to:
 
@@ -158,7 +158,7 @@ Results:
 Use [az network public-ip create](/cli/azure/network/public-ip#az-network-public-ip-create) to create a standard zone-redundant public IPv4 address named `MY_PUBLIC_IP_NAME` in `$MY_RESOURCE_GROUP_NAME`.
 
 >[!NOTE]
->The below options for zones are only valid selections in regions with [Availability Zones](/azure/reliability/availability-zones-service-support).
+>The below options for zones are only valid selections in regions with [Availability Zones](/azure/reliability/availability-zones-region-support).
 ```bash
 az network public-ip create \
     --name $MY_PUBLIC_IP_NAME \
@@ -562,10 +562,6 @@ Results:
   "username": "dbadminxxxxxx",
   "version": "8.0.21"
 }
-```
-
-```bash
-echo "Your MySQL user $MY_MYSQL_ADMIN_USERNAME password is: $MY_WP_ADMIN_PW"
 ```
 
 The server created has the below attributes:

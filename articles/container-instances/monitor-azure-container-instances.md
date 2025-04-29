@@ -1,7 +1,7 @@
 ---
 title: Monitor Azure Container Instances
 description: Start here to learn how to monitor Azure Container Instances.
-ms.date: 02/27/2024
+ms.date: 08/29/2024
 ms.custom: horz-monitor
 ms.topic: conceptual
 author: tomvcassidy
@@ -33,9 +33,9 @@ You can gather Azure Monitor metrics for container instances using either the Az
 
 #### Use the Azure portal
 
-When a container group is created, Azure Monitor data is available in the Azure portal. To see metrics for a container group, go to the **Overview** page for the container group. Here you can see pre-created charts for each of the available metrics.
+When a container group is created, Azure Monitor data is available in the Azure portal. To see metrics for a container group, go to the **Overview** page for the container group. Here you can see precreated charts for each of the available metrics.
 
-:::image type="content" source="media/container-instances-monitor/metrics.png" alt-text="Screenshot of pre-created charts for available metrics.":::
+:::image type="content" source="media/container-instances-monitor/metrics.png" alt-text="Screenshot of precreated charts for available metrics.":::
 
 In a container group that contains multiple containers, use a [dimension](/azure/azure-monitor/essentials/data-platform-metrics#multi-dimensional-metrics) to display metrics by container. To create a chart with individual container metrics, perform the following steps:
 
@@ -129,7 +129,7 @@ Timestamp            Name          Containername             Average
 [!INCLUDE [horz-monitor-resource-logs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-resource-logs.md)]
 
 - For more information about how to get log data for Container Instances, see [Retrieve container logs and events in Azure Container Instances](container-instances-get-logs.md).
-- For the available resource log categories, associated Log Analytics tables, and the logs schemas for Container Instances, see [Container Instances monitoring data reference](monitor-azure-container-instances-reference.md#resource-logs).
+- For the available resource log categories, associated Log Analytics tables, and the log schemas for Container Instances, see [Container Instances monitoring data reference](monitor-azure-container-instances-reference.md#resource-logs).
 
 [!INCLUDE [horz-monitor-activity-log](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-activity-log.md)]
 

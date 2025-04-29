@@ -6,13 +6,13 @@ author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
 ms.topic: reference
-ms.date: 02/06/2024
+ms.date: 08/29/2024
 ms.custom: subject-policy-reference
 ---
 # Azure Policy built-in definitions for Azure Container Instances
 
 This page is an index of [Azure Policy](/azure/governance/policy/overview) built-in policy
-definitions for Azure Container Instances. For additional Azure Policy built-ins for other services,
+definitions for Azure Container Instances. For more Azure Policy built-ins for other services,
 see [Azure Policy built-in definitions](/azure/governance/policy/samples/built-in-policies).
 
 The name of each built-in policy definition links to the policy definition in the Azure portal. Use

@@ -7,14 +7,14 @@ ms.service: azure-container-instances
 ms.custom: devx-track-azurecli
 services: container-instances
 ms.topic: how-to
-ms.date: 05/03/2022
+ms.date: 08/29/2024
 ---
 
 # Configure a single public IP address for outbound and inbound traffic to a container group
 
 Setting up a [container group](container-instances-container-groups.md) with an external-facing IP address allows external clients to use the IP address to access a container in the group. For example, a browser can access a web app running in a container. However, currently a container group uses a different IP address for outbound traffic. This egress IP address isn't exposed programmatically, which makes container group monitoring and configuration of client firewall rules more complex.
 
-This article provides steps to configure a container group in a [virtual network](container-instances-virtual-network-concepts.md) integrated with [Azure Firewall](/azure/firewall/overview). By setting up a user-defined route to the container group and firewall rules, you can route and identify traffic to and from the container group. Container group ingress and egress use the public IP address of the firewall. A single egress IP address can be used by multiple container groups deployed in the virtual network's subnet delegated to Azure Container Instances.
+This article provides steps to configure a container group in a [virtual network](container-instances-virtual-network-concepts.md) integrated with [Azure Firewall](/azure/firewall/overview). By setting up a user-defined route to the container group and firewall rules, you can route and identify traffic to and from the container group. Container group ingress and egress use the public IP address of the firewall. Multiple container groups deployed in the virtual network's subnet can use a single egress IP address.
 
 In this article, you use the Azure CLI to create the resources for this scenario:
 
@@ -36,7 +36,7 @@ You then validate ingress and egress from example container groups through the f
 
 ## Get started
 
-This tutorial makes use of a randomized variable. If you are using an existing resource group, modify the value of this variable appropriately.
+This tutorial makes use of a randomized variable. If you used an existing resource group, modify the value of this variable appropriately.
 
 :::code language="azurecli" source="~/azure_cli_scripts/container-instances/egress-ip-address.sh" id="variable":::
 
@@ -93,7 +93,7 @@ Get the firewall's public IP address using the [az network public-ip show][az-ne
 
 ## Define user-defined route on ACI subnet
 
-Define a use-defined route on the ACI subnet, to divert traffic to the Azure firewall. For more information, see [Route network traffic](/azure/virtual-network/tutorial-create-route-table-cli). 
+To divert traffic to the Azure firewall, define a use-defined route on the ACI subnet. For more information, see [Route network traffic](/azure/virtual-network/tutorial-create-route-table-cli). 
 
 ### Create route table
 
@@ -116,6 +116,9 @@ Run the [az network vnet subnet update][az-network-vnet-subnet-update] command t
 ## Configure rules on firewall
 
 By default, Azure Firewall denies (blocks) inbound and outbound traffic.
+
+> [!IMPORTANT]
+> Ensure that port 19390 is open in your firewall to allow connectivity to Azure Container Instances (ACI) from the Azure portal. This port is required when deploying container groups in virtual networks. Blocking this port can result in deployment failures, such as container groups remaining in a "Waiting" state, or prevent portal-based management and troubleshooting, including accessing logs and the container shell.
 
 ### Configure NAT rule on firewall to ACI subnet
 
@@ -175,7 +178,7 @@ Output is similar to:
 
 ## Clean up resources
 
-When no longer needed, you can use [az group delete](/cli/azure/group) to remove the resource group and all related resources as follows. The `--no-wait` parameter returns control to the prompt without waiting for the operation to complete. The `--yes` parameter confirms that you wish to delete the resources without an additional prompt to do so.
+When no longer needed, you can use [az group delete](/cli/azure/group) to remove the resource group and all related resources as follows. The `--no-wait` parameter returns control to the prompt without waiting for the operation to complete. The `--yes` parameter confirms that you wish to delete the resources without another prompt to do so.
 
 ```azurecli-interactive
 az group delete --name $resourceGroup --yes --no-wait

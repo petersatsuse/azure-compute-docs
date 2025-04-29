@@ -1,14 +1,14 @@
 ---
-title: Azure Monitor Dependency virtual machine extension for Windows
+title: Azure Monitor Dependency Agent virtual machine extension for Windows
 description: Deploy the Azure Monitor Dependency agent on Windows virtual machine by using a virtual machine extension.
-ms.topic: article
+ms.topic: concept-article
 ms.service: azure-monitor
 ms.subservice: agents
 author: guywi-ms
 ms.author: guywild
 ms.reviewer: jushiman
 ms.collection: windows
-ms.date: 08/29/2023
+ms.date: 01/14/2025
 ---
 # Azure Monitor Dependency virtual machine extension for Windows
 
@@ -134,6 +134,19 @@ When you place the extension JSON at the root of the template, the resource name
 You can use the `Set-AzVMExtension` command to deploy the Dependency agent virtual machine extension to an existing virtual machine. Before you run the command, the public and private configurations need to be stored in a PowerShell hash table.
 
 ```powershell
+Set-AzVMExtension -ExtensionName "Microsoft.Azure.Monitoring.DependencyAgent" `
+    -ResourceGroupName "myResourceGroup" `
+    -VMName "myVM" `
+    -Publisher "Microsoft.Azure.Monitoring.DependencyAgent" `
+    -ExtensionType "DependencyAgentWindows" `
+    -TypeHandlerVersion 9.10 `
+    -Settings @{"enableAMA" = "true"}
+```
+
+### PowerShell deployment for Azure Monitor Agent
+
+If you are using the Azure Monitor Agent, you must use the `enableAMA` setting. Otherwise, Dependency agent attempts to send data to the legacy Log Analytics agent. For example:
+```powershell
 
 Set-AzVMExtension -ExtensionName "Microsoft.Azure.Monitoring.DependencyAgent" `
     -ResourceGroupName "myResourceGroup" `
@@ -141,13 +154,14 @@ Set-AzVMExtension -ExtensionName "Microsoft.Azure.Monitoring.DependencyAgent" `
     -Publisher "Microsoft.Azure.Monitoring.DependencyAgent" `
     -ExtensionType "DependencyAgentWindows" `
     -TypeHandlerVersion 9.10 `
-    -Location WestUS
+    -Location WestUS `
+    -Settings @{"enableAMA" = "true"}
 ```
 
 ## Automatic extension upgrade
 A new feature to [automatically upgrade minor versions](../automatic-extension-upgrade.md) of Dependency extension is now available.
 
-To enable automatic extension upgrade for an extension, you must ensure the property `enableAutomaticUpgrade` is set to `true` and added to the extension template. This property must be enabled on every VM or VM scale set individually. Use one of the methods described in the [enablement](../automatic-extension-upgrade.md#enabling-automatic-extension-upgrade) section enable the feature for your VM or VM scale set.
+To enable automatic extension upgrade for an extension, you must ensure the property `enableAutomaticUpgrade` is set to `true` and added to the extension template. This property must be enabled on every VM or VM scale set individually. Use one of the methods described in the [enablement](../automatic-extension-upgrade.md#enable-automatic-extension-upgrade) section enable the feature for your VM or VM scale set.
 
 When automatic extension upgrade is enabled on a VM or VM scale set, the extension is upgraded automatically whenever the extension publisher releases a new version for that extension. The upgrade is applied safely following availability-first principles as described [here](../automatic-extension-upgrade.md#how-does-automatic-extension-upgrade-work).
 

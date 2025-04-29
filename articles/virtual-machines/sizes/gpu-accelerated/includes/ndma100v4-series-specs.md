@@ -17,4 +17,4 @@ ms.custom: include file
 | Local Storage  |  1 Disk         |  6400 GiB  |
 | Remote Storage |  32 Disks  | 80000 IOPS <br> 800 MBps |
 | Network        |  8 NICs        |  24000 Mbps |
-| Accelerators   |  8 GPUs            | Nvidia PCIe A100 GPU (80GB)    |
+| Accelerators   |  8 GPUs            | Nvidia A100 GPU (80GB)    |

@@ -40,7 +40,7 @@ This article describes how to run the VMAccess Extension from the Azure CLI and 
 ### Tips
 * VMAccess was designed for regaining access to a VM given that access is lost. Based on this principle, it grants sudo permission to account specified in the username field. If you don't wish a user to gain sudo permissions, log in to the VM and use built-in tools (for example, usermod, chage, etc.) to manage unprivileged users.
 * You can only have one version of the extension applied to a VM. To run a second action, update the existing extension with a new configuration.
-* During a user update, VMAccess alters the `sshd_config` file and takes a backup of it beforehand. To restore the original backed-up SSH configuration, run VMAccess with `restore_backup_ssh` set to `True`.
+* During a user update, VMAccess alters the `sshd_config` file and takes a backup of it beforehand. It changes `ChallengeResponseAuthentication` to `no` and `PasswordAuthentication` to `yes`. To restore the original backed-up SSH configuration, run VMAccess with `restore_backup_ssh` set to `True`.
 
 ## Extension schema
 
@@ -309,6 +309,13 @@ You can also retrieve the execution state of the VMAccess Extension, along with 
 ```azurecli-interactive
 az vm extension list --resource-group myResourceGroup --vm-name myVM -o table
 ```
+
+### Error messages
+
+| Error  | Description |
+| ---- | ---- |
+| Provisioning of VM extension enablevmaccess has timed out. Extension provisioning has taken too long to complete. The extension did not report a message. More information on troubleshooting is available at https://aka.ms/vmextensionlinuxtroubleshoot. | The error message indicates that the provisioning of the VM extension ‘enablevmaccess’ has timed out due to taking too long to complete. Additionally, the extension did not provide any status message during the process. To resolve this issue, consider checking the VM’s performance and network conditions, and retry the provisioning operation. For more information, see [Troubleshoot VM extensions](https://learn.microsoft.com/azure/virtual-machines/extensions/features-linux?tabs=azure-cli#troubleshoot-vm-extensions). |
+| VM has reported a failure when processing extension 'enablevmaccess' (publisher 'Microsoft.OSTCExtensions' and type 'VMAccessForLinux'). Error message: 'Enable failed: No password or ssh_key is specified.'. More information on troubleshooting is available at https://aka.ms/vmextensionlinuxtroubleshoot . | The error message indicates that the VM failed to process the ‘enablevmaccess’ extension because no password or SSH key was specified. This failure is associated with the ‘Microsoft.OSTCExtensions’ publisher and the ‘VMAccessForLinux’ type. To resolve this issue, ensure that either a password or an SSH key is provided during the extension configuration. |
 
 For more help, you can contact the Azure experts at [Azure Community Support](https://azure.microsoft.com/support/forums/). Alternatively, you can file an Azure support incident. Go to [Azure support](https://azure.microsoft.com/support/options/) and select **Get support**. For more information about Azure Support, read the [Azure support plans FAQ](https://azure.microsoft.com/support/faq/).
 

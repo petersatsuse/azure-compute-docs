@@ -7,12 +7,12 @@ author: athinanthny
 ms.service: azure-container-instances
 ms.custom: devx-track-azurecli
 services: container-instances
-ms.date:  05/11/2023
+ms.date: 08/29/2024
 ---
 
 # Tutorial: Deploy a Spot container with Azure Container Instances using the Azure CLI (Preview)
 
-Spot Containers combine the simplicity of ACI with the low cost of Spot VMs making it easy and affordable for customers to run containerized interruptible workloads at scale.  Use Azure Container Instances to run serverless Spot containers. Deploy an application to a Spot container  on-demand when you want to run interruptible, containerized workloads on unused Azure capacity at low cost and you don't need a full container orchestration platform like Azure Kubernetes Service.
+Spot Containers combine the simplicity of ACI with the low cost of Spot VMs making it easy and affordable for customers to run containerized interruptible workloads at scale. Use Azure Container Instances to run serverless Spot containers. Deploy an application to a Spot container  on-demand when you want to run interruptible, containerized workloads on unused Azure capacity at low cost and you don't need a full container orchestration platform like Azure Kubernetes Service.
 
 In this quickstart, you use the Azure CLI to deploy a helloworld container using Spot containers. A few seconds after you execute a single deployment command, you can browse to the container logs:
 
@@ -30,9 +30,9 @@ az group create --name myResourceGroup --location westus
 
 ## Create a container
 
-Now that you have a resource group, you can run a Spot container in Azure. To create a Spot container group with the Azure CLI, provide a resource group name, container instance name, container image  and new property called 'priority' with value of 'Spot' to the [az container create][az-container-create] command. In this quickstart, you use the public `mcr.microsoft.com/azuredocs/aci-helloworld` image. This image packages a small web app written in Node.js that serves a static HTML page.
+Now that you have a resource group, you can run a Spot container in Azure. To create a Spot container group with the Azure CLI, provide a resource group name, container instance name, container image, and new property called 'priority' with value of 'Spot' to the [az container create][az-container-create] command. In this quickstart, you use the public `mcr.microsoft.com/azuredocs/aci-helloworld` image. This image packages a small web app written in Node.js that serves a static HTML page.
 
-You can't expose your spot containers to the internet by specifying one or more ports to open, a DNS name label, or both. In this quickstart, you deploy a container using helloworld image without a DNS name label. It won't be publicly reachable. You can query the container logs to verify container is listening on default port 80.
+You can't expose your spot containers to the internet by specifying one or more ports to open, a DNS name label, or both. In this quickstart, you deploy a container using helloworld image without a DNS name label. It isn't publicly reachable. You can query the container logs to verify container is listening on default port 80.
 
 Execute a command similar to the following to start a container instance.  
 
@@ -40,7 +40,7 @@ Execute a command similar to the following to start a container instance.
 az container create --resource-group acispotdemo --name acispotclitest --image mcr.microsoft.com/azuredocs/aci-helloworld --priority spot
 ```
 
-Within a few seconds, you should get a response from the Azure CLI indicating that the deployment has completed. Check its status with the [az container show][az-container-show] command:
+Within a few seconds, you should get a response from the Azure CLI indicating that the deployment completed. Check its status with the [az container show][az-container-show] command:
 
 ```azurecli-interactive
 az container show --resource-group acispotdemo --name acispotclitest --query "{ProvisioningState:provisioningState}" --out table
@@ -54,7 +54,7 @@ ContainerGroupName                               ProvisioningState
 acispotclitest                        Succeeded
 ```
 
-If the container's `ProvisioningState` is **Succeeded**, congratulations! You've successfully deployed an application running in a Docker container to Azure.
+If the container's `ProvisioningState` is **Succeeded**, congratulations! You successfully deployed an application running in a Docker container to Azure.
 
 ## Pull the container logs
 
@@ -66,7 +66,7 @@ Pull the container instance logs with the [az container logs][az-container-logs]
 az container logs --resource-group acispotdemo --name acispotclitest
 ```
 
-The output displays the logs for the container, and should show the below output
+The output displays the logs for the container, and should show the following output
 
 ```output
 listening on port 80
@@ -82,7 +82,7 @@ First, execute the [az container attach][az-container-attach] command to attach 
 az container attach --resource-group acispotdemo --name acispotclitest
 ```
 
-Once attached, refresh your browser a few times to generate some more output. When you're done, detach your console with `Control+C`. You should see output similar to the following:
+Once attached, refresh your browser a few times to generate some more output. When you're done, detach your console with `Control+C`. You should see output similar to the following example:
 
 ```output
 Container 'acispotclitest' is in state 'Running'...
@@ -98,7 +98,7 @@ When you're done with the container, remove it using the [az container delete][a
 az container delete --resource-group acispotdemo --name acispotclitest
 ```
 
-To verify that the container has been deleted, execute the [az container list](/cli/azure/container#az-container-list) command:
+To verify that the container deleted, execute the [az container list](/cli/azure/container#az-container-list) command:
 
 ```azurecli-interactive
 az container list --resource-group acispotdemo --output table

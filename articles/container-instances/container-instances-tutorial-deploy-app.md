@@ -6,7 +6,7 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ms.custom: mvc, devx-track-azurecli
 ---
 
@@ -27,7 +27,7 @@ In this tutorial, you:
 
 ## Deploy the container using the Azure CLI
 
-In this section, you use the Azure CLI to deploy the image built in the [first tutorial](container-instances-tutorial-prepare-app.md) and pushed to Azure Container Registry in the [second tutorial](container-instances-tutorial-prepare-acr.md). Be sure you've completed those tutorials before proceeding.
+In this section, you use the Azure CLI to deploy the image built in the [first tutorial](container-instances-tutorial-prepare-app.md) and pushed to Azure Container Registry in the [second tutorial](container-instances-tutorial-prepare-acr.md). Be sure you complete those tutorials before proceeding.
 
 ### Get registry credentials
 
@@ -35,7 +35,7 @@ When you deploy an image that's hosted in a private Azure container registry lik
 
 A best practice for many scenarios is to create and configure a Microsoft Entra service principal with *pull* permissions to your registry. See [Authenticate with Azure Container Registry from Azure Container Instances](/azure/container-registry/container-registry-auth-aci) for sample scripts to create a service principal with the necessary permissions. Take note of the *service principal ID* and *service principal password*. You use these credentials to access the registry when you deploy the container.
 
-You also need the full name of the container registry login server (replace `<acrName>` with the name of your registry):
+You also need the full name of the container registry sign-in server (replace `<acrName>` with the name of your registry):
 
 ```azurecli
 az acr show --name <acrName> --query loginServer
@@ -94,7 +94,7 @@ listening on port 80
 
 ## Clean up resources
 
-If you no longer need any of the resources you created in this tutorial series, you can execute the [az group delete][az-group-delete] command to remove the resource group and all resources it contains. This command deletes the container registry you created, as well as the running container, and all related resources.
+If you no longer need any of the resources you created in this tutorial series, you can execute the [az group delete][az-group-delete] command to remove the resource group and all resources it contains. This command deletes the container registry you created, the running container, and all related resources.
 
 ```azurecli-interactive
 az group delete --name myResourceGroup

@@ -10,4 +10,4 @@ ms.date: 04/19/2024
 ms.author: mattmcinnes
 ms.custom: include file
 ---
-The 'DC' series family are one of Azure's security focused general purpose VM instances. They're designed for [confidential computing](/azure/confidential-computing/overview-azure-products) offering enhanced data protection and integrity with various hardware-based Trusted Execution Environments (TEEs). These VMs are ideal for highly sensitive data, which may need more isolation from the host environment.
+The 'DC' series family are one of Azure's security focused general purpose VM instances. They're designed for [confidential computing](/azure/confidential-computing/overview-azure-products) offering enhanced data protection and integrity with various hardware-based Trusted Execution Environments (TEEs). These VMs work well for many general computing workloads, e-commerce systems, web front ends, desktop virtualization solutions, sensitive databases, other enterprise applications and more.

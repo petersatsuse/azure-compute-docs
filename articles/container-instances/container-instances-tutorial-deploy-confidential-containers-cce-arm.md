@@ -6,7 +6,7 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 05/23/2023
+ms.date: 08/29/2024
 ms.custom: mvc, devx-track-arm-template
 ---
 
@@ -34,8 +34,8 @@ This tutorial uses [this ARM template](https://raw.githubusercontent.com/microso
 
 The example template adds two properties to the Container Instances resource definition to make the container group confidential:
 
-* `sku`: Enables you to select between confidential and standard container group deployments. If you don't add this property to the resource, the container group will be a standard deployment.
-* `confidentialComputeProperties`: Enables you to pass in a custom CCE policy for attestation of your container group. If you don't add this object to the resource, the software components that run within the container group won't be validated.
+* `sku`: Enables you to select between confidential and standard container group deployments. If you don't add this property to the resource, the container group is a standard deployment.
+* `confidentialComputeProperties`: Enables you to pass in a custom CCE policy for attestation of your container group. If you don't add this object to the resource, the software components that run within the container group won't validate.
 
 > [!NOTE]
 > The `ccePolicy` parameter under `confidentialComputeProperties` is blank. You'll fill it in when you generate the policy later in the tutorial.
@@ -63,7 +63,7 @@ Use your preferred text editor to save this ARM template on your local machine a
       },
       "image": {
         "type": "string",
-        "defaultValue": "mcr.microsoft.com/public/acc/samples/aci/helloworld:2.7",
+        "defaultValue": "mcr.microsoft.com/acc/samples/aci/helloworld:2.8",
         "metadata": {
           "description": "Container image to deploy. Should be of the form repoName/imagename:tag for images stored in public Docker Hub, or a fully qualified URI for other registries. Images from private registries require additional registry credentials."
         }
@@ -226,7 +226,7 @@ In the following steps, you use the Azure portal to review the properties of the
 
 ## Related content
 
-Now that you've deployed a confidential container group on Container Instances, you can learn more about how policies are enforced:
+Now that you deployed a confidential container group on Container Instances, you can learn more about how policies are enforced:
 
 * [Confidential containers on Azure Container Instances](./container-instances-confidential-overview.md)
 * [Azure CLI confcom extension examples](https://github.com/Azure/azure-cli-extensions/blob/main/src/confcom/azext_confcom/README.md)

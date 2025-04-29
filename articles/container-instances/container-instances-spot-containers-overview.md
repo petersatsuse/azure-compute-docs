@@ -6,13 +6,13 @@ ms.author: atsenthi
 author: athinanthny
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 05/14/2023
+ms.date: 08/29/2024
 ---
 
 # Azure Container Instances Spot containers (preview)
 This article introduces the concept of Azure Container Instances (ACI) Spot containers, which allows you to run interruptible workloads in containerized form on unused Azure capacity. By utilizing Spot containers, you can enjoy up to a 70% discount compared to regular-priority ACI containers.
 
-Spot containers offer the best of both worlds by combining the simplicity of ACI with the cost-effectiveness of Spot VMs. This enables customers to easily and affordably scale their containerized interruptible workloads. It's important to note that Spot containers may be preempted at any time, particularly when Azure has limited surplus capacity. Customers are billed based on per-second memory and core usage.
+Spot containers offer the best of both worlds by combining the simplicity of ACI with the cost-effectiveness of Spot VMs. This enables customers to easily and affordably scale their containerized interruptible workloads. It's important to note that Spot containers may be preempted at any time, particularly when Azure limits surplus capacity. Customers are billed based on per-second memory and core usage.
 
 This feature is designed for customers who need to run interruptible workloads with no strict availability requirements. Azure Container Instances Spot Containers support both Linux and Windows containers, providing flexibility for different operating system environments.
 
@@ -35,9 +35,9 @@ For Spot containers, customers can't choose eviction types or policies like Spot
 
 ## Unsupported features
 
-ACI Spot containers preview release includes these limitations such as
+ACI Spot containers preview release includes these limitations such as:
 
-* **Public IP Endpoint**: ACI Spot container groups won't be assigned a public IP endpoint. This means that the container    groups can't be accessed directly from the internet.
+* **Public IP Endpoint**: ACI Spot container groups aren't assigned a public IP endpoint. This means the container groups can't be accessed directly from the internet.
 * **Deployment Behind Virtual Network**: Spot container groups can't be deployed behind a virtual network. 
 * **Confidential SKU Support**: ACI Spot containers don't support the Confidential SKU, which means that you can't use the  Confidential Computing capabilities provided by Azure.
 * **Availability Zone Pinning**: ACI Spot containers don't support the ability to pin Availability Zones per container group deployment. 

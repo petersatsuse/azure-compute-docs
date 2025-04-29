@@ -49,7 +49,7 @@ There are limits, per subscription, for deploying resources using Azure Compute 
 - 1,000 image definitions, per subscription, per region
 - 10,000 image versions, per subscription, per region
 - 100 replicas per image version however 50 replicas should be sufficient for most use cases
-- Any disk attached to the image must be less than or equal to 2 TB in size
+- The image size should be less than 2TB, but shallow replication can be utilized to support larger image sizes, up to 32TB
 - Resource move isn't supported for Azure compute gallery resources
 
 For more information, see [Check resource usage against limits](/azure/networking/check-usage-against-limits) for examples on how to check your current usage.
@@ -59,7 +59,7 @@ Azure Compute Gallery allows you to specify the number of replicas you want to k
 
 With Azure Compute Gallery, you can deploy up to a 1,000 VM instances in a scale set. You can set a different replica count in each target region, based on the scale needs for the region. Since each replica is a copy of your resource, this helps scale your deployments linearly with each extra replica. While we understand no two resources or regions are the same, here's our general guideline on how to use replicas in a region:
 
-- For every 20 VMs that you create concurrently, we recommend you keep one replica. For example, if you're creating 120 VMs concurrently using the same image in a region, we suggest you keep at least 6 replicas of your image.
+- For every 50 VMs that you create concurrently, we recommend you keep one replica. For example, if you're creating 500 VMs concurrently using the same image in a region, we suggest you keep at least 10 replicas of your image.
 - For each scale set you create concurrently, we recommend you keep one replica.
 
 We always recommend that to over-provision the number of replicas due to factors like resource size, content and OS type.
@@ -174,20 +174,22 @@ For example, let's say you have an image of a 127 GB OS disk, that only occupies
 - To prevent images from being accidentally deleted, use resource locks at the Gallery level. For more information, see [Protect your Azure resources with a lock](/azure/azure-resource-manager/management/lock-resources).
 
 - Use ZRS wherever available for high availability. You can configure ZRS in the replication tab when you create a version of the image or VM application.
- For more information about which regions support ZRS, see [Azure regions with availability zones](/azure/availability-zones/az-overview#azure-regions-with-availability-zones).
+ For more information about which regions support ZRS, see [Azure regions with availability zones](/azure/reliability/availability-zones-region-support).
 
 - Keep a minimum of 3 replicas for production images. For every 20 VMs that you create concurrently, we recommend you keep one replica.  For example, if you create 1000 VMs concurrently, you should keep 50 replicas (you can have a maximum of 50 replicas per region).  To update the replica count, please go to the gallery -> Image Definition -> Image Version -> Update replication.
 
 - Maintain separate galleries for production and test images, don’t put them in a single gallery.
+
+- For disaster recovery scenarios, it's best practice to have at least two galleries, in different regions. You can still use image versions in other regions, but if the region your gallery is in goes down, you can't create new gallery resources or update existing ones.
 
 - When creating an image definition, keep the Publisher/Offer/SKU consistent with Marketplace images to easily identify OS versions.  For example, if you're customizing a Windows server 2019 image from Marketplace and store it as a Compute gallery image, please use the same Publisher/Offer/SKU that is used in the Marketplace image in your compute gallery image.
  
 - Use `excludeFromLatest` when publishing images if you want to exclude a specific image version during VM or scale set creation. 
 [Gallery Image Versions - Create Or Update](/rest/api/compute/gallery-image-versions/create-or-update#galleryimageversionpublishingprofile).
 
-    If you want to exclude a version in a specific region, use `regionalExcludeFromLatest`   instead of the global `excludeFromLatest`.  You can set both global and regional `excludeFromLatest` flag, but the regional flag will take precedence when both are specified.
+- If you want to exclude a version in a specific region, use `regionalExcludeFromLatest`   instead of the global `excludeFromLatest`.  You can set both global and regional `excludeFromLatest` flag, but the regional flag will take precedence when both are specified.
 
-    ```
+   ```
     "publishingProfile": {
       "targetRegions": [
         {
@@ -207,16 +209,13 @@ For example, let's say you have an image of a 127 GB OS disk, that only occupies
       "excludeFromLatest": true,
       "storageAccountType": "Standard_LRS"
     }
-    ```
-
-
-- For disaster recovery scenarios, it's a best practice is to have at least two galleries, in different regions. You can still use image versions in other regions, but if the region your gallery is in goes down, you can't create new gallery resources or update existing ones.
+   ```
 
 - Set `safetyProfile.allowDeletionOfReplicatedLocations` to false on Image versions to prevent accidental deletion of replicated regions and prevent outage. You can also set this using CLI [allow-replicated-location-deletion](/cli/azure/sig/image-version#az-sig-image-version-create)
 
-```
-{ 
-  "properties": { 
+   ```
+   {
+   "properties": { 
     "publishingProfile": { 
       "targetRegions": [ 
         { 
@@ -226,23 +225,25 @@ For example, let's say you have an image of a 127 GB OS disk, that only occupies
           // encryption info         
         }
       ], 
-      "replicaCount": 1, 
-      "publishedDate": "2018-01-01T00:00:00Z", 
-      "storageAccountType": "Standard_LRS" 
+       "replicaCount": 1, 
+       "publishedDate": "2018-01-01T00:00:00Z", 
+       "storageAccountType": "Standard_LRS" 
     }, 
     "storageProfile": { 
-      "source": { 
-        "id": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/images/{imageName}" 
+       "source": { 
+         "id": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/images/{imageName}" 
       }, 
     }, 
-   “safetyProfile”: { 
-      “allowDeletionOfReplicatedLocations” : false 
-    }, 
-  }, 
-  "location": "West US", 
-  "name": "1.0.0" 
-} 
-```
+    “safetyProfile”: { 
+       “allowDeletionOfReplicatedLocations” : false 
+     }, 
+   }, 
+   "location": "West US", 
+   "name": "1.0.0" 
+   } 
+   ```
+
+- Set `BlockDeletionBeforeEndOfLife` to block deletion of the image before it's *end of life* date, ensuring protection against accidental deletion. Set this feature through [Rest API `blockdeletionbeforeendoflife`](/rest/api/compute/gallery-image-versions/create-or-update?view=rest-compute&preserve-view=true&tabs=HTTP#galleryimageversionsafetyprofile).
 
 
 ## SDK support

@@ -62,7 +62,7 @@ This section covers some of Azure's options for backup and disaster recovery. Yo
 
 |Solution |Snapshot |Restore Points |Azure Backup|Azure Site Recovery|
 |----------|-----------|------------|------------|------------|
-|**Description**|Snapshot is a ready-only poin-in-time copy of the disk that you can use for backup. |Restore Points can be used to implement granular backup of all disks attached to your Virtual Machine|Azure Backup is a fully managed Azure service to provide simple, secure, and cost-effective solution to back up your data and recover it|Azure Site Recovery helps ensure your organization's business continuity by keeping apps and workloads running during outages|
+|**Description**|Snapshot is a ready-only point-in-time copy of the disk that you can use for backup. |Restore Points can be used to implement granular backup of all disks attached to your Virtual Machine|Azure Backup is a fully managed Azure service to provide simple, secure, and cost-effective solution to back up your data and recover it|Azure Site Recovery helps ensure your organization's business continuity by keeping apps and workloads running during outages|
 |**Incremental Backup**|Yes   |Yes   |Yes   |Yes   |
 |**Cross-Region Copy**|Yes   |Available in public preview   |Yes, with Azure VM backup   |Yes   |
 |**Pricing**|See [Azure Disk Pricing](https://azure.microsoft.com/pricing/details/managed-disks/)   |N/A   |See [Estimate costs for backing up Azure VMs or on-premises servers](/azure/backup/azure-backup-pricing#estimate-costs-for-backing-up-azure-vms-or-on-premises-servers)  |See [Azure Site Recovery Pricing](https://azure.microsoft.com/pricing/details/site-recovery/)   |
@@ -108,7 +108,9 @@ See the following articles to learn how to [Create VM restore points](virtual-ma
 
 ### Azure Backup
 
-[Azure Backup](/azure/backup/backup-overview) provides simple, secure, and cost-effective solutions to backup your data and recover it from Azure. [Azure Disk Backup](/azure/backup/disk-backup-overview) is a native, cloud-based backup solution that protects your data in managed disks. It's a simple, secure, and cost-effective solution that enables you to configure protection for managed disks in a few steps. It ensures your data is protected in the event of a disaster.
+[Azure Backup](/azure/backup/backup-overview) provides simple, secure, and cost-effective solutions to backup your data and recover it from Azure. Currently, Azure Backup supports disk sizes up to 32 tebibytes (TiB). [Learn more about Azure Backup support](/azure/backup/backup-support-matrix-iaas).
+
+[Azure Disk Backup](/azure/backup/disk-backup-overview) is a native, cloud-based backup solution that protects your data in managed disks. It's a simple, secure, and cost-effective solution that enables you to configure protection for managed disks in a few steps. It ensures your data is protected in the event of a disaster.
 
 [Azure Disk Backup](/azure/backup/disk-backup-overview) offers a turnkey solution that provides snapshot lifecycle management for managed disks by automating periodic creation of snapshots and retaining it for however long you specify, using backup policy. You can manage disk snapshots, with no infrastructure costs, without the need for custom scripting, or any management overhead.
 

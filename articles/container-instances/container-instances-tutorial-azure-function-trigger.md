@@ -6,13 +6,13 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ms.custom: devx-track-azurepowershell
 ---
 
 # Tutorial: Use an HTTP-triggered Azure function to create a container group
 
-[Azure Functions](/azure/azure-functions/functions-overview) is a serverless compute service that can run scripts or code in response to a variety of events, such as an HTTP request, a timer, or a message in an Azure Storage queue.
+[Azure Functions](/azure/azure-functions/functions-overview) is a serverless compute service that can run scripts or code in response to various events, such as an HTTP request, a timer, or a message in an Azure Storage queue.
 
 In this tutorial, you create an Azure function that takes an HTTP request and triggers deployment of a [container group](container-instances-container-groups.md). This example shows the basics of using Azure Functions to automatically create resources in Azure Container Instances. Modify or extend the example for more complex scenarios or other event triggers.
 
@@ -90,11 +90,11 @@ This example creates a container group consisting of a single container instance
 
 ## Test function app locally
 
-Ensure that the function runs locally before republishing the function app project to Azure. When run locally, the function doesn't create Azure resources. However, you can test the function flow with and without passing a name value in a query string. To debug the function, see [Debug PowerShell Azure Functions locally](/azure/azure-functions/functions-debug-powershell-local).
+Ensure the function runs locally before republishing the function app project to Azure. When run locally, the function doesn't create Azure resources. However, you can test the function flow with and without passing a name value in a query string. To debug the function, see [Debug PowerShell Azure Functions locally](/azure/azure-functions/functions-debug-powershell-local).
 
 ## Republish Azure function app
 
-After you've verified that the function runs locally, republish the project to the existing function app in Azure.
+After you verify the function runs locally, republish the project to the existing function app in Azure.
 
 1. In Visual Studio Code, open the Command Palette. Search for and select `Azure Functions: Deploy to Function App...`.
 1. Select the current working folder to zip and deploy.
@@ -133,7 +133,7 @@ The function returns status code 200 and the text `This HTTP triggered function 
 < HTTP/1.1 200 OK
 < Content-Length: 135
 < Content-Type: text/plain; charset=utf-8
-< Request-Context: appId=cid-v1:d0bd0123-f713-4579-8990-bb368a229c38
+< Request-Context: appId=cid-v1:00001111-aaaa-2222-bbbb-3333cccc4444
 < Date: Wed, 10 Jun 2020 17:50:27 GMT
 <
 * Connection #0 to host myfunctionapp.azurewebsites.net left intact
@@ -160,7 +160,7 @@ The function returns status code 200 and triggers the creation of the container 
 < HTTP/1.1 200 OK
 < Content-Length: 92
 < Content-Type: text/plain; charset=utf-8
-< Request-Context: appId=cid-v1:d0bd0123-f713-4579-8990-bb368a229c38
+< Request-Context: appId=cid-v1:00001111-aaaa-2222-bbbb-3333cccc4444
 < Date: Wed, 10 Jun 2020 17:54:31 GMT
 <
 * Connection #0 to host myfunctionapp.azurewebsites.net left intact
@@ -182,7 +182,7 @@ Hello from an Azure container instance triggered by an Azure function
 
 ## Clean up resources
 
-If you no longer need any of the resources you created in this tutorial, you can execute the [az group delete][az-group-delete] command to remove the resource group and all resources it contains. This command deletes the function app you created, as well as the running container, and all related resources.
+If you no longer need any of the resources you created in this tutorial, you can execute the [az group delete][az-group-delete] command to remove the resource group and all resources it contains. This command deletes the function app you created, the running container, and all related resources.
 
 ```azurecli-interactive
 az group delete --name myfunctionapp

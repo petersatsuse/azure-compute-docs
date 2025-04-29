@@ -7,16 +7,16 @@ author: tomvcassidy
 ms.service: azure-container-instances
 ms.custom: devx-track-azurecli
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ---
 
 # Encrypt deployment data
 
-When running Azure Container Instances (ACI) resources in the cloud, the ACI service collects and persists data related to your containers. ACI automatically encrypts this data when it is persisted in the cloud. This encryption protects your data to help meet your organization's security and compliance commitments. ACI also gives you the option to encrypt this data with your own key, giving you greater control over the data related to your ACI deployments.
+When you run Azure Container Instances (ACI) resources in the cloud, the ACI service collects and persists data related to your containers. ACI automatically encrypts this data when it persists in the cloud. This encryption protects your data to help meet your organization's security and compliance commitments. ACI also gives you the option to encrypt this data with your own key, giving you greater control over the data related to your ACI deployments.
 
-## About ACI data encryption 
+## ACI data encryption 
 
-Data in ACI is encrypted and decrypted using 256-bit AES encryption. It is enabled for all ACI deployments, and you don't need to modify your deployment or containers to take advantage of this encryption. This includes metadata about the deployment, environment variables, keys being passed into your containers, and logs persisted after your containers are stopped so you can still see them. Encryption does not affect your container group performance, and there is no additional cost for encryption.
+Data in ACI is encrypted and decrypted using 256-bit AES encryption. It's enabled for all ACI deployments, and you don't need to modify your deployment or containers to take advantage of this encryption. This coverage includes metadata about the deployment, environment variables, keys being passed into your containers, and logs persisted after your containers are stopped so you can still see them. Encryption doesn't affect your container group performance, and there's no further cost for encryption.
 
 You can rely on Microsoft-managed keys for the encryption of your container data, or you can manage the encryption with your own keys. The following table compares these options: 
 
@@ -41,15 +41,15 @@ The first step is to ensure that your [Azure tenant](/azure/active-directory/dev
 > In order to run the following command and create a service principal successfully, confirm that you have permissions to create service principals in your tenant.
 >
 
-The following CLI command will set up the ACI SP in your Azure environment:
+The following CLI command sets up the ACI SP in your Azure environment:
 
 ```azurecli-interactive
 az ad sp create --id 6bb8e274-af5d-4df2-98a3-4fd78b4cafd9
 ```
 
-The output from running this command should show you a service principal that has been set up with "displayName": "Azure Container Instance Service."
+The output from running this command should show you a service principal set up with "displayName": "Azure Container Instance Service."
 
-In case you are unable to successfully create the service principal:
+In case you're unable to successfully create the service principal:
 * confirm that you have permissions to do so in your tenant
 * check to see if a service principal already exists in your tenant for deploying to ACI. You can do that by running `az ad sp show --id 6bb8e274-af5d-4df2-98a3-4fd78b4cafd9` and use that service principal instead
 
@@ -69,7 +69,7 @@ For the properties of your key vault, use the following guidelines:
 
 ### Generate a new key 
 
-Once your key vault is created, navigate to the resource in Azure portal. On the left navigation menu of the resource blade, under Settings, click **Keys**. On the view for "Keys," click "Generate/Import" to generate a new key. Use any unique Name for this key, and any other preferences based on your requirements. 
+Once your key vault is created, navigate to the resource in Azure portal. On the left navigation menu of the resource blade, under Settings, select **Keys**. On the view for "Keys," select "Generate/Import" to generate a new key. Use any unique Name for this key, and any other preferences based on your requirements. 
 
 ![Generate a new key](./media/container-instances-encrypt-data/generate-key.png)
 
@@ -77,12 +77,12 @@ Once your key vault is created, navigate to the resource in Azure portal. On the
 
 Create a new access policy for allowing the ACI service to access your Key.
 
-* Once your key has been generated, back in your key vault resource blade, under Settings, click **Access Policies**.
-* On the "Access Policies" page for your key vault, click **Add Access Policy**.
+* Once your key generates, back in your key vault resource blade, under Settings, select **Access Policies**.
+* On the "Access Policies" page for your key vault, choose **Add Access Policy**.
 * Set the *Key Permissions* to include **Get** and **Unwrap Key**
     ![Set key permissions](./media/container-instances-encrypt-data/set-key-permissions.png)
 * For *Select Principal*, select **Azure Container Instance Service**
-* Click **Add** at the bottom 
+* Select **Add** at the bottom 
 
 The access policy should now show up in your key vault's access policies.
 
@@ -96,9 +96,9 @@ The access policy should now show up in your key vault's access policies.
 Once the key vault key and access policy are set up, add the following properties to your ACI deployment template. Learn more about deploying ACI resources with a template in the [Tutorial: Deploy a multi-container group using a Resource Manager template](./container-instances-multi-container-group.md). 
 * Under `resources`, set `apiVersion` to `2019-12-01`.
 * Under the container group properties section of the deployment template, add an `encryptionProperties`, which contains the following values:
-  * `vaultBaseUrl`: the DNS Name of your key vault, can be found  on the overview blade of the key vault resource in Portal
+  * `vaultBaseUrl`: the DNS Name of your key vault, which can be found  on the overview blade of the key vault resource in Portal
   * `keyName`: the name of the key generated earlier
-  * `keyVersion`: the current version of the key. This can be found by clicking into the key itself (under "Keys" in the Settings section of your key vault resource)
+  * `keyVersion`: the current version of the key. This field can be found by going into the key itself (under "Keys" in the Settings section of your key vault resource)
 * Under the container group properties, add a `sku` property with value `Standard`. The `sku` property is required in API version 2019-12-01.
 
 The following template snippet shows these additional properties to encrypt deployment data:
@@ -236,13 +236,13 @@ Deploy the template with the [az deployment group create][az-deployment-group-cr
 az deployment group create --resource-group myResourceGroup --template-file deployment-template.json
 ```
 
-Within a few seconds, you should receive an initial response from Azure. Once the deployment completes, all data related to it persisted by the ACI service will be encrypted with the key you provided.
+Within a few seconds, you should receive an initial response from Azure. Once the deployment completes, all data related to it persisted by the ACI service is encrypted with the key you provided.
 
 ## Encrypt data with a customer-managed key in a network protected Azure Key Vault with Trusted Services enabled
 
 ### Create a Key Vault resource
 
-Create an Azure Key Vault using [Azure portal](/azure/key-vault/general/quick-create-portal), [Azure CLI](/azure/key-vault/general/quick-create-cli), or [Azure PowerShell](/azure/key-vault/general/quick-create-powershell). To start, do not apply any network-limitations so we can add necessary keys to the vault. In subsequent steps, we will add network-limitations and enable trusted services. 
+Create an Azure Key Vault using [Azure portal](/azure/key-vault/general/quick-create-portal), [Azure CLI](/azure/key-vault/general/quick-create-cli), or [Azure PowerShell](/azure/key-vault/general/quick-create-powershell). To start, don't apply any network-limitations so we can add necessary keys to the vault. In subsequent steps, we add network-limitations and enable trusted services. 
 
 For the properties of your key vault, use the following guidelines: 
 * Name: A unique name is required. 
@@ -255,7 +255,7 @@ For the properties of your key vault, use the following guidelines:
 > When using customer-managed keys to encrypt an ACI deployment template, it is recommended that the following two properties be set on the key vault, Soft Delete and Do Not Purge. These properties are not enabled by default, but can be enabled using either PowerShell or Azure CLI on a new or existing key vault.
 ### Generate a new key 
 
-Once your key vault is created, navigate to the resource in Azure portal. On the left navigation menu of the resource blade, under Settings, click **Keys**. On the view for "Keys," click "Generate/Import" to generate a new key. Use any unique Name for this key, and any other preferences based on your requirements. Make sure to capture key name and version for subsequent steps.
+Once your key vault is created, navigate to the resource in Azure portal. On the left navigation menu of the resource blade, under Settings, select **Keys**. On the view for "Keys," choose "Generate/Import" to generate a new key. Use any unique Name for this key, and any other preferences based on your requirements. Make sure to capture key name and version for subsequent steps.
 
 ![Screenshot of key creation settings, PNG.](./media/container-instances-encrypt-data/generate-key.png)
 
@@ -314,14 +314,14 @@ az keyvault update \
 Once the key vault key and access policy are set up, add the following properties to your ACI deployment template. Learn more about deploying ACI resources with a template in the [Tutorial: Deploy a multi-container group using a Resource Manager template](./container-instances-multi-container-group.md). 
 * Under `resources`, set `apiVersion` to `2022-09-01`.
 * Under the container group properties section of the deployment template, add an `encryptionProperties`, which contains the following values:
-  * `vaultBaseUrl`: the DNS Name of your key vault. This can be found on the overview blade of the key vault resource in Portal
+  * `vaultBaseUrl`: the DNS Name of your key vault. This property can be found on the overview blade of the key vault resource in Portal
   * `keyName`: the name of the key generated earlier
-  * `keyVersion`: the current version of the key. This can be found by clicking into the key itself (under "Keys" in the Settings section of your key vault resource)
-  * `identity`: this is the resource URI of the Managed Identity instance created earlier
+  * `keyVersion`: the current version of the key. This property can be found by clicking into the key itself (under "Keys" in the Settings section of your key vault resource)
+  * `identity`: this property is the resource URI of the Managed Identity instance created earlier
 * Under the container group properties, add a `sku` property with value `Standard`. The `sku` property is required in API version 2022-09-01.
 * Under resources, add the `identity` object required to use Managed Identity with ACI, which contains the following values:
-  * `type`: the type of the identity being used (either user-assigned or system-assigned). This case will be set to "UserAssigned"
-  * `userAssignedIdentities`: the resourceURI of the same user-assigned identity used above in the `encryptionProperties` object. 
+  * `type`: the type of the identity being used (either user-assigned or system-assigned). This case is set to "UserAssigned"
+  * `userAssignedIdentities`: the resourceURI of the same user-assigned identity used in the `encryptionProperties` object. 
 
 The following template snippet shows these additional properties to encrypt deployment data:
 
@@ -472,7 +472,7 @@ Deploy the template with the [az deployment group create][az-deployment-group-cr
 az deployment group create --resource-group myResourceGroup --template-file deployment-template.json
 ```
 
-Within a few seconds, you should receive an initial response from Azure. Once the deployment completes, all data related to it persisted by the ACI service will be encrypted with the key you provided.
+Within a few seconds, you should receive an initial response from Azure. Once the deployment completes, all data related to it persisted by the ACI service is encrypted with the key you provided.
 <!-- LINKS - Internal -->
 [az-group-create]: /cli/azure/group#az_group_create
 [az-deployment-group-create]: /cli/azure/deployment/group/#az_deployment_group_create

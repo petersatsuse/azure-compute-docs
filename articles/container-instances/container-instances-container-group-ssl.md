@@ -7,7 +7,7 @@ ms.service: azure-container-instances
 ms.custom: devx-track-azurecli
 services: container-instances
 ms.topic: how-to
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ---
 # Enable a TLS endpoint in a sidecar container
 

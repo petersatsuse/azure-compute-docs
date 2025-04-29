@@ -13,9 +13,6 @@ ms.author: mattmcinnes
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Windows VMs :heavy_check_mark: Flexible scale sets :heavy_check_mark: Uniform scale sets
 
-> [!NOTE]
-> 'DC' family VMs are for confidential computing scenarios. If your workload doesn't require confidential compute and you're looking for general purpose VMs with similar specs, consider the [the standard D-family size series](./d-family.md).
-
 [!INCLUDE [dc-family-summary](./includes/dc-family-summary.md)]
 
 ## Workloads and use cases
@@ -40,6 +37,22 @@ ms.author: mattmcinnes
 [!INCLUDE [dcadsv5-series-specs](./includes/dcadsv5-series-specs.md)]
 
 ---
+### DCesv6 and DCedsv5-series
+#### [DCesv6-series](#tab/dcesv6)
+[!INCLUDE [dcesv5-series-summary](./includes/dcesv5-series-summary.md)]
+
+[View the full DCesv6-series page](./dcesv6-series.md).
+
+[!INCLUDE [dcesv5-series-specs](./includes/dcesv5-series-specs.md)]
+
+#### [DCedsv5-series](#tab/dcedsv5)
+[!INCLUDE [dcedsv5-series-summary](./includes/dcedsv5-series-summary.md)]
+
+[View the full DCedsv5-series page](./dcedsv5-series.md).
+
+[!INCLUDE [dcedsv5-series-specs](./includes/dcedsv5-series-specs.md)]
+
+---
 ### DCas_cc_v5 and DCads_cc_v5-series
 #### [DCas_cc_v5-series](#tab/dcasccv5)
 [!INCLUDE [dcasccv5-series-summary](./includes/dcasccv5-series-summary.md)]
@@ -54,22 +67,6 @@ ms.author: mattmcinnes
 [View the full DCads_cc_v5-series page](./dcadsccv5-series.md).
 
 [!INCLUDE [dcadsccv5-series-specs](./includes/dcadsccv5-series-specs.md)]
-
----
-### DCesv5 and DCedsv5-series
-#### [DCesv5-series](#tab/dcesv5)
-[!INCLUDE [dcesv5-series-summary](./includes/dcesv5-series-summary.md)]
-
-[View the full DCesv5-series page](./dcesv5-series.md).
-
-[!INCLUDE [dcesv5-series-specs](./includes/dcesv5-series-specs.md)]
-
-#### [DCedsv5-series](#tab/dcedsv5)
-[!INCLUDE [dcedsv5-series-summary](./includes/dcedsv5-series-summary.md)]
-
-[View the full DCedsv5-series page](./dcedsv5-series.md).
-
-[!INCLUDE [dcedsv5-series-specs](./includes/dcedsv5-series-specs.md)]
 
 ---
 ### DCsv3 and DCdsv3-series

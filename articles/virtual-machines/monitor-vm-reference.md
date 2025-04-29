@@ -1,7 +1,7 @@
 ---
 title: Monitoring data reference for Azure Virtual Machines
 description: This article contains important reference material you need when you monitor Azure Virtual Machines.
-ms.date: 03/27/2024
+ms.date: 01/24/2025
 ms.custom: horz-monitor
 ms.topic: reference
 ms.service: azure-virtual-machines
@@ -31,19 +31,23 @@ For an example that shows how to collect the *Percentage CPU* metric from a VM, 
 ### VM availability metric (preview)
 The VM availability metric is currently in public preview. This metric value indicates whether a machine is currently running and available. You can use the metric to trend availability over time and to alert if the machine is stopped. VM availability displays the following values.
 
+The VM availability metric is computed based on an aggregate of different signals from the host.
+
+To learn how to use the VM availability metric to monitor Azure Virtual Machine availability, see [Use Azure Monitor to monitor Azure Virtual Machine availability](flash-azure-monitor.md).
+
 | Value | Description |
 |:---|:---|
 | 1 | VM is running and available. |
 | 0 | VM is unavailable. The VM could be stopped or rebooting. If you shut down a VM from within the VM, it emits this value. |
 | Null (dashed line) | State of the VM is unknown. If you stop a VM from the Azure portal, CLI, or PowerShell, it immediately stops emitting the availability metric, and you see null values. |
 
+**Context dimension** informs whether VM availability was influenced due to Azure or user orchestrated activity. It can assume values of *Platform*, *Customer*, or *Unknown*.
+
 | Display name | Description |
 | --- | --- |
 | Aggregation | *Average* (default aggregation): for prioritized investigations based on extent of downtime incurred. <br><br>*Min*: immediately pinpoints all the times where the VM was unavailable. <br><br>*Max*: immediately pinpoints all the instances where the VM was available. <br><br>For more information on chart range, granularity, and data aggregation, see [Azure Monitor metrics aggregation and display explained](/azure/azure-monitor/essentials/metrics-aggregation-explained). |
 | Data retention | Data for the VM availability metric is [stored for 93 days](/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics) to help trend analysis and historical lookback. |
 | Pricing | Refer to the [Pricing breakdown](https://azure.microsoft.com/pricing/details/monitor/#pricing), specifically in the *Metrics* and *Alert Rules* sections. |
-
-To learn how to use the VM availability metric to monitor Azure Virtual Machine availability, see [Use Azure Monitor to monitor Azure Virtual Machine availability](flash-azure-monitor.md).
 
 [!INCLUDE [horz-monitor-ref-metrics-dimensions-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-dimensions-intro.md)]
 

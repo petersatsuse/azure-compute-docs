@@ -6,13 +6,13 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ms.custom: mvc, devx-track-azurecli
 ---
 
 # Tutorial: Create an Azure container registry and push a container image
 
-This is part two of a three-part tutorial. [Part one](container-instances-tutorial-prepare-app.md) of the tutorial created a Docker container image for a Node.js web application. In this tutorial, you push the image to Azure Container Registry. If you haven't yet created the container image, return to [Tutorial 1 – Create container image](container-instances-tutorial-prepare-app.md).
+This article is part two of a three-part tutorial. [Part one](container-instances-tutorial-prepare-app.md) of the tutorial created a Docker container image for a Node.js web application. In this tutorial, you push the image to Azure Container Registry. If you need to create the container image, return to [Tutorial 1 – Create container image](container-instances-tutorial-prepare-app.md).
 
 Azure Container Registry is your private Docker registry in Azure. In this tutorial, part two of the series, you:
 
@@ -33,7 +33,7 @@ In the next article, the last in the series, you deploy the container from your 
 
 To push a container image to a private registry like Azure Container Registry, you must first tag the image with the full name of the registry's login server.
 
-First, get the full login server name for your Azure container registry. Run the following [az acr show][az-acr-show] command, and replace `<acrName>` with the name of registry you just created:
+First, get the full login server name for your Azure container registry. Run the following [az acr show][az-acr-show] command, and replace `<acrName>` with the name of registry you created:
 
 ```azurecli-interactive
 az acr show --name <acrName> --query loginServer --output table
@@ -86,13 +86,13 @@ mycontainerregistry082.azurecr.io/aci-tutorial-app    v1        5c745774dfa9    
 
 ## Push image to Azure Container Registry
 
-Now that you've tagged the *aci-tutorial-app* image with the full login server name of your private registry, you can push the image to the registry with the [docker push][docker-push] command. Replace `<acrLoginServer>` with the full login server name you obtained in the earlier step.
+Now that you tagged the *aci-tutorial-app* image with the full login server name of your private registry, you can push the image to the registry with the [docker push][docker-push] command. Replace `<acrLoginServer>` with the full login server name you obtained in the earlier step.
 
 ```bash
 docker push <acrLoginServer>/aci-tutorial-app:v1
 ```
 
-The `push` operation should take a few seconds to a few minutes depending on your internet connection, and output is similar to the following:
+The `push` operation should take a few seconds to a few minutes depending on your internet connection, and output is similar to the following example:
 
 ```bash
 docker push mycontainerregistry082.azurecr.io/aci-tutorial-app:v1
@@ -134,7 +134,7 @@ To see the *tags* for a specific image, use the [az acr repository show-tags][az
 az acr repository show-tags --name <acrName> --repository aci-tutorial-app --output table
 ```
 
-You should see output similar to the following:
+You should see output similar to the following example:
 
 ```output
 --------

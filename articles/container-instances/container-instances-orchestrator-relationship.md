@@ -6,7 +6,7 @@ author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
 ms.topic: conceptual
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ms.custom: mvc
 ---
 
@@ -14,7 +14,7 @@ ms.custom: mvc
 
 Because of their small size and application orientation, containers are well suited for agile delivery environments and microservice-based architectures. The task of automating and managing a large number of containers and how they interact is known as *orchestration*. Popular container orchestrators include Kubernetes, DC/OS, and Docker Swarm.
 
-Azure Container Instances provides some of the basic scheduling capabilities of orchestration platforms. And while it does not cover the higher-value services that those platforms provide, Azure Container Instances can be complementary to them. This article describes the scope of what Azure Container Instances handles, and how full container orchestrators might interact with it.
+Azure Container Instances provides some of the basic scheduling capabilities of orchestration platforms. And while it doesn't cover the higher-value services that those platforms provide, Azure Container Instances can be complementary to them. This article describes the scope of what Azure Container Instances handles, and how full container orchestrators might interact with it.
 
 ## Traditional orchestration
 
@@ -33,11 +33,11 @@ The standard definition of orchestration includes the following tasks:
 
 Azure Container Instances enables a layered approach to orchestration, providing all of the scheduling and management capabilities required to run a single container, while allowing orchestrator platforms to manage multi-container tasks on top of it.
 
-Because the underlying infrastructure for container instances is managed by Azure, an orchestrator platform does not need to concern itself with finding an appropriate host machine on which to run a single container. The elasticity of the cloud ensures that one is always available. Instead, the orchestrator can focus on the tasks that simplify the development of multi-container architectures, including scaling and coordinated upgrades.
+Because Azure manages the underlying infrastructure for container instances, an orchestrator platform doesn't need to concern itself with finding an appropriate host machine on which to run a single container. The elasticity of the cloud ensures that one is always available. Instead, the orchestrator can focus on the tasks that simplify the development of multi-container architectures, including scaling and coordinated upgrades.
 
 ## Scenarios
 
-While orchestrator integration with Azure Container Instances is still nascent, we anticipate that a few different environments will emerge:
+While orchestrator integration with Azure Container Instances is still nascent, we anticipate that a few different environments emerge:
 
 ### Orchestration of container instances exclusively
 
@@ -47,17 +47,13 @@ Because they start quickly and bill by the second, an environment based exclusiv
 
 For long-running, stable workloads, orchestrating containers in a cluster of dedicated virtual machines is typically cheaper than running the same containers with Azure Container Instances. However, container instances offer a great solution for quickly expanding and contracting your overall capacity to deal with unexpected or short-lived spikes in usage.
 
-Rather than scaling out the number of virtual machines in your cluster, then deploying additional containers onto those machines, the orchestrator can simply schedule the additional containers in Azure Container Instances, and delete them when they're no longer needed.
+Rather than scaling out the number of virtual machines in your cluster, then deploying more containers onto those machines, the orchestrator can schedule the additional containers in Azure Container Instances, and delete them when they're no longer needed.
 
-## Sample implementation: virtual nodes for Azure Kubernetes Service (AKS)
+## Sample implementation: virtual nodes on Azure Container Instances
 
-To rapidly scale application workloads in an [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) cluster, you can use *virtual nodes* created dynamically in Azure Container Instances. Virtual nodes enable network communication between pods that run in ACI and the AKS cluster. 
+To rapidly scale application workloads in an [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) cluster, you can use *virtual nodes* created dynamically in Azure Container Instances. Virtual nodes register as nodes having unlimited capacity with your AKS cluster control plane. When you deploy pods in a virtual node in your AKS cluster, they run as container groups in ACI.
 
-Virtual nodes currently support Linux container instances. Get started with virtual nodes using the [Azure CLI](/azure/aks/virtual-nodes-cli) or [Azure portal](/azure/aks/virtual-nodes-portal).
-
-Virtual nodes use the open source [Virtual Kubelet][aci-connector-k8s] to mimic the Kubernetes [kubelet][kubelet-doc] by registering as a node with unlimited capacity. The Virtual Kubelet dispatches the creation of [pods][pod-doc] as container groups in Azure Container Instances.
-
-See the [Virtual Kubelet](https://github.com/virtual-kubelet/virtual-kubelet) project for additional examples of extending the Kubernetes API into serverless container platforms.
+Virtual nodes currently support Linux container instances. See [Virtual nodes on Azure Container Instances](./container-instances-virtual-nodes.md) to learn more.
 
 ## Next steps
 

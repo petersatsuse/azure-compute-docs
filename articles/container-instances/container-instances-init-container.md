@@ -6,7 +6,7 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ---
 
 # Run an init container for setup tasks in a container group
@@ -20,7 +20,7 @@ This article shows how to use an Azure Resource Manager template to configure a 
 * **API version** - You need at least Azure Container Instances API version 2019-12-01 to deploy init containers. Deploy using an `initContainers` property in a [YAML file](container-instances-multi-container-yaml.md) or a [Resource Manager template](container-instances-multi-container-group.md).
 * **Order of execution** - Init containers are executed in the order specified in the template, and before other containers. By default, you can specify a maximum of 59 init containers per container group. At least one non-init container must be in the group.
 * **Host environment** - Init containers run on the same hardware as the rest of the containers in the group.
-* **Resources** - You don't specify resources for init containers. They are granted the total resources such as CPUs and memory available to the container group. While an init container runs, no other containers run in the group.
+* **Resources** - You don't specify resources for init containers. They're granted the total resources such as CPUs and memory available to the container group. While an init container runs, no other containers run in the group.
 * **Supported properties** - Init containers can use some group properties such as volumes and secrets. However, they can't use ports, IP address and managed identities if configured for the container group. 
 * **Restart policy** - Each init container must exit successfully before the next container in the group starts. If an init container doesn't exit successfully, its restart action depends on the [restart policy](container-instances-restart-policy.md) configured for the group:
 

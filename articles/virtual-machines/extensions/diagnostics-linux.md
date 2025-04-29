@@ -1,7 +1,7 @@
 ---
 title: Azure Compute - Linux diagnostic extension 4.0
 description: Learn how to configure the Azure Linux diagnostic extension (LAD) 4.0 to collect metrics and log events from Linux VMs in Azure.
-ms.topic: article
+ms.topic: how-to
 ms.service: azure-virtual-machines
 ms.subservice: extensions
 ms.author: gabsta
@@ -42,7 +42,7 @@ This extension works with both Azure deployment models: Azure Resource Manager a
 
 ### Supported Linux distributions
 
-See [Supported agent operating systems](/azure/azure-monitor/agents/agents-overview#linux).
+See [Supported agent operating systems](/azure/azure-monitor/agents/diagnostics-extension-overview#linux).
 
 ### Python requirement
 

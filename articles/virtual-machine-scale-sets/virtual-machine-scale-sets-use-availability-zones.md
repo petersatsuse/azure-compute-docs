@@ -6,16 +6,16 @@ ms.author: mimckitt
 ms.topic: conceptual
 ms.service: azure-virtual-machine-scale-sets
 ms.subservice: availability
-ms.date: 06/14/2024
-ms.reviewer: jushiman
+ms.date: 03/21/2025
+ms.reviewer: jushiman, fisteele
 ms.custom: mimckitt, devx-track-azurecli, devx-track-azurepowershell, devx-track-arm-template
 ---
 
 # Create a Virtual Machine Scale Set that uses Availability Zones
 
-Azure availability zones are fault-isolated locations within an Azure region that provide redundant power, cooling, and networking. They allow you to run applications with high availability and fault tolerance to data center failures. Azure regions that support Availability Zones have a minimum of three separate zones. Each availability zone consists of one or more data centers equipped with independent infrastructure power, network, and cooling. Availability zones are connected by a high-performance network with a round-trip latency of less than 2 milliseconds. For more information, see [Overview of Availability Zones](/azure/availability-zones/az-overview).
+Azure availability zones are fault-isolated locations within an Azure region that provide redundant power, cooling, and networking. They allow you to run applications with high availability and fault tolerance to data center failures. Azure regions that support Availability Zones have a minimum of three separate zones. Each availability zone consists of one or more data centers equipped with independent infrastructure power, network, and cooling. Availability zones are connected by a high-performance network with a round-trip latency of less than 2 milliseconds. For more information, see [Overview of Availability Zones](/azure/reliability/availability-zones-overview).
 
-To protect your Virtual Machine Scale Sets from datacenter-level failures, you can create a scale set across Availability Zones. To use Availability Zones, your scale set must be created in a [supported Azure region](/azure/availability-zones/az-region).
+To protect your Virtual Machine Scale Sets from datacenter-level failures, you can create a scale set across Availability Zones. To use Availability Zones, your scale set must be created in a [supported Azure region](/azure/reliability/availability-zones-region-support).
 
 ## Design considerations for availability zones
 
@@ -45,10 +45,10 @@ In the rare case of a full zonal outage, any or all instances within the scale s
 A fault domain is a fault isolation group within an availability zone or datacenter of hardware nodes that share the same power, networking, cooling, and platform maintenance schedule. VM instances that are on different fault domains are not likely to be impacted by the same planned or unplanned outage. You can specify how instances are spread across fault domains within a region or zone.
 
 - Max spreading (platformFaultDomainCount = 1)
-- Static fixed spreading (platformFaultDomainCount = 5)
-- Spreading aligned with storage disk fault domains (platformFaultDomainCount = 2 or 3, for regional deployments only)
+- Fixed spreading (platformFaultDomainCount = 5)
+- Fixed spreading aligned with storage disk fault domains (platformFaultDomainCount = 2 or 3, for regional deployments only)
 
-With max spreading, the scale set spreads your VMs across as many fault domains as possible within each zone. This spreading could be across greater or fewer than five fault domains per zone. With static fixed spreading, the scale set spreads your VMs across exactly five fault domains per zone. If the scale set can't find five distinct fault domains per zone to satisfy the allocation request, the request fails.
+With max spreading, the scale set spreads your VMs across as many fault domains as possible within each zone. This spreading could be across greater or fewer than five fault domains per zone. With static fixed spreading, the scale set spreads your VMs across the specified number of fault domains. If the scale set can't allocate to at least the specified fault domain count to satisfy the allocation request, the request fails.
 
 **We recommend deploying with max spreading for most workloads**, as this approach provides the best spreading in most cases. If you need replicas to be spread across distinct hardware isolation units, we recommend spreading across Availability Zones and utilize max spreading within each zone.
 
@@ -69,14 +69,14 @@ When you deploy a scale set, you can deploy with a single [placement group](./vi
 
 ### Zone balancing
 
-Finally, for scale sets deployed across multiple zones, you also have the option of choosing "best effort zone balance" or "strict zone balance." A scale set is considered "balanced" if each zone has the same number of VMs +\\- 1 VM as all other zones for the scale set. For example:
+For scale sets deployed across multiple zones, you also have the option of choosing "best effort zone balance" or "strict zone balance." A scale set is considered "balanced" if each zone has the same number of VMs +\\- 1 VM as all other zones for the scale set. For example:
 
 - A scale set with 2 VMs in zone 1, 3 VMs in zone 2, and 3 VMs in zone 3 is considered balanced. There is only one zone with a different VM count and it is only 1 less than the other zones.
 - A scale set with 1 VM in zone 1, 3 VMs in zone 2, and 3 VMs in zone 3 is considered unbalanced. Zone 1 has 2 fewer VMs than zones 2 and 3.
 
 It's possible that VMs in the scale set are successfully created, but extensions on those VMs fail to deploy. These VMs with extension failures are still counted when determining if a scale set is balanced. For instance, a scale set with 3 VMs in zone 1, 3 VMs in zone 2, and 3 VMs in zone 3 is considered balanced even if all extensions failed in zone 1 and all extensions succeeded in zones 2 and 3.
 
-With best-effort zone balance, the scale set attempts to scale in and out while maintaining balance. However, if for some reason zone balance isn't possible (for example, if one zone goes down, the scale set can't create a new VM in that zone), the scale set allows temporary imbalance to successfully scale in or out. On subsequent scale-out attempts, the scale set adds VMs to zones that need more VMs for the scale set to be balanced. Similarly, on subsequent scale in attempts, the scale set removes VMs from zones that need fewer VMs for the scale set to be balanced. With "strict zone balance", the scale set fails any attempts to scale in or out if doing so would cause unbalance.
+With best-effort zone balance, the scale set aims to maintain balance across zones during scaling operations. If one zone becomes unavailable, the scale set allows temporary imbalance to ensure scaling can continue. However, this imbalance is only permitted when a single zone is unavailable. If two or more zones go down, the scale set cannot proceed with scaling operations. Once the unavailable zone is restored, the scale set adjusts by adding VMs to under-provisioned zones or removing VMs from over-provisioned zones to restore balance. In contrast, with "strict zone balance," any scaling operation that would result in imbalance is blocked, regardless of the circumstances.
 
 To use best-effort zone balance, set *zoneBalance* to *false*. This setting is the default in API version *2017-12-01*. To use strict zone balance, set *zoneBalance* to *true*.
 
@@ -158,17 +158,9 @@ The process to create a scale set that uses an Availability Zone is the same as 
 
 If you create a public IP address or a load balancer, specify the `"sku": {"name":"Standard"}` property to create zone-redundant network resources. You also need to create a Network Security Group and rules to permit any traffic. For more information, see [Azure Load Balancer Standard Overview](/azure/load-balancer/load-balancer-overview) and [Standard Load Balancer and Availability Zones](/azure/load-balancer/load-balancer-standard-availability-zones).
 
-For a complete example of a zone-redundant scale set and network resources, see our [sample Resource Manager template](https://github.com/Azure/vm-scale-sets/blob/master/z_deprecated/preview/zones/multizone.json).
-
 ## Update scale set to add availability zones
 
 You can modify a scale to expand the set of zones over which to spread VM instances. Expanding allows you to take advantage of higher zonal availability SLA (99.99%) versus regional availability SLA (99.95%). Or expand your scale set to take advantage of new availability zones that were not available when the scale set was created.
-
-> [!IMPORTANT]
-> Updating Virtual Machine Scale Sets to add availability zones is currently in preview. Previews are made available to you on the condition that you agree to the [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature may change prior to general availability (GA).
-
-> [!IMPORTANT]
-> This feature is intended for stateless workloads on Virtual Machine Scale Sets. Scale sets with stateful workloads or used with **Service Fabric or Azure Kubernetes Services are not supported for zonal expansion**.
 
 This feature can be used with API version 2023-03-01 or greater.
 
@@ -176,7 +168,7 @@ This feature can be used with API version 2023-03-01 or greater.
 You can update the scale set to scale out instances to one or more additional availability zones, up to the number of availability zones supported by the region. For regions that support zones, the minimum number of zones is 3.
 
 > [!IMPORTANT]
-> When you expand the scale set to additional zones, the original instances are not migrated or changed. When you scale out, new instances will be created and spread evenly across the selected availability zones. When you scale in the scale set, any regional instances will be priorized for removal first. After that, instances will be removed based on the [scale in policy](virtual-machine-scale-sets-scale-in-policy.md).
+> When you expand the scale set to additional zones, the original instances are not migrated or changed. When you scale out, new instances will be created and spread evenly across the selected availability zones. Data from the original instances are not migrated to the new zones. When you scale in the scale set, any regional instances will be priorized for removal first. After that, instances will be removed based on the [scale in policy](virtual-machine-scale-sets-scale-in-policy.md).
 
 Expanding to a zonal scale set is done in 3 steps:
 
@@ -204,7 +196,7 @@ Update the scale set to change the zones parameter.
 ### [Azure portal](#tab/portal-2)
 
 1. Navigate to the scale set you want to update
-1. On the Properties tab of the scale set landing page, find the **Availability zone** property and press **Edit**
+1. On the Availability tab of the scale set landing page, find the **Availability zone** property and press **Edit**
 1. On the **Edit Location** dialog box, select the desired zone(s)
 1. Select **Apply**
 
@@ -255,9 +247,9 @@ When you are satisfied that the new instances are ready, scale in your scale set
 
 ### Known issues and limitations
 
-* The feature is targeted to stateless workloads on Virtual Machine Scale Sets.
+* The original instances are not migrated to the newly added zones. Your workload must handle any required data migration or replication.
 
-* Scale sets running Service Fabric or Azure Kubernetes Service are not supported.
+* Scale sets running Service Fabric RP or Azure Kubernetes Service are not supported.
 
 * You can't remove or replace zones, only add zones
 

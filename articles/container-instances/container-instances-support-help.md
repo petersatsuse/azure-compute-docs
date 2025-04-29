@@ -6,7 +6,7 @@ ms.author: tomcassidy
 ms.service: azure-container-instances
 services: container-instances
 ms.topic: troubleshooting
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ms.custom: support-help-page
 ---
 

@@ -7,7 +7,7 @@ ms.service: azure-container-instances
 ms.custom: devx-track-azurecli
 services: container-instances
 ms.topic: how-to
-ms.date: 04/09/2024
+ms.date: 08/29/2024
 ---
 
 # Expose a static IP address for a container group

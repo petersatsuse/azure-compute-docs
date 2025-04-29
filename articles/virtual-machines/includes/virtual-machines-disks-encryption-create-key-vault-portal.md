@@ -62,7 +62,7 @@ Now that you've created the Azure key vault and a key, you must add an Azure RBA
 
 1. Make sure **Select Azure key vault and key** is selected.
 1. Select the key vault and key you created previously, and the version.
-1. If you want to enable [automatic rotation of customer managed keys](../disk-encryption.md#automatic-key-rotation-of-customer-managed-keys), select **Auto key rotation**.
+1. If you want to enable [automatic rotation of customer managed keys](/azure/virtual-machines/disk-encryption#automatic-key-rotation-of-customer-managed-keys), select **Auto key rotation**.
 1. Select **Review + Create** and then **Create**.
 
     :::image type="content" source="media/virtual-machines-disk-encryption-portal/server-side-encryption-disk-set-blade.png" alt-text="Screenshot of the disk encryption creation pane. Showing the subscription, resource group, disk encryption set name, region, and key vault + key selector." lightbox="media/virtual-machines-disk-encryption-portal/server-side-encryption-disk-set-blade.png":::

@@ -4,23 +4,19 @@
  author: albecker1
  ms.service: azure-disk-storage
  ms.topic: include
- ms.date: 11/09/2021
+ ms.date: 01/14/2025
  ms.author: albecker1
  ms.custom: include file
 ---
 ### On-demand bursting
 
-Premium SSD managed disks using the on-demand bursting model of disk bursting can burst beyond original provisioned targets, as often as needed by their workload, up to the max burst target. For example, on a 1-TiB P30 disk, the provisioned IOPS is 5000 IOPS. When disk bursting is enabled on this disk, your workloads can issue IOs to this disk up to the max burst performance of 30,000 IOPS and 1,000 MBps. For the max burst targets on each supported disk, see [Scalability and performance targets for VM disks](../disks-scalability-targets.md#premium-ssd-managed-disks-per-disk-limits).
+Premium SSD managed disks using the on-demand bursting model of disk bursting can burst beyond original provisioned targets, as often as needed by their workload, up to the max burst target. For example, on a 1-TiB P30 disk, the provisioned IOPS is 5000 IOPS. When disk bursting is enabled on this disk, your workloads can issue IOs to this disk up to the max burst performance of 30,000 IOPS and 1,000 MBps. For the max burst targets on each supported disk, see [Scalability and performance targets for VM disks](/azure/virtual-machines/disks-scalability-targets#premium-ssd-managed-disks-per-disk-limits).
 
-If you expect your workloads to frequently run beyond the provisioned perf target, disk bursting won't be cost-effective. In this case, we recommend that you change your disk's performance tier to a [higher tier](../disks-performance-tiers.md) instead, for better baseline performance. Review your billing details and assess that against the traffic pattern of your workloads.
+If you expect your workloads to frequently run beyond the provisioned perf target, disk bursting won't be cost-effective. In this case, we recommend that you change your disk's performance tier to a [higher tier](/azure/virtual-machines/disks-performance-tiers) instead, for better baseline performance. Review your billing details and assess that against the traffic pattern of your workloads.
 
 Before you enable on-demand bursting, understand the following:
 
 [!INCLUDE [managed-disk-bursting-regions-limitations](managed-disk-bursting-regions-limitations.md)]
-
-#### Regional availability
-
-[!INCLUDE [managed-disk-bursting-availability](managed-disk-bursting-availability.md)]
 
 #### Billing
 
@@ -35,11 +31,11 @@ Disk configuration: Premium SSD – 1 TiB (P30), Disk bursting enabled.
 
 In this billing hour, the cost of bursting consists of two charges:
 
-The first charge is the burst enablement flat fee of $X (determined by your region). This flat fee is always charged on the disk disregard of the attach status until it is disabled. 
+The first charge is the burst enablement flat fee of $X (determined by your region). This flat fee is always charged on the disk disregard of the attach status until it's disabled. 
 
-Second is the burst transaction cost. Disk bursting occurred in two time slots. From 00:10:01 – 00:10:10, the accumulated burst transaction is (6,000 – 5,000) X 10 = 10,000. From 00:59:01 – 01:00:00, the accumulated burst transaction is (7,000 – 5,000) X 60 = 120,000. The total burst transactions are 10,000 + 120,000 = 130,000. Burst transaction cost will be charged at $Y based on 13 units of 10,000 transactions (based on regional pricing).
+Second is the burst transaction cost. Disk bursting occurred in two time slots. From 00:10:01 – 00:10:10, the accumulated burst transaction is (6,000 – 5,000) X 10 = 10,000. From 00:59:01 – 01:00:00, the accumulated burst transaction is (7,000 – 5,000) X 60 = 120,000. The total burst transactions are 10,000 + 120,000 = 130,000. Burst transaction cost is charged at $Y based on 13 units of 10,000 transactions (based on regional pricing).
 
-With that, the total cost on disk bursting of this billing hour equals to $X + $Y. The same calculation would apply for bursting over provisioned target of MBps. We translate the overage of MB to transactions with IO size of 256KB. If your disk traffic exceed both provisioned IOPS and MBps target, you can refer to the example below to calculate the burst transactions. 
+With that, the total cost on disk bursting of this billing hour equals to $X + $Y. The same calculation would apply for bursting over provisioned target of MBps. We translate the overage of MB to transactions with IO size of 256 KB. If your disk traffic exceed both provisioned IOPS and MBps target, you can refer to the example below to calculate the burst transactions. 
 
 Disk configuration: Premium SSD – 1 TB (P30), Disk bursting enabled.
 
@@ -51,7 +47,7 @@ The burst transaction is accounted as the max number of transactions from either
 You can refer to the [Managed Disks pricing page](https://azure.microsoft.com/pricing/details/managed-disks/) for details on pricing and use [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/?service=storage) to make the assessment for your workload. 
 
 
-To enable on-demand bursting, see [Enable on-demand bursting](../disks-enable-bursting.md).
+To enable on-demand bursting, see [Enable on-demand bursting](/azure/virtual-machines/disks-enable-bursting).
 
 ### Credit-based bursting
 
@@ -60,7 +56,7 @@ For Premium SSD managed disks, credit-based bursting is available for disk sizes
 ## Virtual machine-level bursting
 
 
-VM-level bursting only uses the credit-based model for bursting, it is enabled by default for most Premium Storage supported VMs.
+VM-level bursting only uses the credit-based model for bursting, it's enabled by default for most Premium Storage supported VMs.
 
 
 ## Bursting flow
@@ -69,7 +65,7 @@ The bursting credit system applies in the same manner at both the VM level and d
 
 ![Bursting bucket diagram.](media/managed-disks-bursting/bucket-diagram.jpg)
 
-How you spend your available credits is up to you. You can use your 30 minutes of burst credits consecutively or sporadically throughout the day. When resources are deployed they come with a full allocation of credits. When those deplete, it takes less than a day to restock. Credits can be spent at your discretion, the burst bucket does not need to be full in order for resources to burst. Burst accumulation varies depending on each resource, since it is based on unused IOPS and MB/s below their performance targets. Higher baseline performance resources can accrue their bursting credits faster than lower baseline performing resources. For example, a P1 disk idling will accrue 120 IOPS per second, whereas an idling P20 disk would accrue 2,300 IOPS per second.
+How you spend your available credits is up to you. You can use your 30 minutes of burst credits consecutively or sporadically throughout the day. When resources are deployed, they come with a full allocation of credits. When those deplete, it takes less than a day to restock. Credits can be spent at your discretion. The burst bucket doesn't need to be full in order for resources to burst. Burst accumulation varies depending on each resource, since it's based on unused IOPS and MB/s below their performance targets. Higher baseline performance resources can accrue their bursting credits faster than lower baseline performing resources. For example, a P1 disk idling accrues 120 IOPS per second, whereas an idling P20 disk would accrue 2,300 IOPS per second.
 
 ## Bursting states
 There are three states your resource can be in with bursting enabled:
@@ -79,9 +75,9 @@ There are three states your resource can be in with bursting enabled:
 
 ## Bursting examples
 
-The following examples show how bursting works with various VM and disk combinations. To make the examples easy to follow, we will focus on MB/s, but the same logic is applied independently to IOPS.
+The following examples show how bursting works with various VM and disk combinations. To make the examples easy to follow, we focus on MB/s, but the same logic is applied independently to IOPS.
 
-### Burstable virtual machine with non-burstable disks
+### Burstable virtual machine with nonburstable disks
 **VM and disk combination:** 
 - Standard_L8s_v2 
     - Uncached MB/s: 160
@@ -93,7 +89,7 @@ The following examples show how bursting works with various VM and disk combinat
     - Provisioned MB/s: 250
     - On-Demand Bursting: **not enabled**
 
- After the initial boot up, an application is run on the VM and has a non-critical workload. This workload requires 30 MB/s that gets spread evenly across all the disks.
+ After the initial boot up, an application is run on the VM and has a noncritical workload. This workload requires 30 MB/s that gets spread evenly across all the disks.
 ![Application sends request for 30 MB/s of throughput to VM, VM takes request and sends each of its disks a request for 10 MB/s, each disk returns 10 MB/s, VM returns 30 MB/s to application.](media/managed-disks-bursting/bursting-vm-nonbursting-disk/burst-vm-nonbursting-disk-normal.jpg)
 
 Then the application needs to process a batched job that requires 600 MB/s. The Standard_L8s_v2 bursts to meet this demand and then requests to the disks get evenly spread out to P50 disks.
@@ -112,11 +108,11 @@ Then the application needs to process a batched job that requires 600 MB/s. The 
     - Provisioned MB/s: 25
     - Max burst MB/s: 170 
 
-When the VM starts, it will burst to request its burst limit of 1,280 MB/s from the OS disk and the OS disk will respond with its burst performance of 170 MB/s.
+When the VM starts, it will burst to request its burst limit of 1,280 MB/s from the OS disk, and the OS disk will respond with its burst performance of 170 MB/s.
 
 ![At startup, the VM bursts to send a request of 1,280 MB/s to the OS disk, OS disk bursts to return the 1,280 MB/s.](media/managed-disks-bursting/bursting-vm-bursting-disk/burst-vm-burst-disk-startup.jpg)
 
-After startup, you start an application that has a non-critical workload. This application requires 15 MB/s that gets spread evenly across all the disks.
+After startup, you start an application that has a noncritical workload. This application requires 15 MB/s that gets spread evenly across all the disks.
 
 ![Application sends request for 15 MB/s of throughput to VM, VM takes request and sends each of its disks a request for 5 MB/s, each disk returns 5 MB/s responses, VM returns 15 MB/s to application.](media/managed-disks-bursting/bursting-vm-bursting-disk/burst-vm-burst-disk-idling.jpg)
 

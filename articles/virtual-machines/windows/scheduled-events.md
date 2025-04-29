@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.custom: devx-track-python
 ms.date: 06/01/2020
 ms.author: ericrad
-ms.reviwer: mimckitt
+ms.reviwer: mimckitt, wilsonadam
 ---
 
 # Azure Metadata Service: Scheduled Events for Windows VMs
@@ -141,6 +141,7 @@ While the exact timings of events vary, the following diagram provides a rough g
 
 ![Diagram of a timeline showing the flow of a scheduled event.](media/scheduled-events/scheduled-events-timeline.png)
 
+All operations impacting VM availability will result in a scheduled event, however not all scheduled events will appear in other Azure surfaces such as Azure Activity Logs or Resource Health. Checking scheduled events regularily will ensure that you have the most up-to-date information about any upcoming impacts to your VMs. 
 
 ### Headers
 When you query Metadata Service, you must provide the header `Metadata:true` to ensure the request wasn't unintentionally redirected. The `Metadata:true` header is required for all scheduled events requests. Failure to include the header in the request results in a "Bad Request" response from Metadata Service.
@@ -206,7 +207,7 @@ In the case where there are scheduled events, the response contains an array of 
 | NotBefore| Time after which this event can start. The event is guaranteed to not start before this time. Will be blank if the event has already started <br><br> Example: <br><ul><li> Mon, 19 Sep 2016 18:29:47 GMT  |
 | Description | Description of this event. <br><br> Example: <br><ul><li> Host server is undergoing maintenance. |
 | EventSource | Initiator of the event. <br><br> Example: <br><ul><li> `Platform`: This event is initiated by platform. <li>`User`: This event is initiated by user. |
-| DurationInSeconds | The expected duration of the interruption caused by the event. <br><br> Example: <br><ul><li> `9`: The interruption caused by the event will last for 9 seconds. <li>`0`: The event won't interrupt the VM or impact its availability (eg. update to the network) <li>`-1`: The default value used if the impact duration is either unknown or not applicable.  |
+| DurationInSeconds | The expected duration of the interruption caused by the event. There may be secondary impacts of a shorter duration during the impact window.  <br><br> Example: <br><ul><li> `9`: The interruption caused by the event will last for 9 seconds. <li>`0`: The event won't interrupt the VM or impact its availability (eg. update to the network) <li>`-1`: The default value used if the impact duration is either unknown or not applicable.  |
 
 ### Event scheduling
 Each event is scheduled a minimum amount of time in the future based on the event type. This time is reflected in an event's `NotBefore` property. 
@@ -216,6 +217,7 @@ Each event is scheduled a minimum amount of time in the future based on the even
 | Freeze| 15 minutes |
 | Reboot | 15 minutes |
 | Redeploy | 10 minutes |
+| Preempt | 30 seconds |
 | Terminate | [User Configurable](../../virtual-machine-scale-sets/virtual-machine-scale-sets-terminate-notification.md#enable-terminate-notifications): 5 to 15 minutes |
 
 This means that you can detect a future schedule of event at least by the minimum notice time before the event occurs. Once an event is scheduled, it will move into the `Started` state after it's been approved or the `NotBefore` time passes. However, in rare cases, the operation will be canceled by Azure before it starts. In that case the event will be removed from the Events array, and the impact won't occur as previously scheduled. 

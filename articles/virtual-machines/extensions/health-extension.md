@@ -1,7 +1,7 @@
 ---
 title: Use Application Health extension with Azure Virtual Machines
 description: Learn how to use the Application Health extension to monitor the health of your applications deployed on Azure virtual machines.
-ms.topic: article
+ms.topic: how-to
 ms.service: azure-virtual-machines
 ms.subservice: extensions
 ms.author: hilarywang
@@ -21,7 +21,7 @@ Application health monitoring is also available on virtual machine scale sets an
 This article assumes that you're familiar with [Azure virtual machine extensions](overview.md).
 
 > [!CAUTION]
-> Application Health Extension expects to receive a consistent probe response at the configured port `tcp` or request path `http/https` in order to label a VM as *Healthy*. If no application is running on the VM, or you're unable to configure a probe response, your VM is going to show up as *Unhealthy* (Binary Health States) or *Unknown* (Rich Health States).
+> Application Health Extension expects to receive a consistent probe response at the configured port `tcp` or request path `http/https` in order to label a VM as *Healthy*. If no application is running on the VM, or you're unable to configure a probe response, your VM is going to show up as *Unhealthy* (Binary Health States) or *Unknown* (Rich Health States).  See [application health samples](https://github.com/Azure-Samples/application-health-samples) for examples of health probe responses being emitted to a local endpoint. 
 
 ## When to use the Application Health extension
 Application Health Extension reports on application health from inside the Virtual Machine. The extension probes on a local application endpoint and updates the health status based on TCP/HTTP(S) responses received from the application. This health status is used by Azure to monitor and detect patching failures during [Automatic VM Guest Patching](../automatic-vm-guest-patching.md).
@@ -174,8 +174,8 @@ The following JSON shows the schema for the Application Health extension. The ex
 | protocol | `http` or `https` or `tcp` | string |
 | port | Optional when protocol is `http` or `https`, mandatory when protocol is `tcp` | int |
 | requestPath | Mandatory when protocol is `http` or `https`, not allowed when protocol is `tcp` | string |
-| intervalInSeconds | Optional, default is 5 seconds. This setting is the interval between each health probe. For example, if intervalInSeconds == 5, a probe is sent to the local application endpoint once every 5 seconds. | int |
-| numberOfProbes | Optional, default is 1. This setting is the number of consecutive probes required for the health status to change. For example, if numberOfProbles == 3, you will need 3 consecutive "Healthy" signals to change the health status from "Unhealthy" into "Healthy" state. The same requirement applies to change health status into "Unhealthy" state.  | int |
+| intervalInSeconds | Optional, default is 5 seconds. This setting is the interval between each health probe. For example, if intervalInSeconds == 5, a probe is sent to the local application endpoint once every 5 seconds. Minimum value is 5 seconds, maximum is 60 seconds. | int |
+| numberOfProbes | Optional, default is 1. This setting is the number of consecutive probes required for the health status to change. For example, if numberOfProbles == 3, you will need 3 consecutive "Healthy" signals to change the health status from "Unhealthy" into "Healthy" state. The same requirement applies to change health status into "Unhealthy" state. Minimum value is 1 probe, maximum is 3 probes. | int |
 
 ## Extension schema for Rich Health States
 
@@ -223,8 +223,8 @@ The following JSON shows the schema for the Rich Health States extension. The ex
 | protocol | `http` or `https` or `tcp` | string |
 | port | Optional when protocol is `http` or `https`, mandatory when protocol is `tcp` | int |
 | requestPath | Mandatory when protocol is `http` or `https`, not allowed when protocol is `tcp` | string |
-| intervalInSeconds | Optional, default is 5 seconds. This setting is the interval between each health probe. For example, if intervalInSeconds == 5, a probe is sent to the local application endpoint once every 5 seconds. | int |
-| numberOfProbes | Optional, default is 1. This setting is the number of consecutive probes required for the health status to change. For example, if numberOfProbles == 3, you will need 3 consecutive "Healthy" signals to change the health status from "Unhealthy"/"Unknown" into "Healthy" state. The same requirement applies to change health status into "Unhealthy" or "Unknown" state.  | int |
+| intervalInSeconds | Optional, default is 5 seconds. This setting is the interval between each health probe. For example, if intervalInSeconds == 5, a probe is sent to the local application endpoint once every 5 seconds. Minimum value is 5 seconds, maximum is 60 seconds. | int |
+| numberOfProbes | Optional, default is 1. This setting is the number of consecutive probes required for the health status to change. For example, if numberOfProbles == 3, you will need 3 consecutive "Healthy" signals to change the health status from "Unhealthy"/"Unknown" into "Healthy" state. The same requirement applies to change health status into "Unhealthy" or "Unknown" state. Minimum value is 1 probe, maximum is 3 probes. | int |
 | gracePeriod | Optional, default = `intervalInSeconds` * `numberOfProbes`; maximum grace period is 7200 seconds | int |
 
 ## Deploy the Application Health extension
@@ -419,6 +419,10 @@ The following example adds the Application Health extension to an existing virtu
 
 ---
 ## Troubleshoot
+
+### Need help configuring a probe response
+See [application health samples](https://github.com/Azure-Samples/application-health-samples) for examples of health probe responses being emitted to a local endpoint. 
+
 ### View VMHealth
 
 # [REST API](#tab/rest-api)

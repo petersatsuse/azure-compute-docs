@@ -6,7 +6,7 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ms.custom: mvc, devx-track-azurecli, devx-track-arm-template
 ---
 
@@ -48,7 +48,7 @@ USERID=$(az identity show --resource-group myResourceGroup --name myACRId --quer
 SPID=$(az identity show --resource-group myResourceGroup --name myACRId --query principalId --output tsv)
 ```
 
-You'll need the identity's resource ID to sign in to the CLI from your virtual machine. To show the value:
+You need the identity's resource ID to sign in to the CLI from your virtual machine. To show the value:
 
 ```bash
 echo $USERID
@@ -74,7 +74,7 @@ xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx
 
 ## Grant the identity a role assignment
 
-In order for your identity to access your container registry, you must grant it a role assignment. Use to following command to grant the `acrpull` role to the identity you've just created, making sure to provide your registry's ID and the service principal we obtained earlier:
+In order for your identity to access your container registry, you must grant it a role assignment. Use to following command to grant the `acrpull` role to the identity you created, making sure to provide your registry's ID and the service principal we obtained earlier:
 
 ```azurecli-interactive
 az role assignment create --assignee $SPID --scope <registry-id> --role acrpull

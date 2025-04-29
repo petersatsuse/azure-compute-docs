@@ -7,12 +7,12 @@ author: tomvcassidy
 ms.service: azure-container-instances
 ms.custom: devx-track-azurecli
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ---
 
 # Execute a command in a running Azure container instance
 
-Azure Container Instances supports executing a command in a running container. Running a command in a container you've already started is especially helpful during application development and troubleshooting. The most common use of this feature is to launch an interactive shell so that you can debug issues in a running container.
+Azure Container Instances supports executing a command in a running container. Running a command in a started container is especially helpful during application development and troubleshooting. The most common use of this feature is to launch an interactive shell so that you can debug issues in a running container.
 
 ## Run a command with Azure CLI
 
@@ -28,7 +28,7 @@ For example, to launch a Bash shell in an Nginx container:
 az container exec --resource-group myResourceGroup --name mynginx --exec-command "/bin/bash"
 ```
 
-In the example output below, the Bash shell is launched in a running Linux container, providing a terminal in which `ls` is executed:
+In the following example output, the Bash shell is launched in a running Linux container, providing a terminal in which `ls` is executed:
 
 ```output
 root@caas-83e6c883014b427f9b277a2bba3b7b5f-708716530-2qv47:/# ls
@@ -82,7 +82,7 @@ az container exec --resource-group myResourceGroup --name mynginx --container-na
 
 ## Restrictions
 
-Azure Container Instances currently supports launching a single process with [az container exec][az-container-exec], and you cannot pass command arguments. For example, you cannot chain commands like in `sh -c "echo FOO && echo BAR"`, or execute `echo FOO`.
+Azure Container Instances currently supports launching a single process with [az container exec][az-container-exec], and you can't pass command arguments. For example, you can't chain commands like in `sh -c "echo FOO && echo BAR"`, or execute `echo FOO`.
 
 ## Next steps
 

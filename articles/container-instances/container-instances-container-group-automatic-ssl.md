@@ -7,12 +7,12 @@ ms.service: azure-container-instances
 ms.custom: devx-track-azurecli
 services: container-instances
 ms.topic: how-to
-ms.date: 06/12/2023
+ms.date: 03/04/2025
 ---
 
 # Enable automatic HTTPS with Caddy in a sidecar container
 
-This article describes how Caddy can be used as a sidecar container in a [container group](container-instances-container-groups.md) acting as a reverse proxy to provide an automatically managed HTTPS endpoint for your application. 
+This article describes how Caddy can be used as a sidecar container in a [container group](container-instances-container-groups.md) and act as a reverse proxy to provide an automatically managed HTTPS endpoint for your application. 
 
 Caddy is a powerful, enterprise-ready, open source web server with automatic HTTPS written in Go and represents an alternative to Nginx. 
 
@@ -26,7 +26,7 @@ In this example, only the Caddy container gets exposed on ports 80/TCP and 443/T
 The example mounts the [Caddyfile](https://caddyserver.com/docs/caddyfile), which is required to configure the reverse proxy, from a file share hosted on an Azure Storage account. 
 
 > [!NOTE]
-> For production deployments, most users will want to bake the Caddyfile into a custom docker image based on [caddy](https://hub.docker.com/_/caddy). This way, there is no need to mount files into the container. 
+> For production deployments, most users want to bake the Caddyfile into a custom docker image based on [caddy](https://hub.docker.com/_/caddy). This way, there is no need to mount files into the container. 
 
 [!INCLUDE [azure-cli-prepare-your-environment.md](~/reusable-content/azure-cli/azure-cli-prepare-your-environment.md)]
 
@@ -45,7 +45,7 @@ my-app.westeurope.azurecontainer.io {
 It's important to note, that the configuration references a domain name instead of an IP address. Caddy needs to be reachable by this URL to carry out the challenge step required by the ACME protocol and to successfully retrieve a certificate from Let's Encrypt. 
 
 > [!NOTE]
-> For production deployment, users might want to use a domain name they control, e.g., `api.company.com` and create a CNAME record pointing to e.g. `my-app.westeurope.azurecontainer.io`. If so, it needs to be ensured, that the custom domain name is also used in the Caddyfile, instead of the one assigned by Azure (e.g., `*.westeurope.azurecontainer.io`). Further, the custom domain name, needs to be referenced in the ACI YAML configuration described later in this example. 
+> For production deployment, users might want to use a domain name they control, for example, `api.company.com` and create a CNAME record pointing to `my-app.westeurope.azurecontainer.io`. If so, it needs to be ensured, that the custom domain name is also used in the Caddyfile, instead of the one assigned by Azure (for example, `*.westeurope.azurecontainer.io`). Further, the custom domain name, needs to be referenced in the ACI YAML configuration described later in this example. 
 
 ## Prepare storage account
 
@@ -56,12 +56,6 @@ az storage account create \
   --name <storage-account> \
   --resource-group <resource-group> \
   --location westeurope
-```
-
-Store the connection string to an environment variable 
-
-```azurecli
-AZURE_STORAGE_CONNECTION_STRING=$(az storage account show-connection-string --name <storage-account> --resource-group <resource-group> --output tsv)
 ```
 
 Create the file shares required to store the container state and caddy configuration.
@@ -300,7 +294,7 @@ Navigate to ``` https://my-app.westeurope.azurecontainer.io ``` and verify the c
 
 :::image type="content" source="media/container-instances-container-group-automatic-ssl/url-padlock.png" alt-text="Screenshot highlighting the padlock next to the URL that verifies the certificate.":::
 
-To see the certificate details, click on "Connection is secure" followed by "certificate is valid".
+To see the certificate details, select on "Connection is secure" followed by "certificate is valid".
 
 :::image type="content" source="media/container-instances-container-group-automatic-ssl/lets-encrypt-certificate.png" alt-text="Screenshot of the certificate issued by Let's Encrypt":::
 

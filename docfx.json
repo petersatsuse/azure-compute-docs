@@ -7,14 +7,9 @@
           "**/*.yml"
         ],
         "exclude": [
-          "iot-edge/**",
-          "ai-services/document-intelligence/**",
           "**/_themes/**",
           "**/includes/**",
-          "**/obj/**",
-          "**/*.graffle",
-          "machine-learning/**",
-          "machine-learning/v1/**"
+          "**/obj/**"
         ],
         "src": "articles",
         "dest": "."
@@ -25,6 +20,13 @@
         ],
         "src": "breadcrumb/azure-compute",
         "dest": "breadcrumb/azure-compute"
+      },
+      {
+        "files": [
+          "zone-pivot-groups.yml"
+        ],
+        "src": "zone-pivots",
+        "dest": "zone-pivots/azure-compute"
       }
     ],
     "resource": [
@@ -37,12 +39,8 @@
           "**/*.svg"
         ],
         "exclude": [
-          "iot-edge/**",
-          "ai-services/document-intelligence/**",
           "**/_themes/**",
-          "**/obj/**",
-          "machine-learning/**",
-          "machine-learning/v1/**"
+          "**/obj/**"
         ],
         "src": "articles",
         "dest": "."
@@ -140,7 +138,8 @@
         "Certification"
       ],
       "uhfHeaderId": "azure",
-      "ms.suite": "office"
+      "ms.suite": "office",
+      "zone_pivot_group_filename": "zone-pivots/azure-compute/zone-pivot-groups.json"
     },
     "fileMetadata": {
       "author": {
@@ -179,9 +178,29 @@
         ]
       },
       "manager": {
+        "articles/azure-impact-reporting/**/*.md": "akashdubey",
+        "articles/container-instances/**/*.md": "akashdubey",
+        "articles/service-fabric/**/*.md": "akashdubey",
         "articles/virtual-machines/**/*.md": "akashdubey",
-        "articles/virtual-machine-scale-sets/**/*.md": "akashdubey"
+        "articles/virtual-machine-scale-sets/**/*.md": "akashdubey",
+        "articles/azure-impact-reporting/**/*.yml": "akashdubey",
+        "articles/container-instances/**/*.yml": "akashdubey",
+        "articles/service-fabric/**/*.yml": "akashdubey",
+        "articles/virtual-machines/**/*.yml": "akashdubey",
+        "articles/virtual-machine-scale-sets/**/*.yml": "akashdubey"
       },
+      "ms.reviewer": {
+        "articles/azure-impact-reporting/**/*.md": "wwilliams, jushiman",
+        "articles/container-instances/**/*.md": "wwilliams, jushiman",
+        "articles/service-fabric/**/*.md": "wwilliams, jushiman",
+        "articles/virtual-machines/**/*.md": "wwilliams, jushiman",
+        "articles/virtual-machine-scale-sets/**/*.md": "wwilliams, jushiman",
+        "articles/azure-impact-reporting/**/*.yml": "wwilliams, jushiman",
+        "articles/container-instances/**/*.yml": "wwilliams, jushiman",
+        "articles/service-fabric/**/*.yml": "wwilliams, jushiman",
+        "articles/virtual-machines/**/*.yml": "wwilliams, jushiman",
+        "articles/virtual-machine-scale-sets/**/*.yml": "wwilliams, jushiman"
+      },      
       "ms.author": {
         "articles/container-instances/**/*.md": "macolso",
         "articles/service-fabric/*.md": "sukanyas",
@@ -243,7 +262,7 @@
     "overwrite": [],
     "externalReference": [],
     "template": [],
-	"rules": {
+	  "rules": {
       "sensitive-language-ma": {
         "exclude": [
           "articles/virtual-machines/workloads/sap/dbms-guide-ha-ibm.md",

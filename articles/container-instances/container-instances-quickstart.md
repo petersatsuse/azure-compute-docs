@@ -6,7 +6,7 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 04/26/2024
+ms.date: 08/29/2024
 ms.custom: mvc, devx-track-azurecli, mode-api
 ---
 
@@ -49,7 +49,7 @@ Execute a command similar to the following to start a container instance. Set a 
 az container create --resource-group myResourceGroup --name mycontainer --image mcr.microsoft.com/azuredocs/aci-helloworld --dns-name-label aci-demo --ports 80
 ```
 
-Within a few seconds, you should get a response from the Azure CLI indicating that the deployment has completed. Check its status with the [az container show][az-container-show] command:
+Within a few seconds, you should get a response from the Azure CLI indicating the deployment completed. Check its status with the [az container show][az-container-show] command:
 
 ```azurecli-interactive
 az container show --resource-group myResourceGroup --name mycontainer --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" --out table
@@ -63,7 +63,7 @@ FQDN                               ProvisioningState
 aci-demo.eastus.azurecontainer.io  Succeeded
 ```
 
-If the container's `ProvisioningState` is **Succeeded**, go to its FQDN in your browser. If you see a web page similar to the following, congratulations! You've successfully deployed an application running in a Docker container to Azure.
+If the container's `ProvisioningState` is **Succeeded**, go to its FQDN in your browser. If you see a web page similar to the following, congratulations! You successfully deployed an application running in a Docker container to Azure.
 
 ![View an app deployed to Azure Container Instances in browser][aci-app-browser]
 
@@ -98,7 +98,7 @@ First, execute the [az container attach][az-container-attach] command to attach 
 az container attach --resource-group myResourceGroup --name mycontainer
 ```
 
-Once attached, refresh your browser a few times to generate some additional output. When you're done, detach your console with `Control+C`. You should see output similar to the following:
+Once attached, refresh your browser a few times to generate some more output. When you're done, detach your console with `Control+C`. You should see output similar to the following sample:
 
 ```output
 Container 'mycontainer' is in state 'Running'...
@@ -125,13 +125,13 @@ When you're done with the container, remove it using the [az container delete][a
 az container delete --resource-group myResourceGroup --name mycontainer
 ```
 
-To verify that the container has been deleted, execute the [az container list](/cli/azure/container#az-container-list) command:
+To verify that the container deleted, execute the [az container list](/cli/azure/container#az-container-list) command:
 
 ```azurecli-interactive
 az container list --resource-group myResourceGroup --output table
 ```
 
-The **mycontainer** container should not appear in the command's output. If you have no other containers in the resource group, no output is displayed.
+The **mycontainer** container shouldn't appear in the command's output. If you have no other containers in the resource group, no output is displayed.
 
 If you're done with the *myResourceGroup* resource group and all the resources it contains, delete it with the [az group delete][az-group-delete] command:
 

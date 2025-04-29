@@ -5,8 +5,7 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-virtual-machines
 ms.topic: how-to
-ms.date: 07/17/2023
-ms.custom: template-how-to, engagement-fy23
+ms.date: 09/20/2024
 ---
 
 # Network security group test
@@ -19,7 +18,7 @@ In this article, you learn how to use **Network security group test** to check i
 
 - An Azure account with an active subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
-- Sign in to the [Azure portal](https://portal.azure.com/?WT.mc_id=A261C142F) with your Azure account.
+- Sign in to the [Azure portal](https://portal.azure.com) with your Azure account.
 
 - An Azure virtual machine (VM). If you don't have one, create [a Linux VM](./linux/quick-create-portal.md) or [a Windows VM](./windows/quick-create-portal.md).
 
@@ -33,10 +32,14 @@ In this section, you test if RDP connections are allowed to your VM from a remot
 
 1. Select the VM that you want to test.
 
-1. Under **Help**, select **Network security group test**.
+1. Under **Connect**, select **Connect**.
 
     > [!NOTE]
     > The virtual machine must be in running state.
+
+1. Under **Troubleshoot**, select **Test network security groups**.
+
+    :::image type="content" source="./media/network-security-group-test/test-network-security-groups.png" alt-text="Screenshot that shows how to access network security groups test in the Azure portal." lightbox="./media/network-security-group-test/test-network-security-groups.png":::
 
 1. Select **Inbound connections**. The following options are available for **Inbound** tests:
 
@@ -66,7 +69,7 @@ In this section, you test if RDP connections are allowed to your VM from a remot
     -    If RDP connections are allowed to the VM from the remote IP address, you see **Traffic status: Allowed**.
     -    If RDP connections are blocked, you see **Traffic status: Denied**. In the Summary section, you see the security rules that are blocking the traffic.
 
-    :::image type="content" source="./media/network-security-group-test/inbound-test-result.png" alt-text="Screenshot of inbound network security group test result." lightbox="./media/network-security-group-test/inbound-test-result.png":::
+    :::image type="content" source="./media/network-security-group-test/inbound-result.png" alt-text="Screenshot of inbound network security group test result." lightbox="./media/network-security-group-test/inbound-result.png":::
 
     To allow the RDP connection to the VM from the remote IP address, add to the network security group a security rule that allows RDP connections from the remote IP address. This security rule must have a higher priority than the one that's blocking the traffic. For more information, see [Create, change, or delete a network security group](/azure/virtual-network/manage-network-security-group).
 
@@ -80,10 +83,14 @@ In this section, you test your VM can have connect to the internet.
 
 1. Select the VM you want to test.
 
-1. Under **Help**, select **Network security group test**.
+1. Under **Connect**, select **Connect**.
 
     > [!NOTE]
     > The virtual machine must be in running state.
+
+1. Under **Troubleshoot**, select **Test network security groups**.
+
+    :::image type="content" source="./media/network-security-group-test/test-network-security-groups.png" alt-text="Screenshot that shows how to access network security groups test in the Azure portal." lightbox="./media/network-security-group-test/test-network-security-groups.png":::
 
 1. Select **Outbound connections**. The following options are available for **Outbound** tests:
 
@@ -113,11 +120,11 @@ In this section, you test your VM can have connect to the internet.
     -    If connections to the internet are allowed from the VM, you see **Traffic status: Allowed**.
     -    If connections to the internet are blocked, you see **Traffic status: Denied**. In the Summary section, you see the security rules that are blocking the traffic.
 
-    :::image type="content" source="./media/network-security-group-test/outbound-test-result.png" alt-text="Screenshot of outbound network security group test result." lightbox="./media/network-security-group-test/outbound-test-result.png":::
+    :::image type="content" source="./media/network-security-group-test/outbound-result.png" alt-text="Screenshot of outbound network security group test result." lightbox="./media/network-security-group-test/outbound-result.png":::
 
     To allow internet connections from the VM, add to the network security group a security rule that allows connections to the internet service tag. This security rule must have a higher priority than the one that's blocking the traffic. For more information, see [Create, change, or delete a network security group](/azure/virtual-network/manage-network-security-group).
 
-## Next steps
+## Related content
 
 - To learn how to troubleshoot VM connections, see [Troubleshoot connections with Azure Network Watcher](/azure/network-watcher/network-watcher-connectivity-portal).
 - To learn more about network security groups, see [Network security groups overview](/azure/virtual-network/network-security-groups-overview).

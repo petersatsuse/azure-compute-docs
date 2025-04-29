@@ -72,34 +72,32 @@ Information from your image definitions will also be publicly available, like wh
 > [!WARNING]
 > If you want to stop sharing a gallery publicly, you can update the gallery to stop sharing, but making the gallery private will prevent existing virtual machine scale set users from scaling their resources.
 
+## As a Publisher of the image, how to choose between publishing to Azure Marketplace and Community gallery?
 
-## Why share to the community?
+When to publish to Azure Marketplace?
+- Publisher has signed Marketplace terms
+- Publish commercial images
+- Publish a stable version (or) major release
 
-As a content publisher, you might want to share a gallery to the community:
+When to publish to Community Gallery:
+- Publisher cannot sign Marketplace terms and still want to share their image publicly on Azure
+- Publish non-commercial image
+- Publish daily/nightly builds
 
-- If you have non-commercial, non-proprietary content to share widely on Azure.
+## As a consumer of images, how to choose between Azure Marketplace images and Community images?
 
-- You want greater control over the number of versions, regions, and the duration of image availability.  
+There are a variety of reasons why you might want to use an Azure Marketplace image instead of a community gallery image. The primary reason to choose an Azure Marketplace image is that they're supported by Microsoft, while community images aren't 
 
-- You want to quickly share daily or nightly builds with your customers.  
-
-- You don’t want to deal with the complexity of multi-tenant authentication when sharing with multiple tenants on Azure.
-
-
-## Should I use a marketplace image or a community gallery image?
-
-There are a variety of reasons why you might want to use an Azure Marketplace image instead of a community gallery image. The primary reason to choose an Azure Marketplace image is that they're supported by Microsoft, while community images aren't. 
-
-Why use a marketplace mage?
-- Microsoft certified images
-- Can be used for production workloads
+When to use an Azure Marketplace Images?
+- You want to use Microsoft certified images
+- Use for production workloads
 - First party and third party images
 - Paid images with additional software offerings
 - Supported by Microsoft
 
-When to use a community image?
-- You trust and know how to contact the publisher
+When to use a Community Images?
 - You're looking for a community version of an image published by open-source community
+- You trust and know how to contact the publisher
 - Using the image for testing
 - Community images are free
 - Supported by the owner of the image, not Microsoft.

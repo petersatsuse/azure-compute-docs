@@ -7,7 +7,7 @@ author: tomvcassidy
 ms.service: azure-container-instances
 ms.custom: devx-track-azurecli
 services: container-instances
-ms.date: 04/24/2024
+ms.date: 08/29/2024
 ---
 
 # Mount a gitRepo volume in Azure Container Instances
@@ -168,7 +168,7 @@ For an Azure Repos Git repository, specify any user name (you can use "azurerepo
 --gitrepo-url https://azurereposuser:abcdef1234fdsa4321abcdef@dev.azure.com/your-org/_git/some-private-repository
 ```
 
-For more information about personal access tokens for GitHub and Azure Repos, see the following:
+For more information about personal access tokens for GitHub and Azure Repos, see the following guidance:
 
 GitHub: [Creating a personal access token for the command line][pat-github]
 

@@ -4,11 +4,12 @@ metadata:
   description: Answers for frequently asked questions related to the Azure Container Instances service 
   author: tomvcassidy
   ms.author: tomcassidy
+  ms.service: azure-container-instances
+  services: container-instances
   ms.topic: faq
-  ms.date: 06/17/2022
+  ms.date: 08/29/2024
 title: Frequently asked questions about Azure Container Instances
 summary: This article addresses frequently asked questions about Azure Container Instances.
-
 
 sections:
   - name: Deployment
@@ -67,7 +68,7 @@ sections:
       - question: |
           What types of container registries are compatible with ACI?
         answer: |
-          ACI supports image pulls from ACR and other third-party container registries such as DockerHub. ACI supports image pulls from ACR and other third-party OCI compatible container registries such as DockerHub with an endpoint that is publicly exposed to the internet.
+          ACI supports image pulls from ACR and other non-Microsoft container registries such as DockerHub. ACI supports image pulls from ACR and other non-Microsoft OCI compatible container registries such as DockerHub with an endpoint that is publicly exposed to the internet.
 
       - question: |
           How do I migrate my Windows Server 2016 container groups to Windows Server 2019 images?
@@ -78,23 +79,23 @@ sections:
 
               If you're working with a private registry, you'll need to look at your Dockerfile to identify the base image, which will be stated after the ['FROM' line](https://docs.docker.com/engine/reference/builder/#from).
 
-          2. Select the new base image you want to use from Windows Server 2019. Below are some examples of commonly used Windows Server 2016 images on Azure Container Instances and our recommendations for replacement Windows Server 2019 images.
+          2. Select the new base image you want to use from Windows Server 2019. The following examples show commonly used Windows Server 2016 images on Azure Container Instances and our recommendations for replacement Windows Server 2019 images.
 
               | Windows Server 2016 Image | Recommended Windows Server 2019 Images |
               | - | - |
               | mcr.microsoft.com/windows/servercore/iis | mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019 |
               | mcr.microsoft.com/windows/servercore:ltsc2016 | mcr.microsoft.com/windows/servercore:ltsc2019 |
 
-              Read about [image discovery](/virtualization/windowscontainers/manage-containers/container-base-images#image-discovery) to learn more.
+              To learn more, read about [image discovery](/virtualization/windowscontainers/manage-containers/container-base-images#image-discovery).
 
               > [!NOTE]
-              > If you would like assistance selecting your new base image, please create an Azure Support Ticket.
+              > If you would like assistance selecting your new base image, create an Azure Support Ticket.
 
           3. Follow the [Update containers in Azure Container Instances how-to guide](container-instances-update.md) to update your ACI container group to use your new base image.
 
               If you're using MCR for your container registry, you can pass the MCR image name directly into the [container group image parameter](/azure/templates/microsoft.containerinstance/containergroups?tabs=bicep&pivots=deployment-language-bicep#containerproperties).
 
-              If you're using a private container registry, please follow the steps in [Upgrade containers to a new version of the Windows operating system](/virtualization/windowscontainers/deploy-containers/upgrade-windows-containers#create-new-container-instances-using-the-new-os-version). Make sure the container group's [image registry parameters](/azure/templates/microsoft.containerinstance/containergroups?tabs=bicep&pivots=deployment-language-bicep#imageregistrycredential) are updated if you've changed them.
+              If you're using a private container registry, follow the steps in [Upgrade containers to a new version of the Windows operating system](/virtualization/windowscontainers/deploy-containers/upgrade-windows-containers#create-new-container-instances-using-the-new-os-version). Make sure the container group's [image registry parameters](/azure/templates/microsoft.containerinstance/containergroups?tabs=bicep&pivots=deployment-language-bicep#imageregistrycredential) are updated if you've changed them.
           
 
   - name: Availability and quotas
@@ -122,7 +123,7 @@ sections:
       - question: |
           Can I deploy with more than 4 cores and 16 GB of RAM?
         answer: |
-          Not yet. Currently, these are the maximums for a container group. Contact Azure Support with specific requirements or requests. 
+          Not yet. Currently, these values are the maximums for a container group. Contact Azure Support with specific requirements or requests. 
 
       - question: |
           When will ACI be in a specific region?
@@ -137,9 +138,9 @@ sections:
           Currently, scaling isn't available for containers or container groups. If you need to run more instances, use our API to automate and create more requests for container group creation to the service. 
 
       - question: |
-          What features are available to instances running in a custom VNet?
+          What features are available to instances running in a custom virtual network?
         answer: |
-          You can [deploy container groups in an Azure virtual network](container-instances-vnet.md) of your choice, and delegate private IPs to the container groups to route traffic within the VNet across your Azure resources. For networking scenarios and limitations with Azure Container Instances, see [Virtual network scenarios and resources](container-instances-virtual-network-concepts.md).
+          You can [deploy container groups in an Azure virtual network](container-instances-vnet.md) of your choice, and delegate private IPs to the container groups to route traffic within the virtual network across your Azure resources. For networking scenarios and limitations with Azure Container Instances, see [Virtual network scenarios and resources](container-instances-virtual-network-concepts.md).
           
       - question: |
           Does the ACI service reserve ports for service functionality?
@@ -168,7 +169,7 @@ sections:
       - question: | 
           What is Confidential computing and how is it being applied to Azure Container Instances?
         answer: |
-          Confidential computing is an industry term defined by the Confidential Computing Consortium (CCC) - a foundation dedicated to defining and accelerating the adoption of confidential computing. The CCC defines confidential computing as: The protection of data in use by performing computations in a hardware-based Trusted Execution Environment (TEE). ACI Confidential Containers introduce hardware-based protection, code integrity, and verification of the Trusted Execution Environment (TEE). Confidential containers apply the latest in confidential computing hardware enabling customers to deploy their existing applications without any modifications while taking advantage of the hardware-based data protection. Code integrity, and verification of the TEE are achieved through the attestation of a confidential computing enforcement policy, which is attached to the container group at deployment time. If any of the properties of the container group differ from those of the confidential computing enforcement policy, the environment will fail to launch ensuring that the TEE isn't compromised.
+          Confidential computing is an industry term defined by the Confidential Computing Consortium (CCC) - a foundation dedicated to defining and accelerating the adoption of confidential computing. The CCC defines confidential computing as: The protection of data in use by performing computations in a hardware-based Trusted Execution Environment (TEE). ACI Confidential Containers introduce hardware-based protection, code integrity, and verification of the Trusted Execution Environment (TEE). Confidential containers apply the latest in confidential computing hardware enabling customers to deploy their existing applications without any modifications while taking advantage of the hardware-based data protection. Code integrity, and verification of the TEE are achieved through the attestation of a confidential computing enforcement policy, which is attached to the container group at deployment time. If any of the properties of the container group differ from those of the confidential computing enforcement policy, the environment fails to launch ensuring that the TEE isn't compromised.
       - question: | 
           When should I use Confidential containers on Azure Container Instances? 
         answer: |
@@ -180,11 +181,11 @@ sections:
       - question: |
           Are there any features that aren't supported on confidential containers on Azure Container Instances?
         answer: | 
-          GPU based ACI container deployments, Windows containers, availability zones, and dedicated instances aren't supported with confidential containers. 
+          GPU based ACI container deployments and Windows containers aren't supported with confidential containers.
       - question: |
           What regions are confidential containers on Azure Container Instances available?
         answer: |
-          Confidential containers on Azure Container Instances are only available in select regions during Public Preview. Current region availability is published [here](container-instances-region-availability.md).
+          Current region availability for confidential containers is published [here](container-instances-region-availability.md).
       - question: |
           Is there an additional cost for confidential container on Azure Container Instances?
         answer: |

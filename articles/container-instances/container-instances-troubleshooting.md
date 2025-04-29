@@ -6,7 +6,7 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ms.custom: mvc, devx-track-azurecli, linux-related-content
 ---
 
@@ -19,7 +19,7 @@ If you need more support, see available **Help + support** options in the [Azure
 ## Issues during container group deployment
 ### Naming conventions
 
-When defining your container specification, certain parameters require adherence to naming restrictions. Below is a table with specific requirements for container group properties. For more information, see [Naming conventions][azure-name-restrictions] in the Azure Architecture Center and [Naming rules and restrictions for Azure resources][naming-rules].
+When you define your container specification, certain parameters require adherence to naming restrictions. The following table shows the specific requirements for container group properties. For more information, see [Naming conventions][azure-name-restrictions] in the Azure Architecture Center and [Naming rules and restrictions for Azure resources][naming-rules].
 
 | Scope | Length | Casing | Valid characters | Suggested pattern | Example |
 | --- | --- | --- | --- | --- | --- |
@@ -27,7 +27,7 @@ When defining your container specification, certain parameters require adherence
 | Container ports | Between 1 and 65535 |Integer |Integer between 1 and 65535 |`<port-number>` |`443` |
 | DNS name label | 5-63 |Case insensitive |Alphanumeric, and hyphen anywhere except the first or last character |`<name>` |`frontend-site1` |
 | Environment variable | 1-63 |Case insensitive |Alphanumeric, and underscore (_) anywhere except the first or last character |`<name>` |`MY_VARIABLE` |
-| Volume name | 5-63 |Lowercase |Alphanumeric, and hyphens anywhere except the first or last character. Cannot contain two consecutive hyphens. |`<name>` |`batch-output-volume` |
+| Volume name | 5-63 |Lowercase |Alphanumeric, and hyphens anywhere except the first or last character. Can't contain two consecutive hyphens. |`<name>` |`batch-output-volume` |
 
 <sup>1</sup>Restriction also for container group names when not specified independently of container instances, for example with `az container create` command deployments.
 
@@ -44,13 +44,13 @@ If you specify an image that Azure Container Instances doesn't support, an `OsVe
 }
 ```
 
-This error is most often encountered when deploying Windows images that are based on Semi-Annual Channel release 1709 or 1803, which are not supported. For supported Windows images in Azure Container Instances, see [Frequently asked questions](./container-instances-faq.yml).
+This error is most often encountered when deploying Windows images that are based on Semi-Annual Channel release 1709 or 1803, which aren't supported. For supported Windows images in Azure Container Instances, see [Frequently asked questions](./container-instances-faq.yml).
 
 ### Unable to pull image
 
 If Azure Container Instances is initially unable to pull your image, it retries for time. If the image pull operation continues to fail, ACI eventually fails the deployment, and you may see a `Failed to pull image` error.
 
-To resolve this issue, delete the container instance and retry your deployment. Ensure that the image exists in the registry, and that you've typed the image name correctly.
+To resolve this issue, delete the container instance and retry your deployment. Ensure that the image exists in the registry and you typed the image name correctly.
 
 If the image can't be pulled, events like the following are shown in the output of [az container show][az-container-show]:
 
@@ -88,7 +88,7 @@ Due to varying regional resource load in Azure, you might receive the following 
 
 `The requested resource with 'x' CPU and 'y.z' GB memory is not available in the location 'example region' at this moment. Please retry with a different resource request or in another location.`
 
-This error indicates that due to heavy load in the region in which you are attempting to deploy, the resources specified for your container can't be allocated at that time. Use one or more of the following mitigation steps to help resolve your issue.
+This error indicates that due to heavy load in the region in which you attempt to deploy, the resources specified for your container can't be allocated at that time. Use one or more of the following mitigation steps to help resolve your issue.
 
 * Verify your container deployment settings fall within the parameters defined in [Region availability for Azure Container Instances](container-instances-region-availability.md)
 * Specify lower CPU and memory settings for the container
@@ -104,7 +104,7 @@ There are two broad categories for why a container group may restart without exp
 
 Container groups default to a [restart policy](container-instances-restart-policy.md) of **Always**, so containers in the container group always restart after they run to completion. You may need to change this to **OnFailure** or **Never** if you intend to run task-based containers. If you specify **OnFailure** and still see continual restarts, there might be an issue with the application or script executed in your container.
 
-When running container groups without long-running processes you may see repeated exits and restarts with images such as Ubuntu or Alpine. Connecting via [EXEC](container-instances-exec.md) will not work as the container has no process keeping it alive. To resolve this problem, include a start command like the following with your container group deployment to keep the container running.
+When you run container groups without long-running processes, you may see repeated exits and restarts with images such as Ubuntu or Alpine. Connecting via [EXEC](container-instances-exec.md) won't work as the container has no process keeping it alive. To resolve this problem, include a start command like the following example with your container group deployment to keep the container running.
 
 ```azurecli-interactive
 ## Deploying a Linux container
@@ -117,7 +117,7 @@ az container create -g myResourceGroup --name mywindowsapp --os-type Windows --i
  --command-line "ping -t localhost"
 ```
 
-The Container Instances API and Azure portal include a `restartCount` property. To check the number of restarts for a container, you can use the [az container show][az-container-show] command in the Azure CLI. In the following example output (which has been truncated for brevity), you can see the `restartCount` property at the end of the output.
+The Container Instances API and Azure portal include a `restartCount` property. To check the number of restarts for a container, you can use the [az container show][az-container-show] command in the Azure CLI. In the following example output, which we truncated for brevity, you see the `restartCount` property at the end of the output.
 
 ```json
 ...
@@ -168,7 +168,7 @@ The three primary factors that contribute to container startup time in Azure Con
 * [Image location](#image-location)
 * [Cached images](#cached-images)
 
-Windows images have [additional considerations](#cached-images).
+Windows images have [further considerations](#cached-images).
 
 #### Image size
 
@@ -184,7 +184,7 @@ REPOSITORY                                    TAG       IMAGE ID        CREATED 
 mcr.microsoft.com/azuredocs/aci-helloworld    latest    7367f3256b41    15 months ago    67.6MB
 ```
 
-The key to keeping image sizes small is ensuring that your final image does not contain anything that is not required at runtime. One way to do this is with [multi-stage builds][docker-multi-stage-builds]. Multi-stage builds make it easy to ensure that the final image contains only the artifacts you need for your application, and not any of the extra content that was required at build time.
+The key to keeping image sizes small is ensuring that your final image doesn't contain anything that isn't required at runtime. One way to do this is with [multi-stage builds][docker-multi-stage-builds]. Multi-stage builds make it easy to ensure that the final image contains only the artifacts you need for your application, and not any of the extra content that was required at build time.
 
 #### Image location
 
@@ -201,17 +201,17 @@ Azure Container Instances uses a caching mechanism to help speed container start
 
 On initial creation, Windows containers may have no inbound or outbound connectivity for up to 30 seconds (or longer, in rare cases). If your container application needs an Internet connection, add delay and retry logic to allow 30 seconds to establish Internet connectivity. After initial setup, container networking should resume appropriately.
 
-### Cannot connect to underlying Docker API or run privileged containers
+### Can't connect to underlying Docker API or run privileged containers
 
-Azure Container Instances does not expose direct access to the underlying infrastructure that hosts container groups. This includes access to the container runtime, orchestration technology, and running privileged container operations. To see what operations are supported by ACI, check the [REST reference documentation](/rest/api/container-instances/). If there is something missing, submit a request on the [ACI feedback forums](https://aka.ms/aci/feedback).
+Azure Container Instances doesn't expose direct access to the underlying infrastructure that hosts container groups. This includes access to the container runtime, orchestration technology, and running privileged container operations. To see what operations ACI supports, check the [REST reference documentation](/rest/api/container-instances/). If there's something missing, submit a request on the [ACI feedback forums](https://aka.ms/aci/feedback).
 
 ### Container group IP address may not be accessible due to mismatched ports
 
-Azure Container Instances doesn't yet support port mapping like with regular docker configuration. If you find a container group's IP address is not accessible when you believe it should be, ensure you have configured your container image to listen to the same ports you expose in your container group with the `ports` property.
+Azure Container Instances doesn't yet support port mapping like with regular docker configuration. If you find a container group's IP address isn't accessible when you believe it should be, ensure you configured your container image to listen to the same ports you expose in your container group with the `ports` property.
 
 If you want to confirm that Azure Container Instances can listen on the port you configured in your container image, test a deployment of the `aci-helloworld` image that exposes the port. Also run the `aci-helloworld` app so that it listens on the port. `aci-helloworld` accepts an optional environment variable `PORT` to override the default port 80 it listens on. For example, to test port 9000, set the [environment variable](container-instances-environment-variables.md) when you create the container group:
 
-1. Set up the container group to expose port 9000, and pass the port number as the value of the environment variable. The example is formatted for the Bash shell. If you prefer another shell such as PowerShell or Command Prompt, you'll need to adjust variable assignment accordingly.
+1. Set up the container group to expose port 9000, and pass the port number as the value of the environment variable. The example is formatted for the Bash shell. If you prefer another shell such as PowerShell or Command Prompt, you need to adjust variable assignment accordingly.
     ```azurecli-interactive
     az container create --resource-group myResourceGroup \
     --name mycontainer --image mcr.microsoft.com/azuredocs/aci-helloworld \
@@ -236,7 +236,7 @@ Custom CCE policies must be generated the [Azure CLI confcom extension](https://
 
 ### Missing hash from policy
 
-The Azure CLI confcom extension will use cached images on your local machine which may not match those that are available remotely which can result in layer mismatch when the policy is validated. Please ensure that you remove any old images and pull the latest container images to your local environment.  Once you are sure that you have the latest SHA, you should regenerate the CCE policy.
+The Azure CLI confcom extension uses cached images on your local machine that may not match those that are available remotely, which can result in layer mismatch when the policy is validated. Ensure that you remove any old images and pull the latest container images to your local environment. Once you're sure that you have the latest SHA, you should regenerate the CCE policy.
 
 ### Process/container terminated with exit code: 139
 

@@ -1,21 +1,21 @@
 ---
 title: Attestation in Confidential containers on Azure Containers Instances 
-description: full attestation of container groups in confidential containers on Azure Container Instances  
+description: Full attestation of container groups in confidential containers on Azure Container Instances  
 ms.topic: conceptual
 ms.author: tomcassidy
-author: pkhandavilli
+author: tomcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 05/23/2023
+ms.date: 08/29/2024
 ---
 
 # Attestation in Confidential containers on Azure Container Instances 
 
-Attestation is an essential part of confidential computing and appears in the definition by the Confidential Computing Consortium “Confidential Computing is the protection of data in use by performing computation in a hardware-based, attested Trusted Execution Environment."
+Attestation is an essential part of confidential computing. Attestation appears in the definition by the Confidential Computing Consortium: “Confidential Computing is the protection of data in use by performing computation in a hardware-based, attested Trusted Execution Environment."
 
 According to the [Remote ATtestation procedureS (RATS) Architecture](https://www.ietf.org/rfc/rfc9334.html) In remote attestation, “one peer (the "Attester") produces believable information about itself ("Evidence") to enable a remote peer (the "Relying Party") to decide whether to consider that Attester a trustworthy peer. Remote attestation procedures are facilitated by an additional vital party (the "Verifier").” In simpler terms, attestation is a way of proving that a computer system is trustworthy. 
 
-In Confidential Containers on ACI you can use an attestation token to verify that the container group
+In Confidential Containers on Azure Container Instances (ACI), you can use an attestation token to verify that container group:
 
 - Is running on confidential computing hardware. In this case AMD SEV-SNP.
 - Is running on an Azure compliant utility VM.
@@ -23,7 +23,7 @@ In Confidential Containers on ACI you can use an attestation token to verify tha
 
 ## Full attestation 
 
-Expanding upon this concept of attestation. Full attestation captures all the components that are part of the Trusted Execution Environment that is remotely verifiable. To achieve full attestation, in Confidential Containers, we have introduced the notion of a CCE policy, which defines a set of rules, which is enforced in the utility VM. The security policy is encoded in the attestation report as an SHA-256 digest stored in the HostData attribute, as provided to the AMD SEV-SNP hardware by the host operating system during the VM boot-up. This means that the security policy enforced by the utility VM is immutable throughout the lifetime of the utility VM.
+Expanding upon this concept of attestation. Full attestation captures all the components that are part of the Trusted Execution Environment that is remotely verifiable. To achieve full attestation, in Confidential Containers, we introduce the notion of a CCE policy, which defines a set of rules, which is enforced in the utility VM. The security policy is encoded in the attestation report as an SHA-256 digest stored in the HostData attribute, as provided to the AMD SEV-SNP hardware by the host operating system during the VM boot-up. This structure means that the security policy enforced by the utility VM is immutable throughout the lifetime of the utility VM.
 
 The exhaustive list of attributes that are part of the SEV-SNP attestation can be found [here](https://www.amd.com/system/files/TechDocs/56860.pdf).
 
@@ -96,7 +96,7 @@ Some important fields to consider in an attestation token returned by [Microsoft
 ```
 ## Generating an attestation token 
 
-We have open-sourced sidecar container implementations that provide an easy rest interface to get a raw SNP (Secure Nested Paging) report produced by the hardware or a MAA token. The sidecar is available at this [repository](https://github.com/microsoft/confidential-sidecar-containers) and can be deployed with your container group. 
+We have open-source sidecar container implementations that provide an easy REST interface to get a raw SNP (Secure Nested Paging) report produced by the hardware or a MAA token. The sidecar is available at this [repository](https://github.com/microsoft/confidential-sidecar-containers) and can be deployed with your container group. 
 
 ## Next steps
 

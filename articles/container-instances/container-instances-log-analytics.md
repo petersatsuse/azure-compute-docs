@@ -6,8 +6,9 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 04/09/2024
+ms.date: 08/29/2024
 ---
+
 # Container group and instance logging with Azure Monitor logs
 
 Log Analytics workspaces provide a centralized location for storing and querying log data not only from Azure resources, but also on-premises resources and resources in other clouds. Azure Container Instances includes built-in support for sending logs and event data to Azure Monitor logs.
@@ -20,7 +21,7 @@ The following sections describe how to create a logging-enabled container group 
 
 ## Prerequisites
 
-To enable logging in your container instances, you need the following:
+To enable logging in your container instances, you need the following prerequisites:
 
 * [Log Analytics workspace](/azure/azure-monitor/logs/quick-create-workspace)
 * [Azure CLI](/cli/azure/install-azure-cli) (or [Cloud Shell](/azure/cloud-shell/overview))
@@ -116,7 +117,7 @@ You should see several results displayed by the query. If at first you don't see
 
 ## View events
 
-You can also view events for container instances in the Azure portal. Events include the time the instance is created and when it's started. To view the event data in the `ContainerEvent_CL` table:
+You can also view events for container instances in the Azure portal. Events include the time the instance is created and when it starts. To view the event data in the `ContainerEvent_CL` table:
 
 1. Navigate to your Log Analytics workspace in the Azure portal
 1. Under **General**, select **Logs**  
@@ -154,7 +155,7 @@ To learn about the Azure Monitor legacy schema for Log Analytics, see [Legacy Lo
 
 ## Using Diagnostic Settings
 
-The newer tables require use of diagnostic settings to route information to Log Analytics. Diagnostic settings for Container Instances is in public preview and it can be enabled through preview features options in the Azure portal.
+The newer tables require use of diagnostic settings to route information to Log Analytics. The diagnostic settings feature for Container Instances is in public preview, and it can be enabled through preview features options in the Azure portal.
 
 To learn more, see [Azure Monitor Log Analytics tables](monitor-azure-container-instances-reference.md#azure-monitor-log-analytics-tables).
 

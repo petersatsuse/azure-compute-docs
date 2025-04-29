@@ -1,6 +1,6 @@
 ---
-title: Associate a Virtual Machine Scale Set with uniform orchestration to a Capacity Reservation group
-description: Learn how to associate a new or existing virtual machine scale with uniform orchestration set to a Capacity Reservation group.
+title: Associate a virtual machine scale set with Uniform Orchestration to a capacity reservation group.
+description: Learn how to associate a new or existing virtual machine scale with Uniform Orchestration set to a capacity reservation group.
 author: bdeforeest
 ms.author: bidefore
 ms.service: azure-virtual-machines
@@ -10,43 +10,41 @@ ms.reviewer: cynthn, jushiman
 ms.custom: template-how-to, devx-track-azurecli, devx-track-azurepowershell
 ---
 
-# Associate a Virtual Machine Scale Set with uniform orchestration to a Capacity Reservation group
+# Associate a virtual machine scale set to Uniform Orchestration to a capacity reservation group
 
 **Applies to:** :heavy_check_mark: Uniform scale set
 
-Virtual Machine Scale Sets have two modes: 
+Azure Virtual Machine Scale Sets has two modes:
 
-- **Uniform Orchestration Mode:** In this mode, Virtual Machine Scale Sets use a VM profile or a template to scale up to the desired capacity. While there is some ability to manage or customize individual VM instances, Uniform uses identical VM instances. These instances are exposed through the Virtual Machine Scale Sets VM APIs and are not compatible with the standard Azure IaaS VM API commands. Since the scale set performs all the actual VM operations, reservations are associated with the Virtual Machine Scale Set directly. Once the scale set is associated with the reservation, all the subsequent VM allocations are done against the reservation. 
-- **Flexible Orchestration Mode:** In this mode, you get more flexibility managing the individual Virtual Machine Scale Set VM instances as they can use the standard Azure IaaS VM APIs instead of using the scale set interface. To use reservations with flexible orchestration mode, define both the Virtual Machine Scale Set property and the capacity reservation property on each virtual machine.
+- **Uniform Orchestration**: In this mode, virtual machine scale sets use a virtual machine (VM) profile or a template to scale up to the capacity you want. Although there's some ability to manage or customize individual VM instances, Uniform Orchestration uses identical VM instances. These instances are exposed through the virtual machine scale set's VM APIs and aren't compatible with the API commands that are standard for Azure infrastructure as a service (IaaS) VMs. Because the scale set performs all the actual VM operations, reservations are associated to the virtual machine scale set directly. After the scale set is associated to the reservation, all the subsequent VM allocations are done against the reservation.
+- **Flexible Orchestration**: In this mode, you get more flexibility to manage the individual virtual machine scale set VM instances. They can use the standard Azure IaaS VM APIs instead of by using the scale set interface. To use reservations with Flexible Orchestration mode, define both the virtual machine scale set property and the capacity reservation property on each VM.
 
-To learn more about these modes, go to [Virtual Machine Scale Sets Orchestration Modes](../virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes.md). 
+To learn more about these modes, see [Virtual Machine Scale Sets orchestration modes](../virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes.md).
 
-This content applies to the uniform orchestration mode. For flexible orchestration mode, go to [Associate a Virtual Machine Scale Set with flexible orchestration to a Capacity Reservation group](capacity-reservation-associate-virtual-machine-scale-set-flex.md)
+This content applies to the Uniform Orchestration mode. For Flexible Orchestration mode, see [Associate a virtual machine scale set with Flexible Orchestration to a capacity reservation group](capacity-reservation-associate-virtual-machine-scale-set-flex.md).
 
+## Limitations of scale sets in Uniform Orchestration
 
-## Limitations of scale sets in Uniform Orchestration 
+- For virtual machine scale sets in Uniform Orchestration to be compatible with capacity reservation, the `singlePlacementGroup` property must be set to `False`.
+- The **Static Fixed Spreading** availability option for multizone uniform scale sets isn't supported with capacity reservation. This option requires the use of five fault domains. However, the reservations only support up to three fault domains for general purpose sizes. The approach we recommend is to use the **Max Spreading** option that spreads VMs across as many fault domains as possible within each zone. If needed, configure a custom fault domain configuration of three or less.
 
-- For Virtual Machine Scale Sets in Uniform orchestration to be compatible with Capacity Reservation, the `singlePlacementGroup` property must be set to *False*. 
-- The **Static Fixed Spreading** availability option for multi-zone Uniform scale sets is not supported with Capacity Reservation. This option requires use of 5 Fault Domains while the reservations only support up to 3 Fault Domains for general purpose sizes. The recommended approach is to use the **Max Spreading** option that spreads VMs across as many FDs as possible within each zone. If needed, configure a custom Fault Domain configuration of 3 or less. 
+There are some other restrictions when you use capacity reservations. For the complete list, see the [overview of capacity reservations](capacity-reservation-overview.md).
 
-There are some other restrictions while using Capacity Reservation. For the complete list, refer the [Capacity Reservations overview](capacity-reservation-overview.md).  
-
-## Associate a new Virtual Machine Scale Set to a Capacity Reservation group
+## Associate a new virtual machine scale set to a capacity reservation group
 
 > [!IMPORTANT]
->Starting November 2023, VM scale sets created using PowerShell and Azure CLI will default to Flexible Orchestration Mode if no orchestration mode is specified. For more information about this change and what actions you should take, go to [Breaking Change for VMSS PowerShell/CLI Customers - Microsoft Community Hub](
-https://techcommunity.microsoft.com/t5/azure-compute-blog/breaking-change-for-vmss-powershell-cli-customers/ba-p/3818295)
-
+> Starting November 2023, virtual machine scale sets created by using PowerShell and the Azure CLI default to Flexible Orchestration mode if no orchestration mode is specified. For more information about this change and what actions you should take, see [Breaking Change for VMSS PowerShell/CLI Customers - Microsoft Community Hub](
+https://techcommunity.microsoft.com/t5/azure-compute-blog/breaking-change-for-vmss-powershell-cli-customers/ba-p/3818295).
 
 ### [API](#tab/api1)  
 
-To associate a new Uniform Virtual Machine Scale Set to a Capacity Reservation group, construct the following PUT request to the *Microsoft.Compute* provider:
+To associate a new uniform virtual machine scale set to a capacity reservation group, construct the following `PUT` request to the `Microsoft.Compute` provider:
 
 ```rest
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{VMScaleSetName}?api-version=2021-04-01
 ```
 
-Add the `capacityReservationGroup` property in the `virtualMachineProfile` property: 
+Add the `capacityReservationGroup` property in the `virtualMachineProfile` property:
 
 ```json
 { 
@@ -83,7 +81,7 @@ Add the `capacityReservationGroup` property in the `virtualMachineProfile` prope
 
 ### [CLI](#tab/cli1)
 
-Use `az vmss create` to create a new Virtual Machine Scale Set and add the `capacity-reservation-group` property to associate the scale set to an existing Capacity Reservation group. The following example creates a Uniform scale set for a Standard_Ds1_v2 VM in the East US location and associates the scale set to a Capacity Reservation group.
+Use `az vmss create` to create a new virtual machine scale set and add the `capacity-reservation-group` property to associate the scale set to an existing capacity reservation group. The following example creates a uniform scale set for a Standard_Ds1_v2 VM in the East US location and associates the scale set to a capacity reservation group.
 
 ```azurecli-interactive
 az vmss create 
@@ -96,10 +94,9 @@ az vmss create
 --capacity-reservation-group /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/capacityReservationGroups/{capacityReservationGroupName} 
 ```
 
-
 ### [PowerShell](#tab/powershell1) 
 
-Use `New-AzVmss` to create a new Virtual Machine Scale Set and add the `CapacityReservationGroupId` property to associate the scale set to an existing Capacity Reservation group. The following example creates a Uniform scale set for a Standard_Ds1_v2 VM in the East US location and associates the scale set to a Capacity Reservation group.
+Use `New-AzVmss` to create a new virtual machine scale set and add the `CapacityReservationGroupId` property to associate the scale set to an existing capacity reservation group. The following example creates a uniform scale set for a Standard_Ds1_v2 VM in the East US location and associates the scale set to a capacity reservation group.
 
 ```powershell-interactive
 $vmssName = <"VMSSNAME">
@@ -114,44 +111,443 @@ New-AzVmss
 -PlatformFaultDomainCount 2
 ```
 
-To learn more, go to Azure PowerShell command [New-AzVmss](/powershell/module/az.compute/new-azvmss).
+To learn more, see the Azure PowerShell command [New-AzVmss](/powershell/module/az.compute/new-azvmss).
 
 ### [ARM template](#tab/arm1)
 
-An [ARM template](/azure/azure-resource-manager/templates/overview) is a JavaScript Object Notation (JSrestON) file that defines the infrastructure and configuration for your project. The template uses declarative syntax. In declarative syntax, you describe your intended deployment without writing the sequence of programming commands to create the deployment. 
+An [Azure Resource Manager template (ARM template)](/azure/azure-resource-manager/templates/overview) is a JSON file that defines the infrastructure and configuration for your project. The template uses declarative syntax. In declarative syntax, you describe your intended deployment without writing the sequence of programming commands to create the deployment.
 
-ARM templates let you deploy groups of related resources. In a single template, you can create Capacity Reservation group and Capacity Reservations. You can deploy templates through the Azure portal, Azure CLI, or Azure PowerShell, or from continuous integration/continuous delivery (CI/CD) pipelines. 
+ARM templates let you deploy groups of related resources. In a single template, you can create capacity reservation group and capacity reservations. You can deploy templates through the Azure portal, the Azure CLI, or Azure PowerShell, or from continuous integration/continuous delivery (CI/CD) pipelines.
+
+To associate a Virtual Machine Scale Set with a Capacity Reservation Group, see the following ARM template. Replace the resource names with your own. The following example creates a VM scale set of SKU D2s_v3 and associates to a capacity reservation group.
+
+ ```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vmSku": {
+            "type": "string",
+            "defaultValue": "Standard_D2s_v3",
+            "metadata": {
+                "description": "Size of VMs in the VM Scale Set."
+            }
+        },
+        "windowsOSVersion": {
+            "type": "string",
+            "defaultValue": "2019-Datacenter",
+            "allowedValues": [
+                "2008-R2-SP1",
+                "2012-Datacenter",
+                "2012-R2-Datacenter",
+                "2016-Datacenter",
+                "2019-Datacenter"
+            ],
+            "metadata": {
+                "description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version. Allowed values: 2008-R2-SP1, 2012-Datacenter, 2012-R2-Datacenter & 2016-Datacenter, 2019-Datacenter."
+            }
+        },
+        "vmssName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 61,
+            "metadata": {
+                "description": "String used as a base for naming resources. Must be 3-61 characters in length and globally unique across Azure. A hash is prepended to this string for some resources, and resource-specific information is appended."
+            }
+        },
+        "instanceCount": {
+            "type": "int",
+            "defaultValue": 1,
+            "minValue": 1,
+            "maxValue": 100,
+            "metadata": {
+                "description": "Number of VM instances (100 or less)."
+            }
+        },
+        "singlePlacementGroup": {
+            "type": "bool",
+            "defaultValue": false,
+            "metadata": {
+                "description": "When true this limits the scale set to a single placement group, of max size 100 virtual machines. NOTE: If singlePlacementGroup is true, it may be modified to false. However, if singlePlacementGroup is false, it may not be modified to true."
+            }
+        },
+        "adminUsername": {
+            "type": "string",
+            "defaultValue": "vmssadmin",
+            "metadata": {
+                "description": "Admin username on all VMs."
+            }
+        },
+        "adminPassword": {
+            "type": "securestring",
+            "metadata": {
+                "description": "Admin password on all VMs."
+            }
+        },
+        "_artifactsLocation": {
+            "type": "string",
+            "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vmss-windows-webapp-dsc-autoscale/",
+            "metadata": {
+                "description": "The base URI where artifacts required by this template are located. For example, if stored on a public GitHub repo, you'd use the following URI: https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vmss-windows-webapp-dsc-autoscale/."
+            }
+        },
+        "_artifactsLocationSasToken": {
+            "type": "securestring",
+            "defaultValue": "",
+            "metadata": {
+                "description": "The sasToken required to access _artifactsLocation.  If your artifacts are stored on a public repo or public storage account you can leave this blank."
+            }
+        },
+        "powershelldscZip": {
+            "type": "string",
+            "defaultValue": "DSC/InstallIIS.zip",
+            "metadata": {
+                "description": "Location of the PowerShell DSC zip file relative to the URI specified in the _artifactsLocation, i.e. DSC/IISInstall.ps1.zip"
+            }
+        },
+        "webDeployPackage": {
+            "type": "string",
+            "defaultValue": "WebDeploy/DefaultASPWebApp.v1.0.zip",
+            "metadata": {
+                "description": "Location of the  of the WebDeploy package zip file relative to the URI specified in _artifactsLocation, i.e. WebDeploy/DefaultASPWebApp.v1.0.zip"
+            }
+        },
+        "powershelldscUpdateTagVersion": {
+            "type": "string",
+            "defaultValue": "1.0",
+            "metadata": {
+                "description": "Version number of the DSC deployment. Changing this value on subsequent deployments will trigger the extension to run."
+            }
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+                "description": "Location for all resources."
+            }
+        },
+        "platformFaultDomainCount": {
+            "type": "int",
+            "defaultValue": 1,
+            "metadata": {
+                "description": "Fault Domain count for each placement group."
+            }
+        }
+    },
+    "variables": {
+        "namingInfix": "[toLower(substring(concat(parameters('vmssName'), uniqueString(resourceGroup().id)), 0, 9))]",
+        "longNamingInfix": "[toLower(parameters('vmssName'))]",
+        "addressPrefix": "10.0.0.0/16",
+        "subnetPrefix": "10.0.0.0/24",
+        "virtualNetworkName": "[concat(variables('namingInfix'), 'vnet')]",
+        "publicIPAddressName": "[concat(variables('namingInfix'), 'pip')]",
+        "subnetName": "[concat(variables('namingInfix'), 'subnet')]",
+        "loadBalancerName": "[concat(variables('namingInfix'), 'lb')]",
+        "publicIPAddressID": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]",
+        "lbProbeID": "[resourceId('Microsoft.Network/loadBalancers/probes',variables('loadBalancerName'), 'tcpProbe')]",
+        "natPoolName": "[concat(variables('namingInfix'), 'natpool')]",
+        "bePoolName": "[concat(variables('namingInfix'), 'bepool')]",
+        "lbPoolID": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools',variables('loadBalancerName'),variables('bePoolName'))]",
+        "natStartPort": 50000,
+        "natEndPort": 50119,
+        "natBackendPort": 3389,
+        "nicName": "[concat(variables('namingInfix'), 'nic')]",
+        "ipConfigName": "[concat(variables('namingInfix'), 'ipconfig')]",
+        "frontEndIPConfigID": "[resourceId('Microsoft.Network/loadBalancers/frontendIPConfigurations',variables('loadBalancerName'),'loadBalancerFrontEnd')]",
+        "osType": {
+            "publisher": "MicrosoftWindowsServer",
+            "offer": "WindowsServer",
+            "sku": "[parameters('windowsOSVersion')]",
+            "version": "latest"
+        },
+        "imageReference": {
+            "publisher": "MicrosoftWindowsServer",
+            "offer": "WindowsServer",
+            "sku": "[parameters('windowsOSVersion')]",
+            "version": "latest"
+          },
+        "webDeployPackageFullPath": "[uri(parameters('_artifactsLocation'), concat(parameters('webDeployPackage'), parameters('_artifactsLocationSasToken')))]",
+        "powershelldscZipFullPath": "[uri(parameters('_artifactsLocation'), concat(parameters('powershelldscZip'), parameters('_artifactsLocationSasToken')))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Network/loadBalancers",
+            "apiVersion": "2020-06-01",
+            "name": "[variables('loadBalancerName')]",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddressName'))]"
+            ],
+            "properties": {
+                "frontendIPConfigurations": [
+                    {
+                        "name": "LoadBalancerFrontEnd",
+                        "properties": {
+                            "publicIPAddress": {
+                                "id": "[variables('publicIPAddressID')]"
+                            }
+                        }
+                    }
+                ],
+                "backendAddressPools": [
+                    {
+                        "name": "[variables('bePoolName')]"
+                    }
+                ],
+                "inboundNatPools": [
+                    {
+                        "name": "[variables('natPoolName')]",
+                        "properties": {
+                            "frontendIPConfiguration": {
+                                "id": "[variables('frontEndIPConfigID')]"
+                            },
+                            "protocol": "Tcp",
+                            "frontendPortRangeStart": "[variables('natStartPort')]",
+                            "frontendPortRangeEnd": "[variables('natEndPort')]",
+                            "backendPort": "[variables('natBackendPort')]"
+                        }
+                    }
+                ],
+                "loadBalancingRules": [
+                    {
+                        "name": "LBRule",
+                        "properties": {
+                            "frontendIPConfiguration": {
+                                "id": "[variables('frontEndIPConfigID')]"
+                            },
+                            "backendAddressPool": {
+                                "id": "[variables('lbPoolID')]"
+                            },
+                            "protocol": "Tcp",
+                            "frontendPort": 80,
+                            "backendPort": 80,
+                            "enableFloatingIP": false,
+                            "idleTimeoutInMinutes": 5,
+                            "probe": {
+                                "id": "[variables('lbProbeID')]"
+                            }
+                        }
+                    }
+                ],
+                "probes": [
+                    {
+                        "name": "tcpProbe",
+                        "properties": {
+                            "protocol": "Tcp",
+                            "port": 80,
+                            "intervalInSeconds": 5,
+                            "numberOfProbes": 2
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachineScaleSets",
+            "apiVersion": "2020-06-01",
+            "name": "[variables('namingInfix')]",
+            "location": "[parameters('location')]",
+            "sku": {
+                "name": "[parameters('vmSku')]",
+                "tier": "Standard",
+                "capacity": "[parameters('instanceCount')]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/loadBalancers', variables('loadBalancerName'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
+            ],
+            "properties": {
+                "overprovision": true,
+                "upgradePolicy": {
+                    "mode": "Automatic"
+                },
+                "singlePlacementGroup": "[parameters('singlePlacementGroup')]",
+                "platformFaultDomainCount": "[parameters('platformFaultDomainCount')]",
+                "virtualMachineProfile": {
+                    "storageProfile": {
+                        "osDisk": {
+                            "caching": "ReadWrite",
+                            "createOption": "FromImage"
+                        },
+                        "imageReference": "[variables('imageReference')]"
+                    },
+                    "osProfile": {
+                        "computerNamePrefix": "[variables('namingInfix')]",
+                        "adminUsername": "[parameters('adminUsername')]",
+                        "adminPassword": "[parameters('adminPassword')]"
+                    },
+                    "networkProfile": {
+                        "networkInterfaceConfigurations": [
+                            {
+                                "name": "[variables('nicName')]",
+                                "properties": {
+                                    "primary": true,
+                                    "ipConfigurations": [
+                                        {
+                                            "name": "[variables('ipConfigName')]",
+                                            "properties": {
+                                                "subnet": {
+                                                    "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]"
+                                                },
+                                                "loadBalancerBackendAddressPools": [
+                                                    {
+                                                        "id": "[variables('lbPoolID')]"
+                                                    }
+                                                ],
+                                                "loadBalancerInboundNatPools": [
+                                                    {
+                                                        "id": "[resourceId('Microsoft.Network/loadBalancers/inboundNatPools', variables('loadBalancerName'),  variables('natPoolName'))]"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "capacityReservation": {
+                      "capacityReservationGroup": {
+                         "id":"subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/capacityReservationGroups/{CapacityReservationGroupName}"
+                      }
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2020-06-01",
+            "name": "[variables('publicIPAddressName')]",
+            "location": "[parameters('location')]",
+            "properties": {
+                "publicIPAllocationMethod": "Static",
+                "dnsSettings": {
+                    "domainNameLabel": "[variables('longNamingInfix')]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2020-06-01",
+            "name": "[variables('virtualNetworkName')]",
+            "location": "[parameters('location')]",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('addressPrefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[variables('subnetName')]",
+                        "properties": {
+                            "addressPrefix": "[variables('subnetPrefix')]"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Insights/autoscaleSettings",
+            "apiVersion": "2015-04-01",
+            "name": "autoscalehost",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachineScaleSets/', variables('namingInfix'))]"
+            ],
+            "properties": {
+                "name": "autoscalehost",
+                "targetResourceUri": "[resourceId('Microsoft.Compute/virtualMachineScaleSets', variables('namingInfix'))]",
+                "enabled": true,
+                "profiles": [
+                    {
+                        "name": "Profile1",
+                        "capacity": {
+                            "minimum": "1",
+                            "maximum": "10",
+                            "default": "1"
+                        },
+                        "rules": [
+                            {
+                                "metricTrigger": {
+                                    "metricName": "Percentage CPU",
+                                    "metricResourceUri": "[resourceId('Microsoft.Compute/virtualMachineScaleSets', variables('namingInfix'))]",
+                                    "timeGrain": "PT1M",
+                                    "statistic": "Average",
+                                    "timeWindow": "PT5M",
+                                    "timeAggregation": "Average",
+                                    "operator": "GreaterThan",
+                                    "threshold": 50
+                                },
+                                "scaleAction": {
+                                    "direction": "Increase",
+                                    "type": "ChangeCount",
+                                    "value": "1",
+                                    "cooldown": "PT5M"
+                                }
+                            },
+                            {
+                                "metricTrigger": {
+                                    "metricName": "Percentage CPU",
+                                    "metricResourceUri": "[resourceId('Microsoft.Compute/virtualMachineScaleSets', variables('namingInfix'))]",
+                                    "timeGrain": "PT1M",
+                                    "statistic": "Average",
+                                    "timeWindow": "PT5M",
+                                    "timeAggregation": "Average",
+                                    "operator": "LessThan",
+                                    "threshold": 30
+                                },
+                                "scaleAction": {
+                                    "direction": "Decrease",
+                                    "type": "ChangeCount",
+                                    "value": "1",
+                                    "cooldown": "PT5M"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ],
+    "outputs": {
+        "applicationUrl": {
+            "type": "string",
+            "value": "[concat('http://', reference(variables('publicIPAddressName')).dnsSettings.fqdn, '/MyApp')]"
+        }
+    }
+}
+
+```
 
 --- 
 <!-- The three dashes above show that your section of tabbed content is complete. Don't remove them :) -->
 
+## Associate an existing virtual machine scale set to a capacity reservation group 
 
-## Associate an existing Virtual Machine Scale Set to Capacity Reservation group 
+To add an existing capacity reservation group to an existing uniform scale set:
 
-To add an existing Capacity Reservation Group to an existing Uniform Scale Set:
+- Stop the scale set to deallocate the VM instances.
+- Update the scale set to use a matching capacity reservation group.
+- Start the scale set.
 
-- Stop the Scale Set to deallocate the VM instances
-- Update the Scale Set to use a matching Capacity Reservation Group
-- Start the Scale Set
+This process ensures that the placement for the capacity reservations and scale set in the region are compatible.
 
-This process ensures the placement for the Capacity Reservations and Scale Set in the region are compatible.
+### Important notes on upgrade policies
 
-
-### Important notes on Upgrade Policies 
-
-- **Automatic Upgrade** – In this mode, the scale set VM instances are automatically associated with the Capacity Reservation group without any further action from you. When the scale set VMs are reallocated, they start consuming the reserved capacity.
-- **Rolling Upgrade** – In this mode, scale set VM instances are associated with the Capacity Reservation group without any further action from you. However, they are updated in batches with an optional pause time between them. When the scale set VMs are reallocated, they start consuming the reserved capacity.
-- **Manual Upgrade** – In this mode, nothing happens to the scale set VM instances when the Virtual Machine Scale Set is attached to a Capacity Reservation group. You need to update to each scale set VM by [upgrading it with the latest Scale Set model](../virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy.md).
+- **Automatic upgrade**: In this mode, the scale set VM instances are automatically associated to the capacity reservation group without any further action from you. When the scale set VMs are reallocated, they start consuming the reserved capacity.
+- **Rolling upgrade**: In this mode, scale set VM instances are associated to the capacity reservation group without any further action from you. However, they're updated in batches with an optional pause time between them. When the scale set VMs are reallocated, they start consuming the reserved capacity.
+- **Manual upgrade**: In this mode, nothing happens to the scale set VM instances when the virtual machine scale set is attached to a capacity reservation group. You need to update to each scale set VM by [upgrading it with the latest scale set model](../virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy.md).
 
 ### [API](#tab/api2)
 
-1. Deallocate the Virtual Machine Scale Set. 
+1. Deallocate the virtual machine scale set:
 
     ```rest
     POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroupname}/providers/Microsoft.Compute/virtualMachineScaleSets/{VMScaleSetName}/deallocate?api-version=2021-04-01
     ```
 
-1. Add the `capacityReservationGroup` property to the scale set model. Construct the following PUT request to *Microsoft.Compute* provider:
+1. Add the `capacityReservationGroup` property to the scale set model. Construct the following `PUT` request to `Microsoft.Compute` provider:
 
     ```rest
     PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroupname}/providers/Microsoft.Compute/virtualMachineScaleSets/{VMScaleSetName}?api-version=2021-04-01
@@ -174,7 +570,7 @@ This process ensures the placement for the Capacity Reservations and Scale Set i
 
 ### [CLI](#tab/cli2)
 
-1. Deallocate the Virtual Machine Scale Set. 
+1. Deallocate the virtual machine scale set:
 
     ```azurecli-interactive
     az vmss deallocate 
@@ -183,7 +579,7 @@ This process ensures the placement for the Capacity Reservations and Scale Set i
     --name myVMSS 
     ```
 
-1. Associate the scale set to the Capacity Reservation group. 
+1. Associate the scale set to the capacity reservation group:
 
     ```azurecli-interactive
     az vmss update 
@@ -194,7 +590,7 @@ This process ensures the placement for the Capacity Reservations and Scale Set i
 
 ### [PowerShell](#tab/powershell2) 
 
-1. Deallocate the Virtual Machine Scale Set. 
+1. Deallocate the virtual machine scale set:
 
     ```powershell-interactive
     Stop-AzVmss
@@ -202,7 +598,7 @@ This process ensures the placement for the Capacity Reservations and Scale Set i
     -VMScaleSetName "myVmss”
     ```
 
-1. Associate the scale set to the Capacity Reservation group. 
+1. Associate the scale set to the capacity reservation group:
 
     ```powershell-interactive
     $vmss =
@@ -217,18 +613,18 @@ This process ensures the placement for the Capacity Reservations and Scale Set i
     -CapacityReservationGroupId "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/capacityReservationGroups/{capacityReservationGroupName}"
     ```
 
-To learn more, go to Azure PowerShell commands [Stop-AzVmss](/powershell/module/az.compute/stop-azvmss), [Get-AzVmss](/powershell/module/az.compute/get-azvmss), and [Update-AzVmss](/powershell/module/az.compute/update-azvmss).
+To learn more, see the Azure PowerShell commands [Stop-AzVmss](/powershell/module/az.compute/stop-azvmss), [Get-AzVmss](/powershell/module/az.compute/get-azvmss), and [Update-AzVmss](/powershell/module/az.compute/update-azvmss).
 
 --- 
 <!-- The three dashes above show that your section of tabbed content is complete. Don't remove them :) -->
 
-## View Virtual Machine Scale Set association with Instance View 
+## View virtual machine scale set association with the Instance View
 
-Once the Uniform Virtual Machine Scale Set is associated with the Capacity Reservation group, all the subsequent VM allocations will happen against the Capacity Reservation. Azure automatically finds the matching Capacity Reservation in the group and consumes a reserved slot. 
+After the uniform virtual machine scale set is associated to the capacity reservation group, all the subsequent VM allocations will happen against the capacity reservation. Azure automatically finds the matching capacity reservation in the group and consumes a reserved slot.
 
 ### [API](#tab/api3) 
 
-The Capacity Reservation group *Instance View* reflects the new scale set VMs under the `virtualMachinesAssociated` & `virtualMachinesAllocated` properties:  
+The capacity reservation group Instance View reflects the new scale set VMs under the `virtualMachinesAssociated` and `virtualMachinesAllocated` properties:  
 
 ```rest
 GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/CapacityReservationGroups/{CapacityReservationGroupName}?$expand=instanceview&api-version=2021-04-01 
@@ -288,7 +684,7 @@ az capacity reservation group show
 
 ### [PowerShell](#tab/powershell3) 
 
-View your Virtual Machine Scale Set and Capacity Reservation group association with Instance View using PowerShell. 
+View the association of your virtual machine scale set and capacity reservation group by using Instance View in PowerShell.
 
 ```powershell-interactive
 $CapRes=
@@ -300,42 +696,41 @@ Get-AzCapacityReservationGroup
 $CapRes.InstanceView.Utilizationinfo.VirtualMachinesAllocated
 ``` 
 
-To learn more, go to Azure PowerShell command [Get-AzCapacityReservationGroup](/powershell/module/az.compute/get-azcapacityreservationGroup).
+To learn more, see the Azure PowerShell command [Get-AzCapacityReservationGroup](/powershell/module/az.compute/get-azcapacityreservationGroup).
 
 ### [Portal](#tab/portal3)
 
-1. Open [Azure portal](https://portal.azure.com)
-1. Go to your Capacity Reservation group
-1. Select **Resources** under **Setting**
-1. In the table, you are able to see all the scale set VMs that are associated with the Capacity Reservation group
+1. Open [Azure portal](https://portal.azure.com).
+1. Go to your capacity reservation group.
+1. Under **Setting**, select **Resources**.
+1. In the table, you can see all the scale set VMs that are associated to the capacity reservation group.
+
 --- 
 <!-- The three dashes above show that your section of tabbed content is complete. Don't remove them :) -->
 
-## Region and Availability Zones considerations 
+## Region and availability zone considerations
 
-Virtual machine scale sets can be created regionally or in one or more Availability Zones to protect them from data-center-level failure. Learn more about multi-zonal Virtual Machine Scale Sets, refer to [Virtual Machine Scale Sets that use Availability Zones](../virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones.md).  
+You can create virtual machine scale sets regionally or in one or more availability zones to help protect them from datacenter-level failure. To learn more about multizonal virtual machine scale sets, see [Virtual machine scale sets that use availability zones](../virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones.md).  
 
- 
+
 >[!IMPORTANT]
-> The location (Region and Availability Zones) of the Virtual Machine Scale Set and the Capacity Reservation group must match for the association to succeed. For a regional scale set, the region must match between the scale set and the Capacity Reservation group. For a zonal scale set, both the regions and the zones must match between the scale set and the Capacity Reservation group. 
+> The location (region and availability zones) of the virtual machine scale set and the capacity reservation group must match for the association to succeed. For a regional scale set, the region must match between the scale set and the capacity reservation group. For a zonal scale set, both the regions and the zones must match between the scale set and the capacity reservation group.
 
+When a scale set is spread across multiple zones, it always attempts to deploy evenly across the included availability zones. Because of that even deployment, a capacity reservation group should always have the same quantity of reserved VMs in each zone. As an illustration of why this even deployment is important, consider the following example.
 
-When a scale set is spread across multiple zones, it always attempts to deploy evenly across the included Availability Zones. Because of that even deployment, a Capacity Reservation group should always have the same quantity of reserved VMs in each zone. As an illustration of why this is important, consider the following example.   
+In this example, each zone has a different quantity reserved. Let's say that the virtual machine scale set scales out to 75 instances. Because a scale set always attempts to deploy evenly across zones, the VM distribution should look like this example:
 
-In this example, each zone has a different quantity reserved. Let’s say that the Virtual Machine Scale Set scales out to 75 instances. Since scale set will always attempt to deploy evenly across zones, the VM distribution should look like this: 
-
-| Zone  | Quantity Reserved  | No. of scale set VMs in each zone  | Unused Quantity Reserved  | Overallocated   |
+| Zone  | Quantity reserved  | Number of scale set VMs in each zone  | Unused quantity reserved  | Overallocated   |
 |---|---|---|---|---|
 | 1  | 40  | 25  | 15  | 0  |
 | 2  | 20  | 25  | 0  | 5  |
 | 3  | 15  | 25  | 0  | 10  |
 
-In this case, the scale set is incurring extra cost for 15 unused instances in Zone 1. The scale-out is also relying on 5 VMs in Zone 2 and 10 VMs in Zone 3 that are not protected by Capacity Reservation. If each zone had 25 capacity instances reserved, then all 75 VMs would be protected by Capacity Reservation and the deployment would not incur any extra cost for unused instances.  
+In this case, the scale set incurs extra cost for 15 unused instances in Zone 1. The scale-out is also relying on 5 VMs in Zone 2 and 10 VMs in Zone 3 that aren't protected by capacity reservation. If each zone had 25 capacity instances reserved, then all 75 VMs would be protected by capacity reservation and the deployment wouldn't incur any extra cost for unused instances.
 
-Since the reservations can be overallocated, the scale set can continue to scale normally beyond the limits of the reservation. The only difference is that the VMs allocated above the quantity reserved are not covered by Capacity Reservation SLA. To learn more, go to [Overallocating Capacity Reservation](capacity-reservation-overallocate.md).
+Because the reservations can be overallocated, the scale set can continue to scale normally beyond the limits of the reservation. The only difference is that the VMs allocated above the quantity reserved aren't covered by capacity reservation service-level agreement. To learn more, see [Overallocate capacity reservation](capacity-reservation-overallocate.md).
 
-
-## Next steps
+## Next step
 
 > [!div class="nextstepaction"]
-> [Learn how to remove a scale set association from a Capacity Reservation](capacity-reservation-remove-virtual-machine-scale-set.md)
+> [Learn how to remove a scale set association from a capacity reservation](capacity-reservation-remove-virtual-machine-scale-set.md)

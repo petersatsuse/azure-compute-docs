@@ -22,13 +22,13 @@ All metrics are emitted every minute, except for the bursting credit percentage 
 ## Disk IO, throughput, queue depth and latency metrics
 The following metrics are available to get insight on VM and disk IO, throughput, and queue depth performance:
 
-- **OS Disk Latency (Preview)**: The average time to complete IOs during the monitoring for the OS disk. Values are in miliseconds.
+- **OS Disk Latency (Preview)**: The average time to complete IOs during the monitoring for the OS disk. Metric is only available for disks attached to VMs using SCSI disk controller and not with disk attached to VMs using the NVMe disk controller. Values are in milliseconds.
 - **OS Disk Queue Depth**: The number of current outstanding IO requests that are waiting to be read from or written to the OS disk.
 - **OS Disk Read Bytes/Sec**: The number of bytes that are read in a second from the OS disk. If Read-only or Read/write [disk caching](premium-storage-performance.md#disk-caching) is enabled, this metric is inclusive of bytes read from the cache.
 - **OS Disk Read Operations/Sec**: The number of input operations that are read in a second from the OS disk. If Read-only or Read/write [disk caching](premium-storage-performance.md#disk-caching) is enabled, this metric is inclusive of IOPs read from the cache.
 - **OS Disk Write Bytes/Sec**: The number of bytes that are written in a second from the OS disk.
 - **OS Disk Write Operations/Sec**: The number of output operations that are written in a second from the OS disk.
-- **Data Disk Latency (Preview)**: The average time to complete IOs during the monitoring for the data disk. Values are in miliseconds.
+- **Data Disk Latency (Preview)**: The average time to complete IOs during the monitoring for the data disk. Metric is only available for disks attached to VMs using SCSI disk controller and not with disk attached to VMs using the NVMe disk controller. Values are in milliseconds.
 - **Data Disk Queue Depth**: The number of current outstanding IO requests that are waiting to be read from or written to the data disk(s).
 - **Data Disk Read Bytes/Sec**: The number of bytes that are read in a second from the data disk(s). If Read-only or Read/write [disk caching](premium-storage-performance.md#disk-caching) is enabled, this metric is inclusive of bytes read from the cache.
 - **Data Disk Read Operations/Sec**: The number of input operations that are read in a second from data disk(s). If Read-only or Read/write [disk caching](premium-storage-performance.md#disk-caching) is enabled, this metric is inclusive of IOPs read from the cache.
@@ -38,12 +38,12 @@ The following metrics are available to get insight on VM and disk IO, throughput
 - **Disk Read Operations/Sec**: The number of input operations that are read in a second from all disks attached to a VM. If Read-only or Read/write [disk caching](premium-storage-performance.md#disk-caching) is enabled, this metric is inclusive of IOPs read from the cache.
 - **Disk Write Bytes**: The number of bytes that are written in a minute from all disks attached to a VM.
 - **Disk Write Operations/Sec**: The number of output operations that are written in a second from all disks attached to a VM.
-- **Temp Disk Latency (Preview)**: The average time to complete IOs during the monitoring for the temporary disk. Values are in miliseconds.
-- **Temp Disk Queue Depth**: The number of current outstanding IO requests that are waiting to be read from or written to the temporary disk.
-- **Temp Disk Read Bytes/Sec**: The number of bytes that are read in a second from the temporary disk.
-- **Temp Disk Read Operations/Sec**: The number of input operations that are read in a second from the temporary disk.
-- **Temp Disk Write Bytes/Sec**: The number of bytes that are written in a second from the temporary disk.
-- **Temp Disk Write Operations/Sec**: The number of output operations that are written in a second from the temporary disk.
+- **Temp Disk Latency (Preview)**: The average time to complete IOs during the monitoring for the temporary disk. This metric is not available for NVMe temporary storage disks. Values are in milliseconds.
+- **Temp Disk Queue Depth**: The number of current outstanding IO requests that are waiting to be read from or written to the temporary disk. This metric is not available for NVMe temporary storage disks.
+- **Temp Disk Read Bytes/Sec**: The number of bytes that are read in a second from the temporary disk. This metric is not available for NVMe temporary storage disks.
+- **Temp Disk Read Operations/Sec**: The number of input operations that are read in a second from the temporary disk. This metric is not available for NVMe temporary storage disks.
+- **Temp Disk Write Bytes/Sec**: The number of bytes that are written in a second from the temporary disk. This metric is not available for NVMe temporary storage disks.
+- **Temp Disk Write Operations/Sec**: The number of output operations that are written in a second from the temporary disk. This metric is not available for NVMe temporary storage disks.
 
 > [!NOTE]
 > Disk metrics can't log CRUD (Create, Read, Update, Delete) operations inside managed disks.

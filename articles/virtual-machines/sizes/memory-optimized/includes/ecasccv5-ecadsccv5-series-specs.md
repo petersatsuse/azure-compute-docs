@@ -12,7 +12,7 @@ ms.custom: include file
 ---
 | Part | Quantity <br><sup>Count <sup>Units | Specs <br><sup>SKU ID, Performance <sup>Units</sup>, etc.  |
 |---|---|---|
-| Processor        | 4 - 96<sup>vCores    | AMD EPYC<sup>TM</sup> |
+| Processor        | 4 - 96<sup>vCores    | AMD EPYC (Milan) |
 | Memory           | 32 - 672<sup>GiB      |                                                 |
 | Data Disks       | 4 - 32<sup>Disks     | 6400 - 80000<sup>IOPS</sup> / 144 - 1600<sup>MBps  |
 | Network          | 2 - 8<sup>NICs       |                                                    |

@@ -6,7 +6,7 @@ author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
 ms.topic: quickstart
-ms.date: 05/11/2022
+ms.date: 08/29/2024
 ms.custom: mode-api
 ---
 
@@ -14,7 +14,7 @@ ms.custom: mode-api
 
 Use Azure Container Instances to run serverless Docker containers in Azure with simplicity and speed. Deploy to a container instance on-demand when you develop cloud-native apps and you want to switch seamlessly from local development to cloud deployment.
 
-In this quickstart, you use native Docker CLI commands to deploy a Docker container and make its application available in Azure Container Instances. This capability is enabled by [integration between Docker and Azure](https://docs.docker.com/engine/context/aci-integration/). A few seconds after you execute a `docker run` command, you can browse to the application running in the container:
+In this quickstart, you use native Docker CLI commands to deploy a Docker container and make its application available in Azure Container Instances. The [integration between Docker and Azure](https://docs.docker.com/engine/context/aci-integration/) enables this capability. A few seconds after you execute a `docker run` command, you can browse to the application running in the container:
 
 :::image type="content" source="media/quickstart-docker-cli/view-application-running-in-an-azure-container-instance.png" alt-text="App deployed using Azure Container Instances viewed in browser":::
 
@@ -66,7 +66,7 @@ CONTAINER ID        IMAGE                                        COMMAND        
 hungry-kirch        mcr.microsoft.com/azuredocs/aci-helloworld                       Running             52.230.225.232:80->80/tcp
 ```
 
- Now go to the IP address in your browser. If you see a web page similar to the following, congratulations! You've successfully deployed an application running in a Docker container to Azure.
+ Now go to the IP address in your browser. If you see a web page similar to the following, congratulations! You successfully deployed an application running in a Docker container to Azure.
 
 :::image type="content" source="media/quickstart-docker-cli/view-application-running-in-an-azure-container-instance.png" alt-text="App deployed using Azure Container Instances viewed in browser":::
 

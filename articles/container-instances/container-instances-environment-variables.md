@@ -6,13 +6,13 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ms.custom: devx-track-azurepowershell, devx-track-azurecli 
 ms.devlang: azurecli
 ---
 # Set environment variables in container instances
 
-Setting environment variables in your container instances allows you to provide dynamic configuration of the application or script run by the container. This is similar to the `--env` command-line argument to `docker run`. 
+Setting environment variables in your container instances allows you to provide dynamic configuration of the application or script run by the container. This feature is similar to the `--env` command-line argument to `docker run`. 
 
 To set environment variables in a container, specify them when you create a container instance. This article shows examples of setting environment variables when you start a container with the [Azure CLI](#azure-cli-example), [Azure PowerShell](#azure-powershell-example), and the [Azure portal](#azure-portal-example). 
 
@@ -38,7 +38,7 @@ az container create \
     --restart-policy OnFailure
 ```
 
-To modify the output, start a second container with the `--environment-variables` argument added, specifying values for the *NumWords* and *MinLength* variables. (This example assume you are running the CLI in a Bash shell or Azure Cloud Shell. If you use the Windows Command Prompt, specify the variables with double-quotes, such as `--environment-variables "NumWords"="5" "MinLength"="8"`.)
+To modify the output, start a second container with the `--environment-variables` argument added, specifying values for the *NumWords* and *MinLength* variables. (This example assumes you run the CLI in a Bash shell or Azure Cloud Shell. If you use the Windows Command Prompt, specify the variables with double-quotes, such as `--environment-variables "NumWords"="5" "MinLength"="8"`.)
 
 ```azurecli-interactive
 az container create \
@@ -56,7 +56,7 @@ az container logs --resource-group myResourceGroup --name mycontainer1
 az container logs --resource-group myResourceGroup --name mycontainer2
 ```
 
-The outputs of the containers show how you've modified the second container's script behavior by setting environment variables.
+The outputs of the containers show how you modified the second container's script behavior by setting environment variables.
 
 **mycontainer1**
 ```output
@@ -155,7 +155,7 @@ To set environment variables when you start a container in the Azure portal, spe
 
 ![Portal page showing environment variable Enable button and text boxes][portal-env-vars-01]
 
-To view the container's logs, under **Settings** select **Containers**, then **Logs**. Similar to the output shown in the previous CLI and PowerShell sections, you can see how the script's behavior has been modified by the environment variables. Only five words are displayed, each with a minimum length of eight characters.
+To view the container's logs, under **Settings** select **Containers**, then **Logs**. Similar to the output shown in the previous CLI and PowerShell sections, you can see how the environment variables change the script's behavior. Only five words are displayed, each with a minimum length of eight characters.
 
 ![Portal showing container log output][portal-env-vars-02]
 
@@ -229,13 +229,13 @@ The JSON response shows both the insecure environment variable's key and value, 
 ]
 ```
 
-With the [az container exec][az-container-exec] command, which enables executing a command in a running container, you can verify that the secure environment variable has been set. Run the following command to start an interactive bash session in the container:
+With the [az container exec][az-container-exec] command, which enables executing a command in a running container, you can verify that the secure environment variable is set. Run the following command to start an interactive bash session in the container:
 
 ```azurecli-interactive
 az container exec --resource-group myResourceGroup --name securetest --exec-command "/bin/sh"
 ```
 
-Once you've opened an interactive shell within the container, you can access the `SECRET` variable's value:
+Once you open an interactive shell within the container, you can access the `SECRET` variable's value:
 
 ```console
 root@caas-ef3ee231482549629ac8a40c0d3807fd-3881559887-5374l:/# echo $SECRET

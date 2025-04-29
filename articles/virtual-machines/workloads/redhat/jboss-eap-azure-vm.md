@@ -2,7 +2,8 @@
 title: "Quickstart: Deploy a JBoss EAP cluster on Azure Virtual Machines (VMs)"
 description: Shows you how to quickly stand up a JBoss EAP cluster on Azure Virtual Machines.
 author: KarlErickson
-ms.author: jiangma
+ms.author: karler
+ms.reviewer: jiangma
 ms.topic: quickstart
 ms.date: 06/19/2024
 ms.custom: devx-track-java, devx-track-extended-java, devx-track-javaee, devx-track-javaee-jbosseap, devx-track-javaee-jbosseap-vm, devx-track-azurecli, linux-related-content
@@ -46,6 +47,9 @@ Replace the placeholders with the following values, which are used throughout th
 - `<db-resource-group-name>`: The name of the resource group to use for the PostgreSQL flexible server - for example, `ejb040323postgresrg`.
 - `<database-server-name>`: The name of your PostgreSQL server, which should be unique across Azure - for example, `ejb040323postgresqlserver`.
 - `<postgresql-admin-password>`: The password of your PostgreSQL server. That password must be at least eight characters and at most 128 characters. The characters should be from three of the following categories: English uppercase letters, English lowercase letters, numbers (0-9), and nonalphanumeric characters (!, $, #, %, and so on).
+
+> [!NOTE]
+> Microsoft recommends using the most secure authentication flow available. The authentication flow described in this procedure, such as for databases, caches, messaging, or AI services, requires a very high degree of trust in the application and carries risks not present in other flows. Use this flow only when more secure options, like managed identities for passwordless or keyless connections, are not viable. For local machine operations, prefer user identities for passwordless or keyless connections.
 
 Next, use the following steps to create an Azure Database for PostgreSQL flexible server:
 
@@ -103,7 +107,7 @@ The following steps show you how to fill out the **Basics** pane shown in the fo
 
 1. On the offer page, select **Create**.
 1. On the **Basics** pane, ensure that the value shown in the **Subscription** field is the same one that has the roles listed in the prerequisites section.
-1. You must deploy the offer in an empty resource group. In the **Resource group** field, select **Create new** and fill in a value for the resource group. Because resource groups must be unique within a subscription, pick a unique name. An easy way to have unique names is to use a combination of your initials, today's date, and some identifier. For example, *ejb040323jbosseapcluster*.
+1. In the **Resource group** field, select **Create new** and fill in a value for the resource group. Because resource groups must be unique within a subscription, pick a unique name. An easy way to have unique names is to use a combination of your initials, today's date, and some identifier. For example, *ejb040323jbosseapcluster*.
 1. Under **Instance details**, select the region for the deployment.
 1. Leave the default VM size for **Virtual machine size**.
 1. Leave the default option **OpenJDK 17** for **JDK version**.
@@ -189,7 +193,7 @@ Use the following steps to deploy the Java EE Cafe sample application to the Red
    1. Use the following command to clone the source code from GitHub and check out the tag corresponding to this version of the article:
 
       ```bash
-      git clone https://github.com/Azure/rhel-jboss-templates.git --branch 20230418 --single-branch
+      git clone https://github.com/Azure/rhel-jboss-templates.git --branch 20240904 --single-branch
       ```
 
       If you see an error message with the text `You are in 'detached HEAD' state`, you can safely ignore it.

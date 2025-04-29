@@ -1,7 +1,7 @@
 ---
 title: Monitoring data reference for Container Instances
 description: This article contains important reference material you need when you monitor Container Instances.
-ms.date: 02/27/2024
+ms.date: 08/29/2024
 ms.custom: horz-monitor
 ms.topic: reference
 author: tomvcassidy
@@ -42,7 +42,7 @@ The following table lists the metrics available for the Microsoft.ContainerInsta
 
 [!INCLUDE [horz-monitor-ref-logs-tables](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-logs-tables.md)]
 
-Container Instances has two table schemas, a legacy schema for Log Analytics and a new schema that supports diagnostic settings. Diagnostic settings is in public preview in the Azure portal. You can use either or both schemas at the same time.
+Container Instances has two table schemas, a legacy schema for Log Analytics and a new schema that supports diagnostic settings. The diagnostic settings feature is in public preview in the Azure portal. You can use either or both schemas at the same time.
 
 ### Legacy Log Analytics tables
 
@@ -73,7 +73,7 @@ The following *_CL* tables represent the legacy Log Analytics integration. Users
 
 #### ContainerEvent_CL
 
-|Column|Type|Description|
+| Column | Type | Description |
 |-|-|-|
 |Computer|string|Empty|
 |ContainerGroupInstanceId_g|string|A unique identifier for the container group associated with the record|
@@ -95,7 +95,7 @@ The following *_CL* tables represent the legacy Log Analytics integration. Users
 
 ### Azure Monitor Log Analytics tables
 
-The newer tables require use of a diagnostic setting to route information to Log Analytics. Diagnostic settings for Container Instances in the Azure portal is in public preview. The table names are similar, but without the _CL, and some columns are different.
+The newer tables require use of a diagnostic setting to route information to Log Analytics. The diagnostic settings feature for Container Instances in the Azure portal is in public preview. The table names are similar, but without the _CL, and some columns are different.
 
 Once this feature is enabled for a subscription, diagnostic settings can be applied to a container group. Applying diagnostic settings causes a container group to restart.
 

@@ -6,7 +6,7 @@ author: tomvcassidy
 ms.topic: how-to
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 07/02/2024
+ms.date: 08/29/2024
 ---
 
 # Azure Container Instances states
@@ -85,11 +85,11 @@ In addition to the JSON view, provisioning state can also be found in the [respo
 
 These states are applicable to PUT (create) and POST (start/restart) events.
 
-- **Pending**: The container group is waiting for infrastructure setup, such as a node assignment, virtual network provisioning, or anything else needed prior to pulling the user image.
+- **Pending**: The container group is waiting for infrastructure setup, such as a node assignment, virtual network provisioning, or anything else needed before pulling the user image.
 
-- **Creating**: The infrastructure setup has finished. The container group is now getting brought up and receiving the resources it needs (mounting Azure file volumes, getting ingress IP address, etc.).
+- **Creating**: The infrastructure setup finished. The container group is now getting brought up and receiving the resources it needs (mounting Azure file volumes, getting ingress IP address, etc.).
 
-- **Succeeded**: The container group has succeeded in getting its containers into the running state and has received all resources it needs.
+- **Succeeded**: The container group succeeded in getting its containers into the running state and received all resources it needs.
 
 - **Unhealthy**: The container group is unhealthy. For an unexpected state, such as if a node is down, a job is automatically triggered to repair the container group by moving it.
 
@@ -105,4 +105,4 @@ These values are applicable to POST (stop) and DELETE (delete) events.
 
 - **Succeeded**: The operation to stop or delete the container group completed successfully.
 
-- **Failed**: The container group failed to reach the **Succeeded** provisioning state, meaning the stop/delete event did not complete. More information on the failure can be found under `events` in the JSON view.
+- **Failed**: The container group failed to reach the **Succeeded** provisioning state, meaning the stop/delete event didn't complete. More information on the failure can be found under `events` in the JSON view.

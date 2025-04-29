@@ -1,14 +1,11 @@
 ---
-title: include file
-description: include file
 services: container-instances
 author: tomvcassidy
-
 ms.service: azure-container-instances
 ms.topic: include
-ms.date: 06/14/2022
+ms.date: 08/29/2024
 ms.author: tomcassidy
-ms.custom: include file, devx-track-azurecli
+ms.custom: devx-track-azurecli
 ---
 
 ## Create Azure container registry
@@ -21,7 +18,7 @@ Create a resource group with the [az group create][az-group-create] command. In 
 az group create --name myResourceGroup --location eastus
 ```
 
-Once you've created the resource group, create an Azure container registry with the [az acr create][az-acr-create] command. The container registry name must be unique within Azure, and contain 5-50 alphanumeric characters. Replace `<acrName>` with a unique name for your registry:
+Once you create the resource group, create an Azure container registry with the [az acr create][az-acr-create] command. The container registry name must be unique within Azure, and contain 5-50 alphanumeric characters. Replace `<acrName>` with a unique name for your registry:
 
 ```azurecli
 az acr create --resource-group myResourceGroup --name <acrName> --sku Basic
@@ -51,9 +48,9 @@ Here's partial output for a new Azure container registry named *mycontainerregis
 
 The rest of the tutorial refers to `<acrName>` as a placeholder for the container registry name that you chose in this step.
 
-## Log in to container registry
+## Sign in to container registry
 
-You must log in to your Azure Container Registry instance before pushing images to it. Use the [az acr login][az-acr-login] command to complete the operation. You must provide the unique name you chose for the container registry when you created it.
+You must sign in to your Azure Container Registry instance before pushing images to it. Use the [az acr login][az-acr-login] command to complete the operation. You must provide the unique name you chose for the container registry when you created it.
 
 ```azurecli
 az acr login --name <acrName>

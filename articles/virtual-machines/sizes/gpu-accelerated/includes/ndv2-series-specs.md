@@ -5,8 +5,8 @@ author: mattmcinnes
 ms.topic: include
 ms.service: azure-virtual-machines
 ms.subservice: sizes
-ms.date: 08/01/2024
-ms.author: mattmcinnes
+ms.date: 02/10/2025
+ms.author: padmalathas
 ms.reviewer: mattmcinnes
 ms.custom: include file
 ---
@@ -17,4 +17,4 @@ ms.custom: include file
 | Local Storage  | 1 Disk         | 2948 GiB |
 | Remote Storage | 32 Disks        | 80000 IOPS <br>800 MBps |
 | Network        | 8 NICs        | 24000 Mbps |
-| Accelerators   | None            |     |
+| Accelerators   | 8            |     |

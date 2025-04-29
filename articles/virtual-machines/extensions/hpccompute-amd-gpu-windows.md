@@ -4,7 +4,7 @@ description: Microsoft Azure extension for installing AMD GPU drivers on NVv4-se
 services: virtual-machines-windows
 author: vikancha-MSFT
 manager: jkabat
-ms.topic: article
+ms.topic: concept-article
 ms.service: azure-virtual-machines
 ms.subservice: hpc
 ms.collection: windows
@@ -69,8 +69,6 @@ You can deploy Azure AMD VM extensions in the Azure portal.
 
 1. On the left menu, select **Extensions**.
 
-    :::image type="content" source="./media/amd-ext-portal/extensions-menu.png" alt-text="Screenshot that shows selecting Extensions in the Azure portal menu.":::
-
 1. Select **Add**.
 
     :::image type="content" source="./media/amd-ext-portal/add-extension.png" alt-text="Screenshot that shows adding a V M extension for the selected V M.":::
@@ -118,7 +116,7 @@ The following example assumes the extension is nested inside the virtual machine
 ### PowerShell
 
 ```powershell
-Set-AzVMExtension
+Set-AzVMExtension `
     -ResourceGroupName "myResourceGroup" `
     -VMName "myVM" `
     -Location "southcentralus" `

@@ -6,14 +6,14 @@ ms.topic: how-to
 ms.service: azure-container-instances
 services: container-instances
 ms.author: tomcassidy
-ms.date: 05/25/2022
+ms.date: 08/29/2024
 ---
 
 # Deploy an Azure Container Instances (ACI) container group with DNS name reuse policy (preview)
 
 DNS name reuse is convenient for DevOps within any modern company. The idea of redeploying an application by reusing the DNS name fulfills an on-demand philosophy that secures cloud development. Therefore, it's important to note that DNS names that are available to anyone become a problem when one customer releases a name only to have that same name taken by another customer. This is called subdomain takeover. A customer releases a resource using a particular name, and another customer creates a new resource with that same DNS name. If there were any records pointing to the old resource, they now also point to the new resource.
 
-In order to avoid this, ACI will now allow customers to reuse DNS names while preventing DNS names from being reused by different customers. ACI secures DNS names by randomly generating a hash value to associate with the DNS name, making it difficult for another customer to accidentally create an ACI with the same name and get linked to the past customer's ACI information.
+In order to avoid this, ACI now allows customers to reuse DNS names while preventing different customers from reusing DNS names. ACI secures DNS names by randomly generating a hash value to associate with the DNS name, making it difficult for another customer to accidentally create an ACI with the same name and get linked to the past customer's ACI information.
 
 > [!IMPORTANT]
 > DNS name reuse policy support is only available on ACI API version `10-01-2021` or later.
@@ -34,11 +34,11 @@ You now have the choice when creating an ACI to choose what level of reuse you w
 
 | Policy name | Policy definition |
 | - | - |
-| unsecure | Hash will not be generated. Object's domain label can't be reused within resource group, subscription, or tenant. |
-| tenantReuse | **Default** Hash will be generated based on the DNS name and the tenant ID. Object's domain name label can be reused within the same tenant. |
-| subscriptionReuse | Hash will be generated based on the DNS name and the tenant ID and subscription ID. Object's domain name label can be reused within the same subscription. |
-| resourceGroupReuse | Hash will be generated based on the DNS name and the tenant ID, subscription ID, and resource group name. Object's domain name label can be reused within the same resource group. |
-| noReuse | Hash will be generated using a GUID. Object's domain label can be reused freely, as this hash will always be unique. |
+| unsecure | Hash isn't generated. Object's domain label can't be reused within resource group, subscription, or tenant. |
+| tenantReuse | **Default** Hash generates based on the DNS name and the tenant ID. Object's domain name label can be reused within the same tenant. |
+| subscriptionReuse | Hash generated bases on the DNS name and the tenant ID and subscription ID. Object's domain name label can be reused within the same subscription. |
+| resourceGroupReuse | Hash generates based on the DNS name and the tenant ID, subscription ID, and resource group name. Object's domain name label can be reused within the same resource group. |
+| noReuse | Hash generates using a GUID. Object's domain label can be reused freely, as this hash is always unique. |
 
 ## Create a container instance
 
@@ -57,4 +57,4 @@ For YAML template users, see the [YAML reference](container-instances-reference-
 
 ## Next steps
 
-See the Azure Quickstart Template [Create an Azure container group with VNet](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.containerinstance/aci-vnet), to deploy a container group within a virtual network.
+See the Azure Quickstart Template [Create an Azure container group with virtual network](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.containerinstance/aci-vnet), to deploy a container group within a virtual network.

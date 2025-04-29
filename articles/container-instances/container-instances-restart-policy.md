@@ -7,14 +7,14 @@ author: tomvcassidy
 ms.service: azure-container-instances
 ms.custom:
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ---
 
 # Run containerized tasks with restart policies
 
 The ease and speed of deploying containers in Azure Container Instances provides a compelling platform for executing run-once tasks like build, test, and image rendering in a container instance.
 
-With a configurable restart policy, you can specify that your containers are stopped when their processes have completed. Because container instances are billed by the second, you're charged only for the compute resources used while the container executing your task is running.
+With a configurable restart policy, you can specify that your containers are stopped when their processes complete. Because Azure bills container instances by the second, you're only charged for the compute resources used while the container executing your task is running.
 
 The examples presented in this article use the Azure CLI. You must have Azure CLI version 2.0.21 or greater [installed locally][azure-cli-install], or use the CLI in the [Azure Cloud Shell](/azure/cloud-shell/overview).
 
@@ -24,7 +24,7 @@ When you create a [container group](container-instances-container-groups.md) in 
 
 | Restart policy   | Description |
 | ---------------- | :---------- |
-| `Always` | Containers in the container group are always restarted. This is the **default** setting applied when no restart policy is specified at container creation. |
+| `Always` | Containers in the container group are always restarted. This policy is the **default** setting applied when no restart policy is specified at container creation. |
 | `Never` | Containers in the container group are never restarted. The containers run at most once. |
 | `OnFailure` | Containers in the container group are restarted only when the process executed in the container fails (when it terminates with a nonzero exit code). The containers are run at least once. |
 

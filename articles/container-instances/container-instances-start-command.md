@@ -7,7 +7,7 @@ author: tomvcassidy
 ms.service: azure-container-instances
 ms.custom: devx-track-azurecli
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ---
 
 # Set the command line in a container instance to override the default command line operation
@@ -42,7 +42,7 @@ The command line syntax varies depending on the Azure API or tool used to create
 
 * [az container create][az-container-create] command: Pass a string with the `--command-line` parameter. Example: `--command-line "python myscript.py arg1 arg2"`).
 
-* [New-AzureRmContainerGroup][new-azurermcontainergroup] Azure PowerShell cmdlet: Pass a string with the `-Command` parameter. Example: `-Command "echo hello"`.
+* [New-AzContainerGroup][new-azcontainergroup] Azure PowerShell cmdlet: Pass a string with the `-Command` parameter. Example: `-Command "echo hello"`.
 
 * Azure portal: In the **Command override** property of the container configuration, provide a comma-separated list of strings, without quotes. Example: `python, myscript.py, arg1, arg2`).
 
@@ -61,7 +61,7 @@ The command line syntax varies depending on the Azure API or tool used to create
 
 As an example, modify the behavior of the microsoft/aci-wordcount container image, which analyzes text in Shakespeare's *Hamlet* to find the most frequently occurring words. Instead of analyzing *Hamlet*, you could set a command line that points to a different text source.
 
-To see the output of the microsoft/aci-wordcount container when it analyzes the default text, run it with the following [az container create][az-container-create] command. No start command line is specified, so the default container command runs. For illustration purposes, this example sets [environment variables](container-instances-environment-variables.md) to find the top 3 words that are at least five letters long:
+To see the output of the microsoft/aci-wordcount container when it analyzes the default text, run it with the following [az container create][az-container-create] command. No start command line is specified, so the default container command runs. For illustration purposes, this example sets [environment variables](container-instances-environment-variables.md) to find the top three words that are at least five letters long:
 
 ```azurecli-interactive
 az container create \
@@ -84,7 +84,7 @@ az container logs --resource-group myResourceGroup --name mycontainer1
 
 Now set up a second example container to analyze different text by specifying a different command line. The Python script executed by the container, *wordcount.py*, accepts a URL as an argument, and processes that page's content instead of the default.
 
-For example, to determine the top 3 words that are at least five letters long in *Romeo and Juliet*:
+For example, to determine the top three words that are at least five letters long in *Romeo and Juliet*:
 
 ```azurecli-interactive
 az container create \
@@ -117,4 +117,4 @@ Task-based scenarios, such as batch processing a large dataset with several cont
 [az-container-create]: /cli/azure/container#az_container_create
 [az-container-logs]: /cli/azure/container#az_container_logs
 [az-container-show]: /cli/azure/container#az_container_show
-[new-azurermcontainergroup]: /powershell/module/azurerm.containerinstance/new-azurermcontainergroup
+[new-azcontainergroup]: /powershell/module/az.containerinstance/new-azcontainergroup

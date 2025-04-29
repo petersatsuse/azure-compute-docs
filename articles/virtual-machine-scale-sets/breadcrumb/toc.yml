@@ -8,3 +8,5 @@ items:
     topicHref: /azure/virtual-machines/index
   - name: Virtual Machine Scale Sets
     tocHref: /azure/reliability
+  - name: Virtual Machine Scale Sets
+    tocHref: /azure/operational-excellence

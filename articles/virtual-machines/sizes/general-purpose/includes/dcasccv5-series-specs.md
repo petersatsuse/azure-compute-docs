@@ -12,7 +12,7 @@ ms.custom: include file
 ---
 | Part | Quantity <br><sup>Count Units | Specs <br><sup>SKU ID, Performance Units, etc.  |
 |---|---|---|
-| Processor      | 4 - 96 vCPUs       | AMD EPYC (Genoa) [x86-64]                               |
+| Processor      | 4 - 96 vCPUs       | AMD EPYC (Milan) [x86-64]                               |
 | Memory         | 16 - 384 GiB          |                                  |
 | Local Storage  | None           |                                |
 | Remote Storage | 8 - 32 Disks    | 6400 - 80000 IOPS <br>144 - 1600 MBps   |

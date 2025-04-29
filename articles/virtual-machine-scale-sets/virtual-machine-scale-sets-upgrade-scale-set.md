@@ -5,14 +5,14 @@ author: mimckitt
 ms.author: mimckitt
 ms.topic: how-to
 ms.service: azure-virtual-machine-scale-sets
-ms.date: 6/14/2024
+ms.date: 04/18/2025
 ms.reviewer: ju-shim
-ms.custom: upgradepolicy, devx-track-azurecli, devx-track-azurepowershell
+ms.custom: upgradepolicy, devx-track-azurecli, devx-track-azurepowershell, ignite-2024
 ---
 # Modify a Virtual Machine Scale Set
 
 > [!NOTE]
-> Many of the steps listed in this document apply to Virtual Machine Scale Sets using Uniform Orchestration mode. We recommend using Flexible Orchestration for new workloads. For more information, see [Orchesration modes for Virtual Machine Scale Sets in Azure](virtual-machine-scale-sets-orchestration-modes.md).
+> Many of the steps listed in this document apply to Virtual Machine Scale Sets using Uniform Orchestration mode. We recommend using Flexible Orchestration for new workloads. For more information, see [Orchestration modes for Virtual Machine Scale Sets in Azure](virtual-machine-scale-sets-orchestration-modes.md).
 
 Throughout the lifecycle of your applications, you may need to modify or update your Virtual Machine Scale Set. These updates may include how to update the configuration of the scale set, or change the application configuration. This article describes how to modify an existing scale set with the REST APIs, Azure PowerShell, or Azure CLI.
 
@@ -23,7 +23,7 @@ A scale set has a "scale set model" that captures the *desired* state of the sca
 
 - REST API with [compute/virtualmachinescalesets/get](/rest/api/compute/virtualmachinescalesets/get) as follows:
 
-    ```rest
+    ```http
     GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachineScaleSets/myScaleSet?api-version={apiVersion}
     ```
 
@@ -67,7 +67,7 @@ A scale set also has a "scale set instance view" that captures the current *runt
 
 - REST API with [compute/virtualmachinescalesets/getinstanceview](/rest/api/compute/virtualmachinescalesets/getinstanceview) as follows:
 
-    ```rest
+    ```http
     GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachineScaleSets/myScaleSet/instanceView?api-version={apiVersion}
     ```
 
@@ -121,7 +121,7 @@ Similar to how a scale set has a model view, each VM instance in the scale set h
 
 - REST API with [compute/virtualmachinescalesetvms/get](/rest/api/compute/virtualmachinescalesetvms/get) as follows:
 
-    ```rest
+    ```http
     GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachineScaleSets/myScaleSet/virtualmachines/instanceId?api-version={apiVersion}
     ```
 
@@ -161,7 +161,7 @@ Similar to how a scale set has an instance view, each VM instance in the scale s
 
 - REST API with [compute/virtualmachinescalesetvms/getinstanceview](/rest/api/compute/virtualmachinescalesetvms/getinstanceview) as follows:
 
-    ```rest
+    ```http
     GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachineScaleSets/myScaleSet/virtualmachines/instanceId/instanceView?api-version={apiVersion}
     ```
 
@@ -238,7 +238,7 @@ To update a global scale set property, you must update the property in the scale
 
 - REST API with [compute/virtualmachinescalesets/createorupdate](/rest/api/compute/virtualmachinescalesets/createorupdate) as follows:
 
-    ```rest
+    ```http
     PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachineScaleSets/myScaleSet?api-version={apiVersion}
     ```
 
@@ -287,10 +287,10 @@ Some properties may be changed, with exceptions depending on the current value. 
 - subnet
 - imageReferenceSku
 - imageReferenceOffer
-- Availability Zones (Preview)
+- zones
 
 #### Example 1
-To update your scale set to use a different OS version, you need to set all the updated properties in a single call. In this example, we are changing from Unbuntu Server 20.04 to 22.04. 
+To update your scale set to use a different OS version, you need to set all the updated properties in a single call. In this example, we are changing from Ubuntu Server 20.04 to 22.04. 
 
 ```azurecli
 az vmss update \
@@ -323,10 +323,6 @@ Update-AzVmss -ResourceGroupName "myResourceGroup" -Name "myScaleSet" -VirtualMa
 Some properties may only be changed to certain values if the VMs in the scale set are deallocated. These properties include:
 
 - **SKU Name**- If the new VM SKU is not supported on the hardware the scale set is currently on, you need to deallocate the VMs in the scale set before you modify the SKU name. For more information, see [how to resize an Azure VM](../virtual-machines/resize-vm.md). 
-
-## VM-specific updates
-Certain modifications may be applied to specific VMs instead of the global scale set properties. Currently, the only VM-specific update that is supported is to attach/detach data disks to/from VMs in the scale set. This feature is in preview. For more information, see the [preview documentation](https://github.com/Azure/vm-scale-sets/tree/master/z_deprecated/preview/disk).
-
 
 ## Scenarios
 

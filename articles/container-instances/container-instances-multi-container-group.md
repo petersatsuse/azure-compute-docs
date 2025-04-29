@@ -18,14 +18,14 @@ ms.custom: mvc, devx-track-azurecli, devx-track-arm-template
 
 Azure Container Instances supports the deployment of multiple containers onto a single host using a [container group](container-instances-container-groups.md). A container group is useful when building an application sidecar for logging, monitoring, or any other configuration where a service needs a second attached process.
 
-In this tutorial, you follow steps to run a simple two-container sidecar configuration by deploying an Azure Resource Manager template using the Azure CLI. You learn how to:
+In this tutorial, you follow steps to run a two-container sidecar configuration by deploying an Azure Resource Manager template using the Azure CLI. You learn how to:
 
 > [!div class="checklist"]
 > * Configure a multi-container group template
 > * Deploy the container group
 > * View the logs of the containers
 
-A Resource Manager template can be readily adapted for scenarios when you need to deploy additional Azure service resources (for example, an Azure Files share or a virtual network) with the container group. 
+A Resource Manager template can be readily adapted for scenarios when you need to deploy more Azure service resources (for example, an Azure Files share or a virtual network) with the container group. 
 
 > [!NOTE]
 > Multi-container groups are currently restricted to Linux containers. 
@@ -217,7 +217,7 @@ Date: Thu, 02 Jul 2020 20:36:41 GMT
 Connection: keep-alive
 ```
 
-As you can see, the sidecar is periodically making an HTTP request to the main web application via the group's local network to ensure that it is running. This sidecar example could be expanded to trigger an alert if it received an HTTP response code other than `200 OK`.
+As you can see, the sidecar is periodically making an HTTP request to the main web application via the group's local network to ensure it runs. This sidecar example could be expanded to trigger an alert if it received an HTTP response code other than `200 OK`.
 
 ## Next steps
 
@@ -228,7 +228,7 @@ In this tutorial, you used an Azure Resource Manager template to deploy a multi-
 > * Deploy the container group
 > * View the logs of the containers
 
-For additional template samples, see [Azure Resource Manager templates for Azure Container Instances](container-instances-samples-rm.md).
+For more template samples, see [Azure Resource Manager templates for Azure Container Instances](container-instances-samples-rm.md).
 
 You can also specify a multi-container group using a [YAML file](container-instances-multi-container-yaml.md). Due to the YAML format's more concise nature, deployment with a YAML file is a good choice when your deployment includes only container instances.
 

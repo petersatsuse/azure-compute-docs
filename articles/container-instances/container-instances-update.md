@@ -6,7 +6,7 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 04/25/2024
+ms.date: 08/29/2024
 ---
 
 # Update containers in Azure Container Instances
@@ -80,7 +80,7 @@ Changes to these properties require container group deletion before redeployment
 * Network profile
 * Availability zone
 
-[!INCLUDE [network profile callout](./includes/network-profile/network-profile-callout.md)]
+[!INCLUDE [network profile callout](./includes/network-profile-callout.md)]
 
 When you delete a container group and recreate it, it's not "redeployed," but created new. All image layers are pulled fresh from the registry, not from layers cached by a previous deployment. The IP address of the container might also change due to being deployed to a different underlying host.
 

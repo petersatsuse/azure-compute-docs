@@ -3,8 +3,8 @@ title: Restrict managed disks from being imported or exported
 description: Restrict managed disks from being imported or exported
 author: roygara
 ms.service: azure-disk-storage
-ms.topic: conceptual
-ms.date: 08/01/2023
+ms.topic: how-to
+ms.date: 09/25/2024
 ms.author: rogarana
 ---
 

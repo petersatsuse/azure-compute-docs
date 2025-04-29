@@ -6,19 +6,19 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ms.custom: mvc
 ---
 
 # Retrieve container logs and events in Azure Container Instances
 
-When you have a misbehaving container in Azure Container Instances, start by viewing its logs with [az container logs][az-container-logs], and stream its standard out and standard error with [az container attach][az-container-attach]. You can also view logs and events for container instances in the Azure portal, or send log and event data for container groups to [Azure Monitor logs](container-instances-log-analytics.md).
+When you have a misbehaving container in Azure Container Instances, start by viewing its logs with [az container logs][az-container-logs] and streaming its standard out and standard error with [az container attach][az-container-attach]. You can also view logs and events for container instances in the Azure portal, or send log and event data for container groups to [Azure Monitor logs](container-instances-log-analytics.md).
 
 ## View logs
 
 To view logs from your application code within a container, you can use the [az container logs][az-container-logs] command.
 
-The following is log output from the example task-based container in [Set the command line in a container instance](container-instances-start-command.md#azure-cli-example), after having provided an invalid URL using a command-line override:
+The following sample output is log output from the example task-based container in [Set the command line in a container instance](container-instances-start-command.md#azure-cli-example), after being provided an invalid URL using a command-line override:
 
 ```azurecli
 az container logs --resource-group myResourceGroup --name mycontainer
@@ -47,9 +47,9 @@ urllib.error.HTTPError: HTTP Error 404: Not Found
 
 ## Attach output streams
 
-The [az container attach][az-container-attach] command provides diagnostic information during container startup. Once the container has started, it streams STDOUT and STDERR to your local console.
+The [az container attach][az-container-attach] command provides diagnostic information during container startup. Once the container starts, it streams STDOUT and STDERR to your local console.
 
-For example, here is output from the task-based container in [Set the command line in a container instance](container-instances-start-command.md#azure-cli-example), after having supplied a valid URL of a large text file to process:
+For example, here's output from the task-based container in [Set the command line in a container instance](container-instances-start-command.md#azure-cli-example), after being supplied a valid URL of a large text file to process:
 
 ```azurecli
 az container attach --resource-group myResourceGroup --name mycontainer

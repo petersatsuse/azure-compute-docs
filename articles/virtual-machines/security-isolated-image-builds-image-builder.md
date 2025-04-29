@@ -27,6 +27,9 @@ Isolated Image Builds enables defense-in-depth by limiting network access of you
 3. **Transparency:** AIB is built on HashiCorp [Packer](https://www.packer.io/). Isolated Image Builds executes Packer in the ACI in your subscription, which allows you to inspect the ACI resource and its containers. Similarly, having the entire network communication pipeline in your subscription allows you to inspect all the network resources, their settings, and their allowances.
 4. **Better viewing of live logs:** AIB writes customization logs to a storage account in the staging resource group in your subscription. Isolated Image Builds provides with another way to follow the same logs directly in the Azure portal, which can be done by navigating to AIB's container in the ACI resource.
 
+> [!NOTE]
+> To access the live logs during the image build or the customization and validation log files after the build is complete, please refer to the [troubleshooting guide](./linux/image-builder-troubleshoot.md#accessing-live-logs-during-image-build).
+
 ## Network topologies
 Isolated Image Builds deploys the ACI and the build VM both in the staging resource group in your subscription. For AIB to customize/validate your image, container instances running in the ACI need to have a network path to the build VM. Based on your custom networking needs and policies, you can configure AIB to use different network topologies for this purpose:
 ### Don't bring your own Build VM subnet

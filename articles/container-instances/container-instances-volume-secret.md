@@ -7,7 +7,7 @@ author: tomvcassidy
 ms.service: azure-container-instances
 ms.custom: devx-track-azurecli
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ---
 
 # Mount a secret volume in Azure Container Instances
@@ -15,7 +15,7 @@ ms.date: 06/17/2022
 Use a *secret* volume to supply sensitive information to the containers in a container group. The *secret* volume stores your secrets in files within the volume, accessible by the containers in the container group. By storing secrets in a *secret* volume, you can avoid adding sensitive data like SSH keys or database credentials to your application code.
 
 * Once deployed with secrets in a container group, a secret volume is *read-only*.
-* All secret volumes are backed by [tmpfs][tmpfs], a RAM-backed filesystem; their contents are never written to non-volatile storage.
+* [Tmpfs][tmpfs], a RAM-backed filesystem, backs all secret volumes; their contents are never written to nonvolatile storage.
 
 > [!NOTE]
 > *Secret* volumes are currently restricted to Linux containers. Learn how to pass secure environment variables for both Windows and Linux containers in [Set environment variables](container-instances-environment-variables.md). While we're working to bring all features to Windows containers, you can find current platform differences in the [overview](container-instances-overview.md#linux-and-windows-containers).
@@ -133,7 +133,7 @@ Learn how to mount other volume types in Azure Container Instances:
 
 ### Secure environment variables
 
-Another method for providing sensitive information to containers (including Windows containers) is through the use of [secure environment variables](container-instances-environment-variables.md#secure-values).
+Another method for providing sensitive information to containers (including Windows containers) is by using [secure environment variables](container-instances-environment-variables.md#secure-values).
 
 <!-- LINKS - External -->
 [tmpfs]: https://wikipedia.org/wiki/Tmpfs

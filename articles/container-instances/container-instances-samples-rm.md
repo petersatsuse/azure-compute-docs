@@ -7,7 +7,7 @@ ms.service: azure-container-instances
 ms.custom: devx-track-arm-template
 services: container-instances
 ms.topic: sample
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ---
 
 # Azure Resource Manager templates for Azure Container Instances
@@ -18,7 +18,7 @@ For deployment options, see the [Deployment](#deployment) section. If you'd like
 
 ## Sample templates
 
-[!INCLUDE [network profile callout](./includes/network-profile/network-profile-callout.md)]
+[!INCLUDE [network profile callout](./includes/network-profile-callout.md)]
 
 | Template | Description |
 |-|-|

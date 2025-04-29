@@ -1,8 +1,9 @@
 ---
 author: tomvcassidy
+services: container-instances
 ms.service: azure-container-instances
 ms.topic: include
-ms.date: 06/14/2022
+ms.date: 08/29/2024
 ms.author: tomcassidy
 ---
 ### Maximum resources per SKU

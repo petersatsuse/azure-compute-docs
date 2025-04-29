@@ -6,7 +6,7 @@ author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
 ms.topic: conceptual
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ms.custom: mvc
 
 ---
@@ -35,7 +35,7 @@ This example container group:
 
 ## Deployment
 
-Here are two common ways to deploy a multi-container group: use a [Resource Manager template][resource-manager template] or a [YAML file][yaml-file]. A Resource Manager template is recommended when you need to deploy additional Azure service resources (for example, an [Azure Files share][azure-files]) when you deploy the container instances. Due to the YAML format's more concise nature, a YAML file is recommended when your deployment includes only container instances. For details on properties you can set, see the [Resource Manager template reference](/azure/templates/microsoft.containerinstance/containergroups) or [YAML reference](container-instances-reference-yaml.md) documentation.
+Here are two common ways to deploy a multi-container group: use a [Resource Manager template][resource-manager template] or a [YAML file][yaml-file]. A Resource Manager template is recommended when you need to deploy other Azure service resources (for example, an [Azure Files share][azure-files]) when you deploy the container instances. Due to the YAML format's more concise nature, a YAML file is recommended when your deployment includes only container instances. For details on properties you can set, see the [Resource Manager template reference](/azure/templates/microsoft.containerinstance/containergroups) or [YAML reference](container-instances-reference-yaml.md) documentation.
 
 To preserve a container group's configuration, you can export the configuration to a YAML file by using the Azure CLI command [az container export][az-container-export]. Export allows you to store your container group configurations in version control for "configuration as code." Or, use the exported file as a starting point when developing a new configuration in YAML.
 
@@ -43,7 +43,7 @@ To preserve a container group's configuration, you can export the configuration 
 
 ## Resource allocation
 
-Azure Container Instances allocates resources such as CPUs, memory, and optionally [GPUs][gpus] (preview) to a multi-container group by adding the [resource requests][resource-requests] of the instances in the group. Taking CPU resources as an example, if you create a container group with two container instances, each requesting 1 CPU, then the container group is allocated 2 CPUs.
+Azure Container Instances allocates resources such as CPUs, memory, and optionally [GPUs][gpus] (preview) to a multi-container group by adding the [resource requests][resource-requests] of the instances in the group. Taking CPU resources as an example, if you create a container group with two container instances, each requesting one CPU, then the container group is allocated 2 CPUs.
 
 ### Resource usage by container instances
 
@@ -53,7 +53,7 @@ Each container instance in a group is allocated the resources specified in its r
 
 * If you specify a limit for a container instance, the instance's maximum usage could be greater than the request, up to the limit you set. Correspondingly, resource usage by other container instances in the group could decrease. The maximum resource limit you can set for a container instance is the total resources allocated to the group.
     
-For example, in a group with two container instances each requesting 1 CPU, one of your containers might run a workload that requires more CPUs to run than the other.
+For example, in a group with two container instances each requesting one CPU, one of your containers might run a workload that requires more CPUs to run than the other.
 
 In this scenario, you could set a resource limit of up to 2 CPUs for the container instance. This configuration allows the container instance to use up to 2 CPUs if available.
 
@@ -62,7 +62,7 @@ In this scenario, you could set a resource limit of up to 2 CPUs for the contain
 
 ### Minimum and maximum allocation
 
-* Allocate a **minimum** of 1 CPU and 1 GB of memory to a container group. Individual container instances within a group can be provisioned with less than 1 CPU and 1 GB of memory. 
+* Allocate a **minimum** of 1 CPU and 1 GB of memory to a container group. Individual container instances within a group can be provisioned with less than one CPU and 1 GB of memory. 
 
 * For the **maximum** resources in a container group, see the [resource availability][region-availability] for Azure Container Instances in the deployment region.
 
@@ -86,7 +86,7 @@ You can map those volumes into specific paths within the individual containers i
 
 ## Common scenarios
 
-Multi-container groups are useful in cases where you want to divide a single functional task into a small number of container images. These images can then be delivered by different teams and have separate resource requirements.
+Multi-container groups are useful in cases where you want to divide a single functional task into a few container images. These images can have separate resource requirements, and different teams can deliver them.
 
 Example usage could include:
 

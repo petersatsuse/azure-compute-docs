@@ -6,7 +6,7 @@ ms.author: tomcassidy
 author: tomvcassidy
 ms.service: azure-container-instances
 services: container-instances
-ms.date: 06/17/2022
+ms.date: 08/29/2024
 ms.custom: mvc
 ---
 
@@ -116,13 +116,13 @@ docker run -d -p 8080:80 aci-tutorial-app
 a2e3e4435db58ab0c664ce521854c2e1a1bda88c9cf2fcff46aedf48df86cccf
 ```
 
-Now, navigate to `http://localhost:8080` in your browser to confirm that the container is running. You should see a web page similar to the following:
+Now, navigate to `http://localhost:8080` in your browser to confirm that the container is running. You should see a web page similar to the following screenshot:
 
 ![Running the app locally in the browser][aci-tutorial-app-local]
 
 ## Next steps
 
-In this tutorial, you created a container image that can be deployed in Azure Container Instances, and verified that it runs locally. So far, you've done the following:
+In this tutorial, you created a container image that can be deployed in Azure Container Instances, and verified that it runs locally. So far, you completed the following steps:
 
 > [!div class="checklist"]
 > * Cloned the application source from GitHub

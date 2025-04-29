@@ -7,7 +7,7 @@ ms.subservice: security
 ms.collection: windows
 ms.topic: conceptual
 ms.author: mbaldwin
-ms.date: 08/21/2024
+ms.date: 03/03/2025
 ---
 
 # Azure Disk Encryption for Windows VMs
@@ -16,7 +16,7 @@ ms.date: 08/21/2024
 
 Azure Disk Encryption helps protect and safeguard your data to meet your organizational security and compliance commitments. It uses the [BitLocker](/windows/security/operating-system-security/data-protection/bitlocker/) feature of Windows to provide volume encryption for the OS and data disks of Azure virtual machines (VMs), and is integrated with [Azure Key Vault](/azure/key-vault/) to help you control and manage the disk encryption keys and secrets.
 
-Azure Disk Encryption is zone resilient, the same way as Virtual Machines. For details, see [Azure Services that support Availability Zones](/azure/availability-zones/az-region).
+Azure Disk Encryption is zone resilient, the same way as Virtual Machines. For details, see [Azure Services that support Availability Zones](/azure/reliability/availability-zones-region-support).
 
 If you use [Microsoft Defender for Cloud](/azure/security-center/), you're alerted if you have VMs that aren't encrypted. The alerts show as High Severity and the recommendation is to encrypt these VMs.
 
@@ -35,7 +35,7 @@ You can learn the fundamentals of Azure Disk Encryption for Windows in just a fe
 
 Windows VMs are available in a [range of sizes](../sizes-general.md). Azure Disk Encryption is supported on Generation 1 and Generation 2 VMs. Azure Disk Encryption is also available for VMs with premium storage.
 
-Azure Disk Encryption is not available on [Basic, A-series VMs](https://azure.microsoft.com/pricing/details/virtual-machines/series/), or on virtual machines with a less than 2 GB of memory.  For more exceptions, see [Azure Disk Encryption: Restrictions](disk-encryption-windows.md#restrictions).
+Azure Disk Encryption is not available on [Basic, A-series VMs, v6 series VMs](https://azure.microsoft.com/pricing/details/virtual-machines/series/), or on virtual machines with a less than 2 GB of memory.  For more exceptions, see [Azure Disk Encryption: Restrictions](disk-encryption-windows.md#restrictions).
 
 ### Supported operating systems
 
