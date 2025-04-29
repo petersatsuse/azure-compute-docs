@@ -45,16 +45,16 @@ Azure Virtual machine Scale sets supports enabling Trusted launch on existing [U
 
 Following steps details how to enable Trusted launch on existing uniform scale set using Azure portal.
 
-1. (Optional) **Scale set Size**: Navigate to `Size` under `Availability + scale` -> Modify the Scale set size if current size family isn't [supported with Trusted launch](trusted-launch.md#virtual-machines-sizes) security configuration.
+1. (Optional) **Scale set Size**: Navigate to `Size` under `Availability + scale` -> Modify the Scale set size if current size family isn't [supported with Trusted launch](trusted-launch.md#virtual-machines-sizes) security configuration -> Click **Apply**.
     :::image type="content" source="./media/trusted-launch/01-vmss-portal-size-change.png" alt-text="Screenshot of the scale set size change.":::
 
 2. **OS Image**: Navigate to `Operating system` under `Settings` -> Click on `Change image reference`.
     :::image type="content" source="./media/trusted-launch/02-vmss-portal-os-change.png" alt-text="Screenshot of the scale set OS image change.":::
 
-3. Update the OS Image reference to Gen2-Trusted launch supported OS image. Make sure the source Gen2 image has `TrustedLaunchSupported` security type if using Azure Compute Gallery OS image.
+3. Update the OS Image reference to Gen2-Trusted launch supported OS image. Make sure the source Gen2 image has `TrustedLaunchSupported` security type if using Azure Compute Gallery OS image  -> Click **Apply**.
     :::image type="content" source="./media/trusted-launch/02-vmss-portal-os-change-01.png" alt-text="Screenshot of the OS image change options.":::
 
-4. **Security type**: Click on **Standard** `Security type` on `Overview` page of scale set OR navigate to `Configuration` under `Settings`. 
+4. **Security type**: Click on **Standard** `Security type` on `Overview` page of scale set OR navigate to `Configuration` under `Settings`.
 
     :::image type="content" source="./media/trusted-launch/03-vmss-portal-click-security-type.png" alt-text="Screenshot of the overview page.":::
 
@@ -186,7 +186,7 @@ Make the following modifications to enable Trusted launch using existing ARM tem
 
 7. Verify that the deployment is successful. Check for the security type and UEFI settings of the Scale set uniform using Azure portal. Check the Security type section in the Overview page.
 
-    :::image type="content" source="./media/trusted-launch/05-validate-trustedlaunch-vmss.png" alt-text="Screenshot of the Trusted launch properties of the Scale set.":::
+    :::image type="content" source="./media/trusted-launch/05-vmss-portal-validate-security-type.png" alt-text="Screenshot of the validation on overview page.":::
 
 8. Update the VM instances manually if Scale set uniform [upgrade mode](../virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy.md) is set to `Manual`.
 
@@ -326,10 +326,10 @@ To roll-back changes from Trusted launch to previous known good configuration, y
 
 ### [Portal](#tab/portal)
 
-1. **OS Image**: Navigate to `Operating system` under `Settings`. Click on `Change image reference.
+1. **OS Image**: Navigate to `Operating system` under `Settings`. Click on `Change image reference`.
     :::image type="content" source="./media/trusted-launch/02-vmss-portal-os-change.png" alt-text="Screenshot of the scale set OS image change.":::
 
-2. Update the OS Image reference to last known good configuration.
+2. Update the OS Image reference to last known good configuration  -> Click **Apply**.
     :::image type="content" source="./media/trusted-launch/02-vmss-portal-os-change-01.png" alt-text="Screenshot of the OS image change options.":::
 
 3. **Security type**: Navigate to `Configuration` page under `Settings` -> Update the security type drop-down on `Configuration` page from `Trusted launch` to `Standard` for disabling Trusted Launch security configuration. Click `Yes` to confirm changes.
