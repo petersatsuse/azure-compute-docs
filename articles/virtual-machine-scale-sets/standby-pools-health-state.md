@@ -25,7 +25,7 @@ The health state of a standby pool is determined by analyzing various metrics, s
 
 You can use the runtime view API to retrieve the health state of your standby pool. Below are examples of how to query the API using different tools.
 
-### [CLI](#tab/#cli)
+### [CLI](#tab/cli)
 
 Run the following Azure CLI command to get the health state of your standby pool:
 
@@ -104,7 +104,7 @@ The response will include details such as instance counts by state, provisioning
   }
 }
 ```
-### [PowerShell](#tab/#powershell)
+### [PowerShell](#tab/powershell)
 Use the following PowerShell command to retrieve the health state:
 
 ```powershell
@@ -114,7 +114,7 @@ Get-AzStandbyVMPoolStatus -ResourceGroupName myResourceGroup -Name myStandbyPool
 The output will include similar details about the health state of the pool.
 
 
-### [REST API](#tab/#rest)
+### [REST API](#tab/rest)
 Make a GET request to the runtime view API endpoint:
 
 ```rest
