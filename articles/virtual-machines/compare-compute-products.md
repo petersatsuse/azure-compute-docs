@@ -8,7 +8,7 @@ ms.date: 04/29/2025
 ms.author: mattmcinnes
 ---
 
-# Compare Azure VM-based compute products
+# Compare compute products (VM-based)
 
 Microsoft Azure offers a variety of virtual machine based compute products designed to meet different workload requirements. Standard Virtual Machines (VMs), Virtual Machine Scale Sets (VMSS), and Compute Fleet are some of the compute orchestration products that provide flexibility and scalability for various applications.
 
@@ -30,32 +30,40 @@ Microsoft Azure offers a variety of virtual machine based compute products desig
 
 #### [Cost](#tab/prodcompcost)
 
-| | Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
-| --- | --- | --- | --- |
-| **Cost**<br><br>For specific pricing numbers, check out the [Pricing calculator](https://azure.microsoft.com/pricing/calculator/) | - Billed as an individual VM instance <br>- Cost-effective for consistent load and traffic | - VMSS automatically uses less capacity when load/traffic is low, and optimizes cost while accommodating the dips and spikes of cyclical, intermittent, and growing workloads <br> - Use 100% Spot VMs, or mix with standard ones, to cut cost | - Combine discounts (like reserved instances and savings plans) with Spot VM savings, plus rank the top VM sizes you want Fleet to prioritize <br>- Your fleet will maintain capacity with discounted Spot VMs to optimize cost
+| Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
+| --- | --- | --- |
+| - Billed as an individual VM instance <br>- Cost-effective for consistent load and traffic | - VMSS automatically uses less capacity when load/traffic is low, and optimizes cost while accommodating the dips and spikes of cyclical, intermittent, and growing workloads <br> - Use 100% Spot VMs, or mix with standard ones, to cut cost | - Combine discounts (like reserved instances and savings plans) with Spot VM savings, plus rank the top VM sizes you want Fleet to prioritize <br>- Your fleet will maintain capacity with discounted Spot VMs to optimize cost
 
 #### [Scaling](#tab/prodcompscale)
 
-| | Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
-| --- | --- | --- | --- |
-| **Scaling** | Vertical Scaling: <br>- Change the VM's size manually <br><br>Horizontal Scaling: <br>- None | Vertical Scaling: <br>- Change any VM's size manually <br><br>Horizontal Scaling: <br>- Manually add/remove instances <br>- Autoscale based on demand, schedule, or AI-predicted usage patterns| Vertical Scaling: <br>- Change any VM's size manually <br><br>Horizontal Scaling:<br>- Manually managed through modifying the target capacity |
+| Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
+| --- | --- | --- |
+| Vertical Scaling: <br>- Change the VM's size manually <br><br>Horizontal Scaling: <br>- None | Vertical Scaling: <br>- Change any VM's size manually <br><br>Horizontal Scaling: <br>- Manually add/remove instances <br>- Autoscale based on demand, schedule, or AI-predicted usage patterns| Vertical Scaling: <br>- Change any VM's size manually <br><br>Horizontal Scaling:<br>- Manually managed through modifying the target capacity |
 
 #### [Instances](#tab/prodcompinstances)
 
-| | Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
-| --- | --- | --- | --- |
-| **Instances** | Single instances deployed individually | 2 to 2,000 instances | Up to 10,000 instances |
+| Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
+| --- | --- | --- |
+Single instances deployed individually | 2 to 2,000 instances | Up to 10,000 instances |
 
 #### [Management](#tab/prodcompmanagement)
 
-| | Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
-| --- | --- | --- | --- |
-| **Management** | Deploy and manage each VM individually | - Deploy and manage VMs as a group, or opt to manage them individually<br>- Orchestrate batch operations (start, stop, restart) and updates (configuration, app, security, and patching) for safer rollouts<br>- Attach and manage one universal add-on for services like data disk and public IP at the VMSS level | - Deploy and manage up to 10,000 VMs as an automated fleet-managed group<br>- Enhance the flexibility, efficiency and control of your VMs, attaching one universal add-on for services like data disk and Public IPs |
+| Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
+| --- | --- | --- |
+Deploy and manage each VM individually | - Deploy and manage VMs as a group, or opt to manage them individually<br>- Orchestrate batch operations (start, stop, restart) and updates (configuration, app, security, and patching) for safer rollouts<br>- Attach and manage one universal add-on for services like data disk and public IP at the VMSS level | - Deploy and manage up to 10,000 VMs as an automated fleet-managed group<br>- Enhance the flexibility, efficiency and control of your VMs, attaching one universal add-on for services like data disk and Public IPs |
 
 #### [Availability](#tab/prodcompavailability)
 
-| | Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
-| --- | --- | --- | --- |
-| **Availability + Zonal migration** | Manually deploy each standalone VM into a single availability zone. To boost uptime, place one or more VMs into each eligible availability zone | - Automatically deploy and spread VMs into one, or across multiple, availability zones (zonal or zone-spanning) to boost resilience and uptime <br>- Remove VM instances from the VMSS anytime | Fleet uses availability zones to automatically deploy and distribute VMs across multiple zones. Choose specific zones, all eligible zones, or all eligible zones within a given region.
+| Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
+| --- | --- | --- |
+ Manually deploy each standalone VM into a single availability zone. To boost uptime, place one or more VMs into each eligible availability zone | - Automatically deploy and spread VMs into one, or across multiple, availability zones (zonal or zone-spanning) to boost resilience and uptime <br>- Remove VM instances from the VMSS anytime | Fleet uses availability zones to automatically deploy and distribute VMs across multiple zones. Choose specific zones, all eligible zones, or all eligible zones within a given region.
 
 ---
+
+## Next steps
+
+Take advantage of the latest performance and features available for your workloads by [changing the size of a virtual machine](../../../virtual-machines/sizes/resize-vm.md).
+
+Utilize Microsoft's in-house designed ARM processors with [Azure Cobalt VMs](../../../virtual-machines/sizes/cobalt-overview.md).
+
+Learn how to [Monitor Azure virtual machines](../../../virtual-machines/monitor-vm.md).
