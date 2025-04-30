@@ -20,7 +20,7 @@ introduction: |
 
   To use Private Link to export and import managed disks, first you create a disk access resource and link it to a virtual network in the same subscription by creating a private endpoint. Then, associate a disk or a snapshot with a disk access instance.
 
-  Configuring a Private Link using this article only affects the import and export of managed disks. It does not affect the access to the managed disks from virtual machines or snapshots. It doesn't otherwise affect the networking configuration or behavior of an attached virtual machine.
+  Configuring a Private Link using this article only affects the import and export of managed disks. It doesn't affect the ability of VMs attached to the disk to access the disk.
 
 procedureSection:
   - title: |
