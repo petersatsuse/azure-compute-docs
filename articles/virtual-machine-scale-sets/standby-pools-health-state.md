@@ -31,9 +31,7 @@ Run the following Azure CLI command to get the health state of your standby pool
 
 ```azurecli
 az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
-```
-**Output**
-```azurecli
+
 {
   "id": "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/myStandbyPool/runtimeViews/latest",
     {
@@ -74,54 +72,134 @@ az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
    }
   "name": "latest",
   "resourceGroup": "myResourceGroup",
-
-  "type": "Microsoft.StandbyPool/standbyVirtualMachinePools/runtimeViews"
-}
-
-```
-
-The response will include details such as instance counts by state, provisioning state, and overall health status:
-
-```
-{
-  "id": "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/myStandbyPool/runtimeViews/latest",
-  "properties": {
-    "instanceCountsByState": [
-      {
-        "state": "Running",
-        "count": 5
-      },
-      {
-        "state": "Deallocated",
-        "count": 10
-      }
-    ],
-    "provisioningState": "Succeeded",
+  "provisioningState": "Succeeded",
     "status": {
       "code": "HealthState/healthy",
       "message": "The pool is healthy."
-    }
-  }
+  "type": "Microsoft.StandbyPool/standbyVirtualMachinePools/runtimeViews"
 }
+}
+
 ```
+
 ### [PowerShell](#tab/powershell)
 Use the following PowerShell command to retrieve the health state:
 
 ```powershell
 Get-AzStandbyVMPoolStatus -ResourceGroupName myResourceGroup -Name myStandbyPool
+
+/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/mmyStandbyPool/runtimeViews/latest
+InstanceCountSummary: {{
+
+        "instanceCountsByState": [
+        {
+            "state": "Creating",
+            "count": 0
+        },
+        {
+            "state": "Starting",
+            "count": 5
+        },
+        {
+            "state": "Running",
+            "count": 0
+        },
+        {
+            "state": "Deallocating",
+            "count": 10
+        },
+        {
+            "state": "Deallocated",
+            "count": 5
+        },
+         {
+            "state": "Hibernating",
+            "count": 0
+        },
+        {
+            "state": "Hibernated",
+            "count": 0
+        },
+        {
+            "state": "Deleting",
+            "count": 0
+        }
+      ],
+    }
+  }
+Name                         : latest
+ProvisioningState            : Succeeded
+Status                       : HealthState/healthy
+Message                      : The pool is healthy
+ResourceGroupName            : myResourceGroup
+Type                         : Microsoft.StandbyPool/standbyVirtualMachinePools/runtimeViews
+
 ```
 
-The output will include similar details about the health state of the pool.
 
 
 ### [REST API](#tab/rest)
-Make a GET request to the runtime view API endpoint:
-
 ```rest
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyPoolName}/runtimeViews/latest?api-version=2025-03-01
-```
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyVirtualMachinePoolName}/runtimeViews/{runtimeView}?api-version=2025-03-01
 
-The response will include detailed health state information, such as instance counts, provisioning state, and health status.
+{
+  "properties": {
+    "instanceCountSummary": [
+      {
+        "instanceCountsByState": [
+          {
+            "state": "creating",
+            "count": 5
+          },
+          {
+            "state": "running",
+            "count": 0
+          },
+          {
+            "state": "deallocating",
+            "count": 10
+          },
+          {
+            "state": "deallocated",
+            "count": 5
+          },
+          {
+            "state": "starting",
+            "count": 0
+          },
+         {
+            "state": "Hibernating",
+            "count": 0
+        },
+        {
+            "state": "Hibernated",
+            "count": 0
+        },
+          {
+            "state": "deleting",
+            "count": 0
+          }
+        ]
+      }
+    ]
+  },
+  "provisioningState": "Succeeded",
+    "status": {
+      "code": "HealthState/healthy",
+      "message": "The pool is healthy."
+  },
+  "id": "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/pool/runtimeViews/latest",
+  "name": "myStandbyPool",
+  "type": "Microsoft.StandbyPool/standbyVirtualMachinePools/runtimeViews",
+  "systemData": {
+    "createdBy": "pooluser@microsoft.com",
+    "createdByType": "User",
+    "createdAt": "2024-02-14T23:31:59.679Z",
+    "lastModifiedBy": "pooluser@microsoft.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2024-02-14T23:31:59.679Z"
+  }
+```
 
 ---
 
