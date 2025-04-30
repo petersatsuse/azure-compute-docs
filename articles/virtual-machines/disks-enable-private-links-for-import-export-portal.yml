@@ -5,7 +5,7 @@ metadata:
   description: Enable Private Link for your managed disks with Azure portal. This allows you to securely export and import disks within your virtual network.
   author: roygara
   ms.author: rogarana
-  ms.date: 03/31/2023
+  ms.date: 04/30/2025
   ms.service: azure-disk-storage
   ms.topic: how-to
   ms.custom:
@@ -16,9 +16,11 @@ title: |
 introduction: |
   **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Windows VMs :heavy_check_mark: Flexible scale sets :heavy_check_mark: Uniform scale sets
 
-  You can use [private endpoints](/azure/private-link/private-endpoint-overview) to restrict the export and import of managed disks and more securely access data over a [private link](/azure/private-link/private-link-overview) from clients on your Azure virtual network. The private endpoint uses an IP address from the virtual network address space for your managed disks. Network traffic between clients on their virtual network and managed disks only traverses over the virtual network and a private link on the Microsoft backbone network, eliminating exposure from the public internet.
+  Use [private endpoints](/azure/private-link/private-endpoint-overview) to restrict the export and import of managed disks and more securely access data over a [private link](/azure/private-link/private-link-overview) from clients on your Azure virtual network. The private endpoint uses an IP address from the virtual network address space for your managed disks. Network traffic between clients on their virtual network and managed disks only traverses over the virtual network and a private link on the Microsoft backbone network, eliminating exposure from the public internet.
 
   To use Private Link to export and import managed disks, first you create a disk access resource and link it to a virtual network in the same subscription by creating a private endpoint. Then, associate a disk or a snapshot with a disk access instance.
+
+  Configuring a Private Link using this article only affects the import and export of managed disks. It does not affect the access to the managed disks from virtual machines or snapshots. It doesn't otherwise affect the networking configuration or behavior of an attached virtual machine.
 
 procedureSection:
   - title: |
