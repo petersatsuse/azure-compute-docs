@@ -1336,6 +1336,8 @@
       items:
       - name: Chef
         href: ./extensions/chef.md
+      - name: Qualys
+        href: ./extensions/qualys.md
       - name: Salt Minion
         href: ./extensions/salt-minion.md
       - name: Stackify Retrace
