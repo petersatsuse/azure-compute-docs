@@ -19,7 +19,7 @@ Azure offers Trusted Launch as a seamless way to improve the security of [Genera
 
 > [!IMPORTANT]
 >
-> - Trusted Launch is selected as the default state for newly created Azure VM. If your new VM requires features that aren't supported with Trusted launch, see the [Trusted Launch FAQs](trusted-launch-faq.md).
+> - Trusted Launch is w as the default state for newly created Azure VM. See the [Trusted Launch FAQs](trusted-launch-faq.md) if your new VM requires features that [aren't supported with Trusted launch](trusted-launch.md#unsupported-features).
 > - [Existing VM](overview.md) can have Trusted Launch enabled after being created. For more information, see [Enable Trusted Launch on existing VMs](trusted-launch-existing-vm.md).
 > - Existing [virtual machine scale set](../virtual-machine-scale-sets/overview.md) can have Trusted Launch enabled after being created. For more information, see [Enable Trusted Launch on existing scale set](trusted-launch-existing-vmss.md).
 
@@ -146,11 +146,9 @@ TLaD in REST API is a fast and zero-touch means of improving the security postur
 
 Register preview feature `TrustedLaunchByDefaultPreview` under `Microsoft.Compute` namespace on virtual machine  subscription. For more information, see [Set up preview features in Azure subscription](/azure/azure-resource-manager/management/preview-features)
 
-> [!NOTE]
->
-> To simplify the preview onboarding experience to Trusted Launch as default, we require your subscription to be registered. However, once Trusted Launch as default in REST API becomes generally available, subscription registration isn't required. You must update the API version for just the VM or Virtual Machine Scale Sets creation blocks in your deployment script.
-
 To create a new Gen2 VM or scale set with Trusted launch default, execute your existing deployment script as is through Azure SDK, Terraform, or another method that isn't Azure portal, CLI, or PowerShell. The new VM or scale set created in the registered subscription results in a Trusted Launch VM or Virtual Machine Scale Set.
+
+### Disable TLaD preview
 
 To disable the TLaD preview, unregister the preview feature `TrustedLaunchByDefaultPreview` under `Microsoft.Compute` namespace on virtual machine  subscription. For more information, see [Unregister preview feature](/azure/azure-resource-manager/management/preview-features#unregister-preview-feature)
 
