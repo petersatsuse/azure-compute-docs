@@ -2,7 +2,6 @@
 title: AMD GPU Driver Extension - Azure Linux VMs
 description: Microsoft Azure extension for installing AMD GPU drivers on N-series compute VMs running Linux.
 services: virtual-machines
-manager: vikancha
 ms.service: azure-virtual-machines
 ms.subservice: hpc
 ms.collection: linux
@@ -10,34 +9,28 @@ ms.topic: concept-article
 ms.tgt_pltfrm: vm-linux
 ms.custom: linux-related-content
 ms.date: 04/25/2025
-ms.author: v-nmagatala
+ms.author: padmalathas
 author: magatala-MSFT
 ---
 # AMD GPU Driver Extension for Linux
 
 This extension installs AMD GPU drivers on Linux N-series virtual machines (VMs). Depending on the VM family. When you install AMD drivers by using this extension, you're accepting and agreeing to the terms of the [AMD End-User License Agreement](https://www.amd.com/en/legal/eula/amd-software-eula.html). During the installation process, the VM might reboot to complete the driver setup.
 
-Instructions on manual installation of the drivers and the current supported versions are available. An extension is also available to install AMD GPU drivers on [Linux N-series VMs](../virtual-machines/linux/azure-n-series-amd-gpu-driver-linux-installation-guide.md).
+Instructions on manual installation of the drivers and the current supported versions are available. An extension is also available to install AMD GPU drivers on [Linux N-series VMs](../linux/azure-n-series-amd-gpu-driver-linux-installation-guide).
 
 > [!NOTE]
 > With Secure Boot enabled, all OS boot components (boot loader, kernel, kernel drivers) must be signed by trusted publishers (key trusted by the system). Secure Boot is not supported using Windows or Linux extensions. For more information on manually installing GPU drivers with Secure Boot enabled, see [Azure N-series GPU driver setup for Linux](../articles/virtual-machines/linux/azure-n-series-amd-gpu-driver-linux-installation-guide.md).
 >
-> The GPU driver extensions do not automatically update the driver after the extension is installed. If you need to move to a newer driver version then either manually download and install the driver or remove and add the extension again.
+> The GPU driver extensions do not automatically update the driver after the extension is installed. If you need to move to a newer driver version then you need to uninstall the extension and reinstall it or install the driver manually.
 >
 
 ## Prerequisites
 
 ### Operating system
 
-This extension supports the following OS distros, depending on driver support for the specific OS version:
-
-| Distribution | Version |
-|---|---|
-| Linux: Ubuntu | 20.04 LTS |
-| Linux: Red Hat Enterprise Linux | 7.9 |
-
-> [!IMPORTANT]
-> This document references a release version of Linux that is nearing or at, End of Life (EOL). Please consider updating to a more current version.
+Extension only Supports Ubuntu 22.04 and Ubuntu 24.04, Please add a note here saying for any other Linux Distro.
+>[!Note]
+For installation instructions on other Linux distributions, please visit https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.4.0/install/quick-start.html
 
 ### Internet connectivity
 
@@ -59,7 +52,7 @@ The following JSON shows the schema for the extension:
   "properties": {
     "publisher": "Microsoft.HpcCompute",
     "type": "AmdGpuDriverLinux",
-    "typeHandlerVersion": "1.6",
+    "typeHandlerVersion": "1.0",
     "autoUpgradeMinorVersion": true,
     "settings": {
     }
@@ -82,7 +75,7 @@ All settings are optional. The default behavior is to not update the kernel if n
 
 | Name | Description | Default value | Valid values | Data type |
 | ---- | ---- | ---- | ---- | ---- |
-| driverVersion | | latest | [List]() of supported driver versions | string |
+| driverVersion | | latest | [List]( https://github.com/Azure/azhpc-extensions/blob/master/AmdGPU/AMD-GPU-Linux-Resources.json) of supported driver versions | string |
 
 ## Deployment
 
@@ -177,7 +170,7 @@ az vm extension set \
   --version 1.0 \
   --settings '{ \
     "updateOS": true, \
-    "driverVersion": "10.0.130" \
+    "driverVersion": "6.3.3" \
   }'
 ```
 
@@ -207,8 +200,9 @@ Extension execution output is logged to the following file. Refer to this file t
 | :---: | --- | --- |
 | 0 | Operation successful |
 | 1 | Incorrect usage of extension | Check the execution output log. |
+| 2|Python not found | Check the execution output log|
 | 10 | Linux Integration Services for Hyper-V and Azure not available or installed | Check the output of lspci. |
-| 11 | AMD GPU not found on this VM size | Use a [supported VM size and OS](). |
+| 11 | AMD GPU not found on this VM size | Use a [supported VM size and OS.](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/azure-n-series-amd-gpu-driver-linux-installation-guide) |
 | 12 | Image offer not supported |
 | 13 | VM size not supported | Use an N-series VM to deploy. |
 | 14 | Operation unsuccessful | Check the execution output log. |
