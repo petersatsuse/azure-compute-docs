@@ -23,7 +23,7 @@ Azure Virtual machine Scale sets supports enabling Trusted launch on existing [U
 
 - Enabling Trusted launch on existing [virtual machine Scale sets with data disks attached](../virtual-machine-scale-sets/virtual-machine-scale-sets-attached-disks.md) requires upgrade mode set to [Rolling upgrade with max surge](../virtual-machine-scale-sets/virtual-machine-scale-sets-maxsurge.md)
   - To validate if scale set is configured with data disk, navigate to scale set -> **Disks** under **Settings** menu -> check under heading **Data disks**
-    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-data-disks.png" alt-text="Screenshot of the scale set with data disks.":::
+    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-data-disks.png" alt-text="Screenshot of the scale set with data disks." lightbox="./media/trusted-launch/virtual-machine-scale-sets-data-disks.png":::
 
 - Enabling Trusted launch on existing [virtual machine Scale sets Flex](../virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes.md) is currently not supported.
 - Enabling Trusted launch on existing [Service fabric clusters](../service-fabric/service-fabric-overview.md) and [Service fabric managed clusters](../service-fabric/overview-managed-cluster.md) is currently not supported.
@@ -46,17 +46,17 @@ Azure Virtual machine Scale sets supports enabling Trusted launch on existing [U
 Following steps details how to enable Trusted launch on existing uniform scale set using Azure portal.
 
 1. (Optional) **Scale set Size**: Navigate to `Size` under `Availability + scale` -> Modify the Scale set size if current size family isn't [supported with Trusted launch](trusted-launch.md#virtual-machines-sizes) security configuration -> Click **Apply**.
-    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-size-change.png" alt-text="Screenshot of the scale set size change.":::
+    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-size-change.png" alt-text="Screenshot of the scale set size change." lightbox="./media/trusted-launch/virtual-machine-scale-sets-portal-size-change.png":::
 
 2. **OS Image**: Navigate to `Operating system` under `Settings` -> Click on `Change image reference`.
-    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-os-change.png" alt-text="Screenshot of the scale set OS image change.":::
+    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-os-change.png" alt-text="Screenshot of the scale set OS image change." lightbox="./media/trusted-launch/virtual-machine-scale-sets-portal-os-change.png":::
 
 3. Update the OS Image reference to Gen2-Trusted launch supported OS image. Make sure the source Gen2 image has `TrustedLaunchSupported` security type if using Azure Compute Gallery OS image  -> Click **Apply**.
-    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-os-change-01.png" alt-text="Screenshot of the OS image change options.":::
+    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-os-change-01.png" alt-text="Screenshot of the OS image change options." lightbox="./media/trusted-launch/virtual-machine-scale-sets-portal-os-change-01.png":::
 
 4. **Security type**: Click on **Standard** `Security type` on `Overview` page of scale set OR navigate to `Configuration` under `Settings`.
 
-    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-click-security-type.png" alt-text="Screenshot of the overview page.":::
+    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-click-security-type.png" alt-text="Screenshot of the overview page." lightbox="./media/trusted-launch/virtual-machine-scale-sets-portal-click-security-type.png":::
 
 5. Update the security type drop-down on `Configuration` page from `Standard` to `Trusted launch` with `Enable secure boot` and `Enable vTPM` checked to enable Trusted Launch security configuration. Click `Yes` to confirm changes.
 
@@ -65,15 +65,15 @@ Following steps details how to enable Trusted launch on existing uniform scale s
     > - **vTPM** is enabled by default.
     > - **Secure Boot** should be enabled (not enabled by default) if you aren't using custom unsigned kernel or drivers. Secure Boot preserves boot integrity and enables foundational security for VM.
 
-    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-apply-security-type.png" alt-text="Screenshot of the Trusted launch security type drop-down.":::
+    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-apply-security-type.png" alt-text="Screenshot of the Trusted launch security type drop-down." lightbox="./media/trusted-launch/virtual-machine-scale-sets-portal-apply-security-type.png":::
 
 6. Validate the changes on the `Overview` page of scale set.
-    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-validate-security-type.png" alt-text="Screenshot of the validation on overview page.":::
+    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-validate-security-type.png" alt-text="Screenshot of the validation on overview page." lightbox="./media/trusted-launch/virtual-machine-scale-sets-portal-validate-security-type.png":::
 
 7. (Recommended) **Guest Attestation Extension**: Add [Guest Attestation (GA) extension](trusted-launch.md#microsoft-defender-for-cloud-integration) for Scale set resource, which enables [Boot integrity monitoring](boot-integrity-monitoring-overview.md) for Scale set.
 
 8. Update the VM instances manually if Scale set uniform [upgrade mode](../virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy.md) is set to `Manual`.
-    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-update-instances.png" alt-text="Screenshot of the scale set instance update.":::
+    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-update-instances.png" alt-text="Screenshot of the scale set instance update." lightbox="./media/trusted-launch/virtual-machine-scale-sets-portal-update-instances.png":::
 
 ### [Template](#tab/template)
 
@@ -186,7 +186,7 @@ Make the following modifications to enable Trusted launch using existing ARM tem
 
 7. Verify that the deployment is successful. Check for the security type and UEFI settings of the Scale set uniform using Azure portal. Check the Security type section in the Overview page.
 
-    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-validate-security-type.png" alt-text="Screenshot of the validation on overview page.":::
+    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-validate-security-type.png" alt-text="Screenshot of the validation on overview page." lightbox="./media/trusted-launch/virtual-machine-scale-sets-portal-validate-security-type.png":::
 
 8. Update the VM instances manually if Scale set uniform [upgrade mode](../virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy.md) is set to `Manual`.
 
@@ -327,19 +327,19 @@ To roll-back changes from Trusted launch to previous known good configuration, y
 ### [Portal](#tab/portal)
 
 1. **OS Image**: Navigate to `Operating system` under `Settings`. Click on `Change image reference`.
-    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-os-change.png" alt-text="Screenshot of the scale set OS image change.":::
+    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-os-change.png" alt-text="Screenshot of the scale set OS image change." lightbox="./media/trusted-launch/virtual-machine-scale-sets-portal-os-change.png":::
 
 2. Update the OS Image reference to last known good configuration  -> Click **Apply**.
-    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-os-change-01.png" alt-text="Screenshot of the OS image change options.":::
+    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-os-change-01.png" alt-text="Screenshot of the OS image change options." lightbox="./media/trusted-launch/virtual-machine-scale-sets-portal-os-change-01.png":::
 
 3. **Security type**: Navigate to `Configuration` page under `Settings` -> Update the security type drop-down on `Configuration` page from `Trusted launch` to `Standard` for disabling Trusted Launch security configuration. Click `Yes` to confirm changes.
-    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-rollback.png" alt-text="Screenshot of the Standard security type drop-down.":::
+    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-rollback.png" alt-text="Screenshot of the Standard security type drop-down." lightbox="./media/trusted-launch/virtual-machine-scale-sets-portal-rollback.png":::
 
 4. Validate the changes on the `Overview` page of scale set.
-    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-rollback-01.png" alt-text="Screenshot of the validation of rollback on overview page.":::
+    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-rollback-01.png" alt-text="Screenshot of the validation of rollback on overview page." lightbox="./media/trusted-launch/virtual-machine-scale-sets-portal-rollback-01.png":::
 
 5. Update the VM instances manually if Scale set uniform [upgrade mode](../virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy.md) is set to `Manual`.
-    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-update-instances.png" alt-text="Screenshot of the scale set instance update.":::
+    :::image type="content" source="./media/trusted-launch/virtual-machine-scale-sets-portal-update-instances.png" alt-text="Screenshot of the scale set instance update." lightbox="./media/trusted-launch/virtual-machine-scale-sets-portal-update-instances.png":::
 
 ### [Template](#tab/template)
 
