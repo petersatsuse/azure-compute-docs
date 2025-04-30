@@ -20,7 +20,7 @@ Microsoft Azure offers a variety of virtual machine based compute products desig
 
 ## Product comparison table
 
-| | Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
+| | Virtual Machines | Virtual Machine Scale Sets (VMSS) | Compute Fleet  |
 | --- | --- | --- | --- |
 | **Product Description** | Create and manually configure individual VMs.| Load-balanced, automatically scaling VM groups with workload optimization across multiple availability zones. | Provision thousands of mixed-size VMs for performance and high availability. |
 | **Product Differences**<br><br>See top product capabilities and limitations side by side| - Deploy and manage each VM individually <br>- Fine-tune custom applications<br> - Assigned to one availability zone at a time<br>| - Up to 2,000 mixed-size VMs in a group <br> - Scale automatically <br> - Fault domains for high availability <br>- Integrate Azure Spot VMs to cut costs <br>- Optimized for stateless or stateful workloads | - Up to 10,000 mixed-size VMs in a group<br>- Fault domains for high availability<br>- Hyper-scale with demand <br>- Maintain capacity with Spot VMs to cut costs<br>- Fleet allocation for optimizing price, capacity, or both
@@ -30,31 +30,33 @@ Microsoft Azure offers a variety of virtual machine based compute products desig
 
 #### [Cost](#tab/prodcompcost)
 
-| Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
+TLDR: You can save money! This is an example of it. Learn more in the table below:
+
+| Virtual Machines | VMSS | Compute Fleet  |
 | --- | --- | --- |
 | - Billed as an individual VM instance <br>- Cost-effective for consistent load and traffic | - VMSS automatically uses less capacity when load/traffic is low, and optimizes cost while accommodating the dips and spikes of cyclical, intermittent, and growing workloads <br> - Use 100% Spot VMs, or mix with standard ones, to cut cost | - Combine discounts (like reserved instances and savings plans) with Spot VM savings, plus rank the top VM sizes you want Fleet to prioritize <br>- Your fleet will maintain capacity with discounted Spot VMs to optimize cost
 
 #### [Scaling](#tab/prodcompscale)
 
-| Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
+| Virtual Machines | VMSS | Compute Fleet  |
 | --- | --- | --- |
 | Vertical Scaling: <br>- Change the VM's size manually <br><br>Horizontal Scaling: <br>- None | Vertical Scaling: <br>- Change any VM's size manually <br><br>Horizontal Scaling: <br>- Manually add/remove instances <br>- Autoscale based on demand, schedule, or AI-predicted usage patterns| Vertical Scaling: <br>- Change any VM's size manually <br><br>Horizontal Scaling:<br>- Manually managed through modifying the target capacity |
 
 #### [Instances](#tab/prodcompinstances)
 
-| Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
+| Virtual Machines | VMSS | Compute Fleet  |
 | --- | --- | --- |
 Single instances deployed individually | 2 to 2,000 instances | Up to 10,000 instances |
 
 #### [Management](#tab/prodcompmanagement)
 
-| Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
+| Virtual Machines | VMSS | Compute Fleet  |
 | --- | --- | --- |
 Deploy and manage each VM individually | - Deploy and manage VMs as a group, or opt to manage them individually<br>- Orchestrate batch operations (start, stop, restart) and updates (configuration, app, security, and patching) for safer rollouts<br>- Attach and manage one universal add-on for services like data disk and public IP at the VMSS level | - Deploy and manage up to 10,000 VMs as an automated fleet-managed group<br>- Enhance the flexibility, efficiency and control of your VMs, attaching one universal add-on for services like data disk and Public IPs |
 
 #### [Availability](#tab/prodcompavailability)
 
-| Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
+| Virtual Machines | VMSS | Compute Fleet  |
 | --- | --- | --- |
  Manually deploy each standalone VM into a single availability zone. To boost uptime, place one or more VMs into each eligible availability zone | - Automatically deploy and spread VMs into one, or across multiple, availability zones (zonal or zone-spanning) to boost resilience and uptime <br>- Remove VM instances from the VMSS anytime | Fleet uses availability zones to automatically deploy and distribute VMs across multiple zones. Choose specific zones, all eligible zones, or all eligible zones within a given region.
 
