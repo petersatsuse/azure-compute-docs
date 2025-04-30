@@ -8,7 +8,7 @@ description: Overview of Mdsv3 Very High Memory Virtual Machines
 author:      phgantik # GitHub alias
 ms.author:   phgantik # Microsoft alias
 ms.service: virtual-machines-windows
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date:     03/18/2025
 ---
 
