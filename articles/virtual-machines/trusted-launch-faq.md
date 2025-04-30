@@ -95,7 +95,7 @@ This section discusses Trusted Launch supported features and deployments.
 
 ### What is Trusted Launch as default?
 
-Trusted launch as default (TLaD) is currently in preview for all clients AND generally available for Azure portal, PowerShell, and CLI. For more information, see [Trusted launch as default in REST API (Preview)](trusted-launch.md#preview-trusted-launch-as-default).
+Trusted launch as default (TLaD) is currently in preview for all clients AND generally available for Azure portal, PowerShell, and CLI. For more information, see [Trusted launch default (Preview)](trusted-launch.md#preview-trusted-launch-as-default).
 
 ### Is Azure Compute Gallery supported by Trusted Launch?
 

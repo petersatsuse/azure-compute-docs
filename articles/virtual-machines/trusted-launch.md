@@ -19,7 +19,7 @@ Azure offers Trusted Launch as a seamless way to improve the security of [Genera
 
 > [!IMPORTANT]
 >
-> - Trusted Launch is w as the default state for newly created Azure VM. See the [Trusted Launch FAQs](trusted-launch-faq.md) if your new VM requires features that [aren't supported with Trusted launch](trusted-launch.md#unsupported-features).
+> - Trusted Launch is the default state for newly created Azure Gen2 VM and scale sets. See the [Trusted Launch FAQs](trusted-launch-faq.md) if your new VM requires features that [aren't supported with Trusted launch](trusted-launch.md#unsupported-features).
 > - [Existing VM](overview.md) can have Trusted Launch enabled after being created. For more information, see [Enable Trusted Launch on existing VMs](trusted-launch-existing-vm.md).
 > - Existing [virtual machine scale set](../virtual-machine-scale-sets/overview.md) can have Trusted Launch enabled after being created. For more information, see [Enable Trusted Launch on existing scale set](trusted-launch-existing-vmss.md).
 
@@ -136,11 +136,11 @@ Trusted Launch is integrated with Defender for Cloud to ensure that your VMs are
 
 > [!IMPORTANT]
 >
-> Trusted Launch as default is currently in preview. This Preview is intended for testing, evaluation, and feedback purposes only. Production workloads aren't recommended. By registering to preview you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature might change with general availability (GA).
+> Trusted Launch default is currently in preview. This Preview is intended for testing, evaluation, and feedback purposes only. Production workloads aren't recommended. By registering to preview you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature might change with general availability (GA).
 
-Trusted Launch as default (TLaD) in REST API is available for new Gen2 Virtual machines (VM) and Virtual machine scale sets (scale sets).
+Trusted Launch as default (TLaD) is available in preview for new Gen2 Virtual machines (VM) and Virtual machine scale sets (scale sets).
 
-TLaD in REST API is a fast and zero-touch means of improving the security posture of new Gen2 based Azure VM and Virtual Machine Scale Sets deployments. With Trusted Launch as default, any new Gen2 VMs or scale sets created through REST API will by default result in Trusted Launch VMs, which automatically enables secure boot and vTPM.
+TLaD is a fast and zero-touch means of improving the security posture of new Gen2 based Azure VM and Virtual Machine Scale Sets deployments. With Trusted Launch as default, any new Gen2 VMs or scale sets created through any client tools (like ARM template, Bicep) will default in Trusted Launch VMs with secure boot and vTPM enabled.
 
 ### Enable TLaD preview
 
