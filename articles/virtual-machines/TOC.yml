@@ -2,6 +2,9 @@
   href: index.yml
 - name: Overview
   href: overview.md
+- name: Compare compute products (VM-based)
+  displayName: compute, vmss, fleet, compare, orchestration, scale, scaling, scale sets
+  href: compare-compute-products.md
 - name: Quickstarts
   items:
   - name: Create a Linux VM
@@ -59,9 +62,6 @@
     - name: ARM template
       href: /azure/virtual-machine-scale-sets/flexible-virtual-machine-scale-sets-rest-api?toc=/azure/virtual-machines/toc.json
   expanded: true
-- name: Compare compute products (VM-based)
-  displayName: compute, compare, orchestration, scale, scaling
-  href: compare-compute-products.md
 - name: Tutorials
   items:
   - name: Linux

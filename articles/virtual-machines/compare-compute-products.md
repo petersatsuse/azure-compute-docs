@@ -10,7 +10,7 @@ ms.author: mattmcinnes
 
 # Compare compute products (VM-based)
 
-Microsoft Azure offers a variety of virtual machine based compute products designed to meet different workload requirements. Standard Virtual Machines (VMs), Virtual Machine Scale Sets (VMSS), and Compute Fleet are some of the compute orchestration products that provide flexibility and scalability for various applications.
+Microsoft Azure offers a variety of virtual machine based compute products designed to meet different workload requirements. Standard Virtual Machines (VMs), Virtual Machine Scale Sets (VMSS), and Compute Fleet are some of the compute products that provide flexibility and scalability for various applications.
 
 [Virtual Machines (VMs)](/azure/virtual-machines/overview) are the fundamental building blocks of Azure compute. They offer full control over the operating system and applications, making them suitable for a wide range of workloads, including legacy applications, custom software, and development environments. VMs provide the flexibility to choose the operating system, size, and configuration that best fits your needs.
 
@@ -18,11 +18,14 @@ Microsoft Azure offers a variety of virtual machine based compute products desig
 
 [Compute Fleet](/azure/azure-compute-fleet/overview) is designed for large-scale, distributed computing environments. It allows you to manage and orchestrate a fleet of VMs across multiple regions and availability zones. This service is particularly beneficial for high-performance computing (HPC) applications, big data processing, and other workloads that require significant computational power and distributed resources.
 
+The product you select depends on the workload you intend to run. (Insert info from Necia)
+
 ## Product comparison table
 
 | | Virtual Machines | Virtual Machine Scale Sets (VMSS) | Compute Fleet  |
 | --- | --- | --- | --- |
 | **Product Description** | Create and manually configure individual VMs.| Load-balanced, automatically scaling VM groups with workload optimization across multiple availability zones. | Provision thousands of mixed-size VMs for performance and high availability. |
+| **Instances** | Single instances deployed individually | 2 to 2,000 instances | Up to 10,000 instances |
 | **Product Differences**<br><br>See top product capabilities and limitations side by side| - Deploy and manage each VM individually <br>- Fine-tune custom applications<br> - Assigned to one availability zone at a time<br>| - Up to 2,000 mixed-size VMs in a group <br> - Scale automatically <br> - Fault domains for high availability <br>- Integrate Azure Spot VMs to cut costs <br>- Optimized for stateless or stateful workloads | - Up to 10,000 mixed-size VMs in a group<br>- Fault domains for high availability<br>- Hyper-scale with demand <br>- Maintain capacity with Spot VMs to cut costs<br>- Fleet allocation for optimizing price, capacity, or both
 | **Use Case**<br><br>Find the right product for your project | - Small, simple jobs <br>- Specialized single-instance apps <br>- Test configurations and experiment with Azure | - Scaling beyond a single VM <br>- Platform engineering or infrastructure as code <br>- Moving on-premises apps to the cloud <br>- Parallelized [high-performance computing](/azure/architecture/topics/high-performance-computing) workloads <br>- Databases <br>- Batch processing <br> - Maintain performance while controlling costs <br>- Mixed VM sizes for more flexibility | - Large scale highly parallelized workloads or batch jobs <br> - Flexibility with VM sizes - Large scale cost optimization with Azure Spot |
 
@@ -30,7 +33,10 @@ Microsoft Azure offers a variety of virtual machine based compute products desig
 
 #### [Cost](#tab/prodcompcost)
 
-TLDR: You can save money! This is an example of it. Learn more in the table below:
+Check out the costs of different compute products.
+
+> [!NOTE]
+>  There's no charge specifically for using a VMSS or Compute Fleet. The cost of any Azure VM environment depends upon the number of VM instances, their configuration, and selected add-on services, like disks, load balancer, and public IP.
 
 | Virtual Machines | VMSS | Compute Fleet  |
 | --- | --- | --- |
@@ -41,12 +47,6 @@ TLDR: You can save money! This is an example of it. Learn more in the table belo
 | Virtual Machines | VMSS | Compute Fleet  |
 | --- | --- | --- |
 | Vertical Scaling: <br>- Change the VM's size manually <br><br>Horizontal Scaling: <br>- None | Vertical Scaling: <br>- Change any VM's size manually <br><br>Horizontal Scaling: <br>- Manually add/remove instances <br>- Autoscale based on demand, schedule, or AI-predicted usage patterns| Vertical Scaling: <br>- Change any VM's size manually <br><br>Horizontal Scaling:<br>- Manually managed through modifying the target capacity |
-
-#### [Instances](#tab/prodcompinstances)
-
-| Virtual Machines | VMSS | Compute Fleet  |
-| --- | --- | --- |
-Single instances deployed individually | 2 to 2,000 instances | Up to 10,000 instances |
 
 #### [Management](#tab/prodcompmanagement)
 
