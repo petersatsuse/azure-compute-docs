@@ -40,7 +40,7 @@ Check out the costs of different compute products.
 
 | Virtual Machines | VMSS | Compute Fleet  |
 | --- | --- | --- |
-| - Billed as an individual VM instance <br>- Cost-effective for consistent load and traffic | - VMSS automatically uses less capacity when load/traffic is low, and optimizes cost while accommodating the dips and spikes of cyclical, intermittent, and growing workloads <br> - Use 100% Spot VMs, or mix with standard ones, to cut cost | - Combine discounts (like reserved instances and savings plans) with Spot VM savings, plus rank the top VM sizes you want Fleet to prioritize <br>- Your fleet will maintain capacity with discounted Spot VMs to optimize cost
+| - Billed as an individual VM instance <br>- Cost-effective for consistent load and traffic | :::image type="icon" source="./media/compare-compute-products/cost-icon.png" border="false"::: **Optimize costs with VMSS** <br>- VMSS automatically uses less capacity when load/traffic is low, and optimizes cost while accommodating the dips and spikes of cyclical, intermittent, and growing workloads <br> - Use 100% Spot VMs, or mix with standard ones, to cut cost | :::image type="icon" source="./media/compare-compute-products/cost-icon.png" border="false"::: **Optimize costs with Compute Fleet** <br> - Combine discounts (like reserved instances and savings plans) with Spot VM savings, plus rank the top VM sizes you want Fleet to prioritize <br>- Your fleet will maintain capacity with discounted Spot VMs to optimize cost
 
 #### [Scaling](#tab/prodcompscale)
 
