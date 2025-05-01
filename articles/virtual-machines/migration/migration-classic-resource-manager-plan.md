@@ -6,7 +6,7 @@ author: oriwolman
 manager: vashan
 ms.service: azure-virtual-machines
 ms.subservice: classic-to-arm-migration
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 01/25/2023
 ms.author: oriwolman
 ms.custom: compute-evergreen, devx-track-arm-template

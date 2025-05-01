@@ -4,7 +4,7 @@ description: In this article, you learn about VM Image Builder for virtual machi
 author: sumit-kalra
 ms.author: sukalra
 ms.date: 02/13/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-virtual-machines
 ms.subservice: image-builder
 ms.custom: references_regions

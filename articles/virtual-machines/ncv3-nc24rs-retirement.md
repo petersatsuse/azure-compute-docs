@@ -4,7 +4,7 @@ description: Migration guide for NC24rs_v3 sizes
 author: sherrywangms
 ms.author: sherrywang
 ms.service: azure-virtual-machines
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 03/19/2024
 ms.subservice: sizes
 ---
