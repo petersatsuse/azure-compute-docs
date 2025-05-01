@@ -9,7 +9,7 @@ ms.collection: linux
 ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 01/27/2025
-ms.author: v-padmalathas
+ms.author: padmalathas
 ---
 
 # Install AMD GPU drivers on NVads V710-series VMs running Linux

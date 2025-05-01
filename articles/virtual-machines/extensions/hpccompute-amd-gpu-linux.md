@@ -213,5 +213,5 @@ Extension execution output is logged to the following file. Refer to this file t
 | 23 | Required variable is not set. | Check the execution output log.|
 
 ## Next steps
-- For more information about extensions, see [Virtual machine extensions and features for Linux](overview.md)
+- For more information about extensions, see [Virtual machine extensions and features for Linux](features-linux.md)
 - For more information about N-series VMs, see [GPU optimized virtual machine sizes](../sizes-gpu.md).
