@@ -1,7 +1,7 @@
 ---
 title: Reset access to an Azure Windows VM 
 description: Learn how to manage administrative users and reset access on Windows VMs by using the VMAccess extension and the Azure PowerShell.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-virtual-machines
 ms.subservice: extensions
 ms.author: gabsta

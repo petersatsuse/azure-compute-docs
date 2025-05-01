@@ -4,7 +4,7 @@ description: Learn about disk bursting for Azure disks and Azure virtual machine
 author: roygara
 ms.author: rogarana
 ms.date: 05/02/2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-disk-storage
 ms.custom: references_regions
 ---

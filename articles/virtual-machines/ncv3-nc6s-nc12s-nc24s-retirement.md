@@ -4,7 +4,7 @@ description: Migration guide for sizes NC6s_v3 NC12s_v3 NC24s_v3
 author: sherrywangms
 ms.author: sherrywang
 ms.service: azure-virtual-machines
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 03/19/2024
 ms.subservice: sizes
 ---

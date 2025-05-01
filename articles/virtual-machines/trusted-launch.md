@@ -5,7 +5,7 @@ author: AjKundnani
 ms.author: ajkundna
 ms.service: azure-virtual-machines
 ms.subservice: trusted-launch
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/06/2023
 ms.reviewer: jushiman
 ms.custom: template-concept; references_regions

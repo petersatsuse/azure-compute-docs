@@ -4,7 +4,7 @@ description: Learn about the available Azure disk types for virtual machines, in
 author: roygara
 ms.author: rogarana
 ms.date: 01/21/2025
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-disk-storage
 ms.custom: references_regions
 ---
