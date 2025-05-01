@@ -1,5 +1,5 @@
 ---
-title: Compare Azure compute products (VM-based)
+title: Compare VM-based compute products
 description: Compare different vm-based compute scaling products offered on Azure.
 author: mattmcinnes
 ms.service: azure-virtual-machines
@@ -8,11 +8,11 @@ ms.date: 04/29/2025
 ms.author: mattmcinnes
 ---
 
-# Compare compute products (VM-based)
+# Compare virtual machine-based compute products
 
-Microsoft Azure offers a variety of virtual machine based compute products designed to meet different workload requirements. Standard Virtual Machines (VMs), Virtual Machine Scale Sets (VMSS), and Compute Fleet are some of the compute products that provide flexibility and scalability for various applications.
+Microsoft Azure offers various virtual machine based compute products designed to meet different workload requirements. Standard Virtual Machines (VMs), Virtual Machine Scale Sets (VMSS), and Compute Fleet are some of the compute products that provide flexibility and scalability for various applications.
 
-[Virtual Machines (VMs)](/azure/virtual-machines/overview) are the fundamental building blocks of Azure compute. They offer full control over the operating system and applications, making them suitable for a wide range of workloads, including legacy applications, custom software, and development environments. VMs provide the flexibility to choose the operating system, size, and configuration that best fits your needs.
+[Virtual Machines (VMs)](/azure/virtual-machines/overview) are the fundamental building blocks of Azure compute. They offer full control over the operating system and applications, making them suitable for a wide range of workloads. VMs provide the flexibility to choose the operating system, size, and configuration that best fits your needs.
 
 [Virtual Machine Scale Sets (VMSS)](/azure/virtual-machine-scale-sets/overview) extend the capabilities of VMs by enabling the deployment and management of a group of identical VMs. This service is ideal for applications that require high availability, scalability, and automatic scaling based on demand. VMSS ensures that your applications can handle varying loads efficiently by automatically increasing or decreasing the number of VMs in response to changes in demand.
 
@@ -22,7 +22,7 @@ The product you select depends on the workload you intend to run. (Insert info f
 
 ## Product comparison table
 
-| | Virtual Machines | Virtual Machine Scale Sets (VMSS) | Compute Fleet  |
+| | :::image type="icon" source="./media/compare-compute-products/Virtual-Machines-icon.png" border="false"::: Virtual Machines | :::image type="icon" source="./media/compare-compute-products/VM-scale-sets-icon.png" border="false"::: Virtual Machine Scale Sets (VMSS) | :::image type="icon" source="./media/compare-compute-products/Compute-Fleet-icon.png" border="false"::: Compute Fleet  |
 | --- | --- | --- | --- |
 | **Product Description** | Create and manually configure individual VMs.| Load-balanced, automatically scaling VM groups with workload optimization across multiple availability zones. | Provision thousands of mixed-size VMs for performance and high availability. |
 | **Instances** | Single instances deployed individually | 2 to 2,000 instances | Up to 10,000 instances |
@@ -33,10 +33,7 @@ The product you select depends on the workload you intend to run. (Insert info f
 
 #### [Cost](#tab/prodcompcost)
 
-Check out the costs of different compute products.
-
-> [!NOTE]
->  There's no charge specifically for using a VMSS or Compute Fleet. The cost of any Azure VM environment depends upon the number of VM instances, their configuration, and selected add-on services, like disks, load balancer, and public IP.
+The cost of any Azure VM environment depends upon the number of VM instances, their configuration, and selected add-on services. There's no added charge for using Virtual Machine Scale Sets or Compute Fleet.
 
 | Virtual Machines | VMSS | Compute Fleet  |
 | --- | --- | --- |

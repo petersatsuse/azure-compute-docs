@@ -2,7 +2,7 @@
   href: index.yml
 - name: Overview
   href: overview.md
-- name: Compare compute products
+- name: Compare VM-based compute products
   displayName: compute, vmss, fleet, compare, orchestration, scale, scaling, scale sets
   href: compare-compute-products.md
 - name: Quickstarts
