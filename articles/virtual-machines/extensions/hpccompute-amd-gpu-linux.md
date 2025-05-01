@@ -16,10 +16,10 @@ author: magatala-MSFT
 
 This extension installs AMD GPU drivers on Linux N-series virtual machines (VMs). Depending on the VM family. When you install AMD drivers by using this extension, you're accepting and agreeing to the terms of the [AMD End-User License Agreement](https://www.amd.com/en/legal/eula/amd-software-eula.html). During the installation process, the VM might reboot to complete the driver setup.
 
-Instructions on manual installation of the drivers and the current supported versions are available. An extension is also available to install AMD GPU drivers on [Linux N-series VMs](articles/virtual-machines/linux/azure-n-series-amd-gpu-driver-linux-installation-guide.md).
+Instructions on manual installation of the drivers and the current supported versions are available. An extension is also available to install AMD GPU drivers on [Linux N-series VMs](../linux/azure-n-series-amd-gpu-driver-linux-installation-guide.md).
 
 > [!NOTE]
-> With Secure Boot enabled, all OS boot components (boot loader, kernel, kernel drivers) must be signed by trusted publishers (key trusted by the system). Secure Boot is not supported using Windows or Linux extensions. For more information on manually installing GPU drivers with Secure Boot enabled, see [Azure N-series GPU driver setup for Linux](articles/virtual-machines/linux/azure-n-series-amd-gpu-driver-linux-installation-guide.md).
+> With Secure Boot enabled, all OS boot components (boot loader, kernel, kernel drivers) must be signed by trusted publishers (key trusted by the system). Secure Boot is not supported using Windows or Linux extensions. For more information on manually installing GPU drivers with Secure Boot enabled, see [Azure N-series GPU driver setup for Linux](../linux/azure-n-series-amd-gpu-driver-linux-installation-guide.md).
 >
 > The GPU driver extensions do not automatically update the driver after the extension is installed. If you need to move to a newer driver version then you need to uninstall the extension and reinstall it or install the driver manually.
 >
@@ -202,7 +202,7 @@ Extension execution output is logged to the following file. Refer to this file t
 | 1 | Incorrect usage of extension | Check the execution output log. |
 | 2|Python not found | Check the execution output log|
 | 10 | Linux Integration Services for Hyper-V and Azure not available or installed | Check the output of lspci. |
-| 11 | AMD GPU not found on this VM size | Use a [supported VM size and OS.](articles/virtual-machines/linux/azure-n-series-amd-gpu-driver-linux-installation-guide.md) |
+| 11 | AMD GPU not found on this VM size | Use a [supported VM size and OS.](../linux/azure-n-series-amd-gpu-driver-linux-installation-guide.md) |
 | 14 | DPKG frontend (/var/lib/dpkg/lock-frontend) is locked by another process, please try reinstalling after sometime |  |
 | 15 | DPKG (/var/lib/dpkg/lock) is locked by another process, please try reinstalling after sometime| |
 | 17 | Failed to download the driver | Check the execution output log.|
@@ -215,5 +215,4 @@ Extension execution output is logged to the following file. Refer to this file t
 
 ## Next steps
 
-- For more information about extensions, see [Virtual machine extensions and features for Linux](articles/virtual-machines/extensions/hpccompute-amd-gpu-linux.md).
 - For more information about N-series VMs, see [GPU optimized virtual machine sizes](../sizes-gpu.md).
