@@ -19,7 +19,7 @@ ms.author: padmalathas
 >Azure currently supports installation instructions for Ubuntu 22.04 and Ubuntu 24.04, for all other Linux distros and for latest updated guide on instructions to setup ROCm drivers, refer to AMDs pages here - [Quick start installation guide - ROCm installation(Linux)](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.3/install/quick-start.html) , for all other ROCm versions, refer [ROCm release history - ROCm Documentation](https://rocm.docs.amd.com/en/latest/release/versions.html#rocm-release-history)
 
 ## NVads V710-series
-To use the GPU capabilities of the new Azure NVads V710-series VMs running Linux, amdgpu drivers need to be installed. The [AMD GPU Driver Extension](../extensions/hpccompute-amd-gpu-linux.md) facilitates the installation of amdgpu drivers on NVv710-series VMs. You can manage the extension using the Azure portal, Azure PowerShell, or Azure Resource Manager templates. Refer to the [AMD GPU Driver Extension](../extensions/hpccompute-gpu-linux.md) documentation for details on supported operating systems and deployment steps.
+To use the GPU capabilities of the new Azure NVads V710-series VMs running Linux, amdgpu drivers need to be installed. The [AMD GPU Driver Extension](../extensions/hpccompute-amd-gpu-linux.md) facilitates the installation of amdgpu drivers on NVv710-series VMs. You can manage the extension using the Azure portal, Azure PowerShell, or Azure Resource Manager templates. Refer to the [AMD GPU Driver Extension](../extensions/hpccompute-amd-gpu-linux.md) documentation for details on supported operating systems and deployment steps.
 
 If you prefer to install amdgpu drivers manually, this article outlines the supported operating systems, drivers, and provides installation and verification steps.
 
@@ -29,7 +29,8 @@ If you prefer to install amdgpu drivers manually, this article outlines the supp
 #### 1.1 Introduction
 
 Here are the steps for installing the AMD Linux Driver to harness the capabilities of the AMD Radeon&trade; PRO V710 GPU on an NVv5-V710 GPU Linux instance provided by Microsoft Azure. Subsequent sections provide detailed Linux driver installation instructions for users who wish to perform inference using ROCm on the NVv5-V710 GPU Linux instance.
-> **Note:** This page outlines installation instructions for **Ubuntu**.  
+> [!Note]
+>This page outlines installation instructions for **Ubuntu**.  
 > For any other Linux distributions, please refer to the official [AMD ROCm documentation](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.3/install/quick-start.html)
 ### 2. Linux Driver Installation
 #### 2.1 Supported Linux Distros
