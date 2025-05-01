@@ -85,7 +85,7 @@ $ sudo usermod -a -G render,video $LOGNAME
 
 #### 3.4 Kernel headers and development packages
 
-The driver package uses Dynamic Kernel Module Support (DKMS) to build the amdgpu-dkms module for installed kernels. This requires the installation of Linux kernel headers and modules for each kernel. These packages are installed automatically with the kernel. However, if you use multiple kernel versions or download kernel images without the meta-packages, you might need to install them manually.
+The driver package uses Dynamic Kernel Module Support (DKMS) to build the amdgpu-dkms module for installed kernels. This process requires the installation of Linux kernel headers and modules for each kernel. These packages are installed automatically with the kernel. However, if you use multiple kernel versions or download kernel images without the meta-packages, you might need to install them manually.
 
 ```bash
 $ sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
@@ -101,7 +101,7 @@ c3:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Device 7461
 ```
 
 >[!NOTE]
-> 7461 is the Virtual Function Device ID. This confirms that the Virtual Machine is configured with the AMD Radeon&trade; PRO V710 GPU.
+> 7461 is the Virtual Function Device ID. This confirmation indicates that the Virtual Machine is configured with the AMD Radeon™ PRO V710 GPU.
 
 #### 3.6 Virtual Machine Update
 
@@ -121,7 +121,7 @@ To check if the amdgpu driver is already blacklisted, run the following command:
 ```bash
 grep amdgpu /etc/modprobe.d/* -rn
 ```
-If the driver is blacklisted, you don't need to modify anything else. Be careful with entries that start with #blacklist amdgpu – this indicated that the driver isn't blacklisted.
+If the driver is blacklisted, you don't need to modify anything else. Be careful with entries that start with #blacklist amdgpu – this indication means that the driver isn't blacklisted.
 
 
 ##### Blacklist the amdgpu Driver
@@ -144,7 +144,7 @@ $ sudo update-initramfs -uk all
 This command ensures the changes take effect and the driver is properly blacklisted.
 #### 3.8 Reboot
 
-After you restart the Virtual Machine, the default amdgpu driver in Ubuntu Linux distributions does not load because it has been blacklisted. To confirm that the driver isn't loaded, run the command "lsmod | grep amdgpu" to check if the amdgpu driver is loaded. If there's no output, the driver isn't loaded, and you can proceed. However, if the driver has remained loaded, return to the previous step to double-check that the amdgpu driver has been blacklisted correctly.
+After you restart the Virtual Machine, the default amdgpu driver in Ubuntu Linux distributions doesn't load because it was blacklisted. To confirm that the driver isn't loaded, run the command `lsmod | grep amdgpu` to check if the amdgpu driver is loaded. If there's no output, the driver isn't loaded, and you can proceed. However, if the driver has remained loaded, return to the previous step to double-check that the amdgpu driver was blacklisted correctly.
 
 ### 4. AMD Driver Installation
 #### 4.1 Installation
@@ -254,7 +254,7 @@ GPU  POWER  GPU_TEMP  MEM_TEMP  GFX_UTIL  GFX_CLOCK  MEM_UTIL  MEM_CLOCK  ENC_UT
 ### 1. Installation Guide
 #### 1.1 Introduction
 
-Here are the steps for installing the AMD Linux Driver to leverage the power of the AMD Radeon™ PRO V710 GPU on an NVv5-V710 GPU Linux instance offered by Microsoft Azure. The Linux Driver installation also includes installing the ROCm™ Libraries, graphic libraries, and Development Tools. Subsequent sections of the document will thoroughly discuss the driver installation of the graphics use case
+Here are the steps for installing the AMD Linux Driver to use the power of the AMD Radeon™ PRO V710 GPU on an NVv5-V710 GPU Linux instance offered by Microsoft Azure. The Linux Driver installation also includes installing the ROCm™ Libraries, graphic libraries, and Development Tools. Subsequent sections of the document thoroughly discuss the driver installation for the graphics use case.
 
 ### 2. Linux Driver Prerequisites
 #### 2.1 Supported Linux Distros
@@ -279,7 +279,7 @@ DISTRIB_CODENAME=jammy
 DISTRIB_DESCRIPTION="Ubuntu 22.04" 
 PRETTY_NAME="Ubuntu 22.04 LTS" 
 ```
-Please ensure your Linux distribution and kernel version are listed in the table above.  
+Ensure your Linux distribution and kernel version are listed in the table above.  
 >[!Note]
 >Refer to the troubleshooting section at the end of the document for instructions on how to set the 
 >6.5 kernel as the default (at every boot time) on the NvV5 V710 GPU instance. 
@@ -287,7 +287,7 @@ Please ensure your Linux distribution and kernel version are listed in the table
 >[!Note]
 >If you plan to run the graphics workload, use the Linux distribution with graphics enabled (e.g., Ubuntu-22.04-desktop-amd64.iso).
 ### 3. Troubleshooting
-This section will outline troubleshooting techniques to address issues that may arise during the driver installation process.
+This section outlines troubleshooting techniques to address issues that may arise during the driver installation process.
 If you're using the Kernel 6.8, follow the below steps to downgrade to kernel 6.5.
 
 ##### Check Loaded Kernels: 
@@ -312,7 +312,7 @@ sudo apt purge linux-headers-6.8.0-1025-azure linux-image-6.8.0-1025-azure linux
 ```
 ##### Verify Kernel Version: 
 
-Please verify that only Kernel 6.5 is present by running
+Verify that only Kernel 6.5 is present by running
 ```bash
 dpkg --list | egrep -i --color 'linux-image|linux-headers|linux-modules' | awk '{ print $2 }'
 ```
@@ -362,7 +362,7 @@ To ensure you have the latest information on the newest versions of packages and
 sudo apt update
 ```
 #### 4.2 Install Python Setuptools and wheel
-These are essential for building and distributing Python packages.
+These packages are essential for building and distributing Python packages.
 ```bash
 $ sudo apt install python3-setuptools python3-wheel
 ```
@@ -376,7 +376,7 @@ $ sudo usermod -a -G render,video $LOGNAME
 
 #### 4.4 Kernel headers and development packages
 
-The driver package uses Dynamic Kernel Module Support (DKMS) to build the amdgpu-dkms module for installed kernels. This requires the installation of Linux kernel headers and modules for each kernel. These are installed automatically with the kernel. However, if you use multiple kernel versions or download kernel images without the meta-packages, you might need to install them manually.
+The driver package uses Dynamic Kernel Module Support (DKMS) to build the amdgpu-dkms module for installed kernels. This requires the installation of Linux kernel headers and modules for each kernel. These packages are installed automatically with the kernel. However, if you use multiple kernel versions or download kernel images without the meta-packages, you might need to install them manually.
 
 ```bash
 $ sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
@@ -392,7 +392,7 @@ c3:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Device 7461
 ```
 
 >[!NOTE]
-> 7461 is the Virtual Function Device ID. This confirms that the Virtual Machine is configured with the AMD Radeon&trade; PRO V710 GPU.
+> 7461 is the Virtual Function Device ID. This confirmation indicates that the Virtual Machine is configured with the AMD Radeon&trade; PRO V710 GPU.
 
 #### 4.6 Virtual Machine Update
 
@@ -413,7 +413,7 @@ grep amdgpu /etc/modprobe.d/* -rn
 ```
 
 If the driver is blacklisted, you don't need to modify anything else.
-Be careful with entries that start with #blacklist amdgpu – this means the driver isn't blacklisted
+Be careful with entries that start with #blacklist amdgpu –  this indication means that the driver isn't blacklisted
 
 
 ##### Blacklist the amdgpu Driver
@@ -436,7 +436,7 @@ $ sudo update-initramfs -uk all
 This command ensures the changes take effect and the driver is properly blacklisted.
 #### 4.8 Reboot
 
-After you restart the virtual machine, the default **amdgpu driver** in Ubuntu Linux distributions shouldn't load because it was previously blacklisted.. To confirm that the driver isn't loaded, use the following command:
+After you restart the virtual machine, the default **amdgpu driver** in Ubuntu Linux distributions shouldn't load because it was previously blacklisted. To confirm that the driver isn't loaded, use the following command:
 
 ```bash
 lsmod | grep amdgpu
@@ -445,7 +445,7 @@ lsmod | grep amdgpu
 ### 5. AMD Driver Installation
 #### 5.1 Installation
 
-The following steps demonstrate the use of the amdgpu-install script for a single-version driver installation.These instruction install ROCm version **6.1.4** on **Ubuntu 22.04 (Jammy)**.
+The following steps demonstrate the use of the amdgpu-install script for a single-version driver installation. These instruction install ROCm version **6.1.4** on **Ubuntu 22.04 (Jammy)**.
 ```bash
 # Upgrade the system
 sudo apt upgrade
@@ -533,8 +533,8 @@ GPU  POWER  GPU_TEMP  MEM_TEMP  GFX_UTIL  GFX_CLOCK  MEM_UTIL  MEM_CLOCK  ENC_UT
 
   0   11 W     43 °C     58 °C      84 %   1814 MHz       1 %     96 MHz       N/A    812 MHz       N/A    512 MHz  UNTHROTTLED           0           0            0     227 MB    25476 MB  N/A Mb/s
 ```
-### 6. x11 Remote Server Confirguration
-After installing the AMD Graphics Linux drivers with, the default graphical interface (Xserver) does not utilize hardware acceleration As a solution, a virtual display should be created with hardware acceleration enabled that can be used for remote access (x11vnc). The following steps walk through the virtual display setup:
+### 6. x11 Remote Server Configuration
+After installing the AMD Graphics Linux drivers with, the default graphical interface (Xserver) doesn't utilize hardware acceleration As a solution, a virtual display should be created with hardware acceleration enabled that can be used for remote access (x11vnc). The following steps walk through the virtual display setup:
 #### 6.1 Install Required Packages
 Install `x11vnc` and `net-tools`
 ```bash
@@ -589,7 +589,7 @@ After reboot, restart the gdm3 by following command
 ```bash
 $ sudo systemctl restart gdm3
 ```
-#### 6.4 Modify X Confirguration
+#### 6.4 Modify X Configuration
 ##### 6.4.1 Getting Bus ID
 The BusID of the AMD Radeon™ PRO V710 GPU must be manually added to the X11 configuration file. 
 To get the BusID, follow the steps
@@ -655,7 +655,7 @@ Section "Screen"
 EndSubSection 
 EndSection
 ```
-Also modify /usr/share/X11/xorg.conf.d/10-amdgpu.conf to match the below section
+Also modify /usr/share/X11/xorg.conf.d/10-amdgpu.conf to match the following section
 ```bash
 Section "OutputClass" 
 Identifier "Card0" 
