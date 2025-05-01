@@ -172,7 +172,7 @@ Results:
 
 ## Test web app
 
-Now you can open a web browser and enter *http://<publicIpAddress>* in the address bar. Provide your own public IP address from the VM create process. Your Node.js app is displayed as shown in the following example:
+Now you can open a web browser and enter the public IP address in the address bar. Provide your own public IP address from the VM create process. Your Node.js app is displayed as shown in the following example:
 
 ![View running NGINX site](./media/tutorial-automate-vm-deployment/nginx.png)
 
