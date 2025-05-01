@@ -4,7 +4,7 @@ description: NCv2-series retirement by September 6, 2023
 author: sherrywangms
 ms.service: azure-virtual-machines
 ms.subservice: sizes
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/21/2022
 ms.author: sherrywang
 ---

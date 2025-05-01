@@ -4,7 +4,7 @@ description: Information on and specifications of the FXmsv2-series sizes
 author: archatC
 ms.service: azure-virtual-machines
 ms.subservice: sizes
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 08/29/2024
 ms.author: archat
 ms.reviewer: mattmcinnes
