@@ -4,7 +4,7 @@ description: Lists the different instance sizes available for virtual machines i
 author: mattmcinnes
 ms.service: azure-virtual-machines
 ms.subservice: sizes
-ms.topic: conceptual
+ms.topic: concept-article
 ms.workload: infrastructure-services
 ms.date: 11/19/2024
 ms.author: mattmcinnes
