@@ -3,7 +3,7 @@ title: View instance mix configurations
 description: How to view instance mix configurations on a scale set. 
 author: brittanyrowe 
 ms.author: brittanyrowe
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-virtual-machine-scale-sets
 ms.date: 1/14/2025
 ms.reviewer: jushiman
