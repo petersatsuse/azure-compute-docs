@@ -16,11 +16,7 @@ title: |
 introduction: |
   **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Windows VMs :heavy_check_mark: Flexible scale sets :heavy_check_mark: Uniform scale sets
 
-  Use [private endpoints](/azure/private-link/private-endpoint-overview) to restrict the export and import of managed disks and more securely access data over a [private link](/azure/private-link/private-link-overview) from clients on your Azure virtual network. The private endpoint uses an IP address from the virtual network address space for your managed disks. Network traffic between clients on their virtual network and managed disks only traverses over the virtual network and a private link on the Microsoft backbone network, eliminating exposure from the public internet.
-
-  Using the steps in this article to configure a Private Link only affects the import and export of managed disks. It doesn't affect the ability of VMs directly attached to the disk to access the disk.
-
-  To use Private Link to export and import managed disks, first you create a disk access resource and link it to a virtual network in the same subscription by creating a private endpoint. Then, associate a disk or a snapshot with a disk access instance.
+  In this article, you create a disk access resource and use [private endpoints](/azure/private-link/private-endpoint-overview) to restrict the export and import of managed disks over a [private link](/azure/private-link/private-link-overview) from clients on your Azure virtual network. This configuration ensures that import/export operations on disks with this configuration occurs within your Azure virtual network. Using the steps in this article only affects the import and export of your disks, it doesn't affect the ability of your VMs to access disks directly attached to them.
 
 procedureSection:
   - title: |
@@ -29,6 +25,9 @@ procedureSection:
       [!INCLUDE [virtual-machines-disks-private-links-limitations](./includes/virtual-machines-disks-private-links-limitations.md)]
 
       ## Create a disk access resource
+
+      To use Private Link to export and import managed disks, create a disk access resource and link it to a virtual network in the same subscription by creating a private endpoint. Then, associate a disk or a snapshot with a disk access instance.
+
     steps:
       - |   
         Sign in to the [Azure portal](https://portal.azure.com) and navigate to **Disk Accesses**.
