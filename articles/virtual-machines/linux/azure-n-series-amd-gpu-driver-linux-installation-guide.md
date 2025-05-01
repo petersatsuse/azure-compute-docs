@@ -19,7 +19,7 @@ ms.author: v-padmalathas
 >Azure currently supports installation instructions for Ubuntu 22.04 and Ubuntu 24.04, for all other Linux distros and for latest updated guide on instructions to setup ROCm drivers, refer to AMDs pages here - [Quick start installation guide - ROCm installation(Linux)](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.3.3/install/quick-start.html) , for all other ROCm versions, refer [ROCm release history - ROCm Documentation](https://rocm.docs.amd.com/en/latest/release/versions.html#rocm-release-history)
 
 ## NVads V710-series
-To use the GPU capabilities of the new Azure NVads V710-series VMs running Linux, amdgpu drivers need to be installed. The [AMD GPU Driver Extension](articles/virtual-machines/extensions/hpccompute-amd-gpu-linux.md) facilitates the installation of amdgpu drivers on NVv710-series VMs. You can manage the extension using the Azure portal, Azure PowerShell, or Azure Resource Manager templates. Refer to the [AMD GPU Driver Extension](articles/virtual-machines/extensions/hpccompute-amd-gpu-linux.md) documentation for details on supported operating systems and deployment steps.
+To use the GPU capabilities of the new Azure NVads V710-series VMs running Linux, amdgpu drivers need to be installed. The [AMD GPU Driver Extension](../extensions/hpccompute-amd-gpu-linux.md) facilitates the installation of amdgpu drivers on NVv710-series VMs. You can manage the extension using the Azure portal, Azure PowerShell, or Azure Resource Manager templates. Refer to the [AMD GPU Driver Extension](../extensions/hpccompute-gpu-linux.md) documentation for details on supported operating systems and deployment steps.
 
 If you prefer to install amdgpu drivers manually, this article outlines the supported operating systems, drivers, and provides installation and verification steps.
 
@@ -322,16 +322,10 @@ linux-image-6.5.0-1025-azure
 linux-headers-6.5.0-1025-azure
 linux-modules-6.5.0-1025-azure
 ```
-##### Modify GRUB Settings: 
-
-Open the GRUB settings and change GRUB_DEFAULT="0" to GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux 6.5.0-1025-azure"
+##### Loading Kernel 6.5 by default on boot:
+When the NVv5-V710 GPU Linux instance is launched, the OS boots to the 6.8.0-1015-azure kernel instead of the 6.5.0-1025-azure kernel. The GRUB settings need to be modified to boot into the 6.5.0-1025-azure kernel. To check the currently installed kernels, use the following command
 ```bash
-GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux 6.5.0-1025-azure"
-```
-##### Loading Kernel 6.5 by default on boot
-When the NVv5-V710 GPU Linux instance is launched, the OS boots to the 6.8.0-1015-azure kernel instead of the 6.5.0-1025-azure kernel. The GRUB settings need to be modified to boot into the 6.5.0-1025-azure kernel. To check the currently installed kernels, use the below command
-```bash
-$ dpkg --list | egrep -i --color 'linux-image' | awk '{ print $2 }'
+$ dpkg --list | egrep -i --color 'linux-image' | awk '{ print $2 }'
 ```
 Output is similar to the following example
 ```bash
@@ -339,19 +333,21 @@ Linux-image-6.5.0-1025-azure
 linux-image-6.8.0-1015-azure 
 linux-image-azure
 ```
-##### Update GRUB and Reboot: 
-
+Open the GRUB settings and change GRUB_DEFAULT="0" to GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux 6.5.0-1025-azure"
+```bash
+GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux 6.5.0-1025-azure"
+```
+##### Update GRUB and Reboot:
 Update GRUB and reboot the system using
 ```bash
-sudo update-grub
-sudo reboot
+sudo update-grub sudo reboot
 ```
-##### Validate Kernel Version: 
-
+##### Validate Kernel Version:
 After rebooting, validate the kernel version using
 ```bash
 uname -a
 ```
+
 ### 4. Prerequisites
 >[!Note]
 > The disk size must be greater than 64GB to ensure optimal performance and compatibility.

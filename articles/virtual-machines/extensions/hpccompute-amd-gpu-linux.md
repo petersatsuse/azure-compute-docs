@@ -30,7 +30,7 @@ Instructions on manual installation of the drivers and the current supported ver
 
 Extension only Supports Ubuntu 22.04 and Ubuntu 24.04, Please add a note here saying for any other Linux Distro.
 >[!Note]
-For installation instructions on other Linux distributions, please visit https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.4.0/install/quick-start.html
+>For installation instructions on other Linux distributions, please visit [AMD's Documentation](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.4.0/install/quick-start.html)
 
 ### Internet connectivity
 
@@ -73,9 +73,9 @@ The following JSON shows the schema for the extension:
 
 All settings are optional. The default behavior is to not update the kernel if not required for driver installation and install the latest supported driver.
 
-| Name | Description | Default value | Valid values | Data type |
-| ---- | ---- | ---- | ---- | ---- |
-| driverVersion | | latest | [List]( https://github.com/Azure/azhpc-extensions/blob/master/AmdGPU/AMD-GPU-Linux-Resources.json) of supported driver versions | string |
+| Name | Default value | Valid values | Data type |
+| ---- | ---- | ---- | ---- |
+| driverVersion | Latest | [List]( https://github.com/Azure/azhpc-extensions/blob/master/AmdGPU/AMD-GPU-Linux-Resources.json) of supported driver versions | string |
 
 ## Deployment
 
@@ -169,7 +169,6 @@ az vm extension set \
   --publisher Microsoft.HpcCompute \
   --version 1.0 \
   --settings '{ \
-    "updateOS": true, \
     "driverVersion": "6.3.3" \
   }'
 ```
@@ -214,5 +213,5 @@ Extension execution output is logged to the following file. Refer to this file t
 | 23 | Required variable is not set. | Check the execution output log.|
 
 ## Next steps
-
+- For more information about extensions, see [Virtual machine extensions and features for Linux](overview.md)
 - For more information about N-series VMs, see [GPU optimized virtual machine sizes](../sizes-gpu.md).
