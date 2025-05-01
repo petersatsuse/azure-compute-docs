@@ -4,16 +4,16 @@ description: Overview of metadata security protocol.
 author: minnielahoti
 ms.service: azure-virtual-machines
 ms.topic: how-to
-ms.date: 04/08/2025
+ms.date: 04/22/2025
 ms.author: minnielahoti
 ms.reviewer: azmetadatadev
 ---
 
 # Metadata Security Protocol (MSP)
 
-MSP enhances the security of the [Azure Instance Metadata Service](https://aka.ms/azureimds) and [Azure Wireserver](https://aka.ms/azureWireserver) services (available in Azure IaaS Virtual Machine (VM) or Virtual Machine Scale Sets at 169.254.169.254 and 168.63.129.16 respectively). These services are used for providing metadata and bootstrapping VM credentials. As a result, threat actors frequency target these services. Common vectors include confused deputy attacks against in-guest workloads and sandbox escapes. These vectors are of particular concern for hosted-on-behalf-of workloads where untrusted code loads into the VM.
+MSP enhances the security of the [Azure Instance Metadata Service](https://aka.ms/azureimds) and [Azure WireServer](https://aka.ms/azureWireserver) services (available in Azure IaaS Virtual Machine (VM) or Virtual Machine Scale Sets at 169.254.169.254 and 168.63.129.16 respectively). These services are used for providing metadata and bootstrapping VM credentials. As a result, threat actors frequently target these services. Common vectors include confused deputy attacks against in-guest workloads and sandbox escapes. These vectors are of particular concern for hosted-on-behalf-of workloads where untrusted code loads into the VM.
 
-With metadata services, the trust boundary is the VM itself. Any software within the guest is authorized to request secrets from Instance Metadata Service (IMDS) + Wireserver. VM owners are responsible for carefully sandboxing any software they run inside the VM and ensuring that external actors can't exfiltrate data. In practice, the complexity of the problem leads to mistakes at scale which in turn lead to exploits.
+With metadata services, the trust boundary is the VM itself. Any software within the guest is authorized to request secrets from Instance Metadata Service (IMDS) + WireServer. VM owners are responsible for carefully sandboxing any software they run inside the VM and ensuring that external actors can't exfiltrate data. In practice, the complexity of the problem leads to mistakes at scale which in turn lead to exploits.
 
 While numerous defense-in-depth strategies exist, providing secrets over an unauthenticated HTTP API carries inherent risk. Across the industry, this class of vulnerabilities impacted hundreds of companies, millions of individuals, and caused financial losses in the hundreds of millions of dollars. MSP closes most common vulnerabilities by addressing the root cause of these attacks and by introducing strong Authentication (AuthN)/Authorization (AuthZ) concepts to cloud metadata services.
 
@@ -37,21 +37,13 @@ MSP is supported on Azure IaaS VMs + Virtual Machine Scale Sets running OS based
 The following are not supported yet:
 > - Ephemeral Disks 
 > - Compatability with Azure Backup 
-
-## How to Configure MSP
-
-Examples:
-
-- [ARM Templates](./other-examples/arm-templates.md)
-- REST API 
-- PowerShell
-- [Azure portal](./other-examples/portal.md)
+> - ARM64 
 
 ## Enhanced Security
 
 ### Implementation
 
-The GPA hardens against these types of attacks by:
+The Guest Proxy Agent (GPA) hardens against these types of attacks by:
 
 - Limiting metadata access to a subset of the VM (applying the principle of least privileged access).
 - Switching from a "default-open" to "default-closed" model. For instance, with nested virtualization, a misconfigured L2
@@ -69,14 +61,7 @@ enables the GPA to verify the identity of the in-guest software that made the re
   - Today this restriction is accomplished with firewall rules in the guest. This is still a default-open mechanism, because if that rule can be disabled or bypassed for any reason the metadata service still accepts the request. The AuthN mechanism enabled here default-closed. Bypassing interception maliciously or by error doesn't grant access to the metadata service.
 - Advanced AuthZ configuration to authorize specific in-guest processes and users to access only specific endpoints is supported by defining a custom allowlist with Role Based Access Control (RBAC) semantics.
 
-## Getting Audit Logs
-
-In `Audit` and `Enforce` modes, audit logs are generated on the local disk.
-
-| OS Family | Audit Log Location |
-|--|--|
-| Linux | `/var/lib/azure-proxy-agent/ProxyAgent.Connection.log` |
-| Windows | `C:\WindowsAzure\ProxyAgent\Logs\ProxyAgent.Connection.log` |
+For details on how to configure MSP, visit  [MSP Configuration](./configuration.md) page. 
 
 
 ## Related Content
