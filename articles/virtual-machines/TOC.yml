@@ -1292,6 +1292,9 @@
       - name: Windows
         displayName: AMD GPU Drivers, AMD, GPU, drivers
         href: ./extensions/hpccompute-amd-gpu-windows.md
+      - name: Linux
+        displayName: AMD GPU Drivers, AMD, GPU, drivers
+        href: ./extensions/hpccompute-amd-gpu-linux.md
     - name: Azure Monitor
       items:
       - name: Azure Monitor agent
