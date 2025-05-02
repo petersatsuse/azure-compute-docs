@@ -10,11 +10,8 @@
 ---
 Currently only available in the following regions:
 
-| *Redundancy Options* | *Regions* |
-|---|---|
-| Regional | Australia Central 2 Australia Southeast Canada East  North Central US Norway West UK West West Central US West US |
-| One Availability Zone | Japan West |
-| Two Availability Zones | Indonesia Central New Zealand North  |
-| Three Availability Zones | Australia East Brazil South Central India Central US China North 3 East Asia East US East US 2 France Central Germany West Israel Central Italy North Japan East Korea Central Mexico Central North Europe Norway East Poland Central Spain Central South African North South Central US Southeast Asia Sweden Central Switzerland North UAE North UK South US Gov Virginia West Europe West US 2 West US 3 |
+| *Regions without Availability Zone* | *One Availability Zone* | *Two Availability Zones* | *Three Availability Zones* |
+|:-------------------|:-------------------|:-------------------|:-------------------|
+| - Australia South East <br> - Canada East <br> - North Central US <br> - Norway West <br> - UK West <br> - West Central US <br> - West US<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> |- Japan West <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> |- Indonesia Central <br> - New Zealand North<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> | - Australia East <br> - Brazil South <br> - Central India <br> - Central US <br> - China North 3 <br> - East Asia <br> - East US <br> - East US 2 <br> - France Central <br> - Germany West Central <br> - srael Central <br> - Italy North <br> - Japan East <br> - Korea Central <br> - Mexico Central <br> - North Europe <br> - Norway East <br> - Poland Central <br> - Spain Central <br> - South African North <br> - South Central US <br> - Southeast Asia <br> - Sweden Central <br> - Switzerland North <br> - UAE North <br> - UK South <br> - US Gov Virginia <br> - West Europe <br> - West US 2 <br> - West US 3 |
 
 To learn when support for particular regions was added, see either [Azure Updates](https://azure.microsoft.com/updates/?query=disk%20storage) or [What's new for Azure Disk Storage](/azure/virtual-machines/disks-whats-new).
