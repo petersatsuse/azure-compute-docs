@@ -3,7 +3,7 @@ title: Best practices
 description: This article describes best practices to be followed while using Azure VM Image Builder.
 author: sumit-kalra
 ms.service: azure-virtual-machines
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 03/25/2024
 ms.reviewer: mattmcinnes
 ms.subservice: image-builder

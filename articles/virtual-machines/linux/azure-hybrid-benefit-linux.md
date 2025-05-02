@@ -7,7 +7,7 @@ manager: clausw
 ms.service: azure-virtual-machines
 ms.subservice: billing
 ms.collection: linux
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 12/19/2024
 ms.author: clausw
 ms.reviewer: mattmcinnes

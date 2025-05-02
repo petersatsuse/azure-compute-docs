@@ -4,7 +4,7 @@ description: Learn about new features and enhancements in Azure Disk Storage.
 author: roygara
 ms.author: rogarana
 ms.date: 11/11/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-disk-storage
 ms.custom: references_regions
 ---
