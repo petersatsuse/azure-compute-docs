@@ -193,7 +193,7 @@ The new `errorHandling` property gives you more control over how errors are hand
 
 API version 2021-10-01 introduces a change to the error schema that will be part of every future API release. If you have any Azure VM Image Builder automations, be aware of the [new error output](#error-output-for-version-2021-10-01-and-later) when you switch to API version 2021-10-01 or later.
 
-We recommend, after you switch to the latest API version, that you don't revert to an earlier version. If you revert to an earlier version, you'll have to change your automation again to produce the earlier error schema. We don't anticipate that the error schema will change again in future releases.
+We recommend, after you switch to the latest API version, that you don't revert to an earlier version. If you revert, you'll have to change your automation again to produce the earlier error schema. We don't anticipate that the error schema will change again in future releases.
 
 ##### Error output for version 2020-02-14 and earlier
 
