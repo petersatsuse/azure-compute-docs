@@ -27,10 +27,15 @@ Instructions on manual installation of the drivers and the current supported ver
 ## Prerequisites
 
 ### Operating system
+This extension supports the following OS distros, depending on driver support for the specific OS version:
 
-Extension only Supports Ubuntu 22.04 and Ubuntu 24.04, Please add a note here saying for any other Linux Distro.
+
+**Distribution** | **Version**       |
+|------------------|-------------------|
+| Linux: Ubuntu    |  22.04<br> 24.04 |
+
 >[!Note]
->For installation instructions on other Linux distributions, please visit [AMD's Documentation](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.4.0/install/quick-start.html)
+>For installation instructions on other Linux distributions, please visit [AMD's documentation](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.4.0/install/quick-start.html)
 
 ### Internet connectivity
 
