@@ -34,7 +34,7 @@ Enable [virtual machine (VM) boot optimization](vm-boot-optimization.md) in VM I
 
 ## Specify subnets
 
-Specify your own build VM subnets and Azure Container Instances subnets for tighter control over deployment of network-related resources by VM Image Builder in your subscription. Specifying these subnets also leads to faster image build times. To learn more, see the [template reference](./linux/image-builder-json.md#vnetconfig-optional).
+Specify your own build VM subnets and Azure Container Instances subnets for tighter control over deployment of network-related resources by VM Image Builder in your subscription. Specifying these subnets also leads to faster build times for images. To learn more, see the [template reference](./linux/image-builder-json.md#vnetconfig-optional).
 
 ## Follow the principle of least privilege
 
@@ -50,7 +50,7 @@ Make sure that only required principals can access image templates.
 
 VM Image Builder uses a staging resource group in your subscription to customize your VM image. You must consider this resource group as sensitive and restrict access to only required principals. Keep these risks in mind:
 
-- Because the process of customizing your image happens in this resource group, a principal that has access to the resource group can compromise the image building process. For example, such a principal can inject malware into the image.
+- Because the process of customizing your image happens in this resource group, a principal that has access to the resource group can compromise the image-building process. For example, such a principal can inject malware into the image.
 
 - VM Image Builder delegates privileges associated with the template identity and the build VM identity to resources in this resource group. A principal that has access to the resource group can get access to these identities.
 

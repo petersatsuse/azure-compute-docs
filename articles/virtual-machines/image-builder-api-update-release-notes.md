@@ -43,14 +43,14 @@ If you send an API request to VM Image Builder API version 2024-02-01 or later w
 
 `Unmarshalling entity encountered error: unmarshalling type *v2024_02_01.ImageTemplate: struct field Properties: unmarshalling type *v2024_02_01.ImageTemplateProperties: struct field Optimize: unmarshalling type *v2024_02_01.ImageTemplatePropertiesOptimize: unmarshalling type *v2024_02_01.ImageTemplatePropertiesOptimize, unknown field \"vmboot\". There is an issue with the syntax with the JSON template you are submitting. Please check the JSON template for syntax and grammar. For more information on the syntax and grammar of the JSON template, visit http://aka.ms/azvmimagebuildertmplref.`
 
-The error message mentions an "unknown field" and directs you to the official documentation: [Create a VM Image Builder Bicep or ARM template JSON template](./linux/image-builder-json.md).
+The error message mentions an "unknown field" and directs you to the official documentation: [Create an Azure VM Image Builder Bicep or Azure Resource Manager JSON template](./linux/image-builder-json.md).
 
 > [!NOTE]
 > When you're making API calls to the VM Image Builder service, always reference the [Swagger documentation](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable). This documentation serves as the definitive source of truth for VM Image Builder API specifications. Although the public documentation was updated to include the proper capitalization and field names ahead of the API release, the Swagger definition contains precise details about each VM Image Builder API. These details help ensure that you're making calls to the service correctly.
 
 The following documentation changes were made to match the field names in API version 2024-02-01.
 
-In the [Create an Azure VM Image Builder Bicep or ARM template JSON template](./linux/image-builder-json.md) documentation:
+In the [Create an Azure VM Image Builder Bicep or Azure Resource Manager JSON template](./linux/image-builder-json.md) documentation:
 
 - Fields updated:
   - Replaced several mentions of `vmboot` with `vmBoot`.
@@ -136,7 +136,7 @@ New portal functionality was added for VM Image Builder. Search for **Image Temp
 
 - You can use the new `managedResourceTags` property to apply tags to the resources that the VM Image Builder service creates in the staging resource group during the image build. For more information, see [Properties: `managedResourceTags`](../virtual-machines/linux/image-builder-json.md#properties-managedresourcetags).
 
-- You can use the new `containerInstanceSubnetId` property to specify a subnet on which Azure Container Instances will be deployed for Isolated Image Builds. You can specify this field only if you specify `subnetId`. This field must be on the same virtual network as the subnet specified in `subnetId`. For more information, see [Bring your own Build VM subnet and bring your own Container Instances subnet](./security-isolated-image-builds-image-builder.md#bring-your-own-build-vm-subnet-and-bring-your-own-aci-subnet).
+- You can use the new `containerInstanceSubnetId` property to specify a subnet on which Azure Container Instances will be deployed for Isolated Image Builds. You can specify this field only if you specify `subnetId`. This field must be on the same virtual network as the subnet specified in `subnetId`. For more information, see [Bring your own build VM subnet and bring your own Container Instances subnet](./security-isolated-image-builds-image-builder.md#bring-your-own-build-vm-subnet-and-bring-your-own-aci-subnet).
 
 - This version adds support for updating the `vmProfile` property, including the following fields:
   - `vmSize`
@@ -163,7 +163,7 @@ The new `errorHandling` property gives you more control over how errors are hand
 #### Improvements
 
 - This version adds support to use the latest image version stored in Azure Compute Gallery as the source for the image template.
-- This version adds `versioning` to support generating version numbers for image distributions. For more information, see [Properties: `versioning`](../virtual-machines/linux/image-builder-json.md#versioning)
+- This version adds `versioning` to support generating version numbers for image distributions. For more information, see [Properties: `versioning`](../virtual-machines/linux/image-builder-json.md#versioning).
 - This version adds support for per-region configuration when you're distributing to Azure Compute Gallery. For more information, see [Distribute: targetRegions](../virtual-machines/linux/image-builder-json.md#distribute-targetregions).
 - This version adds a new `File` validation type. For more information, see [Properties: `validate`](../virtual-machines/linux/image-builder-json.md#properties-validate).
 - You can now distribute virtual hard disks (VHDs) to a custom blob or container in a custom storage account. For more information, see [Distribute: VHD](../virtual-machines/linux/image-builder-json.md#distribute-vhd).
@@ -193,7 +193,7 @@ The new `errorHandling` property gives you more control over how errors are hand
 
 API version 2021-10-01 introduces a change to the error schema that will be part of every future API release. If you have any Azure VM Image Builder automations, be aware of the [new error output](#error-output-for-version-2021-10-01-and-later) when you switch to API version 2021-10-01 or later.
 
-We recommend, after you switch to the latest API version, that you don't revert to an earlier version. If you revert, you'll have to change your automation again to produce the earlier error schema. We don't anticipate that the error schema will change again in future releases.
+We recommend, after you switch to the latest API version, that you don't revert to an earlier version. If you revert, you'll have to change your automation again to produce the earlier error schema. We don't expect the error schema to change again in future releases.
 
 ##### Error output for version 2020-02-14 and earlier
 
@@ -217,7 +217,7 @@ We recommend, after you switch to the latest API version, that you don't revert 
 
 #### Improvements
 
-- Added support for [build VM MSIs](linux/image-builder-json.md#user-assigned-identity-for-the-image-builder-build-vm).
+- Added support for [managed identities for the build VM](linux/image-builder-json.md#user-assigned-identity-for-the-image-builder-build-vm).
 - Added support for customization of proxy VM size.
 
 ### Version 2020-02-14
@@ -238,17 +238,17 @@ We recommend, after you switch to the latest API version, that you don't revert 
   - VHD
   - Managed image
   - Azure Compute Gallery
-- Added support for customers to use their own virtual network
-- Added support for customers to customize the build VM (VM size, operating system disk size)
-- Added support for user-assigned MSI (for customize/distribute steps)
-- Added support for [Generation 2 images](image-builder-overview.md#hyper-v-generation)
+- Added support for customers to use their own virtual network.
+- Added support for customers to customize the build VM (VM size, operating system disk size).
+- Added support for user-assigned managed identities (for customize/distribute steps).
+- Added support for [Generation 2 images](image-builder-overview.md#hyper-v-generation).
 
-### Preview APIs
+### Preview API
 
-The following APIs are deprecated but still supported:
+The following API is deprecated but still supported:
 
 - Version 2019-05-01-preview
 
 ## Related content
 
-[Azure VM Image Builder overview](image-builder-overview.md).
+- [Azure VM Image Builder overview](image-builder-overview.md)
