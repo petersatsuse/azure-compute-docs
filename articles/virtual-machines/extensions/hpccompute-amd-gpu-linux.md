@@ -30,9 +30,9 @@ Instructions on manual installation of the drivers and the current supported ver
 This extension supports the following OS distros, depending on driver support for the specific OS version:
 
 
-**Distribution** | **Version**       |
+|Distribution | Version|
 |------------------|-------------------|
-| Linux: Ubuntu    |  22.04<br> 24.04 |
+| Linux: Ubuntu|  22.04<br> 24.04 |
 
 >[!Note]
 >For installation instructions on other Linux distributions, please visit [AMD's documentation](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-6.4.0/install/quick-start.html)
