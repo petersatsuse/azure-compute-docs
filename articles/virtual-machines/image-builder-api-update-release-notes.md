@@ -46,7 +46,7 @@ If you send an API request to VM Image Builder API version 2024-02-01 or later w
 The error message mentions an "unknown field" and directs you to the official documentation: [Create a VM Image Builder Bicep or ARM template JSON template](./linux/image-builder-json.md).
 
 > [!NOTE]
-> When you're making API calls to the VM Image Builder service, always reference the [Swagger documentation](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable). This documentation serves as the definitive source of truth for VM Image Builder API specifications. Although the public documentation was updated to include the proper capitalization and field names ahead of the API release, the Swagger definition contains precise details about each VM Image Builder API to ensure that you're making calls to the service correctly.
+> When you're making API calls to the VM Image Builder service, always reference the [Swagger documentation](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable). This documentation serves as the definitive source of truth for VM Image Builder API specifications. Although the public documentation was updated to include the proper capitalization and field names ahead of the API release, the Swagger definition contains precise details about each VM Image Builder API. These details help ensure that you're making calls to the service correctly.
 
 The following documentation changes were made to match the field names in API version 2024-02-01.
 
@@ -70,13 +70,13 @@ In the [Azure VM Image Builder networking options](./linux/image-builder-network
 
 #### Pinning to an older VM Image Builder API version
 
-If you want to avoid making changes to the properties in your image templates due to the new case sensitivity rules, you have the option to pin your Azure VM Image Builder API calls to a previous API version. This pinning allows you to continue using the familiar behavior without any modifications.
+If you want to avoid making changes to the properties in your image templates due to the new case-sensitivity rules, you have the option to pin your Azure VM Image Builder API calls to a previous API version. This pinning allows you to continue using the familiar behavior without any modifications.
 
 > [!IMPORTANT]
 > Pinning to an older VM Image Builder API version can provide compatibility with your existing templates, but we don't recommend it due to the following factors:
 >
 > - Older API versions might eventually be deprecated.
-> - By pinning to an older API version, you miss out on the latest features and improvements introduced in newer versions. These enhancements often improve performance, security, and functionality.
+> - By pinning to an older API version, you miss the latest features and improvements introduced in newer versions. These enhancements often improve performance, security, and functionality.
 
 To ensure compatibility with your existing templates when you're creating or updating an image template, specify the desired API version by including the `api-version` parameter in your call to the service. For example:
 
@@ -112,7 +112,7 @@ After you pin to the older API version, test your code to verify that it behaves
 
 ### November 2023
 
-VM Image Builder is enabling Isolated Image Builds via Azure Container Instances in a phased manner. The rollout is expected to be completed by early 2024. Your existing image templates continue to work, and there's no change in the way you create or build new image templates.
+VM Image Builder is enabling Isolated Image Builds via Azure Container Instances in a phased manner. The rollout is expected finish by early 2024. Your existing image templates continue to work, and there's no change in the way you create or build new image templates.
 
 You might observe a different set of transient Azure resources appearing temporarily in the staging resource group. It doesn't affect your actual builds or the way you interact with VM Image Builder. For more information, see [Isolated Image Builds](./security-isolated-image-builds-image-builder.md).
 
@@ -132,9 +132,9 @@ New portal functionality was added for VM Image Builder. Search for **Image Temp
 
 #### Improvements
 
-- You can use the new `autoRun` property to run the image build on template creation or update. For more information, see [Properties: autoRun](../virtual-machines/linux/image-builder-json.md#properties-autorun).
+- You can use the new `autoRun` property to run the image build on template creation or update. For more information, see [Properties: `autoRun`](../virtual-machines/linux/image-builder-json.md#properties-autorun).
 
-- You can use the new `managedResourceTags` property to apply tags to the resources that the VM Image Builder service creates in the staging resource group during the image build. For more information, see [Properties: managedResourceTags](../virtual-machines/linux/image-builder-json.md#properties-managedresourcetags).
+- You can use the new `managedResourceTags` property to apply tags to the resources that the VM Image Builder service creates in the staging resource group during the image build. For more information, see [Properties: `managedResourceTags`](../virtual-machines/linux/image-builder-json.md#properties-managedresourcetags).
 
 - You can use the new `containerInstanceSubnetId` property to specify a subnet on which Azure Container Instances will be deployed for Isolated Image Builds. You can specify this field only if you specify `subnetId`. This field must be on the same virtual network as the subnet specified in `subnetId`. For more information, see [Bring your own Build VM subnet and bring your own Container Instances subnet](./security-isolated-image-builds-image-builder.md#bring-your-own-build-vm-subnet-and-bring-your-own-aci-subnet).
 
@@ -163,9 +163,9 @@ The new `errorHandling` property gives you more control over how errors are hand
 #### Improvements
 
 - This version adds support to use the latest image version stored in Azure Compute Gallery as the source for the image template.
-- This version adds `versioning` to support generating version numbers for image distributions. For more information, see [Properties: versioning](../virtual-machines/linux/image-builder-json.md#versioning)
+- This version adds `versioning` to support generating version numbers for image distributions. For more information, see [Properties: `versioning`](../virtual-machines/linux/image-builder-json.md#versioning)
 - This version adds support for per-region configuration when you're distributing to Azure Compute Gallery. For more information, see [Distribute: targetRegions](../virtual-machines/linux/image-builder-json.md#distribute-targetregions).
-- This version adds a new `File` validation type. For more information, see [Properties: validate](../virtual-machines/linux/image-builder-json.md#properties-validate).
+- This version adds a new `File` validation type. For more information, see [Properties: `validate`](../virtual-machines/linux/image-builder-json.md#properties-validate).
 - You can now distribute virtual hard disks (VHDs) to a custom blob or container in a custom storage account. For more information, see [Distribute: VHD](../virtual-machines/linux/image-builder-json.md#distribute-vhd).
 - This version adds support for using a [direct shared gallery](/azure/virtual-machines/shared-image-galleries?tabs=azure-cli#sharing) image as the source for the image template.
 

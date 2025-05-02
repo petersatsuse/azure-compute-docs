@@ -24,7 +24,7 @@ VM Image Builder failures can happen in two areas:
 
 ## Prerequisites
 
-When you're creating a build, do the following:
+These prerequisites are for creating a build:
 
 - The VM Image Builder service communicates to the build virtual machine (VM) by using Windows Remote Management (WinRM) or Secure Shell (SSH). *Don't* disable these settings as part of the build.
 - VM Image Builder creates resources in the staging resource group as part of the builds. The exact list of resources depends on the [network configuration](./image-builder-json.md#vnetconfig-optional) specified in the image template. Be sure to verify that Azure Policy doesn't prevent VM Image Builder from creating or using necessary resources.
@@ -87,7 +87,7 @@ Here's the error output for version 2021-10-01 and later:
 ```
 
 > [!IMPORTANT]
-> API version 2021-10-01 introduces a change to the error schema that will be part of every future API release. If you have any Azure VM Image Builder automations, be aware of the [new error output](#error-output-for-version-2021-10-01-and-later) when you switch to API version 2021-10-01 or later.
+> API version 2021-10-01 introduces a change to the error schema that will be part of every future API release. If you have any Azure VM Image Builder automations, be aware of the [new error output](#troubleshoot-image-template-submission-errors) when you switch to API version 2021-10-01 or later.
 >
 > We recommend, after you switch to the latest API version, that you don't revert to an earlier version. If you revert, you'll have to change your automation again to produce the earlier error schema. We don't anticipate that the error schema will change again in future releases.
 
@@ -266,7 +266,7 @@ The file name or location is incorrect, or the location isn't reachable.
 
 Ensure that the file is reachable. Verify that the name and location are correct.
 
-Certain file repositories might use unsupported cipher suites and cause download errors with VM Image Builder. Store files and scripts in an Azure storage account to help ensure secure cipher suites and accessibility by VM Image Builder. For more information on how to store your files in Azure storage accounts, see [Storage account overview](https://learn.microsoft.com/azure/storage/common/storage-account-overview).
+Certain file repositories might use unsupported cipher suites and cause download errors with VM Image Builder. Store files and scripts in an Azure storage account to help ensure secure cipher suites and accessibility by VM Image Builder. For more information on how to store your files in Azure storage accounts, see [Storage account overview](/azure/storage/common/storage-account-overview).
 
 ### Authorization error occurs with creating a disk
 
@@ -862,7 +862,7 @@ You can do the following to make Azure Container Instances quota available for V
 > [!NOTE]
 > Azure Container Instances resources are required for [Isolated Image Builds](../security-isolated-image-builds-image-builder.md).
 
-### Too many concurrent image builds within a period of time
+### Concurrent image builds exceed the quota within a period of time
 
 #### Error
 
@@ -874,7 +874,7 @@ Your subscription doesn't have enough Azure Container Instances quota for VM Ima
 
 #### Solution
 
-You can do the following:
+You can try these solutions:
 
 - Retry your failed builds in a less concurrent manner.
 - If the current Azure Container Instances limits for your subscription are too low to support your image-building scenarios, you can request an increase in your [Azure Container Instances quota](../../container-instances/container-instances-resource-and-quota-limits.md#next-steps).
@@ -891,10 +891,10 @@ VM Image Builder builds can fail for reasons listed elsewhere in this article. H
 
 #### Solution
 
-If you determine that a build is failing due to Isolated Image Builds, you can do the following:
+If you determine that a build is failing due to Isolated Image Builds, ensure that:
 
-- Ensure that no [Azure policy](/azure/governance/policy/overview) is blocking the deployment of resources mentioned in the [Prerequisites section](./image-builder-troubleshoot.md#prerequisites), specifically Azure Container Instances.
-- Ensure that your subscription has sufficient quota for Azure Container Instances to support all your concurrent image builds. For more information, see the [Subscription exceeded the Azure Container Instances quota](#subscription-exceeded-the-azure-container-instances-quota) section in this article.
+- No [Azure policy](/azure/governance/policy/overview) is blocking the deployment of resources mentioned in the [Prerequisites section](./image-builder-troubleshoot.md#prerequisites), specifically Azure Container Instances.
+- Your subscription has sufficient quota for Azure Container Instances to support all your concurrent image builds. For more information, see the [Subscription exceeded the Azure Container Instances quota](#subscription-exceeded-the-azure-container-instances-quota) section in this article.
 
 VM Image Builder is currently in the process of deploying Isolated Image Builds. Specific image templates are not tied to Isolated Image Builds, and the same image template might or might not use Isolated Image Builds during different builds.
 
@@ -1129,7 +1129,7 @@ In Linux, VM Image Builder runs a generic `waagent -deprovision+user` command. F
 
 If you're migrating an existing customization and you're using various `Sysprep` or `waagent` commands, you can try the VM Image Builder generic commands. If the VM creation fails, use your previous `Sysprep` or `waagent` commands.
 
-Let's suppose that you used VM Image Builder successfully to create a Windows custom image, but you failed to create a VM successfully from the image. For example, the VM creation fails to finish or it times out. In this event, do either of the following:
+Let's suppose that you used VM Image Builder successfully to create a Windows custom image, but you failed to create a VM successfully from the image. For example, the VM creation fails to finish or it times out. In this event, do either of the following tasks:
 
 - Review the Windows Server `Sysprep` documentation.
 - Raise a support request with the Windows Server `Sysprep` customer support team. That team can help troubleshoot your issue and advise you on the correct `Sysprep` command.
@@ -1185,7 +1185,7 @@ To override the commands, use the PowerShell or shell script provisioners to cre
 
 If you used the guidance in this article and are still having problems, you can open a support case.
 
-Use the following code to select the correct product and support topic. Doing so will ensure that you're connected with the Azure VM Image Builder support team.
+Use the following code to select the correct product and support topic. Doing so ensures that you're connected with the Azure VM Image Builder support team.
 
 ```text
 Product Family: Azure
