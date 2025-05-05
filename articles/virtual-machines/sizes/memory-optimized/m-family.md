@@ -4,13 +4,8 @@ description: List of sizes in the M family.
 author: mattmcinnes
 ms.service: azure-virtual-machines
 ms.subservice: sizes
-<<<<<<< HEAD
-ms.topic: conceptual
-ms.date: 04/09/2025
-=======
 ms.topic: concept-article
-ms.date: 04/18/2024
->>>>>>> f357aa610f3d72abac9cb53fca31e6a5286ea3b5
+ms.date: 05/05/2025
 ms.author: mattmcinnes
 ---
 
