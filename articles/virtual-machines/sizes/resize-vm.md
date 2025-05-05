@@ -284,8 +284,7 @@ For more information on choosing the right SKU, you can use the following resour
 
 2. You can't resize a VM size that has a SCSI-based VM to a VM size that has a remote NVMe-enabled VM.
 
-   For a work around see [How can I resize a SCSI-based VM to a remote NVMe-enabled VM of a different size? ](https://learn.microsoft.com/azure/virtual-machines/enable-nvme-remote-faqs#how-can-i-resize-a-scsi-based-vm-to-a-remote-nvme-enabled-vm-of-a-different-size-). 
-
+   For a work around see [How can I resize a SCSI-based VM to a remote NVMe-enabled VM of a different size?](../enable-nvme-remote-faqs.yml#how-can-i-resize-a-scsi-based-vm-to-a-remote-nvme-enabled-vm-of-a-different-size-)
 
 ## Next steps
 

@@ -4,7 +4,7 @@ description: An overview of Azure Cobalt processor-based Virtual Machines.
 author: archatC
 ms.service: azure-virtual-machines
 ms.subservice: sizes
-ms.topic: conceptual
+ms.topic: concept-article
 ms.workload: infrastructure-services
 ms.date: 11/07/2024
 ms.author: archat
@@ -46,7 +46,7 @@ The following section lists the Guest OS support for Cobalt 100 VMs.
 | Red Hat Enterprise Linux (RHEL) | 8.6+ |
 | SUSE Linux Enterprise Server (SLES) | 15 SP4+ |
 | Ubuntu | 20.04+ |
-| Windows 11 | N/A |
+| Windows 11 Client | N/A |
 
 To find the most up-to-date Guest OS support, visit [Azure portal](https://portal.azure.com/#create/Microsoft.VirtualMachine). Under "Instance Details," select "See all images," then click the "Image Type" filter to select "Arm64."
 

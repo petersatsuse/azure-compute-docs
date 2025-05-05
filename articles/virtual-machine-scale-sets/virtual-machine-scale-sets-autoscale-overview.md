@@ -1,12 +1,12 @@
 ---
 title: Overview of autoscale with Azure Virtual Machine Scale Sets
 description: Learn about the different ways that you can automatically scale an Azure Virtual Machine Scale Set based on performance or on a fixed schedule
-author: mimckitt
-ms.author: mimckitt
+author: brittanyrowe
+ms.author: brittanyrowe
 ms.topic: overview
 ms.service: azure-virtual-machine-scale-sets
 ms.subservice: autoscale
-ms.date: 03/21/2025
+ms.date: 04/1/2025
 ms.reviewer: jushiman
 ---
 
@@ -28,7 +28,7 @@ This automated and elastic behavior reduces the management overhead to monitor a
 
 You can manually increase or decrease the number of instances in the virtual machine scale set by updating the `sku.capacity` property.
 
-### Azure portal
+### [Azure portal](#tab/portal-1)
 
 1. Navigate to an existing Virtual machine scale set.
 1. Under **Settings,** select the **Scaling** tab.
@@ -36,29 +36,30 @@ You can manually increase or decrease the number of instances in the virtual mac
 1. Update the **Instance count**.
 1. Press the **Save** button.
 
-### Azure CLI
+### [Azure CLI](#tab/cli-1)
 
 ```azurecli
 az vmss scale \
 	--new-capacity 5 \
-	--name <scale set name> \
-	--resource-group <resource group name>
+	--name scaleSetName \
+	--resource-group resourceGroupName
 ```
 
-### Azure PowerShell
+### [Azure PowerShell](#tab/ps-1)
 
 ```azurepowershell
 Update-AzVmss `
 	-SkuCapacity 5 `
-	-ResourceGroupName <resource group name> ` 
-	-VMScaleSetName <scale set name>  `
+	-ResourceGroupName resourceGroupName ` 
+	-VMScaleSetName scaleSetName  `
 ```
+---
 
 ## Benefits of autoscale
 If your application demand increases, the load on the virtual machines in your scale set increases. If this increased load is consistent, rather than just a brief demand, you can configure autoscale rules to increase and decrease the number of virtual machines in the scale set.
 
 > [!NOTE]
-> When using automatic instance repairs for your scale set, the maximum number of instances in the scale set can be 1000. Learn more about [Automatic Instance Repairs](./virtual-machine-scale-sets-automatic-instance-repairs.md).
+> When using automatic instance repairs for your scale set, the maximum number of instances in the scale set can be 1,000. Learn more about [Automatic Instance Repairs](./virtual-machine-scale-sets-automatic-instance-repairs.md).
 
 When these virtual machines are created and your applications are deployed, the scale set starts to distribute traffic to them through the load balancer. You control what metrics to monitor, such as CPU or memory, how long the application load must meet a given threshold, and how many virtual machines to add to the scale set.
 
@@ -104,26 +105,20 @@ The following host-based metrics are available for use when you create autoscale
 | CPU Credits Consumed      |
 
 When you create autoscale rules to monitor a given metric, the rules look at one of the following metrics aggregation actions:
-
-| Aggregation type |
-|------------------|
-| Average          |
-| Minimum          |
-| Maximum          |
-| Total            |
-| Last             |
-| Count            |
+- Average
+- Minimum
+- Maximum
+- Total
+- Last
+- Count
 
 The autoscale rules are then triggered when the metrics are compared against your defined threshold with one of the following operators:
-
-| Operator                 |
-|--------------------------|
-| Greater than             |
-| Greater than or equal to |
-| Less than                |
-| Less than or equal to    |
-| Equal to                 |
-| Not equal to             |
+- Greater than            
+- Greater than or equal to
+- Less than               
+- Less than or equal to   
+- Equal to                
+- Not equal to            
 
 ### Actions when rules trigger
 When an autoscale rule triggers, your scale set can automatically scale in one of the following ways:
@@ -150,12 +145,12 @@ To gain more visibility in to the performance of your applications, you can use 
 For more information about App Insights, see [What is Application Insights](/azure/azure-monitor/app/app-insights-overview).
 
 ## Scheduled autoscale
-You can also create autoscale rules based on schedules. These schedule-based rules allow you to automatically scale the number of virtual machines at fixed times. With performance-based rules, there may be a performance impact on the application before the autoscale rules trigger and the new virtual machines are provisioned. If you can anticipate such demand, the additional virtual machines are provisioned and ready for the additional customer use and application demand.
+You can also create autoscale rules based on schedules. These schedule-based rules allow you to automatically scale the number of virtual machines at fixed times. With performance-based rules, there may be a performance impact on the application before the autoscale rules trigger and the new virtual machines are provisioned. If you can anticipate such demand, the extra virtual machines are provisioned and ready for the increased customer use and application demand.
 
 The following examples are scenarios that may benefit the use of schedule-based autoscale rules:
 
 - Automatically scale out the number of virtual machines at the start of the work day when customer demand increases. At the end of the work day, automatically scale in the number of virtual machines to minimize resource costs overnight when application use is low.
-- If a department uses an application heavily at certain parts of the month or fiscal cycle, automatically scale the number of virtual machines to accommodate their additional demands.
+- For departments with applications that experience heavy usage during specific times of the month or fiscal cycle, automatically scale the number of virtual machines to handle the increased demand seamlessly.
 - When there's a marketing event, promotion, or holiday sale, you can automatically scale the number of virtual machines ahead of anticipated customer demand. 
 
 ## Limitations

@@ -283,8 +283,8 @@
           href: ./sizes/general-purpose/dcasv5-series.md
         - name: DCadsv5 series
           href: ./sizes/general-purpose/dcadsv5-series.md
-        - name: DCesv5 series
-          href: ./sizes/general-purpose/dcesv5-series.md
+        - name: DCesv6 series
+          href: ./sizes/general-purpose/dcesv6-series.md
         - name: DCedsv5 series
           href: ./sizes/general-purpose/dcedsv5-series.md
         - name: DCas_cc_v5 series
@@ -390,7 +390,7 @@
           href: ./sizes/memory-optimized/ec-family.md
         - name: ECasv5 and ECadsv5 series
           href: ecasv5-ecadsv5-series.md
-        - name: ECesv5 and ECedsv5 series
+        - name: ECesv6 series
           href: ecesv5-ecedsv5-series.md
         - name: ECas_cc_v5 and ECads_cc_v5 series
           href: ecasccv5-ecadsccv5-series.md
@@ -496,6 +496,8 @@
           href: nd-series-retirement.md
         - name: NDv2 series
           href: ./sizes/gpu-accelerated/ndv2-series.md
+        - name: ND-GB200-v6 series
+          href: ./sizes/gpu-accelerated/nd-gb200-v6-series.md
         - name: ND-H100-v5 series
           href: ./sizes/gpu-accelerated/ndh100v5-series.md
         - name: ND-H200-v5 series
@@ -526,7 +528,7 @@
           href: ./sizes/gpu-accelerated/nvv4-series.md
         - name: NVadsA10_v5 series
           href: ./sizes/gpu-accelerated/nvadsa10v5-series.md
-        - name: Nvads V710 v-5 series
+        - name: Nvads V710 v5-series
           href: ./sizes/gpu-accelerated/nvadsv710-v5-series.md
       - name: Setup NVIDIA GPU drivers
         items:
@@ -1131,24 +1133,29 @@
     - name: Create from an existing OS disk or VHD
       displayName: attach
       href: attach-os-disk.md
-  - name: Auto-shutdown a VM
-    href: auto-shutdown-vm.md
-  - name: Hibernating Virtual Machines
+  - name: Power states
+    displayName: Power, Shutdown, Hibernate, Stop, Sleep, Auto-shutdown, Reset
     items:
-    - name: Overview
-      href: hibernate-resume.md
-    - name: Hibernate Linux VMs
-      href: ./linux/hibernate-resume-linux.md
-    - name: Hibernate Windows VMs
-      href: ./windows/hibernate-resume-windows.md
-    - name: Troubleshoot VM hibernation
+    - name: Understand VM reboots
+      href: understand-vm-reboots.md
+    - name: Auto-shutdown a VM
+      href: auto-shutdown-vm.md
+    - name: Hibernate a VM
       items:
-      - name: General hibernation troubleshooting
-        href: hibernate-resume-troubleshooting.md
-      - name: Linux VM hibernation troubleshooting
-        href: ./linux/hibernate-resume-troubleshooting-linux.md
-      - name: Windows VM hibernation troubleshooting
-        href: ./windows/hibernate-resume-troubleshooting-windows.md
+      - name: Overview
+        href: hibernate-resume.md
+      - name: Hibernate Linux VMs
+        href: ./linux/hibernate-resume-linux.md
+      - name: Hibernate Windows VMs
+        href: ./windows/hibernate-resume-windows.md
+      - name: Troubleshoot VM hibernation
+        items:
+        - name: General hibernation troubleshooting
+          href: hibernate-resume-troubleshooting.md
+        - name: Linux VM hibernation troubleshooting
+          href: ./linux/hibernate-resume-troubleshooting-linux.md
+        - name: Windows VM hibernation troubleshooting
+          href: ./windows/hibernate-resume-troubleshooting-windows.md
   - name: Delete a VM and its resources
     href: delete.md
   - name: Connect to Virtual Machines
@@ -1297,6 +1304,9 @@
       - name: Windows
         displayName: AMD GPU Drivers, AMD, GPU, drivers
         href: ./extensions/hpccompute-amd-gpu-windows.md
+      - name: Linux
+        displayName: AMD GPU Drivers, AMD, GPU, drivers
+        href: ./extensions/hpccompute-amd-gpu-linux.md
     - name: Azure Monitor
       items:
       - name: Azure Monitor agent
@@ -1455,8 +1465,6 @@
     - name: Portal
       displayName: proximity placement groups, ppg
       href: ./windows/proximity-placement-groups-portal.md
-  - name: Understand VM reboots
-    href: understand-vm-reboots.md
   - name: Compute throttling limits
     href: compute-throttling-limits.md
   - name: Azure Regions
@@ -2229,6 +2237,32 @@
   - name: Monitor metadata
     displayName: instance metadata service IMDS
     href: instance-metadata-service.md
+  - name: Metadata Security Protocol
+    items:
+    - name: Overview
+      href: Metadata-Security-Protocol/overview.md
+    - name: MSP Configuration
+      href: Metadata-Security-Protocol/configuration.md
+    - name: Deploy a Virtual Machine or Virtual Machine Scale Sets With MSP
+      href: Metadata-Security-Protocol/greenfield.md
+    - name: Enable MSP on Existing Virtual Machine or Virtual Machine Scale Sets
+      href: Metadata-Security-Protocol/brownfield.md
+    - name: Other Examples
+      items:
+        - name: MSP via Portal
+          href: Metadata-Security-Protocol/other-examples/portal.md
+        - name: Disable MSP
+          href: Metadata-Security-Protocol/other-examples/disable.md
+        - name: Reset Latched Key
+          href: Metadata-Security-Protocol/other-examples/key-reset.md
+        - name: Create Rules From Audit Logs
+          href: Metadata-Security-Protocol/other-examples/audit-logs-to-rules.md
+    - name: Advanced Configuration
+      href: Metadata-Security-Protocol/advanced-configuration.md
+    - name: Troubleshooting Guide
+      href: Metadata-Security-Protocol/troubleshoot-guide.md
+    - name: MSP FAQs
+      href: Metadata-Security-Protocol/faq.md 
   - name: Get usage metrics with REST
     href: ./linux/metrics-vm-usage-rest.md
   - name: Boot diagnostics

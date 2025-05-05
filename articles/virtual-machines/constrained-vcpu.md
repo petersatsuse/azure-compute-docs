@@ -4,7 +4,7 @@ description: Lists the Vm sizes that are capable of having a constrained vCPU co
 author: mattmcinnes
 ms.service: azure-virtual-machines
 ms.subservice: sizes
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 03/18/2025
 ms.author: mattmcinnes
 ms.reviewer: mimckitt, archatc

@@ -25,6 +25,10 @@
       "redirect_url": "container-instances-overview"
     },
     {
+      "source_path": "articles/virtual-machines/sizes/general-purpose/dcesv5-series.md",
+      "redirect_url": "dcesv6-series"
+    },
+    {
       "source_path": "articles/virtual-machine-scale-sets/virtual-machine-scale-sets-instance-mix.md",
       "redirect_url": "instance-mix-overview"
     }
