@@ -81,8 +81,8 @@ New-AzVmss -ResourceGroupName <resource-group-name> `
 
 ## Attach a standby pool
 
-Once your scale set is configured with Spot Instances, there is not additional parameters or settings you need to configure directly in your standby pool. Simply create and attach the standby pool to your scale set with spot instances and the instances within the pool will take on the properties configured in your scale set. For more information, see [create a standby pool](standby-pools-create.md)
+Once your scale set is configured with Spot Instances, there is not additional parameters or settings you need to configure directly in your standby pool. Simply create and attach the standby pool to your scale set with spot instances and the instances within the pool will take on the properties configured in your scale set. For more information, see [create a standby pool](standby-pools-create.md).
 
 ## Next steps
 
-Configure event monitoring and alertings using [Log Analytics](standby-pools-monitor-pool-events.md)
+Configure event monitoring and alertings using [Log Analytics](standby-pools-monitor-pool-events.md).
