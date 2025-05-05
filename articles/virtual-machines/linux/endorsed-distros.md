@@ -5,7 +5,7 @@ services: virtual-machines
 author: vamckMS
 ms.service: azure-virtual-machines
 ms.collection: linux
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 11/14/2024
 ms.author: vakavuru
 ms.reviewer: cynthn

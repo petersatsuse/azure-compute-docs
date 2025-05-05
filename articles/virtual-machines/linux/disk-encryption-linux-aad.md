@@ -5,7 +5,7 @@ author: msmbaldwin
 ms.service: azure-virtual-machines
 ms.subservice: security
 ms.collection: linux
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: mbaldwin
 ms.date: 02/20/2024
 ms.custom: devx-track-azurepowershell, devx-track-azurecli, linux-related-content
