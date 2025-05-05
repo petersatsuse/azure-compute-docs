@@ -5,7 +5,7 @@ author: ebolton-cyber
 ms.author: edewebolton
 ms.subservice: imaging
 ms.service: azure-virtual-machines
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 12/15/2017
 ---
 # Use Windows client in Azure for dev/test scenarios

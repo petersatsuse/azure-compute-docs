@@ -8,7 +8,6 @@ ms.custom:
   - ignite-2024
 ms.topic: conceptual
 ms.date: 5/5/2025
-ms.reviewer: ju-shim
 ---
 
 # Standby pools for Virtual Machine Scale Sets

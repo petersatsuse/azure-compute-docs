@@ -4,7 +4,7 @@ description: A list containing all retired and soon to be retired VM size series
 author: mattmcinnes
 ms.service: azure-virtual-machines
 ms.subservice: sizes
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 03/14/2025
 ms.author: mattmcinnes
 ms.reviewer: iamwilliew

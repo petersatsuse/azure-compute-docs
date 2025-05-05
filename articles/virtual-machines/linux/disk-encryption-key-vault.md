@@ -4,7 +4,7 @@ description: This article provides steps for creating and configuring a key vaul
 ms.service: azure-virtual-machines
 ms.collection: linux
 ms.subservice: security
-ms.topic: conceptual
+ms.topic: concept-article
 author: msmbaldwin
 ms.author: mbaldwin
 ms.date: 02/20/2024

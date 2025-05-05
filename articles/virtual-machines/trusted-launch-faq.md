@@ -7,7 +7,7 @@ ms.reviewer: mattmcinnes
 ms.service: azure-virtual-machines
 ms.subservice: trusted-launch
 ms.topic: faq
-ms.date: 01/29/2024
+ms.date: 04/21/2025
 ms.custom: template-faq, devx-track-azurecli, devx-track-azurepowershell
 ---
 
@@ -92,6 +92,10 @@ New-AzVM -Name MyVm -Credential $vmCred -SecurityType Standard
 ## Supported features and deployments
 
 This section discusses Trusted Launch supported features and deployments.
+
+### What is Trusted Launch as default?
+
+Trusted launch as default (TLaD) is currently in preview for all clients AND generally available for Azure portal, PowerShell, and CLI. For more information, see [Trusted launch default (Preview)](trusted-launch.md#preview-trusted-launch-as-default).
 
 ### Is Azure Compute Gallery supported by Trusted Launch?
 
@@ -424,7 +428,7 @@ This deployment error happens when the snapshot or restore point provided is ina
 
 The listed reasons can happen if a user or workload running on the virtual machine sets the lock on vTPM or modifies critical vTPM indices that leave the vTPM in an invalid state.
 
-Retrying with the same snapshot/restore point results in the same failure.
+Retrying with the same snapshot or restore point results in the same failure.
 
 **Resolution:**
 
@@ -565,6 +569,7 @@ Package certificates, composed of .p7b (Full Certificate Authority) and .cer (In
 ### What Microsoft owned trusted certificates are built into Azure VMs?
 
 For Windows VMs, Windows CA certificate is built in UEFI firmware. For Linux VMs, Microsoft UEFI CA certificate is built in UEFI firmware.
+
 For Azure Linux VMs only, `Azure Services Linux Kmod PCA` certificate is also added in UEFI firmware for all Linux distributions. Linux Kmod PCA is used to sign Microsoft owned kernel modules.
 
 Linux Kmod PCA certificate is added to make customer experience smoother when using Microsoft solutions like Azure Site Recovery (ASR) which installs a kernel module. The ASR kernel module loads without any customer action to supply a key as ASR kernel module is signed using the trusted ‘Azure Services Linux Kmod PCA’ certificate.

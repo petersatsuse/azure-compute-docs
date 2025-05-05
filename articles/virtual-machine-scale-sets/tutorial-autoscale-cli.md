@@ -6,7 +6,7 @@ ms.author: jushiman
 ms.topic: tutorial
 ms.service: azure-virtual-machine-scale-sets
 ms.subservice: autoscale
-ms.date: 06/14/2024
+ms.date: 04/06/2025
 ms.reviewer: mimckitt
 ms.custom: avverma, devx-track-azurecli, linux-related-content, innovation-engine
 ---

@@ -3,7 +3,7 @@ title: Create a Virtual Machine Scale Set with instance mix
 description: How to create a virtual machine scale set using instance mix on different platforms. 
 author: brittanyrowe 
 ms.author: brittanyrowe
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-virtual-machine-scale-sets
 ms.date: 1/10/2025
 ms.reviewer: jushiman
@@ -35,7 +35,7 @@ az feature show --namespace "Microsoft.Compute" --name "FlexVMScaleSetSkuProfile
 6. In the **Size** section, click **Select up to 5 sizes** and the **Select a VM size** page appears.
 7. Use the size picker to select up to five VM sizes. Once you select your VM sizes, click the **Select** button at the bottom of the page to return to the scale set Basics tab.
 8. In the **Allocation strategy** field, select your allocation strategy.
-9. Using the `Prioritized` allocation strategy, the **Rank size** section appears below the Allocation strategy section. Clicking on the bottom **Rank priority** brings up the prioritization blade, where you can adjust the priority of your VM sizes.
+9. Using the `Prioritized (preview)` allocation strategy, the **Rank size** section appears below the Allocation strategy section. Clicking on the bottom **Rank priority** brings up the prioritization blade, where you can adjust the priority of your VM sizes.
 10. You can specify other properties in subsequent tabs, or you can go to **Review + create** and select the **Create** button at the bottom of the page to start your instance mix scale set deployment.
 
 ### [Azure CLI](#tab/cli-1)
@@ -136,7 +136,7 @@ Specify the `skuProfile` with up to five VM sizes. The following example uses th
 },
 ```
 
-If you use the `Prioritized` allocation strategy, you can assign a priority ranking to each VM size. For example:
+If you use the `Prioritized (preview)` allocation strategy, you can assign a priority ranking to each VM size. For example:
 
 ```json
 "skuProfile": {
@@ -151,7 +151,7 @@ If you use the `Prioritized` allocation strategy, you can assign a priority rank
 
 - Replace placeholders,such as `{YourSubscriptionId}`, with your actual values.
 - You can specify up to five VM sizes in the `vmSizes` array.
-- The `rank` property is required only when using the `Prioritized` allocation strategy.
+- The `rank` property is required only when using the `Prioritized (preview)` allocation strategy.
 
 ---
 
