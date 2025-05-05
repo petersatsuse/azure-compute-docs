@@ -119,7 +119,11 @@ resource azureImageBuilder 'Microsoft.VirtualMachineImages/imageTemplates@2022-0
 
 ## Location
 
-The location is the region where the custom image is created. The following regions are supported:
+The VM Image Builder service is available in the following regions:  
+
+>[!NOTE]
+> You can still distribute images outside these regions.
+>
 
 - East US
 - East US 2
@@ -151,13 +155,15 @@ The location is the region where the custom image is created. The following regi
 - Korea Central
 - South Africa North
 - Qatar Central
-- USGov Arizona (Public Preview)
-- USGov Virginia (Public Preview)
-- China North 3 (Public Preview)
+- USGov Arizona (public preview)
+- USGov Virginia (public preview)
+- China North 3 (public preview)
 - Sweden Central
 - Poland Central
 - Italy North
 - Israel Central
+- New Zealand North
+- Taiwan Northwest
 
 > [!IMPORTANT]
 > Register the feature `Microsoft.VirtualMachineImages/FairfaxPublicPreview` to access the Azure Image Builder public preview in Azure Government regions (USGov Arizona and USGov Virginia).
