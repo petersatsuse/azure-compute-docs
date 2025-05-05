@@ -32,11 +32,28 @@ Azure Log Analytics provides a powerful platform for monitoring and analyzing ev
 | `StandbyPoolExitDegradedPool` | Triggered when the timeout on degraded mode has expired, and the pool is now attempting to create resources again. |
 
 ## Configure Log Analytics for standby pools
+A Log Analytics workspace is a centralized data repository in Azure Monitor that allows you to collect, analyze, and query telemetry data from various Azure resources and services.
+
+### Create a log analytics workspace
+Before configuring Log Analytics for standby pools, ensure you have a Log Analytics workspace set up. Follow these steps to create one:
+
+1. Navigate to the [Azure portal](https://portal.azure.com/).
+2. In the search bar, type **Log Analytics workspaces** and select it from the results.
+3. Click **+ Create**.
+4. Fill in the required fields:
+   - **Subscription**: Select the subscription to associate with the workspace.
+   - **Resource group**: Choose an existing resource group or create a new one.
+   - **Name**: Enter a unique name for the workspace.
+   - **Region**: Select the region where the workspace will be created.
+5. Click **Review + Create**, then **Create** to deploy the workspace.
+
+### Configure diagnostic settings for standby pools
+To collect events information into the log analytics workspace configured, set up a diganostic settings for your standby pool resource. 
 
 > [!NOTE]
 > Enabling diagnostic settings for a standby pool resource is not yet available from the Azure portal. 
 
-### [CLI](#tab/cli)
+#### [CLI](#tab/cli)
 ```azurecli
 az monitor diagnostic-settings create \
   --name "standbyPoolLogs" \
@@ -46,7 +63,7 @@ az monitor diagnostic-settings create \
 ```
 
 
-### [PowerShell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 ```powershell
 # Create log settings object
 $log = New-AzDiagnosticSettingLogSettingsObject -Enabled $true -CategoryGroup allLogs  
@@ -58,7 +75,7 @@ New-AzDiagnosticSetting -Name 'standbyPoolLogs' `
   -Log $log
 ```
 
-### [REST](#tab/rest)
+#### [REST](#tab/rest)
 ```rest
 https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/<standby-pool-name>/providers/microsoft.insights/diagnosticSettings/standbyPoolLogs?api-version=2021-05-01-preview
 
@@ -78,10 +95,100 @@ https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<res
 
 ## Query standby pool events 
 
+1. Go to the [Azure portal](https://portal.azure.com/).
+2. In the search bar at the top, type **Log Analytics workspaces** and select it from the results.
+3. Select the Log Analytics workspace you configured for your standby pool.
+4. In the workspace menu, click **Logs** under the **General** section to open the query editor.
 
+### Query standby pool events
 
-### Example: View all standby pool events in the last 24 hours
+Use the following queries to analyze events from the `SVMPoolRequestLog` and `SVMPoolExecutionLog` tables:
+
+#### View user-initiated events from `SVMPoolRequestLog`
+```kusto
+SVMPoolRequestLog
+| where TimeGenerated > ago(24h)
+| project TimeGenerated, EventName, ResourceId, Details
+| order by TimeGenerated desc
+```
+
+#### View system-initiated events from `SVMPoolExecutionLog`
+
+```kusto
+SVMPoolExecutionLog
+| where TimeGenerated > ago(24h)
+| project TimeGenerated, EventName, ResourceId, Details
+| order by TimeGenerated desc
+```
+
+#### Count events by type
+
+```kusto
+SVMPoolRequestLog
+| summarize Count = count() by EventName
+| union (
+    SVMPoolExecutionLog
+    | summarize Count = count() by EventName
+)
+| order by Count desc
+```
 
 ## Setup alerts for specific events
 
-## Next steps
+To ensure you are notified of critical events, you can set up alerts in Azure Monitor based on the events in the `SVMPoolRequestLog` and `SVMPoolExecutionLog` tables. Follow these examples to create alerts for specific scenarios.
+
+### Create an alert for failed standby pool actions
+
+1. Navigate to the [Azure portal](https://portal.azure.com/).
+2. In the search bar, type **Monitor** and select it from the results.
+3. In the **Monitor** menu, select **Alerts** under the **Monitoring** section.
+4. Click **+ New alert rule**.
+5. Configure the alert:
+   - **Scope**: Select your Log Analytics workspace.
+   - **Condition**: Use the following custom log query:
+     ```kusto
+     SVMPoolExecutionLog
+     | where EventName == "StandbyPoolReuseFailure"
+     ```
+   - **Action group**: Create or select an action group to define how you want to be notified (e.g., email, SMS, or webhook).
+   - **Alert rule details**: Provide a name (e.g., "Standby Pool Reuse Failure Alert") and set the severity level.
+
+6. Click **Create alert rule** to save the alert.
+
+### Create an alert for exhausted standby pools
+
+1. Follow steps 1–4 from the previous example.
+2. Configure the alert:
+   - **Scope**: Select your Log Analytics workspace.
+   - **Condition**: Use the following custom log query:
+     ```kusto
+     SVMPoolExecutionLog
+     | where EventName == "StandbyPoolExhaustedPool"
+     ```
+   - **Action group**: Create or select an action group for notifications.
+   - **Alert rule details**: Provide a name (e.g., "Standby Pool Exhausted Alert") and set the severity level.
+
+3. Click **Create alert rule** to save the alert.
+
+### Create an alert for frequent pool setting updates
+
+1. Follow steps 1–4 from the first example.
+2. Configure the alert:
+   - **Scope**: Select your Log Analytics workspace.
+   - **Condition**: Use the following custom log query:
+     ```kusto
+     SVMPoolRequestLog
+     | where EventName == "StandbyPoolSettingsUpdated"
+     | summarize Count = count() by bin(TimeGenerated, 1h)
+     | where Count > 5
+     ```
+     This query triggers an alert if more than 5 pool setting updates occur within an hour.
+   - **Action group**: Create or select an action group for notifications.
+   - **Alert rule details**: Provide a name (e.g., "Frequent Pool Settings Updates Alert") and set the severity level.
+
+3. Click **Create alert rule** to save the alert.
+
+### Next steps
+
+- Test your alerts by simulating the events in your standby pool.
+- Review the [Azure Monitor Alerts documentation](https://learn.microsoft.com/azure/azure-monitor/alerts/alerts-overview) for more advanced alerting options.
