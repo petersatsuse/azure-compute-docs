@@ -7,7 +7,7 @@ ms.service: azure-virtual-machine-scale-sets
 ms.custom:
   - ignite-2024
 ms.topic: conceptual
-ms.date: 4/23/2025
+ms.date: 5/5/2025
 ms.reviewer: ju-shim
 ---
 
