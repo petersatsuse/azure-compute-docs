@@ -19,6 +19,9 @@ Azure Spot Instances allow you to take advantage of unused Azure capacity at a s
 
 This article explains how to configure and use Spot Instances with standby pools, including details about supported VM states and their behavior.
 
+> [!NOTE]
+> Creating and attaching a standby pool to a scale set using spot instances is not yet supported in the Azure portal. 
+
 ## Prerequisites
 
 Before you begin, ensure the following:
