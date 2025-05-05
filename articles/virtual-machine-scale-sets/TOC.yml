@@ -102,6 +102,8 @@
       href: standby-pools-create.md
     - name: Update or delete a standby pool
       href: standby-pools-update-delete.md
+    - name: Use spot instances in a standby pool
+      href: standby-pools-spot-instances.md
     - name: Get pool and instance details
       href: standby-pools-get-details.md
     - name: Get predictive pool size results

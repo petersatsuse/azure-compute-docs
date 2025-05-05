@@ -91,13 +91,15 @@ When a scale out is triggered in one of the zones, a virtual machine in the pool
 
 Users are charged based on the resources deployed in the standby pool. For example, virtual machines in a running state incur compute, networking, and storage costs. Virtual machines in a deallocated state doesn't incur any compute costs, but any persistent disks or networking configurations continue incur cost. Thus, a pool of running virtual machines will incur more cost than a pool of deallocated virtual machines. For more information on virtual machine billing, see [states and billing status of Azure Virtual Machines](../virtual-machines/states-billing.md).
 
-## Unsupported configurations
-- Creating or attaching a standby pool to a Virtual Machine Scale Set with Azure autoscale enabled. 
-- Creating or attaching a standby pool to a Virtual Machine Scale Set with a fault domain greater than 1. 
-- Creating or attaching a standby pool to a Virtual Machine Scale Set in a different region. 
-- Creating or attaching a standby pool to a Virtual Machine Scale Set in a different subscription.  
-- Creating or attaching a standby pool to a Virtual Machine Scale Set that already has a standby pool.
-- Creating or attaching a standby pool to a Virtual Machine Scale Set using Uniform Orchestration. 
+## Limitations and considerations
+
+When using standby pools with Virtual Machine Scale Sets, there are specific limitations and considerations to keep in mind:
+
+- **Azure Autoscale**: Standby pools cannot be created or attached to a Virtual Machine Scale Set with Azure autoscale enabled. Ensure autoscale is disabled before configuring a standby pool.
+- **Fault Domains**: Standby pools are not supported with Virtual Machine Scale Sets configured with a fault domain count greater than 1.
+- **Region and Subscription**: The standby pool must be in the same region and subscription as the Virtual Machine Scale Set it is attached to. Cross-region or cross-subscription configurations are not supported.
+- **Single Standby Pool**: A Virtual Machine Scale Set can only have one standby pool attached at a time. Attaching multiple standby pools to the same scale set is not supported.
+- **Orchestration Mode**: Standby pools are only supported with Virtual Machine Scale Sets using Flexible Orchestration. Uniform Orchestration is not supported.
 
 ## Next steps
 
