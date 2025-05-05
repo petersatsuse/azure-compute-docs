@@ -18,15 +18,15 @@ Microsoft Azure offers various virtual machine based compute products designed t
 
 [Compute Fleet](/azure/azure-compute-fleet/overview) is designed for large-scale, distributed computing environments. It allows you to manage and orchestrate a fleet of VMs across multiple regions and availability zones. This service is particularly beneficial for high-performance computing (HPC) applications, big data processing, and other workloads that require significant computational power and distributed resources.
 
-The product you select depends on the workload you intend to run. (Insert info from Necia)
+The product you select depends on the workload you intend to run. Check out the product comparison table in this article or in the Azure Portal to choose between these solutions.
 
 ## Product comparison table
 
 | | :::image type="icon" source="./media/compare-compute-products/Virtual-Machines-icon.png" border="false"::: Virtual Machines | :::image type="icon" source="./media/compare-compute-products/VM-scale-sets-icon.png" border="false"::: Virtual Machine Scale Sets | :::image type="icon" source="./media/compare-compute-products/Compute-Fleet-icon.png" border="false"::: Compute Fleet  |
 | --- | --- | --- | --- |
 | **Product Description** | Create and manually configure individual VMs.| Load-balanced, automatically scaling VM groups with workload optimization across multiple availability zones. | Provision thousands of mixed-size VMs for performance and high availability. |
-| **Instances** | Single instances deployed individually | 2 to 2,000 instances | Up to 10,000 instances |
-| **Product Differences**<br><br>See top product capabilities and limitations side by side| - Deploy and manage each VM individually <br>- Fine-tune custom applications<br> - Assigned to one availability zone at a time<br>| - Up to 2,000 mixed-size VMs in a group <br> - Scale automatically <br> - Fault domains for high availability <br>- Integrate Azure Spot VMs to cut costs <br>- Optimized for stateless or stateful workloads | - Up to 10,000 mixed-size VMs in a group<br>- Fault domains for high availability<br>- Hyper-scale with demand <br>- Maintain capacity with Spot VMs to cut costs<br>- Fleet allocation for optimizing price, capacity, or both
+| **Instances** | Single instances deployed individually | 2 to 1,000 instances | Up to 10,000 instances |
+| **Product Differences**<br><br>See top product capabilities and limitations side by side| - Deploy and manage each VM individually <br>- Fine-tune custom applications<br> - Assigned to one availability zone at a time<br>| - Up to 1,000 mixed-size VMs in a group <br> - Scale automatically <br> - Fault domains for high availability <br>- Integrate Azure Spot VMs to cut costs <br>- Optimized for stateless or stateful workloads | - Up to 10,000 mixed-size VMs in a group<br>- Fault domains for high availability<br>- Hyper-scale with demand <br>- Maintain capacity with Spot VMs to cut costs<br>- Fleet allocation for optimizing price, capacity, or both
 | **Use Case**<br><br>Find the right product for your project | - Small, simple jobs <br>- Specialized single-instance apps <br>- Test configurations and experiment with Azure | - Scaling beyond a single VM <br>- Platform engineering or infrastructure as code <br>- Moving on-premises apps to the cloud <br>- Parallelized [high-performance computing](/azure/architecture/topics/high-performance-computing) workloads <br>- Databases <br>- Batch processing <br> - Maintain performance while controlling costs <br>- Mixed VM sizes for more flexibility | - Large scale highly parallelized workloads or batch jobs <br> - Flexibility with VM sizes - Large scale cost optimization with Azure Spot |
 
 ### Product specifications
@@ -41,17 +41,23 @@ The cost of any Azure VM environment depends upon the number of VM instances, th
 
 #### [Scaling](#tab/prodcompscale)
 
+Individual VMs have no in-build scaling capacity beyond manually deploying additional VMs and relying on 3rd party software tools for orchestration. Virtual Machine Scale Sets and Compute Fleet deployments allow for dynamic, native scaling on Azure.
+
 | Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
 | --- | --- | --- |
 | Vertical Scaling: <br>- Change the VM's size manually <br><br>Horizontal Scaling: <br>- None | Vertical Scaling: <br>- Change any VM's size manually <br><br>Horizontal Scaling: <br>- Manually add/remove instances <br>- Autoscale based on demand, schedule, or AI-predicted usage patterns| Vertical Scaling: <br>- Change any VM's size manually <br><br>Horizontal Scaling:<br>- Manually managed through modifying the target capacity |
 
 #### [Management](#tab/prodcompmanagement)
 
+VMs, Virtual Machine Scale Sets, and Compute Fleets all support native management through the Azure portal and several 1st party tools.
+
 | Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
 | --- | --- | --- |
 Deploy and manage each VM individually | - Deploy and manage VMs as a group, or opt to manage them individually<br>- Orchestrate batch operations (start, stop, restart) and updates (configuration, app, security, and patching) for safer rollouts<br>- Attach and manage one universal add-on for services like data disk and public IP at the VMSS level | - Deploy and manage up to 10,000 VMs as an automated fleet-managed group<br>- Enhance the flexibility, efficiency and control of your VMs, attaching one universal add-on for services like data disk and Public IPs |
 
 #### [Availability](#tab/prodcompavailability)
+
+All VM, Virtual Machine Scale Set, and Compute Fleet products' instance availability are region dependant. For availability of VM sizes in Azure regions, see [Products available by region](https://azure.microsoft.com/regions/services/)
 
 | Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
 | --- | --- | --- |
