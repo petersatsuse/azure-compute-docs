@@ -64,6 +64,9 @@ Remote (uncached) storage info for each size
 | Standard_M192ims_v2 | 64 | 80,000 | 2,000 | 80,000 | 4,000 |
 
 #### Storage resources
+- Attaching Ultra Disk or Premium SSDs V2 to Standard_M192is_v2 results in higher IOPs and MBps than standard premium disks:
+    - Max uncached Ultra Disk and Premium SSD V2 throughput (IOPS/ MBps): 120000/2000
+    - Max burst uncached Ultra Disk and Premium SSD V2 disk throughput (IOPS/ MBps): 120000/4000
 - [Introduction to Azure managed disks](../../../virtual-machines/managed-disks-overview.md)
 - [Azure managed disk types](../../../virtual-machines/disks-types.md)
 - [Share an Azure managed disk](../../../virtual-machines/disks-shared.md)

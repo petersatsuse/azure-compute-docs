@@ -48,6 +48,7 @@ vCPUs (Qty.) and Memory for each size
 | Standard_M832is_16_v3 | 832 | 15,200 |
 
 #### VM Basics resources
+- [Disable SMT](/sql/sql-server/compute-capacity-limits-by-edition-of-sql-server#limit-number-of-logical-cores-per-numa-node-to-64) to run SQL Server on a VM with more than 64 vCores per NUMA node.
 - [Check vCPU quotas](../../../virtual-machines/quotas.md)
 
 ### [Local Storage](#tab/sizestoragelocal)

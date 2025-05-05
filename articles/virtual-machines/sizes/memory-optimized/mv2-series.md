@@ -35,6 +35,7 @@ vCPUs (Qty.) and Memory for each size
 | Standard_M416ms_v2 | 416 | 11,400 |
 
 #### VM Basics resources
+- [Constrained core sizes](/azure/virtual-machines/constrained-vcpu) are available for Standard_M416s_v2, and Standard_M416ms_v2.
 - [Check vCPU quotas](../../../virtual-machines/quotas.md)
 
 ### [Local Storage](#tab/sizestoragelocal)

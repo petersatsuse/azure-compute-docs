@@ -48,6 +48,7 @@ vCPUs (Qty.) and Memory for each size
 | Standard_M832ids_16_v3 | 832 | 15,200 |
 
 #### VM Basics resources
+- [Disable SMT](/sql/sql-server/compute-capacity-limits-by-edition-of-sql-server#limit-number-of-logical-cores-per-numa-node-to-64) to run SQL Server on a VM with more than 64 vCores per NUMA node.
 - [Check vCPU quotas](../../../virtual-machines/quotas.md)
 
 ### [Local Storage](#tab/sizestoragelocal)
@@ -56,7 +57,7 @@ Local (temp) storage info for each size
 
 #### Mdsv3 High Memory series (NVMe)
 
-| Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GiB) | Temp Disk Random Read (RR)<sup>1</sup> IOPS | Temp Disk Random Read (RR)<sup>1</sup> Throughput (MB/s) |
+| Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GiB) | Temp Disk Sequential Read (SR)<sup>1</sup> IOPS | Temp Disk Sequential Read (SR)<sup>1</sup> Throughput (MB/s) |
 | --- | --- | --- | --- | --- |
 | Standard_M416ds_6_v3 | 1 | 400 | 250,000 | 1,600 |
 | Standard_M416ds_8_v3 | 1 | 400 | 250,000 | 1,600 |
@@ -67,7 +68,7 @@ Local (temp) storage info for each size
 
 #### Mdsv3 High Memory series (SCSI)
 
-| Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GiB) | Temp Disk Random Read (RR)<sup>1</sup> IOPS | Temp Disk Random Read (RR)<sup>1</sup> Throughput (MB/s) |
+| Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GiB) | Temp Disk Sequential Read (SR)<sup>1</sup> IOPS | Temp Disk Sequential Read (SR)<sup>1</sup> Throughput (MB/s) |
 | --- | --- | --- | --- | --- |
 | Standard_M416ds_6_v3 | 1 | 400 | 250,000 | 1,600 |
 | Standard_M416ds_8_v3 | 1 | 400 | 250,000 | 1,600 |
@@ -82,7 +83,7 @@ Local (temp) storage info for each size
 - [Share an Azure managed disk](../../../virtual-machines/disks-shared.md)
 
 #### Table definitions
-- <sup>1</sup>Temp disk speed often differs between RR (Random Read) and RW (Random Write) operations. RR operations are typically faster than RW operations. The RW speed is usually slower than the RR speed on series where only the RR speed value is listed.
+- <sup>1</sup>Temp disk speed often differs between SR (Sequential Read) and SW (Sequential Write) operations. SR operations are typically faster than SW operations. The SW speed is usually slower than the SR speed on series where only the SR speed value is listed.
 - Storage capacity is shown in units of GiB or 1024^3 bytes. When you compare disks measured in GB (1000^3 bytes) to disks measured in GiB (1024^3) remember that capacity numbers given in GiB may appear smaller. For example, 1023 GiB = 1098.4 GB.
 - Disk throughput is measured in input/output operations per second (IOPS) and MBps where MBps = 10^6 bytes/sec.
 - To learn how to get the best storage performance for your VMs, see [Virtual machine and disk performance](../../../virtual-machines/disks-performance.md).

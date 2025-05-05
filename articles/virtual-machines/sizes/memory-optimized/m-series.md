@@ -18,7 +18,7 @@ ms.reviewer: mattmcinnes
 [!INCLUDE [m-series-specs](./includes/m-series-specs.md)]
 
 ## Feature support
-[Premium Storage](../../premium-storage-performance.md): Supported <br>[Premium Storage caching](../../premium-storage-performance.md): Supported <br>[Live Migration](../../maintenance-and-updates.md): Not Supported <br>[Memory Preserving Updates](../../maintenance-and-updates.md): Not Supported <br>[Generation 2 VMs](../../generation-2.md): Supported <br>[Generation 1 VMs](../../generation-2.md): Supported <br>[Accelerated Networking](/azure/virtual-network/create-virtual-machine-accelerated-networking): Supported <br>[Ephemeral OS Disk](../../ephemeral-os-disks.md): Supported <br>[Nested Virtualization](/virtualization/hyper-v-on-windows/user-guide/nested-virtualization): Supported <br>[Hibernation](../../hibernate-resume.md): Not Supported <br>
+[Premium Storage](../../premium-storage-performance.md): Supported <br>[Premium Storage caching](../../premium-storage-performance.md): Supported <br>[Live Migration](../../maintenance-and-updates.md): Not Supported <br>[Memory Preserving Updates](../../maintenance-and-updates.md): Not Supported <br>[Generation 2 VMs](../../generation-2.md): Supported <br>[Generation 1 VMs](../../generation-2.md): Supported <br>[Accelerated Networking](/azure/virtual-network/create-virtual-machine-accelerated-networking): Supported <br>[Ephemeral OS Disk](../../ephemeral-os-disks.md): Supported <br>[Nested Virtualization](/virtualization/hyper-v-on-windows/user-guide/nested-virtualization): Supported <br>[Hibernation](../../hibernate-resume.md): Not Supported <br> [Write Accelerator](/azure/virtual-machines/how-to-enable-write-accelerator): Supported
 
 ## Sizes in series
 
@@ -44,6 +44,9 @@ vCPUs (Qty.) and Memory for each size
 | Standard_M128m | 128 | 3,892 |
 
 #### VM Basics resources
+- More than 64 vCPU's require one of these supported guest versions: Windows Server 2016, Ubuntu 18.04+ LTS, SLES 12 SP2+, Red Hat Enterprise Linux 7/8/9, CentOS 7.3+ or Oracle Linux 7.3+ with LIS 4.2.1 or higher.
+- Instance is isolated to hardware dedicated to a single customer.
+- [Constrained core sizes](/azure/virtual-machines/constrained-vcpu) are available for Standard_M16ms, Standard_M32ms, Standard_M64ms, and Standard_M128ms.
 - [Check vCPU quotas](../../../virtual-machines/quotas.md)
 
 ### [Local Storage](#tab/sizestoragelocal)

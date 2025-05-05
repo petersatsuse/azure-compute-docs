@@ -10,7 +10,7 @@ ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
 ---
 
-# Msv3 sizes series
+# Msv3 Medium Memory sizes series
 
 [!INCLUDE [msv3-summary](./includes/msv3-mm-series-summary.md)]
 
@@ -37,6 +37,7 @@ vCPUs (Qty.) and Memory for each size
 | Standard_M176s_4_v3 | 176 | 3,892 |
 
 #### VM Basics resources
+- To run SQL Server on a VM with more than 64 vCores per NUMA node, [disable SMT](/sql/sql-server/compute-capacity-limits-by-edition-of-sql-server#disable-smt-in-an-azure-virtual-machine).
 - [Check vCPU quotas](../../../virtual-machines/quotas.md)
 
 ### [Local Storage](#tab/sizestoragelocal)
@@ -95,9 +96,9 @@ Network interface info for each size
 - [Virtual machine network bandwidth](/azure/virtual-network/virtual-machine-network-throughput)
 
 #### Table definitions
-- Expected network bandwidth is the maximum aggregated bandwidth allocated per VM type across all NICs, for all destinations. For more information, see [Virtual machine network bandwidth](/azure/virtual-network/virtual-machine-network-throughput)
-- Upper limits aren't guaranteed. Limits offer guidance for selecting the right VM type for the intended application. Actual network performance will depend on several factors including network congestion, application loads, and network settings. For information on optimizing network throughput, see [Optimize network throughput for Azure virtual machines](/azure/virtual-network/virtual-network-optimize-network-bandwidth). 
--  To achieve the expected network performance on Linux or Windows, you may need to select a specific version or optimize your VM. For more information, see [Bandwidth/Throughput testing (NTTTCP)](/azure/virtual-network/virtual-network-bandwidth-testing).
+- Expected network bandwidth is the maximum aggregated bandwidth allocated per VM type across all NICs, for all destinations. For more information, see [Virtual machine network bandwidth](/azure/virtual-network/virtual-machine-network-throughput).
+- Upper limits aren't guaranteed. Limits offer guidance for selecting the right VM type for the intended application. Actual network performance will depend on several factors including network congestion, application loads, and network settings. For information on optimizing network throughput, see [Optimize network throughput for Azure virtual machines](/azure/virtual-network/virtual-network-optimize-network-bandwidth).
+- To achieve the expected network performance on Linux or Windows, you may need to select a specific version or optimize your VM. For more information, see [Bandwidth/Throughput testing (NTTTCP)](/azure/virtual-network/virtual-network-bandwidth-testing).
 
 ### [Accelerators](#tab/sizeaccelerators)
 

@@ -15,6 +15,6 @@ ms.custom: include file
 | Processor      | 32 - 192 vCPUs       | Intel Xeon Platinum 8280 (Cascade Lake) [x86-64]                   |
 | Memory         | 875 - 4096 GiB          |                      |
 | Local Storage  | 0 -  Disks           |  <br> <br>                   |
-| Remote Storage | 32 - 64 Disks    | 20000 - 80000 IOPS <br>500 - 2000 MBps |
+| Remote Storage | 32 - 64 Disks    | 20000 - 80000 IOPS <br>500 - 4000 MBps |
 | Network        | 8 NICs          | 8000 - 30000 Mbps              |
 | Accelerators   | None              |                       |
