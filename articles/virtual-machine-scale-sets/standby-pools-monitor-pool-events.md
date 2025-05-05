@@ -15,11 +15,14 @@ Azure Log Analytics provides a powerful platform for monitoring and analyzing ev
 
 ## Available metrics and tables
 
+There are two main tables where you can view logs associated with your standby pool. They are called `SVMPoolRequestLog` and `SVMPoolExecutionLog`. 
+
 | Table name | Description | 
 |---|---|
 | `SVMPoolRequestLog` | Contains logs for user-initiated events, such as updates to pool settings (e.g., changes to minimum or maximum ready capacity). |
 | `SVMPoolExecutionLog` | Contains logs for system-initiated events, such as standby pool operations like degraded mode, VM reuse, and pool refills. |
 
+Within the above tables, you can query on specific pool related events as described below: 
 
 | Event name | Description | 
 |---|---|
