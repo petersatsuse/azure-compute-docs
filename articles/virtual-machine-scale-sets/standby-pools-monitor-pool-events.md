@@ -91,7 +91,7 @@ https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<res
   }
 }
 ```
-
+---
 
 ## Query standby pool events 
 
