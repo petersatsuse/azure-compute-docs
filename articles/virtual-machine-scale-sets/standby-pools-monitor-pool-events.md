@@ -26,7 +26,7 @@ Within the above tables, you can query on specific pool related events as descri
 
 | Event name | Description | 
 |---|---|
-| `StandbyPoolExhaustedPool` | Triggered when the standby pool instance count reaches zero and cannot create more VMs because the pool's max ready capacity is less than or equal to the Virtual Machine Scale Set (VMSS) instance count. This typically occurs when no minimum ready capacity is configured. For example, if the max ready capacity is set to 3, the min ready capacity is 0, and the VMSS requests 3 instances, the standby pool will not refill until the scale set scales down. In this scenario, the pool is considered exhausted, and the event is triggered. Note: If a minimum ready capacity is configured, this event will not be triggered as the pool will always refill to maintain the minimum ready capacity. |
+| `StandbyPoolExhaustedPool` | Triggered when the standby pool instance count reaches zero and cannot create more VMs because the pool's max ready capacity is less than or equal to the Virtual Machine Scale Set (VMSS) instance count. This typically occurs when no minimum ready capacity is configured.|
 | `StandbyPoolReuseSuccess` | Triggered when a virtual machine has been successfully moved from the standby pool into the scale set. |
 | `StandbyPoolReuseFailure` | Triggered when the scale set requests a VM from the standby pool but is unable to provide one, causing the scale set to create a new VM directly. |
 | `StandbyPoolSettingsUpdated` | Triggered when a setting is changed on the standby pool resource, such as adjusting the min/max ready capacity or the VM state. |
@@ -38,7 +38,7 @@ Within the above tables, you can query on specific pool related events as descri
 A Log Analytics workspace is a centralized data repository in Azure Monitor that allows you to collect, analyze, and query telemetry data from various Azure resources and services.
 
 ### Create a log analytics workspace
-Before configuring Log Analytics for standby pools, ensure you have a Log Analytics workspace set up. Follow these steps to create one:
+Before configuring monitoring for standby pools, ensure you have a Log Analytics workspace set up. 
 
 1. Navigate to the [Azure portal](https://portal.azure.com/).
 2. In the search bar, type **Log Analytics workspaces** and select it from the results.
@@ -51,7 +51,7 @@ Before configuring Log Analytics for standby pools, ensure you have a Log Analyt
 5. Click **Review + Create**, then **Create** to deploy the workspace.
 
 ### Configure diagnostic settings for standby pools
-To collect events information into the log analytics workspace configured, set up a diganostic settings for your standby pool resource. 
+To send information to the log analytics workspace configured, set up a diganostic settings for your standby pool resource. 
 
 > [!NOTE]
 > Enabling diagnostic settings for a standby pool resource is not yet available from the Azure portal. 
@@ -138,7 +138,7 @@ SVMPoolRequestLog
 
 ## Setup alerts for specific events
 
-To ensure you are notified of critical events, you can set up alerts in Azure Monitor based on the events in the `SVMPoolRequestLog` and `SVMPoolExecutionLog` tables. Follow these examples to create alerts for specific scenarios.
+To ensure you are notified of critical events, you can set up alerts in Azure Monitor based on the events in the `SVMPoolRequestLog` and `SVMPoolExecutionLog` tables. 
 
 ### Create an alert for failed standby pool actions
 
