@@ -41,9 +41,12 @@ When using Spot Instances with standby pools, you can configure the pool to use 
 
 ## Configure a Virtual Machine Scale Set with Spot Instances
 
-To use Spot Instances with standby pools, you must configure your scale set to use 100% Spot Instances and set the eviction policy to delete. Follow these steps:
+To use Spot Instances with standby pools, you must configure your scale set to use 100% Spot Instances and set the eviction policy to delete. 
 
 ### [Azure Portal](#tab/portal)
+
+> [!NOTE]
+> Adding a standby pool to a Virtual Machine Scale Set in the Azure portal is not yet supported. Instead, create your scale set then use an alternative SDK to add the standby pool after scale set creation. 
 
 1. Navigate to the [Azure portal](https://portal.azure.com/).
 2. In the search bar, type **Virtual Machine Scale Sets** and select it from the results.
