@@ -61,7 +61,7 @@ All VM, Virtual Machine Scale Set, and Compute Fleet products' instance availabi
 
 | Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
 | --- | --- | --- |
- Manually deploy each standalone VM into a single availability zone. To boost uptime, place one or more VMs into each eligible availability zone | Automatically deploy and spread VMs into one (or more) availability zones to boost resilience and uptime | Automatically deploy and distribute VMs across multiple availability zones. Choose specific zones, all eligible zones, or all eligible zones within a given region.
+Deploy individual VMs, each assigned to an availability zone. To boost uptime, place one or more VMs per availability zone. | Automatically deploy and spread VMs into one (or more) availability zones to boost resilience and uptime | Automatically deploy and distribute VMs across multiple availability zones. Choose specific zones, all eligible zones, or all eligible zones within a given region.
 
 ---
 
