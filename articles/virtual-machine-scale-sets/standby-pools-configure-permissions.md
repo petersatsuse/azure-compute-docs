@@ -68,9 +68,9 @@ If your pool is not functioning as expected, use Log Analytics to analyze the lo
 ```
 
 4. Look for errors or failures in the FailureDetails column to identify missing permissions or other issues.
-Check the Runtime View API for Degraded Mode
 
-### Degraded mode
+
+### Check the Runtime View API for Degraded Mode
 
 If your pool is in degraded mode, resource creation will be paused briefly. Use the Runtime View API to check the health status of your pool and determine the reason for degraded mode:
 
@@ -96,6 +96,6 @@ If you notice pooled instances recycling or no instances appearing in the pool, 
 Verify that the roles assigned to the standby pool resource provider include all permissions needed to create and manage virtual machines.
 
 ## Next Steps
-Use the Azure Monitor Logs documentation to explore and analyze logs further.
-Refer to the Runtime View API documentation for more details on checking pool health and status.
-Ensure all required roles are assigned as described in the Basic permissions section.
+- Use the Azure Monitor Logs documentation to explore and analyze logs further.
+- Refer to the Runtime View API documentation for more details on checking pool health and status.
+- Ensure all required roles are assigned as described in the Basic permissions section.
