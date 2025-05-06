@@ -5,7 +5,7 @@ author: mimckitt
 ms.author: mimckitt
 ms.service: azure-virtual-machine-scale-sets
 ms.topic: how-to
-ms.date: 4/23/2025
+ms.date: 5/6/2025
 ms.reviewer: ju-shim
 ---
 
