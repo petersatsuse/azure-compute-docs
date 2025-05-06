@@ -22,6 +22,12 @@ ms.reviewer: mattmcinnes
 
 ## Sizes in series
 
+> [!NOTE]
+> On March 31, 2027, all isolated sizes in this series are being retired.
+> Standard_M192ids_v2
+> Standard_M192idms_v2
+
+
 ### [Basics](#tab/sizebasic)
 
 vCPUs (Qty.) and Memory for each size
