@@ -89,6 +89,7 @@ az standby-container-group-pool status --resource-group myResourceGroup --name m
 ```azurepowershell
 Get-AzStandbyContainerGroupPoolStatus -ResourceGroupName myResourceGroup -Name myStandbyPool
 
+{
 Id: /subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyContainerGroupPools/myStandbyPool/runtimeViews/latest
 InstanceCountSummary: {
   "instanceCountsByState": [
@@ -123,6 +124,7 @@ PredictionForecastStartTime  : 2025-02-14T01:34:59.228Z
 ProvisioningState            : Succeeded
 StatusCode                   : HealthState/healthy
 StatusMessage                : The pool is healthy.
+}
 ```
 
 

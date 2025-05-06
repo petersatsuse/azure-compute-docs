@@ -17,9 +17,6 @@ Standby pools for Azure Container Instances require specific permissions to crea
 
 ## Feature registration
 
-> [!NOTE] 
-> The StandbyPoolContainerPoolPreview feature flag is required to enable standby pool functionality in the Azure portal. This requirement is temporary and will be removed in the future.
-
 Before configuring permissions, register the standby pool resource provider with your subscription. Use Azure Cloud Shell to run the following commands:
 
 ```azurepowershell-interactive
@@ -44,13 +41,13 @@ To cover as many scenarios as possible, it is suggested to provide the following
 1. Select the subscription you want to adjust permissions for.
 1. Select Access Control (IAM).
 1. Select Add and Add role assignment.
-1. Under the Role tab, search for Container Instance Contributor and select it.
+1. Under the Role tab, search for **Container Instance Contributor** and select it.
 1. Move to the Members tab.
 1. Select + Select members.
-1. Search for Standby Pool Resource Provider and select it.
+1. Search for **Standby Pool Resource Provider** and select it.
 1. Move to the Review + assign tab.
 1. Apply the changes.
-1. Repeat the above steps and assign the Network Contributor and Managed Identity Contributor roles to the Standby Pool Resource Provider. If you're using Azure Container Registry or Azure Storage, assign the Azure Container Registry Reader and Storage Blob Data Contributor roles as well.
+1. Repeat the above steps and assign the **Network Contributor** and **Managed Identity Contributor** roles to the Standby Pool Resource Provider. If you're using Azure Container Registry or Azure Storage, assign the **Azure Container Registry Reader** and S**torage Blob Data Contributor** roles as well.
 
 For more information on assigning roles, see [assign Azure roles using the Azure portal](/azure/role-based-access-control/quickstart-assign-role-user-portal).
 
@@ -67,7 +64,7 @@ If your pool is not functioning as expected, use Log Analytics to analyze the lo
 
 1. Navigate to the [Azure portal](https://portal.azure.com/).
 2. Go to your Log Analytics workspace associated with the standby pool.
-3. Query the `SVGPoolExecutionLog` table to review events related to instance creation and deletion:
+3. Query the `SCGPoolExecutionLog` table to review events related to instance creation and deletion:
 
 ```kusto
    SCGPoolExecutionLog
@@ -85,7 +82,7 @@ If your pool is in degraded mode, resource creation will be paused briefly. Use 
 1. Send a GET request to the Runtime View API or other SDKs such as PowerShell or CLI. 
 
 ```rest
-https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/<standby-pool-name>/runtime?api-version=2023-03-01
+https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/<standby-pool-name>/runtime?api-version=2025 -03-01
 ```
 
 2. Review the response for the healthStatus field. If the pool is in degraded mode, the response will include the reason for the degraded state.
