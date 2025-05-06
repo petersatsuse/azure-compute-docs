@@ -47,7 +47,7 @@ To cover as many scenarios as possible, it is suggested to provide the following
 1. Search for **Standby Pool Resource Provider** and select it.
 1. Move to the Review + assign tab.
 1. Apply the changes.
-1. Repeat the above steps and assign the **Network Contributor** and **Managed Identity Contributor** roles to the Standby Pool Resource Provider. If you're using Azure Container Registry or Azure Storage, assign the **Azure Container Registry Reader** and S**torage Blob Data Contributor** roles as well.
+1. Repeat the above steps and assign the **Network Contributor** and **Managed Identity Contributor** roles to the Standby Pool Resource Provider. If you're using Azure Container Registry or Azure Storage, assign the **Azure Container Registry Reader** and **Storage Blob Data Contributor** roles as well.
 
 For more information on assigning roles, see [assign Azure roles using the Azure portal](/azure/role-based-access-control/quickstart-assign-role-user-portal).
 
@@ -58,7 +58,7 @@ If your standby pool uses resources, such as container images stored in Azure Co
 
 Permission issues are a common cause of problems with standby pools. These issues can manifest in several ways, such as the pool continually creating and deleting instances, failing to create instances, or no instances appearing in the pool. Use the following steps to troubleshoot and resolve these issues:
 
-### Use Log Analytics to Investigate
+### Use Log Analytics to investigate
 
 If your pool is not functioning as expected, use Log Analytics to analyze the logs and identify missing permissions:
 
@@ -75,7 +75,7 @@ If your pool is not functioning as expected, use Log Analytics to analyze the lo
 4. Look for errors or failures in the FailureDetails column to identify missing permissions or other issues.
 
 
-### Check the Runtime View API for Degraded Mode
+### Check the runtime view API for degraded mode
 
 If your pool is in degraded mode, resource creation will be paused briefly. Use the Runtime View API to check the health status of your pool and determine the reason for degraded mode:
 
@@ -89,7 +89,7 @@ https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<res
 
 3. Address the identified issue, such as missing permissions or resource constraints, to resolve the degraded mode.
 
-### Review Required Permissions for Pooled Instances
+### Review required permissions for pooled instances
 
 If you notice pooled container instances recycling or no instances appearing in the pool, review the resources required to create an individual container instance. Ensure the standby pool resource provider has the necessary permissions for all required resources, including:
 
@@ -101,7 +101,7 @@ If you notice pooled container instances recycling or no instances appearing in 
 
 Verify that the roles assigned to the standby pool resource provider include all permissions needed to create and manage container instances.
 
-## Next Steps
+## Next steps
 - Use the Azure Monitor Logs documentation to explore and analyze logs further.
 - Refer to the Runtime View API documentation for more details on checking pool health and status.
 - Ensure all required roles are assigned as described in the Basic permissions section.

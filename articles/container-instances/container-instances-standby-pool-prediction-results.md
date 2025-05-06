@@ -1,5 +1,5 @@
 ---
-title: Get Prediction Results for Standby Pools for Azure Container Instances
+title: Get prediction results for standby pools for Azure Container Instances
 description: Learn how to use prediction results to help right-size your standby pools for Azure Container Instances.
 author: mimckitt
 ms.author: mimckitt
@@ -11,7 +11,7 @@ ms.date: 5/6/2025
 ms.reviewer: ju-shim
 ---
 
-# Get Prediction Results for Standby Pools for Azure Container Instances
+# Get prediction results for standby pools for Azure Container Instances
 
 > [!IMPORTANT]
 > For standby pools to successfully create and manage resources, they require access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider. For detailed instructions, see **[configure role permissions for standby pools](container-instances-standby-pool-configure-permissions.md)**.
@@ -20,7 +20,7 @@ To effectively manage and optimize your standby pool for Azure Container Instanc
 
 While the prediction results provide valuable insights, they are not a guarantee and should be treated as a suggested size for your pool. The actual number of container instances requested from the pool may vary depending on the specific demands of your workload. Additionally, the longer the prediction engine monitors and analyzes your workload trends, the more accurate and reliable the prediction results will become over time.
 
-## Retrieve Prediction Results
+## Retrieve prediction results
 
 ### [CLI](#tab/cli)
 
