@@ -67,8 +67,8 @@ All VM, Virtual Machine Scale Set, and Compute Fleet products' instance availabi
 
 ## Next steps
 
-Take advantage of the latest performance and features available for your workloads by [changing the size of a virtual machine](../../../virtual-machines/sizes/resize-vm.md).
+Take advantage of the latest performance and features available for your workloads by [changing the size of a virtual machine](/azure/virtual-machines/sizes/resize-vm).
 
-Utilize Microsoft's in-house designed ARM processors with [Azure Cobalt VMs](../../../virtual-machines/sizes/cobalt-overview.md).
+Utilize Microsoft's in-house designed ARM processors with [Azure Cobalt VMs](/azure/virtual-machines/sizes/cobalt-overview).
 
-Learn how to [Monitor Azure virtual machines](../../../virtual-machines/monitor-vm.md).
+Learn how to [Monitor Azure virtual machines](/azure/virtual-machines/monitor-vm).
