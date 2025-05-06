@@ -15,7 +15,7 @@ ms.reviewer: ju-shim
 # Create a standby pool
 
 > [!IMPORTANT]
-> For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[Standby Pools Overview](standby-pools-overview.md)**.
+> For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[configure role permissions for standby pools](standby-pools-configure-permissions.md)**.
 
 This article steps through creating a standby pool for Virtual Machine Scale Sets with Flexible Orchestration.
 

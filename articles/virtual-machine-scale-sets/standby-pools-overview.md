@@ -13,13 +13,13 @@ ms.date: 5/5/2025
 # Standby pools for Virtual Machine Scale Sets
 
 > [!IMPORTANT]
-> For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[Standby Pools Overview](standby-pools-overview.md)**.
+> For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[configure role permissions for standby pools](standby-pools-configure-permissions.md)**.
 
 Standby pools for Virtual Machine Scale Sets enables you to increase scaling performance by creating a pool of pre-provisioned virtual machines. The virtual machines in the standby pool complete all post provisioning processes such as installing applications, downloading data packages, etc. Once the virtual machines have been fully provisioned, they can be maintained in a running or a stopped (deallocated) state. When your scale set requires more instances, the instances in the standby pool are automatically moved into the scale set. A standby pool significantly reduces the time it takes to scale out a Virtual Machine Scale Set. 
 
 If maintaining a standby pool of running virtual machines, the machines are immediately ready to receive traffic after being moved into the scale set. If maintaining a standby pool of stopped (deallocated) virtual machines, the virtual machines are automatically started after moving into the scale set. Since they have already completed all the provisioning steps, the only delay in being ready to take traffic is the time it takes to start the machine. 
 
-### Feature Registration 
+### Feature Registration
 Register the standby pool resource provider with your subscription using Azure Cloud Shell. Registration can take up to 30 minutes to successfully show as registered. You can rerun the below commands to determine when the feature is successfully registered. 
 
 > [!NOTE]
@@ -30,24 +30,7 @@ Register-AzResourceProvider -ProviderNamespace Microsoft.StandbyPool
 Register-AzProviderFeature -FeatureName StandbyVMPoolPreview -ProviderNameSpace Microsoft.StandbyPool
 ```
 
-## Prerequisites
-
-To allow standby pools to create and manage virtual machines in your subscription, assign the appropriate permissions to the standby pool resource provider. 
-
-1) In the Azure portal, navigate to your subscriptions.
-2) Select the subscription you want to adjust permissions.
-3) Select **Access Control (IAM)**.
-4) Select **Add** and **Add role assignment**.
-5) Under the **Role** tab, search for **Virtual Machine Contributor** and select it.
-6) Move to the **Members** Tab.
-7) Select **+ Select members**.
-8) Search for **Standby Pool Resource Provider** and select it.
-9) Move to the **Review + assign** tab.
-10) Apply the changes. 
-11) Repeat the above steps and assign the **Network Contributor** role and the **Managed Identity Operator** role to the Standby Pool Resource Provider. If you're using images stored in Compute Gallery assign the **Compute Gallery Sharing Admin** and **Compute Gallery Artifacts Publisher** roles as well.
-
-For more information on assigning roles, see [assign Azure roles using the Azure portal](/azure/role-based-access-control/quickstart-assign-role-user-portal).
-
+#
 ## Scaling
 
 Moving virtual machines between the standby pool into the scale set happens automatically whenever a scale out event is triggered. There is no extra configuration required. As long as there is an available instance in the standby pool that has completed all provisioning steps, the scale set by default uses that instance when scaling up. 

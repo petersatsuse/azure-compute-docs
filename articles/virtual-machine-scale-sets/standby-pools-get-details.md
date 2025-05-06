@@ -14,7 +14,7 @@ ms.reviewer: ju-shim
 # Get standby pool and instance details
 
 > [!IMPORTANT]
-> For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[Standby Pools Overview](standby-pools-overview.md)**.
+> For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[configure role permissions for standby pools](standby-pools-configure-permissions.md)**.
 
 A standby pool is a dynamic resource that stays in sync with your scale set as your workload scales up and down. This article discusses how to retrieve various information about your standby pool and the instances within it. 
 
