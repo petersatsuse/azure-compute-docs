@@ -19,8 +19,12 @@ If maintaining a standby pool of running virtual machines, the machines are imme
 ### Feature Registration 
 Register the standby pool resource provider with your subscription using Azure Cloud Shell. Registration can take up to 30 minutes to successfully show as registered. You can rerun the below commands to determine when the feature is successfully registered. 
 
+> [!NOTE]
+> To enable standby pool functionality in the Azure portal, the `StandbyPoolVMPoolPreview` feature flag is required. This is requirement is temporary and is in progress of being removed. 
+
 ```azurepowershell-interactive
 Register-AzResourceProvider -ProviderNamespace Microsoft.StandbyPool
+Register-AzProviderFeature -FeatureName StandbyVMPoolPreview -ProviderNameSpace Microsoft.StandbyPool
 ```
 
 ## Prerequisites
