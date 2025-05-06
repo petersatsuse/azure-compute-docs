@@ -98,21 +98,21 @@
     items:
     - name: Overview
       href: standby-pools-overview.md
-    - name: Configure permissions for standby pools
+    - name: Configure service permissions
       href: standby-pools-configure-permissions.md
     - name: Create a standby pool
       href: standby-pools-create.md
     - name: Update or delete a standby pool
       href: standby-pools-update-delete.md
-    - name: Use spot instances in a standby pool
+    - name: Use spot instances 
       href: standby-pools-spot-instances.md
     - name: Get pool and instance details
       href: standby-pools-get-details.md
-    - name: Get predictive pool size results
+    - name: Utilize predictive pooling
       href: standby-pools-prediction-results.md
     - name: Understand standby pool health
       href: standby-pools-health-state.md
-    - name: Monitor standby pool events
+    - name: Configure monitoring and alerts
       href: standby-pools-monitor-pool-events.md
     - name: Frequently asked questions
       href: standby-pools-faq.md
