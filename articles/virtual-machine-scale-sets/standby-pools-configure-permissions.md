@@ -32,6 +32,14 @@ Registration can take up to 30 minutes to complete. You can rerun the commands t
 ## Basic permissions 
 To allow standby pools to create and manage virtual machines in your subscription, assign the appropriate permissions to the standby pool resource provider.
 
+To cover as many scenarios as possible, it is suggested to provide the following permissions to the standby pool resource provider: 
+
+- **Virtual Machine Contributor**
+- **Network Contributor**
+- **Managed Identity Contributor**
+- **Compute Gallery Sharing Admin**
+- **Compute Gallery Artifacts Publisher**
+
 1) In the Azure portal, navigate to your subscriptions.
 2) Select the subscription you want to adjust permissions.
 3) Select **Access Control (IAM)**.
