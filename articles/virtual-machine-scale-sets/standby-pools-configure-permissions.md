@@ -88,7 +88,7 @@ https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<res
 
 If you notice pooled instances recycling or no instances appearing in the pool, review the resources required to create an individual virtual machine. Ensure the standby pool resource provider has the necessary permissions for all required resources, including:
 
-- Compute Gallery images (if applicable)
+- Compute Gallery images
 - Virtual networks and subnets
 - Managed identities
 - Storage accounts'
