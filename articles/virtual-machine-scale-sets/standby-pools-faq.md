@@ -13,6 +13,9 @@ ms.reviewer: ju-shim
 
 # Standby pools FAQ 
 
+> [!IMPORTANT]
+> For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[Standby Pools Overview](standby-pools-overview.md)**.
+
 Get answers to frequently asked questions about standby pools for Virtual Machine Scale Sets in Azure.
 
 ### Can I use standby pools on Virtual Machine Scale Sets with Uniform Orchestration?
