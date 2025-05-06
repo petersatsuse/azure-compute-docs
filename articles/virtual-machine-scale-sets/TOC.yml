@@ -99,7 +99,7 @@
     - name: Overview
       href: standby-pools-overview.md
     - name: Configure permissions for standby pools
-      href: standby-pools-permissions.md
+      href: standby-pools-configure-permissions.md
     - name: Create a standby pool
       href: standby-pools-create.md
     - name: Update or delete a standby pool
