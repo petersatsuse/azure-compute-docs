@@ -11,6 +11,9 @@ ms.reviewer: ju-shim
 
 # Understand the health state of your standby pool
 
+> [!IMPORTANT]
+> For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[Standby Pools Overview](standby-pools-overview.md)**.
+
 The health state of your standby pool provides critical insights into its operational status and helps ensure that your Virtual Machine Scale Sets are running efficiently. By using the Standby Pool runtime view API, you can retrieve the current health state of your standby pool, including details about instance counts, provisioning state, and overall health status. This information allows you to monitor the pool's performance and take proactive measures to address any issues.
 
 ## Health state overview

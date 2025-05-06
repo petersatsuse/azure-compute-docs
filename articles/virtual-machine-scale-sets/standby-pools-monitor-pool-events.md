@@ -11,6 +11,9 @@ ms.reviewer: ju-shim
 
 # Use Azure Log Analytics to monitor standby pool events
 
+> [!IMPORTANT]
+> For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[Standby Pools Overview](standby-pools-overview.md)**.
+
 Azure Log Analytics provides a powerful platform for monitoring and analyzing events from standby pools in Virtual Machine Scale Sets. By integrating your standby pools with a Log Analytics workspace, you can track key metrics, analyze trends, and set up alerts for critical events.
 
 ## Available metrics and tables
