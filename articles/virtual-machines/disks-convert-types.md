@@ -7,6 +7,7 @@ ms.custom: devx-track-azurecli, devx-track-azurepowershell, references_regions
 ms.topic: how-to
 ms.date: 04/17/2025
 ms.author: rogarana
+#Customer intent: The goal of this article is to fully document the various ways and restrictions for converting each disk type.
 ---
 
 # Convert the disk type of an Azure managed disk
