@@ -47,7 +47,7 @@ sections:
                 - Generated and stored entirely within the device hardware.
                 - Never exposed to the host, VM, or any external component including the operator, or Azure system.
           - All encryption and decryption operations occur within the device using the MEK.
-          - The MEK is destroyed when a customer deletes their VM, ensuring that no component can access the data afterward.
+          - The MEK is destroyed when you delete your VM, ensuring that no component can access the data afterward.
 
         Azure V6-series and Lsv4-series VMs provide enhanced Encryption at Rest through support for TCG-OPAL standards:
           - A PIN value is generated and securely stored by Azure infrastructure for each MEK.
