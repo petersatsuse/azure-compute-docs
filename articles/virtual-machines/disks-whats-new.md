@@ -58,7 +58,7 @@ Azure Disk Storage regularly receives updates for new features and enhancements.
 
 #### Public Preview: Troubleshoot Disk Performance with Copilot in Azure
 
-The Disk Performance Troubleshooting Capability for Copilot in Azure is now available in [Public Preview](https://azure.microsoft.com/updates?id=474649). Now, you can use Copilot in Azure to analyze your [disk metrics](https://learn.microsoft.com/azure/virtual-machines/disks-metrics) and resolve any performance degredation issues when your application requires higher performance than what you have configured for your VMs and disks. To learn more, see [Troubleshoot Disk Performance using Microsoft Copilot in Azure](https://learn.microsoft.com/azure/copilot/troubleshoot-disk-performance).
+The Disk Performance Troubleshooting Capability for Copilot in Azure is now available in [Public Preview](https://azure.microsoft.com/updates?id=474649). Now, you can use Copilot in Azure to analyze your [disk metrics](disks-metrics.md) and resolve any performance degredation issues when your application requires higher performance than what you have configured for your VMs and disks. To learn more, see [Troubleshoot Disk Performance using Microsoft Copilot in Azure](/azure/copilot/troubleshoot-disk-performance).
 
 ## What's new in 2024
 
