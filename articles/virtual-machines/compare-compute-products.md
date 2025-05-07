@@ -1,6 +1,6 @@
 ---
 title: Compare VM-based compute products
-description: Compare different vm-based compute scaling products offered on Azure.
+description: Compare different VM-based compute scaling products offered on Azure.
 author: mattmcinnes
 ms.service: azure-virtual-machines
 ms.topic: overview
@@ -18,7 +18,7 @@ Microsoft Azure offers various virtual machine based compute products designed t
 
 [Compute Fleet](/azure/azure-compute-fleet/overview) is designed for large-scale, distributed computing environments. It allows you to manage and orchestrate a fleet of VMs across multiple regions and availability zones. This service is particularly beneficial for high-performance computing (HPC) applications, big data processing, and other workloads that require significant computational power and distributed resources.
 
-The product you select depends on the workload you intend to run. Check out the product comparison table in this article or in the Azure Portal to choose between these solutions.
+The product you select depends on the workload you intend to run. Check out the product comparison table in this article or in the Azure portal to choose between these solutions.
 
 ## Product comparison table
 
