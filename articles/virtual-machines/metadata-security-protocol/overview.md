@@ -1,17 +1,17 @@
 ---
 title: Metadata Security Protocol (MSP)
-description: Get an overview of the Metadata Security Protocol.
+description: Get an overview of the Metadata Security Protocol feature.
 author: minnielahoti
 ms.service: azure-virtual-machines
-ms.topic: overview
+ms.topic: concept
 ms.date: 04/22/2025
 ms.author: minnielahoti
 ms.reviewer: azmetadatadev
 ---
 
-# What is Metadata Security Protocol?
+# Metadata Security Protocol feature in Azure Virtual Machines and Virtual Machine Scale Sets
 
-The Metadata Security Protocol (MSP) enhances the security of the [Azure Instance Metadata Service](https://aka.ms/azureimds) and [WireServer](https://aka.ms/azureWireserver) services. These services are available in Azure infrastructure as a service (IaaS) virtual machines (VMs) or virtual machine scale sets at 169.254.169.254 and 168.63.129.16, respectively.
+Metadata Security Protocol (MSP) is a feature in the Azure Virtual Machines and Azure Virtual Machine Scale Sets services. It enhances the security of the [Azure Instance Metadata Service](https://aka.ms/azureimds) and [WireServer](https://aka.ms/azureWireserver) services. These services are available in Azure infrastructure as a service (IaaS) virtual machines (VMs) or virtual machine scale sets at 169.254.169.254 and 168.63.129.16, respectively.
 
 Organizations use Instance Metadata Service and WireServer for providing metadata and bootstrapping VM credentials. As a result, threat actors frequently target these services. Common vectors include confused deputy attacks against in-guest workloads and sandbox escapes. These vectors are of particular concern for hosted-on-behalf-of workloads where untrusted code loads into the VM.
 
@@ -49,7 +49,7 @@ The following items are currently not supported:
 
 The Guest Proxy Agent (GPA) hardens against these types of attacks by:
 
-- Limiting metadata access to a subset of the VM (applying the principle of least privileged access).
+- Limiting metadata access to a subset of the VM (applying the principle of least-privileged access).
 - Switching from a *default-open* model to a *default-closed* model.
 
   For instance, with nested virtualization, a misconfigured L2 VM that has access to the L1 VM's vNIC can communicate with a metadata service as the L1. With the GPA, a misconfigured L2 could no longer gain access, because it would be unable to authenticate with the service.
@@ -69,6 +69,6 @@ You can set up an advanced authorization configuration (that is, authorize speci
 
 ## Related content
 
-- [Configure the MSP feature](./configuration.md)
+- [MSP feature configuration](./configuration.md)
 - [Deploy a VM or virtual machine scale set by using MSP](./greenfield.md)
 - [Enable MSP on an existing VM or virtual machine scale set](./brownfield.md)
