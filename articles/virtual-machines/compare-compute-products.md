@@ -22,7 +22,7 @@ The product you select depends on the workload you intend to run. Check out the 
 
 ## Product comparison table
 
-| | :::image type="icon" source="./media/compare-compute-products/Virtual-Machines-icon.png" border="false"::: Virtual Machines | :::image type="icon" source="./media/compare-compute-products/VM-scale-sets-icon.png" border="false"::: Virtual Machine Scale Sets | :::image type="icon" source="./media/compare-compute-products/Compute-Fleet-icon.png" border="false"::: Compute Fleet  |
+| | :::image type="icon" source="./media/compare-compute-products/virtual-machines-table-icon.png" border="false"::: Virtual Machines | :::image type="icon" source="./media/compare-compute-products/vm-scale-sets-table-icon.png" border="false"::: Virtual Machine Scale Sets | :::image type="icon" source="./media/compare-compute-products/compute-fleet-table-icon.png" border="false"::: Compute Fleet  |
 | --- | --- | --- | --- |
 | **Product Description** | Create and manually configure individual VMs.| Load-balanced, automatically scaling VM groups with workload optimization across multiple availability zones. | Provision thousands of mixed-size VMs for performance and high availability. |
 | **Instances** | Single instances deployed individually | 2 to 1,000 instances | Up to 10,000 instances |
@@ -37,7 +37,7 @@ The cost of any Azure VM environment depends upon the number of VM instances, th
 
 | Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
 | --- | --- | --- |
-| - Billed as an individual VM instance <br>- Cost-effective for consistent load and traffic | :::image type="icon" source="./media/compare-compute-products/cost-icon.png" border="false"::: **Optimize costs with VMSS** <br>- VMSS can automatically use less capacity when load/traffic is low, and optimizes cost while accommodating the dips and spikes of cyclical, intermittent, and growing workloads <br> - Use 100% Spot VMs, or mix with standard ones, to cut cost | :::image type="icon" source="./media/compare-compute-products/cost-icon.png" border="false"::: **Optimize costs with Compute Fleet** <br> - Combine discounts (like reserved instances and savings plans) with Spot VM savings, plus rank the top VM sizes you want Fleet to prioritize <br>- Your fleet will maintain capacity with discounted Spot VMs to optimize cost
+| - Billed as an individual VM instance <br>- Cost-effective for consistent load and traffic | :::image type="icon" source="./media/compare-compute-products/cost-table-icon.png" border="false"::: **Optimize costs with VMSS** <br>- VMSS can automatically use less capacity when load/traffic is low, and optimizes cost while accommodating the dips and spikes of cyclical, intermittent, and growing workloads <br> - Use 100% Spot VMs, or mix with standard ones, to cut cost | :::image type="icon" source="./media/compare-compute-products/cost-table-icon.png" border="false"::: **Optimize costs with Compute Fleet** <br> - Combine discounts (like reserved instances and savings plans) with Spot VM savings, plus rank the top VM sizes you want Fleet to prioritize <br>- Your fleet will maintain capacity with discounted Spot VMs to optimize cost
 
 #### [Scaling](#tab/prodcompscale)
 
