@@ -1,13 +1,12 @@
 ---
 title: Overview of virtual machines in Azure
 description: Overview of virtual machines in Azure.
-author: ju-shim
+author: mattmcinnes
 ms.service: azure-virtual-machines
 ms.collection: linux
 ms.topic: overview
-ms.date: 07/01/2024
-ms.author: jushiman
-ms.custom: mvc, engagement-fy23
+ms.date: 03/27/2025
+ms.author: mattmcinnes
 ---
 
 # Virtual machines in Azure
@@ -23,8 +22,6 @@ Azure virtual machines can be used in various ways. Some examples are:
 * **Development and test** – Azure virtual machines offer a quick and easy way to create a computer with specific configurations required to code and test an application.
 * **Applications in the cloud** – Because demand for your application can fluctuate, it might make economic sense to run it on a virtual machine in Azure. You pay for extra virtual machines when you need them and shut them down when you don’t.
 * **Extended datacenter** – virtual machines in an Azure virtual network can easily be connected to your organization’s network.
-
-The number of virtual machines that your application uses can scale up and out to whatever is required to meet your needs.
 
 ## What do I need to think about before creating a virtual machine?
 There's always a multitude of [design considerations](/azure/architecture/reference-architectures/n-tier/linux-vm) when you build out an application infrastructure in Azure. These aspects of a virtual machine are important to think about before you start:
@@ -79,6 +76,9 @@ Fore more information see [Availability options for Azure virtual machines](avai
 The [size](sizes.md) of the virtual machine that you use is determined by the workload that you want to run. The size that you choose then determines factors such as processing power, memory, storage capacity, and network bandwidth. Azure offers a wide variety of sizes to support many types of uses.
 
 Azure charges an [hourly price](https://azure.microsoft.com/pricing/details/virtual-machines/linux/) based on the virtual machine’s size and operating system. For partial hours, Azure charges only for the minutes used. Storage is priced and charged separately.
+
+## Scaling to multiple VMs
+The number of virtual machines that your application uses can scale up and out to whatever is required to meet your needs. Azure offers several automatic scaling systems and instance types based on the size of your workload. For more information on scaling, [compare VM-based compute products.](./compare-compute-products.md)
 
 ## Virtual machine total core limits
 Your subscription has default [quota limits](/azure/azure-resource-manager/management/azure-subscription-service-limits) in place that could impact the deployment of many virtual machines for your project. The current limit on a per subscription basis is 20 virtual machine total cores per region. Limits can be raised by [filing a support ticket requesting an increase](/azure/azure-portal/supportability/regional-quota-requests)
