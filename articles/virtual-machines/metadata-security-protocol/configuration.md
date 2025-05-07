@@ -93,7 +93,7 @@ In WireServer `Enforce` mode, the GPA implicitly requires that a process runs as
 
 #### Linked configuration
 
-The `inVMAccessControlProfiles` resource type defines a per-service configuration that can be linked against a VM or virtual machine scale set. These configurations support full customizations. For full details, see [Advanced configuration](./advanced-configuration.md).
+The `inVMAccessControlProfiles` resource type defines a per-service configuration that can be linked against a VM or virtual machine scale set. These configurations support full customizations. For full details, see [Advanced configuration for MSP](./advanced-configuration.md).
 
 | `HostEndpointSettings` property | Type | Details |
 |--|--|--|
@@ -182,4 +182,4 @@ Don't worry about following a perfect progression. *Any* level of MSP enablement
 
 - [Deploy a VM or virtual machine scale set with MSP](./greenfield.md)
 - [Enable MSP on an existing VM or virtual machine scale set](./brownfield.md)
-- [Advanced configuration](./advanced-configuration.md)
+- [Advanced configuration for MSP](./advanced-configuration.md)

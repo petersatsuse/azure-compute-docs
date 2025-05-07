@@ -1,6 +1,6 @@
 ---
 title: Convert Audit Logs to an Allowlist
-description: Learn more about audit logs.
+description: Learn more about audit logs with Metadata Security Protocol (MSP).
 author: minnielahoti
 ms.service: azure-virtual-machines
 ms.topic: how-to
@@ -11,15 +11,15 @@ ms.reviewer: azmetadatadev
 
 # Convert audit logs to an allowlist
 
-With Metadata Security Protocol (MSP), you can define custom role-based access control (RBAC) allowlists for metadata service endpoints. A new resource type in Azure Compute Gallery, `InVMAccessControlProfile`, enables this allowlist.
+With Metadata Security Protocol (MSP), you can define a custom role-based access control (RBAC) allowlist to help secure metadata service endpoints. The contents of the allowlist come from audit logs. A new resource type in Azure Compute Gallery, `InVMAccessControlProfile`, enables the allowlist.
 
-To learn more about RBAC and the `InVMAccessControlProfile` resource type, see [Advanced configuration](../advanced-configuration.md).
+To learn more about RBAC and the `InVMAccessControlProfile` resource type, see [Advanced configuration for MSP](../advanced-configuration.md).
 
 ## Collect audit logs
 
-If MSP is enabled in `Audit` or `Enforce` mode, the Guest Proxy Agent (GPA) creates audit logs in the virtual machine (VM).
+If you enable MSP in `Audit` or `Enforce` mode, the Guest Proxy Agent (GPA) creates audit logs in the following folders inside the virtual machine (VM):
 
-| OS family | Audit log location |
+| Opertating system | Audit log location |
 |--|--|
 | Linux | `/var/lib/azure-proxy-agent/ProxyAgent.Connection.log` |
 | Windows | `C:\WindowsAzure\ProxyAgent\Logs\ProxyAgent.Connection.log` |
@@ -30,45 +30,44 @@ To create an allowlist, you can use an automated method or a manual method.
 
 ### Generate an allowlist automatically
 
-1. Download and run the Allowlist Tool from either option:
-   - Select `allowListTool.exe` from the [latest release page](https://github.com/Azure/GuestProxyAgent/releases/latest)
-   - Direct download [link](https://github.com/Azure/GuestProxyAgent/releases/latest/download/allowListTool.exe)
-1. Follow the steps in the Allowlist Tool to create your Allowlist and download the generated Allowlist.
+You can use an allowlist generator tool to generate the access control rules. The tool helps parse the audit logs and provides a UI to generate the rules.
+
+1. Download and run the allowlist generator tool from either option:
+
+   - Select `allowListTool.exe` on the [latest release page](https://github.com/Azure/GuestProxyAgent/releases/latest).
+   - Select [this direct download link](https://github.com/Azure/GuestProxyAgent/releases/latest/download/allowListTool.exe).
+
+1. Follow the steps in the tool to create and download your allowlist.
 
 ### Manually create an allowlist
 
-After a VM is enabled with MSP in Audit/Enforce mode, the proxy agent captures all the requests being made to the host endpoints. The logs are captured in the folder inside the VM:
+After you enable a VM with MSP in `Audit` or `Enforce` mode, the proxy agent captures all the requests being made to the host endpoints.
 
-| Operating system | Log file path |
-|--|--|
-| Windows | `C:\WindowsAzure\ProxyAgent\Logs\ProxyAgent.Connection.log` |
-| Linux | `/var/lib/azure-proxy-agent/ProxyAgent.Connection.log` |
+In the connection logs, you can analyze the applications that are making the requests to the Azure Instance Metadata Service or WireServer endpoints.
 
-From the connection logs, you can analyze the applications that are making the requests to the Instance Metadata Service or WireServer endpoints:
+[![Screenshot of connection logs.](../images/create-shared-image-gallery/status-log.png)](../images/create-shared-image-gallery/status-log.png#lightbox)
 
-[![Screenshot of first audit logs.](../images/create-shared-image-gallery/status-log.png)](../images/create-shared-image-gallery/status-log.png#lightbox)
+The following example shows the format of the captured JSON.
 
-The JSON captured here would be of the format:
+[![Screenshot of audit logs with captured JSON.](../images/create-shared-image-gallery/parse-json-from-logs.png)](../images/create-shared-image-gallery/parse-json-from-logs.png#lightbox)
 
-[![Screenshot of second audit logs.](../images/create-shared-image-gallery/parse-json-from-logs.png)](../images/create-shared-image-gallery/parse-json-from-logs.png#lightbox)
-
-From the log file, you can identify the endpoints that you want to secure (which would be the `privileges` in the final `InVMAccessControlProfile` instance), and the `identities` that should have access.
+In the log file, you can identify the endpoints that you want to secure. These endpoints appear in `privileges` in the final `InVMAccessControlProfile` instance. You can also identify the identities (`identities`) that should have access.
 
 A simple rules schema might look like the following example.
 
-[![Screenshot of third audit logs.](../images/create-shared-image-gallery/example-access-control-rules.png)](../images/create-shared-image-gallery/example-access-control-rules.png#lightbox)
+[![Screenshot of a simple rules schema.](../images/create-shared-image-gallery/example-access-control-rules.png)](../images/create-shared-image-gallery/example-access-control-rules.png#lightbox)
 
-> [!NOTE]
-> We built an allowlist generator tool to make it easier to generate the Access Control rules. The allowlist tool helps parse the audit logs and provide a UI to generate the access control roles.
+## Create an InVMAccessControlProfile instance by using an ARM template
 
-## Create an `InVMAccessControlProfile` instance by using ARM template
+1. [Create a new private gallery](https://learn.microsoft.com/azure/virtual-machines/create-gallery) in Azure Compute Gallery.
 
-1. [Create a new private gallery](https://learn.microsoft.com/azure/virtual-machines/create-gallery) in Azure compute gallery.
 1. Create an `InVMAccessControlProfile` definition with parameters for:
-    - The gallery name to store in (from step 1)
+
+    - Gallery name to store in (from step 1)
     - Profile name
     - OS type
-    - Host Endpoint type (Wireserver or IMDS)
+    - Host endpoint type (WireServer or Instance Metadata Service)
+
 1. Create a specific version.
 
 Here's a sample `InVMAccessControlProfile` instance:

@@ -26,7 +26,7 @@ To deploy a VM with MSP via an Azure Resource Manager template (ARM template), u
 
 ### Use the REST API
 
-To use the REST API, deploy a VM as you normally would, but with the MSP configuration also applied. Here's an example that references a linked [advanced configuration](./advanced-configuration.md):
+To use the REST API, deploy a VM as you normally would, but with the MSP configuration also applied. Here's an example that references a linked [Advanced configuration for MSP](./advanced-configuration.md):
 
 ```http
 https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Compute/virtualMachines/{virtualMachine-Name}?api-version=2024-03-01
