@@ -180,6 +180,8 @@
     items: 
     - name: Overview
       href: container-instances-standby-pool-overview.md
+    - name: Configure permissions
+      href: container-instances-standby-pool-configure-permissions.md
     - name: Create a standby pool
       href: container-instances-standby-pool-create.md
     - name: Request a container from a standby pool
@@ -188,6 +190,8 @@
       href: container-instances-standby-pool-update-delete.md
     - name: Get pool and container details
       href: container-instances-standby-pool-get-details.md
+    - name: Utilize predictive pooling
+      href: container-instances-standby-pool-prediction-results.md
     - name: Frequently asked questions
       href: container-instances-standby-pool-faq.md
   - name: Monitor and log
