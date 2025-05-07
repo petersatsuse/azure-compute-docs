@@ -4,7 +4,7 @@ description: Compare different VM-based compute scaling products offered on Azur
 author: mattmcinnes
 ms.service: azure-virtual-machines
 ms.topic: overview
-ms.date: 04/29/2025
+ms.date: 05/07/2025
 ms.author: mattmcinnes
 ---
 
@@ -41,15 +41,11 @@ The cost of any Azure VM environment depends upon the number of VM instances, th
 
 #### [Scaling](#tab/prodcompscale)
 
-Individual VMs have no built-in scaling capacity beyond manually deploying additional VMs and relying on 3rd party software tools for orchestration. Virtual Machine Scale Sets and Compute Fleet deployments allow for dynamic, native scaling on Azure.
-
 | Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
 | --- | --- | --- |
 | Vertical Scaling: <br>- Change the VM's size manually <br><br>Horizontal Scaling: <br>- None | Vertical Scaling: <br>- Change any VM's size manually <br><br>Horizontal Scaling: <br>- Manually increase/decrease capacity <br>- Manually add/detach individual VM instances <br>- Autoscale based on demand, schedule, or AI-predicted usage patterns| Vertical Scaling: <br>- Change any VM's size manually <br><br>Horizontal Scaling:<br>- Manually managed through modifying the target capacity |
 
 #### [Management](#tab/prodcompmanagement)
-
-VMs, Virtual Machine Scale Sets, and Compute Fleets all support native management through the Azure portal and several 1st party tools.
 
 | Virtual Machines | Virtual Machine Scale Sets | Compute Fleet  |
 | --- | --- | --- |
