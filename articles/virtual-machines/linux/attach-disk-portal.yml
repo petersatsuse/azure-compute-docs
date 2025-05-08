@@ -2,7 +2,7 @@
 
 metadata:
   title: Attach a data disk to a Linux VM
-  description: Use the portal to attach new or existing data disk to a Linux VM.
+  description: Use the portal to attach new or existing data disk to a Linux virtual machine.
   author: roygara
   ms.author: rogarana
   ms.date: 01/07/2025
@@ -22,7 +22,7 @@ introduction: |
 
 prerequisites:
   summary: |
-    Before you attach disks to your VM, review these tips:
+    Before you attach disks to your Azure Virtual Machine (VM), review these tips:
   dependencies:
     - The size of the virtual machine controls how many data disks you can attach. For details, see [Sizes for virtual machines](../sizes.md).
 
@@ -104,7 +104,7 @@ procedureSection:
 
       In the image, you can see that there are three data disks: 4 GB on LUN 0, 16GB at LUN 1, and 32G at LUN 2.
 
-      From the output of `lsblk` you can see that the 4GB disk at LUN 0 is `sdc`, the 16GB disk at LUN 1 is `sdd`, and the 32G disk at LUN 2 is `sde`.
+      From the output of `lsblk`, you can see that the 4GB disk at LUN 0 is `sdc`, the 16GB disk at LUN 1 is `sdd`, and the 32G disk at LUN 2 is `sde`.
     code: |  
 
       ```output
@@ -181,10 +181,8 @@ procedureSection:
       > [!NOTE]
       > Improperly editing the **/etc/fstab** file could result in an unbootable system. If unsure, refer to the distribution's documentation for information on how to properly edit this file. You should create a backup of the **/etc/fstab** file is created before editing.
 
-      Next, open the **/etc/fstab** file in a text editor. Add a line to the end of the file, using the UUID value for the `/dev/sdc1` device that was created in the previous steps, and the mountpoint of `/datadrive`. Using the example from this article, the new line would look like the following:
-
-
-
+      Next, open the **/etc/fstab** file in a text editor. Add a line to the end of the file, using the UUID value for the `/dev/sdc1` device that was created in the previous steps, and the mountpoint of `/datadrive`. If you used the example from this article, the new line would look like the following sample.
+      
       When you're done editing the file, save and close the editor.
 
       > [!NOTE]
