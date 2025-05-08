@@ -3,7 +3,7 @@ title: MSP Feature Configuration
 description: Get configuration details for the Metadata Security Protocol (MSP) feature.
 author: minnielahoti
 ms.service: azure-virtual-machines
-ms.topic: concept
+ms.topic: concept-article
 ms.date: 04/22/2025
 ms.author: minnielahoti
 ms.reviewer: azmetadatadev

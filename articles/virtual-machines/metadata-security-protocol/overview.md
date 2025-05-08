@@ -3,7 +3,7 @@ title: Metadata Security Protocol (MSP)
 description: Get an overview of the Metadata Security Protocol feature.
 author: minnielahoti
 ms.service: azure-virtual-machines
-ms.topic: concept
+ms.topic: concept-article
 ms.date: 04/22/2025
 ms.author: minnielahoti
 ms.reviewer: azmetadatadev

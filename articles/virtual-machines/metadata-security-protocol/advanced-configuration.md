@@ -3,7 +3,7 @@ title: Advanced Configuration for MSP
 description: Learn about allowlists for Metadata Security Protocol (MSP).
 author: minnielahoti
 ms.service: azure-virtual-machines
-ms.topic: concept
+ms.topic: concept-article
 ms.date: 04/08/2025
 ms.author: minnielahoti
 ms.reviewer: azmetadatadev

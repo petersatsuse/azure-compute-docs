@@ -55,7 +55,7 @@ https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{res
 
 ### Validate linked rules
 
-After you deploy the VM, validate that the linked rules were applied to your VM. The steps for this validation in a newly provisioned VM are the same as the steps for an [existing VM](./brownfield.md#validating-the-linked-rules-were-applied-to-your-vm).
+After you deploy the VM, validate that the linked rules were applied to your VM. The steps for this validation in a newly provisioned VM are the same as the steps for an [existing VM](./brownfield.md#validate-linked-rules).
 
 ## Deploy a virtual machine scale set with MSP
 

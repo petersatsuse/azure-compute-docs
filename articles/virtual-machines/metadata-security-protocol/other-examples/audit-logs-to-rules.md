@@ -59,7 +59,7 @@ A simple rules schema might look like the following example.
 
 ## Create an InVMAccessControlProfile instance by using an ARM template
 
-1. [Create a new private gallery](https://learn.microsoft.com/azure/virtual-machines/create-gallery) in Azure Compute Gallery.
+1. [Create a new private gallery](/azure/virtual-machines/create-gallery) in Azure Compute Gallery.
 
 1. Create an `InVMAccessControlProfile` definition with parameters for:
 

@@ -22,7 +22,7 @@ This article explains the ways that you can enable Metadata Security Protocol (M
 
 ### Use the Azure portal
 
-See the [Configure MSP via the portal](./other-examples/portal.md).
+See [Configure MSP via the portal](./other-examples/portal.md).
 
 ### Use an ARM template
 

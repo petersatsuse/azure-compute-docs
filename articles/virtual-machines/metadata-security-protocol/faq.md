@@ -17,7 +17,7 @@ This article answers common questions from customers who work with the Metadata 
 
 ### How do I check if the feature is enabled?
 
-You can check MSP enablement programmatically by using the [GET VM API](https://learn.microsoft.com/rest/api/compute/virtual-machines/get) to retrieve the virtual machine (VM) model. The `proxyAgentSettings` properties report MSP configuration.
+You can check MSP enablement programmatically by using the [GET VM API](/rest/api/compute/virtual-machines/get) to retrieve the virtual machine (VM) model. The `proxyAgentSettings` properties report MSP configuration.
 
 Additionally, the `GuestProxyAgent` instance view in the VM runtime status reports the state of MSP from its perspective in the VM. If MSP is disabled, the value is `"Disabled"`.
 
@@ -92,7 +92,7 @@ The allowlist is defined as part of the VM model. The [MSP feature configuration
 
 The Guest Proxy Agent retrieves this policy periodically from WireServer, like any other VM metadata. The allowlist allows users to centrally manage the policy the same way that they would manage other VM settings. It also prevents users within the VM from tampering with it.
 
-### Where is the allowlist enforced (GPA or Wireserver)?
+### Where is the allowlist enforced (GPA or WireServer)?
 
 Both components play a role in enforcement. MSP uses a shared responsibility model:
 
@@ -104,7 +104,7 @@ Both components play a role in enforcement. MSP uses a shared responsibility mod
   
   The GPA can rely on the OS kernel to authoritatively identify which process within the VM made a request.
 
-The most important element is that MSP is a *default closed* model, whereas other security measures (like in guest firewall rules) are *default open*. If the GPA is down or otherwise bypassed, WireServer rejects any requests because the latched key doesn't endorse them.
+The most important element is that MSP is a *default-closed* model, whereas other security measures (like in guest firewall rules) are *default-open*. If the GPA is down or otherwise bypassed, WireServer rejects any requests because the latched key doesn't endorse them.
 
 ### Why is this feature opt-in and not required or automatically enabled?
 

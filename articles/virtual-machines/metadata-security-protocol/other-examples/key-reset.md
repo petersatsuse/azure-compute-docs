@@ -18,7 +18,7 @@ If a virtual machine (VM) loses its copy of the latched key, a disk is migrated 
 
 ## Reset a VM's key
 
-The platform always ensures that the `keyIncarnationId` value in the VM model matches the actual key in storage. Incrementing this value triggers a key reset. For more details, see [MSP feature configuration](../configuration.md).
+The platform always ensures that the `keyIncarnationId` value in the VM model matches the actual key in storage. Incrementing this value triggers a key reset. For more information, see [MSP feature configuration](../configuration.md).
 
 ```http
 PATCH https://management.azure.com/subscriptions/{subscription_id}/resourceGroups/{resource_group_name}/providers/Microsoft.Compute/virtualMachines/{virtualMachine_Name}?api-version=2024-03-01
