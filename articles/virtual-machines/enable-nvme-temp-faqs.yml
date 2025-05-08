@@ -48,7 +48,7 @@ sections:
                 - Never exposed to the host, VM, or any external component including the operator, or Azure system.
             - All encryption and decryption operations occur within the device using the MEK.
             - The MEK is destroyed when you delete your VM, ensuring that no component can access the data afterward.
-    - question: |
+    - question:  |
         What is Enhanced Encryption at Rest?
       answer:  |
         Enhanced Encryption at rest is another layer of protection that is available on the Azure V6-series and Lsv4-series VMs through support for TCG-OPAL standards. You don't need to take any action for this feature, it is the default for these VM types.
