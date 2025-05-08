@@ -5,7 +5,7 @@ metadata:
   description: Use the portal to attach new or existing data disk to a Linux VM.
   author: roygara
   ms.author: rogarana
-  ms.date: 01/07/2025
+  ms.date: 05/08/2025
   ms.service: azure-disk-storage
   ms.topic: how-to
   ms.collection: linux
@@ -70,7 +70,7 @@ procedureSection:
       Connect to the Linux VM to mount the new disk
     summary: |
       To partition, format, and mount your new disk so your Linux VM can use it, SSH into your VM. For more information, see [How to use SSH with Linux on Azure](mac-create-ssh-keys.md). The following example connects to a VM with the public IP address of *10.123.123.25* with the username *azureuser*:
-    code: |
+      
       ```bash
       ssh azureuser@10.123.123.25
       ```
@@ -79,7 +79,7 @@ procedureSection:
       Find the disk
     summary: | 
       Once connected to your VM, you need to find the disk. In this example, we're using `lsblk` to list the disks.
-    code: |  
+
       ```bash
       lsblk -o NAME,HCTL,SIZE,MOUNTPOINT | grep -i "sd"
       ```
