@@ -38,18 +38,20 @@ sections:
           
             For Azure virtual machines, SCSI-based local storage is a temporary resource disk, and the `MaxResourceVolumeMB` value specifies the size of this disk. In contrast, the `NVMeDiskSizeInMiB` value specifies the size of NVMe-based local storage. 
       - question: |
-          What levels of encryption are offered by Azure for the temp NVMe disks?
+          What is the minimum encryption offered by Azure for the temp NVMe disks?
         answer: |
-          All local NVMe disks on Azure virtual machines (VMs) have built-in encryption enabled by default for data protection:
+          All local NVMe disks on Azure virtual machines (VMs) have built-in encryption enabled by default for data protection. Temp NVMe disks support the feature of data encryption at rest. A unique data encryption key (DEK) encrypts the data for each temp NVMe disk assigned to the VM. A key encryption key (KEK) helps protect the DEK. When you delete a VM, the data on its temp NVMe disk is cryptographically erased. All the v6 VMs that are introduced from 2024 and onward, have their local NVMe drives encrypted by default using hardware based encryption with a Platform Managed Key.
             - Data is encrypted using XTS-AES-256, AES-256-GCM, or a stronger cipher.
             - Device generates a unique Media Encryption Key (MEK) for each disk in the VM.
             - The MEK is:
                 - Generated and stored entirely within the device hardware.
                 - Never exposed to the host, VM, or any external component including the operator, or Azure system.
-          - All encryption and decryption operations occur within the device using the MEK.
-          - The MEK is destroyed when you delete your VM, ensuring that no component can access the data afterward.
-
-        Azure V6-series and Lsv4-series VMs provide enhanced Encryption at Rest through support for TCG-OPAL standards:
+            - All encryption and decryption operations occur within the device using the MEK.
+            - The MEK is destroyed when you delete your VM, ensuring that no component can access the data afterward.
+    - question: |
+        What is Enhanced Encryption at Rest?
+      answer:  |
+        Enhanced Encryption at rest is another layer of protection that is available on the Azure V6-series and Lsv4-series VMs through support for TCG-OPAL standards. You don't need to take any action for this feature, it is the default for these VM types.
           - A PIN value is generated and securely stored by Azure infrastructure for each MEK.
           - The PIN is passed through a Key Derivation Function (KDF) within the storage device to generate a Key Encrypting Key (KEK). The PIN acts as a Platform management key (PMK). 
           - The MEK is encrypted using the KEK and stored internally within the storage device.
