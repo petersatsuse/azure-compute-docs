@@ -23,11 +23,11 @@ Additionally, the `GuestProxyAgent` instance view in the VM runtime status repor
 
 ### How do I check component health?
 
-The `GuestProxyAgent` instance view reports the status of the GPA and its dependencies. Each component's `status` value shows `RUNNING` when it's healthy.
+The `GuestProxyAgent` instance view reports the status of the Guest Proxy Agent (GPA) and its dependencies. Each component's `status` value shows `RUNNING` when it's healthy.
 
 | Component | Field |
 |--|--|
-| Guest Proxy Agent (GPA) | `keyLatchStatus.status` |
+| GPA | `keyLatchStatus.status` |
 | eBPF integration | `ebpfProgramStatus.status` |
 
 Here's a full example:
@@ -90,13 +90,13 @@ An Azure host generates the latched key and stores it as platform data. The key 
 
 The allowlist is defined as part of the VM model. The [MSP feature configuration](configuration.md) article explains how to create an allowlist.
 
-The Guest Proxy Agent retrieves this policy periodically from WireServer, like any other VM metadata. The allowlist allows users to centrally manage the policy the same way that they would manage other VM settings. It also prevents users within the VM from tampering with it.
+The Guest Proxy Agent retrieves this policy periodically from WireServer, like any other VM metadata. The allowlist allows users to centrally manage the policy in the same way that they would manage other VM settings. It also prevents users within the VM from tampering with it.
 
 ### Where is the allowlist enforced (GPA or WireServer)?
 
 Both components play a role in enforcement. MSP uses a shared responsibility model:
 
-- WireServer and Instance Metadata Service are responsible for ensuring that only the trusted delegate (the GPA), and clients that the trusted delegate endorses, can access the VMs metadata and secrets.
+- WireServer and Instance Metadata Service are responsible for ensuring that only the trusted delegate (the GPA), and clients that the trusted delegate endorses, can access the VM's metadata and secrets.
   
   Metadata services can't, and shouldn't, perform VM introspection. They alone can't determine which software within a VM made a request.
 

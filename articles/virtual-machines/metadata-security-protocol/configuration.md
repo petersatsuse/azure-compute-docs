@@ -48,7 +48,7 @@ After you're registered in the feature flag, you can configure MSP via:
 |--|--|
 | Metadata services | A general term for the industry practice of offering private, non-internet, anonymous HTTP APIs available at a fixed location. The location is typically `169.254.169.254`. Although the exact features, details, and service count vary by cloud provider, they all share a similar architecture and purpose. |
 | [Azure Instance Metadata Service](https://aka.ms/azureimds) | A user-facing metadata service that comes with support and full API documentation. It's intended for both Azure and non-Microsoft integrations. It offers a mix of metadata and credentials. |
-| [WireServer](https://aka.ms/azurewireserver) | A platform-facing metadata service that organizations use to implement core infrastructure as a service (IaaS) functionality. It isn't intended for general consumption, and Azure offers no support for doing so. Although the consumers of the service are related to an Azure implementation, the service must still be considered in security assessments.<br><br> WireServer resources are treated as privileged by default. However, Instance Metadata Service resources shouldn't be viewed as nonprivileged. Depending on your workload, Instance Metadata Service can also provide sensitive information. |
+| [WireServer](https://aka.ms/azurewireserver) | A platform-facing metadata service that organizations use to implement core infrastructure as a service (IaaS) functionality. It isn't intended for general consumption, and Azure offers no support for doing so. Although the consumers of the service are related to an Azure implementation, the service must still be considered in security assessments.<br><br> WireServer resources are treated as privileged by default. However, you shouldn't view Instance Metadata Service resources as nonprivileged. Depending on your workload, Instance Metadata Service can also provide sensitive information. |
 | Guest Proxy Agent (GPA) | An in-guest agent that enables MSP protections. |
 
 ## Azure Resource Manager fields
@@ -63,7 +63,7 @@ The minimum API version to configure MSP is `2024-03-01`.
 
 | Parameter name | Type | Default | Details  |
 |--|--|--|--|
-| `enabled`| `Bool` | `false` | Specifies whether the MSP feature should be enabled on the virtual machine or virtual machine scale set. Default is `false`. This property controls: <ul><li>Applying other settings.</li><li>Platform latched-key generation.</li><li>Automatic GPA installation (when `true`) or uninstallation (when `false`) on a Windows VM or virtual machine scale set.</li></ul> |
+| `enabled`| `Bool` | `false` | Specifies whether the MSP feature should be enabled on the VM or virtual machine scale set. Default is `false`. This property controls: <ul><li>Applying other settings.</li><li>Platform latched-key generation.</li><li>Automatic GPA installation (when `true`) or uninstallation (when `false`) on a Windows VM or virtual machine scale set.</li></ul> |
 | `imds` | `HostEndpointSettings` | Not applicable | Instance Metadata Service-specific configuration. See [Configuration for each metadata service](#configuration-for-each-metadata-service) later in this article. |
 | `wireServer` | `HostEndpointSettings` | Not applicable | Settings for the WireServer endpoint. See [Configuration for each metadata service](#configuration-for-each-metadata-service) later in this article. |
 | `keyIncarnationId` | `Integer` | `0` | A counter for key generation. Increasing this value instructs MSP to reset the key used for securing a communication channel between guest and host. The GPA notices the key reset and automatically acquires a new one.<br><br>This property is only for recovery and troubleshooting purposes. |
@@ -80,7 +80,7 @@ You can define an inline configuration by using the `mode` property of `HostEndp
 
 In the following table, `mode` is an enumeration that's expressed as `String`.
 
-| `mode` | GPA behavior | Service behavior |
+| `mode` value | GPA behavior | Service behavior |
 |--|--|--|
 | `Disabled` | The GPA doesn't set up eBPF interception of requests to this service. Requests go directly to the service. | Unchanged. The service does *not* require the GPA to endorse (sign) requests. |
 | `Audit` | The GPA intercepts requests to this service and determines if the current configuration authorizes them. The request is always forwarded to the service, but the result and caller information are logged. | Unchanged. The service does *not* require the GPA to endorse (sign) requests. |
@@ -109,7 +109,7 @@ This property must be a full Resource Manager ID, which takes this form: `/subsc
 - VM: `https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Compute/virtualMachines/{virtualMachine-Name}?api-version=2024-03-01`
 - Virtual machine scale set: `https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSet-name}/virtualMachines/{instance-id}?api-version=2024-03-01`
 
-##### Using `mode`
+The following example uses `mode`:
 
 ```json
 {
@@ -133,7 +133,7 @@ This property must be a full Resource Manager ID, which takes this form: `/subsc
 }
 ```
 
-##### Using `inVMAccessControlProfileReferenceId`
+The following example uses `inVMAccessControlProfileReferenceId:`
 
 ```json
 {
