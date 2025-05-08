@@ -79,21 +79,21 @@ procedureSection:
       Find the disk
     summary: | 
       Once connected to your VM, you need to find the disk. In this example, we're using `lsblk` to list the disks.
-    code: |  
-      ```bash
-      lsblk -o NAME,HCTL,SIZE,MOUNTPOINT | grep -i "sd"
-      ```
-    
-      ```output
-      sda     0:0:0:0      30G
-      ├─sda1             29.9G /
-      ├─sda14               4M
-      └─sda15             106M /boot/efi
-      sdb     1:0:1:0      14G
-      └─sdb1               14G /mnt
-      sdc     3:0:0:0       4G
-      ```
     steps: 
+      - |
+        ```bash
+        lsblk -o NAME,HCTL,SIZE,MOUNTPOINT | grep -i "sd"
+        ```
+      - |
+        ```output
+        sda     0:0:0:0      30G
+        ├─sda1             29.9G /
+        ├─sda14               4M
+        └─sda15             106M /boot/efi
+        sdb     1:0:1:0      14G
+        └─sdb1               14G /mnt
+        sdc     3:0:0:0       4G
+        ```
       - |
         In this example, the disk that was added was `sdc`. It's a LUN 0 and is 4GB.
       - |
