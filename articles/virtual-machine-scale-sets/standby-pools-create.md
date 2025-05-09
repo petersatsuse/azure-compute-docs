@@ -19,10 +19,12 @@ ms.reviewer: ju-shim
 
 This article steps through creating a standby pool for Virtual Machine Scale Sets with Flexible Orchestration.
 
-
 ## Create a standby pool
 
 ### [Portal](#tab/portal)
+
+> [!NOTE]
+> Setting the standby pool VM state to hibernated is not yet available in the Azure portal. To configure a standby pool with a hibernated VM state use an alternative SDK such as CLI or PowerShell.
 
 1) Navigate to your Virtual Machine Scale Set.
 2) Under **Availability + scale** select **Standby pool**. 

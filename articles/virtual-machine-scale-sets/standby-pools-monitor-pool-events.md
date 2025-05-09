@@ -18,24 +18,24 @@ Azure Log Analytics provides a powerful platform for monitoring and analyzing ev
 
 ## Available metrics and tables
 
-There are two main tables where you can view logs associated with your standby pool. They are called `SVMPoolRequestLog` and `SVMPoolExecutionLog`. 
+There are two main tables where you can view logs associated with your standby pool: `SVMPoolRequestLog` and `SVMPoolExecutionLog`. 
 
 | Table name | Description | 
 |---|---|
-| `SVMPoolRequestLog` | Contains logs for user-initiated events, such as updates to pool settings (e.g., changes to minimum or maximum ready capacity). |
+| `SVMPoolRequestLog` | Contains logs for user-initiated events, such as updates to pool settings. |
 | `SVMPoolExecutionLog` | Contains logs for system-initiated events, such as standby pool operations like degraded mode, VM reuse, and pool refills. |
 
 Within the above tables, you can query on specific pool related events as described below: 
 
 | Event name | Description | 
 |---|---|
-| `StandbyPoolExhaustedPool` | Triggered when the standby pool instance count reaches zero and cannot create more VMs because the pool's max ready capacity is less than or equal to the Virtual Machine Scale Set (VMSS) instance count. This typically occurs when no minimum ready capacity is configured.|
-| `StandbyPoolReuseSuccess` | Triggered when a virtual machine has been successfully moved from the standby pool into the scale set. |
+| `StandbyPoolExhaustedPool` | Triggered when the standby pool instance count reaches zero and can't create more VMs because the pool's max ready capacity is less than or equal to the Virtual Machine Scale Set instance count. This typically occurs when no minimum ready capacity is configured.|
+| `StandbyPoolReuseSuccess` | Triggered when a virtual machine is successfully moved from the standby pool into the scale set. |
 | `StandbyPoolReuseFailure` | Triggered when the scale set requests a VM from the standby pool but is unable to provide one, causing the scale set to create a new VM directly. |
 | `StandbyPoolSettingsUpdated` | Triggered when a setting is changed on the standby pool resource, such as adjusting the min/max ready capacity or the VM state. |
-| `StandbyPoolMaxReadyPool` | Triggered when the number of instances in the standby pool has replenished enough to meet the maximum ready capacity set by the customer. |
+| `StandbyPoolMaxReadyPool` | Triggered when the number of instances in the standby pool are replenished enough to meet the maximum ready capacity set by the customer. |
 | `StandbyPoolDegradedPool` | Triggered when the instances within the standby pool are unable to successfully provision the requested resources, causing the pool to enter a degraded mode for 30 seconds. |
-| `StandbyPoolExitDegradedPool` | Triggered when the timeout on degraded mode has expired, and the pool is now attempting to create resources again. |
+| `StandbyPoolExitDegradedPool` | Triggered when the time out on degraded mode expires, and the pool is now attempting to create resources again. |
 
 ## Configure Log Analytics for standby pools
 A Log Analytics workspace is a centralized data repository in Azure Monitor that allows you to collect, analyze, and query telemetry data from various Azure resources and services.
@@ -50,14 +50,14 @@ Before configuring monitoring for standby pools, ensure you have a Log Analytics
    - **Subscription**: Select the subscription to associate with the workspace.
    - **Resource group**: Choose an existing resource group or create a new one.
    - **Name**: Enter a unique name for the workspace.
-   - **Region**: Select the region where the workspace will be created.
+   - **Region**: Select the region for the workspace.
 5. Click **Review + Create**, then **Create** to deploy the workspace.
 
 ### Configure diagnostic settings for standby pools
 To send information to the log analytics workspace configured, set up a diganostic settings for your standby pool resource. 
 
 > [!NOTE]
-> Enabling diagnostic settings for a standby pool resource is not yet available from the Azure portal. 
+> Enabling a diagnostic setting for a standby pool resource is not yet available from the Azure portal. 
 
 #### [CLI](#tab/cli)
 ```azurecli
@@ -74,7 +74,7 @@ az monitor diagnostic-settings create \
 # Create log settings object
 $log = New-AzDiagnosticSettingLogSettingsObject -Enabled $true -CategoryGroup allLogs  
 
-# Create diagnostic setting
+# Create a diagnostic setting
 New-AzDiagnosticSetting -Name 'standbyPoolLogs' `
   -ResourceId "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/<standby-pool-name>" `
   -WorkspaceId "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>" `
@@ -139,9 +139,9 @@ SVMPoolRequestLog
 | order by Count desc
 ```
 
-## Setup alerts for specific events
+## Set up alerts for specific events
 
-To ensure you are notified of critical events, you can set up alerts in Azure Monitor based on the events in the `SVMPoolRequestLog` and `SVMPoolExecutionLog` tables. 
+To ensure you're notified of critical events, you can set up alerts in Azure Monitor based on the events in the `SVMPoolRequestLog` and `SVMPoolExecutionLog` tables. 
 
 ### Create an alert for failed standby pool actions
 
@@ -156,8 +156,8 @@ To ensure you are notified of critical events, you can set up alerts in Azure Mo
      SVMPoolExecutionLog
      | where EventName == "StandbyPoolReuseFailure"
      ```
-   - **Action group**: Create or select an action group to define how you want to be notified (e.g., email, SMS, or webhook).
-   - **Alert rule details**: Provide a name (e.g., "Standby Pool Reuse Failure Alert") and set the severity level.
+   - **Action group**: Create or select an action group to define how you want to be notified.
+   - **Alert rule details**: Provide a name  for the alert and set the severity level.
 
 6. Click **Create alert rule** to save the alert.
 
@@ -172,7 +172,7 @@ To ensure you are notified of critical events, you can set up alerts in Azure Mo
      | where EventName == "StandbyPoolExhaustedPool"
      ```
    - **Action group**: Create or select an action group for notifications.
-   - **Alert rule details**: Provide a name (e.g., "Standby Pool Exhausted Alert") and set the severity level.
+   - **Alert rule details**: Provide a name for the alert and set the severity level.
 
 3. Click **Create alert rule** to save the alert.
 
@@ -190,7 +190,7 @@ To ensure you are notified of critical events, you can set up alerts in Azure Mo
      ```
      This query triggers an alert if more than 5 pool setting updates occur within an hour.
    - **Action group**: Create or select an action group for notifications.
-   - **Alert rule details**: Provide a name (e.g., "Frequent Pool Settings Updates Alert") and set the severity level.
+   - **Alert rule details**: Provide a name for the alert and set the severity level.
 
 3. Click **Create alert rule** to save the alert.
 

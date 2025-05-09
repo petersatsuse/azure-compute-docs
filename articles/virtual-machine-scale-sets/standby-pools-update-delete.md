@@ -23,6 +23,9 @@ You can update the state of the instances and the max ready capacity of your sta
 
 ### [Portal](#tab/portal-2)
 
+> [!NOTE]
+> Setting the standby pool VM state to hibernated is not yet available in the Azure portal. To configure a standby pool with a hibernated VM state use an alternative SDK such as CLI or PowerShell.
+
 1) Navigate to Virtual Machine Scale set the standby pool is associated with. 
 2) Under **Availability + scale** select **Standby pool**. 
 3) Select **Manage pool**. 
