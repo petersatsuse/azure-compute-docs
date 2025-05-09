@@ -139,7 +139,7 @@ SVMPoolRequestLog
 | order by Count desc
 ```
 
-## Setup alerts for specific events
+## Set up alerts for specific events
 
 To ensure you are notified of critical events, you can set up alerts in Azure Monitor based on the events in the `SVMPoolRequestLog` and `SVMPoolExecutionLog` tables. 
 
