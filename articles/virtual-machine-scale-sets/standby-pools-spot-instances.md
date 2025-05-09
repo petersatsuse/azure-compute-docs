@@ -12,6 +12,9 @@ ms.reviewer: ju-shim
 # Use Spot Instances in standby pools (Preview)
 
 > [!IMPORTANT]
+> Using spot instances in standby pools for Virtual Machine Scale Sets is currently in preview. Previews are made available to you on the condition that you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature may change prior to general availability (GA).
+
+> [!IMPORTANT]
 > For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[configure role permissions for standby pools](standby-pools-configure-permissions.md)**.
 
 Azure Spot Instances allow you to take advantage of unused Azure capacity at a significant cost savings. By combining Spot Instances with standby pools in Virtual Machine Scale Sets, you can optimize costs while maintaining scalability. However, there are specific considerations and limitations when using Spot Instances with standby pools:
@@ -44,48 +47,14 @@ When using Spot Instances with standby pools, you can configure the pool to use 
 
 ## Configure a Virtual Machine Scale Set with Spot Instances
 
+> [!NOTE]
+> Adding a standby pool to a Virtual Machine Scale Set using spot instances in the Azure portal is not yet supported. Instead, create your scale set using spot instances, then use an alternative SDK to add the standby pool after scale set creation. 
+
 To use Spot Instances with standby pools, you must configure your scale set to use 100% Spot Instances and set the eviction policy to delete. 
 
-### [Azure portal](#tab/portal)
-
-> [!NOTE]
-> Adding a standby pool to a Virtual Machine Scale Set in the Azure portal is not yet supported. Instead, create your scale set then use an alternative SDK to add the standby pool after scale set creation. 
-
-1. Navigate to the [Azure portal](https://portal.azure.com/).
-2. In the search bar, type **Virtual Machine Scale Sets** and select it from the results.
-3. Click **+ Create** to create a new scale set.
-4. Fill in the required fields:
-   - **Instance type**: Select a Spot Instance type.
-   - **Eviction policy**: Set the eviction policy to **Delete**.
-   - **Spot allocation**: Ensure the scale set is configured to use 100% Spot Instances.
-5. Complete the remaining configuration and click **Review + Create**, then **Create**.
-
-### [Azure CLI](#tab/azurecli)
-```azurecli
-az vmss create \
-  --name <scale-set-name> \
-  --resource-group <resource-group-name> \
-  --image UbuntuLTS \
-  --instance-count 0 \
-  --priority Spot \
-  --eviction-policy Delete \
-  --location <region>
-```
-
-### [PowerShell](#tab/powershell)
-```azurepowershell
-New-AzVmss -ResourceGroupName <resource-group-name> `
-  -VMScaleSetName <scale-set-name> `
-  -Location <region> `
-  -Priority Spot `
-  -EvictionPolicy Delete `
-  -InstanceCount 0 `
-  -ImageName "UbuntuLTS"
-```
-
----
-
-## Attach a standby pool
+  - **Instance type**: Select a Spot Instance type.
+  - **Eviction policy**: Set the eviction policy to **Delete**.
+  - **Spot allocation**: Ensure the scale set is configured to use 100% Spot Instances.
 
 Once your scale set is configured with Spot Instances, there is not additional parameters or settings you need to configure directly in your standby pool. Simply create and attach the standby pool to your scale set with spot instances and the instances within the pool will take on the properties configured in your scale set. For more information, see [create a standby pool](standby-pools-create.md).
 
