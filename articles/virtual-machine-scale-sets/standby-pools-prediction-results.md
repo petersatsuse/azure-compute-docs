@@ -63,11 +63,18 @@ az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
         }
       ]
    }
-  "name": "latest",
-  "predictionForcastInfo":
-  "predictionForcastStartTime":
+    "name": "latest",
+  "prediction": {
+    "forecastInfo": "{\"SeriesUnitIntervalInMins\":60,\"InstancesRequestedCountRecentHistory\":[10,11,9,11,12,11,10,9,7,11,
+                    10,12],\"ForecastAccuracy\":90.0}",
+    "forecastStartTime": "2025-05-09T17:00:00-07:00",
+    "forecastValues": {
+      "instancesRequestedCount": [ 10, 10, 11, 12, 9, 11, 11, 12, 13, 10, 10, 8 ] } },
   "provisioningState": "Succeeded",
-  "resourceGroup": "myResourceGroup",
+  "resourceGroup": "pmaassyntheticsstaticresourcesrg-eastus2euap",
+  "status": {
+    "code": "HealthState/healthy"
+  },
   "type": "Microsoft.StandbyPool/standbyVirtualMachinePools/runtimeViews"
 }
 
@@ -116,18 +123,15 @@ InstanceCountSummary: {
         }
        ]
      }
-Name                         : latest
-PredictionForecastInfo       : 
-PredictionForecastStartTime  : 2025-02-14T01:34:59.228Z
-ProvisioningState            : Succeeded
-ResourceGroupName            : myResourceGroup
-StatusCode                   : HealthState/healthy
-StatusMessage                :
-SystemDataCreatedAt          :
-SystemDataCreatedBy          :
-SystemDataCreatedByType      :
-Type                         : Microsoft.StandbyPool/standbyVirtualMachinePools/runtimeViews
-
+Name                                 : latest
+PredictionForecastInfo               : {"SeriesUnitIntervalInMins":60,"InstancesRequestedCountRecentHistory":[10,11,10,11,
+                                        12,8,9,11,10,12,7,11],"ForecastAccuracy":85.0}
+forecastValues                       : { "instancesRequestedCount": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,] }
+PredictionForecastStartTime          : 5/10/2025 12:00:00 AM
+ProvisioningState                    : Succeeded
+ResourceGroupName                    : pmaassyntheticsstaticresourcesrg-eastus2euap
+StatusCode                           : HealthState/healthy
+Type                                 : Microsoft.StandbyPool/standbyVirtualMachinePools/runtimeViews
 ```
 
 
@@ -183,19 +187,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
     },
     "prediction": {
       "forecastValues": {
-        "instancesRequestedCount": [
-          24,
-          10,
-          20,
-          12,
-          15,
-          10,
-          15,
-          23,
-          14,
-          16,
-          17,
-          19
+        "instancesRequestedCount": [ 24, 10, 20, 12, 15, 10, 15, 23, 14, 16, 17, 19
         ]
       },
       "forecastStartTime": "2025-02-14T01:34:59.228Z",
