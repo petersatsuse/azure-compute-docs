@@ -25,11 +25,10 @@ In Windows, the platform automatically installs the necessary components: Guest 
 
 ### Linux
 
-In Linux, investigate these items:
+Ensure that you're using a valid image:
 
-- Ensure that you're using a valid image.
-- Ensure that the GPA is part of your image. That's a requirement for deploying with MSP enabled.
-- Ensure that your cloud-init version is a newer, MSP-aware version. If it's not, a race condition occurs between it and the GPA.
+- The GPA must be included in your image. That's a requirement for deploying with MSP enabled.
+- Your cloud-init version must be a newer, MSP-aware version. If it's not, a race condition occurs between it and the GPA.
 
 The exact failure depends on whether your image is misconfigured or a platform failure occurred:
 
@@ -75,9 +74,9 @@ Control Resource Plane (CRP) implicitly installs these Windows services by using
 
 For Linux VMs, the GPA must be included in the base image. Or you can explicitly add the GPA VM extension `Microsoft.CPlat.ProxyAgent.ProxyAgentLinux` before you enable the MSP feature.
 
-Prerequisites:
+Prerequisites are:
 
-- Linux Kernel 5.15 or later, which has all the required eBPF features.
+- Linux kernel 5.15 or later, which has all the required eBPF features.
 - The cgroup v2 feature mounted by default. The GPA hooks up the cgroup/connect4 eBPF event.
 
 When you enable MSP, CRP installs one service (`azure-proxy-agent`) in the VM.
@@ -163,7 +162,7 @@ To resolve this problem, try these methods:
   grep cgroup /proc/filesystems
   ```
 
-  If `nodev cgroup2` is listed, this OS supports cgroup v2. If `nodev cgroup2` isn't listed, opt out of MSP feature, update to the latest OS version, and then enable MSP.
+  If `nodev cgroup2` is listed, this OS supports cgroup v2. If `nodev cgroup2` isn't listed, opt out of the MSP feature, update to the latest OS version, and then enable MSP.
 
 - Check if cgroup v2 is mounted by default. Use the following command:
 
@@ -199,13 +198,13 @@ To reset a key:
 
 |Error code | Error message | Action |
 |--|--|--|
-| `ProxyAgentNotSupportedInRegion` |Creation of VMs or Virtual Machine Scale Sets with ProxyAgent feature isn't supported in this region. |Choose a supported region. |
-| `SubscriptionNotEnabledForProxyAgentFeature` | The subscription is not registered for the private preview of ProxyAgent feature. | [Register the feature flag](/azure/virtual-machines/metadata-security-protocol/overview#register-the-feature-flags). |
-| `BadRequest` | The property `securityProfile.proxyAgentSettings.wireServer.inVMAccessControlProfileReferenceId` can't be used together with property `securityProfile.proxyAgentSettings.wireServer.mode'` <br><br>The property `securityProfile.proxyAgentSettings.imds.inVMAccessControlProfileReferenceId` can't be used together with property `securityProfile.proxyAgentSettings.imds.mode`. | Fix the parameter. |
-| `BadRequest` | The value `securityProfile.proxyAgentSettings.keyIncarnationId` can only be incremented. | Fix the parameter. |
-| `BadRequest` | The value of parameter `securityProfile.proxyAgentSettings.wireServer.mode` is invalid. <br><br>The value of parameter `securityProfile.proxyAgentSettings.imds.mode` is invalid. | Provide a valid value: `Audit`, `Enable`, or `Disabled`. |
-| `InvalidParameter` | The resource id '{0}' isn't a valid gallery `inVMAccessControlProfile` reference. A gallery `inVMAccessControlProfile` reference should be a valid resource identifier, of the format: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/inVMAccessControlProfiles/{profileName}/versions/{version}'. | Fix the parameter value. |
-| `BadRequest`/`GalleryInVMAccessControlProfileNotMatchOSDisk` | Current Gallery `InVMAccessControlProfile` Version {0} supports OS {1}, while current OSDisk's OS is {2}. | Fix the parameter value. |
-| `BadRequest`/`GalleryInVMAccessControlProfileNotMatchHostEndpointType` | Current Gallery `InVMAccessControlProfile` Version {0} is for host endpoint {1}, while current referred by {2}. | Fix the parameter value. |
-| `InVMAccessControlProfileNotFound` | The gallery `InVMAccessControlProfile` '{0}' isn't available. Verify that the `InVMAccessControlProfileReferenceId` passed in is correct. | Check that the profile exists and is replicated in the regions where the VM or virtual machine scale set exists. |
-| `InVMAccessControlProfileNotFound` | Failed to prepare the `InVMAccessControlProfile` '{0}' metadata for one or more resources due to an error: '{1}'. | Create a new profile and start over. |
+| `ProxyAgentNotSupportedInRegion` |"Creation of VMs or Virtual Machine Scale Sets with ProxyAgent feature isn't supported in this region." |Choose a supported region. |
+| `SubscriptionNotEnabledForProxyAgentFeature` | "The subscription is not registered for the private preview of ProxyAgent feature." | [Register the feature flag](/azure/virtual-machines/metadata-security-protocol/overview#register-the-feature-flags). |
+| `BadRequest` | "The property `securityProfile.proxyAgentSettings.wireServer.inVMAccessControlProfileReferenceId` can't be used together with property `securityProfile.proxyAgentSettings.wireServer.mode'`" <br><br>"The property `securityProfile.proxyAgentSettings.imds.inVMAccessControlProfileReferenceId` can't be used together with property `securityProfile.proxyAgentSettings.imds.mode`." | Fix the parameter. |
+| `BadRequest` | "The value `securityProfile.proxyAgentSettings.keyIncarnationId` can only be incremented." | Fix the parameter. |
+| `BadRequest` | "The value of parameter `securityProfile.proxyAgentSettings.wireServer.mode` is invalid." <br><br>"The value of parameter `securityProfile.proxyAgentSettings.imds.mode` is invalid." | Provide a valid value: `Audit`, `Enable`, `Disabled`. |
+| `InvalidParameter` | "The resource id '{0}' isn't a valid gallery `inVMAccessControlProfile` reference. A gallery `inVMAccessControlProfile` reference should be a valid resource identifier, of the format: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/inVMAccessControlProfiles/{profileName}/versions/{version}'." | Fix the parameter value. |
+| `BadRequest`/`GalleryInVMAccessControlProfileNotMatchOSDisk` | "Current Gallery `InVMAccessControlProfile` Version {0} supports OS {1}, while current OSDisk's OS is {2}." | Fix the parameter value. |
+| `BadRequest`/`GalleryInVMAccessControlProfileNotMatchHostEndpointType` | "Current Gallery `InVMAccessControlProfile` Version {0} is for host endpoint {1}, while current referred by {2}." | Fix the parameter value. |
+| `InVMAccessControlProfileNotFound` | "The gallery `InVMAccessControlProfile` '{0}' isn't available. Verify that the `InVMAccessControlProfileReferenceId` passed in is correct." | Check that the profile exists and is replicated in the regions where the VM or virtual machine scale set exists. |
+| `InVMAccessControlProfileNotFound` | "Failed to prepare the `InVMAccessControlProfile` '{0}' metadata for one or more resources due to an error: '{1}'." | Create a new profile and start over. |

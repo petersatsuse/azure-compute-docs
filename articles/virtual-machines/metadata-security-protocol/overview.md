@@ -9,7 +9,7 @@ ms.author: minnielahoti
 ms.reviewer: azmetadatadev
 ---
 
-# Metadata Security Protocol feature in Azure Virtual Machines and Virtual Machine Scale Sets
+# Metadata Security Protocol (MSP)
 
 Metadata Security Protocol (MSP) is a feature in the Azure Virtual Machines and Azure Virtual Machine Scale Sets services. It enhances the security of the [Azure Instance Metadata Service](https://aka.ms/azureimds) and [WireServer](https://aka.ms/azureWireserver) services. These services are available in Azure infrastructure as a service (IaaS) virtual machines (VMs) or virtual machine scale sets at 169.254.169.254 and 168.63.129.16, respectively.
 
@@ -60,7 +60,7 @@ The GPA uses [eBPF](https://ebpf.io/what-is-ebpf/) to intercept HTTP requests to
 
 By default, the existing authorization levels are enforced:
 
-- IMDS is open to all users.
+- Instance Metadata Service is open to all users.
 - WireServer is root/admin only.
 
 This restriction is currently accomplished with firewall rules in the guest. This is still a default-open mechanism. If that rule can be disabled or bypassed for any reason, the metadata service still accepts the request. The authorization mechanism enabled here is default-closed. Bypassing interception maliciously or by error doesn't grant access to the metadata service.
@@ -70,5 +70,5 @@ You can set up an advanced authorization configuration (that is, authorize speci
 ## Related content
 
 - [MSP feature configuration](./configuration.md)
-- [Deploy a VM or virtual machine scale set by using MSP](./greenfield.md)
+- [Deploy a VM or virtual machine scale set with MSP](./greenfield.md)
 - [Enable MSP on an existing VM or virtual machine scale set](./brownfield.md)

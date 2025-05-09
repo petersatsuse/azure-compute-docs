@@ -11,7 +11,7 @@ ms.reviewer: azmetadatadev
 
 # Reset a latched key
 
-If a virtual machine (VM) loses its copy of the latched key, a disk is migrated to a new VM. If any other key mismatch occurs, the VM can't access WireServer or Instance Metadata Service (IMDS). Resetting the key brings the VM back to a healthy state if the key is lost or unmatched between host and guest.
+If a virtual machine (VM) loses its copy of the latched key, a disk is migrated to a new VM. If any other key mismatch occurs, the VM can't access WireServer or Azure Instance Metadata Service. Resetting the key brings the VM back to a healthy state if the key is lost or unmatched between host and guest.
 
 > [!NOTE]
 > The VM owner must request the key reset. Metadata services can't distinguish between an attacker or the Guest Proxy Agent requesting a reset when the key is lost, so resets can't be issued from within the VM.

@@ -11,11 +11,11 @@ ms.reviewer: azmetadatadev
 
 # Disable MSP
 
-You can disable Metadata Security Protocol (MSP) by using the REST API and (partially) the Azure portal.
+You can disable Metadata Security Protocol (MSP) by using the REST API and (partially) by using the Azure portal.
 
 ## REST API
 
-Set the `securityProfile.proxyAgentSettings.enabled` to `false`:
+Set `securityProfile.proxyAgentSettings.enabled` to `false`:
 
 ```http
 PATCH https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Compute/virtualMachines/{virtualMachine-Name}?api-version=2024-03-01
