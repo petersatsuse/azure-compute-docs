@@ -54,6 +54,14 @@ az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
           "state": "Deallocated"
         },
         {
+            "count": 0
+            "state": "Hibernating",
+        },
+        {
+            "count": 0
+            "state": "Hibernated",
+        },
+        {
           "count": 0,
           "state": "Deleting"
         }
@@ -83,6 +91,14 @@ az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
           "state": "Deallocated"
         },
         {
+            "count": 0
+            "state": "Hibernating",
+        },
+        {
+            "count": 0
+            "state": "Hibernated",
+        },
+        {
           "count": 0,
           "state": "Deleting"
         }
@@ -110,6 +126,14 @@ az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
         {
           "count": 3,
           "state": "Deallocated"
+        },
+        {
+            "count": 0
+            "state": "Hibernating",
+        },
+        {
+            "count": 0
+            "state": "Hibernated",
         },
         {
           "count": 5,
@@ -157,6 +181,14 @@ InstanceCountSummary: {{
             "count": 5
         },
         {
+            "state": "Hibernating",
+            "count": 0
+        },
+        {
+            "state": "Hibernated",
+            "count": 0
+        },
+        {
             "state": "Deleting",
             "count": 0
         }
@@ -183,6 +215,14 @@ InstanceCountSummary: {{
         },
         {
             "state": "Deallocated",
+            "count": 0
+        },
+        {
+            "state": "Hibernating",
+            "count": 0
+        },
+        {
+            "state": "Hibernated",
             "count": 0
         },
         {
@@ -213,6 +253,14 @@ InstanceCountSummary: {{
         {
             "state": "Deallocated",
             "count": 5
+        },
+        {
+            "state": "Hibernating",
+            "count": 0
+        },
+        {
+            "state": "Hibernated",
+            "count": 0
         },
         {
             "state": "Deleting",
@@ -260,6 +308,14 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
             "state": "starting",
             "count": 0
           },
+        {
+            "state": "Hibernating",
+            "count": 0
+        },
+        {
+            "state": "Hibernated",
+            "count": 0
+        },
           {
             "state": "deleting",
             "count": 0
@@ -289,6 +345,14 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
             "state": "starting",
             "count": 0
           },
+        {
+            "state": "Hibernating",
+            "count": 0
+        },
+        {
+            "state": "Hibernated",
+            "count": 0
+        },
           {
             "state": "deleting",
             "count": 0
@@ -318,6 +382,14 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
             "state": "starting",
             "count": 0
           },
+        {
+            "state": "Hibernating",
+            "count": 0
+        },
+        {
+            "state": "Hibernated",
+            "count": 0
+        },
           {
             "state": "deleting",
             "count": 0

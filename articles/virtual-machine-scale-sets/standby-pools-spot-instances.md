@@ -1,5 +1,5 @@
 ---
-title: Use Spot Instances in standby pools
+title: Use Spot Instances in standby pools (Preview)
 description: Learn how to configure and use Spot Instances with standby pools in Virtual Machine Scale Sets.
 author: mimckitt
 ms.author: mimckitt
@@ -9,7 +9,7 @@ ms.date: 5/6/2025
 ms.reviewer: ju-shim
 ---
 
-# Use Spot Instances in standby pools
+# Use Spot Instances in standby pools (Preview)
 
 > [!IMPORTANT]
 > For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[configure role permissions for standby pools](standby-pools-configure-permissions.md)**.

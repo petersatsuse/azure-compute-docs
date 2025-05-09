@@ -1,5 +1,5 @@
 ---
-title: Get Prediction Results for Standby pools for Virtual Machine Scale Sets
+title: Get Prediction Results for Standby pools for Virtual Machine Scale Sets (Preview)
 description: Learn how to prediction standby pools to help right size your pool for Virtual Machine Scale Sets.
 author: mimckitt
 ms.author: mimckitt
@@ -11,7 +11,7 @@ ms.date: 5/6/2025
 ms.reviewer: ju-shim
 ---
 
-# Get prediction results for Standby pools 
+# Get prediction results for Standby pools (Preview)
 
 > [!IMPORTANT]
 > For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[configure role permissions for standby pools](standby-pools-configure-permissions.md)**.
