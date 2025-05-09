@@ -18,7 +18,7 @@ Azure Log Analytics provides a powerful platform for monitoring and analyzing ev
 
 ## Available metrics and tables
 
-There are two main tables where you can view logs associated with your standby pool. They are called `SVMPoolRequestLog` and `SVMPoolExecutionLog`. 
+There are two main tables where you can view logs associated with your standby pool: `SVMPoolRequestLog` and `SVMPoolExecutionLog`. 
 
 | Table name | Description | 
 |---|---|
@@ -29,13 +29,13 @@ Within the above tables, you can query on specific pool related events as descri
 
 | Event name | Description | 
 |---|---|
-| `StandbyPoolExhaustedPool` | Triggered when the standby pool instance count reaches zero and cannot create more VMs because the pool's max ready capacity is less than or equal to the Virtual Machine Scale Set (VMSS) instance count. This typically occurs when no minimum ready capacity is configured.|
+| `StandbyPoolExhaustedPool` | Triggered when the standby pool instance count reaches zero and can't create more VMs because the pool's max ready capacity is less than or equal to the Virtual Machine Scale Set instance count. This typically occurs when no minimum ready capacity is configured.|
 | `StandbyPoolReuseSuccess` | Triggered when a virtual machine is successfully moved from the standby pool into the scale set. |
 | `StandbyPoolReuseFailure` | Triggered when the scale set requests a VM from the standby pool but is unable to provide one, causing the scale set to create a new VM directly. |
 | `StandbyPoolSettingsUpdated` | Triggered when a setting is changed on the standby pool resource, such as adjusting the min/max ready capacity or the VM state. |
 | `StandbyPoolMaxReadyPool` | Triggered when the number of instances in the standby pool are replenished enough to meet the maximum ready capacity set by the customer. |
 | `StandbyPoolDegradedPool` | Triggered when the instances within the standby pool are unable to successfully provision the requested resources, causing the pool to enter a degraded mode for 30 seconds. |
-| `StandbyPoolExitDegradedPool` | Triggered when the timeout on degraded mode expires, and the pool is now attempting to create resources again. |
+| `StandbyPoolExitDegradedPool` | Triggered when the time out on degraded mode expires, and the pool is now attempting to create resources again. |
 
 ## Configure Log Analytics for standby pools
 A Log Analytics workspace is a centralized data repository in Azure Monitor that allows you to collect, analyze, and query telemetry data from various Azure resources and services.
@@ -141,7 +141,7 @@ SVMPoolRequestLog
 
 ## Set up alerts for specific events
 
-To ensure you are notified of critical events, you can set up alerts in Azure Monitor based on the events in the `SVMPoolRequestLog` and `SVMPoolExecutionLog` tables. 
+To ensure you're notified of critical events, you can set up alerts in Azure Monitor based on the events in the `SVMPoolRequestLog` and `SVMPoolExecutionLog` tables. 
 
 ### Create an alert for failed standby pool actions
 
