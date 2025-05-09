@@ -20,17 +20,17 @@ ms.reviewer: ju-shim
 Azure Spot Instances allow you to take advantage of unused Azure capacity at a significant cost savings. By combining Spot Instances with standby pools in Virtual Machine Scale Sets, you can optimize costs while maintaining scalability. However, there are specific considerations and limitations when using Spot Instances with standby pools:
 
 - Standby pools only support spot instances when used with scale sets configured to use 100% Spot Instances (not a mix of Spot and regular instances).
-- Standby pools only support spot instances when used with a scale set that has the spot eviction policy set as delete. Deallocate eviction policy is not currently supported.
-- Standby pools using spot instances cannot use a hibernated VM state. Only running and deallocated pool state are supported.
+- Standby pools only support spot instances when used with a scale set that has the spot eviction policy set as delete. Deallocate eviction policy isn't currently supported.
+- Standby pools using spot instances can't use a hibernated VM state. Only running and deallocated pool state are supported.
 
 This article explains how to configure and use Spot Instances with standby pools, including details about supported VM states and their behavior.
 
 > [!NOTE]
-> Creating and attaching a standby pool to a scale set using spot instances is not yet supported in the Azure portal. 
+> Creating and attaching a standby pool to a scale set using spot instances isn't yet supported in the Azure portal. 
 
 ## Supported VM states for Spot Instances in standby pools
 
-When using Spot Instances with standby pools, you can configure the pool to use either a **running** or **deallocated** VM state. Hibernate is not supported when using spot instances. Each state has different behaviors:
+When using Spot Instances with standby pools, you can configure the pool to use either a **running** or **deallocated** VM state. Hibernate isn't supported when using spot instances. Each state has different behaviors:
 
 ### Running state
 - The virtual machines in the standby pool remain in a running state.
@@ -39,7 +39,7 @@ When using Spot Instances with standby pools, you can configure the pool to use 
 
 ### Deallocated state
 - The Spot Instances in the standby pool complete provisioning and are then shut down (deallocated).
-- When the scale set requires new instances, they are automatically pulled from the pool and started in the scale set.
+- When the scale set requires new instances, they're automatically pulled from the pool and started in the scale set.
 - This configuration reduces costs by releasing the compute resources associated with the virtual machines after they have finished all post provisioning steps. 
 
 > [!NOTE]
@@ -48,7 +48,7 @@ When using Spot Instances with standby pools, you can configure the pool to use 
 ## Configure a Virtual Machine Scale Set with Spot Instances
 
 > [!NOTE]
-> Adding a standby pool to a Virtual Machine Scale Set using spot instances in the Azure portal is not yet supported. Instead, create your scale set using spot instances, then use an alternative SDK to add the standby pool after scale set creation. 
+> Adding a standby pool to a Virtual Machine Scale Set using spot instances in the Azure portal isn't yet supported. Instead, create your scale set using spot instances, then use an alternative SDK to add the standby pool after scale set creation. 
 
 To use Spot Instances with standby pools, you must configure your scale set to use 100% Spot Instances and set the eviction policy to delete. 
 
@@ -56,7 +56,7 @@ To use Spot Instances with standby pools, you must configure your scale set to u
   - **Eviction policy**: Set the eviction policy to **Delete**.
   - **Spot allocation**: Ensure the scale set is configured to use 100% Spot Instances.
 
-Once your scale set is configured with Spot Instances, there is no additional configurations required to enable spot instnaces in the standby pool. Simply create and attach the standby pool to your scale set with spot instances and the instances within the pool takes on the properties configured in your scale set. For more information, see [create a standby pool](standby-pools-create.md).
+Once your scale set is configured with Spot Instances, there is no additional configurations required to enable spot instnaces in the standby pool. Create and attach the standby pool to your scale set with spot instances and the instances within the pool takes on the properties configured in your scale set. For more information, see [create a standby pool](standby-pools-create.md).
 
 ## Next steps
 
