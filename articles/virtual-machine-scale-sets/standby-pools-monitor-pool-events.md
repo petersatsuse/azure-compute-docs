@@ -63,31 +63,31 @@ To send information to the log analytics workspace configured, set up a diganost
 ```azurecli
 az monitor diagnostic-settings create \
   --name "standbyPoolLogs" \
-  --resource "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/<standby-pool-name>" \
-  --workspace "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>" \
+  --resource "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyPool}" \
+  --workspace "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.OperationalInsights/workspaces/{logAnalyticsWorkspace}" \
   --logs '[{"categoryGroup": "allLogs", "enabled": true}]'
 ```
 
 
 #### [PowerShell](#tab/powershell)
-```powershell
+```azurepowershell
 # Create log settings object
 $log = New-AzDiagnosticSettingLogSettingsObject -Enabled $true -CategoryGroup allLogs  
 
 # Create a diagnostic setting
 New-AzDiagnosticSetting -Name 'standbyPoolLogs' `
-  -ResourceId "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/<standby-pool-name>" `
-  -WorkspaceId "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>" `
+  -ResourceId "/subscriptions/{subscrptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyPool}" `
+  -WorkspaceId "/subscriptions/{subscriptionId}>/resourceGroups/{resourceGroup}/providers/Microsoft.OperationalInsights/workspaces/{logAnalyticsWorkspace}" `
   -Log $log
 ```
 
 #### [REST](#tab/rest)
 ```rest
-https://management.azure.com/subscriptions/<subscriptionId>/resourceGroups/<resource-group-name>/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/<standby-pool-name>/providers/microsoft.insights/diagnosticSettings/standbyPoolLogs?api-version=2021-05-01-preview
+https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyPool}/providers/microsoft.insights/diagnosticSettings/standbyPoolLogs?api-version=2021-05-01-preview
 
 {
   "properties": {
-    "workspaceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>",
+    "workspaceId": "/subscriptions/{subscriptionId}>/resourceGroups/{resourceGroup}/providers/Microsoft.OperationalInsights/workspaces/{logAnalyticsWorkspace}>",
     "logs": [
       {
         "categoryGroup": "allLogs",

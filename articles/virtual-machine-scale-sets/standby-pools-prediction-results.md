@@ -22,6 +22,9 @@ While the prediction results provide valuable insights, they are not a guarantee
 
 ## Prediction information
 
+> [!NOTE]
+> Prediction values will not show unless the standby pool has provisioned for 2-3 weeks. 
+
 The prediction results provide detailed insights into the expected behavior of your standby pool. These results include metadata about the forecast, such as accuracy, time intervals, and historical data, as well as the predicted number of instances requested during the forecast period. Use this information to analyze trends, optimize your standby pool size, and improve operational efficiency. Below is a description of the key values included in the prediction results:
 
 | Value | Description | 
@@ -35,6 +38,7 @@ The prediction results provide detailed insights into the expected behavior of y
 
 
 ### [CLI](#tab/cli)
+
 
 ```azurecli
 az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
@@ -79,10 +83,10 @@ az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
    }
   "name": "latest",
   "prediction": {
-    "forecastInfo": "{\"SeriesUnitIntervalInMins\":60,\"InstancesRequestedCountRecentHistory\":[10,11,9,11,12,11,10,9,7,11, 10,12],\"ForecastAccuracy\":90.0}",
+    "forecastInfo": "{\"SeriesUnitIntervalInMins\":60,\"InstancesRequestedCountRecentHistory\":[10,11,9,11,12,11,10,9,7,11,10,12],\"ForecastAccuracy\":90.0}",
     "forecastStartTime": "2025-05-09T17:00:00-07:00",
     "forecastValues": {
-      "instancesRequestedCount": [ 10, 10, 11, 12, 9, 11, 11, 12, 13, 10, 10, 8 ] } },
+       "instancesRequestedCount": [ 10,10,11,12,9,11,11,12,13,10,10,8]}},
   "provisioningState": "Succeeded",
   "resourceGroup": "myResourceGroup",
   "status": {
@@ -138,7 +142,7 @@ InstanceCountSummary: {
      }
 Name                                 : latest
 PredictionForecastInfo               : {"SeriesUnitIntervalInMins":60,"InstancesRequestedCountRecentHistory":[10,11,10,11,12,8,9,11,10,12,7,11],"ForecastAccuracy":85.0}
-forecastValues                       : { "instancesRequestedCount": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,] }
+forecastValues                       : { "instancesRequestedCount": [10,11,11,10,12,13,11,10,9,10,11,12]}
 PredictionForecastStartTime          : 5/10/2025 12:00:00 AM
 ProvisioningState                    : Succeeded
 ResourceGroupName                    : myResourceGroup
@@ -199,11 +203,10 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
     },
     "prediction": {
       "forecastValues": {
-        "instancesRequestedCount": [ 24, 10, 20, 12, 15, 10, 15, 23, 14, 16, 17, 19
-        ]
+        "instancesRequestedCount": [24,10,20,12,15,10,15,23,14,16,17,19]
       },
       "forecastStartTime": "2025-02-14T01:34:59.228Z",
-      "forecastInfo": "{\"forecastAccuracy\": 85, \"seriesUnitIntervalInMins\": 60, \"instancesRequestedCount_recentHistory\": \"[9, 4, 2, 8, 8, 2, 3, 6, 5, 3, 2, 6]\"}"
+      "forecastInfo": "{\"forecastAccuracy\": 85, \"seriesUnitIntervalInMins\": 60, \"instancesRequestedCount_recentHistory\": \"[9,4,2,8,8,2,3,6,5,3,2,6]\"}"
     }
   },
   "id": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyPoolName}/runtimeViews/latest",

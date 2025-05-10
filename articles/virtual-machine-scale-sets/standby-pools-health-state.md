@@ -18,11 +18,13 @@ The health state of your standby pool provides critical insights into its operat
 
 ## Health state overview
 
-The health state of a standby pool is determined by analyzing various metrics, such as the number of instances in different states (e.g., running, deallocated, creating), provisioning status, and system health indicators. The health state of the pool can be in 3 state: Healthy, Failed or Degraded. The runtime view API provides a detailed snapshot of these metrics, enabling you to:
+The health state of a standby pool is determined by analyzing various metrics, such as the number of instances in different states (for example, running, deallocated, creating, etc.), provisioning status, and system health indicators. The health state of the pool can be in 3 states: Healthy, Failed or Degraded. 
 
-- Monitor the current state of instances in the pool.
-- Identify potential issues, such as insufficient capacity or provisioning delays.
-- Ensure the pool is operating within expected parameters.
+| State | Description | 
+|---|---|
+| Healthy | The standby pool is functioning as expected, with all instances in the desired state and no issues detected. The pool is ready to provide instances to the scale set as needed. |
+| Failed | The standby pool has encountered a critical issue that prevents it from operating properly. Instances may fail to be created, or the pool may be unable to fulfill requests. Immediate action is required to resolve the issue. |
+| Degraded | The standby pool is experiencing issues provisioning instances successfully. This may be caused by resource constraints, permission issues, or configuration problems such as extension errors. The pool temporarily pauses instance creation for 30 seconds to allow investigation and resolution. After this pause, the pool will attempt to create resources again. For more information on troubleshooting pool errors, see [Use Azure Log Analytics to monitor standby pool events](standby-pools-monitor-pool-events.md). |
 
 ## Retrieve health state using the runtime view API
 
@@ -88,7 +90,8 @@ az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
 ### [PowerShell](#tab/powershell)
 Use the following PowerShell command to retrieve the health state:
 
-```powershell
+```azurepowershell
+
 Get-AzStandbyVMPoolStatus -ResourceGroupName myResourceGroup -Name myStandbyPool
 
 /subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/mmyStandbyPool/runtimeViews/latest
@@ -202,6 +205,8 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
     "lastModifiedByType": "User",
     "lastModifiedAt": "2024-02-14T23:31:59.679Z"
   }
+}
+
 ```
 
 ---
