@@ -219,46 +219,38 @@ Standby pools for Azure container instances support confidential containers. To 
 
 
 ```
-## Managed Identity
-Standby pools for Azure Container Instances support integration with Managed Identity. Applying a managed identity is performed when requesting a container from the standby pool and including the `identity` parameters and settings. Managed Identity is not a property supported directly in the container group profile. 
 
-```json
-{
-    "location": "",
-    "properties": {
-      "standByPoolProfile": {
-        "id": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.StandbyPool/standbyContainerGroupPools/{standbyPoolName}"
-      },
-      "containerGroupProfile": {
-        "id": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.ContainerInstance/containerGroupProfiles/{mycontainergroupprofile}",
-        "revision": "{revisionNumber}"
-      },
-      "containers": [
-        {
-          "name": "{mycontainergroupprofile}",
-          "properties": {
-            "configMap": {
-              "keyValuePairs": {
-                "{newKey}": "{newValue}"
-              }
-            }
-          }
-        }
-      ]
-    },
-    "identity": {
-      "type": "UserAssigned",
-      "userAssignedIdentities": {
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identity}": {}
-      }
-    }
-  }
- 
-```
 ## Availability zones
-Standby pools for Azure Container Instances supports creating and requesting containers across availability zones. Creating a zonal standby pool is currently only available using the standby pool [REST APIs](/rest/api/standbypool/standby-virtual-machine-pools/create-or-update) using version 2024-08-01-preview.  
+Standby pools for Azure Container Instances supports creating and requesting containers across availability zones. To create a standby pool with instances in specific zones, simply specify the `zones` paramater in the standby pool create request. 
 
-### Create a zonal standby pool
+### [CLI](#tab/cli)
+
+```azurecli-interactive
+az standby-container-group-pool create \
+   --resource-group myResourceGroup \
+   --location WestCentralUS \
+   --name myStandbyPool \
+   --max-ready-capacity 20 \
+   --refill-policy always \
+   --zones 1,2,3 \
+   --container-profile-id "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.ContainerInstance/containerGroupProfiles/mycontainergroupprofile"
+```
+### [PowerShell](#tab/powershell)
+
+```azurepowershell-interactive
+New-AzStandbyContainerGroupPool `
+   -ResourceGroup myResourceGroup `
+   -Location "WestCentralUS" `
+   -Name myStandbyPool `
+   -MaxReadyCapacity 20 `
+   -RefillPolicy always `
+   -Zones 1,2,3 `
+   -ContainerProfileId "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.ContainerInstance/containerGroupProfiles/mycontainergroupprofile"
+```
+
+
+
+#### [REST](#tab\rest)
 
 ```HTTP
 PUT https://management.azure.com/subscriptions/{SubscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyContainerGroupPools/myStandbyPool?api-version=2024-08-01-preview
@@ -291,6 +283,7 @@ Request Body
     "location": "West Central US"
 }
 ```
+---
 
 ## Next steps
 
