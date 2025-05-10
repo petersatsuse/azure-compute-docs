@@ -21,7 +21,6 @@ To effectively manage and optimize your standby pool for Virtual Machine Scale S
 While the prediction results provide valuable insights, they are not a guarantee and should be treated as a suggested size for your pool. The actual number of instances requested from the pool may vary depending on the specific demands of your workload. Additionally, the longer the prediction engine is able to monitor and analyze your workload trends, the more accurate and reliable the prediction results will become over time.
 
 ## Prediction information
-## Prediction information
 
 The prediction results provide detailed insights into the expected behavior of your standby pool. These results include metadata about the forecast, such as accuracy, time intervals, and historical data, as well as the predicted number of instances requested during the forecast period. Use this information to analyze trends, optimize your standby pool size, and improve operational efficiency. Below is a description of the key values included in the prediction results:
 
@@ -78,7 +77,7 @@ az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
         }
       ]
    }
-    "name": "latest",
+  "name": "latest",
   "prediction": {
     "forecastInfo": "{\"SeriesUnitIntervalInMins\":60,\"InstancesRequestedCountRecentHistory\":[10,11,9,11,12,11,10,9,7,11,
                     10,12],\"ForecastAccuracy\":90.0}",
@@ -86,7 +85,7 @@ az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
     "forecastValues": {
       "instancesRequestedCount": [ 10, 10, 11, 12, 9, 11, 11, 12, 13, 10, 10, 8 ] }     },
   "provisioningState": "Succeeded",
-  "resourceGroup": "pmaassyntheticsstaticresourcesrg-eastus2euap",
+  "resourceGroup": "myResourceGroup",
   "status": {
     "code": "HealthState/healthy"
   },
