@@ -62,7 +62,8 @@ if [ "$remainder" -ne 0 ]; then
     dd if=/dev/zero bs=1 count=$difference >> "$inputFile"
 fi
 ```
-###
+----
+
 Ensure the storage account has public level access or use an SAS URI with read privilege, as other restriction levels fail deployments. You can use [Storage Explorer](/azure/vs-azure-tools-storage-explorer-blobs) to quickly create a SAS URI if you don't already have one.
 
 If you're using PowerShell, you need to be using version 3.11.0 of the Az.Storage module.
