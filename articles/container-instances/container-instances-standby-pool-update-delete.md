@@ -7,7 +7,7 @@ ms.service: azure-container-instances
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/6/2024
+ms.date: 5/10/2025
 ms.reviewer: tomvcassidy
 ---
 

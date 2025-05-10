@@ -7,8 +7,8 @@ ms.service: azure-container-instances
 ms.custom:
   - ignite-2024
 ms.topic: conceptual
-ms.date: 5/6/2025
-ms.reviewer: ju-shim
+ms.date: 5/10/2025
+ms.reviewer: tomvcassidy
 ---
 
 # Get prediction results for standby pools for Azure Container Instances (Preview)

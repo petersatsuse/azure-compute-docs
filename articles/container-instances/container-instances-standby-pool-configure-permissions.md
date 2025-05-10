@@ -5,7 +5,8 @@ author: mimckitt
 ms.author: mimckitt
 ms.service: azure-container-instances
 ms.topic: how-to
-ms.date: 5/6/2025
+ms.date: 5/10/2025
+ms.reviewer: tomvcassidy
 ---
 
 # Configure role permissions for standby pools in Azure Container Instances
