@@ -19,8 +19,21 @@ ms.devlang: azurecli
 
 To run applications on virtual machine (VM) instances in a scale set, you first need to install the application components and required files. This article introduces ways to build a custom VM image for instances in a scale set, or automatically run install scripts on existing VM instances. You also learn how to manage application or OS updates across a scale set.
 
-## [Recommended] Install an app using VM Apps
-[Azure VM Apps](../virtual-machines/vm-applications.md) provide a streamlined way to package, manage, and deploy applications across Azure Virtual Machines (VMs), Virtual Machine Scale Sets (VMSS). By registering application packages such as ZIP, MSI, or EXE files in Azure Compute Gallery, customers can share applications (publicly or within organization), achieve consistent deployment, version control, reliable installation, failure handling and simplified updates without creating custom VM images or running custom scripts. VM Applications support multiple versions, regional replication, deployment automation through ARM templates, Azure CLI, and Terraform, and governance using Azure role-based access control (RBAC). VM Apps is best suited for deploying tools, agents, AI Apps, security components, and line-of-business applications across Azure. 
+## Install an app using VM Apps
+[Azure VM Apps](../virtual-machines/vm-applications.md) provide a streamlined way to package, manage, and deploy applications across Azure Virtual Machines (VMs), Virtual Machine Scale Sets (VMSS). VM Apps is the best suited method for deploying tools, agents, AI Apps, security components, and line-of-business applications across Azure. 
+### Key Benefits: 
+- Package and manage applications (ZIP, MSI, EXE) in the Azure Compute Gallery.
+- Share applications publicly or within an organization.
+- Achieve consistent deployments and version control across Azure VMs and VMSS.
+- Re-use publicly published apps from the Azure Compute Gallery.
+- Deploy multiple applications on a single VM.
+- Ensure reliable installation with built-in failure handling.
+- Update individual applications without the need for custom VM images or scripts.
+- Automate deployments using ARM templates, Azure CLI, and Terraform.
+- Automatic regional replication of published applications improving create latency & resiliency.
+- Integrated Azure RBAC ensuring Application publishing from authorized users.
+
+### Create and deploy VM Apps
 - [Overview of VM Apps](../virtual-machines/vm-applications.md)
 - [Create and deploy VM Apps on Linux VM](../virtual-machines/vm-applications-how-to.md?tabs=cli)
 - [Create and deploy VM Apps on Windows VM](../virtual-machines/vm-applications-how-to.md?tabs=powershell)
