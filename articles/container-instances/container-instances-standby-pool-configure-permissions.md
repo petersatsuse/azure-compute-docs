@@ -15,22 +15,12 @@ ms.date: 5/6/2025
 
 Standby pools for Azure Container Instances require specific permissions to create and manage resources in your subscription. Without the correct permissions, standby pools will not function properly. This article explains how to configure role-based access control (RBAC) permissions for standby pools and provides guidance for scenarios where additional permissions may be required.
 
-> [!IMPORTANT]
-> These permissions may not fully encompass all scenarios. If your standby pool uses specific resources, such as container images stored in Azure Container Registry or other subscriptions, ensure the standby pool resource provider has access to those resources.
-
-## Feature registration
-
-Before configuring permissions, register the standby pool resource provider with your subscription. Use Azure Cloud Shell to run the following commands:
-
-```azurepowershell-interactive
-Register-AzResourceProvider -ProviderNamespace Microsoft.StandbyPool
-Register-AzProviderFeature -FeatureName StandbyContainerPoolPreview -ProviderNameSpace Microsoft.StandbyPool
-```
-
-Registration can take up to 30 minutes to complete. You can rerun the commands to check the registration status.
 
 ## Basic permissions 
 To allow standby pools to create and manage container instances in your subscription, assign the appropriate permissions to the standby pool resource provider.
+
+> [!NOTE]
+> These permissions may not fully encompass all scenarios. If your standby pool uses specific resources, such as container images stored in Azure Container Registry or other subscriptions, ensure the standby pool resource provider has access to those resources.
 
 To cover as many scenarios as possible, it is suggested to provide the following permissions to the standby pool resource provider:
 
@@ -66,7 +56,7 @@ Permission issues are a common cause of problems with standby pools. These issue
 If your pool is not functioning as expected, use Log Analytics to analyze the logs and identify missing permissions:
 
 1. Navigate to the [Azure portal](https://portal.azure.com/).
-2. Go to your Log Analytics workspace associated with the standby pool.
+2. Go to your Log Analytics workspace associated with the standby pool. Before using log analytics, you first need to configure a log analytics workspace. For more infomation, see [use Azure Log Analytics to monitor standby pool events](container-instances-standby-pools-monitor-pool-events.md).
 3. Query the `SCGPoolExecutionLog` table to review events related to instance creation and deletion:
 
 ```kusto

@@ -21,7 +21,7 @@ Standby pools for Azure Container Instances enable you to create a pool of pre-p
 :::image type="content" source="media/container-instances-standby-pools/standby-pool-aci-workflow-diagram.png" alt-text="Diagram of the workflow of creating a container using the traditional path vs the standby pool path.":::
 
 ## Limitations
-Standby pools for Azure Container Instances is not available in the Azure portal. 
+Creating and managing a standby pool for Azure Container Instances is not yet available in the Azure portal. 
 
 ## Prerequisites
 
@@ -35,22 +35,30 @@ Register-AzProviderFeature -FeatureName StandbyContainerGroupPoolPreview -Provid
 ```
 
 ### Role-based Access Control Permissions
-To allow standby pools to create container groups in your subscription, assign the appropriate permissions to the standby pool resource provider. 
- 
-1) In the Azure portal, navigate to your subscriptions.
-2) Select the subscription you want to adjust permissions.
-3) Select **Access Control (IAM)**.
-4) Select **Add** and **Add role assignment**.
-5) Under the **Role** tab, search for **Standby Container Group Pool Contributor** and select it.
-6) Move to the **Members** Tab.
-7) Select **+ Select members**.
-8) Search for **Standby Pool Resource Provider** and select it.
-9) Move to the **Review + assign** tab.
-10) Apply the changes. 
-11) Repeat the above steps also assinging the **Azure Container Instances Contributor Role** and the **Network Contributor** to the **Standby Pool Resource Provider**.
+To allow standby pools to create and manage container instances in your subscription, assign the appropriate permissions to the standby pool resource provider. For more detailed steps and information, see [configure role permissions for standby pools in Azure Container Instancesfigure](container-instances-standby-pool-configure-permissions.md).
 
+To cover as many scenarios as possible, it is suggested to provide the following permissions to the standby pool resource provider:
+
+- **Container Instance Contributor**
+- **Network Contributor**
+- **Managed Identity Contributor**
+- **Storage Blob Data Contributor** (if using Azure Storage for container data)
+- **Azure Container Registry Reader** (if using images stored in Azure Container Registry)
+
+1. In the Azure portal, navigate to your subscriptions.
+1. Select the subscription you want to adjust permissions for.
+1. Select Access Control (IAM).
+1. Select Add and Add role assignment.
+1. Under the Role tab, search for **Container Instance Contributor** and select it.
+1. Move to the Members tab.
+1. Select + Select members.
+1. Search for **Standby Pool Resource Provider** and select it.
+1. Move to the Review + assign tab.
+1. Apply the changes.
+1. Repeat the above steps and assign the **Network Contributor** and **Managed Identity Contributor** roles to the Standby Pool Resource Provider. If you're using Azure Container Registry or Azure Storage, assign the **Azure Container Registry Reader** and **Storage Blob Data Contributor** roles as well.
 
 For more information on assigning roles, see [assign Azure roles using the Azure portal](/azure/role-based-access-control/quickstart-assign-role-user-portal).
+
 
 ## Using a container from the standby pool
 
@@ -61,7 +69,7 @@ Standby pools only give out container groups from the pool that are fully provis
 ## Standby pool size
 The number of container groups in a standby pool is determined by setting the `maxReadyCapacity` parameter. When a container group is consumed from the pool, the standby pool automatically begins to refill ensuring that your standby pool maintains the set maximum ready capacity.
 
-The only available refill policy for standby pools on Azure Container instances is `Always`. 
+Currently, the only available refill policy for standby pools on Azure Container instances is `Always`. 
 
 
 | Setting | Description | 
@@ -248,7 +256,7 @@ New-AzStandbyContainerGroupPool `
    -ContainerProfileId "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.ContainerInstance/containerGroupProfiles/mycontainergroupprofile"
 ```
 
-### [REST](#tab/    rest)
+### [REST](#tab/rest)
 
 ```HTTP
 PUT https://management.azure.com/subscriptions/{SubscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyContainerGroupPools/myStandbyPool?api-version=2025-03-01
