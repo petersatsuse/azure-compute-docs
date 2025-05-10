@@ -73,7 +73,7 @@
     - name: Create VM images
       href: ./linux/tutorial-custom-images.md
     - name: Create & deploy VM Application
-      href: ./vm-applications-how-to.md?tabs=cli
+      href: ./vm-applications-how-to.md?tabs=cli%2Ccli1%2Ccli2%2Ccli3
     - name: Automate configuration
       href: ./linux/tutorial-automate-vm-deployment.md
     - name: Manage networking
@@ -91,7 +91,7 @@
     - name: Create VM images
       href: ./windows/tutorial-custom-images.md
     - name: Create & deploy VM Application
-      href: ./vm-applications-how-to.md?tabs=powershell
+      href: ./vm-applications-how-to.md?tabs=powershell%2Cpowershell1%2Cpowershell2%2Cpowershell3
     - name: Automate configuration
       href: ./windows/tutorial-automate-vm-deployment.md
     - name: Manage networking
