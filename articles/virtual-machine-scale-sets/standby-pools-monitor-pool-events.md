@@ -57,7 +57,7 @@ Before configuring monitoring for standby pools, ensure you have a Log Analytics
 To send information to the log analytics workspace configured, set up a diganostic settings for your standby pool resource. 
 
 > [!NOTE]
-> Enabling a diagnostic setting for a standby pool resource is not yet available from the Azure portal. 
+> Enabling a diagnostic setting for a standby pool resource is not yet available from the Azure portal. Instead enable a diagnostics setting using an alterative SDK such as PowerShell or CLI. 
 
 #### [CLI](#tab/cli)
 ```azurecli

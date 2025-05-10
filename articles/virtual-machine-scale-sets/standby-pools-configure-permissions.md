@@ -86,7 +86,7 @@ If you notice pooled instances recycling or no instances appearing in the pool, 
 - Compute Gallery images
 - Virtual networks and subnets
 - Managed identities
-- Storage accounts'
+- Storage accounts
 
 Verify that the roles assigned to the standby pool resource provider include all permissions needed to create and manage virtual machines.
 

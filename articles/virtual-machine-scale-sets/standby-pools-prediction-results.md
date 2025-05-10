@@ -16,7 +16,7 @@ ms.reviewer: ju-shim
 > [!IMPORTANT]
 > Prediction results for standby pools is currently in preview. Previews are made available to you on the condition that you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature may change prior to general availability (GA).
 
-To effectively manage and optimize your standby pool for Virtual Machine Scale Sets, you can use the Standby Pool runtime view APIs to retrieve prediction results. These results, **available 2-3 weeks after creating the standby pool**, provide insights into the predicted number of instances that will be requested from the pool for each hour over a 12-hour period. The predictions include the accuracy of the forecast and a historical view of instances requested from the pool over the past 12 hours, helping you make informed decisions to right-size your standby pool and improve operational efficiency.
+To effectively manage and optimize your standby pool for Virtual Machine Scale Sets, you can use the Standby Pool runtime view APIs to retrieve prediction results. These results, **available 2-3 weeks after creating the standby pool** and provide insights into the predicted number of instances that will be requested from the pool for each hour over a 12-hour period. The predictions include the accuracy of the forecast and a historical view of instances requested from the pool over the past 12 hours, helping you make informed decisions to right-size your standby pool and improve operational efficiency.
 
 While the prediction results provide valuable insights, they are not a guarantee and should be treated as a suggested size for your pool. The actual number of instances requested from the pool may vary depending on the specific demands of your workload. Additionally, the longer the prediction engine is able to monitor and analyze your workload trends, the more accurate and reliable the prediction results will become over time.
 
@@ -79,11 +79,10 @@ az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
    }
   "name": "latest",
   "prediction": {
-    "forecastInfo": "{\"SeriesUnitIntervalInMins\":60,\"InstancesRequestedCountRecentHistory\":[10,11,9,11,12,11,10,9,7,11,
-                    10,12],\"ForecastAccuracy\":90.0}",
+    "forecastInfo": "{\"SeriesUnitIntervalInMins\":60,\"InstancesRequestedCountRecentHistory\":[10,11,9,11,12,11,10,9,7,11, 10,12],\"ForecastAccuracy\":90.0}",
     "forecastStartTime": "2025-05-09T17:00:00-07:00",
     "forecastValues": {
-      "instancesRequestedCount": [ 10, 10, 11, 12, 9, 11, 11, 12, 13, 10, 10, 8 ] }     },
+      "instancesRequestedCount": [ 10, 10, 11, 12, 9, 11, 11, 12, 13, 10, 10, 8 ] } },
   "provisioningState": "Succeeded",
   "resourceGroup": "myResourceGroup",
   "status": {
@@ -138,12 +137,11 @@ InstanceCountSummary: {
        ]
      }
 Name                                 : latest
-PredictionForecastInfo               : {"SeriesUnitIntervalInMins":60,"InstancesRequestedCountRecentHistory":[10,11,10,11,
-                                        12,8,9,11,10,12,7,11],"ForecastAccuracy":85.0}
+PredictionForecastInfo               : {"SeriesUnitIntervalInMins":60,"InstancesRequestedCountRecentHistory":[10,11,10,11,12,8,9,11,10,12,7,11],"ForecastAccuracy":85.0}
 forecastValues                       : { "instancesRequestedCount": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,] }
 PredictionForecastStartTime          : 5/10/2025 12:00:00 AM
 ProvisioningState                    : Succeeded
-ResourceGroupName                    : pmaassyntheticsstaticresourcesrg-eastus2euap
+ResourceGroupName                    : myResourceGroup
 StatusCode                           : HealthState/healthy
 Type                                 : Microsoft.StandbyPool/standbyVirtualMachinePools/runtimeViews
 ```

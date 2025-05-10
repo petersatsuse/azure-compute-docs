@@ -18,7 +18,7 @@ The health state of your standby pool provides critical insights into its operat
 
 ## Health state overview
 
-The health state of a standby pool is determined by analyzing various metrics, such as the number of instances in different states (e.g., running, deallocated, creating), provisioning status, and system health indicators. The runtime view API provides a detailed snapshot of these metrics, enabling you to:
+The health state of a standby pool is determined by analyzing various metrics, such as the number of instances in different states (e.g., running, deallocated, creating), provisioning status, and system health indicators. The health state of the pool can be in 3 state: Healthy, Failed or Degraded. The runtime view API provides a detailed snapshot of these metrics, enabling you to:
 
 - Monitor the current state of instances in the pool.
 - Identify potential issues, such as insufficient capacity or provisioning delays.
@@ -209,11 +209,11 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 ### Interpreting the health state
 The health state includes the following key components:
 
-- Instance counts by state: Shows the number of instances in each state (e.g., running, deallocated, creating). This helps you understand the current capacity and utilization of the pool.
+- Instance counts by state: Shows the number of instances in each state (for example, running, deallocated, creating). This helps you understand the current capacity and utilization of the pool.
 - Provisioning state: Indicates whether the pool is successfully provisioned or if there are issues that need attention.
 - Health status: Provides an overall assessment of the pool's health, such as "healthy" or "unhealthy," along with a message explaining the status.
 
 
 ### Next steps
-Learn how to get prediction results for your standby pool.
-Review the frequently asked questions about standby pools for Virtual Machine Scale Sets.
+Learn how to get [prediction results for your standby pool](standby-pools-prediction-results.md).
+Review the [frequently asked questions about standby pools for Virtual Machine Scale Sets](standby-pools-faq.md).
