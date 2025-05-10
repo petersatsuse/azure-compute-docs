@@ -248,8 +248,6 @@ New-AzStandbyContainerGroupPool `
    -ContainerProfileId "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.ContainerInstance/containerGroupProfiles/mycontainergroupprofile"
 ```
 
-
-
 ### [REST](#tab\rest)
 
 ```HTTP
