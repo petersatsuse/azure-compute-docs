@@ -1,6 +1,6 @@
 ---
 title: Understand the health state of your standby pool for Azure Container Instances
-description: Learn how to get and understand the health state of your standby pool using the runtime view API.
+description: Learn how to get and understand the health state of your standby pool for Azure Container Instances using the runtime view API.
 author: mimckitt
 ms.author: mimckitt
 ms.service: azure-container-instances
