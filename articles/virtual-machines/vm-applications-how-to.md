@@ -247,7 +247,7 @@ PUT
 | endOfLifeDate | A future end of life date for the application version. Note this is for customer reference only, and isn't enforced. | Valid future date |
 | excludeFromLatest | If specified, this version won't be considered for latest. | True or false |
 
-
+----
 
 ## Deploy the VM Application
 
@@ -444,7 +444,7 @@ relevant parts.
 }
 
 ```
-
+----
 
 
 ## Monitor the deployed Applications
