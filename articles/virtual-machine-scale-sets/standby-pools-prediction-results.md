@@ -20,6 +20,21 @@ To effectively manage and optimize your standby pool for Virtual Machine Scale S
 
 While the prediction results provide valuable insights, they are not a guarantee and should be treated as a suggested size for your pool. The actual number of instances requested from the pool may vary depending on the specific demands of your workload. Additionally, the longer the prediction engine is able to monitor and analyze your workload trends, the more accurate and reliable the prediction results will become over time.
 
+## Prediction information
+## Prediction information
+
+The prediction results provide detailed insights into the expected behavior of your standby pool. These results include metadata about the forecast, such as accuracy, time intervals, and historical data, as well as the predicted number of instances requested during the forecast period. Use this information to analyze trends, optimize your standby pool size, and improve operational efficiency. Below is a description of the key values included in the prediction results:
+
+| Value | Description | 
+|---|---|
+| `forecastInfo` | A JSON string containing additional metadata about the forecast, such as accuracy, time intervals, and recent history of requested instances. |
+| `SeriesUnitIntervalInMins` | The time interval, in minutes, between each data point in the forecast. For example, a value of 60 indicates hourly intervals. |
+| `InstancesRequestedCountRecentHistory` | An array of historical data showing the number of instances requested from the standby pool over the past 12 hours. |
+| `ForecastAccuracy` | The accuracy of the forecast as a percentage. A higher value indicates a more reliable prediction. |
+| `forecastStartTime` | The timestamp indicating when the forecast period begins. |
+| `instancesRequestedCount` | An array of predicted instance counts for each time interval in the forecast period. |
+
+
 ### [CLI](#tab/cli)
 
 ```azurecli
@@ -69,7 +84,7 @@ az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
                     10,12],\"ForecastAccuracy\":90.0}",
     "forecastStartTime": "2025-05-09T17:00:00-07:00",
     "forecastValues": {
-      "instancesRequestedCount": [ 10, 10, 11, 12, 9, 11, 11, 12, 13, 10, 10, 8 ] } },
+      "instancesRequestedCount": [ 10, 10, 11, 12, 9, 11, 11, 12, 13, 10, 10, 8 ] }     },
   "provisioningState": "Succeeded",
   "resourceGroup": "pmaassyntheticsstaticresourcesrg-eastus2euap",
   "status": {
