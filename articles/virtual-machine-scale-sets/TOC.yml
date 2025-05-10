@@ -60,7 +60,7 @@
       href: tutorial-install-apps-powershell.md
   - name: Autoscale a scale set
     items:
-    - name: Using custom script extension - Windows
+    - name: Azure CLI
       href: tutorial-autoscale-cli.md
     - name: Azure PowerShell
       href: /azure/azure-monitor/autoscale/autoscale-using-powershell
