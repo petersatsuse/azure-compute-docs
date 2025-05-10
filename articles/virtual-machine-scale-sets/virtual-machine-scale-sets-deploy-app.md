@@ -35,8 +35,8 @@ To run applications on virtual machine (VM) instances in a scale set, you first 
 
 ### Create and deploy VM Apps
 - [Overview of VM Apps](../virtual-machines/vm-applications.md)
-- [Create and deploy VM Apps on Linux VM](../virtual-machines/vm-applications-how-to.md?tabs=cli)
-- [Create and deploy VM Apps on Windows VM](../virtual-machines/vm-applications-how-to.md?tabs=powershell)
+- [Create and deploy VM Apps on Linux VM](../virtual-machines/vm-applications-how-to.md?tabs=cli%2Ccli1%2Ccli2%2Ccli3)
+- [Create and deploy VM Apps on Windows VM](../virtual-machines/vm-applications-how-to.md?tabs=powershell%2Cpowershell1%2Cpowershell2%2Cpowershell3)
 
 ## Build a custom VM image
 When you use one of the Azure platform images to create the instances in your scale set, no additional software is installed or configured. You can automate the install of these components, however that adds to the time it takes to provision VM instances to your scale sets. If you apply many configuration changes to the VM instances, there is management overhead with those configuration scripts and tasks.
