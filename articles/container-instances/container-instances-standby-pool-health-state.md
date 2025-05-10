@@ -172,5 +172,5 @@ The health state includes the following key components:
 
 
 ### Next steps
-Learn how to get [prediction results for your standby pool](container-instances-standby-pool-prediction-results.md).
-Review the [frequently asked questions about standby pools for Virtual Machine Scale Sets](container-instances-standby-pool-faq.md).
+- Learn how to get [prediction results for your standby pool](container-instances-standby-pool-prediction-results.md).
+- Review the [frequently asked questions about standby pools for Azure Container Instances](container-instances-standby-pool-faq.md).
