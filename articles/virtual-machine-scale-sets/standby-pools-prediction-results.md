@@ -23,7 +23,7 @@ While the prediction results provide valuable insights, they are not a guarantee
 ## Prediction information
 
 > [!NOTE]
-> Prediction values will not show unless the standby pool has provisioned for 2-3 weeks. 
+> Prediction values will not show unless the standby pool has been provisioned for 2-3 weeks. 
 
 The prediction results provide detailed insights into the expected behavior of your standby pool. These results include metadata about the forecast, such as accuracy, time intervals, and historical data, as well as the predicted number of instances requested during the forecast period. Use this information to analyze trends, optimize your standby pool size, and improve operational efficiency. Below is a description of the key values included in the prediction results:
 
