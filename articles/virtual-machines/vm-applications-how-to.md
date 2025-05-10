@@ -73,7 +73,7 @@ To learn more about the installation mechanism, see the [command interpreter.](v
 
 Choose an option below for creating your VM application definition and version:
 
-### [Portal](#tab/portal)
+### [Portal](#tab/portal1)
 
 1. Go to the [Azure portal](https://portal.azure.com), then search for and select **Azure Compute Gallery**.
 1. Select the gallery you want to use from the list.
@@ -101,7 +101,7 @@ Choose an option below for creating your VM application definition and version:
 1. When validation shows as passed, select **Create** to deploy your VM application version.
 
 
-### [CLI](#tab/cli)
+### [CLI](#tab/cli1)
 
 VM applications require [Azure CLI](/cli/azure/install-azure-cli) version 2.30.0 or later.
 
@@ -135,7 +135,7 @@ az sig gallery-application version create \
    --default-configuration-file-link "https://<storage account name>.blob.core.windows.net/<container name>/<filename>"\
 ```
 
-### [PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell1)
 
 Create the VM application definition using `New-AzGalleryApplication`. In this example, we're creating a Linux app named *myApp* in the *myGallery* Azure Compute Gallery, in the *myGallery* resource group and I've given a short description of the VM application for my own use. Replace the values as needed.
 
@@ -173,7 +173,7 @@ New-AzGalleryApplicationVersion `
    -Remove "rm .\myApp\myApp" `
 ```
 
-### [REST](#tab/rest)
+### [REST](#tab/rest1)
 
 Create the application definition.
 
@@ -250,7 +250,7 @@ PUT
 
 ## Deploy the VM Application
 
-### [Portal](#tab/portal)
+### [Portal](#tab/portal2)
 
 Now you can create a VM and deploy the VM application to it using the portal. Just create the VM as usual, and under the **Advanced** tab, choose **Select a VM application to install**.
 
@@ -272,7 +272,7 @@ Select the VM application from the list, and then select **Save** at the bottom 
 
 :::image type="content" source="media/vmapps/select-app.png" alt-text="Screenshot showing selecting a VM application to install on the VM.":::
 
-### [CLI](#tab/cli)
+### [CLI](#tab/cli2)
 Set a VM application to an existing VM using [az vm application set](/cli/azure/vm/application#az-vm-application-set) and replace the values of the parameters with your own.
 
 ```azurecli-interactive
@@ -309,7 +309,7 @@ az vmss application set \
 	--treat-deployment-as-failure true
 ```
 
-### [PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell2)
 
 To add the application to an existing VM, get the application version and use that to get the VM application version ID. Use the ID to add the application to the VM configuration.
 
@@ -343,7 +343,7 @@ $app = New-AzVmssGalleryApplication -PackageReferenceId $packageId
 Add-AzVmssGalleryApplication -VirtualMachineScaleSetVM $vmss.VirtualMachineProfile -GalleryApplication $app
 Update-AzVmss -ResourceGroupName $rgName -VirtualMachineScaleSet $vmss -VMScaleSetName $vmssName
 ```
-### [REST](#tab/rest)
+### [REST](#tab/rest2)
 
 
 To add a VM application version to a VM, perform a PUT on the VM.
@@ -447,7 +447,7 @@ relevant parts.
 
 
 ## Monitor the deployed Applications
-### [Portal](#tab/portal)
+### [Portal](#tab/portal3)
 To show the VM application status, go to the Extensions + applications tab/settings and check the status of the VMAppExtension:
 
 :::image type="content" source="media/vmapps/select-app-status.png" alt-text="Screenshot showing VM application status.":::
@@ -456,7 +456,7 @@ To show the VM application status for VMSS, go to the VMSS page, Instances, sele
 
 :::image type="content" source="media/vmapps/select-apps-status-vmss-portal.png" alt-text="Screenshot showing VMSS application status.":::
 
-### [CLI](#tab/cli)
+### [CLI](#tab/cli3)
 
 To verify application VM deployment status, use [az vm get-instance-view](/cli/azure/vm/#az-vm-get-instance-view):
 
@@ -480,7 +480,7 @@ $ids | Foreach-Object {
 }
 ```
 
-### [PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell3)
 
 Verify the application succeeded:
 
@@ -503,7 +503,7 @@ $result | ForEach-Object {
 $resultSummary | ConvertTo-Json -Depth 5
 ```
 
-### [REST](#tab/rest)
+### [REST](#tab/rest3)
 
 If the VM applications haven't yet been installed on the VM, the value will be empty. 
 
