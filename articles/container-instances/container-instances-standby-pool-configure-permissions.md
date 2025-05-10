@@ -76,7 +76,7 @@ If your pool is in degraded mode, resource creation will be paused briefly. Use 
 1. Send a GET request to the Runtime View API or other SDKs such as PowerShell or CLI. 
 
 ```rest
-https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/<standby-pool-name>/runtime?api-version=2025-03-01
+https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.StandbyPool/standbyContainerGroupPools/<standby-pool-name>/runtime?api-version=2025-03-01
 ```
 
 2. Review the response for the healthStatus field. If the pool is in degraded mode, the response will include the reason for the degraded state.
