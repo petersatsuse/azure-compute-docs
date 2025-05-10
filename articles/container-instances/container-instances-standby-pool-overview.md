@@ -248,7 +248,7 @@ New-AzStandbyContainerGroupPool `
    -ContainerProfileId "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.ContainerInstance/containerGroupProfiles/mycontainergroupprofile"
 ```
 
-### [REST](#tab\rest)
+### [REST](#tab/rest)
 
 ```HTTP
 PUT https://management.azure.com/subscriptions/{SubscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyContainerGroupPools/myStandbyPool?api-version=2025-03-01
