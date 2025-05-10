@@ -83,7 +83,7 @@ New-AzDiagnosticSetting -Name 'standbyPoolLogs' `
 
 #### [REST](#tab/rest)
 ```rest
-https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/<standby-pool-name>/providers/microsoft.insights/diagnosticSettings/standbyPoolLogs?api-version=2021-05-01-preview
+https://management.azure.com/subscriptions/<subscriptionId>/resourceGroups/<resource-group-name>/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/<standby-pool-name>/providers/microsoft.insights/diagnosticSettings/standbyPoolLogs?api-version=2021-05-01-preview
 
 {
   "properties": {

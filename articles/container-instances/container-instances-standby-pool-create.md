@@ -1,5 +1,5 @@
 ---
-title: Create a standby pool for Azure Container Instances (Preview)
+title: Create a standby pool for Azure Container Instances
 description: Learn how to create a standby pool to reduce scale-out latency with Azure Container Instances.
 author: mimckitt
 ms.author: mimckitt
@@ -12,7 +12,7 @@ ms.reviewer: tomvcassidy
 ---
 
 
-# Create a standby pool for Azure Container Instances (Preview)
+# Create a standby pool for Azure Container Instances
 
 > [!IMPORTANT]
 > Standby pools for Azure Container Instances is currently in preview. Previews are made available to you on the condition that you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature may change prior to general availability (GA). 
@@ -259,7 +259,7 @@ Create a standby pool and associate it with a container group profile. Create a 
     "resources": [ 
         {
             "type": "Microsoft.StandbyPool/standbyContainerGroupPools",
-            "apiVersion": "2024-03-01",
+            "apiVersion": "2025-03-01",
             "name": "[parameters('name')]",
             "location": "[parameters('location')]",
             "properties": {
@@ -280,7 +280,7 @@ Create a standby pool and associate it with a container group profile. Create a 
 Create a standby pool and associate it with a container group profile using [Create or Update](/rest/api/standbypool/standby-virtual-machine-pools/create-or-update).
 
 ```HTTP
-PUT https://management.azure.com/subscriptions/{SubscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyContainerGroupPools/myStandbyPool?api-version=2024-03-01 
+PUT https://management.azure.com/subscriptions/{SubscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyContainerGroupPools/myStandbyPool?api-version=2025-03-01 
  
 Request Body
 {

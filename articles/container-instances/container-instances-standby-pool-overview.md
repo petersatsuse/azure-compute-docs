@@ -7,7 +7,7 @@ ms.service: azure-container-instances
 ms.custom:
   - ignite-2024
 ms.topic: concept-article
-ms.date: 11/6/2024
+ms.date: 5/9/2025
 ms.reviewer: tomvcassidy
 ---
 
@@ -250,10 +250,10 @@ New-AzStandbyContainerGroupPool `
 
 
 
-#### [REST](#tab\rest)
+### [REST](#tab\rest)
 
 ```HTTP
-PUT https://management.azure.com/subscriptions/{SubscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyContainerGroupPools/myStandbyPool?api-version=2024-08-01-preview
+PUT https://management.azure.com/subscriptions/{SubscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyContainerGroupPools/myStandbyPool?api-version=2025-03-01
  
 Request Body
 {

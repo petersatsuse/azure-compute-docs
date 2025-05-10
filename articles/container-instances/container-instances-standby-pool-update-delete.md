@@ -1,5 +1,5 @@
 ---
-title: Update or delete a standby pool for Azure Container Instances (Preview)
+title: Update or delete a standby pool for Azure Container Instances
 description: Learn how to update or delete a standby pool for Azure Container Instances.
 author: mimckitt
 ms.author: mimckitt
@@ -12,7 +12,7 @@ ms.reviewer: tomvcassidy
 ---
 
 
-# Update or delete a standby pool for Azure Container Instances (Preview)
+# Update or delete a standby pool for Azure Container Instances
 
 > [!IMPORTANT]
 > Standby pools for Azure Container Instances is currently in preview. Previews are made available to you on the condition that you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature may change prior to general availability (GA). 
@@ -85,7 +85,7 @@ Update an existing a standby pool. Update your template and deploy it using [az 
     "resources": [ 
         {
             "type": "Microsoft.StandbyPool/standbyContainerGroupPools",
-            "apiVersion": "2024-03-01",
+            "apiVersion": "2025-03-01",
             "name": "[parameters('name')]",
             "location": "[parameters('location')]",
             "properties": {
@@ -106,7 +106,7 @@ Update an existing a standby pool. Update your template and deploy it using [az 
 Update an existing standby pool using [Create or Update](/rest/api/standbypool/standby-virtual-machine-pools/create-or-update).
 
 ```HTTP
-PUT https://management.azure.com/subscriptions/{SubscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyContainerGroupPools/myStandbyPool?api-version=2024-03-01 
+PUT https://management.azure.com/subscriptions/{SubscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyContainerGroupPools/myStandbyPool?api-version=2025-03-01 
  
 Request Body
 {
@@ -152,7 +152,7 @@ Remove-AzStandbyContainerGroupPool `
 Delete an existing standby pool using [Delete](/rest/api/standbypool/standby-virtual-machine-pools/delete).
 
 ```HTTP
-DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyContainerGroupPools/{standbyContainerGroupPoolName}?api-version=2024-03-01
+DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyContainerGroupPools/{standbyContainerGroupPoolName}?api-version=2025-03-01
 ```
 
 ---

@@ -1,5 +1,5 @@
 ---
-title: Get prediction results for standby pools for Azure Container Instances
+title: Get prediction results for standby pools for Azure Container Instances (Preview)
 description: Learn how to use prediction results to help right-size your standby pools for Azure Container Instances.
 author: mimckitt
 ms.author: mimckitt
@@ -11,10 +11,10 @@ ms.date: 5/6/2025
 ms.reviewer: ju-shim
 ---
 
-# Get prediction results for standby pools for Azure Container Instances
+# Get prediction results for standby pools for Azure Container Instances (Preview)
 
 > [!IMPORTANT]
-> For standby pools to successfully create and manage resources, they require access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider. For detailed instructions, see **[configure role permissions for standby pools](container-instances-standby-pool-configure-permissions.md)**.
+> Prediction results for standby pools is currently in preview. Previews are made available to you on the condition that you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature may change prior to general availability (GA).
 
 To effectively manage and optimize your standby pool for Azure Container Instances, you can use the Standby Pool runtime view APIs to retrieve prediction results. These results, available 2-3 weeks after creating the standby pool, provide insights into the predicted number of container instances that will be requested from the pool for each hour over a 12-hour period. The predictions include the accuracy of the forecast and a historical view of container instances requested from the pool over the past 12 hours, helping you make informed decisions to right-size your standby pool and improve operational efficiency.
 
@@ -81,7 +81,7 @@ az standby-container-group-pool status --resource-group myResourceGroup --name m
   "status": {
     "code": "HealthState/healthy"
   },
-  "type": "Microsoft.StandbyPool/standbyVirtualMachinePools/runtimeViews"
+  "type": "Microsoft.StandbyPool/standbyContainerGroupPools/runtimeViews"
 }
 ```
 
