@@ -108,7 +108,7 @@ https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{reso
 
 ### Query standby pool events
 
-Use the following queries to analyze events from the `SCGPoolRequestLogPoolRequestLog` and `SCGlExecutionLog` tables:
+Use the following queries to analyze events from the `SCGPoolRequestLog` and `SCGlExecutionLog` tables:
 
 #### View user-initiated events from `SCGPoolRequestLog`
 ```kusto
