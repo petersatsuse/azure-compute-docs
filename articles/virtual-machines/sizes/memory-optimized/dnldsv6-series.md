@@ -10,7 +10,7 @@ ms.author: wwilliams
 ms.reviewer: mattmcinnes
 ---
 
-# Ensv6 sizes series
+# Dnldsv6 sizes series
 
 [!INCLUDE [dnldsv6-summary](./includes/dnldsv6-series-summary.md)]
 
@@ -45,7 +45,7 @@ vCPUs (Qty.) and Memory for each size
 ### [Local storage](#tab/sizestoragelocal)
 
 | Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GiB) | Temp Disk Random Read (RR)<sup>1<sup> IOPS | Temp Disk Random Write (RW)<sup>1<sup> IOPS | Temp Disk Random Write (RW)<sup>1<sup> Throughput (MB/s)
-|--- | --- | --- | --- | --- | --- | --- |
+|--- | --- | --- | --- | --- | --- |
 | Standard_D2nlds_v6    | 1  | 110   | 37500    | 180    | 15000   | 90    |
 | Standard_D4nlds_v6    | 1  | 220   | 75000    | 360    | 30000   | 180   |
 | Standard_D8nlds_v6    | 1  | 440   | 150000   | 720    | 60000   | 360   |
