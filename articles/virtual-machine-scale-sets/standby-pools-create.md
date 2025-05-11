@@ -102,7 +102,7 @@ Create a standby pool and associate it with an existing scale set. Create a temp
     "resources": [ 
         {
             "type": "Microsoft.StandbyPool/standbyVirtualMachinePools",
-            "apiVersion": "2024-03-01",
+            "apiVersion": "2025-03-01",
             "name": "[parameters('name')]",
             "location": "[parameters('location')]",
             "properties": {

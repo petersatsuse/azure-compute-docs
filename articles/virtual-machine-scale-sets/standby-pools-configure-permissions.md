@@ -12,25 +12,12 @@ ms.date: 5/6/2025
 
 Standby pools require specific permissions to create and manage resources in your subscription. Without the correct permissions, standby pools will not function properly. This article explains how to configure role-based access control (RBAC) permissions for standby pools and provides guidance for scenarios where additional permissions may be required.
 
-> [!IMPORTANT]
-> These permissions may not fully encompass all scenarios. If your standby pool uses specific resources, such as compute gallery images in other subscriptions, ensure the standby pool resource provider has access to those resources.
-
-## Feature registration
-
-> [!NOTE] 
-> The StandbyPoolVMPoolPreview feature flag is required to enable standby pool functionality in the Azure portal. This requirement is temporary and will be removed in the future.
-
-Before configuring permissions, register the standby pool resource provider with your subscription. Use Azure Cloud Shell to run the following commands:
-
-```azurepowershell-interactive
-Register-AzResourceProvider -ProviderNamespace Microsoft.StandbyPool
-Register-AzProviderFeature -FeatureName StandbyVMPoolPreview -ProviderNameSpace Microsoft.StandbyPool
-```
-
-Registration can take up to 30 minutes to complete. You can rerun the commands to check the registration status.
 
 ## Basic permissions 
 To allow standby pools to create and manage virtual machines in your subscription, assign the appropriate permissions to the standby pool resource provider.
+
+> [!IMPORTANT]
+> These permissions may not fully encompass all scenarios. If your standby pool uses specific resources, such as compute gallery images in other subscriptions, ensure the standby pool resource provider has access to those resources.
 
 To cover as many scenarios as possible, it is suggested to provide the following permissions to the standby pool resource provider: 
 
@@ -66,7 +53,7 @@ Permission issues are a common cause of problems with standby pools. These issue
 If your pool is not functioning as expected, use Log Analytics to analyze the logs and identify missing permissions:
 
 1. Navigate to the [Azure portal](https://portal.azure.com/).
-2. Go to your Log Analytics workspace associated with the standby pool.
+2. Go to your Log Analytics workspace associated with the standby pool. Before using log analytics, you first need to configure a log analytics workspace. For more infomation, see [use Azure Log Analytics to monitor standby pool events](standby-pools-monitor-pool-events.md).
 3. Query the `SVMPoolExecutionLog` table to review events related to instance creation and deletion:
 
 ```kusto
@@ -85,7 +72,7 @@ If your pool is in degraded mode, resource creation will be paused briefly. Use 
 1. Send a GET request to the Runtime View API or other SDKs such as PowerShell or CLI. 
 
 ```rest
-https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/<standby-pool-name>/runtime?api-version=2023-03-01
+https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/<standby-pool-name>/runtime?api-version=2025-03-01
 ```
 
 2. Review the response for the healthStatus field. If the pool is in degraded mode, the response will include the reason for the degraded state.
@@ -99,7 +86,7 @@ If you notice pooled instances recycling or no instances appearing in the pool, 
 - Compute Gallery images
 - Virtual networks and subnets
 - Managed identities
-- Storage accounts'
+- Storage accounts
 
 Verify that the roles assigned to the standby pool resource provider include all permissions needed to create and manage virtual machines.
 

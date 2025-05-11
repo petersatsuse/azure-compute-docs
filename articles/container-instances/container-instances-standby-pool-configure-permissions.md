@@ -5,29 +5,23 @@ author: mimckitt
 ms.author: mimckitt
 ms.service: azure-container-instances
 ms.topic: how-to
-ms.date: 5/6/2025
+ms.date: 5/10/2025
+ms.reviewer: tomvcassidy
 ---
 
 # Configure role permissions for standby pools in Azure Container Instances
 
+> [!IMPORTANT]
+> Standby pools for Azure Container Instances are currently in preview. Previews are made available to you on the condition that you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature may change prior to general availability (GA). 
+
 Standby pools for Azure Container Instances require specific permissions to create and manage resources in your subscription. Without the correct permissions, standby pools will not function properly. This article explains how to configure role-based access control (RBAC) permissions for standby pools and provides guidance for scenarios where additional permissions may be required.
 
-> [!IMPORTANT]
-> These permissions may not fully encompass all scenarios. If your standby pool uses specific resources, such as container images stored in Azure Container Registry or other subscriptions, ensure the standby pool resource provider has access to those resources.
-
-## Feature registration
-
-Before configuring permissions, register the standby pool resource provider with your subscription. Use Azure Cloud Shell to run the following commands:
-
-```azurepowershell-interactive
-Register-AzResourceProvider -ProviderNamespace Microsoft.StandbyPool
-Register-AzProviderFeature -FeatureName StandbyContainerPoolPreview -ProviderNameSpace Microsoft.StandbyPool
-```
-
-Registration can take up to 30 minutes to complete. You can rerun the commands to check the registration status.
 
 ## Basic permissions 
 To allow standby pools to create and manage container instances in your subscription, assign the appropriate permissions to the standby pool resource provider.
+
+> [!NOTE]
+> These permissions may not fully encompass all scenarios. If your standby pool uses specific resources, such as container images stored in Azure Container Registry or other subscriptions, ensure the standby pool resource provider has access to those resources.
 
 To cover as many scenarios as possible, it is suggested to provide the following permissions to the standby pool resource provider:
 
@@ -63,7 +57,7 @@ Permission issues are a common cause of problems with standby pools. These issue
 If your pool is not functioning as expected, use Log Analytics to analyze the logs and identify missing permissions:
 
 1. Navigate to the [Azure portal](https://portal.azure.com/).
-2. Go to your Log Analytics workspace associated with the standby pool.
+2. Go to your Log Analytics workspace associated with the standby pool. Before using log analytics, you first need to configure a log analytics workspace. For more infomation, see [use Azure Log Analytics to monitor standby pool events](container-instances-standby-pools-monitor-pool-events.md).
 3. Query the `SCGPoolExecutionLog` table to review events related to instance creation and deletion:
 
 ```kusto
@@ -82,7 +76,7 @@ If your pool is in degraded mode, resource creation will be paused briefly. Use 
 1. Send a GET request to the Runtime View API or other SDKs such as PowerShell or CLI. 
 
 ```rest
-https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/<standby-pool-name>/runtime?api-version=2025 -03-01
+https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.StandbyPool/standbyContainerGroupPools/<standby-pool-name>/runtime?api-version=2025-03-01
 ```
 
 2. Review the response for the healthStatus field. If the pool is in degraded mode, the response will include the reason for the degraded state.

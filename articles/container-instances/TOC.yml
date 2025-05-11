@@ -190,8 +190,12 @@
       href: container-instances-standby-pool-update-delete.md
     - name: Get pool and container details
       href: container-instances-standby-pool-get-details.md
-    - name: Utilize predictive pooling
+    - name: Understand standby pool health
+      href: container-instances-standby-pool-health-state.md
+    - name: Utilize predictive pooling (preview)
       href: container-instances-standby-pool-prediction-results.md
+    - name: Configure monitoring and alerts
+      href: container-instances-standby-pools-monitor-pool-events.md
     - name: Frequently asked questions
       href: container-instances-standby-pool-faq.md
   - name: Monitor and log

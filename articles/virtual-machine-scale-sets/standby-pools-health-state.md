@@ -14,15 +14,17 @@ ms.reviewer: ju-shim
 > [!IMPORTANT]
 > For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[configure role permissions for standby pools](standby-pools-configure-permissions.md)**.
 
-The health state of your standby pool provides critical insights into its operational status and helps ensure that your Virtual Machine Scale Sets are running efficiently. By using the Standby Pool runtime view API, you can retrieve the current health state of your standby pool, including details about instance counts, provisioning state, and overall health status. This information allows you to monitor the pool's performance and take proactive measures to address any issues.
+The health state of your standby pool provides critical insights into its operational status. By using the Standby Pool runtime view API, you can retrieve the current health state of your standby pool, including details about instance counts, provisioning state, and overall health status. This information allows you to monitor the pool's performance and take proactive measures to address any issues.
 
 ## Health state overview
 
-The health state of a standby pool is determined by analyzing various metrics, such as the number of instances in different states (e.g., running, deallocated, creating), provisioning status, and system health indicators. The runtime view API provides a detailed snapshot of these metrics, enabling you to:
+The health state of a standby pool is determined by analyzing various metrics, such as the number of instances in different states (for example, running, deallocated, creating, etc.), provisioning status, and system health indicators. The health state of the pool can be in 3 states: Healthy, Failed or Degraded. 
 
-- Monitor the current state of instances in the pool.
-- Identify potential issues, such as insufficient capacity or provisioning delays.
-- Ensure the pool is operating within expected parameters.
+| State | Description | 
+|---|---|
+| Healthy | The standby pool is functioning as expected, with all instances in the desired state and no issues detected. The pool is ready to provide instances to the scale set as needed. |
+| Failed | The standby pool has encountered a critical issue that prevents it from operating properly. Instances may fail to be created, or the pool may be unable to fulfill requests. Immediate action is required to resolve the issue. |
+| Degraded | The standby pool is experiencing issues provisioning instances successfully. This may be caused by resource constraints, permission issues, or configuration problems such as extension errors. The pool temporarily pauses instance creation for 30 seconds to allow investigation and resolution. After this pause, the pool will attempt to create resources again. For more information on troubleshooting pool errors, see [Use Azure Log Analytics to monitor standby pool events](standby-pools-monitor-pool-events.md). |
 
 ## Retrieve health state using the runtime view API
 
@@ -88,7 +90,8 @@ az standby-vm-pool status --resource-group myResourceGroup --name myStandbyPool
 ### [PowerShell](#tab/powershell)
 Use the following PowerShell command to retrieve the health state:
 
-```powershell
+```azurepowershell
+
 Get-AzStandbyVMPoolStatus -ResourceGroupName myResourceGroup -Name myStandbyPool
 
 /subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/mmyStandbyPool/runtimeViews/latest
@@ -202,6 +205,8 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
     "lastModifiedByType": "User",
     "lastModifiedAt": "2024-02-14T23:31:59.679Z"
   }
+}
+
 ```
 
 ---
@@ -209,11 +214,11 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 ### Interpreting the health state
 The health state includes the following key components:
 
-- Instance counts by state: Shows the number of instances in each state (e.g., running, deallocated, creating). This helps you understand the current capacity and utilization of the pool.
+- Instance counts by state: Shows the number of instances in each state (for example, running, deallocated, creating). This helps you understand the current capacity and utilization of the pool.
 - Provisioning state: Indicates whether the pool is successfully provisioned or if there are issues that need attention.
 - Health status: Provides an overall assessment of the pool's health, such as "healthy" or "unhealthy," along with a message explaining the status.
 
 
 ### Next steps
-Learn how to get prediction results for your standby pool.
-Review the frequently asked questions about standby pools for Virtual Machine Scale Sets.
+Learn how to get [prediction results for your standby pool](standby-pools-prediction-results.md).
+Review the [frequently asked questions about standby pools for Virtual Machine Scale Sets](standby-pools-faq.md).

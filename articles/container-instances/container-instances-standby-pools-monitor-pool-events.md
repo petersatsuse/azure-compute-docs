@@ -1,46 +1,46 @@
 ---
-title: Use Azure Log Analytics to monitor standby pool events
-description: Learn how to use Azure Log Analytics to monitor and analyze events from standby pools in Virtual Machine Scale Sets.
+title: Use Azure Log Analytics to monitor standby pool events for Azure Container Instances
+description: Learn how to use Azure Log Analytics to monitor and analyze events from standby pools in Azure Container Instances.
 author: mimckitt
 ms.author: mimckitt
-ms.service: azure-virtual-machine-scale-sets
+ms.service: azure-container-instances
 ms.topic: how-to
-ms.date: 5/6/2025
-ms.reviewer: ju-shim
+ms.date: 5/10/2025
+ms.reviewer: tomvcassidy
 ---
 
-# Use Azure Log Analytics to monitor standby pool events
+# Use Azure Log Analytics to monitor standby pool events for Azure Container Instances
 
 > [!IMPORTANT]
-> For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[configure role permissions for standby pools](standby-pools-configure-permissions.md)**.
+> For standby pools to successfully create and manage resources, they require access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[configure role permissions for standby pools](container-instances-standby-pool-configure-permissions.md)**.
 
-Azure Log Analytics provides a powerful platform for monitoring and analyzing events from standby pools in Virtual Machine Scale Sets. By integrating your standby pools with a Log Analytics workspace, you can track key metrics, analyze trends, and set up alerts for critical events.
+Azure Log Analytics provides a powerful platform for monitoring and analyzing events from standby pools in Azure Container Instances. By integrating your standby pools with a Log Analytics workspace, you can track key metrics, analyze trends, and set up alerts for critical events.
 
 ## Available metrics and tables
 
-There are two main tables where you can view logs associated with your standby pool: `SVMPoolRequestLog` and `SVMPoolExecutionLog`. 
+There are two main tables where you can view logs associated with your standby pool: `SCGPoolRequestLog` and `SCGPoolExecutionLog`. 
 
 | Table name | Description | 
 |---|---|
-| `SVMPoolRequestLog` | Contains logs for user-initiated events, such as updates to pool settings. |
-| `SVMPoolExecutionLog` | Contains logs for system-initiated events, such as standby pool operations like degraded mode, VM reuse, and pool refills. |
+| `SCGPoolRequestLog` | Contains logs for user-initiated events, such as updates to pool settings. |
+| `SCGrPoolExecutionLog` | Contains logs for system-initiated events, such as standby pool operations like degraded mode, container reuse, and pool refills. |
 
-Within the above tables, you can query on specific pool related events as described below: 
+Within the above tables, you can query specific pool-related events as described below: 
 
 | Event name | Description | 
 |---|---|
-| `StandbyPoolExhaustedPool` | Triggered when the standby pool instance count reaches zero and can't create more VMs because the pool's max ready capacity is less than or equal to the Virtual Machine Scale Set instance count. This typically occurs when no minimum ready capacity is configured.|
-| `StandbyPoolReuseSuccess` | Triggered when a virtual machine is successfully moved from the standby pool into the scale set. |
-| `StandbyPoolReuseFailure` | Triggered when the scale set requests a VM from the standby pool but is unable to provide one, causing the scale set to create a new VM directly. |
-| `StandbyPoolSettingsUpdated` | Triggered when a setting is changed on the standby pool resource, such as adjusting the min/max ready capacity or the VM state. |
+| `StandbyPoolExhaustedPool` | Triggered when the standby pool instance count reaches zero and can't create more containers because the pool's max ready capacity is less than or equal to the container group instance count. This typically occurs when no minimum ready capacity is configured. |
+| `StandbyPoolReuseSuccess` | Triggered when a container instance is successfully moved from the standby pool into the container group. |
+| `StandbyPoolReuseFailure` | Triggered when the container group requests a container from the standby pool but is unable to provide one, causing the container group to create a new container directly. |
+| `StandbyPoolSettingsUpdated` | Triggered when a setting is changed on the standby pool resource, such as adjusting the min/max ready capacity or the container state. |
 | `StandbyPoolMaxReadyPool` | Triggered when the number of instances in the standby pool are replenished enough to meet the maximum ready capacity set by the customer. |
 | `StandbyPoolDegradedPool` | Triggered when the instances within the standby pool are unable to successfully provision the requested resources, causing the pool to enter a degraded mode for 30 seconds. |
-| `StandbyPoolExitDegradedPool` | Triggered when the time out on degraded mode expires, and the pool is now attempting to create resources again. |
+| `StandbyPoolExitDegradedPool` | Triggered when the timeout on degraded mode expires, and the pool is now attempting to create resources again. |
 
 ## Configure Log Analytics for standby pools
 A Log Analytics workspace is a centralized data repository in Azure Monitor that allows you to collect, analyze, and query telemetry data from various Azure resources and services.
 
-### Create a log analytics workspace
+### Create a Log Analytics workspace
 Before configuring monitoring for standby pools, ensure you have a Log Analytics workspace set up. 
 
 1. Navigate to the [Azure portal](https://portal.azure.com/).
@@ -54,16 +54,16 @@ Before configuring monitoring for standby pools, ensure you have a Log Analytics
 5. Click **Review + Create**, then **Create** to deploy the workspace.
 
 ### Configure diagnostic settings for standby pools
-To send information to the log analytics workspace configured, set up a diganostic settings for your standby pool resource. 
+To send information to the Log Analytics workspace configured, set up diagnostic settings for your standby pool resource. 
 
 > [!NOTE]
-> Enabling a diagnostic setting for a standby pool resource is not yet available from the Azure portal. Instead enable a diagnostics setting using an alterative SDK such as PowerShell or CLI. 
+> Enabling a diagnostic setting for a standby pool resource is not yet available from the Azure portal. Instead, enable a diagnostic setting using an alternative SDK such as PowerShell or CLI. 
 
 #### [CLI](#tab/cli)
 ```azurecli
 az monitor diagnostic-settings create \
   --name "standbyPoolLogs" \
-  --resource "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyPool}" \
+  --resource "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.StandbyPool/standbyContainerPools/{standbyPool}" \
   --workspace "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.OperationalInsights/workspaces/{logAnalyticsWorkspace}" \
   --logs '[{"categoryGroup": "allLogs", "enabled": true}]'
 ```
@@ -76,18 +76,18 @@ $log = New-AzDiagnosticSettingLogSettingsObject -Enabled $true -CategoryGroup al
 
 # Create a diagnostic setting
 New-AzDiagnosticSetting -Name 'standbyPoolLogs' `
-  -ResourceId "/subscriptions/{subscrptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyPool}" `
-  -WorkspaceId "/subscriptions/{subscriptionId}>/resourceGroups/{resourceGroup}/providers/Microsoft.OperationalInsights/workspaces/{logAnalyticsWorkspace}" `
+  -ResourceId "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.StandbyPool/standbyContainerPools/{standbyPool}" `
+  -WorkspaceId "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.OperationalInsights/workspaces/{logAnalyticsWorkspace}" `
   -Log $log
 ```
 
 #### [REST](#tab/rest)
 ```rest
-https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyPool}/providers/microsoft.insights/diagnosticSettings/standbyPoolLogs?api-version=2021-05-01-preview
+https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.StandbyPool/standbyContainerPools/{standbyPool}/providers/microsoft.insights/diagnosticSettings/standbyPoolLogs?api-version=2021-05-01-preview
 
 {
   "properties": {
-    "workspaceId": "/subscriptions/{subscriptionId}>/resourceGroups/{resourceGroup}/providers/Microsoft.OperationalInsights/workspaces/{logAnalyticsWorkspace}>",
+    "workspaceId": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.OperationalInsights/workspaces/{logAnalyticsWorkspace}",
     "logs": [
       {
         "categoryGroup": "allLogs",
@@ -108,20 +108,20 @@ https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{reso
 
 ### Query standby pool events
 
-Use the following queries to analyze events from the `SVMPoolRequestLog` and `SVMPoolExecutionLog` tables:
+Use the following queries to analyze events from the `SCGPoolRequestLog` and `SCGlExecutionLog` tables:
 
-#### View user-initiated events from `SVMPoolRequestLog`
+#### View user-initiated events from `SCGPoolRequestLog`
 ```kusto
-SVMPoolRequestLog
+SCGPoolRequestLog
 | where TimeGenerated > ago(24h)
 | project TimeGenerated, EventName, ResourceId, Details
 | order by TimeGenerated desc
 ```
 
-#### View system-initiated events from `SVMPoolExecutionLog`
+#### View system-initiated events from `SCGPoolExecutionLog`
 
 ```kusto
-SVMPoolExecutionLog
+SCGPoolExecutionLog
 | where TimeGenerated > ago(24h)
 | project TimeGenerated, EventName, ResourceId, Details
 | order by TimeGenerated desc
@@ -130,10 +130,10 @@ SVMPoolExecutionLog
 #### Count events by type
 
 ```kusto
-SVMPoolRequestLog
+SCGPoolRequestLog
 | summarize Count = count() by EventName
 | union (
-    SVMPoolExecutionLog
+    SCGPoolExecutionLog
     | summarize Count = count() by EventName
 )
 | order by Count desc
@@ -141,7 +141,7 @@ SVMPoolRequestLog
 
 ## Set up alerts for specific events
 
-To ensure you're notified of critical events, you can set up alerts in Azure Monitor based on the events in the `SVMPoolRequestLog` and `SVMPoolExecutionLog` tables. 
+To ensure you're notified of critical events, you can set up alerts in Azure Monitor based on the events in the `SCGPoolRequestLog` and `SCGPoolExecutionLog` tables. 
 
 ### Create an alert for failed standby pool actions
 
@@ -153,7 +153,7 @@ To ensure you're notified of critical events, you can set up alerts in Azure Mon
    - **Scope**: Select your Log Analytics workspace.
    - **Condition**: Use the following custom log query:
      ```kusto
-     SVMPoolExecutionLog
+     SCGPoolExecutionLog
      | where EventName == "StandbyPoolReuseFailure"
      ```
    - **Action group**: Create or select an action group to define how you want to be notified.
@@ -168,7 +168,7 @@ To ensure you're notified of critical events, you can set up alerts in Azure Mon
    - **Scope**: Select your Log Analytics workspace.
    - **Condition**: Use the following custom log query:
      ```kusto
-     SVMPoolExecutionLog
+     SCGPoolExecutionLog
      | where EventName == "StandbyPoolExhaustedPool"
      ```
    - **Action group**: Create or select an action group for notifications.
@@ -183,7 +183,7 @@ To ensure you're notified of critical events, you can set up alerts in Azure Mon
    - **Scope**: Select your Log Analytics workspace.
    - **Condition**: Use the following custom log query:
      ```kusto
-     SVMPoolRequestLog
+     SCGPoolRequestLog
      | where EventName == "StandbyPoolSettingsUpdated"
      | summarize Count = count() by bin(TimeGenerated, 1h)
      | where Count > 5

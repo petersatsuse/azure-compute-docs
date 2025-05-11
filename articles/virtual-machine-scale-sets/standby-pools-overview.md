@@ -66,7 +66,10 @@ The virtual machines in the standby pool can be kept in a running, hibernated, o
 
 :::image type="content" source="media/standby-pools/running-vm-pool.png" alt-text="A screenshot showing the workflow when using running virtual machine pools.":::
 
-**Hibernated (Preview):** Using virtual machines in a hibernated state is recommended for systems with long boot times due to memory intensive applications. These applications can be initialized on VMs and hibernated. These hibernated VMs can then be quickly started when needed, with the applications already up and running in the desired state.
+**Hibernated (Preview):** Using virtual machines in a hibernated state is recommended for systems with long boot times due to memory-intensive applications. These applications can be initialized on VMs and hibernated. These hibernated VMs can then be quickly started when needed, with the applications already up and running in the desired state.
+
+> [!NOTE]
+> To use the hibernated VM state in your standby pool, the instances must be fully eligible and configured to support hibernation. For more information, see the [Azure VM hibernation documentation](../virtual-machines/hibernate-resume.md).
 
 :::image type="content" source="media/standby-pools/hibernated-vm-pool.png" alt-text="A screenshot showing the workflow when using hibernated virtual machine pools.":::
 
