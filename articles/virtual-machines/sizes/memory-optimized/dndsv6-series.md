@@ -6,11 +6,11 @@ ms.service: azure-virtual-machines
 ms.subservice: sizes
 ms.topic: concept-article
 ms.date: 05/08/2025
-ms.author: iamwilliew
+ms.author: wwilliams
 ms.reviewer: mattmcinnes
 ---
 
-# Ensv6 sizes series
+# Dndsv6 sizes series
 
 [!INCLUDE [dndsv6-summary](./includes/dndsv6-series-summary.md)]
 
@@ -45,7 +45,7 @@ vCPUs (Qty.) and Memory for each size
 ### [Local storage](#tab/sizestoragelocal)
 
 | Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GiB) | Temp Disk Random Read (RR)<sup>1<sup> IOPS | Temp Disk Random Write (RW)<sup>1<sup> IOPS | Temp Disk Random Write (RW)<sup>1<sup> Throughput (MB/s)
-|--- | --- | --- | --- | --- | --- | --- |
+|--- | --- | --- | --- | --- | --- | 
 | Standard_D2nds_v6    | 1  | 110   | 37500    | 180    | 15000   | 90    |
 | Standard_D4nds_v6    | 1  | 220   | 75000    | 360    | 30000   | 180   |
 | Standard_D8nds_v6    | 1  | 440   | 150000   | 720    | 60000   | 360   |
