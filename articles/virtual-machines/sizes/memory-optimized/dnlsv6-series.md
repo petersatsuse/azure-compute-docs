@@ -10,7 +10,7 @@ ms.author: wwilliams
 ms.reviewer: mattmcinnes
 ---
 
-# Ensv6 sizes series
+# Dnlsv6 sizes series
 
 [!INCLUDE [dnlsv6-summary](./includes/dnlsv6-series-summary.md)]
 
