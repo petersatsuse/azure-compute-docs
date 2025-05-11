@@ -6,7 +6,7 @@ ms.service: azure-virtual-machines
 ms.subservice: sizes
 ms.topic: concept-article
 ms.date: 05/08/2025
-ms.author: iamwilliew
+ms.author: wwilliams
 ms.reviewer: mattmcinnes
 ---
 
