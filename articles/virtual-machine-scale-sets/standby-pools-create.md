@@ -29,7 +29,7 @@ This article steps through creating a standby pool for Virtual Machine Scale Set
 1) Navigate to your Virtual Machine Scale Set.
 2) Under **Availability + scale** select **Standby pool**. 
 3) Select **Manage pool**.
-4) Provide a name for your pool, provisioning state and maximum and minimum ready capacity.
+4) Provide a name for your pool, select a provisioning state and set the maximum and minimum ready capacity.
 5) Select **Save**.
 
 :::image type="content" source="media/standby-pools/enable-standby-pool-after-vmss-creation.png" alt-text="A screenshot showing how to enable a standby pool on an existing Virtual Machine Scale Set in the Azure portal.":::
@@ -96,7 +96,7 @@ Create a standby pool and associate it with an existing scale set. Create a temp
         },
         "attachedVirtualMachineScaleSetId" : {
            "type": "string",
-           "defaultValue": "/subscriptions/{subscriptionID}/resourceGroups/StandbyPools/providers/Microsoft.Compute/virtualMachineScaleSets/myScaleSet"
+           "defaultValue": "/subscriptions/{subscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachineScaleSets/myScaleSet"
         }
     },
     "resources": [ 
@@ -133,7 +133,7 @@ param minReadyCapacity int = 5
   'Deallocated'
 ])
 param vmState string = 'Deallocated'
-param virtualMachineScaleSetId string = '/subscriptions/{subscriptionID}/resourceGroups/StandbyPools/providers/Microsoft.Compute/virtualMachineScaleSets/myScaleSet}'
+param virtualMachineScaleSetId string = '/subscriptions/{subscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachineScaleSets/myScaleSet'
 
 resource standbyPool 'Microsoft.standbypool/standbyvirtualmachinepools@2025-03-01' = {
   name: standbyPoolName
@@ -161,7 +161,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionID}/resourceGroups/m
 "properties": {
 	 "elasticityProfile": {
 		 "maxReadyCapacity": 20
-       "minReadyCapacity": 5
+          "minReadyCapacity": 5
 	 },
 	  "virtualMachineState":"Deallocated",
 	  "attachedVirtualMachineScaleSetId": "/subscriptions/{subscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachineScaleSets/myScaleSet"
