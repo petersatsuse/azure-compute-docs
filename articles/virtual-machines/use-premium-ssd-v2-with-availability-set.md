@@ -1,6 +1,12 @@
 ---
-author: Vishal Prayag
+title: 
+description: 
+author: roygara
+ms.author: vishalprayag
 ms.date: 05/12/2025
+ms.topic: how-to
+ms.service: azure-disk-storage
+ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, innovation-engine
 ---
 # Use Premium SSD v2 with VMs in Availability Set
 
