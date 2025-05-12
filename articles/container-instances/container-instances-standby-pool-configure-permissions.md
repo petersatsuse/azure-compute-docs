@@ -76,7 +76,7 @@ If your pool is in degraded mode, resource creation will be paused briefly. Use 
 1. Send a GET request to the Runtime View API or other SDKs such as PowerShell or CLI. 
 
 ```rest
-https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.StandbyPool/standbyContainerGroupPools/<standby-pool-name>/runtime?api-version=2025-03-01
+https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.StandbyPool/standbyContainerGroupPools/{standbyPool}/runtime?api-version=2025-03-01
 ```
 
 2. Review the response for the healthStatus field. If the pool is in degraded mode, the response will include the reason for the degraded state.
@@ -85,7 +85,7 @@ https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<res
 
 ### Review required permissions for pooled instances
 
-If you notice pooled container instances recycling or no instances appearing in the pool, review the resources required to create an individual container instance. Ensure the standby pool resource provider has the necessary permissions for all required resources, including:
+If you notice pooled container instances recycling or no instances appearing in the pool, review the resources required to create an individual container instance. Ensure the standby pool resource provider has the necessary permissions for all required resources, including but not limited to:
 
 - **Container Instance Contributor**
 - **Network Contributor**
