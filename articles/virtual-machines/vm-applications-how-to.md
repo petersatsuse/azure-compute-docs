@@ -188,7 +188,11 @@ PUT
     "name": "myApp",
     "properties": {
         "supportedOSType": "Windows | Linux",
-        "endOfLifeDate": "2020-01-01"
+        "endOfLifeDate": "2020-01-01",
+	"description": "Description of the App",
+	"eula": "Reference to End-User License Agreement (EULA)",
+	"privacyStatementUri": "Reference to privacy statement for the application",
+	"releaseNoteUri": "Reference to release notes for the application"
     }
 }
 
@@ -199,6 +203,11 @@ PUT
 | name | A unique name for the VM Application within the gallery | Max length of 117 characters. Allowed characters are uppercase or lowercase letters, digits, hyphen(-), period (.), underscore (_). Names not allowed to end with period(.). |
 | supportedOSType | Whether this is a Windows or Linux application | “Windows” or “Linux” |
 | endOfLifeDate | A future end of life date for the application. Note this is for reference only, and isn't enforced. | Valid future date |
+| eula | Reference to End-User License Agreement (EULA) |
+| privacyStatementUri | Reference to privacy statement for the application |
+| releaseNoteUri | Reference to release notes for the application |
+
+
 
 Create a VM application version.
 
@@ -221,15 +230,24 @@ PUT
       },
       "targetRegions": [
         {
-          "name": "$location1",
-          "regionalReplicaCount": 1 
+          "name": "West US",
+          "regionalReplicaCount": 1
         },
-        { "name": "$location1" }
+	{
+	  "name": "East US"
+	}
       ]
-    },
-    "endofLifeDate": "datetime",
-    "excludeFromLatest": "true | false"
-  }
+      "endofLifeDate": "datetime",
+      "replicaCount": 1,
+      "excludeFromLatest": false,
+      "storageAccountType": "PremiumV2_LRS | Premium_LRS | Standard_LRS | Standard_ZRS"
+      "safetyProfile": {
+	"allowDeletionOfReplicatedLocations": false
+      }
+      "settings": {
+	"scriptBehaviorAfterReboot": "None | Rerun"
+      }
+   }
 }
 
 ```
@@ -244,8 +262,11 @@ PUT
 | Update | Optional. The command to update the application. If not specified and an update is required, the old version is removed and the new one installed. | Valid command for the given OS |
 | targetRegions/name | The name of a region to which to replicate | Validate Azure region |
 | targetRegions/regionalReplicaCount | Optional. The number of replicas in the region to create. Defaults to 1. | Integer between 1 and 3 inclusive |
+| replicaCount | Optional. Defines the number of replicas across each region. Takes effect if regionalReplicaCount is not defined | Integer between 1 and 3 inclusive |
 | endOfLifeDate | A future end of life date for the application version. Note this is for customer reference only, and isn't enforced. | Valid future date |
-| excludeFromLatest | If specified, this version won't be considered for latest. | True or false |
+| storageAccountType | Optional. Type of storage account to use in each region for storing applicaton package. Defaults to Storage_LRS | This property is non-updatable |
+| allowDeletionOfReplicatedLocations | Optional. Indicates whether or not removing this Gallery Image Version from replicated regions is allowed. | |
+| settings/scriptBehaviorAfterReboot | Optional. The action to be taken with regards to install/update/remove of the gallery application in the event of a reboot. | | 
 
 ----
 
