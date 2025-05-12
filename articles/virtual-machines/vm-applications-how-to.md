@@ -16,8 +16,6 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 VM Applications are a resource type in Azure Compute Gallery (formerly known as Shared Image Gallery) that simplifies management, sharing and global distribution of applications for your virtual machines.
 
 
-
-
 ## Prerequisites
 
 Before you get started, make sure you have the following:
@@ -102,6 +100,44 @@ Choose an option below for creating your VM application definition and version:
 1. When validation shows as passed, select **Create** to deploy your VM application version.
 
 
+### [PowerShell](#tab/powershell1)
+
+Create the VM application definition using [`New-AzGalleryApplication`](https://learn.microsoft.com/powershell/module/az.compute/new-azgalleryapplication). In this example, we're creating a Linux app named *myApp* in the *myGallery* Azure Compute Gallery, in the *myGallery* resource group and I've given a short description of the VM application for my own use. Replace the values as needed.
+
+```azurepowershell-interactive
+$galleryName = "myGallery"
+$rgName = "myResourceGroup"
+$applicationName = "myApp"
+New-AzGalleryApplication `
+  -ResourceGroupName $rgName `
+  -GalleryName $galleryName `
+  -Location "East US" `
+  -Name $applicationName `
+  -SupportedOSType Linux `
+  -Description "Backend Linux application for finance."
+```
+
+Create a version of your application using [`New-AzGalleryApplicationVersion`](https://learn.microsoft.com/powershell/module/az.compute/new-azgalleryapplicationversion). Allowed characters for version are numbers and periods. Numbers must be within the range of a 32-bit integer. Format: *MajorVersion*.*MinorVersion*.*Patch*.
+
+In this example, we're creating version number *1.0.0*. Replace the values of the variables as needed.
+
+```azurepowershell-interactive
+$galleryName = "myGallery"
+$rgName = "myResourceGroup"
+$applicationName = "myApp"
+$version = "1.0.0"
+New-AzGalleryApplicationVersion `
+   -ResourceGroupName $rgName `
+   -GalleryName $galleryName `
+   -GalleryApplicationName $applicationName `
+   -Name $version `
+   -PackageFileLink "https://<storage account name>.blob.core.windows.net/<container name>/<filename>" `
+   -DefaultConfigFileLink "https://<storage account name>.blob.core.windows.net/<container name>/<filename>" `
+   -Location "East US" `
+   -Install "mv myApp .\myApp\myApp" `
+   -Remove "rm .\myApp\myApp" `
+```
+
 ### [CLI](#tab/cli1)
 
 VM applications require [Azure CLI](/cli/azure/install-azure-cli) version 2.30.0 or later.
@@ -136,52 +172,14 @@ az sig gallery-application version create \
    --default-configuration-file-link "https://<storage account name>.blob.core.windows.net/<container name>/<filename>"\
 ```
 
-### [PowerShell](#tab/powershell1)
-
-Create the VM application definition using `New-AzGalleryApplication`. In this example, we're creating a Linux app named *myApp* in the *myGallery* Azure Compute Gallery, in the *myGallery* resource group and I've given a short description of the VM application for my own use. Replace the values as needed.
-
-```azurepowershell-interactive
-$galleryName = "myGallery"
-$rgName = "myResourceGroup"
-$applicationName = "myApp"
-New-AzGalleryApplication `
-  -ResourceGroupName $rgName `
-  -GalleryName $galleryName `
-  -Location "East US" `
-  -Name $applicationName `
-  -SupportedOSType Linux `
-  -Description "Backend Linux application for finance."
-```
-
-Create a version of your application using `New-AzGalleryApplicationVersion`. Allowed characters for version are numbers and periods. Numbers must be within the range of a 32-bit integer. Format: *MajorVersion*.*MinorVersion*.*Patch*.
-
-In this example, we're creating version number *1.0.0*. Replace the values of the variables as needed.
-
-```azurepowershell-interactive
-$galleryName = "myGallery"
-$rgName = "myResourceGroup"
-$applicationName = "myApp"
-$version = "1.0.0"
-New-AzGalleryApplicationVersion `
-   -ResourceGroupName $rgName `
-   -GalleryName $galleryName `
-   -GalleryApplicationName $applicationName `
-   -Name $version `
-   -PackageFileLink "https://<storage account name>.blob.core.windows.net/<container name>/<filename>" `
-   -DefaultConfigFileLink "https://<storage account name>.blob.core.windows.net/<container name>/<filename>" `
-   -Location "East US" `
-   -Install "mv myApp .\myApp\myApp" `
-   -Remove "rm .\myApp\myApp" `
-```
-
 ### [REST](#tab/rest1)
 
-Create the application definition. 
+Create the application definition using the ['create gallery application API'](https://learn.microsoft.com/rest/api/compute/gallery-applications)
 
 
 ```rest
 PUT
-/subscriptions/\<**subscriptionId**\>/resourceGroups/\<**resourceGroupName**\>/providers/Microsoft.Compute/galleries/\<**galleryName**\>/applications/\<**applicationName**\>?api-version=2024-03-03
+/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/applications/{applicationName}?api-version=2024-03-03
 
 {
     "location": "West US",
@@ -190,9 +188,9 @@ PUT
         "supportedOSType": "Windows | Linux",
         "endOfLifeDate": "2020-01-01",
 	"description": "Description of the App",
-	"eula": "Reference to End-User License Agreement (EULA)",
-	"privacyStatementUri": "Reference to privacy statement for the application",
-	"releaseNoteUri": "Reference to release notes for the application"
+	"eula": "Link to End-User License Agreement (EULA)",
+	"privacyStatementUri": "Link to privacy statement for the application",
+	"releaseNoteUri": "Link to release notes for the application"
     }
 }
 
@@ -203,17 +201,18 @@ PUT
 | name | A unique name for the VM Application within the gallery | Max length of 117 characters. Allowed characters are uppercase or lowercase letters, digits, hyphen(-), period (.), underscore (_). Names not allowed to end with period(.). |
 | supportedOSType | Whether this is a Windows or Linux application | “Windows” or “Linux” |
 | endOfLifeDate | A future end of life date for the application. Note this is for reference only, and isn't enforced. | Valid future date |
-| eula | Reference to End-User License Agreement (EULA) |
-| privacyStatementUri | Reference to privacy statement for the application |
-| releaseNoteUri | Reference to release notes for the application |
+| description | Optional. Description of the Application |
+| eula | Optional. Reference to End-User License Agreement (EULA) |
+| privacyStatementUri | Optional. Reference to privacy statement for the application |
+| releaseNoteUri | Optional. Reference to release notes for the application |
 
 
 
-Create a VM application version.
+Create a VM application version using the ['create gallery application version API'](https://learn.microsoft.com/rest/api/compute/gallery-applications)
 
 ```rest
 PUT
-/subscriptions/\<**subscriptionId**\>/resourceGroups/\<**resourceGroupName**\>/providers/Microsoft.Compute/galleries/\<**galleryName**\>/applications/\<**applicationName**\>/versions/\<**versionName**\>?api-version=2024-03-03
+/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/applications/{applicationName}/versions/{versionName}?api-version=2024-03-03
 
 {
   "location": "$location",
@@ -372,7 +371,7 @@ To add a VM application version to a VM, perform a PUT on the VM.
 
 ```rest
 PUT
-/subscriptions/\<**subscriptionId**\>/resourceGroups/\<**resourceGroupName**\>/providers/Microsoft.Compute/virtualMachines/\<**VMName**\>?api-version=2024-03-03
+/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{VMName}?api-version=2024-03-03
 
 {
   "properties": {
@@ -398,8 +397,7 @@ To apply the VM application to a uniform scale set:
 
 ```rest
 PUT
-/subscriptions/\<**subscriptionId**\>/resourceGroups/\<**resourceGroupName**\>/providers/Microsoft.Compute/
-virtualMachineScaleSets/\<**VMSSName**\>?api-version=2019-03-01
+/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{VMSSName}?api-version=2024-03-03
 
 {
   "properties": {
@@ -533,7 +531,7 @@ To get the result of VM instance view:
 
 ```rest
 GET
-/subscriptions/\<**subscriptionId**\>/resourceGroups/\<**resourceGroupName**\>/providers/Microsoft.Compute/virtualMachines/\<**VMName**\>/instanceView?api-version=2024-03-03
+/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{VMName}/instanceView?api-version=2024-03-03
 ```
 
 The result looks like this:
@@ -568,12 +566,50 @@ To get the status for a VMSS Application:
 
 ```rest
 GET
-/subscriptions/\<**subscriptionId**\>/resourceGroups/\<**resourceGroupName**\>/providers/Microsoft.Compute/ virtualMachineScaleSets/\<**VMSSName**\>/virtualMachines/<**instanceId**>/instanceView?api-version=2019-03-01
+/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/ virtualMachineScaleSets/{VMSSName}/virtualMachines/{instanceId}/instanceView?api-version=2019-03-01
 ```
 The output is similar to the VM example earlier.
 
 ---
 
+## Delete the application
+
+### [Powershell](#tab/powershell4)
+Delete the application version
+```azurepowershell-interactive
+Remove-AzGalleryApplicationVersion -ResourceGroupName $rgNmae -GalleryName $galleryName -GalleryApplicationName $galleryApplicationName -Name $name
+```
+
+Delete the application with all its versions
+```azurepowershell-interactive
+Remove-AzGalleryApplication -ResourceGroupName $rgNmae -GalleryName $galleryName -Name $name
+```
+
+### [CLI](#tab/cli4)
+Delete the application version
+```azurecli-interactive
+az sig gallery-application delete --resource-group $rg-name --gallery-name $gallery-name --application-name $app-name
+```
+
+Delete the application and all its versions
+```azurecli-interactive
+az sig gallery-application version delete --resource-group $rg-name --gallery-name $gallery-name --application-name $app-name --version-name $version-name
+```
+
+
+### [REST](#tab/rest4)
+Delete the application version
+```rest
+DELETE
+https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/applications/{galleryApplicationName}/versions/{galleryApplicationVersionName}?api-version=2024-03-03
+```
+
+
+Delete the application with all its versions
+```rest
+DELETE
+https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/applications/{galleryApplicationName}?api-version=2024-03-03
+```
 
 ## Next steps
 Learn more about [VM applications](vm-applications.md).
