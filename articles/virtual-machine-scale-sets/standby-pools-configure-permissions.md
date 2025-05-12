@@ -91,6 +91,6 @@ If you notice pooled instances recycling or no instances appearing in the pool, 
 Verify that the roles assigned to the standby pool resource provider include all permissions needed to create and manage virtual machines.
 
 ## Next Steps
-- Use the [Azure Monitor Logs documentation to explore and analyze logs further.
+- Use the Azure Monitor Logs documentation to explore and analyze logs further.
 - Refer to the Runtime View API documentation for more details on checking pool health and status.
 - Ensure all required roles are assigned as described in the Basic permissions section.
