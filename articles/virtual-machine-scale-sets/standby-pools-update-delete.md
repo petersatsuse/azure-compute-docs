@@ -25,7 +25,7 @@ When changing the provisioning state of your standby pool, transitioning between
 |---|---|
 | Running | Stopped (deallocated) | 
 | Running | Hibernated | 
-| Stopped (deallocated) ) | Running | 
+| Stopped (deallocated) | Running | 
 | Hibernated | Running | 
 | Hibernated | Stopped (deallocated) | 
 
