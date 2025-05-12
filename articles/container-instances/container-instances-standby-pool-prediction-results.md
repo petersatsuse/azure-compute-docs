@@ -16,7 +16,7 @@ ms.reviewer: tomvcassidy
 > [!IMPORTANT]
 > Prediction results for standby pools is currently in preview. Previews are made available to you on the condition that you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature may change prior to general availability (GA).
 
-To effectively manage and optimize your standby pool for Azure Container Instances, you can use the Standby Pool runtime view APIs to retrieve prediction results. These results, **available 2-3 weeks after creating the standby pool** and provide insights into the predicted number of instances that will be requested from the pool for each hour over a 12-hour period. The predictions include the accuracy of the forecast and a historical view of instances requested from the pool over the past 12 hours, helping you make informed decisions to right-size your standby pool and improve operational efficiency.
+To effectively manage and optimize your standby pool for Azure Container Instances, you can use the Standby Pool runtime view APIs to retrieve prediction results. These results are **available 2-3 weeks after creating the standby pool** and provide insights into the predicted number of instances that will be requested from the pool for each hour over a 12-hour period. The predictions include the accuracy of the forecast and a historical view of instances requested from the pool over the past 12 hours, helping you make informed decisions to right-size your standby pool and improve operational efficiency.
 
 While the prediction results provide valuable insights, they are not a guarantee and should be treated as a suggested size for your pool. The actual number of instances requested from the pool may vary depending on the specific demands of your workload. Additionally, the longer the prediction engine is able to monitor and analyze your workload trends, the more accurate and reliable the prediction results will become over time.
 
@@ -116,7 +116,6 @@ ProvisioningState                    : Succeeded
 ResourceGroupName                    : myResourceGroup
 StatusCode                           : HealthState/healthy
 Type                                 : Microsoft.StandbyPool/standbyContainerGroupPools/runtimeViews
-```
 ```
 
 
