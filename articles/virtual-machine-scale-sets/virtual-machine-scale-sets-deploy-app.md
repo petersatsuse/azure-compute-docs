@@ -21,17 +21,17 @@ To run applications on virtual machine (VM) instances in a scale set, you first 
 
 ## Install an app using VM Apps
 [Azure VM Apps](../virtual-machines/vm-applications.md) provide a streamlined way to package, manage, and deploy applications across Azure Virtual Machines (VMs), Virtual Machine Scale Sets (VMSS). VM Apps is the best suited method for deploying tools, agents, AI Apps, security components, and line-of-business applications across Azure. 
+
 ### Key Benefits: 
 - Package and manage applications (ZIP, MSI, EXE) in the Azure Compute Gallery.
-- Share applications publicly or within an organization.
+- Share & reuse applications across the organization.
 - Achieve consistent deployments and version control across Azure VMs and VMSS.
-- Re-use publicly published apps from the Azure Compute Gallery.
 - Deploy multiple applications on a single VM.
 - Ensure reliable installation with built-in failure handling.
-- Update individual applications without the need for custom VM images or scripts.
 - Automate deployments using ARM templates, Azure CLI, and Terraform.
-- Automatic regional replication of published applications improving create latency & resiliency.
+- Automatic regional replication of published applications for improved create latency & resiliency.
 - Integrated Azure RBAC ensuring Application publishing from authorized users.
+- Update individual applications without the need for custom VM images or scripts.
 
 ### Create and deploy VM Apps
 - [Overview of VM Apps](../virtual-machines/vm-applications.md)
