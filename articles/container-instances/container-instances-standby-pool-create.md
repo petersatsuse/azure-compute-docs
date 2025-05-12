@@ -22,7 +22,7 @@ This article steps through creating a container group profile and using that pro
 
 ## Prerequisites
 
-Before utilizing standby pools, complete the feature registration and configure role based access controls listed in the [Standby Pools for Azure Container Instances](container-instances-standby-pool-overview.md#prerequisites) overview page. 
+Before utilizing standby pools, complete the feature registration and configure role based access controls. For more information see [Configure role permissions for standby pools in Azure Container Instances](container-instances-standby-pool-configure-permissions.md)
 
 ## Create a container group profile
 The container group profile tells the standby pool how to configure the containers in the pool. If you make changes to the container group profile, you also need to update your standby pool to ensure the updates are applied to the instances in the pool.

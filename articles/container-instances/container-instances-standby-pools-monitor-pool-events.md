@@ -54,7 +54,7 @@ Before configuring monitoring for standby pools, ensure you have a Log Analytics
 5. Click **Review + Create**, then **Create** to deploy the workspace.
 
 ### Configure diagnostic settings for standby pools
-To send information to the Log Analytics workspace configured, set up diagnostic settings for your standby pool resource. 
+To send information to the Log Analytics workspace configured, set up diagnostic settings for your standby pool resource. After configuring the diagnostic settings, it takes about 30 minutes before any logs will begin showing up in the log analytics workspace. 
 
 > [!NOTE]
 > Enabling a diagnostic setting for a standby pool resource is not yet available from the Azure portal. Instead, enable a diagnostic setting using an alternative SDK such as PowerShell or CLI. 

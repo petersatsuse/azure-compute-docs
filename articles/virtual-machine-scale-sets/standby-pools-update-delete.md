@@ -17,9 +17,20 @@ ms.reviewer: ju-shim
 > [!IMPORTANT]
 > For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[configure role permissions for standby pools](standby-pools-configure-permissions.md)**.
 
+You can update the state of the instances and the max ready capacity of your standby pool at any time. The standby pool name can only be set during standby pool creation. If updating the provisioning state to hibernated, ensure that the scale set is properly configured to use hibernated VMs. For more information see, [Hibernation overview](../virtual-machines/hibernate-resume.md). 
+
+When changing the provisioning state of your standby pool, transitioning between the following states below are supported. Transitioning between a Stopped (deallocated) state and a hibernated state is not supported. If using a Stopped (deallocated) pool and you want to instead use a hibernated pool, first transition to a running pool then update the provisioning state to hibernated. 
+
+|Initial state | Updated state | 
+|---|---|
+| Running | Stopped (deallocated) | 
+| Running | Hibernated | 
+| Stopped (deallocated) | Running | 
+| Hibernated | Running | 
+| Hibernated | Stopped (deallocated) | 
+
 ## Update a standby pool
 
-You can update the state of the instances and the max ready capacity of your standby pool at any time. The standby pool name can only be set during standby pool creation. 
 
 ### [Portal](#tab/portal-2)
 
@@ -123,6 +134,7 @@ param minReadyCapacity int = 5
 @allowed([
   'Running'
   'Deallocated'
+  'Hibernated'
 ])
 param vmState string = 'Deallocated'
 param virtualMachineScaleSetId string = '/subscriptions/{subscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachineScaleSets/myScaleSet'
@@ -153,7 +165,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionID}/resourceGroups/m
 "properties": {
 	 "elasticityProfile": {
 		 "maxReadyCapacity": 20
-       "minReadyCapacity": 5
+          "minReadyCapacity": 5
 	 },
 	  "virtualMachineState":"Deallocated",
 	  "attachedVirtualMachineScaleSetId": "/subscriptions/{subscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachineScaleSets/myScaleSet"

@@ -280,7 +280,7 @@ Type                         : Microsoft.StandbyPool/standbyVirtualMachinePools/
 ### [REST](#tab/rest)
 
 ```HTTP
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyVirtualMachinePoolName}/runtimeViews/{runtimeView}?api-version=2025-03-01
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyVirtualMachinePoolName}/runtimeViews/latest?api-version=2025-03-01
 
 {
   "properties": {
@@ -420,6 +420,9 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 ## Instance details
 
 When a virtual machine is in a standby pool, the `isVmInStandbyPool` parameter is set to true. When the virtual machine is moved from the pool instance the scale set, the parameter is automatically updated to false. This can be useful in determining when a virtual machine is ready to receive traffic or not.
+
+> [!NOTE]
+> The `isVmInStandbyPool` property is only displayed when a virtual machine has been created by the standby pool. Virtual machines created directly by the scale set or attached to the scale set won't have this property. 
 
 ### [CLI](#tab/cli)
 

@@ -50,7 +50,7 @@ To use Spot Instances with standby pools, you must configure your scale set to u
   - **Eviction policy**: Set the eviction policy to **Delete**.
   - **Spot allocation**: Ensure the scale set is configured to use 100% Spot Instances.
 
-Once your scale set is configured with Spot Instances, there is no additional configurations required to enable spot instnaces in the standby pool. Create and attach the standby pool to your scale set with spot instances and the instances within the pool takes on the properties configured in your scale set. For more information, see [create a standby pool](standby-pools-create.md).
+Once your scale set is configured with Spot Instances, there is no additional configurations required to enable spot instnaces in the standby pool. Create and attach the standby pool to your scale set with spot instances and the instances within the pool takes on the properties configured in your scale set.
 
 ## Next steps
 
