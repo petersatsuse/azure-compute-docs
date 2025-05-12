@@ -176,12 +176,12 @@ New-AzGalleryApplicationVersion `
 
 ### [REST](#tab/rest1)
 
-Create the application definition.
+Create the application definition. 
 
 
 ```rest
 PUT
-/subscriptions/\<**subscriptionId**\>/resourceGroups/\<**resourceGroupName**\>/providers/Microsoft.Compute/galleries/\<**galleryName**\>/applications/\<**applicationName**\>?api-version=2019-03-01
+/subscriptions/\<**subscriptionId**\>/resourceGroups/\<**resourceGroupName**\>/providers/Microsoft.Compute/galleries/\<**galleryName**\>/applications/\<**applicationName**\>?api-version=2024-03-03
 
 {
     "location": "West US",
@@ -213,7 +213,7 @@ Create a VM application version.
 
 ```rest
 PUT
-/subscriptions/\<**subscriptionId**\>/resourceGroups/\<**resourceGroupName**\>/providers/Microsoft.Compute/galleries/\<**galleryName**\>/applications/\<**applicationName**\>/versions/\<**versionName**\>?api-version=2019-03-01
+/subscriptions/\<**subscriptionId**\>/resourceGroups/\<**resourceGroupName**\>/providers/Microsoft.Compute/galleries/\<**galleryName**\>/applications/\<**applicationName**\>/versions/\<**versionName**\>?api-version=2024-03-03
 
 {
   "location": "$location",
@@ -372,7 +372,7 @@ To add a VM application version to a VM, perform a PUT on the VM.
 
 ```rest
 PUT
-/subscriptions/\<**subscriptionId**\>/resourceGroups/\<**resourceGroupName**\>/providers/Microsoft.Compute/virtualMachines/\<**VMName**\>?api-version=2019-03-01
+/subscriptions/\<**subscriptionId**\>/resourceGroups/\<**resourceGroupName**\>/providers/Microsoft.Compute/virtualMachines/\<**VMName**\>?api-version=2024-03-03
 
 {
   "properties": {
@@ -533,7 +533,7 @@ To get the result of VM instance view:
 
 ```rest
 GET
-/subscriptions/\<**subscriptionId**\>/resourceGroups/\<**resourceGroupName**\>/providers/Microsoft.Compute/virtualMachines/\<**VMName**\>/instanceView?api-version=2019-03-01
+/subscriptions/\<**subscriptionId**\>/resourceGroups/\<**resourceGroupName**\>/providers/Microsoft.Compute/virtualMachines/\<**VMName**\>/instanceView?api-version=2024-03-03
 ```
 
 The result looks like this:
@@ -573,7 +573,6 @@ GET
 The output is similar to the VM example earlier.
 
 ---
-
 
 
 ## Next steps
