@@ -19,11 +19,6 @@ ms.reviewer: tomvcassidy
 
 This article steps through updating or deleting a standby pool for Azure Container Instances. 
 
-## Prerequisites
-
-Before utilizing standby pools, complete the feature registration and configure role based access controls listed in the [Standby pools for Azure Container Instances](container-instances-standby-pool-overview.md#prerequisites) overview page. 
-
-
 ## Update a standby pool
 A standby pool can be updated at any point in time. The settings that are adjustable after creation include `maxReadyCapacity` and the associated `containerGroupProfile`. If you update the container group profile of the standby pool, the new profile must also be in the same subscription and location as the standby pool. Once the profile has been updated, the pool will drain all existing instances and replaced them with new ones. 
 
