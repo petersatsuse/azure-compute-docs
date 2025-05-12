@@ -1,5 +1,5 @@
 ---
-title: Request a container from a Standby pool for Azure Container Instances (Preview)
+title: Request a container from a Standby pool for Azure Container Instances
 description: Learn how to scale out from a standby pool with Azure Container Instances.
 author: mimckitt
 ms.author: mimckitt
@@ -7,12 +7,12 @@ ms.service: azure-container-instances
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/6/2024
+ms.date: 5/10/2025
 ms.reviewer: tomvcassidy
 ---
 
 
-# Request a container from a standby pool for Azure Container Instances (Preview)
+# Request a container from a standby pool for Azure Container Instances
 
 > [!IMPORTANT]
 > Standby pools for Azure Container Instances is currently in preview. Previews are made available to you on the condition that you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature may change prior to general availability (GA).

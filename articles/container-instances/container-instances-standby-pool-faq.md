@@ -1,5 +1,5 @@
 ---
-title: Frequently asked questions about standby pools for Azure Container Instances (Preview)
+title: Frequently asked questions about standby pools for Azure Container Instances
 description: Get answers to frequently asked questions for standby pools for Azure Container Instances.
 author: mimckitt
 ms.author: mimckitt
@@ -7,11 +7,11 @@ ms.service: azure-container-instances
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/6/2024
+ms.date: 5/10/2025
 ms.reviewer: tomvcassidy
 ---
 
-# Frequently asked questions about standby pools for Azure Container Instances (Preview)
+# Frequently asked questions about standby pools for Azure Container Instances
 
 > [!IMPORTANT]
 > Standby pools for Azure Container Instances is currently in preview. Previews are made available to you on the condition that you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature may change prior to general availability (GA).
