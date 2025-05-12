@@ -72,7 +72,7 @@ If your pool is in degraded mode, resource creation will be paused briefly. Use 
 1. Send a GET request to the Runtime View API or other SDKs such as PowerShell or CLI. 
 
 ```rest
-https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/<standby-pool-name>/runtime?api-version=2025-03-01
+https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyPool}/runtime?api-version=2025-03-01
 ```
 
 2. Review the response for the healthStatus field. If the pool is in degraded mode, the response will include the reason for the degraded state.
@@ -81,7 +81,7 @@ https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<res
 
 ### Review Required Permissions for Pooled Instances
 
-If you notice pooled instances recycling or no instances appearing in the pool, review the resources required to create an individual virtual machine. Ensure the standby pool resource provider has the necessary permissions for all required resources, including:
+If you notice pooled instances recycling or no instances appearing in the pool, review the resources required to create an individual virtual machine. Ensure the standby pool resource provider has the necessary permissions for all required resources, including but not limited to:
 
 - Compute Gallery images
 - Virtual networks and subnets
@@ -91,6 +91,6 @@ If you notice pooled instances recycling or no instances appearing in the pool, 
 Verify that the roles assigned to the standby pool resource provider include all permissions needed to create and manage virtual machines.
 
 ## Next Steps
-- Use the Azure Monitor Logs documentation to explore and analyze logs further.
+- Use the [Azure Monitor Logs documentation to explore and analyze logs further.
 - Refer to the Runtime View API documentation for more details on checking pool health and status.
 - Ensure all required roles are assigned as described in the Basic permissions section.
