@@ -36,9 +36,6 @@ Ensure you have enough quota to complete the standby pool creation. Insufficient
 ### I requested a container from my pool but it created a new container instead. 
 Ensure that the container groups in your standby pool are in the running state before issuing a request. For example, if using a standby If containers are in any other states such as creating or deleting, the container request defaults to creating a new container group from scratch. 
 
-### Can I create a standby pool with containers spread across availability zones? 
-Yes. However, standby pools for Azure Container Instances only currently support creating and requesting containers across availability zones using [REST APIs](/rest/api/standbypool/standby-virtual-machine-pools/create-or-update) using version 2024-08-01.  
-
 
 ## Next steps
 
