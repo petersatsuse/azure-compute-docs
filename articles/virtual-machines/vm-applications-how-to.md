@@ -1,6 +1,6 @@
 ---
 title: Create and deploy VM application packages
-description: Learn how to create and deploy VM Applications using an Azure Compute Gallery.
+description: Learn how to create and deploy Virtual Machine (VM) Applications using an Azure Compute Gallery.
 author: gabstamsft
 ms.service: azure-virtual-machines
 ms.subservice: gallery
@@ -11,19 +11,15 @@ ms.reviewer: jushiman
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ---
 
-# Create and deploy VM Applications
+# Create and deploy Virtual Machine Applications
 
-VM Applications are a resource type in Azure Compute Gallery (formerly known as Shared Image Gallery) that simplifies management, sharing and global distribution of applications for your virtual machines.
+VM Apps are a resource type in Azure Compute Gallery (formerly known as Shared Image Gallery) that simplifies management, sharing and global distribution of applications for your virtual machines.
 
 
 ## Prerequisites
 
-Before you get started, make sure you have the following:
-
-
-This article assumes you already have an Azure Compute Gallery. If you don't already have a gallery, create one first. To learn more, see [Create a gallery for storing and sharing resources](create-gallery.md).
-
-You should have uploaded your application to a container in an [Azure storage account](/azure/storage/common/storage-account-create). Your application can be stored in a block or page blob. If you choose to use a page blob, you need to byte align the files before you upload them. Here's a sample that will byte align your file:
+1. If you don't already have an Azure Compute Gallery, create one first. To learn more, see [Create a gallery for storing and sharing resources](create-gallery.md).
+1. Upload your application to a container in an [Azure storage account](/azure/storage/common/storage-account-create). Your application can be stored in a block or page blob. If you choose to use a page blob, you need to byte align the files before you upload them. Use the below sample to byte align your file:
 
 ### [PowerShell](#tab/powershell)
 ```azurepowershell-interactive
@@ -69,8 +65,6 @@ If you're using PowerShell, you need to be using version 3.11.0 of the Az.Storag
 To learn more about the installation mechanism, see the [command interpreter.](vm-applications.md#command-interpreter)
 
 ## Create the VM application
-
-Choose an option below for creating your VM application definition and version:
 
 ### [Portal](#tab/portal1)
 
@@ -199,8 +193,8 @@ PUT
 | Field Name | Description | Limitations |
 |--|--|--|
 | name | A unique name for the VM Application within the gallery | Max length of 117 characters. Allowed characters are uppercase or lowercase letters, digits, hyphen(-), period (.), underscore (_). Names not allowed to end with period(.). |
-| supportedOSType | Whether this is a Windows or Linux application | “Windows” or “Linux” |
-| endOfLifeDate | A future end of life date for the application. Note this is for reference only, and isn't enforced. | Valid future date |
+| supportedOSType | Define the supported OS Type | "Windows" or "Linux" |
+| endOfLifeDate | A future end of life date for the application. The date is for reference only, and isn't enforced. | Valid future date |
 | description | Optional. Description of the Application |
 | eula | Optional. Reference to End-User License Agreement (EULA) |
 | privacyStatementUri | Optional. Reference to privacy statement for the application |
@@ -261,11 +255,11 @@ PUT
 | Update | Optional. The command to update the application. If not specified and an update is required, the old version is removed and the new one installed. | Valid command for the given OS |
 | targetRegions/name | The name of a region to which to replicate | Validate Azure region |
 | targetRegions/regionalReplicaCount | Optional. The number of replicas in the region to create. Defaults to 1. | Integer between 1 and 3 inclusive |
-| replicaCount | Optional. Defines the number of replicas across each region. Takes effect if regionalReplicaCount is not defined | Integer between 1 and 3 inclusive |
+| replicaCount | Optional. Defines the number of replicas across each region. Takes effect if regionalReplicaCount isn't defined | Integer between 1 and 3 inclusive |
 | endOfLifeDate | A future end of life date for the application version. Note this is for customer reference only, and isn't enforced. | Valid future date |
-| storageAccountType | Optional. Type of storage account to use in each region for storing applicaton package. Defaults to Storage_LRS | This property is non-updatable |
+| storageAccountType | Optional. Type of storage account to use in each region for storing application package. Defaults to Standard_LRS | This property is nonupdatable |
 | allowDeletionOfReplicatedLocations | Optional. Indicates whether or not removing this Gallery Image Version from replicated regions is allowed. | |
-| settings/scriptBehaviorAfterReboot | Optional. The action to be taken with regards to install/update/remove of the gallery application in the event of a reboot. | | 
+| settings/scriptBehaviorAfterReboot | Optional. The action to be taken with regard to install/update/remove of the gallery application in the event of a reboot. | | 
 
 ----
 
@@ -312,7 +306,7 @@ az vm application set \
 	--app-version-ids /subscriptions/{subId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/galleries/myGallery/applications/myApp/versions/1.0.0 /subscriptions/{subId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/galleries/myGallery/applications/myApp2/versions/1.0.1 \
 	--treat-deployment-as-failure true true
 ```
-To add an application to a VMSS, use [az vmss application set](/cli/azure/vmss/application#az-vmss-application-set):
+To add an application to a Virtual Machine Scale Set (VMSS), use [az vmss application set](/cli/azure/vmss/application#az-vmss-application-set):
 
 ```azurecli-interactive
 az vmss application set \
@@ -321,7 +315,7 @@ az vmss application set \
 	--app-version-ids /subscriptions/{subId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/galleries/myGallery/applications/myApp/versions/1.0.0 \
 	--treat-deployment-as-failure true
 ```
-To add multiple applications to a VMSS:
+To add multiple applications to a Virtual Machine Scale Set (VMSS):
 ```azurecli-interactive
 az vmss application set \
 	--resource-group myResourceGroup \
@@ -351,7 +345,7 @@ $app = New-AzVmGalleryApplication -PackageReferenceId $packageId
 Add-AzVmGalleryApplication -VM $vm -GalleryApplication $app -TreatFailureAsDeploymentFailure true
 Update-AzVM -ResourceGroupName $rgName -VM $vm
 ```
-To add the application to a VMSS:
+To add the application to a Virtual Machine Scale Set (VMSS):
 ```azurepowershell-interactive
 $vmss = Get-AzVmss -ResourceGroupName $rgname -Name $vmssName
 $appVersion = Get-AzGalleryApplicationVersion `
@@ -425,14 +419,14 @@ PUT
 |--|--|--|
 | order | Optional. The order in which the applications should be deployed. See below. | Validate integer |
 | packageReferenceId | A reference the gallery application version | Valid application version reference |
-| configurationReference | Optional. The full url of a storage blob containing the configuration for this deployment. This will override any value provided for defaultConfiguration earlier. | Valid storage blob reference |
-| treatFailureAsDeploymentFailure | Optional. Provisioning status for VM App. When set to false, provisioning status will always show 'succeeded' regardless of app deployment failure. | True or False
+| configurationReference | Optional. The full url of a storage blob containing the configuration for this deployment. This overrides any value provided for defaultConfiguration earlier. | Valid storage blob reference |
+| treatFailureAsDeploymentFailure | Optional. When enabled, app deployment failure causes VM provisioning status to report failed status. | True or False
 
 The order field may be used to specify dependencies between applications. The rules for order are the following:
 
 | Case | Install Meaning | Failure Meaning |
 |--|--|--|
-| No order specified | Unordered applications are installed after ordered applications. There's no guarantee of installation order amongst the unordered applications. | Installation failures of other applications, be it ordered or unordered doesn’t affect the installation of unordered applications. |
+| No order specified | Unordered applications are installed after ordered applications. There's no guarantee of installation order among the unordered applications. | Installation failures of other applications, be it ordered or unordered doesn’t affect the installation of unordered applications. |
 | Duplicate order values | Application is installed in any order compared to other applications with the same order. All applications of the same order will be installed after those with lower orders and before those with higher orders. | If a previous application with a lower order failed to install, no applications with this order install. If any application with this order fails to install, no applications with a higher order install. |
 | Increasing orders | Application will be installed after those with lower orders and before those with higher orders. | If a previous application with a lower order failed to install, this application won't install. If this application fails to install, no application with a higher order installs. |
 
@@ -472,24 +466,24 @@ To show the VM application status, go to the Extensions + applications tab/setti
 
 :::image type="content" source="media/vmapps/select-app-status.png" alt-text="Screenshot showing VM application status.":::
 
-To show the VM application status for VMSS, go to the VMSS page, Instances, select one of them, then go to VMAppExtension:
+To show the VM application status for Virtual Machine Scale Set (VMSS), go to the VMSS portal blade, Instances, select one of them, then go to VMAppExtension:
 
 :::image type="content" source="media/vmapps/select-apps-status-vmss-portal.png" alt-text="Screenshot showing VMSS application status.":::
 
 ### [CLI](#tab/cli3)
 
-To verify application VM deployment status, use [az vm get-instance-view](/cli/azure/vm/#az-vm-get-instance-view):
+To verify application deployment status on VM, use [az vm get-instance-view](/cli/azure/vm/#az-vm-get-instance-view):
 
 ```azurecli-interactive
 az vm get-instance-view -g myResourceGroup -n myVM --query "instanceView.extensions[?name == 'VMAppExtension']"
 ```
-To verify application VMSS deployment status, use [az vmss get-instance-view](/cli/azure/vmss/#az-vmss-get-instance-view):
+To verify application deployment status on Virtual Machine Scale Set (VMSS), use [az vmss get-instance-view](/cli/azure/vmss/#az-vmss-get-instance-view):
 
 ```azurecli-interactive
 az vmss get-instance-view --ids (az vmss list-instances -g myResourceGroup -n myVmss --query "[*].id" -o tsv) --query "[*].extensions[?name == 'VMAppExtension']"
 ```
 > [!NOTE]
-> The above VMSS deployment status command does not list the instance ID with the result. To show the instance ID with the status of the extension in each instance, some additional scripting is required. Refer to the below VMSS CLI example that contains PowerShell syntax:
+> The above VMSS deployment status command doesn't list the instance ID with the result. To show the instance ID with the status of the extension in each instance, some more scripting is required. Refer to the below VMSS CLI example that contains PowerShell syntax:
 
 ```azurepowershell-interactive
 $ids = az vmss list-instances -g myResourceGroup -n myVmss --query "[*].{id: id, instanceId: instanceId}" | ConvertFrom-Json
@@ -510,7 +504,7 @@ $vmName = "myVM"
 $result = Get-AzVM -ResourceGroupName $rgName -VMName $vmName -Status
 $result.Extensions | Where-Object {$_.Name -eq "VMAppExtension"} | ConvertTo-Json
 ```
-To verify for VMSS:
+To verify on Virtual Machine Scale Set (VMSS):
 ```azurepowershell-interactive
 $rgName = "myResourceGroup"
 $vmssName = "myVMss"
@@ -525,7 +519,7 @@ $resultSummary | ConvertTo-Json -Depth 5
 
 ### [REST](#tab/rest3)
 
-If the VM applications haven't yet been installed on the VM, the value will be empty. 
+If the VM applications haven't yet been installed on the VM, the value is empty. 
 
 To get the result of VM instance view:
 
@@ -562,7 +556,7 @@ The result looks like this:
 ```
 The VM App status is in the status message of the result of the VM App extension in the instance view.
 
-To get the status for a VMSS Application:
+To get the status for the application on Virtual Machine Scale Set (VMSS):
 
 ```rest
 GET
