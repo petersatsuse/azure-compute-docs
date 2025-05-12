@@ -34,7 +34,7 @@ Register-AzResourceProvider -ProviderNamespace Microsoft.StandbyPool
 Register-AzProviderFeature -FeatureName StandbyContainerGroupPoolPreview -ProviderNamespace Microsoft.StandbyPool
 ```
 
-### Role-based Access Control Permissions
+### Configure Role-based Access Control Permissions
 To allow standby pools to create and manage container instances in your subscription, assign the appropriate permissions to the standby pool resource provider. For more detailed steps and information, see [configure role permissions for standby pools in Azure Container Instances](container-instances-standby-pool-configure-permissions.md).
 
 ## Using a container from the standby pool
@@ -47,7 +47,6 @@ Standby pools only gives out container groups from the pool that are fully provi
 The number of container groups in a standby pool is determined by setting the `maxReadyCapacity` parameter. When a container group is consumed from the pool, the standby pool automatically begins to refill ensuring that your standby pool maintains the set maximum ready capacity.
 
 Currently, the only available refill policy for standby pools on Azure Container instances is `Always`. 
-
 
 | Setting | Description | 
 |---|---|
