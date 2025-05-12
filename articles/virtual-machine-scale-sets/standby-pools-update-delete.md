@@ -19,7 +19,17 @@ ms.reviewer: ju-shim
 
 ## Update a standby pool
 
-You can update the state of the instances and the max ready capacity of your standby pool at any time. The standby pool name can only be set during standby pool creation. 
+You can update the state of the instances and the max ready capacity of your standby pool at any time. The standby pool name can only be set during standby pool creation. If updating the provisioning state to hibernated, ensure that the scale set is properly configured to use hibernated VMs. For more information see, [Hibernation overview](../virtual-machines/hibernate-resume.md). 
+
+### Allowed provisioning state changes
+
+|Initial state | Updated state | 
+|---|---|
+| Running | Stopped (deallocated) | 
+| Running | Hibernated | 
+| Stopped (deallocated) ) | Running | 
+| Hibernated | Running | 
+| Hibernated | Stopped (deallocated) | 
 
 ### [Portal](#tab/portal-2)
 
@@ -123,6 +133,7 @@ param minReadyCapacity int = 5
 @allowed([
   'Running'
   'Deallocated'
+  'Hibernated'
 ])
 param vmState string = 'Deallocated'
 param virtualMachineScaleSetId string = '/subscriptions/{subscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachineScaleSets/myScaleSet'
@@ -153,7 +164,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionID}/resourceGroups/m
 "properties": {
 	 "elasticityProfile": {
 		 "maxReadyCapacity": 20
-       "minReadyCapacity": 5
+          "minReadyCapacity": 5
 	 },
 	  "virtualMachineState":"Deallocated",
 	  "attachedVirtualMachineScaleSetId": "/subscriptions/{subscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachineScaleSets/myScaleSet"
