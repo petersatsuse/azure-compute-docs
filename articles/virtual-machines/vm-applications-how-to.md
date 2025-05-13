@@ -238,7 +238,9 @@ PUT
 	"allowDeletionOfReplicatedLocations": false
       }
       "settings": {
-	"scriptBehaviorAfterReboot": "None | Rerun"
+	"scriptBehaviorAfterReboot": "None | Rerun",
+	"configFileName": "$appConfigFileName",
+	"packageFileName": "$appPackageFileName"
       }
    }
 }
@@ -260,6 +262,11 @@ PUT
 | storageAccountType | Optional. Type of storage account to use in each region for storing application package. Defaults to Standard_LRS | This property is nonupdatable |
 | allowDeletionOfReplicatedLocations | Optional. Indicates whether or not removing this Gallery Image Version from replicated regions is allowed. | |
 | settings/scriptBehaviorAfterReboot | Optional. The action to be taken with regard to install/update/remove of the gallery application in the event of a reboot. | | 
+| settings/configFileName | Optional. The name to assign the downloaded package file on the VM. If not specified, the package file will be named the same as the Gallery Application name. | This is limited to 4096 characters. |
+| settings/packageFileName | Optional. The name to assign the downloaded config file on the VM. If not specified, the config file will be named the Gallery Application name appended with "_config". | This is limited to 4096 characters. |
+
+
+
 
 ----
 
@@ -373,7 +380,7 @@ PUT
       "galleryApplications": [
         {
           "order": 1,
-          "packageReferenceId": "/subscriptions/{subscriptionId}/resourceGroups/<resource group>/providers/Microsoft.Compute/galleries/{gallery name}/applications/{application name}/versions/{version}",
+          "packageReferenceId": "/subscriptions/{subscriptionId}/resourceGroups/<resource group>/providers/Microsoft.Compute/galleries/{gallery name}/applications/{application name}/versions/{version | latest}",
           "configurationReference": "{path to configuration storage blob}",
           "treatFailureAsDeploymentFailure": false
         }
@@ -400,7 +407,7 @@ PUT
         "galleryApplications": [
           {
             "order": 1,
-            "packageReferenceId": "/subscriptions/{subscriptionId}/resourceGroups/<resource group>/providers/Microsoft.Compute/galleries/{gallery name}/applications/{application name}/versions/{version}",
+            "packageReferenceId": "/subscriptions/{subscriptionId}/resourceGroups/<resource group>/providers/Microsoft.Compute/galleries/{gallery name}/applications/{application name}/versions/{version | latest}",
             "configurationReference": "{path to configuration storage blob}",
             "treatFailureAsDeploymentFailure": false
           }
@@ -418,7 +425,7 @@ PUT
 | Field Name | Description | Limitations |
 |--|--|--|
 | order | Optional. The order in which the applications should be deployed. See below. | Validate integer |
-| packageReferenceId | A reference the gallery application version | Valid application version reference |
+| packageReferenceId | A reference to the gallery application version. Use "latest" keyword for version to automatically install the latest available version.  | Valid application version reference |
 | configurationReference | Optional. The full url of a storage blob containing the configuration for this deployment. This overrides any value provided for defaultConfiguration earlier. | Valid storage blob reference |
 | treatFailureAsDeploymentFailure | Optional. When enabled, app deployment failure causes VM provisioning status to report failed status. | True or False
 
