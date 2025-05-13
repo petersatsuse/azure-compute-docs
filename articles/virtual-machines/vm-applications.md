@@ -43,7 +43,7 @@ The VM application packages use multiple resource types:
 | **VM application** | The definition of your VM application. It's a *logical* resource that stores the common metadata for all the versions under it. For example, you may have an application definition for Apache Tomcat and have multiple versions within it. |
 | **VM Application version** | The deployable resource. You can globally replicate your VM application versions to target regions closer to your VM infrastructure. The VM Application Version must be replicated to a region before it may be deployed on a VM in that region. |
 
-## Limitations
+## Limitations 
 
 - **No more than 3 replicas per region**: When you're creating a VM Application version, the maximum number of replicas per region is three.
 
