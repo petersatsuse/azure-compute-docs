@@ -99,9 +99,7 @@ To install the Azure AMD VM extension in the Azure portal, follow these steps:
 
 1. Under **Extensions**, select **+ Add**.
 
-   :::image type="content" source="./media/nvidia-ext-portal/add-extension.png" alt-text="Screenshot that shows how to add an extension for a virtual machine in the Azure portal." border="false":::
-
-    :::image type="content" source="./media/amd-ext-portal/add-extension-linux.png" alt-text="Screenshot that shows adding a VM extension for the selected VM.":::
+    :::image type="content" source="./media/amd-ext-portal/add-extension-linux.png" alt-text="Screenshot that shows adding a VM extension for the selected VM in the Azure portal." border="false":::
 
 1. Scroll to find and select **AMD GPU Driver Extension**, and then select **Next**.
 
