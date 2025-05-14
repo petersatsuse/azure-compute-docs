@@ -7,7 +7,7 @@ ms.subservice: security
 ms.collection: windows
 ms.topic: troubleshooting
 ms.author: mbaldwin
-ms.date: 02/20/2024
+ms.date: 05/14/2025
 ---
 # Azure Disk Encryption troubleshooting guide
 
