@@ -14,6 +14,7 @@ ms.custom: day0
 
 This article describes what's new for Virtual Machine Scale Sets in Azure.
 
+
 ## Spot Priority Mix for Flexible scale sets
 
 [!INCLUDE [spot-priority-mix](./includes/spot-priority-mix.md)]
@@ -22,4 +23,3 @@ This article describes what's new for Virtual Machine Scale Sets in Azure.
 ## Next steps
 
 For updates and announcements about Azure, see the [Microsoft Azure Blog](https://azure.microsoft.com/blog/).
-
