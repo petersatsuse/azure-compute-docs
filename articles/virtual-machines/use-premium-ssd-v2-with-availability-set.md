@@ -14,7 +14,7 @@ ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, 
 
 Premium SSD v2 managed disks are supported with VMs in availability sets to enhance the high availability and resilience of your applications. When VMs using Premium SSD v2 are part of an availability set, the platform ensures that their disks are automatically distributed across multiple storage Fault Domains (FDs). This distribution minimizes the risk of a single point of failure. 
 
-![A diagram of a computer  AI-generated content may be incorrect.](media/AvSet_Main_Figure.png)
+![A diagram of a computer  AI-generated content may be incorrect.](media/avset_main_figure.png)
 
 Availability sets have fault isolation for many possible failures, to minimize single points of failure and to offer high availability.  If there is a failure in one storage Fault Domain (FD), only the VM instances with Premium SSD v2 disks on that specific Fault Domain are affected. The other VM instances, whose disks are placed on separate Fault Domains, remain unaffected and continue to operate normally. Availability sets are still susceptible to certain shared infrastructure failures, like datacenter network failures, physical hardware failures or power interruptions which can affect multiple fault domains. 
 
@@ -22,7 +22,7 @@ In a production scenario with three VMs deployed in an availability set using Pr
 
 If a Premium SSD v2 disk originally resides in one fault domain but is attached to a VM in another fault domain, the system initiates a background copy process. This operation moves the disk to align with the VM's fault domain, ensuring consistent compute and storage fault domain alignment for improved reliability and availability. 
 
-![A diagram of a computer  AI-generated content may be incorrect.](media/AvSet_Disk_Move_Figure.png)
+![A diagram of a computer  AI-generated content may be incorrect.](media/avset-disk-move-figure.png)
 
 For example, as shown in the diagram above, if a disk located in FD1 is attached to a VM in FD1 and is later detached and attached to a VM in FD2, the system will automatically trigger a background copy of the disk to move it from FD1 to FD2 for compute and storage fault domain alignment. This background move process can take up to 24 hours to complete.  
 
@@ -117,37 +117,37 @@ Update-AzVM -VM $vm -ResourceGroupName $resourceGroupName
 
 ## **Portal:**
 
-### Step 1: Sign in to the [Azure portal](https://portal.azure.com/).
+#### Step 1: Sign in to the [Azure portal](https://portal.azure.com/).
 
-### Step 2: Create an Availability Set with the 'Use managed disk' option set to 'Yes (Aligned)'
+#### Step 2: Create an Availability Set with the 'Use managed disk' option set to 'Yes (Aligned)'
 
-![A screenshot of a computer  AI-generated content may be incorrect.](media/Portal_Step2.png)
+![A screenshot of a computer  AI-generated content may be incorrect.](media/portal-step-two.png)
 
-### Step 3: Navigate to Virtual machines and follow the normal VM creation process.
+#### Step 3: Navigate to Virtual machines and follow the normal VM creation process.
 
-### Step 4: On the Basics page, select a supported region and set Availability options to Availability set.
+#### Step 4: On the Basics page, select a supported region and set Availability options to Availability set.
 
-### Step 5: Select Availability set
+#### Step 5: Select Availability set
 
-![A screenshot of a computer  AI-generated content may be incorrect.](media/Portal_Step5.png)
+![A screenshot of a computer  AI-generated content may be incorrect.](media/portal-step-five.png)
 
-### Step 6: Fill in the rest of the values on the page as you like.
+#### Step 6: Fill in the rest of the values on the page as you like.
 
-### Step 7: Proceed to the Disks page.
+#### Step 7: Proceed to the Disks page.
 
-### Step 8: Under **Data disks** select **Create and attach a new disk**.
+#### Step 8: Under **Data disks** select **Create and attach a new disk**.
 
-![A screenshot of a computer  AI-generated content may be incorrect.](media/Portal_Step8.png)
+![A screenshot of a computer  AI-generated content may be incorrect.](media/portal-step-eight.png)
 
-### Step 9: Select the **Disk SKU** and select **Premium SSD v2**.
+#### Step 9: Select the **Disk SKU** and select **Premium SSD v2**.
 
-![A screenshot of a computer  AI-generated content may be incorrect.](media/Portal_Step9.png)
+![A screenshot of a computer  AI-generated content may be incorrect.](media/portal-step-nine.png)
 
-### Step 10: Select whether you'd like to deploy a 4k or 512 logical sector size.
+#### Step 10: Select whether you'd like to deploy a 4k or 512 logical sector size.
 
-![A screenshot of a computer  AI-generated content may be incorrect.](media/Portal_Step10.png)
+![A screenshot of a computer  AI-generated content may be incorrect.](media/portal-step-ten.png)
 
-### Step 11: Proceed through the rest of the VM deployment, making any choices that you desire.  
+#### Step 11: Proceed through the rest of the VM deployment, making any choices that you desire.  
 
 You've now deployed an Availability Set VM with a premium SSD v2.
 
