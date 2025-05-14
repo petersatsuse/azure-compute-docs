@@ -1,5 +1,5 @@
 ---
-title: Frequently asked questions about standby pools for Azure Container Instances (Preview)
+title: Frequently asked questions about standby pools for Azure Container Instances
 description: Get answers to frequently asked questions for standby pools for Azure Container Instances.
 author: mimckitt
 ms.author: mimckitt
@@ -7,11 +7,11 @@ ms.service: azure-container-instances
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/6/2024
+ms.date: 5/10/2025
 ms.reviewer: tomvcassidy
 ---
 
-# Frequently asked questions about standby pools for Azure Container Instances (Preview)
+# Frequently asked questions about standby pools for Azure Container Instances
 
 > [!IMPORTANT]
 > Standby pools for Azure Container Instances is currently in preview. Previews are made available to you on the condition that you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature may change prior to general availability (GA).
@@ -35,9 +35,6 @@ Ensure you have enough quota to complete the standby pool creation. Insufficient
 
 ### I requested a container from my pool but it created a new container instead. 
 Ensure that the container groups in your standby pool are in the running state before issuing a request. For example, if using a standby If containers are in any other states such as creating or deleting, the container request defaults to creating a new container group from scratch. 
-
-### Can I create a standby pool with containers spread across availability zones? 
-Yes. However, standby pools for Azure Container Instances only currently support creating and requesting containers across availability zones using [REST APIs](/rest/api/standbypool/standby-virtual-machine-pools/create-or-update) using version 2024-08-01.  
 
 
 ## Next steps
