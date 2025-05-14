@@ -34,10 +34,6 @@ There's always a multitude of [design considerations](/azure/architecture/refere
 * The configuration of the virtual machine after it starts
 * The related resources that the virtual machine needs
 
-> [!NOTE]
->
-> Azure now supports enabling [Trusted launch](trusted-launch.md) by default for new [Generation 2](generation-2.md) VM deployments in **Preview**. [Register for Trusted launch default preview](trusted-launch.md#preview-trusted-launch-as-default) to validate the default changes.
-
 ## Parts of a VM and how they're billed
 
 When you create a virtual machine, you're also creating resources that support the virtual machine. These resources come with their own costs that should be considered.

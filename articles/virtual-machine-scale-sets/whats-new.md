@@ -14,10 +14,6 @@ ms.custom: day0
 
 This article describes what's new for Virtual Machine Scale Sets in Azure.
 
-> [!NOTE]
->
-> Azure now supports enabling [Trusted launch](../virtual-machines/trusted-launch.md) by default for new [Generation 2](../virtual-machines/generation-2.md) scale set deployments in **Preview**. [Register for Trusted launch default preview](../virtual-machines/trusted-launch.md#preview-trusted-launch-as-default) to validate the default changes.
-
 ## Spot Priority Mix for Flexible scale sets
 
 [!INCLUDE [spot-priority-mix](./includes/spot-priority-mix.md)]
