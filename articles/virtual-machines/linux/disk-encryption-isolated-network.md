@@ -8,7 +8,7 @@ ms.custom: linux-related-content
 ms.collection: linux
 ms.topic: concept-article
 ms.author: mbaldwin
-ms.date: 02/20/2024
+ms.date: 05/14/2025
 ---
 # Azure Disk Encryption on an isolated network
 
