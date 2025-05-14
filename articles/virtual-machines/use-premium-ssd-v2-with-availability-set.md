@@ -1,6 +1,6 @@
 ---
-title: 
-description: 
+title: use-premium-ssd-v2-with-availability-set
+description: use-premium-ssd-v2-with-availability-set
 author: roygara
 ms.author: vishalprayag
 ms.date: 05/12/2025
@@ -12,19 +12,19 @@ ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, 
 
 ## Introduction:
 
-Premium SSD v2 managed disks are supported with VMs in availability sets to enhance the high availability and resilience of your applications. When VMs using Premium SSD v2 are part of an availability set, the platform ensures that their disks are automatically distributed across multiple storage Fault Domains (FDs). This distribution minimizes the risk of a single point of failure.
+Premium SSD v2 managed disks are supported with VMs in availability sets to enhance the high availability and resilience of your applications. When VMs using Premium SSD v2 are part of an availability set, the platform ensures that their disks are automatically distributed across multiple storage Fault Domains (FDs). This distribution minimizes the risk of a single point of failure. 
 
 ![A diagram of a computer  AI-generated content may be incorrect.](media/image1.png)
 
-Availability sets have fault isolation for many possible failures, to minimize single points of failure and to offer high availability.  If there is a failure in one storage Fault Domain (FD), only the VM instances with Premium SSD v2 disks on that specific Fault Domain are affected. The other VM instances, whose disks are placed on separate Fault Domains, remain unaffected and continue to operate normally. Availability sets are still susceptible to certain shared infrastructure failures, like datacenter network failures, physical hardware failures or power interruptions which can affect multiple fault domains.
+Availability sets have fault isolation for many possible failures, to minimize single points of failure and to offer high availability.  If there is a failure in one storage Fault Domain (FD), only the VM instances with Premium SSD v2 disks on that specific Fault Domain are affected. The other VM instances, whose disks are placed on separate Fault Domains, remain unaffected and continue to operate normally. Availability sets are still susceptible to certain shared infrastructure failures, like datacenter network failures, physical hardware failures or power interruptions which can affect multiple fault domains. 
 
-In a production scenario with three VMs deployed in an availability set using Premium SSD v2 with Fault Domain 3, VMs and disks are distributed across multiple fault domains. If one storage fault domain fails, only the VMs associated with that domain are affected, while the rest remain operational. The unaffected VMs will stay online, preserving the application's availability.
+In a production scenario with three VMs deployed in an availability set using Premium SSD v2 with Fault Domain 3, VMs and disks are distributed across multiple fault domains. If one storage fault domain fails, only the VMs associated with that domain are affected, while the rest remain operational. The unaffected VMs will stay online, preserving the application's availability. 
 
-If a Premium SSD v2 disk originally resides in one fault domain but is attached to a VM in another fault domain, the system initiates a background copy process. This operation moves the disk to align with the VM's fault domain, ensuring consistent compute and storage fault domain alignment for improved reliability and availability.
+If a Premium SSD v2 disk originally resides in one fault domain but is attached to a VM in another fault domain, the system initiates a background copy process. This operation moves the disk to align with the VM's fault domain, ensuring consistent compute and storage fault domain alignment for improved reliability and availability. 
 
 ![A diagram of a computer  AI-generated content may be incorrect.](media/image2.png)
 
-For example, as shown in the diagram above, if a disk located in FD1 is attached to a VM in FD1 and is later detached and attached to a VM in FD2, the system will automatically trigger a background copy of the disk to move it from FD1 to FD2 for compute and storage fault domain alignment. This background move process can take up to 24 hours to complete. 
+For example, as shown in the diagram above, if a disk located in FD1 is attached to a VM in FD1 and is later detached and attached to a VM in FD2, the system will automatically trigger a background copy of the disk to move it from FD1 to FD2 for compute and storage fault domain alignment. This background move process can take up to 24 hours to complete.  
 
 ## Regional availability:
 
@@ -40,7 +40,7 @@ Premium SSD v2 support for VMs in an Availability Set is currently available onl
 -  A subscription must be registered for the required feature to use Premium SSD v2 with VMs in Availability Sets in non-zonal regions. Follow the instructions here to complete the registration.
 - Only one background data copy per disk is allowed at a time. When attaching a disk to a VM in an Availability Set (AvSet), the system may initiate a background copy for Fault Domain (FD) alignment. If a detach-and-attach is attempted during an ongoing move, the operation fails with an error. To avoid this, wait for the move to complete, or set the [OptimizedForFrequentAttach](/dotnet/api/microsoft.azure.management.compute.models.diskupdate.optimizedforfrequentattach) disk property to skip FD-alignment background copies for future attachments. For more information on OptimizedForFrequentAttach, follow the instructions here.
 - A disk created from a snapshot cannot be attached to VMs in an Availability Set while it is still undergoing background data copy from a snapshot. You must wait until the copy process is fully complete before attaching the disk. To check the status of background data copy from a snapshot, follow the instructions [here](/azure/virtual-machines/scripts/create-managed-disk-from-snapshot).
-- ***Disk size increase and changing customer-managed key (CMK) is not supported while a background data copy for Fault Domain alignment is in progress.***
+- Disk size increase and changing customer-managed key (CMK) is not supported while a background data copy for Fault Domain alignment is in progress.
 
 ## **AzureCLI:**
 
