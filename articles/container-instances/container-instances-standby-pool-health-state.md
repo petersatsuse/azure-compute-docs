@@ -18,12 +18,11 @@ The health state of your standby pool provides critical insights into its operat
 
 ## Health state overview
 
-The health state of a standby pool is determined by analyzing various metrics, such as the provisioning status, and system health indicators. The health state of the pool can be in 3 states: Healthy, Failed or Degraded. 
+The health state of a standby pool is determined by analyzing various metrics, such as the provisioning status, and system health indicators. The health state of the pool can be in a Healthy or Degraded state. It is also important to check the provisioning status of your pool resource. The provisioning status can be in creating, deleting, updating, succeeded, or failed. 
 
 | State | Description | 
 |---|---|
 | Healthy | The standby pool is functioning as expected, with all instances in the desired state and no issues detected. The pool is ready to provide instances to the scale set as needed. |
-| Failed | The standby pool has encountered a critical issue that prevents it from operating properly. Instances may fail to be created, or the pool may be unable to fulfill requests. Immediate action is required to resolve the issue. |
 | Degraded | The standby pool is experiencing issues provisioning instances successfully. This may be caused by resource constraints, permission issues, or configuration problems with the individual containers. The pool temporarily pauses instance creation for 30 seconds to allow investigation and resolution. After this pause, the pool will attempt to create resources again. For more information on troubleshooting pool errors, see [Use Azure Log Analytics to monitor standby pool events](container-instances-standby-pools-monitor-pool-events.md). |
 
 ## Retrieve health state using the runtime view API
