@@ -603,7 +603,7 @@ For Windows VMs, Windows CA certificate is built in UEFI firmware. For Linux VMs
 
 For Azure Linux VMs only, `Azure Services Linux Kmod PCA` certificate is also added in UEFI firmware for all Linux distributions. Linux Kmod PCA is used to sign Microsoft owned kernel modules.
 
-Linux Kmod PCA certificate is added to make customer experience smoother when using Microsoft solutions like Azure Site Recovery (ASR) which installs a kernel module. The ASR kernel module loads without any customer action to supply a key as ASR kernel module is signed using the trusted ‘Azure Services Linux Kmod PCA’ certificate.
+Linux Kmod PCA certificate is added to make customer experience smoother when using Microsoft solutions like Azure Site Recovery (Site recovery) which installs a kernel module. The Site recovery kernel module loads without any customer action to supply a key as Site recovery kernel module is signed using the trusted ‘Azure Services Linux Kmod PCA’ certificate.
 
 #### Download instructions
 

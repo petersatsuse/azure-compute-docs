@@ -198,7 +198,7 @@ After registering subscription to preview, setting security type to `Standard` i
 
 To mitigate this limitation, you can [un-register the preview feature](/azure/azure-resource-manager/management/preview-features#unregister-preview-feature) by removing feature flag `TrustedLaunchByDefaultPreview` under `Microsoft.Compute` namespace on given subscription.
 
-:::image type="content" source="./media/trusted-launch/00-tlad-portal-limitation.png" alt-text="Screenshot of the security type drop-down in Portal." lightbox="./media/trusted-launch/00-tlad-portal-limitation.png":::
+:::image type="content" source="./media/trusted-launch/00-trusted-launch-default-portal-limitation.png" alt-text="Screenshot of the security type drop-down in Portal." lightbox="./media/trusted-launch/00-trusted-launch-default-portal-limitation.png":::
 
 ***Unable to re-size VM or VMSS to un-supported Trusted launch VM size family (like M-Series) post default to Trusted launch.***
 
