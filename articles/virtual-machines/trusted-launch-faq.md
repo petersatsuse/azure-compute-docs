@@ -11,8 +11,6 @@ ms.date: 04/21/2025
 ms.custom: template-faq, devx-track-azurecli, devx-track-azurepowershell
 ---
 
-# Trusted Launch FAQ
-
 Frequently asked questions (FAQs) about Azure Trusted Launch feature use cases, support for other Azure features, and fixes for common errors.
 
 ## Use cases
@@ -42,60 +40,9 @@ Trusted launch can be deployed as a standalone VM or as virtual machine scale se
 
 VM Guest State (VMGS) is specific to Trusted Launch VMs. It's a blob managed by Azure and contains the unified extensible firmware interface (UEFI) Secure Boot signature databases and other security information. The lifecycle of the VMGS blob is tied to that of the OS disk.
 
-### Can I disable Trusted Launch for a new VM deployment?
-
-Trusted Launch VMs provide you with foundational compute security. We **strongly** recommend that you don't disable them for new VM or scale set deployments except if your deployments have dependency on:
-
-- [A VM size currently not supported](trusted-launch.md#virtual-machines-sizes)
-- [Unsupported features with Trusted Launch](trusted-launch.md#unsupported-features)
-- [An OS that doesn't support Trusted Launch](trusted-launch.md#operating-systems-supported)
-- [VM used to generate TrustedLaunchSupported Azure compute gallery image](trusted-launch-portal.md#trusted-launch-vm-supported-images)
-
-You can use the `securityType` parameter with the `Standard` value to disable Trusted Launch in new VM or scale set deployments by using Azure PowerShell (v10.3.0+) and the Azure CLI (v2.53.0+).
-
-> [!NOTE]
->
-> - Parameter `securityType` with value `Standard` can be used if subscription has feature flag `UseStandardSecurityType` registered under `Microsoft.Compute` namespace. Refer to [Setup feature in Azure subscription](/azure/azure-resource-manager/management/preview-features) for steps to enable required feature.
-> - We don't recommend disabling Secure Boot unless you're using custom unsigned kernel or drivers.
-
-If you need to disable Secure Boot, under the VM's configuration, clear the **Enable Secure Boot** option.
-
-#### [Template](#tab/template)
-
-Sample `securityProfile` element of ARM template for using `securityType` parameter with value `Standard`
-
-```json
-"securityProfile": {
-    "securityType": "Standard",
-    "uefiSettings": "[null()]"
-}
-```
-
-#### [CLI](#tab/cli)
-
-```azurecli
-az vm create -n MyVm -g MyResourceGroup --image Ubuntu2204 `
-    --security-type 'Standard'
-```
-
-#### [PowerShell](#tab/PowerShell)
-
-```azurepowershell
-$adminUsername = <USER NAME>
-$adminPassword = <PASSWORD> | ConvertTo-SecureString -AsPlainText -Force
-$vmCred = New-Object System.Management.Automation.PSCredential($adminUsername, $adminPassword)
-New-AzVM -Name MyVm -Credential $vmCred -SecurityType Standard
-```
-
----
-
 ## Supported features and deployments
 
 This section discusses Trusted Launch supported features and deployments.
-
-### What is Trusted Launch as default?
-
-Trusted launch as default (TLaD) is currently in preview for all clients AND generally available for Azure portal, PowerShell, and CLI. For more information, see [Trusted launch default (Preview)](trusted-launch.md#preview-trusted-launch-as-default).
 
 ### Is Azure Compute Gallery supported by Trusted Launch?
 
@@ -405,6 +352,89 @@ Architecture      : x64
 ### How do external communication drivers work with Trusted Launch VMs?
 
 Adding component object model (COM) ports require that you disable Secure Boot. COM ports are disabled by default in Trusted Launch VMs.
+
+## Trusted launch as default (TLaD)
+
+### What is Trusted Launch as default?
+
+Trusted launch as default (TLaD) is currently in preview for all clients AND generally available for Azure portal, PowerShell, and CLI. For more information, see [Trusted launch default (Preview)](trusted-launch.md#preview-trusted-launch-as-default).
+
+### Does TLaD impacts existing VM & scale sets?
+
+Trusted launch as default won't change existing Azure VMs, scale sets already running in your environment
+
+### Do I need to update my automation scripts or deployment templates?
+
+You need to update the API versions for following resource providers to validate the Trusted launch default end to end experience as part of the preview:
+
+- `Microsoft.Compute/virtualMachines` – API version `2021-11-01` or higher.
+- `Microsoft.Compute/virtualMachineScaleSets` – API version `2021-11-01` or higher.
+
+### I'm currently using Gen2 VM or scale set without Trusted Launch and would like to continue using Non-Trusted Launch configuration after the TLaD general availability
+
+Trusted Launch VMs provide you with foundational compute security at no extra cost. We strongly recommend that you don't disable them for new VM or scale set deployments. Reach out to us at [Trusted launch default feedback](https://aka.ms/TrustedLaunchDefault/Feedback).
+
+See [Can I disable Trusted launch for new deployment](trusted-launch-faq.md#can-i-disable-trusted-launch-for-a-new-vm-deployment) if you explicitly need to disable Trusted launch.
+
+### What could be possible situations where I must bypass Trusted launch defaults for VM or scale set?
+
+You need to explicitly bypass Trusted launch default if one of the following scenarios applies to your Gen2 VM or scale set deployments:
+
+- Gen2 VM is used to generate `TrustedLaunchSupported` or `TrustedLaunchAndConfidentialVMSupported` or `ConfidentialVMSupported` [Azure compute gallery](azure-compute-gallery.md) images via [Azure image builder (AIB)](image-builder-overview.md) or Packer. OR,
+- Gen2 VM is used to create [managed images*](capture-image-resource.md). OR,
+- Gen2 Linux VM requires [Hibernation](hibernate-resume.md) enabled.
+
+> [!NOTE]
+>
+> If deployment is dependent on managed images, for the most current technology, you're encouraged to use [Azure Compute Gallery](azure-compute-gallery.md). All new features, like ARM64, Trusted Launch, and Confidential VM are only supported through Azure Compute Gallery. If you have an existing managed image, you can [migrate it to Azure compute gallery](/migration/migration-managed-image-to-compute-gallery.md)
+
+
+### Can I disable Trusted Launch for a new VM deployment?
+
+Trusted Launch VMs provide you with foundational compute security. We **strongly** recommend that you don't disable them for new VM or scale set deployments except if your deployments have dependency on:
+
+- [A VM size currently not supported](trusted-launch.md#virtual-machines-sizes)
+- [Unsupported features with Trusted Launch](trusted-launch.md#unsupported-features)
+- [An OS that doesn't support Trusted Launch](trusted-launch.md#operating-systems-supported)
+- [VM used to generate TrustedLaunchSupported Azure compute gallery image](trusted-launch-portal.md#trusted-launch-vm-supported-images)
+
+You can use the `securityType` parameter with the `Standard` value to disable Trusted Launch in new VM or scale set deployments by using Azure PowerShell (v10.3.0+) and the Azure CLI (v2.53.0+).
+
+> [!NOTE]
+>
+> - Parameter `securityType` with value `Standard` can be used if subscription has feature flag `UseStandardSecurityType` registered under `Microsoft.Compute` namespace. Refer to [Setup feature in Azure subscription](/azure/azure-resource-manager/management/preview-features) for steps to enable required feature.
+> - We don't recommend disabling Secure Boot unless you're using custom unsigned kernel or drivers.
+
+If you need to disable Secure Boot, under the VM's configuration, clear the **Enable Secure Boot** option.
+
+#### [Template](#tab/template)
+
+Sample `securityProfile` element of ARM template for using `securityType` parameter with value `Standard`
+
+```json
+"securityProfile": {
+    "securityType": "Standard",
+    "uefiSettings": "[null()]"
+}
+```
+
+#### [CLI](#tab/cli)
+
+```azurecli
+az vm create -n MyVm -g MyResourceGroup --image Ubuntu2204 `
+    --security-type 'Standard'
+```
+
+#### [PowerShell](#tab/PowerShell)
+
+```azurepowershell
+$adminUsername = <USER NAME>
+$adminPassword = <PASSWORD> | ConvertTo-SecureString -AsPlainText -Force
+$vmCred = New-Object System.Management.Automation.PSCredential($adminUsername, $adminPassword)
+New-AzVM -Name MyVm -Credential $vmCred -SecurityType Standard
+```
+
+---
 
 ## Troubleshooting issues
 

@@ -190,9 +190,25 @@ The deployment won't default to Trusted launch if one ore more of the listed con
 
 You can choose to explicitly bypass default for VM & scale set deployment by setting `Standard` as value of parameter `securityType`. For more information, see [Can I disable Trusted Launch for a new VM deployment](trusted-launch-faq.md#can-i-disable-trusted-launch-for-a-new-vm-deployment).
 
+#### Known limitations
+
+***Unable to bypass Trusted launch default and create Gen2 (Non-Trusted launch) VM using Azure portal after registering to preview.***
+
+After registering subscription to preview, setting security type to `Standard` in Azure portal will deploy the VM or scale set `Trusted launch`. This limitation will be addressed prior to the Trusted launch default general availability.
+
+To mitigate this limitation, you can [un-register the preview feature](/azure/azure-resource-manager/management/preview-features#unregister-preview-feature) by removing feature flag `TrustedLaunchByDefaultPreview` under `Microsoft.Compute` namespace on given subscription.
+
+:::image type="content" source="./media/trusted-launch/00-tlad-portal-limitation.png" alt-text="Screenshot of the security type drop-down in Portal." lightbox="./media/trusted-launch/00-tlad-portal-limitation.png":::
+
+***Unable to re-size VM or VMSS to un-supported Trusted launch VM size family (like M-Series) post default to Trusted launch.***
+
+Re-sizing Trusted launch VM to [VM size family not supported with Trusted launch](trusted-launch.md#virtual-machines-sizes) will not be supported.
+
+As mitigation, please register feature flag `UseStandardSecurityType` under `Microsoft.Compute` namespace AND roll-back VM from Trusted launch to Gen2-only (Non-Trusted launch) by setting `securityType = Standard` using available client tools (except Azure portal).
+
 ### TLaD preview feedback
 
-Reach out to us with any feedback, queries, or concerns regarding this upcoming change at [Trusted launch default preview feedback survey](https://aka.ms/TrustedLaunchDefaultFeedback).
+Reach out to us with any feedback, queries, or concerns regarding this upcoming change at [Trusted launch default preview feedback survey](https://aka.ms/TrustedLaunchDefault/Feedback).
 
 ### Disable TLaD preview
 
