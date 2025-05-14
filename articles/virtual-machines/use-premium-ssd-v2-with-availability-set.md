@@ -1,8 +1,8 @@
 ---
-title: use-premium-ssd-v2-with-availability-set
-description: use-premium-ssd-v2-with-availability-set
-author: roygara
-ms.author: vishalprayag
+title: Use Premium SSD v2 with VMs in availability set
+description: Instructions on how to use Premium SSD v2 with VMs in availability set
+author: vishalprayag
+ms.author: roygara 
 ms.date: 05/12/2025
 ms.topic: how-to
 ms.service: azure-disk-storage
@@ -14,7 +14,7 @@ ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, 
 
 Premium SSD v2 managed disks are supported with VMs in availability sets to enhance the high availability and resilience of your applications. When VMs using Premium SSD v2 are part of an availability set, the platform ensures that their disks are automatically distributed across multiple storage Fault Domains (FDs). This distribution minimizes the risk of a single point of failure. 
 
-![Diagram Showing AvSet with Managed Disk FD alignment Setup](media/avset_main_figure.png)
+:::image type="content" source="media/avset-main-figure.png" alt-text="Diagram Showing AvSet with Managed Disk FD alignment Setup." lightbox="media/avset-main-figure.png":::
 
 Availability sets have fault isolation for many possible failures, to minimize single points of failure and to offer high availability.  If there is a failure in one storage Fault Domain (FD), only the VM instances with Premium SSD v2 disks on that specific Fault Domain are affected. The other VM instances, whose disks are placed on separate Fault Domains, remain unaffected and continue to operate normally. Availability sets are still susceptible to certain shared infrastructure failures, like datacenter network failures, physical hardware failures or power interruptions which can affect multiple fault domains. 
 
@@ -22,7 +22,7 @@ In a production scenario with three VMs deployed in an availability set using Pr
 
 If a Premium SSD v2 disk originally resides in one fault domain but is attached to a VM in another fault domain, the system initiates a background copy process. This operation moves the disk to align with the VM's fault domain, ensuring consistent compute and storage fault domain alignment for improved reliability and availability. 
 
-![Diagram showing Disk Move for FD alignment in an AvSet](media/avset-disk-move-figure.png)
+:::image type="content" source="media/avset-disk-move-figure.png" alt-text="Diagram Showing AvSet with Managed Disk FD alignment Setup." lightbox="media/avset-disk-move-figure.png":::
 
 For example, as shown in the diagram above, if a disk located in FD1 is attached to a VM in FD1 and is later detached and attached to a VM in FD2, the system will automatically trigger a background copy of the disk to move it from FD1 to FD2 for compute and storage fault domain alignment. This background move process can take up to 24 hours to complete.  
 
@@ -44,111 +44,132 @@ Premium SSD v2 support for VMs in an Availability Set is currently available onl
 - A disk created from a snapshot cannot be attached to VMs in an Availability Set while it is still undergoing background data copy from a snapshot. You must wait until the copy process is fully complete before attaching the disk. To check the status of background data copy from a snapshot, follow the instructions [here](/azure/virtual-machines/scripts/create-managed-disk-from-snapshot).
 - Disk size increase and changing customer-managed key (CMK) is not supported while a background data copy for Fault Domain alignment is in progress.
 
-## **AzureCLI:**
 
-### Create new VMs in an Availability Set using Premium SSD v2:  
 
-#### Step 1: Create a resource group:  
+### [Azure CLI](#tab/CLI)
+ 
+* Create a resource group:
+ 
+```azurecli-interactive
 
-az group create --name myResourceGroup --location myLocation  
+az group create --name myResourceGroup --location myLocation 
 
-#### Step 2: Check number of Fault domains supported in your region
-The number of Storage Fault domains varies by region. The following command retrieves a list of fault domains per region:  
+```
+ 
+The number of Storage Fault domains varies by region. The following command retrieves a list of fault domains per region:
 
-az vm list-skus --resource-type availabilitySets --query '[?name==`Aligned`].{Location:locationInfo[0].location, MaximumFaultDomainCount:capabilities[0].value}' -o Table 
+```azurecli-interactive
 
-#### Step 3: Create the availability set:   
+az vm list-skus --resource-type availabilitySets --query '[?name==`Aligned`].{Location:locationInfo[0].location,  MaximumFaultDomainCount:capabilities[0].value}' -o Table 
 
-az vm availability-set create -n myAvSet -g myResourceGroup --platform-fault-domain-count 3 --platform-update-domain-count 20  
+```
+ 
+* Create the availability set:  
+ 
+```azurecli-interactive
 
-Note: The value for 'platform-fault-domain-count' should be determined based on the number of available Storage Fault Domains in a given region. Please follow Step 2 to determine the number of available Fault Domains per region.  
+az vm availability-set create -n myAvSet -g myResourceGroup --platform-fault-domain-count 3 --platform-update-domain-count 20
 
-#### Step 4: Create a VM:  
+```
+ 
+> [!Note]
+> The value for *platform-fault-domain-count* should be determined based on the number of available Storage Fault Domains in a given region. Please follow Step b to determine the number of available Fault Domains per region.
+ 
+* Create a VM:
+ 
+```azurecli-interactive
 
-az vm create -n myVMname -g myResourceGroupName --availability-set myAvSetName --image Win2016Datacenter --count MyCount  
+az vm create -n myVMname -g myResourceGroupName --availability-set myAvSetName --image Win2016Datacenter --count MyCount 
 
-#### Step 5: Attach a new premium SSD v2 disk to existing VMs in an availability set  
+```
+ 
+* Attach a new premium SSD v2 disk to existing VMs in an availability set
+ 
+```azurecli-interactive
 
-az vm disk attach -g MyResourceGroupName --vm-name MyVMname --name MyDiskName --new --sku PremiumV2_LRS --size-gb MySize  
+az vm disk attach -g MyResourceGroupName --vm-name MyVMname --name MyDiskName --new --sku PremiumV2_LRS --size-gb MySize
 
-### Attach existing Premium SSD v2 disk to existing VMs in an Availability Set: 
+```
+ 
+* Attach existing Premium SSD v2 disk to existing VMs in an Availability Set:
+ 
+```azurecli-interactive
 
-az vm disk attach -g MyResourceGroupName --vm-name MyVMname --disks MyDiskName  
+az vm disk attach -g MyResourceGroupName --vm-name MyVMname --disks MyDiskName
+ 
 
-## **PowerShell:**
+### [PowerShell](#tab/PowerShell)
+ 
+* Create a resource group:
+ 
+```powershell
+New-AzResourceGroup -Name myResourceGroup -Location myLocation
+```
+ 
+The number of Storage Fault domains varies by region. The following command retrieves a list of fault domains per region:
+ 
+```powershell
+Get*-AzComputeResourceSku | Where-Object {$_.ResourceType -eq 'availabilitySets' -and $_.Name -eq 'Aligned'} | Select-Object @{Name='Location'; Expression={$_.locationInfo[0].location}}, @{Name='MaximumFaultDomainCount'; Expression={$_.capabilities[0].value}}* 
+```
+* Create the availability set:  
+ 
+> [!Note]
+> The value for *platform-fault-domain-count* should be determined based on the number of available Storage Fault Domains in a given region. Please follow Step b to determine the number of available Fault Domains per region.
+ 
+* Create a VM:
+```powershell
+New-AzVm 
+ResourceGroupName $resourceGroupName 
+Name $vmName 
+Location $region  
+Image $vmImage `
+Size $vmSize 
+AvailabilitySetName $AvSetName` 
+Credential $credential
+```
+* Attach existing Premium SSD v2 disk to existing VMs in an Availability Set:
+ 
+```powershell
+$vm = Get-AzVM -ResourceGroupName $resourceGroupName -Name $vmName
+$disk = Get-AzDisk -ResourceGroupName $resourceGroupName -Name $diskName
+$vm = Add-AzVMDataDisk -VM $vm -Name $diskName -CreateOption Attach -ManagedDiskId $disk.Id -Lun $lun
+Update-AzVM -VM $vm -ResourceGroupName $resourceGroupName
+```
 
-### Create new VMs in an Availability Set using Premium SSD v2: 
-
-#### Step 1: Create a resource group:  
-New-AzResourceGroup -Name myResourceGroup -Location myLocation  
-
-#### Step 2: Check number of Fault domains supported in your region
-The number of Storage Fault domains varies by region. The following command retrieves a list of fault domains per region:  
-
-Get-AzComputeResourceSku | Where-Object {$_.ResourceType -eq 'availabilitySets' -and $_.Name -eq 'Aligned'} | Select-Object @{Name='Location'; Expression={$_.locationInfo[0].location}}, @{Name='MaximumFaultDomainCount'; Expression={$_.capabilities[0].value}}  
-
-##### Step 3: Create the availability set:   
-
-New-AzAvailabilitySet -Name myAvSetName -ResourceGroupName myResourceGroup -Sku aligned -PlatformFaultDomainCount 3 -PlatformUpdateDomainCount 20 -Location myLocation  
-
-Note: The value for 'platform-fault-domain-count' should be determined based on the number of available Storage Fault Domains in a given region. Please follow Step b to determine the number of available Fault Domains per region.  
-
-##### Step 4: Create a VM: 
-
-New-AzVm ` 
--ResourceGroupName $resourceGroupName ` 
--Name $vmName ` 
--Location $region ` 
--Image $vmImage ` 
--Size $vmSize ` 
--AvailabilitySetName $AvSetName ` 
--Credential $credential 
-
-#### Step 5: Attach a new premium SSD v2 disk to existing VMs in an availability set: 
-$vm = Get-AzVM -ResourceGroupName $resourceGroupName -Name $vmName 
-$vm = Add-AzVMDataDisk -VM $vm -Name $diskName -CreateOption Empty -StorageAccountType PremiumV2_LRS  -Lun $lun 
-Update-AzVM -VM $vm -ResourceGroupName $resourceGroupName 
-
-### Attach existing Premium SSD v2 disk to existing VMs in an Availability Set: 
-$vm = Get-AzVM -ResourceGroupName $resourceGroupName -Name $vmName 
-$disk = Get-AzDisk -ResourceGroupName $resourceGroupName -Name $diskName 
-$vm = Add-AzVMDataDisk -VM $vm -Name $diskName -CreateOption Attach -ManagedDiskId $disk.Id -Lun $lun 
-Update-AzVM -VM $vm -ResourceGroupName $resourceGroupName 
-
-## **Portal:**
-
-#### Step 1: Sign in to the [Azure portal](https://portal.azure.com/).
-
-#### Step 2: Create an Availability Set with the 'Use managed disk' option set to 'Yes (Aligned)'
-
-![Diagram showing Stpe 2 of VMs in AvSet with Pv2 deploymnet via portal](media/portal-step-two.png)
-
-#### Step 3: Navigate to Virtual machines and follow the normal VM creation process.
-
-#### Step 4: On the Basics page, select a supported region and set Availability options to Availability set.
-
-#### Step 5: Select Availability set
-
-![Diagram showing Stpe 5 of VMs in AvSet with Pv2 deploymnet via portal](media/portal-step-five.png)
-
-#### Step 6: Fill in the rest of the values on the page as you like.
-
-#### Step 7: Proceed to the Disks page.
-
-#### Step 8: Under **Data disks** select **Create and attach a new disk**.
-
-![Diagram showing Stpe 8 of VMs in AvSet with Pv2 deploymnet via portal](media/portal-step-eight.png)
-
-#### Step 9: Select the **Disk SKU** and select **Premium SSD v2**.
-
-![Diagram showing Stpe 9 of VMs in AvSet with Pv2 deploymnet via portal](media/portal-step-nine.png)
-
-#### Step 10: Select whether you'd like to deploy a 4k or 512 logical sector size.
-
-![Diagram showing Stpe 10 of VMs in AvSet with Pv2 deploymnet via portal](media/portal-step-ten.png)
-
-#### Step 11: Proceed through the rest of the VM deployment, making any choices that you desire.  
-
+### [Portal](#tab/Portal)
+ 
+* Sign in to the [Azure portal](https://portal.azure.com/).
+ 
+* Create an Availability Set with the 'Use managed disk' option set to 'Yes (Aligned)'
+ 
+:::image type="content" source="media/portal-step-two.png" alt-text="Diagram showing the Azure Portal screen to create an availability set." lightbox="media/portal-step-two.png":::
+ 
+* Navigate to virtual machines and follow the normal VM creation process.
+ 
+* On the **Basics** page, select a supported region and set availability options to Availability set.
+ 
+* Select an Availability set
+ 
+:::image type="content" source="media/portal-step-five.png" alt-text="Diagram showing the Azure Portal screen to select an availability set." lightbox="media/portal-step-five.png":::
+ 
+* Fill in the rest of the values on the page as you like.
+ 
+* Proceed to the Disks page.
+ 
+* Under **Data disks** select **Create and attach a new disk**.
+ 
+:::image type="content" source="media/portal-step-eight.png" alt-text="Diagram showing the Azure Portal screen to create and attach a new disk." lightbox="media/portal-step-eight.png":::
+ 
+* Select the **Disk SKU** and select **Premium SSD v2**.
+ 
+:::image type="content" source="media/portal-step-nine.png" alt-text="Diagram showing the Azure Portal screen to select disk SKU." lightbox="media/portal-step-nine.png":::
+ 
+* Select logical sector of your choice to deploy a 4k or 512.
+ 
+:::image type="content" source="media/portal-step-ten.png" alt-text="Diagram showing the Azure Portal screen to select logical sector." lightbox="media/portal-step-ten.png":::
+ 
+* Proceed through the rest of the VM deployment, making any choices that you desire.
+  
 You've now deployed an Availability Set VM with a premium SSD v2.
 
 ## Register Premium SSD v2 with VMs in Availability Sets in supported Non-Zonal Regions:
