@@ -22,7 +22,7 @@ In a production scenario with three VMs deployed in an availability set using Pr
 
 If a Premium SSD v2 disk originally resides in one fault domain but is attached to a VM in another fault domain, the system initiates a background copy process. This operation moves the disk to align with the VM's fault domain, ensuring consistent compute and storage fault domain alignment for improved reliability and availability. 
 
-:::image type="content" source="media/avset-disk-move-figure.png" alt-text="Diagram Showing AvSet with Managed Disk FD alignment Setup." lightbox="media/avset-disk-move-figure.png":::
+:::image type="content" source="media/avset-disk-move-figure.png" alt-text="Diagram Showing AvSet with Managed Disk FD alignment Disk Move." lightbox="media/avset-disk-move-figure.png":::
 
 For example, as shown in the diagram above, if a disk located in FD1 is attached to a VM in FD1 and is later detached and attached to a VM in FD2, the system will automatically trigger a background copy of the disk to move it from FD1 to FD2 for compute and storage fault domain alignment. This background move process can take up to 24 hours to complete.  
 
