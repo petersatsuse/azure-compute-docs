@@ -11,6 +11,8 @@ ms.date: 04/21/2025
 ms.custom: template-faq, devx-track-azurecli, devx-track-azurepowershell
 ---
 
+# Trusted launch FAQs
+
 Frequently asked questions (FAQs) about Azure Trusted Launch feature use cases, support for other Azure features, and fixes for common errors.
 
 ## Use cases
@@ -381,13 +383,12 @@ See [Can I disable Trusted launch for new deployment](trusted-launch-faq.md#can-
 You need to explicitly bypass Trusted launch default if one of the following scenarios applies to your Gen2 VM or scale set deployments:
 
 - Gen2 VM is used to generate `TrustedLaunchSupported` or `TrustedLaunchAndConfidentialVMSupported` or `ConfidentialVMSupported` [Azure compute gallery](azure-compute-gallery.md) images via [Azure image builder (AIB)](image-builder-overview.md) or Packer. OR,
-- Gen2 VM is used to create [managed images*](capture-image-resource.md). OR,
+- Gen2 VM is used to create [managed images*](capture-image-portal.md). OR,
 - Gen2 Linux VM requires [Hibernation](hibernate-resume.md) enabled.
 
 > [!NOTE]
 >
-> If deployment is dependent on managed images, for the most current technology, you're encouraged to use [Azure Compute Gallery](azure-compute-gallery.md). All new features, like ARM64, Trusted Launch, and Confidential VM are only supported through Azure Compute Gallery. If you have an existing managed image, you can [migrate it to Azure compute gallery](/migration/migration-managed-image-to-compute-gallery.md)
-
+> If deployment is dependent on managed images, for the most current technology, you're encouraged to use [Azure Compute Gallery](azure-compute-gallery.md). All new features, like ARM64, Trusted Launch, and Confidential VM are only supported through Azure Compute Gallery. If you have an existing managed image, you can [migrate it to Azure compute gallery](./migration/migration-managed-image-to-compute-gallery.md)
 
 ### Can I disable Trusted Launch for a new VM deployment?
 
