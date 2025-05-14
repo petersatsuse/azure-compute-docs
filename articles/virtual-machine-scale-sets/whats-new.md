@@ -23,3 +23,4 @@ This article describes what's new for Virtual Machine Scale Sets in Azure.
 ## Next steps
 
 For updates and announcements about Azure, see the [Microsoft Azure Blog](https://azure.microsoft.com/blog/).
+
