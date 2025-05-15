@@ -21,7 +21,7 @@ Standby pools for Azure Container Instances enable you to create a pool of pre-p
 :::image type="content" source="media/container-instances-standby-pools/standby-pool-aci-workflow-diagram.png" alt-text="Diagram of the workflow of creating a container using the traditional path vs the standby pool path.":::
 
 ## Limitations
-Creating and managing a standby pool for Azure Container Instances is not yet available in the Azure portal. 
+Creating and managing a standby pool for Azure Container Instances isn't yet available in the Azure portal. 
 
 ## Prerequisites
 
@@ -34,20 +34,19 @@ Register-AzResourceProvider -ProviderNamespace Microsoft.StandbyPool
 Register-AzProviderFeature -FeatureName StandbyContainerGroupPoolPreview -ProviderNamespace Microsoft.StandbyPool
 ```
 
-### Role-based Access Control Permissions
+### Configure Role-based Access Control Permissions
 To allow standby pools to create and manage container instances in your subscription, assign the appropriate permissions to the standby pool resource provider. For more detailed steps and information, see [configure role permissions for standby pools in Azure Container Instances](container-instances-standby-pool-configure-permissions.md).
 
 ## Using a container from the standby pool
 
 When you require a new container group, you can immediately pull one from the standby pool that is provisioned and running. 
 
-Standby pools only gives out container groups from the pool that are fully provisioned and ready to receive work. For example, when the instances in your pool are still being initialized, they aren't in the running state and are't given out when a container is requested. If no instances in the pool are available, Azure Container Instances will default back to net new container group creation. 
+Standby pools only give out container groups from the pool that are fully provisioned and ready to receive work. For example, when the instances in your pool are still being initialized, they aren't in the running state and are't given out when a container is requested. If no instances in the pool are available, Azure Container Instances will default back to net new container group creation. 
 
 ## Standby pool size
 The number of container groups in a standby pool is determined by setting the `maxReadyCapacity` parameter. When a container group is consumed from the pool, the standby pool automatically begins to refill ensuring that your standby pool maintains the set maximum ready capacity.
 
 Currently, the only available refill policy for standby pools on Azure Container instances is `Always`. 
-
 
 | Setting | Description | 
 |---|---|
@@ -159,7 +158,7 @@ For more information, see [use config maps](container-instances-config-map.md).
 Standby pools for Azure container instances support confidential containers. To utilize [confidential containers](container-instances-confidential-overview.md) update the `sku` type to `Confidential` in the container group profile.
 
 > [!IMPORTANT] 
-> Values passed using config maps are not included in the security policy or validated by the runtime before the file mount is made available to the container. Any values that could have an impact to data or application security cannot be trusted by the application during execution and instead should be made available to the container using environment variables.
+> Values passed using config maps are not included in the security policy or validated by the runtime before the file mount is made available to the container. Any values that could have an impact to data or application security can't be trusted by the application during execution and instead should be made available to the container using environment variables.
 
 
 ```json
@@ -206,7 +205,7 @@ Standby pools for Azure container instances support confidential containers. To 
 ```
 
 ## Availability zones
-Standby pools for Azure Container Instances supports creating and requesting containers across availability zones. To create a standby pool with instances in specific zones, simply specify the `zones` paramater in the standby pool create request. 
+Standby pools for Azure Container Instances supports creating and requesting containers across availability zones. To create a standby pool with instances in specific zones, specify the `zones` paramater in the standby pool create request. 
 
 ### [CLI](#tab/cli)
 
