@@ -37,10 +37,9 @@ The Key Vault VM extension supports the following certificate content types:
 > [!NOTE]
 > The Key Vault VM extension downloads all certificates to the Windows certificate store or to the location specified in the `certificateStoreLocation` property in the VM extension settings. 
 
-## Updates in Version 3.0+
+## Features
 
-Version 3.0 of the Key Vault VM extension for Windows adds support for the following features:
-
+The Key Vault VM extension for Windows version 3.0 supports:
 - Add ACL permissions to downloaded certificates
 - Enable Certificate Store configuration per certificate
 - Export private keys
@@ -97,8 +96,6 @@ The following JSON shows the schema for the Key Vault VM extension. Before you c
 
    This property specifies the identity to use for authentication to Key Vault. Define this property with a system-assigned identity to avoid issues with a VM extension with multiple identities. 
 
-### [Version-3.0](#tab/version3)  
-
 ```json
 {
    "type": "Microsoft.Compute/virtualMachines/extensions",
@@ -144,47 +141,9 @@ The following JSON shows the schema for the Key Vault VM extension. Before you c
 }
 ```
 
-### [Version-1.0](#tab/version1)  
-
-```json
-{
-   "type": "Microsoft.Compute/virtualMachines/extensions",
-   "name": "KVVMExtensionForWindows",
-   "apiVersion": "2022-08-01",
-   "location": "<location>",
-   "dependsOn": [
-      "[concat('Microsoft.Compute/virtualMachines/', <vmName>)]"
-   ],
-   "properties": {
-      "publisher": "Microsoft.Azure.KeyVault",
-      "type": "KeyVaultForWindows",
-      "typeHandlerVersion": "1.0",
-      "autoUpgradeMinorVersion": true,
-      "settings": {
-         "secretsManagementSettings": {
-            "pollingIntervalInS": <A string that specifies the polling interval in seconds. Example: "3600">,
-            "certificateStoreName": <The certificate store name. Example: "MY">,
-            "linkOnRenewal": <Windows only. Ensures s-channel binding when the certificate renews without necessitating redeployment. Example: true>,
-            "certificateStoreLocation": <The certificate store location, which currently works locally only. Example: "LocalMachine">,
-            "requireInitialSync": <Require an initial synchronization of the certificates. Example: true>,
-            "observedCertificates": <A string array of KeyVault URIs that represent the monitored certificates. Example: "[https://myvault.vault.azure.net/secrets/mycertificate"]>
-         },
-         "authenticationSettings": {
-            "msiEndpoint":  <Required when the msiClientId property is used. Specifies the MSI endpoint. Example for most Azure VMs: "http://169.254.169.254/metadata/identity/oauth2/token">,
-            "msiClientId":  <Required when the VM has any user assigned identities. Specifies the MSI identity. Example: "00001111-aaaa-2222-bbbb-3333cccc4444">
-         }
-      }
-   }
-}
-```
-
----
-
 ## Property values
 
 The JSON schema includes the following properties.
-
-### [Version-3.0](#tab/version3)  
 
 | Name | Value/Example | Data type |
 | --- | --- | --- |
@@ -204,25 +163,6 @@ The JSON schema includes the following properties.
 | `msiEndpoint` | "http://169.254.169.254/metadata/identity/oauth2/token" | string |
 | `msiClientId` | 00001111-aaaa-2222-bbbb-3333cccc4444 | string |
 
-### [Version-1.0](#tab/version1)
-
-| Name | Value/Example | Data type |
-| --- | --- | --- |
-| `apiVersion` | 2022-08-01 | date |
-| `publisher` | Microsoft.Azure.KeyVault | string |
-| `type` | KeyVaultForWindows | string |
-| `typeHandlerVersion` | "1.0" | string |
-| `pollingIntervalInS` | "3600" | string |
-| `certificateStoreName` | MY | string |
-| `linkOnRenewal` | true | boolean |
-| `certificateStoreLocation`  | LocalMachine or CurrentUser (case sensitive) | string |
-| `requireInitialSync` | false | boolean |
-| `observedCertificates`  | ["https://myvault.vault.azure.net/secrets/mycertificate", <br> "https://myvault.vault.azure.net/secrets/mycertificate2"] | string array
-| `msiEndpoint` | "http://169.254.169.254/metadata/identity/oauth2/token" | string |
-| `msiClientId` | 00001111-aaaa-2222-bbbb-3333cccc4444 | string |
-
----
-
 ## Template deployment
 
 Azure VM extensions can be deployed with Azure Resource Manager (ARM) templates. Templates are ideal when deploying one or more virtual machines that require post deployment refresh of certificates. The extension can be deployed to individual VMs or Virtual Machine Scale Sets instances. The schema and configuration are common to both template types. 
@@ -230,8 +170,6 @@ Azure VM extensions can be deployed with Azure Resource Manager (ARM) templates.
 The JSON configuration for a key vault extension is nested inside the VM or Virtual Machine Scale Sets template. For a VM resource extension, the configuration is nested under the `"resources": []` virtual machine object. For a Virtual Machine Scale Sets instance extension, the configuration is nested under the `"virtualMachineProfile":"extensionProfile":{"extensions" :[]` object.
 
 The following JSON snippets provide example settings for an ARM template deployment of the Key Vault VM extension.
-
-### [Version-3.0](#tab/version3)  
 
 ```json
 {
@@ -282,41 +220,6 @@ The following JSON snippets provide example settings for an ARM template deploym
 }
 ```
 
-### [Version-1.0](#tab/version1)  
-
-```json
-{
-   "type": "Microsoft.Compute/virtualMachines/extensions",
-   "name": "KeyVaultForWindows",
-   "apiVersion": "2022-08-01",
-   "location": "<location>",
-   "dependsOn": [
-      "[concat('Microsoft.Compute/virtualMachines/', <vmName>)]"
-   ],
-   "properties": {
-      "publisher": "Microsoft.Azure.KeyVault",
-      "type": "KeyVaultForWindows",
-      "typeHandlerVersion": "1.0",
-      "autoUpgradeMinorVersion": true,
-      "settings": {
-         "secretsManagementSettings": {
-            "pollingIntervalInS": <A string that specifies the polling interval in seconds. Example: "3600">,
-            "linkOnRenewal": <Windows only. Ensures s-channel binding when the certificate renews without necessitating redeployment. Example: true>,          
-            "certificateStoreName": <The certificate store name. Example: "MY">,
-            "certificateStoreLocation": <The certificate store location, which currently works locally only. Example: "LocalMachine">,
-            "observedCertificates": <A string array of KeyVault URIs that represent monitored certificates. Example: ["https://myvault.vault.azure.net/secrets/mycertificate", "https://myvault.vault.azure.net/secrets/mycertificate2"]>
-         },
-         "authenticationSettings": {
-            "msiEndpoint":  <Required when the msiClientId property is used. Specifies the MSI endpoint. Example for most Azure VMs: "http://169.254.169.254/metadata/identity/oauth2/token">,
-            "msiClientId":  <Required when the VM has any user assigned identities. Specifies the MSI identity. Example:  "00001111-aaaa-2222-bbbb-3333cccc4444">  
-         }
-      }
-   }
-}
-```
-
----
-
 ### Extension dependency ordering
 
 You can enable the Key Vault VM extension to support extension dependency ordering. By default, the Key Vault VM extension reports a successful start as soon as polling begins. However, you can configure the extension to report a successful start only after the extension downloads and installs all certificates.
@@ -344,8 +247,6 @@ For more information on how to set up dependencies between extensions, see [Sequ
 The Azure Key Vault VM extension can be deployed with Azure PowerShell. Save Key Vault VM extension settings to a JSON file (settings.json). 
 
 The following JSON snippets provide example settings for deploying the Key Vault VM extension with PowerShell.
-
-### [Version-3.0](#tab/version3) 
 
 ```json
 {   
@@ -410,69 +311,11 @@ Add-AzVmssExtension -VirtualMachineScaleSet $vmss  -Name $extName -Publisher $ex
 Update-AzVmss -ResourceGroupName <ResourceGroupName> -VMScaleSetName <VmssName> -VirtualMachineScaleSet $vmss 
 ```
 
-### [Version-1.0](#tab/version1)  
-
-Use PowerShell to deploy the version 1.0 Key Vault VM extension to an existing VM or Virtual Machine Scale Sets instance. 
-
-> [!WARNING]
-> PowerShell clients often prefix a quote mark `"` with a backslash `\` in the settings JSON file. The extraneous characters cause the akvvm_service to fail with the error, "[CertificateManagementConfiguration] Failed to parse the configuration settings with:not an object."
->
-> You can see the supplied backslash `\` and quote `"` characters in the Azure portal under **Settings** > **Extensions + Applications**. To avoid the error, initialize the `$settings` property as a PowerShell `Hashtable`. Avoid using extra quote mark `"` characters, and ensure the variable types match. For more information, see [Everything you wanted to know about hashtables](/powershell/scripting/learn/deep-dives/everything-about-hashtable). 
->
-
-#### Deploy on a VM
-
-```powershell
-# Build settings
-$settings = '{"secretsManagementSettings": 
-{ "pollingIntervalInS": "' + <pollingInterval> + 
-'", "certificateStoreName": "' + <certStoreName> + 
-'", "certificateStoreLocation": "' + <certStoreLoc> + 
-'", "observedCertificates": ["' + <observedCert1> + '","' + <observedCert2> + '"] }, 
-"authenticationSettings":
-{ "msiEndpoint": "' + <msiEndpoint> +
-'", "msiClientId" :"' + <msiClientId> + '"}}' 
-$extName =  "KeyVaultForWindows"
-$extPublisher = "Microsoft.Azure.KeyVault"
-$extType = "KeyVaultForWindows"
- 
-# Start the deployment
-Set-AzVmExtension -TypeHandlerVersion "1.0" -ResourceGroupName <ResourceGroupName> -Location <Location> -VMName <VMName> -Name $extName -Publisher $extPublisher -Type $extType  -SettingString $settings
-```
-
-#### Deploy on a Virtual Machine Scale Sets instance
-
-```powershell
-# Build settings
-$settings = '{"secretsManagementSettings": 
-{ "pollingIntervalInS": "' + <pollingInterval> + 
-'", "certificateStoreName": "' + <certStoreName> + 
-'", "certificateStoreLocation": "' + <certStoreLoc> + 
-'", "observedCertificates": ["' + <observedCert1> + '","' + <observedCert2> + '"] } }, 
-"authenticationSettings":
-{ "msiEndpoint": "' + <msiEndpoint> +
-'", "msiClientId" :"' + <msiClientId> + '"}}' 
-$extName = "KeyVaultForWindows"
-$extPublisher = "Microsoft.Azure.KeyVault"
-$extType = "KeyVaultForWindows"
-  
-# Add extension to Virtual Machine Scale Sets
-$vmss = Get-AzVmss -ResourceGroupName <ResourceGroupName> -VMScaleSetName <VmssName>
-Add-AzVmssExtension -VirtualMachineScaleSet $vmss  -Name $extName -Publisher $extPublisher -Type $extType -TypeHandlerVersion "1.0" -Setting $settings
-
-# Start the deployment
-Update-AzVmss -ResourceGroupName <ResourceGroupName> -VMScaleSetName <VmssName> -VirtualMachineScaleSet $vmss 
-```
-
---- 
-
 ## Azure CLI deployment
 
 The Azure Key Vault VM extension can be deployed by using the Azure CLI. Save Key Vault VM extension settings to a JSON file (settings.json). 
 
 The following JSON snippets provide example settings for deploying the Key Vault VM extension with the Azure CLI.
-
-### [Version-3.0](#tab/version3) 
 
 ```json
    {   
@@ -528,34 +371,6 @@ az vmss extension set --name "KeyVaultForWindows" `
  --vmss-name "<vmssName>" `
  --settings "@settings.json"
 ```
-  
-### [Version-1.0](#tab/version1) 
-
-Use the Azure CLI to deploy the version 1.0 Key Vault VM extension to an existing VM or Virtual Machine Scale Sets instance.
-
-#### Deploy on a VM
-    
-```azurecli
-# Start the deployment
-az vm extension set --name "KeyVaultForWindows" `
-   --publisher Microsoft.Azure.KeyVault `
-   --resource-group "<resourcegroup>" `
-   --vm-name "<vmName>" `
-   --settings '{\"secretsManagementSettings\": { \"pollingIntervalInS\": \"<pollingInterval>\", \"certificateStoreName\": \"<certStoreName>\",    \"certificateStoreLocation\": \"<certStoreLoc>\", \"observedCertificates\": [\" <observedCert1> \", \" <observedCert2> \"] }, \"authenticationSettings\": { \"msiEndpoint\": \"<msiEndpoint>\", \"msiClientId\": \"<msiClientId>\"}}'
-```
-
-#### Deploy on a Virtual Machine Scale Sets instance
-
-```azurecli
-# Start the deployment
-az vmss extension set --name "KeyVaultForWindows" `
- --publisher Microsoft.Azure.KeyVault `
- --resource-group "<resourcegroup>" `
- --vmss-name "<vmName>" `
- --settings '{\"secretsManagementSettings\": { \"pollingIntervalInS\": \"<pollingInterval>\", \"certificateStoreName\": \"<certStoreName>\", \"certificateStoreLocation\": \"<certStoreLoc>\", \"observedCertificates\": [\" <observedCert1> \", \" <observedCert2> \"] }, \"authenticationSettings\": { \"msiEndpoint\": \"<msiEndpoint>\", \"msiClientId\": \"<msiClientId>\"}}'
-```
-
----
 
 ## <a name="troubleshoot-and-support"></a> Troubleshoot issues
 
