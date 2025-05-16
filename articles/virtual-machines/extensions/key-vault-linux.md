@@ -17,9 +17,9 @@ The Key Vault VM extension provides automatic refresh of certificates stored in 
 
 ## Operating system
 
-The Key Vault VM extension supports these Linux distributions:
+The Key Vault VM extension supports:
 
-- Ubuntu 20.04, 22.04
+- Ubuntu
 - [Azure Linux](/azure/azure-linux/intro-azure-linux)
 
 > [!NOTE]
