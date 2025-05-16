@@ -14,7 +14,7 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 
 # Azure Key Vault virtual machine extension for Windows
 
-The Azure Key Vault virtual machine (VM) extension provides automatic refresh of certificates stored in an Azure key vault. The extension monitors a list of observed certificates stored in key vaults. When it detects a change, the extension retrieves and installs the corresponding certificates. This article describes the supported platforms, configurations, and deployment options for the Key Vault VM extension for Windows. 
+The Azure Key Vault virtual machine (VM) extension provides automatic refresh of certificates stored in an Azure key vault. The extension monitors a list of observed certificates stored in key vaults. When it detects a change, the extension retrieves and installs the corresponding certificates. This article describes the supported platforms, configurations, and deployment options for the Key Vault VM extension for Windows.
 
 ## Operating systems
 
@@ -80,7 +80,6 @@ Review the following prerequisites for using the Key Vault VM extension for Wind
 
 > [!NOTE]
 > The old access policy permission model can also be used to provide access to VMs and Virtual Machine Scale Sets. This method requires policy with **get** and **list** permissions on secrets. For more information, see [Assign a Key Vault access policy](/azure/key-vault/general/assign-access-policy).
-
 
 ## Extension schema
 
@@ -226,7 +225,7 @@ You can enable the Key Vault VM extension to support extension dependency orderi
 
 If you use other extensions that require installation of all certificates before they start, you can enable extension dependency ordering in the Key Vault VM extension. This feature allows other extensions to declare a dependency on the Key Vault VM extension.
 
-You can use this feature to prevent other extensions from starting until all dependent certificates are installed. When the feature is enabled, the Key Vault VM extension retries download and install of certificates indefinitely and remains in a **Transitioning** state, until all certificates are successfully installed. After all certificates are present, the Key Vault VM extension reports a successful start.
+You can use this feature to prevent other extensions from starting until all dependent certificates are installed. When the feature is enabled, the Key Vault VM extension will retry download and install of certificates up to 25 times with increasing backoff periods, during which it remains in a **Transitioning** state. If the retries are exhausted, the extension will report an **Error** state. After all certificates are successfully installed, the Key Vault VM extension reports a successful start.
 
 To enable the extension dependency ordering feature in the Key Vault VM extension, set the `secretsManagementSettings` property:
 
@@ -244,7 +243,7 @@ For more information on how to set up dependencies between extensions, see [Sequ
 
 ## Azure PowerShell deployment
 
-The Azure Key Vault VM extension can be deployed with Azure PowerShell. Save Key Vault VM extension settings to a JSON file (settings.json). 
+The Azure Key Vault VM extension can be deployed with Azure PowerShell. Save Key Vault VM extension settings to a JSON file (settings.json).
 
 The following JSON snippets provide example settings for deploying the Key Vault VM extension with PowerShell.
 
@@ -422,8 +421,46 @@ The Key Vault VM extension logs exist only locally on the VM. Review the log det
 | --- | --- |
 | C:\WindowsAzure\Logs\WaAppAgent.log` | Shows when updates occur to the extension. |
 | C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.KeyVault.KeyVaultForWindows\<_most recent version_>\ | Shows the status of certificate download. The download location is always the Windows computer's MY store (certlm.msc). |
-| C:\Packages\Plugins\Microsoft.Azure.KeyVault.KeyVaultForWindows\<_most recent version_>\RuntimeSettings\ |	The Key Vault VM Extension service logs show the status of the akvvm_service service. |
+| C:\Packages\Plugins\Microsoft.Azure.KeyVault.KeyVaultForWindows\<_most recent version_>\RuntimeSettings\ | The Key Vault VM Extension service logs show the status of the akvvm_service service. |
 | C:\Packages\Plugins\Microsoft.Azure.KeyVault.KeyVaultForWindows\<_most recent version_>\Status\	| The configuration and binaries for the Key Vault VM Extension service. |
+
+## Certificate Installation on Windows
+
+The Key Vault VM extension for Windows installs certificates into the Windows certificate store. When a certificate is downloaded from Key Vault, the extension:
+
+1. Installs all intermediate and leaf certificates, regardless of how many intermediate certificates are present. Root certificates are not installed, as the extension is not authorized to perform root installation. It is the responsibility of the service owner to ensure that the root certificate is trusted on the system.
+   - Leaf certificates are installed in the specified certificate store (`certificateStoreName`) and location (`certificateStoreLocation`)
+   - Intermediate CA certificates are installed in the Intermediate Certificate Authorities store
+2. Places the certificates in the specified certificate store (`certificateStoreName`) and location (`certificateStoreLocation`) 
+3. Applies appropriate permissions to the private key based on the `accounts` specified in the configuration
+4. Sets the `linkOnRenewal` property (if enabled) to ensure certificate bindings in applications like IIS automatically update when certificates are renewed
+
+### Default Certificate Stores
+
+If not specified, certificates are installed in the following locations by default:
+- Store Name: MY (Personal)
+- Store Location: LocalMachine
+
+### Certificate Access Control
+
+By default, Administrators and SYSTEM receive Full Control permissions on installed certificates. You can customize access using the `accounts` array in the certificate configuration:
+
+```json
+"accounts": ["Network Service", "Local Service"]
+```
+
+This grants read access to the specified accounts, allowing applications running under those identities to use the certificates.
+
+### Certificate Renewal
+
+When certificates are renewed in Key Vault, the extension automatically:
+1. Downloads the new certificate version
+2. Installs it in the configured certificate store
+3. Maintains existing bindings through the `linkOnRenewal` feature if enabled
+
+### Managing Certificate Lifecycle
+
+For applications like IIS that support Certificate Lifecycle Notifications, the extension generates events when certificates with matching Subject Alternative Names (SANs) are installed, allowing automatic rebinding without service interruption.
 
 ### Get support
 

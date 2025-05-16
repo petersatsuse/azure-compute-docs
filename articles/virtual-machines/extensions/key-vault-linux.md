@@ -250,7 +250,9 @@ Azure VM extensions can be deployed with Azure Resource Manager templates. Templ
 
 ### Extension Dependency Ordering
 
-The Key Vault VM extension supports extension ordering if configured. By default the extension reports successful start as soon as polling starts. However, you can configure it to wait until it successfully downloads the complete list of certificates before reporting a successful start. If other extensions depend on installed certificates before they start, then enabling this setting will allow those extensions to declare a dependency on the Key Vault extension. This will prevent those extensions from starting until all certificates they depend on have been installed. The extension will retry the initial download indefinitely and remain in a `Transitioning` state.
+The Key Vault VM extension supports extension ordering if configured. By default the extension reports successful start as soon as polling starts. However, you can configure it to wait until it successfully downloads the complete list of certificates before reporting a successful start. If other extensions depend on installed certificates before they start, then enabling this setting will allow those extensions to declare a dependency on the Key Vault extension. This will prevent those extensions from starting until all certificates they depend on have been installed. 
+
+The extension will retry the initial download up to 25 times with increasing backoff periods, during which it remains in a `Transitioning` state. If the retries are exhausted, the extension will report an `Error` state.
 
 To turn on extension dependency, set the following:
 ```
@@ -467,11 +469,17 @@ Symbolic links or Symlinks are advanced shortcuts. To avoid monitoring the folde
 The Key Vault VM extension for Linux installs certificates as PEM files with the full certificate chain included. When a certificate is downloaded from Key Vault, the extension:
 
 1. Creates a storage folder based on the `certificateStoreLocation` setting (defaults to `/var/lib/waagent/Microsoft.Azure.KeyVault.Store/` if not specified)
-2. Installs the full certificate chain in PEM format
+2. Installs the full certificate chain and private key in a PEM file following [RFC 5246 section 7.4.2](https://datatracker.ietf.org/doc/html/rfc5246#section-7.4.2) in this specific order:
+   - Leaf certificate (end-entity certificate) comes first
+   - Intermediate certificate(s) follow in order, where each certificate directly certifies the one before it
+   - Root certificate, if present (though it's not required for validation if already trusted by the system)
+   - Private key, corresponding to the leaf certificate, is placed at the end of the file
 3. Automatically creates a symbolic link named `[VaultName].[CertificateName]` that points to the latest version of the certificate
 
 This approach ensures that:
 - Applications always have access to the complete certificate chain needed for validation
+- The certificate chain is properly ordered for TLS handshakes according to RFC standards
+- The private key is available for use by the service
 - Applications can reference a stable symbolic link path that automatically updates when certificates are renewed
 - No application reconfiguration is needed when certificates are rotated or renewed
 
