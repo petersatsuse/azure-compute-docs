@@ -22,9 +22,6 @@ The Key Vault VM extension supports:
 - Ubuntu 22.04 and later
 - [Azure Linux](/azure/azure-linux/intro-azure-linux)
 
-> [!NOTE]
-> The Key Vault VM Extension downloads the certificates in the default location or to the location provided by "certStoreLocation" property in the VM Extension settings, or individual certificate settings. The Key Vault VM Extension updates the folder permission to 700 (drwx------) allowing read, write and execute permission to the owner of the folder only
-
 ### Supported certificate content types
 
 - PKCS #12
