@@ -153,7 +153,7 @@ Update-AzVM -VM $vm -ResourceGroupName $resourceGroupName
  
 * Select a logical sector of your choice to deploy a 4k or 512.
  
-:::image type="content" source="media/portal-step-ten.png" alt-text="Diagram showing the Azure portal screen to select logical sector." lightbox="media/portal-step-ten.png":::
+:::image type="content" source="media/select-logical-sector.png" alt-text="Diagram showing the Azure portal screen to select logical sector." lightbox="media/select-logical-sector.png":::
  
 * Continued through the rest of the VM deployment, of your choice.
   
