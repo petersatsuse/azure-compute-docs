@@ -45,19 +45,15 @@ The VM application packages use multiple resource types:
 
 ## Limitations 
 
-- **No more than 3 replicas per region**: When you're creating a VM Application version, the maximum number of replicas per region is three.
+- **No more than 10 replicas per region**: When you're creating a VM Application version, the maximum number of replicas per region is ten for both page blob and block blob.
 
 - **Storage with public access and SAS URI with read privilege:** The storage account needs to have public level access and use a SAS URI with read privilege, as other restriction levels fail deployments. SAS Tokens can be bypassed by publishing the artifact on the storage account by allowing anonymous access.
-
-- **System Assigned Managed identity:** The compute galleries system managed assigned identity cannot be used to access a blob in the storage account.
 
 - **Retrying failed installations**: Currently, the only way to retry a failed installation is to remove the application from the profile, then add it back.
 
 - **Only 25 applications per VM**: No more than 25 applications may be deployed to a VM at any point.
 
-- **2GB application size**: The maximum file size of an application version is 2 GB.
-
-- **No guarantees on reboots in your script**: If your script requires a reboot, the recommendation is to place that application last during deployment. While the code attempts to handle reboots, it may fail.
+- **2GB application size**: The maximum file size of an application version (mediaLink) is 2 GB. The maximum file size for defaultConfigurationLink is 1GB. 
 
 - **Requires a VM Agent**: The VM agent must exist on the VM and be able to receive goal states.
 
