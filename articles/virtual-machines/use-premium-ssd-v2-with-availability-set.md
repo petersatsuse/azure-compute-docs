@@ -14,7 +14,7 @@ ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, 
 
 Premium SSD v2 managed disks are supported with Virtual Machine(VM)s in availability sets to enhance the high availability and resilience of your applications. When VMs using Premium SSD v2 are part of an Availability Set(AvSet), the platform ensures that their disks are automatically distributed across multiple storage Fault Domains (FDs). This distribution minimizes the risk of a single point of failure. 
 
-:::image type="content" source="media/availability-set-alignment-setup.png" alt-text="Diagram Showing Availability Set with Managed Disk FD alignment Setup." lightbox="media/avset-main-figure.png":::
+:::image type="content" source="media/availability-set-alignment-setup.png" alt-text="Diagram Showing Availability Set with Managed Disk FD alignment Setup." lightbox="media/availability-set-alignment-setup.png":::
 
 Availability sets have fault isolation for many possible failures, to minimize single points of failure and to offer high availability.  If there's a failure in one storage FD, only the VM instances with Premium SSD v2 disks on that specific FD is affected. The other VM instances, whose disks are placed on separate Fault Domains, remain unaffected and continue to operate normally. AvSets are susceptible to certain shared infrastructure failures, like datacenter network failures, physical hardware failures or power interruptions which can affect multiple fault domains. 
 
@@ -22,7 +22,7 @@ In, a production scenario with three VMs deployed in an AvSets using Premium SSD
 
 When a Premium SSD v2 disk starts in one fault domain and is attached to a VM in another, the system triggers a background copy. This process moves the disk to match the VM’s fault domain, helping ensure consistent alignment between compute and storage for better reliability and availability. 
 
-:::image type="content" source="media/availability-set-disk-move.png" alt-text="Diagram Showing Availability Set with Managed Disk FD alignment Disk Move." lightbox="media/avset-disk-move.png":::
+:::image type="content" source="media/availability-set-disk-move.png" alt-text="Diagram Showing Availability Set with Managed Disk FD alignment Disk Move." lightbox="media/availability-set-disk-move.png":::
 
 For example, as illustrated in the accompanying diagram, when you attach a disk located in FD1 to a VM in FD1, the system automatically triggers a background copy of the disk. If you later detach the disk and attach it to a VM in FD2, the system will move the disk from FD1 to FD2. This process ensures alignment between compute and storage fault domains.  
 
