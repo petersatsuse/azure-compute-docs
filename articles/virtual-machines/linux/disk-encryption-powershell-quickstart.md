@@ -29,7 +29,7 @@ New-AzResourceGroup -Name "myResourceGroup" -Location "EastUS"
 
 ## Create a virtual machine
 
-Create an Azure virtual machine with [New-AzVM](/powershell/module/az.compute/new-azvm), passing to it to the VM configuration object you created in the previous step.
+Create an Azure virtual machine with [New-AzVM](/powershell/module/az.compute/new-azvm), passing it to the VM configuration object you created in the previous step.
 
 ```powershell-interactive
 $cred = Get-Credential
