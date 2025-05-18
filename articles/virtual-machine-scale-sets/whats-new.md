@@ -16,7 +16,8 @@ This article describes what's new for Virtual Machine Scale Sets in Azure.
 
 > [!NOTE]
 >
-> Azure now supports enabling [Trusted launch](../virtual-machines/trusted-launch.md) by default for new [Generation 2](../virtual-machines/generation-2.md) scale set deployments in **Preview**. [Register for Trusted launch default preview](../virtual-machines/trusted-launch.md#preview-trusted-launch-as-default) to validate the default changes.
+> Trusted Launch as default (TLaD) is available in preview for new [Generation 2](../virtual-machines/generation-2.md) virtual machines (VMs) and scale sets. With TLaD, any new Generation 2 VMs or scale sets created through any client tools defaults to Trusted Launch VMs with secure boot and vTPM enabled.
+> [Register for the TLaD preview](../virtual-machines/trusted-launch.md#preview-trusted-launch-as-default) to validate the default changes in your respective environment and prepare for this upcoming change.
 
 ## Spot Priority Mix for Flexible scale sets
 
