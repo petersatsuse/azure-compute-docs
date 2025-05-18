@@ -36,7 +36,8 @@ There's always a multitude of [design considerations](/azure/architecture/refere
 
 > [!NOTE]
 >
-> Azure now supports enabling [Trusted launch](trusted-launch.md) by default for new [Generation 2](generation-2.md) VM deployments in **Preview**. [Register for Trusted launch default preview](trusted-launch.md#preview-trusted-launch-as-default) to validate the default changes
+> Trusted Launch as default (TLaD) is available in preview for new [Generation 2](generation-2.md) virtual machines (VMs) and scale sets. With TLaD, any new Generation 2 VMs or scale sets created through any client tools defaults to Trusted Launch VMs with secure boot and vTPM enabled.
+> [Register for the TLaD preview](trusted-launch.md#preview-trusted-launch-as-default) to validate the default changes in your respective environment and prepare for this upcoming change.
 
 ## Parts of a VM and how they're billed
 
