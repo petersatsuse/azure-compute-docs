@@ -28,10 +28,11 @@ To run applications on virtual machine (VM) instances in a scale set, you first 
 - Achieve consistent deployments and version control across Azure VMs and VMSS.
 - Deploy multiple applications on a single VM.
 - Ensure reliable installation with built-in failure handling.
-- Automate deployments using ARM templates, Azure CLI, and Terraform.
+- Automate deployments using ARM templates, Azure CLI, Azure Powershell, Bicep scripts, Terraform, etc.
 - Automatic regional replication of published applications for improved create latency & resiliency.
 - Integrated Azure RBAC ensuring Application publishing from authorized users.
 - Update individual applications without the need for custom VM images or scripts.
+- Enforce infrastructure compliance by injecting VM Apps on Azure VMs using Azure Policy.
 
 ### Create and deploy VM Apps
 - [Overview of VM Apps](../virtual-machines/vm-applications.md)
