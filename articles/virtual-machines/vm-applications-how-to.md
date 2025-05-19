@@ -13,7 +13,7 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 
 # Create and deploy Virtual Machine Applications
 
-VM Apps are a resource type in Azure Compute Gallery (formerly known as Shared Image Gallery) that simplifies management, sharing and global distribution of applications for your virtual machines.
+VM Apps are a resource type in Azure Compute Gallery (formerly known as Shared Image Gallery) that simplifies management, sharing, and global distribution of applications for your virtual machines.
 
 
 ## Prerequisites
@@ -89,14 +89,14 @@ To learn more about the installation mechanism, see the [command interpreter.](v
 1. If you have a default configuration file uploaded to a storage account, you can select it in **Default configuration**.
 1. Select **Exclude from latest** if you don't want this version to appear as the latest version when you create a VM.
 1. For **End of life date**, choose a date in the future to track when this version should be retired. It isn't deleted or removed automatically, it's only for your own tracking.
-1. To replicate this version to other regions, select the **Replication** tab and add more regions and make changes to the number of replicas per region. The original region where your version was created must be in the list and can't be removed.
+1. To replicate this version to other regions, select the **Replication** tab, add more regions, and make changes to the number of replicas per region. The original region where your version was created must be in the list and can't be removed.
 1. When you're done making changes, select **Review + create** at the bottom of the page.
 1. When validation shows as passed, select **Create** to deploy your VM application version.
 
 
 ### [PowerShell](#tab/powershell1)
 
-Create the VM application definition using [`New-AzGalleryApplication`](https://learn.microsoft.com/powershell/module/az.compute/new-azgalleryapplication). In this example, we're creating a Linux app named *myApp* in the *myGallery* Azure Compute Gallery, in the *myGallery* resource group and I've given a short description of the VM application for my own use. Replace the values as needed.
+Create the VM application definition using [`New-AzGalleryApplication`](https://learn.microsoft.com/powershell/module/az.compute/new-azgalleryapplication). In this example, we're creating a Linux app named *myApp* in the *myGallery* Azure Compute Gallery, in the *myGallery* resource group, and I've given a short description of the VM application for my own use. Replace the values as needed.
 
 ```azurepowershell-interactive
 $galleryName = "myGallery"
@@ -194,7 +194,7 @@ PUT
 |--|--|--|
 | name | A unique name for the VM Application within the gallery | Max length of 117 characters. Allowed characters are uppercase or lowercase letters, digits, hyphen(-), period (.), underscore (_). Names not allowed to end with period(.). |
 | supportedOSType | Define the supported OS Type | "Windows" or "Linux" |
-| endOfLifeDate | A future end of life date for the application. The date is for reference only, and isn't enforced. | Valid future date |
+| endOfLifeDate | A future end of life date for the application. The date is for reference only and isn't enforced. | Valid future date |
 | description | Optional. Description of the Application |
 | eula | Optional. Reference to End-User License Agreement (EULA) |
 | privacyStatementUri | Optional. Reference to privacy statement for the application |
@@ -258,12 +258,12 @@ PUT
 | targetRegions/name | The name of a region to which to replicate | Validate Azure region |
 | targetRegions/regionalReplicaCount | Optional. The number of replicas in the region to create. Defaults to 1. | Integer between 1 and 3 inclusive |
 | replicaCount | Optional. Defines the number of replicas across each region. Takes effect if regionalReplicaCount isn't defined | Integer between 1 and 3 inclusive |
-| endOfLifeDate | A future end of life date for the application version. Note this is for customer reference only, and isn't enforced. | Valid future date |
+| endOfLifeDate | A future end of life date for the application version. Note this is for customer reference only and isn't enforced. | Valid future date |
 | storageAccountType | Optional. Type of storage account to use in each region for storing application package. Defaults to Standard_LRS | This property is nonupdatable |
 | allowDeletionOfReplicatedLocations | Optional. Indicates whether or not removing this Gallery Image Version from replicated regions is allowed. | |
-| settings/scriptBehaviorAfterReboot | Optional. The action to be taken with regard to install/update/remove of the gallery application in the event of a reboot. | | 
-| settings/configFileName | Optional. The name to assign the downloaded package file on the VM. If not specified, the package file will be named the same as the Gallery Application name. | This is limited to 4096 characters. |
-| settings/packageFileName | Optional. The name to assign the downloaded config file on the VM. If not specified, the config file will be named the Gallery Application name appended with "_config". | This is limited to 4096 characters. |
+| settings/scriptBehaviorAfterReboot | Optional. The action to be take for installing/updating/removing gallery application in the event of a reboot. | | 
+| settings/configFileName | Optional. The name to assign the downloaded package file on the VM. If not specified, the package file is named the same as the Gallery Application name. | This is limited to 4,096 characters. |
+| settings/packageFileName | Optional. The name to assign the downloaded config file on the VM. If not specified, the config file is named as the Gallery Application name appended with "_config". | This is limited to 4,096 characters. |
 
 
 
@@ -278,7 +278,7 @@ Now you can create a VM and deploy the VM application to it using the portal. Ju
 
 :::image type="content" source="media/vmapps/advanced-tab.png" alt-text="Screenshot of the Advanced tab where you can choose to install a VM application.":::
 
-Select the VM application from the list, and then select **Save** at the bottom of the page.
+Select the VM application from the list and then select **Save** at the bottom of the page.
 
 :::image type="content" source="media/vmapps/select-app.png" alt-text="Screenshot showing selecting a VM application to install on the VM.":::
 
@@ -290,7 +290,7 @@ Choose **VM applications** and then select **Add application** to add your VM ap
 
 :::image type="content" source="media/vmapps/select-extension-app.png" alt-text="Screenshot showing selecting a VM application to install on a currently running VM.":::
 
-Select the VM application from the list, and then select **Save** at the bottom of the page.
+Select the VM application from the list and then select **Save** at the bottom of the page.
 
 :::image type="content" source="media/vmapps/select-app.png" alt-text="Screenshot showing selecting a VM application to install on the VM.":::
 
@@ -313,7 +313,7 @@ az vm application set \
 	--app-version-ids /subscriptions/{subId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/galleries/myGallery/applications/myApp/versions/1.0.0 /subscriptions/{subId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/galleries/myGallery/applications/myApp2/versions/1.0.1 \
 	--treat-deployment-as-failure true true
 ```
-To add an application to a Virtual Machine Scale Set (VMSS), use [az vmss application set](/cli/azure/vmss/application#az-vmss-application-set):
+To add an application to a Virtual Machine Scale Set, use [az vmss application set](/cli/azure/vmss/application#az-vmss-application-set):
 
 ```azurecli-interactive
 az vmss application set \
@@ -322,7 +322,7 @@ az vmss application set \
 	--app-version-ids /subscriptions/{subId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/galleries/myGallery/applications/myApp/versions/1.0.0 \
 	--treat-deployment-as-failure true
 ```
-To add multiple applications to a Virtual Machine Scale Set (VMSS):
+To add multiple applications to a Virtual Machine Scale Set:
 ```azurecli-interactive
 az vmss application set \
 	--resource-group myResourceGroup \
@@ -352,7 +352,7 @@ $app = New-AzVmGalleryApplication -PackageReferenceId $packageId
 Add-AzVmGalleryApplication -VM $vm -GalleryApplication $app -TreatFailureAsDeploymentFailure true
 Update-AzVM -ResourceGroupName $rgName -VM $vm
 ```
-To add the application to a Virtual Machine Scale Set (VMSS):
+To add the application to a Virtual Machine Scale Set:
 ```azurepowershell-interactive
 $vmss = Get-AzVmss -ResourceGroupName $rgname -Name $vmssName
 $appVersion = Get-AzGalleryApplicationVersion `
@@ -473,9 +473,9 @@ To show the VM application status, go to the Extensions + applications tab/setti
 
 :::image type="content" source="media/vmapps/select-app-status.png" alt-text="Screenshot showing VM application status.":::
 
-To show the VM application status for Virtual Machine Scale Set (VMSS), go to the VMSS portal blade, Instances, select one of them, then go to VMAppExtension:
+To show the VM application status for Virtual Machine Scale Set, go to the virtual machine scale set portal blade -> Instances -> select one of them, then go to VMAppExtension:
 
-:::image type="content" source="media/vmapps/select-apps-status-vmss-portal.png" alt-text="Screenshot showing VMSS application status.":::
+:::image type="content" source="media/vmapps/select-apps-status-vmss-portal.png" alt-text="Screenshot showing virtual machine scale sets application status.":::
 
 ### [CLI](#tab/cli3)
 
@@ -484,13 +484,13 @@ To verify application deployment status on VM, use [az vm get-instance-view](/cl
 ```azurecli-interactive
 az vm get-instance-view -g myResourceGroup -n myVM --query "instanceView.extensions[?name == 'VMAppExtension']"
 ```
-To verify application deployment status on Virtual Machine Scale Set (VMSS), use [az vmss get-instance-view](/cli/azure/vmss/#az-vmss-get-instance-view):
+To verify application deployment status on Virtual Machine Scale Set, use [az vmss get-instance-view](/cli/azure/vmss/#az-vmss-get-instance-view):
 
 ```azurecli-interactive
 az vmss get-instance-view --ids (az vmss list-instances -g myResourceGroup -n myVmss --query "[*].id" -o tsv) --query "[*].extensions[?name == 'VMAppExtension']"
 ```
 > [!NOTE]
-> The above VMSS deployment status command doesn't list the instance ID with the result. To show the instance ID with the status of the extension in each instance, some more scripting is required. Refer to the below VMSS CLI example that contains PowerShell syntax:
+> The above Virtual Machine Scale Sets deployment status command doesn't list the instance ID with the result. To show the instance ID with the status of the extension in each instance, some more scripting is required. Refer to the below VMSS CLI example that contains PowerShell syntax:
 
 ```azurepowershell-interactive
 $ids = az vmss list-instances -g myResourceGroup -n myVmss --query "[*].{id: id, instanceId: instanceId}" | ConvertFrom-Json
@@ -511,7 +511,7 @@ $vmName = "myVM"
 $result = Get-AzVM -ResourceGroupName $rgName -VMName $vmName -Status
 $result.Extensions | Where-Object {$_.Name -eq "VMAppExtension"} | ConvertTo-Json
 ```
-To verify on Virtual Machine Scale Set (VMSS):
+To verify on Virtual Machine Scale Set:
 ```azurepowershell-interactive
 $rgName = "myResourceGroup"
 $vmssName = "myVMss"
@@ -563,7 +563,7 @@ The result looks like this:
 ```
 The VM App status is in the status message of the result of the VM App extension in the instance view.
 
-To get the status for the application on Virtual Machine Scale Set (VMSS):
+To get the status for the application on Virtual Machine Scale Set:
 
 ```rest
 GET
@@ -575,7 +575,7 @@ The output is similar to the VM example earlier.
 
 ## Delete the application
 
-### [Powershell](#tab/powershell4)
+### [PowerShell](#tab/powershell4)
 Delete the application version
 ```azurepowershell-interactive
 Remove-AzGalleryApplicationVersion -ResourceGroupName $rgNmae -GalleryName $galleryName -GalleryApplicationName $galleryApplicationName -Name $name
