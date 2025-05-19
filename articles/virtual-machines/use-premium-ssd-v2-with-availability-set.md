@@ -197,11 +197,14 @@ You have now deployed a VM and a Premium SSD v2 within an availability set.
 
 If your workload often moves disks between VMs in the same or different availability sets, turn on the `optimized-for-frequent-attach` property. Setting this property to true prevents the system from triggering a background copy of the disk for fault domain alignment during reattachments. `optimized-for-frequent-attach` can be set when creating a new unattached disk or update it later for an existing disk. If the disk is currently attached to a VM, first detach the disk. Update the `optimized-for-frequent-attach` disk property and then reattach the disk to the VM.
 
-- To set the property while creating a new unattached disk:
+To set the property while creating a new unattached disk:
+
  ```azurecli-interactive
  az disk create --name myDiskName --resource-group myResourceGroup --location myLocation --sku PremiumV2_LRS --size-gb myGB --optimized-for-frequent-attach true 
  ```
-- To update the property on an existing unattached disk:
+
+To update the property on an existing unattached disk:
+
  ```azurecli-interactive
  az disk update --name myDiskName --resource-group myResourceGroup --set optimizedForFrequentAttach=true
  ```
