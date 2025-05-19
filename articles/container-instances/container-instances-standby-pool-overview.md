@@ -26,13 +26,11 @@ Creating and managing a standby pool for Azure Container Instances isn't yet ava
 
 ## Prerequisites
 
-### Feature Registration 
-Register the standby pool resource provider and the standby pool preview feature with your subscription using Azure Cloud Shell. Registration can take up to 30 minutes to successfully show as registered. You can rerun the below commands to determine when the feature is successfully registered. 
+### Provider Registration 
+Register the standby pool resource provider with your subscription using Azure Cloud Shell. Registration can take up to 30 minutes to successfully show as registered. You can rerun the below commands to determine when the feature is successfully registered.
 
 ```azurepowershell-interactive
-Register-AzResourceProvider -ProviderNameSpace Microsoft.ContainerInstance
 Register-AzResourceProvider -ProviderNamespace Microsoft.StandbyPool
-Register-AzProviderFeature -FeatureName StandbyContainerGroupPoolPreview -ProviderNamespace Microsoft.StandbyPool
 ```
 
 ### Configure Role-based Access Control Permissions
