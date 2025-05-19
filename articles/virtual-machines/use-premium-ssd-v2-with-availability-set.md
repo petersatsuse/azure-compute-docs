@@ -62,7 +62,8 @@ az vm availability-set create -n myAvSet -g myResourceGroup --platform-fault-dom
 ```
  
 > [!Note]
-> The value for *platform-fault-domain-count* should be determined based on the number of available Storage Fault Domains in a given region. Please refer to Step 2 to check the available Fault Domains per region.
+> The value for *platform-fault-domain-count* should be determined based on the number of available storage fault domains in a given region. See Step 2 to check the available fault domains per region.
+
 
  
 * Create a VM:
@@ -103,7 +104,8 @@ Get-AzComputeResourceSku | Where-Object {$_.ResourceType -eq 'availabilitySets' 
 New-AzAvailabilitySet -Name myAvSetName -ResourceGroupName myResourceGroup -Sku aligned -PlatformFaultDomainCount myFDCount -PlatformUpdateDomainCount myUDCount -Location myLocation  
  ```
 > [!Note]
-> The value for *platform-fault-domain-count* should be determined based on the number of available Storage Fault Domains in a given region. Please refer to Step 2 to check the available Fault Domains per region.
+> The value for *platform-fault-domain-count* should be determined based on the number of available storage fault domains in a given region. See Step 2 to check the available fault domains per region.
+
  
 * Create a VM:
 ```powershell
