@@ -274,7 +274,7 @@
         - name: Dndsv6 series
           href: ./sizes/memory-optimized/dndsv6-series.md
         - name: Dnlsv6 series
-          href: ./sizes/memory-optimized/dnslv6-series.md
+          href: ./sizes/memory-optimized/dnlsv6-series.md
         - name: Dnldsv6 series
           href: ./sizes/memory-optimized/dnlsv6-series.md
         - name: Dv4 series
