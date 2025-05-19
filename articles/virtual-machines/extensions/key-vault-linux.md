@@ -36,15 +36,14 @@ Key Vault VM extension for Linux version 3.0+ supports:
 - Custom symbolic name support
 - VM extension logging integration support through [Fluentd](https://www.fluentd.org/)
 
-
 ## Prerequisites
   - Key Vault instance with certificate. See [Create a Key Vault](/azure/key-vault/general/quick-create-portal)
-  - Assigned [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) on VM/VMSS
+  - Assigned [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) on virtual machines/virtual machine scale sets.
   - The **Key Vault Secrets User** role at the Key Vault scope level for VMs and Azure Virtual Machine Scale Sets managed identity. This role retrieves a secret's portion of a certificate. For more information, see the following articles:
     - [Authentication in Azure Key Vault](/azure/key-vault/general/authentication)
     - [Use Azure RBAC secret, key, and certificate permissions with Azure Key Vault](/azure/key-vault/general/rbac-guide#using-azure-rbac-secret-key-and-certificate-permissions-with-key-vault)
     - [Key Vault scope role assignment](/azure/key-vault/general/rbac-guide?tabs=azure-cli#key-vault-scope-role-assignment)
-  -  VMSS should have the following identity setting:
+  -  Virtual machine scale sets should have the following identity setting:
   `
   "identity": {
   "type": "UserAssigned",
@@ -70,11 +69,10 @@ Key Vault VM extension for Linux version 3.0+ supports:
   az vm extension set -n "KeyVaultForLinux" --publisher Microsoft.Azure.KeyVault --resource-group "${resourceGroup}" --vm-name "${vmName}" –settings .\akvvm.json –version 3.0
 ```
 
-* If the VM has certificates downloaded by previous version, deleting VM extension doesn't delete the downloaded certificates. After installing newer version, the existing certificates aren't modified. You would need to delete the certificate files or roll-over the certificate to get the PEM file with full-chain on the VM.
+* If the VM has certificates downloaded by previous version, deleting VM extension doesn't delete the downloaded certificates. After installing the newer version, the existing certificates aren't modified. You would need to delete the certificate files or roll-over the certificate to get the PEM file with full-chain on the VM.
 
 ## Extension schema
-
-The following JSON shows the schema for the Key Vault VM extension. The extension doesn't require protected settings - all its settings are considered information without security impact. The extension requires a list of monitored secrets, polling frequency, and the destination certificate store. Specifically:
+The following JSON provides the schema for the Key Vault VM extension. All settings are specified as plain (unprotected) settings, as none are considered sensitive. To configure the extension, you must specify a list of certificates to monitor, how often to poll for updates, and the destination path for storing certificates. Specifically:
 
 ```json
     {
@@ -496,7 +494,7 @@ For a certificate from `exampleVault.vault.azure.net` with the name `myCertifica
 
 Applications should be configured to use the symbolic link path (`/var/lib/waagent/Microsoft.Azure.KeyVault.Store/exampleVault.myCertificate`) to ensure they always access the most current certificate version.
 
-When using custom certificate store locations and the `customSymbolicLinkName` setting, the structure follows this pattern:
+When you use custom certificate store locations and the `customSymbolicLinkName` setting, the structure follows this pattern:
 
 ```
 /path/to/custom/store/
