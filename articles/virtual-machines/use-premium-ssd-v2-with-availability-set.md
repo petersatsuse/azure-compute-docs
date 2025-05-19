@@ -107,17 +107,17 @@ New-AzAvailabilitySet -Name myAvSetName -ResourceGroupName myResourceGroup -Sku 
  
 * Create a VM:
 ```powershell
-New-Az `
+New-AzVm `
 ResourceGroupName $resourceGroupName ` 
-Name $Name ` 
+Name $vmName ` 
 Location $region `  
-Image $Image `
+Image $vmImage `
 Size $Size ` 
 AvailabilitySetName $AvSetName` 
 Credential $credential
 ```
 
-* Attach a new Premium SSD v2 disk to existing s in an availability set: 
+* Attach a new Premium SSD v2 disk to existing VMs in an availability set: 
 ```powershell
 
 $vm = Get-AzVM -ResourceGroupName $resourceGroupName -Name $vmName 
