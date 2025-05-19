@@ -59,6 +59,8 @@ To proceed, register the feature manually:
   az feature registration show --provider Microsoft.Compute --name PV2WithAVSetRegionWithoutZone 
   ```
 
+## Deploy a VM and a Premium SSD v2 disk within an availability set
+
 ### [Azure CLI](#tab/CLI)
  
 * Create a resource group:
