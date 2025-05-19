@@ -12,23 +12,21 @@ ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, 
 
 ## Introduction
 
-Premium SSD v2(Pv2) managed disks are supported with Virtual Machine(VM)s in availability sets (AvSets) to enhance the high availability and resilience of your applications. When VMs using Pv2 are part of an Availability Set(AvSet), the platform ensures that their disks are automatically distributed across multiple storage Fault Domains (FDs). This distribution minimizes the risk of a single point of failure. 
+Premium SSD v2 managed disks are supported with Virtual Machine (VMs) in Availability Sets to enhance the high availability of your applications. When VMs using Premium SSD v2 are part of an Availability Set, the platform ensures that their disks are automatically distributed across multiple storage Fault Domains. This distribution minimizes the risk of a single point of failure. 
 
-:::image type="content" source="media/availability-set-alignment-setup.png" alt-text="Diagram Showing Availability Set with Managed Disk FD alignment Setup." lightbox="media/availability-set-alignment-setup.png":::
+:::image type="content" source="media/availability-set-alignment-setup.png" alt-text="Diagram Showing Availability Set with Managed Disk Fault Domain alignment Setup." lightbox="media/availability-set-alignment-setup.png":::
 
-AvSets have fault isolation for many possible failures, to minimize single points of failure and to offer high availability.  If there's a failure in one storage FD, only the VM instances with Pv2 disks on that specific FD is affected. The other VM instances, whose disks are placed on separate Fault Domains, remain unaffected and continue to operate normally. AvSets are susceptible to certain shared infrastructure failures, like datacenter network failures, physical hardware failures or power interruptions which can affect multiple fault domains. 
+Availability Sets have fault isolation for many possible failures, to minimize single points of failure and to offer high availability.  If there's a failure in one storage Fault Domain, only the VM instances with Premium SSD v2 disks on that specific Fault Domain is affected. The other VM instances, whose disks are placed on separate Fault Domains, remain unaffected and continue to operate normally. Availability Sets are susceptible to certain shared infrastructure failures, like datacenter network failures, physical hardware failures or power interruptions which can affect multiple fault domains. 
 
-In, a production scenario with three VMs deployed in an AvSets using Pv2 with Fault Domain 3, VMs and disks are distributed across multiple fault domains. When a storage fault domain fails, only the VMs in that domain are affected. The other VMs continue running, which helps maintain application availability. 
+When a Premium SSD v2 disk is located in one fault domain and is attached to a VM in another, the system triggers a background copy. This process moves the disk to match the VM’s fault domain, helping ensure consistent alignment between compute and storage for better reliability and availability. 
 
-When a Pv2 disk is located in one fault domain and is attached to a VM in another, the system triggers a background copy. This process moves the disk to match the VM’s fault domain, helping ensure consistent alignment between compute and storage for better reliability and availability. 
+:::image type="content" source="media/availability-set-disk-move.png" alt-text="Diagram Showing Availability Set with Managed Disk Fault Domain alignment Disk Move." lightbox="media/availability-set-disk-move.png":::
 
-:::image type="content" source="media/availability-set-disk-move.png" alt-text="Diagram Showing Availability Set with Managed Disk FD alignment Disk Move." lightbox="media/availability-set-disk-move.png":::
-
-For example, as illustrated in the accompanying diagram, if a disk located in FD1 is attached to a VM in FD1 and is later detached and attached to a VM in FD2, the system will automatically trigger a background copy of the disk to move it from FD1 to FD2 for compute and storage fault domain alignment. This background move process can take up to 24 hours to complete.    
+For example, as illustrated in the accompanying diagram, if a disk located in Fault Domain-1 is attached to a VM in Fault Domain-1 and is later detached and attached to a VM in Fault Domain-2, the system will automatically trigger a background copy of the disk to move it from Fault Domain-1 to Fault Domain-2 for compute and storage fault domain alignment. This background move process can take up to 24 hours to complete.    
 
 ## Regional availability
 
-Pv2 support for VMs in an Availability Set is currently limited to the following regions that lack Availability Zone support: 
+Premium SSD v2 support for VMs in an Availability Set is currently limited to the following regions that lack Availability Zone support: 
 
 - Australia Southeast
 - Canada East
@@ -39,8 +37,8 @@ Pv2 support for VMs in an Availability Set is currently limited to the following
 
 ## Limitations
 
--  A subscription must be registered for the required feature to use Pv2 with VMs in Availability Sets in non-zonal regions. Follow the instructions [here](/azure/virtual-machines/use-premium-ssd-v2-with-availability-set?tabs=CLI#register-premium-ssd-v2-with-vms-in-availability-sets-in-supported-non-zonal-regions) to complete the registration.
-- Only one background data copy can run per disk at a time. When attaching a disk to a VM in an Availability Set (AvSet), the system might start a background copy to align with the Fault Domain (FD). If you try to detach and reattach the disk while this move is in progress, the operation fails with an error. To prevent operation failure, wait until the move finishes, or set the [OptimizedForFrequentAttach](/dotnet/api/microsoft.azure.management.compute.models.diskupdate.optimizedforfrequentattach) property on the disk. This setting skips FD-alignment background copies for future attachments. For more information on OptimizedForFrequentAttach, follow the instructions [here](/azure/virtual-machines/use-premium-ssd-v2-with-availability-set?tabs=CLI#optimize-background-data-copy-of-the-disk).
+-  A subscription must be registered for the required feature to use Premium SSD v2 with VMs in Availability Sets in non-zonal regions. Follow the instructions [here](/azure/virtual-machines/use-premium-ssd-v2-with-availability-set?tabs=CLI#register-premium-ssd-v2-with-vms-in-availability-sets-in-supported-non-zonal-regions) to complete the registration.
+- Only one background data copy can run per disk at a time. When attaching a disk to a VM in an Availability Set, the system might start a background copy to align with the Fault Domain. If you try to detach and reattach the disk while this move is in progress, the operation fails with an error. To prevent operation failure, wait until the move finishes, or set the [OptimizedForFrequentAttach](/dotnet/api/microsoft.azure.management.compute.models.diskupdate.optimizedforfrequentattach) property on the disk. This setting skips Fault Domain-alignment background copies for future attachments. For more information on OptimizedForFrequentAttach, follow the instructions [here](/azure/virtual-machines/use-premium-ssd-v2-with-availability-set?tabs=CLI#optimize-background-data-copy-of-the-disk).
 - You can’t attach a disk created from a snapshot to VMs in an Availability Set while it’s still copying data in the background. Wait until the copy process finishes before attaching the disk. To check the status of background data copy from a snapshot, follow the instructions [here](/azure/virtual-machines/scripts/create-managed-disk-from-snapshot).
 - Disk size increase and changing customer-managed key (CMK) are not supported while a background data copy for Fault Domain alignment is in progress.
 
@@ -73,13 +71,13 @@ az vm availability-set create -n myAvSet -g myResourceGroup --platform-fault-dom
 az vm create -n myVMname -g myResourceGroupName --availability-set myAvSetName --image Win2016Datacenter --count MyCount 
 ```
  
-* Attach a new Pv2 disk to existing VMs in an availability set
+* Attach a new Premium SSD v2 disk to existing VMs in an availability set
  
 ```azurecli-interactive
 az vm disk attach -g MyResourceGroupName --vm-name MyVMname --name MyDiskName --new --sku PremiumV2_LRS --size-gb MySize
 ```
  
-* Attach existing Pv2 disk to existing VMs in an Availability Set:
+* Attach existing Premium SSD v2 disk to existing VMs in an Availability Set:
  
 ```azurecli-interactive
 az vm disk attach -g MyResourceGroupName --vm-name MyVMname --disks MyDiskName
@@ -109,17 +107,17 @@ New-AzAvailabilitySet -Name myAvSetName -ResourceGroupName myResourceGroup -Sku 
  
 * Create a VM:
 ```powershell
-New-AzVm `
+New-Az `
 ResourceGroupName $resourceGroupName ` 
-Name $vmName ` 
+Name $Name ` 
 Location $region `  
-Image $vmImage `
-Size $vmSize ` 
+Image $Image `
+Size $Size ` 
 AvailabilitySetName $AvSetName` 
 Credential $credential
 ```
 
-* Attach a new Pv2 disk to existing VMs in an availability set: 
+* Attach a new Premium SSD v2 disk to existing s in an availability set: 
 ```powershell
 
 $vm = Get-AzVM -ResourceGroupName $resourceGroupName -Name $vmName 
@@ -127,7 +125,7 @@ $vm = Add-AzVMDataDisk -VM $vm -Name $diskName -CreateOption Empty -StorageAccou
 Update-AzVM -VM $vm -ResourceGroupName $resourceGroupName 
 ```
 
-* Attach existing Pv2 disk to existing VMs in an Availability Set:
+* Attach existing Premium SSD v2 disk to existing VMs in an Availability Set:
  
 ```powershell
 $vm = Get-AzVM -ResourceGroupName $resourceGroupName -Name $vmName
@@ -174,7 +172,7 @@ You deployed an Availability Set VM with a premium SSD v2.
 
 ## Register Premium SSD v2 with VMs in availability sets in supported non-zonal regions
 
-The feature is region-specific and only available in regions that do not support Availability Zones.
+The feature is only available in regions that do not support Availability Zones.
 If you're targeting a [supported region without zone support](/azure/virtual-machines/use-premium-ssd-v2-with-availability-set?tabs=CLI#regional-availability), ensure your subscription is registered for the required feature.
 
 To proceed, register the feature manually:
@@ -191,7 +189,7 @@ To proceed, register the feature manually:
 
 ### Change optimized-for-frequent-attach disk property
 
-If your workload often moves disks between VMs in the same or different Availability Sets, turn on the `optimized-for-frequent-attach` property. Setting this property to true prevents the system from triggering a background copy of the disk for FD alignment during reattachments. `optimized-for-frequent-attach` can be set when creating a new unattached disk or update it later for an existing disk. If the disk is currently attached to a VM, first detach the disk. Update the `optimized-for-frequent-attach` disk property and then reattach the disk to the VM. 
+If your workload often moves disks between VMs in the same or different Availability Sets, turn on the `optimized-for-frequent-attach` property. Setting this property to true prevents the system from triggering a background copy of the disk for Fault Domain alignment during reattachments. `optimized-for-frequent-attach` can be set when creating a new unattached disk or update it later for an existing disk. If the disk is currently attached to a VM, first detach the disk. Update the `optimized-for-frequent-attach` disk property and then reattach the disk to the VM. 
 
 #### Instructions to set or update optimized-for-frequent-attach on disks
 
