@@ -5,14 +5,15 @@ author: mimckitt
 ms.author: mimckitt
 ms.service: azure-container-instances
 ms.topic: how-to
-ms.date: 5/10/2025
+ms.date: 5/19/2025
 ms.reviewer: tomvcassidy
 ---
 
 # Use Azure Log Analytics to monitor standby pool events for Azure Container Instances
 
 > [!IMPORTANT]
-> For standby pools to successfully create and manage resources, they require access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[configure role permissions for standby pools](container-instances-standby-pool-configure-permissions.md)**.
+> For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[configure role permissions for standby pools](container-instances-standby-pool-configure-permissions.md)**.
+
 
 Azure Log Analytics provides a powerful platform for monitoring and analyzing events from standby pools in Azure Container Instances. By integrating your standby pools with a Log Analytics workspace, you can track key metrics, analyze trends, and set up alerts for critical events.
 

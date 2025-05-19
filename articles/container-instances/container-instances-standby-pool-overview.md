@@ -1,5 +1,5 @@
 ---
-title: Standby pools for Azure Container Instances (Preview)
+title: Standby pools for Azure Container Instances
 description: Learn how to utilize standby pools to reduce scale-out latency with Azure Container Instances.
 author: mimckitt
 ms.author: mimckitt
@@ -7,14 +7,15 @@ ms.service: azure-container-instances
 ms.custom:
   - ignite-2024
 ms.topic: concept-article
-ms.date: 5/10/2025
+ms.date: 5/19/2025
 ms.reviewer: tomvcassidy
 ---
 
-# Standby pools for Azure Container Instances (Preview)
+# Standby pools for Azure Container Instances
 
 > [!IMPORTANT]
-> Standby pools for Azure Container Instances are currently in preview. Previews are made available to you on the condition that you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature may change prior to general availability (GA). 
+> For standby pools to successfully create and manage resources, it requires access to the associated resources in your subscription. Ensure the correct permissions are assigned to the standby pool resource provider in order for your standby pool to function properly. For detailed instructions, see **[configure role permissions for standby pools](container-instances-standby-pool-configure-permissions.md)**.
+
 
 Standby pools for Azure Container Instances enable you to create a pool of pre-provisioned container groups that can be used in response to incoming traffic. The container groups in the pool are fully provisioned, initialized, and ready to receive work.
 

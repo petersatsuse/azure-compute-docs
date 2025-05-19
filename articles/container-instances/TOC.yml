@@ -176,7 +176,7 @@
       href: container-instances-stop-start.md
     - name: Update running containers
       href: container-instances-update.md
-  - name: Manage a standby pool (preview)
+  - name: Manage a standby pool
     items: 
     - name: Overview
       href: container-instances-standby-pool-overview.md
