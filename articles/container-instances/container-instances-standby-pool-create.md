@@ -27,8 +27,7 @@ Before utilizing standby pools, complete the feature registration and configure 
 ## Create a container group profile
 The container group profile tells the standby pool how to configure the containers in the pool. If you make changes to the container group profile, you also need to update your standby pool to ensure the updates are applied to the instances in the pool.
 
-> [!NOTE]
-> To use [confidential containers](container-instances-confidential-overview.md) update the `sku` type to `Confidential` when creating your container group profile.
+To use [confidential containers](container-instances-confidential-overview.md) update the `sku` type to `Confidential` when creating your container group profile.
 
 ### [CLI](#tab/cli)
 Create a container group profile using [az container container-group-profile create](/cli/azure/container). You can optionally include config map details in the container group profile. For more information on config maps, see [use config maps](container-instances-config-map.md).
