@@ -136,7 +136,7 @@ To cancel a rolling update, use the following API. Once canceled, the RU cannot 
 
 You do not need to provide a request body when calling this API.
 
-It is also important to know that cancelling a RU it will not automatically rollback to the previous state, but it will remain in the state that it was at the moment it was cancelled. As example, in case during a RU one wants to update a CG profile reference from *cgprofile1* to *cgprofile2* and at some point the operation is cancelled, it is possible some CGs to have the new profile *cgprofile2* and others remain with *cgprofile1*.
+It's also important to know that canceling an RU won't automatically roll it back to the previous state, but it will remain in the state that it was at the moment it was canceled.  For example, in case during an RU one wants to update a CG profile reference from *cgprofile1* to *cgprofile2*, and at some point the operation is canceled, some CGs might have the new profile *cgprofile2* and others remain with *cgprofile1*.
 
 ### Boundary of a Batch in a Rolling Update
 
