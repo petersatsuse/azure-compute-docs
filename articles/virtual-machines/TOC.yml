@@ -269,6 +269,14 @@
           href: ./sizes/general-purpose/dlsv5-series.md
         - name: Dldsv5 series
           href: ./sizes/general-purpose/dldsv5-series.md
+        - name: Dnsv6 series
+          href: ./sizes/memory-optimized/dnsv6-series.md
+        - name: Dndsv6 series
+          href: ./sizes/memory-optimized/dndsv6-series.md
+        - name: Dnlsv6 series
+          href: ./sizes/memory-optimized/dnlsv6-series.md
+        - name: Dnldsv6 series
+          href: ./sizes/memory-optimized/dnlsv6-series.md
         - name: Dv4 series
           href: ./sizes/general-purpose/dv4-series.md
         - name: Dsv4 series
@@ -365,6 +373,10 @@
           href: ./sizes/memory-optimized/easv5-series.md
         - name: Eadsv5 series
           href: ./sizes/memory-optimized/eadsv5-series.md
+        - name: Ensv6 series
+          href: ./sizes/memory-optimized/ensv6-series.md
+        - name: Endsv6 series
+          href: ./sizes/memory-optimized/endsv6-series.md
         - name: Epsv5 series
           href: ./sizes/memory-optimized/epsv5-series.md
         - name: Epdsv5 series
