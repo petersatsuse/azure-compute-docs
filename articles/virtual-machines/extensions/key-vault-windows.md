@@ -431,7 +431,7 @@ The Key Vault VM extension for Windows installs certificates into the Windows ce
 1. Installs all intermediate and leaf certificates, regardless of how many intermediate certificates are present. Root certificates are not installed, as the extension is not authorized to perform root installation. It is the responsibility of the service owner to ensure that the root certificate is trusted on the system.
    - Leaf certificates are installed in the specified certificate store (`certificateStoreName`) and location (`certificateStoreLocation`)
    - Intermediate CA certificates are installed in the Intermediate Certificate Authorities store
-2. Places the certificates in the specified certificate store (`certificateStoreName`) and location (`certificateStoreLocation`) 
+2. Places the certificates in the specified certificate store (`certificateStoreName`) and location (`certificateStoreLocation`)
 3. Applies appropriate permissions to the private key based on the `accounts` specified in the configuration
 4. Sets the `linkOnRenewal` property (if enabled) to ensure certificate bindings in applications like IIS automatically update when certificates are renewed
 
