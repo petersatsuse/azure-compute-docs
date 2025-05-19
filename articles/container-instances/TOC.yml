@@ -138,7 +138,7 @@
       href: container-instances-exec.md
     - name: Run a setup container (init)
       href: container-instances-init-container.md
-    - name: Use config maps (Preview)
+    - name: Use config maps
       href: container-instances-config-map.md
     - name: Use a managed identity
       href: container-instances-managed-identity.md
