@@ -270,27 +270,6 @@ Request Body
 ```
 ---
 
-Zone support for ACI standby pools is currently available in the following regions:
-
-- AustraliaEast
-- BrazilSouth
-- CanadaCentral
-- CentralUS
-- EastUS
-- EastUS2
-- FranceCentral
-- GermanyWestCentral
-- IndiaCentral
-- JapanEast
-- NorthEurope
-- SoutheastAsia
-- SouthCentralUS
-- SwedenCentral
-- WestEurope
-- WestUS
-- WestUS2
-- WestUS3
-
 ## Next steps
 
 [Create a standby pool for Azure Container Instances](container-instances-standby-pool-create.md).
