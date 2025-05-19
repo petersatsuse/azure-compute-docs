@@ -32,7 +32,7 @@ To run applications on virtual machine (VM) instances in a scale set, you first 
 - Automatic regional replication of published applications for improved create latency & resiliency.
 - Integrated Azure RBAC ensuring Application publishing from authorized users.
 - Update individual applications without the need for custom VM images or scripts.
-- Enforce infrastructure compliance by injecting VM Apps on Azure VMs using Azure Policy.
+- Enforce infrastructure compliance by [injecting VM Apps on Azure VMs using Azure Policy](https://devblogs.microsoft.com/azure-vm-runtime/managing-vm-applications-with-azure-policies/).
 
 ### Create and deploy VM Apps
 - [Overview of VM Apps](../virtual-machines/vm-applications.md)
