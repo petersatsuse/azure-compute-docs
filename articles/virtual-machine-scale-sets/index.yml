@@ -52,6 +52,8 @@ landingContent:
             url: instance-mix-overview.md
           - text: Standby Pools
             url: standby-pools-overview.md
+          - text: Azure VM Apps
+            url: ../virtual-machines/vm-applications.md?tabs=powershell%2Cpowershell1%2Cpowershell2%2Cpowershell3
 
   # Card
   - title: Step-by-step guides
@@ -70,6 +72,8 @@ landingContent:
             url: tutorial-use-custom-image-cli.md
           - text: Use a custom VM image with Azure PowerShell
             url: tutorial-use-custom-image-powershell.md
+          - text: Deploy apps to a scale set with the Azure VM Apps
+            url: ../virtual-machines/vm-applications-how-to.md?tabs=powershell%2Cpowershell1%2Cpowershell2%2Cpowershell3
           - text: Deploy apps to a scale set with the Azure CLI
             url: tutorial-install-apps-cli.md
           - text: Deploy apps to a scale set with Azure PowerShell
