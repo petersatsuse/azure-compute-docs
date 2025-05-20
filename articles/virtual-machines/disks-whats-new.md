@@ -18,7 +18,7 @@ Azure Disk Storage regularly receives updates for new features and enhancements.
 - [What's new in 2025](#whats-new-in-2025)
   - [Quarter 2 (April, May, June)](#quarter-2-april-may-june)
     - [Generally available: Troubleshoot Disk Performance with Copilot in Azure](#generally-available-troubleshoot-disk-performance-with-copilot-in-azure)
-    - Generally Available: Availability Set support for Premium SSD v2 Disk Storage 
+    - [Generally Available: Availability Set support for Premium SSD v2 Disk Storage](#generally-available-availability-set-support-for-premium-ssd-v2-disk-storage)
   - [Quarter 1 (January, February, March)](#quarter-1-january-february-march-2)
     - [Public Preview: Troubleshoot Disk Performance with Copilot in Azure](#public-preview-troubleshoot-disk-performance-with-copilot-in-azure)
 - [What's new in 2024](#whats-new-in-2024)

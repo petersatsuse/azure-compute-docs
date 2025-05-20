@@ -38,16 +38,17 @@ Premium SSD v2 support for VMs in an availability set is currently limited to th
 
 ## Limitations
 
--   You must register your subscription to use this feature. Follow the steps in [Register Premium SSD v2 with VMs in availability sets in supported non-zonal regions](#register-premium-ssd-v2-with-vms-in-availability-sets-in-supported-non-zonal-regions).
+-   Premium SSD v2 is supported for VMs in availability set in [select regions without availability zones](/azure/virtual-machines/use-premium-ssd-v2-with-availability-set?tabs=CLI#regional-availability).
+-   You must register your subscription to use this feature. Follow the steps in [Register Premium SSD v2 with VMs in availability sets in regions without availability zones](#register-premium-ssd-v2-with-vms-in-availability-sets-in-supported-regions-without-availability-zones).
 - Only one background data copy can run per disk at a time. When attaching a disk to a VM in an availability set, the system might start a background copy to align with the fault domain. If you try to detach and reattach the disk while this move is in progress, the operation fails with an error. To prevent operation failure, wait until the move finishes, or set the [OptimizedForFrequentAttach](/dotnet/api/microsoft.azure.management.compute.models.diskupdate.optimizedforfrequentattach) property on the disk. This setting skips fault domain-alignment background copies for future attachments. For more information on OptimizedForFrequentAttach, follow the instructions [Optimize background data copy of the disk](#optimize-background-data-copy-of-the-disk).
 - You can’t attach a disk created from a snapshot to VMs in an availability set while it’s still copying data in the background. Wait until the copy process finishes before attaching the disk. To check the status of background data copy from a snapshot, follow the instructions [here](/azure/virtual-machines/scripts/create-managed-disk-from-snapshot).
 - Disk size increase and changing customer-managed key (CMK) are not supported while a background data copy for Fault Domain alignment is in progress.
 - Premium SSD v2 managed disks have their own [separate set of limitations](/azure/virtual-machines/disks-deploy-premium-v2?tabs=azure-cli#limitations), as well.
 
-## Register Premium SSD v2 with VMs in availability sets in supported non-zonal regions
+## Register Premium SSD v2 with VMs in availability sets in supported regions without availability zones
 
 The feature is only available in regions that do not support Availability Zones.
-If you're targeting a [supported region without zone support](/azure/virtual-machines/use-premium-ssd-v2-with-availability-set?tabs=CLI#regional-availability), ensure your subscription is registered for the required feature.
+If you're targeting a [supported region without availability zones](/azure/virtual-machines/use-premium-ssd-v2-with-availability-set?tabs=CLI#regional-availability), ensure your subscription is registered for the required feature.
 
 To proceed, register the feature manually:
 - Use the following command to register the feature with your subscription:
@@ -68,7 +69,7 @@ To proceed, register the feature manually:
 ```azurecli-interactive
 az group create --name myResourceGroup --location myLocation 
 ```
-* The number of storage fault domains varies by region. The following command retrieves a list of fault domains per region:
+* The number of storage fault domains varies by region. The following command retrieves a list of maximum suported fault domains per region:
 
 ```azurecli-interactive
 az vm list-skus --resource-type availabilitySets --query '[?name==`Aligned`].{Location:locationInfo[0].location,  MaximumFaultDomainCount:capabilities[0].value}' -o Table 
@@ -78,10 +79,10 @@ az vm list-skus --resource-type availabilitySets --query '[?name==`Aligned`].{Lo
  
 ```azurecli-interactive
 az vm availability-set create -n myAvSet -g myResourceGroup --platform-fault-domain-count myFDCount --platform-update-domain-count myUDCount
+
+## The value for platform-fault-domain-count should be determined based on the number of maximum supported fault domains in a given region. See previous step to check the available fault domains per region.
 ```
  
-> [!Note]
-> The value for *platform-fault-domain-count* should be determined based on the number of available storage fault domains in a given region. See Step 2 to check the available fault domains per region.
 
  
 * Create a VM:
@@ -111,7 +112,7 @@ az vm disk attach -g MyResourceGroupName --vm-name MyVMname --disks MyDiskName
 New-AzResourceGroup -Name myResourceGroup -Location myLocation
 ```
  
-* The number of storage fault domains varies by region. The following command retrieves a list of fault domains per region:
+* The number of storage fault domains varies by region. The following command retrieves a list of maximum supported fault domains per region:
  
 ```powershell
 Get-AzComputeResourceSku | Where-Object {$_.ResourceType -eq 'availabilitySets' -and $_.Name -eq 'Aligned'} | Select-Object @{Name='Location'; Expression={$_.locationInfo[0].location}}, @{Name='MaximumFaultDomainCount'; Expression={$_.capabilities[0].value}}  
@@ -120,22 +121,21 @@ Get-AzComputeResourceSku | Where-Object {$_.ResourceType -eq 'availabilitySets' 
 * Create the availability set:  
  ```powershell
 New-AzAvailabilitySet -Name myAvSetName -ResourceGroupName myResourceGroup -Sku aligned -PlatformFaultDomainCount myFDCount -PlatformUpdateDomainCount myUDCount -Location myLocation  
- ```
 
-> [!Note]
-> The value for *platform-fault-domain-count* should be determined based on the number of available storage fault domains in a given region. See Step 2 to check the available fault domains per region.
+## The value for PlatformUpdateDomainCount should be determined based on the number of maximum supported fault domains in a given region. See previous step to check the available fault domains per region.
+```
 
  
 * Create a VM:
 ```powershell
 New-AzVm `
-ResourceGroupName $resourceGroupName ` 
-Name $vmName ` 
-Location $region `  
-Image $vmImage `
-Size $Size ` 
-AvailabilitySetName $AvSetName` 
-Credential $credential
+-ResourceGroupName $resourceGroupName ` 
+-Name $vmName ` 
+-Location $region `  
+-Image $vmImage `
+-Size $Size ` 
+-AvailabilitySetName $AvSetName` 
+-Credential $credential
 ```
 
 * Attach a new Premium SSD v2 disk to existing VMs in an availability set: 
