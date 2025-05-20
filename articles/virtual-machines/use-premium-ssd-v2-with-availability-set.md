@@ -208,3 +208,9 @@ To update the property on an existing unattached disk:
  ```azurecli-interactive
  az disk update --name myDiskName --resource-group myResourceGroup --set optimizedForFrequentAttach=true
  ```
+
+## Next steps
+
+- [Deploy a Premium SSD v2](/azure/virtual-machines/disks-deploy-premium-v2?tabs=azure-cli)
+- [Availability sets overview](/azure/virtual-machines/availability-set-overview)
+- [Best practices for achieving high availability with Azure virtual machines and managed disks](/azure/virtual-machines/disks-high-availability)
