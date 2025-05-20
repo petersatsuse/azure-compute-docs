@@ -69,7 +69,7 @@ To proceed, register the feature manually:
 ```azurecli-interactive
 az group create --name myResourceGroup --location myLocation 
 ```
-* The number of storage fault domains varies by region. The following command retrieves a list of fault domains per region:
+* The number of storage fault domains varies by region. The following command retrieves a list of maximum suported fault domains per region:
 
 ```azurecli-interactive
 az vm list-skus --resource-type availabilitySets --query '[?name==`Aligned`].{Location:locationInfo[0].location,  MaximumFaultDomainCount:capabilities[0].value}' -o Table 
@@ -79,10 +79,10 @@ az vm list-skus --resource-type availabilitySets --query '[?name==`Aligned`].{Lo
  
 ```azurecli-interactive
 az vm availability-set create -n myAvSet -g myResourceGroup --platform-fault-domain-count myFDCount --platform-update-domain-count myUDCount
+
+The value for platform-fault-domain-count should be determined based on the number of maximum supported fault domains in a given region. See previous step to check the available fault domains per region.
 ```
  
-> [!Note]
-> The value for *platform-fault-domain-count* should be determined based on the number of available storage fault domains in a given region. See Step 2 to check the available fault domains per region.
 
  
 * Create a VM:
@@ -112,7 +112,7 @@ az vm disk attach -g MyResourceGroupName --vm-name MyVMname --disks MyDiskName
 New-AzResourceGroup -Name myResourceGroup -Location myLocation
 ```
  
-* The number of storage fault domains varies by region. The following command retrieves a list of fault domains per region:
+* The number of storage fault domains varies by region. The following command retrieves a list of maximum supported fault domains per region:
  
 ```powershell
 Get-AzComputeResourceSku | Where-Object {$_.ResourceType -eq 'availabilitySets' -and $_.Name -eq 'Aligned'} | Select-Object @{Name='Location'; Expression={$_.locationInfo[0].location}}, @{Name='MaximumFaultDomainCount'; Expression={$_.capabilities[0].value}}  
@@ -121,10 +121,9 @@ Get-AzComputeResourceSku | Where-Object {$_.ResourceType -eq 'availabilitySets' 
 * Create the availability set:  
  ```powershell
 New-AzAvailabilitySet -Name myAvSetName -ResourceGroupName myResourceGroup -Sku aligned -PlatformFaultDomainCount myFDCount -PlatformUpdateDomainCount myUDCount -Location myLocation  
- ```
 
-> [!Note]
-> The value for *platform-fault-domain-count* should be determined based on the number of available storage fault domains in a given region. See Step 2 to check the available fault domains per region.
+The value for PlatformUpdateDomainCount should be determined based on the number of maximum supported fault domains in a given region. See previous step to check the available fault domains per region.
+```
 
  
 * Create a VM:
