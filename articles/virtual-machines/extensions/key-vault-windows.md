@@ -18,14 +18,7 @@ The Azure Key Vault virtual machine (VM) extension provides automatic refresh of
 
 ## Operating systems
 
-The Key Vault VM extension supports the following versions of Windows:
-
-- Windows Server 2022
-- Windows Server 2019
-- Windows Server 2016
-- Windows Server 2012
-
-The Key Vault VM extension is also supported on a custom local VM. The VM should be uploaded and converted into a specialized image for use in Azure by using Windows Server 2019 core install.
+The Key Vault VM extension supports Windows Server 2019 and later. The Key Vault VM extension is also supported on a custom local VM. The VM should be uploaded and converted into a specialized image for use in Azure by using Windows Server 2019 core install.
 
 ### Supported certificates
 
