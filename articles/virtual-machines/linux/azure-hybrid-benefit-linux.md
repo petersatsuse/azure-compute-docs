@@ -451,6 +451,8 @@ Converting to a PAYG subscription model is supported for Azure Marketplace image
     ```
 
 ---
+> [!NOTE]
+> If the `license-type` is set to `RHEL_BYOS` or to `None`, indicating the VM has been converted back to the BYOS model, this results in the removal of all client update packages from the VM and stops associated billing.
 
 #### Multiple VMs
 
