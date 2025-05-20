@@ -80,7 +80,7 @@ az vm list-skus --resource-type availabilitySets --query '[?name==`Aligned`].{Lo
 ```azurecli-interactive
 az vm availability-set create -n myAvSet -g myResourceGroup --platform-fault-domain-count myFDCount --platform-update-domain-count myUDCount
 
-The value for platform-fault-domain-count should be determined based on the number of maximum supported fault domains in a given region. See previous step to check the available fault domains per region.
+## The value for platform-fault-domain-count should be determined based on the number of maximum supported fault domains in a given region. See previous step to check the available fault domains per region.
 ```
  
 
@@ -122,20 +122,20 @@ Get-AzComputeResourceSku | Where-Object {$_.ResourceType -eq 'availabilitySets' 
  ```powershell
 New-AzAvailabilitySet -Name myAvSetName -ResourceGroupName myResourceGroup -Sku aligned -PlatformFaultDomainCount myFDCount -PlatformUpdateDomainCount myUDCount -Location myLocation  
 
-The value for PlatformUpdateDomainCount should be determined based on the number of maximum supported fault domains in a given region. See previous step to check the available fault domains per region.
+## The value for PlatformUpdateDomainCount should be determined based on the number of maximum supported fault domains in a given region. See previous step to check the available fault domains per region.
 ```
 
  
 * Create a VM:
 ```powershell
 New-AzVm `
-ResourceGroupName $resourceGroupName ` 
-Name $vmName ` 
-Location $region `  
-Image $vmImage `
-Size $Size ` 
-AvailabilitySetName $AvSetName` 
-Credential $credential
+-ResourceGroupName $resourceGroupName ` 
+-Name $vmName ` 
+-Location $region `  
+-Image $vmImage `
+-Size $Size ` 
+-AvailabilitySetName $AvSetName` 
+-Credential $credential
 ```
 
 * Attach a new Premium SSD v2 disk to existing VMs in an availability set: 
