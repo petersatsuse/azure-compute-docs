@@ -28,11 +28,15 @@
 
 Expanding Ultra Disks and Premium SSD v2 disks have the following additional limitations:
 - You can't expand a disk while a [background copy](../scripts/create-managed-disk-from-snapshot.md#performance-impact---background-copy-process) of data is also occurring on that disk, like when a disk is being backfilled from [snapshots](/azure/virtual-machines/disks-incremental-snapshots?tabs=azure-cli).
-- You can't expand a VM that's using [NVMe controllers](../nvme-overview.md) for Ultra Disks or Premium SSD v2 disks without downtime.
+- You can't expand a VM that's using [NVMe controllers](../nvme-overview.md) for Ultra Disks or Premium SSD v2 disks without downtime. 
+- (Preview) VMs using [NVMe controllers](../nvme-overview.md) for Ultra Disks or Premium SSD v2 disks can currently only be expanded without downtime in the following regions:
+    - East Asia
+    - Southeast Asia
+    - Brazil South
+    - Canada Central
+    - Germany West Central
+    - Central India
+    - West Central US
 
 > [!IMPORTANT]
 > Allow up to 10 minutes for the correct size to be reflected in Windows VMs and Linux VMs. For Linux VMs, you must perform a [Linux rescan function](/azure/virtual-machines/linux/expand-disks?tabs=ubuntu#detecting-a-changed-disk-size). For Windows VM that doesn't have a workload, you must perform a [Windows rescan function](/windows-hardware/drivers/devtest/devcon-rescan). You can rescan immediately, but if it's within 10 minutes, you might need to rescan again to display the correct size.
-
-#### Regional availability
-
-Resizing Ultra Disks and Premium SSD v2 disks is currently available in all Premium SSD v2 and Ultra supported regions. 
