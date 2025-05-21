@@ -1,6 +1,6 @@
 ---
 title: Overview of VM Applications in the Azure Compute Gallery
-description: Learn more about VM application packages in an Azure Compute Gallery.
+description: Learn about VM Application packages in an Azure Compute Gallery used to create and deploy applications on Azure VM & Azure VM scale sets.
 ms.service: azure-virtual-machines
 ms.subservice: gallery
 ms.topic: concept-article
@@ -13,34 +13,39 @@ ms.custom: linux-related-content
 
 # VM Applications overview
 
-VM Applications are a resource type in Azure Compute Gallery (formerly known as Shared Image Gallery) that simplifies management, sharing, and global distribution of applications for your virtual machines.
+VM Applications are a resource type in Azure Compute Gallery that simplify management, sharing, and global distribution of applications for your virtual machines.
 
 While you can create an image of a VM with apps preinstalled, you would need to update your image each time you have application changes. Separating your application installation from your VM images means there’s no need to publish a new image for every line of code change.
 
-Application packages provide benefits over other deployment and packaging methods:
+### Key Benefits: 
+- **Centralized and Flexible Application Management**: 
+  - Package Once, Deploy Anywhere: Package applications in ZIP, MSI, or EXE formats and manage them centrally in Azure Compute Gallery.
+  - Version Control: Maintain multiple versions of applications, allowing teams to deploy the latest or a specific version as needed.
+- **Seamless Sharing and Access Control**
+  - Tenant-Wide Sharing: Share applications within teams or across your entire organization (tenant).
+  - Integrated RBAC: Control publishing and deployment access using Azure Role-Based Access Control (RBAC).
+- **Reliable and Customizable Deployments**
+  - Individual Application Control: Install, update, or delete applications independently—no need to rebuild VM images.
+  - Customizable Operations: Define how install, update, and delete operations for applications, including reboot handling.
+  - Built-In Failure Handling: Ensure resilient deployments by connecting VM application failure to VM failure.
+- **Scalable and Low-Latency Distribution**
+  - Global and Intra-Region Replication: Automatically replicate applications across and within regions to reduce latency and improve resiliency—no need for AzCopy or manual transfers.
+  - Optimized for High-Scale Scenarios: Achieve low create latency even during large-scale deployments.
+- **Secure and Compliant by Design**
+  - Policy-Driven Enforcement: Use Azure Policy to enforce application presence and configuration across your fleet.
+  - Secure Deployments: Avoid internet-based downloads and complex private link setups which are not ideal for locked-down or secure environments.
+- **Broad Platform Support**
+  - VMs and Scale Sets: Deploy to individual VMs, flexible scale sets, or uniform scale sets with full support.
+  - Block Blob Support: Efficiently handle large application packages (upto 2GB) using Azure Block Blobs for chunked uploads and background streaming.
 
-- VM Applications have support for [Azure Policies](/azure/governance/policy/overview)
+## What are VM Application packages?
 
-- Grouping and versioning of your packages
-
-- VM applications can be globally replicated to be closer to your infrastructure, so you don’t need to use AzCopy or other storage copy mechanisms to copy the bits across Azure regions.
-
-- Sharing with other users through Azure Role Based Access Control (RBAC)
-
-- Support for virtual machines, and both flexible and uniform scale sets
-
-- If you have Network Security Group (NSG) rules applied on your VM or scale set, downloading the packages from an internet repository might not be possible. And with storage accounts, downloading packages onto locked-down VMs would require setting up private links.
-
-- Support for Block Blobs: This feature allows the handling of large files efficiently by breaking them into smaller, manageable blocks. Ideal for uploading large amounts of data, streaming, and background uploading.
-
-## What are VM app packages?
-
-The VM application packages use multiple resource types:
+The VM Application packages use multiple resource types:
 
 | Resource | Description|
 |----------|------------|
-| **Azure compute gallery** | A gallery is a repository for managing and sharing application packages. Users can share the gallery resource and all the child resources are shared automatically. The gallery name must be unique per subscription. For example, you may have one gallery to store all your OS images and another gallery to store all your VM applications.|
-| **VM application** | The definition of your VM application. It's a *logical* resource that stores the common metadata for all the versions under it. For example, you may have an application definition for Apache Tomcat and have multiple versions within it. |
+| **Azure Compute Gallery** | A gallery is a repository for managing and sharing application packages. Users can share the gallery resource and all the child resources are shared automatically. The gallery name must be unique per subscription. For example, you may have one gallery to store all your OS images and another gallery to store all your VM applications.|
+| **VM Application** | The definition of your VM application. It's a *logical* resource that stores the common metadata for all the versions under it. For example, you may have an application definition for Apache Tomcat and have multiple versions within it. |
 | **VM Application version** | The deployable resource. You can globally replicate your VM application versions to target regions closer to your VM infrastructure. The VM Application Version must be replicated to a region before it may be deployed on a VM in that region. |
 
 ## Limitations 
@@ -58,7 +63,8 @@ The VM application packages use multiple resource types:
 - **Requires a VM Agent**: The VM agent must exist on the VM and be able to receive goal states.
 
 - **Multiple versions of same application on the same VM**: You can't have multiple versions of the same application on a VM.
-- **Move operations currently not supported**: Moving VMs with VM Apps to other resource groups aren't supported at this time.
+  
+- **Move operations currently not supported**: Moving VMs with VM Applications to other resource groups aren't supported at this time.
 
 > [!NOTE]
 > For Azure Compute Gallery and VM Applications, Storage SAS can be deleted after replication. However, any subsequent update operation will require a valid SAS.
@@ -72,7 +78,7 @@ There's no extra charge for using VM Application Packages, but you're charged fo
 
 For more information on network egress, see [Bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/).
 
-## VM applications
+## VM Applications
 
 The VM application resource defines the following about your VM application:
 
@@ -81,19 +87,19 @@ The VM application resource defines the following about your VM application:
 - Supported OS type like Linux or Windows
 - A description of the VM application
 
-## VM application versions
+## VM Application versions
 
 VM application versions are the deployable resource. Versions are defined with the following properties:
 
 - Version number
 - Link to the application package file in a storage account
-- Install string for installing the application
-- Remove string to show how to properly remove the app
+- Install string to properly install the application
+- Remove string to properly remove the application
+- Update string to properly update the VM application to a newer version
 - Package file name to use when it's downloaded to the VM
-- Configuration file name to be used to configure the app on the VM
+- Configuration file name to be used to configure the application on the VM
 - A link to the configuration file for the VM application, which you can include license files
-- Update string for how to update the VM application to a newer version
-- End-of-life date. End-of-life dates are informational; you're still able to deploy VM application versions past the end-of-life date.
+- End-of-life date. End-of-life dates are informational; you're still able to deploy VM Application versions past the end-of-life date.
 - Exclude from latest. You can keep a version from being used as the latest version of the application.
 - Target regions for replication
 - Replica count per region
@@ -102,8 +108,8 @@ VM application versions are the deployable resource. Versions are defined with t
 
 The download location of the application package and the configuration files are:
 
-- Linux: `/var/lib/waagent/Microsoft.CPlat.Core.VMApplicationManagerLinux/<appname>/<app version> `
-- Windows: `C:\Packages\Plugins\Microsoft.CPlat.Core.VMApplicationManagerWindows\1.0.9\Downloads\<appname>\<app version> `
+- Linux: `/var/lib/waagent/Microsoft.CPlat.Core.VMApplicationManagerLinux/<application name>/<application version> `
+- Windows: `C:\Packages\Plugins\Microsoft.CPlat.Core.VMApplicationManagerWindows\1.0.9\Downloads\<application name>\<application version> `
 
 The install/update/remove commands should be written assuming the application package and the configuration file are in the current directory.
 
@@ -138,7 +144,7 @@ It's possible to use a different interpreter like Chocolatey or PowerShell, as l
 
 When you update an application version on a VM or Virtual Machine Scale Sets, the update command you provided during deployment is used. If the updated version doesn't have an update command, then the current version is removed and the new version is installed.
 
-Update commands should be written with the expectation that it could be updating from any older version of the VM application.
+Update commands should be written with the expectation that it could be updating from any older version of the VM Application.
 
 ## Tips for creating VM Applications on Linux
 
@@ -170,7 +176,7 @@ Figuring out the dependencies can be a bit tricky. There are third party tools t
 
 In Ubuntu, you can run `sudo apt show <package_name> | grep Depends` to show all the packages that are installed when executing the `sudo apt-get install <packge_name>` command. Then you can use that output to download all `.deb` files to create an archive that can be used as the application package.
 
-1. Example, to create a VM application package to install PowerShell for Ubuntu, first run the following commands to enable the repository where PowerShell can be downloaded from and also to identify the package dependencies on a new Ubuntu VM.
+1. Example, to create a VM Application package to install PowerShell for Ubuntu, first run the following commands to enable the repository where PowerShell can be downloaded from and also to identify the package dependencies on a new Ubuntu VM.
 
 ```bash
 # Download the Microsoft repository GPG keys
@@ -266,7 +272,7 @@ dpkg -i <package_name> || apt --fix-broken install -y
 
 In Red Hat, you can run `sudo yum deplist <package_name>` to show all the packages that are installed when executing the `sudo yum install <package_name>` command. Then you can use that output to download all `.rpm` files to create an archive that can be used as the application package.
 
-1. Example, to create a VM application package to install PowerShell for Red Hat, first run the following commands to enable the repository where PowerShell can be downloaded from and also to identify the package dependencies on a new RHEL VM.
+1. Example, to create a VM Application package to install PowerShell for Red Hat, first run the following commands to enable the repository where PowerShell can be downloaded from and also to identify the package dependencies on a new RHEL VM.
 
 - RHEL 7:
 
@@ -338,7 +344,7 @@ yum install <package.rpm> -y
 
 In SUSE, you can run `sudo zypper info --requires <package_name>` to show all the packages that are installed when executing the `sudo zypper install <package_name>` command. Then you can use that output to download all `.rpm` files to create an archive that can be used as the application package.
 
-1. Example, to create a VM application package to install `azure-cli` for SUSE, first run the following commands to enable the repository where Azure CLI can be downloaded from and also to identify the package dependencies on a new SUSE VM.
+1. Example, to create a VM Application package to install `azure-cli` for SUSE, first run the following commands to enable the repository where Azure CLI can be downloaded from and also to identify the package dependencies on a new SUSE VM.
 
 ```bash
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -425,7 +431,7 @@ Installer executables typically launch a user interface (UI) and require someone
 
 Cmd.exe also expects executable files to have the extension `.exe`, so you need to rename the file to have the `.exe` extension.
 
-If I want to create a VM application package for `myApp.exe`, which ships as an executable, my VM Application is called 'myApp', so I write the command assuming the application package is in the current directory:
+If I want to create a VM Application package for `myApp.exe`, which ships as an executable, my VM Application is called 'myApp', so I write the command assuming the application package is in the current directory:
 
 ```terminal
 "move .\\myApp .\\myApp.exe & myApp.exe /S -config myApp_config"
@@ -479,11 +485,11 @@ rmdir /S /Q C:\\myapp
 
 ## Treat failure as deployment failure
 
-The VM application extension always returns a *success* regardless of whether any VM app failed while being installed/updated/removed. The VM Application extension only reports the extension status as failure when there's a problem with the extension or the underlying infrastructure. This behavior is triggered by the "treat failure as deployment failure" flag, which is set to `$false` by default and can be changed to `$true`. The failure flag can be configured in [PowerShell](/powershell/module/az.compute/add-azvmgalleryapplication#parameters) or [CLI](/cli/azure/vm/application#az-vm-application-set).
+The VM Application extension always returns a *success* regardless of whether any VM app failed while being installed/updated/removed. The VM Application extension only reports the extension status as failure when there's a problem with the extension or the underlying infrastructure. This behavior is triggered by the "treat failure as deployment failure" flag, which is set to `$false` by default and can be changed to `$true`. The failure flag can be configured in [PowerShell](/powershell/module/az.compute/add-azvmgalleryapplication#parameters) or [CLI](/cli/azure/vm/application#az-vm-application-set).
 
 ## Troubleshooting VM Applications
 
-To know whether a particular VM application was successfully added to the VM instance, check the message of the VM Application extension.
+To know whether a particular VM Application was successfully added to the VM instance, check the message of the VM Application extension.
 
 To learn more about getting the status of VM extensions, see [Virtual machine extensions and features for Linux](extensions/features-linux.md#view-extension-status) and [Virtual machine extensions and features for Windows](extensions/features-windows.md#view-extension-status).
 
