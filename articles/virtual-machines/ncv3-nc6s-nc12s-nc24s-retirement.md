@@ -24,7 +24,7 @@ However, depending on the workload being run, regional affinity, and cost prefer
 
 ## How does the retirement of the NCv3-series virtual machines affect me?
 
-**After** **September 30th, any remaining** **NCv3-series virtual machines (VMs) subscriptions will be set to a deallocated state. They'll stop working and no longer incur billing charges. The NCv3 will no longer be under SLA or have support included.** 
+**After** **September 30th, any remaining** **NCv3-series virtual machines (VMs) subscriptions will be set to a deallocated state. They'll stop working and no longer incur billing charges. NCv3 will no longer be under SLA or have support included.** 
 
 > [!Note]
 > This retirement only impacts the virtual machine sizes in the original NCv3-series powered by NVIDIA V100 GPUs. This retirement announcement doesn't apply to NCasT4_v3, NC_A100_v4, and NCadsH100_v5 series virtual machines.
