@@ -1,6 +1,6 @@
 ---
-title: NCv3 and NC6s NC12s NC24s Retirement
-description: Migration guide for sizes NC6s_v3 NC12s_v3 NC24s_v3
+title: NCv3-series Retirement
+description: Migration guide for NCv3-series virtual machines
 author: sherrywangms
 ms.author: sherrywang
 ms.service: azure-virtual-machines
