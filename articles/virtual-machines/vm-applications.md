@@ -53,7 +53,7 @@ The VM application packages use multiple resource types:
 
 - **Only 25 applications per VM**: No more than 25 applications may be deployed to a VM at any point.
 
-- **2GB application size**: The maximum file size of an application version (mediaLink) is 2 GB. The maximum file size for defaultConfigurationLink is 1GB. 
+- **2GB application size**: The maximum file size of an application version `mediaLink` is 2 GB. The maximum file size for `defaultConfigurationLink` is 1GB. 
 
 - **Requires a VM Agent**: The VM agent must exist on the VM and be able to receive goal states.
 
