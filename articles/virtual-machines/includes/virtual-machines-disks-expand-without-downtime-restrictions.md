@@ -5,7 +5,7 @@
  author: roygara
  ms.service: azure-virtual-machines
  ms.topic: include
- ms.date: 01/27/2025
+ ms.date: 05/21/2025
  ms.author: rogarana
  ms.custom: include file, references_regions
 ---
@@ -28,7 +28,6 @@
 
 Expanding Ultra Disks and Premium SSD v2 disks have the following additional limitations:
 - You can't expand a disk while a [background copy](../scripts/create-managed-disk-from-snapshot.md#performance-impact---background-copy-process) of data is also occurring on that disk, like when a disk is being backfilled from [snapshots](/azure/virtual-machines/disks-incremental-snapshots?tabs=azure-cli).
-- You can't expand a VM that's using [NVMe controllers](../nvme-overview.md) for Ultra Disks or Premium SSD v2 disks without downtime. 
 - (Preview) VMs using [NVMe controllers](../nvme-overview.md) for Ultra Disks or Premium SSD v2 disks can currently only be expanded without downtime in the following regions:
     - East Asia
     - Southeast Asia
