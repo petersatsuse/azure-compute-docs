@@ -16,6 +16,11 @@
             "redirect_document_id": false
         },
         {
+            "source_path_from_root": "/articles/virtual-machines/workloads/redhat/redhat-imagelist.md",
+            "redirect_url": "/azure/virtual-machines/workloads/redhat/redhat-images",
+            "redirect_document_id": false
+        },
+        {
             "source_path_from_root": "/articles/virtual-machines/linux/tutorial-availability-sets.md",
             "redirect_url": "/previous-versions/azure/virtual-machines/linux/tutorial-availability-sets",
             "redirect_document_id": false
