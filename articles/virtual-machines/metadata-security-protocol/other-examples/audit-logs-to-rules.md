@@ -28,28 +28,21 @@ There are two ways to create an Allowlist:
 - Automated Allowlist generation
 - Manually create Allowlist
 
-### Automated Allowlist generation
-
-1. Download and run the Allowlist Tool from either option:
-   - Select `allowListTool.exe` from the [latest release page](https://github.com/Azure/GuestProxyAgent/releases/latest)
-   - Direct download [link](https://github.com/Azure/GuestProxyAgent/releases/latest/download/allowListTool.exe)
-1. Follow the steps in the Allowlist Tool to create your Allowlist and download the generated Allowlist.
-   
-   Note:
+## Structure of an Allowlist 
    An allow list is comprised of privileges, identities, roles, and role assignments. 
    - Identities are processes on the machine.
    - Privileges are endpoints being accessed by identities. 
    - Roles is a grouping of privileges.
    - Role Assignments consists of a role and the list of identities granted access for that role.
-   The tool will parse the ProxyAgentConnection logs and display the current privileges and identities on the VM. Then the user will create roles and role assignments.
 
-   To build your allow list, launch the exe provided above and follow two simple steps:
-   
-   1: Create a Role
-   Select privileges to be associated with a role and give the role a descriptive name.
-   
-   2: Create a Role Assignment
-   Select a role and associated identities, these identities will be able to access the privileges in that role. Give the role assignment a descriptive name. 
+### Automated Allowlist generation
+
+1. Download and run the Allowlist Tool from either option:
+   - Select `allowListTool.exe` from the [latest release page](https://github.com/Azure/GuestProxyAgent/releases/latest)
+   - Direct download [link](https://github.com/Azure/GuestProxyAgent/releases/latest/download/allowListTool.exe)
+1. To build your allow list, launch the exe provided above. The tool will parse the ProxyAgentConnection logs and display the current privileges and identities on the VM. Then create roles and role assignments: 
+   - To create a Role select a grouping of privileges and give the role a descriptive name.
+   - To create a Role Assignment select a role and a grouping of identities, these identities will be able to access the privileges grouped in that role. Give the role assignment a descriptive name.
 
 ### Manually create Allowlist
 
@@ -81,7 +74,7 @@ A simple rules schema would look like:
 
 ### Using ARM template
 
-1. [Create a new private gallery](https://learn.microsoft.com/azure/virtual-machines/create-gallery) in Azure compute gallery.
+1. [Create a new private gallery](/azure/virtual-machines/create-gallery) in Azure compute gallery.
 1. Create an `InVMAccessControlProfile` definition with parameters for:
     - The gallery name to store in (from step 1)
     - Profile name
