@@ -20,33 +20,41 @@ ms.devlang: azurecli
 To run applications on virtual machine (VM) instances in a scale set, you first need to install the application components and required files. This article introduces ways to build a custom VM image for instances in a scale set, or automatically run install scripts on existing VM instances. You also learn how to manage application or OS updates across a scale set.
 
 ## Install an app using VM Apps
-[Azure VM Apps](../virtual-machines/vm-applications.md) provide a streamlined way to package, manage, and deploy applications across Azure Virtual Machines (VMs), Virtual Machine Scale Sets (VMSS). VM Apps is the best suited method for deploying tools, agents, AI Apps, security components, and line-of-business applications across Azure. 
+[Azure VM Apps](../virtual-machines/vm-applications.md) provide a streamlined, scalable and secure way to package, manage, and deploy applications across Azure Virtual Machines (VMs), Virtual Machine Scale Sets (VMSS). VM Apps is the best suited method for deploying tools, agents, AI Apps, security components, and line-of-business applications across Azure. 
 
 ### Key Benefits: 
-- Package and manage applications (ZIP, MSI, EXE) in the Azure Compute Gallery.
-- Share and reuse applications across the organization.
-- Achieve consistent deployments and version control across Azure VMs and VMSS.
-- Deploy multiple applications on a single VM.
-- Ensure reliable installation with built-in failure handling.
-- Automate deployments using ARM templates, Azure CLI, Azure PowerShell, Bicep scripts, and Terraform.
-- Automatic regional replication of published applications for improved create latency and resiliency.
-- Integrated Azure RBAC ensuring Application publishing from authorized users.
-- Update individual applications without the need for custom VM images or scripts.
-- Enforce infrastructure compliance by [injecting VM Apps on Azure VMs using Azure Policy](https://devblogs.microsoft.com/azure-vm-runtime/managing-vm-applications-with-azure-policies/).
-
+- **Centralized and Flexible Application Management**: 
+  - Package Once, Deploy Anywhere: Package applications in ZIP, MSI, or EXE formats and manage them centrally in Azure Compute Gallery.
+  - Version Control: Maintain multiple versions of applications, allowing teams to deploy the latest or a specific version as needed.
+- **Seamless Sharing and Access Control**
+  - Tenant-Wide Sharing: Share applications within teams or across your entire organization (tenant).
+  - Integrated RBAC: Control publishing and deployment access using Azure Role-Based Access Control (RBAC).
+- **Reliable and Customizable Deployments**
+  - Individual App Control: Install, update, or delete applications independently—no need to rebuild VM images.
+  - Customizable Operations: Define how install, update, and delete operations for applications, including reboot handling.
+  - Built-In Failure Handling: Ensure resilient deployments by connecting VM application failure to VM failure.
+- **Scalable and Low-Latency Distribution**
+  - Global and Intra-Region Replication: Automatically replicate applications across and within regions to reduce latency and improve resiliency—no need for AzCopy or manual transfers.
+  - Optimized for High-Scale Scenarios: Achieve low create latency even during large-scale deployments.
+- **Secure and Compliant by Design**
+  - Policy-Driven Enforcement: Use Azure Policy to enforce application presence and configuration across your fleet.
+  - Secure Deployments: Avoid internet-based downloads and complex private link setups—ideal for locked-down environments.
+- **Broad Platform Support**
+  - VMs and Scale Sets: Deploy to individual VMs, flexible scale sets, or uniform scale sets with full support.
+  - Block Blob Support: Efficiently handle large application packages using Azure Block Blobs for chunked uploads and background streaming.
+    
 ### Create and deploy VM Apps
 - [Overview of VM Apps](../virtual-machines/vm-applications.md)
 - [Create and deploy VM Apps on Linux VM](../virtual-machines/vm-applications-how-to.md?tabs=cli%2Ccli1%2Ccli2%2Ccli3)
 - [Create and deploy VM Apps on Windows VM](../virtual-machines/vm-applications-how-to.md?tabs=powershell%2Cpowershell1%2Cpowershell2%2Cpowershell3)
 
 ## Build a custom VM image
-When you use one of the Azure platform images to create the instances in your scale set, no additional software is installed or configured. You can automate the install of these components, however that adds to the time it takes to provision VM instances to your scale sets. If you apply many configuration changes to the VM instances, there is management overhead with those configuration scripts and tasks.
+When you use one of the Azure platform images to create the instances in your scale set, no other software is installed or configured. You can automate the install of these components, however that adds to the time it takes to provision VM instances to your scale sets. If you apply many configuration changes to the VM instances, there is management overhead with those configuration scripts and tasks.
 
 To reduce the configuration management and time to provision a VM, you can create a custom VM image that is ready to run your application as soon as an instance is provisioned in the scale set. For more information on how to create and use a custom VM image with a scale set, see the following tutorials:
 
 - [Azure CLI](tutorial-use-custom-image-cli.md)
 - [Azure PowerShell](tutorial-use-custom-image-powershell.md)
-
 
 ## <a name="already-provisioned"></a>Install an app with the Custom Script Extension
 The Custom Script Extension downloads and executes scripts on Azure VMs. This extension is useful for post deployment configuration, software installation, or any other configuration / management task. Scripts can be downloaded from Azure storage or GitHub, or provided to the Azure portal at extension run-time. For more information on how to install an app with a Custom Script Extension, see the following tutorials:
