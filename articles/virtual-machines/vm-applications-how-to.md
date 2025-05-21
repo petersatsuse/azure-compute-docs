@@ -1,5 +1,5 @@
 ---
-title: Create and deploy VM application packages
+title: Create and deploy VM Application packages
 description: Learn how to create and deploy Virtual Machine (VM) Applications using an Azure Compute Gallery.
 author: gabstamsft
 ms.service: azure-virtual-machines
@@ -11,9 +11,9 @@ ms.reviewer: jushiman
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ---
 
-# Create and deploy VM Apps
+# Create and deploy VM Application
 
-VM Apps are a resource type in Azure Compute Gallery that simplify management, sharing, and global distribution of applications for your virtual machines. [Learn more about VM Apps](./vm-applications.md)
+VM Application are a resource type in Azure Compute Gallery that simplifies management, sharing, and global distribution of applications for your virtual machines. [Learn more about VM Application](./vm-applications.md)
 
 
 ## Prerequisites
@@ -64,7 +64,7 @@ If you're using PowerShell, you need to be using version 3.11.0 of the Az.Storag
 
 To learn more about the installation mechanism, see the [command interpreter.](vm-applications.md#command-interpreter)
 
-## Create the VM App
+## Create the VM Application
 
 ### [Portal](#tab/portal1)
 
@@ -72,10 +72,10 @@ To learn more about the installation mechanism, see the [command interpreter.](v
 1. Select the gallery you want to use from the list.
 1. On the page for your gallery, select **Add** from the top of the page and then select **VM application definition** from the drop-down. The **Create a VM application definition** page opens.
 1. In the **Basics** tab, enter a name for your application and choose whether the application is for VMs running Linux or Windows.
-1. Select the **Publishing options** tab if you want to specify any of the following optional settings for your VM application definition:
-    - A description of the VM application definition.
+1. Select the **Publishing options** tab if you want to specify any of the following optional settings for your VM Application definition:
+    - A description of the VM Application definition.
     - End of life date
-    - Link to a End User Licence Agreement (EULA)
+    - Link to an End User License Agreement (EULA)
     - URI of a privacy statement
     - URI for release notes
 1. When you're done, select **Review + create**.
@@ -96,22 +96,23 @@ To learn more about the installation mechanism, see the [command interpreter.](v
 
 ### [PowerShell](#tab/powershell1)
 
-Create the VM application definition using [`New-AzGalleryApplication`](https://learn.microsoft.com/powershell/module/az.compute/new-azgalleryapplication). In this example, we're creating a Linux app named *myApp* in the *myGallery* Azure Compute Gallery, in the *myGallery* resource group, and I've given a short description of the VM application for my own use. Replace the values as needed.
+Create the VM Application definition using [`New-AzGalleryApplication`](https://learn.microsoft.com/powershell/module/az.compute/new-azgalleryapplication). In this example, we're creating a Linux app named *myApp* in the *myGallery* Azure Compute Gallery and in the *myGallery* resource group. Replace the values for variables as needed.
 
 ```azurepowershell-interactive
 $galleryName = "myGallery"
 $rgName = "myResourceGroup"
 $applicationName = "myApp"
+$description = "Backend Linux application for finance."
 New-AzGalleryApplication `
   -ResourceGroupName $rgName `
   -GalleryName $galleryName `
   -Location "East US" `
   -Name $applicationName `
   -SupportedOSType Linux `
-  -Description "Backend Linux application for finance."
+  -Description $description
 ```
 
-Create a version of your application using [`New-AzGalleryApplicationVersion`](https://learn.microsoft.com/powershell/module/az.compute/new-azgalleryapplicationversion). Allowed characters for version are numbers and periods. Numbers must be within the range of a 32-bit integer. Format: *MajorVersion*.*MinorVersion*.*Patch*.
+Create a version of your VM Application using [`New-AzGalleryApplicationVersion`](https://learn.microsoft.com/powershell/module/az.compute/new-azgalleryapplicationversion). Allowed characters for version are numbers and periods. Numbers must be within the range of a 32-bit integer. Format: *MajorVersion*.*MinorVersion*.*Patch*.
 
 In this example, we're creating version number *1.0.0*. Replace the values of the variables as needed.
 
@@ -136,7 +137,7 @@ New-AzGalleryApplicationVersion `
 
 VM applications require [Azure CLI](/cli/azure/install-azure-cli) version 2.30.0 or later.
 
-Create the VM application definition using [az sig gallery-application create](/cli/azure/sig/gallery-application#az_sig_gallery_application_create). In this example, we're creating a VM application definition named *myApp* for Linux-based VMs.
+Create the VM application definition using ['az sig gallery-application create'](/cli/azure/sig/gallery-application#az_sig_gallery_application_create). In this example, we're creating a VM application definition named *myApp* for Linux-based VMs.
 
 
 ```azurecli-interactive
@@ -168,7 +169,7 @@ az sig gallery-application version create \
 
 ### [REST](#tab/rest1)
 
-Create the application definition using the ['create gallery application API'](https://learn.microsoft.com/rest/api/compute/gallery-applications)
+Create the VM Application definition using the ['create gallery application API'](https://learn.microsoft.com/rest/api/compute/gallery-applications)
 
 
 ```rest
@@ -260,7 +261,7 @@ PUT
 | endOfLifeDate | A future end of life date for the application version. This property is for customer reference only and isn't enforced. | Valid future date |
 | storageAccountType | Optional. Type of storage account to use in each region for storing application package. Defaults to Standard_LRS. | This property is nonupdatable. |
 | allowDeletionOfReplicatedLocations | Optional. Indicates whether or not removing this Gallery Image Version from replicated regions is allowed. | |
-| settings/scriptBehaviorAfterReboot | Optional. The action to be taken for installing. updating, or removing gallery application after the VM is rebooted. | | 
+| settings/scriptBehaviorAfterReboot | Optional. The action to be taken for installing, updating, or removing gallery application after the VM is rebooted. | | 
 | settings/configFileName | Optional. The name to assign the downloaded package file on the VM. If not specified, the package file is named the same as the Gallery Application name. | This is limited to 4,096 characters. |
 | settings/packageFileName | Optional. The name to assign the downloaded config file on the VM. If not specified, the config file is named as the Gallery Application name appended with '_config'. | This is limited to 4,096 characters. |
 
@@ -291,7 +292,7 @@ Select the VM application from the list and then select **Save** at the bottom o
 :::image type="content" source="media/vmapps/select-app.png" alt-text="Screenshot showing selecting a VM application to install on the VM.":::
 
 ### [CLI](#tab/cli2)
-Set a VM application to an existing VM using [az vm application set](/cli/azure/vm/application#az-vm-application-set) and replace the values of the parameters with your own.
+Set a VM application to an existing VM using ['az vm application set'](/cli/azure/vm/application#az-vm-application-set) and replace the values of the parameters with your own.
 
 ```azurecli-interactive
 az vm application set \
@@ -421,7 +422,7 @@ PUT
 | Field Name | Description | Limitations |
 |--|--|--|
 | order | Optional. The order in which the applications should be deployed. | Validate integer |
-| packageReferenceId | A reference to the gallery application version. Use "latest" keyword for version to automatically install the latest available version.  | Valid application version reference |
+| packageReferenceId | A reference to the gallery application version. Use "latest" keyword for version to automatically install the latest available version. | Valid application version reference |
 | configurationReference | Optional. The full url of a storage blob containing the configuration for this deployment. This overrides any value provided for defaultConfiguration earlier. | Valid storage blob reference |
 | treatFailureAsDeploymentFailure | Optional. When enabled, app deployment failure causes VM provisioning status to report failed status. | True or False
 
@@ -431,7 +432,7 @@ The order field may be used to specify dependencies between applications. The ru
 |--|--|--|
 | No order specified | Unordered applications are installed after ordered applications. There's no guarantee of installation order among the unordered applications. | Installation failures of other applications, be it ordered or unordered doesn’t affect the installation of unordered applications. |
 | Duplicate order values | Application is installed in any order compared to other applications with the same order. All applications of the same order are installed after the ones with lower orders and before the ones with higher orders. | If a previous application with a lower order failed to install, no applications with this order install. If any application with this order fails to install, no applications with a higher order install. |
-| Increasing orders | Application will be installed after the ones with lower orders and before the ones with higher orders. | If a previous application with a lower order failed to install, this application does not install. If this application fails to install, no application with a higher order installs. |
+| Increasing orders | Application will be installed after the ones with lower orders and before the ones with higher orders. | If a previous application with a lower order failed to install, this application doesn't install. If this application fails to install, no application with a higher order installs. |
 
 The response includes the full VM model. The following are the
 relevant parts.
@@ -463,13 +464,13 @@ relevant parts.
 ----
 
 
-## Monitor the deployed VM Apps
+## Monitor the deployed VM Applications
 ### [Portal](#tab/portal3)
 To show the VM application status, go to the Extensions + applications tab/settings and check the status of the VMAppExtension:
 
 :::image type="content" source="media/vmapps/select-app-status.png" alt-text="Screenshot showing VM application status.":::
 
-To show the VM application status for scale set, go to the Azure portal Virtual Machine Scale Sets page, then the Instances section, select one of the scale sets listed, then go to **VMAppExtension**:
+To show the VM application status for scale set, go to the Azure portal Virtual Machine Scale Sets page, then the Instances section, select one of the scales sets listed, then go to **VMAppExtension**:
 
 :::image type="content" source="media/vmapps/select-apps-status-vmss-portal.png" alt-text="Screenshot showing virtual machine scale sets application status.":::
 
@@ -522,7 +523,7 @@ $resultSummary | ConvertTo-Json -Depth 5
 
 ### [REST](#tab/rest3)
 
-If the VM applications is not installed on the VM, the value is empty. 
+If the VM application isn't installed on the VM, the value is empty. 
 
 To get the result of VM instance view:
 
@@ -569,44 +570,44 @@ The output is similar to the VM example earlier.
 
 ---
 
-## Delete the VM Apps
-To delete the VM Application resource you need to first delete all it's versions. Deleting the application version causes deletion of the application version resource from Azure Compute Gallery and all its replicas. The application blob in Storage Account used to created the application version is unaffected. After deleting the application version, if any VM is using that version, then reimage operation on those VMs will fail. Use 'latest' keyword as the version number in the 'applicationProfile' instead of hard coding the version number to address this failure.  
-However if the application is deleted, then VM will fail during reimage operation since there are no versions available for Azure to install. The VM profile needs to be updated to not use the VM App. 
+## Delete the VM Application
+To delete the VM Application resource, you need to first delete all its versions. Deleting the application version causes deletion of the application version resource from Azure Compute Gallery and all its replicas. The application blob in Storage Account used to create the application version is unaffected. After deleting the application version, if any VM is using that version, then reimage operation on those VMs will fail. Use 'latest' keyword as the version number in the 'applicationProfile' instead of hard coding the version number to address this failure.  
+However if the application is deleted, then VM fails during reimage operation since there are no versions available for Azure to install. The VM profile needs to be updated to not use the VM Application. 
 
 ### [PowerShell](#tab/powershell4)
-Delete the application version: 
+Delete the VM Application version: 
 ```azurepowershell-interactive
 Remove-AzGalleryApplicationVersion -ResourceGroupName $rgNmae -GalleryName $galleryName -GalleryApplicationName $galleryApplicationName -Name $name
 ```
 
-Delete the application after all its versions are deleted:
+Delete the VM Application after all its versions are deleted:
 ```azurepowershell-interactive
 Remove-AzGalleryApplication -ResourceGroupName $rgNmae -GalleryName $galleryName -Name $name
 ```
 
 ### [CLI](#tab/cli4)
-Delete the application version:
+Delete the VM Application version:
 ```azurecli-interactive
 az sig gallery-application version delete --resource-group $rg-name --gallery-name $gallery-name --application-name $app-name --version-name $version-name
 ```
 
-Delete the application after all its versions are deleted:
+Delete the VM Application after all its versions are deleted:
 ```azurecli-interactive
 az sig gallery-application delete --resource-group $rg-name --gallery-name $gallery-name --application-name $app-name
 ```
 
 ### [REST](#tab/rest4)
-Delete the application version:
+Delete the VM Application version:
 ```rest
 DELETE
 https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/applications/{galleryApplicationName}/versions/{galleryApplicationVersionName}?api-version=2024-03-03
 ```
 
-Delete the application after all its versions are deleted:
+Delete the VM Application after all its versions are deleted:
 ```rest
 DELETE
 https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/applications/{galleryApplicationName}?api-version=2024-03-03
 ```
 
 ## Next steps
-Learn more about [VM applications](vm-applications.md).
+Learn more about [Azure VM Applications](vm-applications.md).
