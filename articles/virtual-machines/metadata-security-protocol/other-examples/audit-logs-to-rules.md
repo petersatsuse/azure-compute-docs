@@ -34,6 +34,22 @@ There are two ways to create an Allowlist:
    - Select `allowListTool.exe` from the [latest release page](https://github.com/Azure/GuestProxyAgent/releases/latest)
    - Direct download [link](https://github.com/Azure/GuestProxyAgent/releases/latest/download/allowListTool.exe)
 1. Follow the steps in the Allowlist Tool to create your Allowlist and download the generated Allowlist.
+   
+   Note:
+   An allow list is comprised of privileges, identities, roles, and role assignments. 
+   - Identities are processes on the machine.
+   - Privileges are endpoints being accessed by identities. 
+   - Roles is a grouping of privileges.
+   - Role Assignments consists of a role and the list of identities granted access for that role.
+   The tool will parse the ProxyAgentConnection logs and display the current privileges and identities on the VM. Then the user will create roles and role assignments.
+
+   To build your allow list, launch the exe provided above and follow two simple steps:
+   
+   1: Create a Role
+   Select privileges to be associated with a role and give the role a descriptive name.
+   
+   2: Create a Role Assignment
+   Select a role and associated identities, these identities will be able to access the privileges in that role. Give the role assignment a descriptive name. 
 
 ### Manually create Allowlist
 
