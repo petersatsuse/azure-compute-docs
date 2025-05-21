@@ -27,7 +27,8 @@ However, depending on the workload being run, regional affinity, and cost prefer
 
 After September 30, 2025, any remaining Standard_NC24rs_v3 VM subscriptions will be set to a deallocated state. They'll stop working and no longer incur billing charges. The Standard_NC24rs_v3 VM size will no longer be under SLA or have support included.
 
-Note: This retirement only impacts the virtual machine sizes in the Standard_NC24rs_v3 size in NCv3-series powered by NVIDIA V100 GPUs. See [retirement guide for Standard_NC6s_v3, Standard_NC12s_v3, and Standard_NC24s_v3](https://aka.ms/ncv3nonrdmasizemigration). This retirement announcement doesn't apply to NCasT4_v3, NC_A100_v4, and NCadsH100_v5 series virtual machines. 
+> [!Note]
+> This retirement only impacts the virtual machine sizes in the Standard_NC24rs_v3 size in NCv3-series powered by NVIDIA V100 GPUs. See [retirement guide for Standard_NC6s_v3, Standard_NC12s_v3, and Standard_NC24s_v3](https://aka.ms/ncv3nonrdmasizemigration). This retirement announcement doesn't apply to NCasT4_v3, NC_A100_v4, and NCadsH100_v5 series virtual machines. 
 
 ## What action do I need to take before the retirement date?
 
