@@ -34,8 +34,8 @@ Expanding Ultra Disks and Premium SSD v2 disks have the following additional lim
     - Brazil South
     - Canada Central
     - Germany West Central
-    - Central India
-    - West Central US
-
+    - Central India (Not currently supported on V6 VMs)
+    - West Central US (Not currently supported on V6 VMs)
+ 
 > [!IMPORTANT]
 > Allow up to 10 minutes for the correct size to be reflected in Windows VMs and Linux VMs. For Linux VMs, you must perform a [Linux rescan function](/azure/virtual-machines/linux/expand-disks?tabs=ubuntu#detecting-a-changed-disk-size). For Windows VM that doesn't have a workload, you must perform a [Windows rescan function](/windows-hardware/drivers/devtest/devcon-rescan). You can rescan immediately, but if it's within 10 minutes, you might need to rescan again to display the correct size.
