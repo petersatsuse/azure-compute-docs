@@ -402,14 +402,6 @@
         - name: Overview
           displayName: M-series, sizes, size, vm size
           href: ./sizes/memory-optimized/m-family.md
-        - name: Standard Memory series
-          items:
-          - name: Mbsv3 series
-            href: ./sizes/memory-optimized/mbsv3-series.md
-          - name: Mbdsv3 series
-            href: ./sizes/memory-optimized/mbdsv3-series.md
-          - name: M series
-            href: ./sizes/memory-optimized/m-series.md
         - name: Medium Memory series
           items:
           - name: Mdsv3 Medium Memory series
@@ -420,6 +412,8 @@
             href: ./sizes/memory-optimized/msv2-mm-series.md
           - name: Mdsv2 Medium Memory series
             href: ./sizes/memory-optimized/mdsv2-mm-series.md
+          - name: M series
+            href: ./sizes/memory-optimized/m-series.md
         - name: High Memory series
           items:
           - name: Msv3 High Memory series
@@ -432,6 +426,12 @@
           items:
           - name: Mdsv3 Very High Memory Series
             href: ./sizes/memory-optimized/mdsv3-vhm-series.md
+        - name: Storage Optimized Memory series
+          items:
+          - name: Mbsv3 series
+            href: ./sizes/memory-optimized/mbsv3-series.md
+          - name: Mbdsv3 series
+            href: ./sizes/memory-optimized/mbdsv3-series.md
         - name: Migration guides
           items:
           - name: Msv2 and Mdsv2 migration guide
