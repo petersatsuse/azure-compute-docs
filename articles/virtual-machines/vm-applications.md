@@ -11,7 +11,7 @@ ms.reviewer: jushiman
 ms.custom: linux-related-content
 ---
 
-# VM Applications overview
+# VM Applications Overview
 
 VM Applications are a resource type in Azure Compute Gallery that provides a modern, flexible approach to managing and deploying applications across your virtual machines and scale sets. By decoupling application installation from your base VM images, you can streamline updates, reduce image maintenance overhead, and accelerate deployment cycles. This approach eliminates the need to rebuild and republish VM images for every application change, enabling faster iteration and greater operational agility. VM Applications are best suited for deploying high scale, AI, low latency, and secure workloads on Azure.
 
@@ -21,7 +21,7 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
 | **VM Application** | The definition of your VM application. It's a *logical* resource that stores the common metadata for all the versions under it. For example, you may have an application definition for Apache Tomcat and have multiple versions within it. |
 | **VM Application version** | The deployable resource which holds your application package and version specific configurations. You can globally replicate your VM application versions to target regions closer to your VM infrastructure. The VM Application version must be replicated to a region before it may be deployed on a VM in that region. |
 
-## Key Benefits: 
+### Key Benefits: 
 - **Centralized and Flexible Application Management**: 
   - Package Once, Deploy Anywhere: Package applications in ZIP, MSI (Microsoft Package Installed), or EXE formats and manage them centrally in Azure Compute Gallery.
   - Version Control: Deploy either the latest or a specific version by maintaining multiple versions of each application. 
@@ -42,7 +42,7 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
   - VMs and Scale Sets: Deploy to individual VMs, flexible scale sets, or uniform scale sets with full support.
   - Block Blob Support: Efficiently handle large application packages (upto 2 GB) using Azure Block Blobs for chunked uploads and background streaming.
 
-## VM Applications resource
+### VM Applications resource
 
 The VM application resource defines the following about your VM application:
 
@@ -51,7 +51,7 @@ The VM application resource defines the following about your VM application:
 - Supported OS type like Linux or Windows
 - A description of the VM application
 
-## VM Applications version resource
+### VM Applications version resource
 
 VM application versions are the deployable resource. Versions are defined with the following properties:
 
@@ -68,7 +68,7 @@ VM application versions are the deployable resource. Versions are defined with t
 - Target regions for replication
 - Replica count per region
 
-## Cost
+### Cost
 
 There's no extra charge for using VM Application Packages, but you're charged for the following resources:
 
@@ -77,9 +77,9 @@ There's no extra charge for using VM Application Packages, but you're charged fo
 
 For more information on network egress, see [Bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/).
 
-# Technical Details
+## Technical Details
 
-## Considerations and Current Limits
+### Considerations and Current Limits
 
 - **Up to 10 replicas per region**: When you're creating a VM Application version, the maximum number of replicas per region is 10 for both page blob and block blob.
 
@@ -100,7 +100,7 @@ For more information on network egress, see [Bandwidth pricing](https://azure.mi
 > [!NOTE]
 > For Azure Compute Gallery and VM Applications, Storage SAS can be deleted after replication. However, any subsequent update operation requires a valid SAS.
 
-## Download directory within the VM
+### Download directory within the VM
 
 The download location of the application package and the configuration files are:
 
@@ -109,7 +109,7 @@ The download location of the application package and the configuration files are
 
 The install/update/remove commands should be written assuming the application package and the configuration file are in the current directory.
 
-## File naming
+### File naming
 
 When the application file gets downloaded to the VM, the file is renamed as "MyVmApp" and has no file extension (E.g. .exe, .msi). The VM is unaware of the file's original name and extension . 
 
@@ -126,7 +126,7 @@ MyAppe.exe /S
 > [!TIP]
 > If your blob is originally named as "myApp.exe" instead of "myapp", then the script works without setting the `packageFileName` property.
 
-## Command interpreter
+### Command interpreter
 
 The default command interpreters are:
 
@@ -135,21 +135,21 @@ The default command interpreters are:
 
 It's possible to use a different interpreter like Chocolatey or PowerShell, as long as it's installed on the machine, by calling the executable and passing the command to it. For example, to have your command run in PowerShell on Windows instead of cmd, you can pass `powershell.exe -Command '<powershell commmand>'`
 
-## How updates are handled
+### How updates are handled
 
 When you update an application version on a VM or Virtual Machine Scale Sets, the update command you provided during deployment is used. If the updated version doesn't have an update command, then the current version is removed and the new version is installed.
 
 Update commands should be written with the expectation that it could be updating from any older version of the VM Application.
 
-## Treat failure as deployment failure
+### Treat failure as deployment failure
 
 The VM Application extension always returns a *success* regardless of whether any VM app failed while being installed/updated/removed. The VM Application extension only reports the extension status as failure when there's a problem with the extension or the underlying infrastructure. This behavior is triggered by the "treat failure as deployment failure" flag, which is set to `$false` by default and can be changed to `$true`. The failure flag can be configured in [PowerShell](/powershell/module/az.compute/add-azvmgalleryapplication#parameters) or [CLI](/cli/azure/vm/application#az-vm-application-set).
 
-# Creating VM Applications on Linux
+## Creating VM Applications on Linux
 To create a VM Application, you need application package and scripts to properly install, update, and delete the application.  
 Third party applications for Linux can be packaged in a few ways. Let's explore how to handle creating the install commands for some of the most common.
 
-## .tar and .gz files
+### .tar and .gz files
 
 These files are compressed archives and can be extracted to a desired location. Check the installation instructions for the original package to in case they need to be extracted to a specific location. If .tar.gz file contains source code, see the instructions for the package for how to install from source.
 
@@ -165,13 +165,13 @@ Example remove command:
 sudo rm -rf /usr/local/go
 ```
 
-## Creating application packages using `.deb`, `.rpm`, and other platform specific packages for VMs with restricted internet access
+### Creating application packages using `.deb`, `.rpm`, and other platform specific packages for VMs with restricted internet access
 
 You can download individual packages for platform specific package managers, but they usually don't contain all the dependencies. For these files, you must also include all dependencies in the application package, or have the system package manager download the dependencies through the repositories that are available to the VM. If you're working with a VM with restricted internet access, you must package all the dependencies yourself.
 
 Figuring out the dependencies can be a bit tricky. There are third party tools that can show you the entire dependency tree.
 
-### [Ubuntu](#tab/ubuntu)
+#### [Ubuntu](#tab/ubuntu)
 
 In Ubuntu, you can run `sudo apt show <package_name> | grep Depends` to show all the packages that are installed when executing the `sudo apt-get install <packge_name>` command. Then you can use that output to download all `.deb` files to create an archive that can be used as the application package.
 
@@ -268,7 +268,7 @@ Example install command:
 dpkg -i <package_name> || apt --fix-broken install -y
 ```
 
-### [Red Hat](#tab/rhel)
+#### [Red Hat](#tab/rhel)
 
 In Red Hat, you can run `sudo yum deplist <package_name>` to show all the packages that are installed when executing the `sudo yum install <package_name>` command. Then you can use that output to download all `.rpm` files to create an archive that can be used as the application package.
 
@@ -339,7 +339,7 @@ Example install command:
 yum install <package.rpm> -y
 ```
 
-### [SUSE](#tab/sles)
+#### [SUSE](#tab/sles)
 
 In SUSE, you can run `sudo zypper info --requires <package_name>` to show all the packages that are installed when executing the `sudo zypper install <package_name>` command. Then you can use that output to download all `.rpm` files to create an archive that can be used as the application package.
 
@@ -420,11 +420,11 @@ sudo zypper remove azure-cli
 
 ---
 
-# Creating VM Applications on Windows
+## Creating VM Applications on Windows
 
 Most third party applications in Windows are available as .exe or .msi installers. Some are also available as extract and run zip files. Let us look at the best practices for each of them.
 
-## .exe installer
+### .exe installer
 
 Installer executables typically launch a user interface (UI) and require someone to select through the UI. If the installer supports a silent mode parameter, it should be included in your installation string.
 
@@ -444,7 +444,7 @@ In the registry, the uninstall string is stored in `Computer\HKEY_LOCAL_MACHINE\
 '\"C:\\Program Files\\myApp\\uninstall\\helper.exe\" /S'
 ```
 
-## .msi installer
+### .msi installer
 
 For command line execution of `.msi` installers, the commands to install or remove an application should use `msiexec`. Typically, `msiexec` runs as its own separate process and `cmd` doesn't wait for it to complete, which can lead to problems when installing more than one VM application.  The `start` command can be used with `msiexec` to ensure that the installation completes before the command returns. For example:
 
@@ -466,7 +466,7 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 ...
 ```
 
-## Zipped files
+### Zipped files
 
 For .zip or other zipped files, rename and unzip the contents of the application package to the desired destination.
 
@@ -482,7 +482,7 @@ Example remove command:
 rmdir /S /Q C:\\myapp
 ```
 
-# Troubleshooting VM Applications
+## Troubleshooting VM Applications
 
 To know whether a particular VM Application was successfully added to the VM instance, check the message of the VM Application extension.
 
@@ -506,7 +506,7 @@ $result | ForEach-Object {
 $resultSummary | convertto-json -depth 5
 ```
 
-## Error messages
+### Error messages
 
 | Message | Description |
 |--|--|
@@ -537,6 +537,6 @@ $resultSummary | convertto-json -depth 5
 | Entity name doesn't match the name in the request URL. | The gallery application version specified in the request url doesn't match the one specified in the request body. |
 | The gallery application version name is invalid. The application version name should follow Major(int32). Minor(int32). Patch(int32) format, where `int` is between 0 and 2,147,483,647 (inclusive). For example, 1.0.0, 2018.12.1 etc. | The gallery application version must follow the format specified. |
 
-# Next steps
+## Next steps
 
 - Learn how to [create and deploy VM application packages](vm-applications-how-to.md).
