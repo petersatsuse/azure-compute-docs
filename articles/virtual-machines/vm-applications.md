@@ -42,19 +42,15 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
   - VMs and Scale Sets: Deploy to individual VMs, flexible scale sets, or uniform scale sets with full support.
   - Block Blob Support: Efficiently handle large application packages (upto 2 GB) using Azure Block Blobs for chunked uploads and background streaming.
 
-### VM Applications resource
+### VM Applications & VM Applications version resource
 
 The VM application resource defines the following about your VM application:
-
 - Azure Compute Gallery where the VM application is stored
 - Name of the application
 - Supported OS type like Linux or Windows
 - A description of the VM application
 
-### VM Applications version resource
-
 VM application versions are the deployable resource. Versions are defined with the following properties:
-
 - Version number
 - Link to the application package file in a storage account
 - Install string to properly install the application
@@ -67,6 +63,178 @@ VM application versions are the deployable resource. Versions are defined with t
 - Exclude from latest. You can keep a version from being used as the latest version of the application.
 - Target regions for replication
 - Replica count per region
+
+#### [Template](#tab/template)
+```json
+
+{
+  "$schema": "https://schema.management.azure.com/schemas/2020-06-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "galleryName": {
+      "type": "string"
+    },
+    "applicationName": {
+      "type": "string"
+    },
+    "versionName": {
+      "type": "string",
+      "metadata": {
+        "description": "Must follow the format: major.minor.patch (e.g., 1.0.0)"
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "West US"
+    },
+    "supportedOSType": {
+      "type": "string",
+      "allowedValues": ["Windows", "Linux"]
+    },
+    "endOfLifeDate": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "defaultValue": "Description of the application"
+    },
+    "eula": {
+      "type": "string",
+      "defaultValue": ""
+    },
+    "privacyStatementUri": {
+      "type": "string",
+      "defaultValue": ""
+    },
+    "releaseNoteUri": {
+      "type": "string",
+      "defaultValue": ""
+    },
+    "mediaLink": {
+      "type": "string"
+    },
+    "configLink": {
+      "type": "string"
+    },
+    "appConfigFileName": {
+      "type": "string"
+    },
+    "appPackageFileName": {
+      "type": "string"
+    },
+    "replicaRegion1": {
+      "type": "string",
+      "defaultValue": "East US"
+    },
+    "replicaRegion2": {
+      "type": "string",
+      "defaultValue": "South Central US"
+    },
+    "installScript": {
+      "type": "string",
+      "metadata": {
+        "description": "Optional. Script to run to install the application. E.g. echo 'Installing application...'"
+      }
+    },
+    "updateScript": {
+      "type": "string",
+      "metadata": {
+        "description": "Optional. Script to run to update the application. E.g. echo 'Updating application...'"
+      }
+    },
+    "removeScript": {
+      "type": "string",
+      "metadata": {
+        "description": "Optional. Script to run to delete the application. E.g. echo 'Deleting application...'"
+      }
+    },
+    "storageAccountType": {
+      "type": "string",
+      "allowedValues": ["PremiumV2_LRS", "Premium_LRS", "Standard_LRS", "Standard_ZRS"],
+      "defaultValue": "Standard_LRS"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Compute/galleries",
+      "apiVersion": "2024-03-03",
+      "name": "[parameters('galleryName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "identifier": {}
+      }
+    },
+    {
+      "type": "Microsoft.Compute/galleries/applications",
+      "apiVersion": "2024-03-03",
+      "name": "[format('{0}/{1}', parameters('galleryName'), parameters('applicationName'))]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Compute/galleries', parameters('galleryName'))]"
+      ],
+      "properties": {
+        "supportedOSType": "[parameters('supportedOSType')]",
+        "endOfLifeDate": "[parameters('endOfLifeDate')]",
+        "description": "[parameters('description')]",
+        "eula": "[if(equals(parameters('eula'), ''), json('null'), parameters('eula'))]",
+        "privacyStatementUri": "[if(equals(parameters('privacyStatementUri'), ''), json('null'), parameters('privacyStatementUri'))]",
+        "releaseNoteUri": "[if(equals(parameters('releaseNoteUri'), ''), json('null'), parameters('releaseNoteUri'))]"
+      }
+    },
+    {
+      "type": "Microsoft.Compute/galleries/applications/versions",
+      "apiVersion": "2024-03-03",
+      "name": "[format('{0}/{1}/{2}', parameters('galleryName'), parameters('applicationName'), parameters('versionName'))]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Compute/galleries/applications', parameters('galleryName'), parameters('applicationName'))]"
+      ],
+      "properties": {
+        "publishingProfile": {
+          "source": {
+            "mediaLink": "[parameters('mediaLink')]",
+            "defaultConfigurationLink": "[parameters('configLink')]"
+          },
+          "manageActions": {
+            "install": "[parameters('installScript')]",
+            "remove": "[parameters('removeScript')]",
+            "update": "[parameters('updateScript')]"
+          },
+          "settings": {
+            "scriptBehaviorAfterReboot": "Rerun",
+            "configFileName": "[parameters('appConfigFileName')]",
+            "packageFileName": "[parameters('appPackageFileName')]"
+          },
+          "targetRegions": [
+            {
+              "name": "[parameters('location')]",
+              "regionalReplicaCount": 3,
+              "storageAccountType": "[parameters('storageAccountType')]"
+            },
+            {
+              "name": "[parameters('replicaRegion1')]",
+              "regionalReplicaCount": 1,
+              "storageAccountType": "[parameters('storageAccountType')]"
+            },
+            {
+              "name": "[parameters('replicaRegion2')]"
+            },
+          ],
+          "excludeFromLatest": false,
+          "replicaCount": 2,
+          "storageAccountType": "[parameters('storageAccountType')]"
+        },
+        "safetyProfile": {
+          "allowDeletionOfReplicatedLocations": true
+        },
+        "endOfLifeDate": "[parameters('endOfLifeDate')]"
+      }
+    }
+  ]
+}
+
+```
+
 
 ### Cost
 
