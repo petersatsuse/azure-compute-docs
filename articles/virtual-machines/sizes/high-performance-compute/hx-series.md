@@ -92,11 +92,11 @@ Network interface info for each size
 
 | Size Name | Max NICs (Qty.) | Max Network Bandwidth (Mb/s) |
 | --- | --- | --- |
-| Standard_HX176rs | 8 |  40000 |
-| Standard_HX176-144rs | 8 |  40000 |
-| Standard_HX176-96rs | 8 | 40000 |
-| Standard_HX176-48rs | 8 | 40000 |
-| Standard_HX176-24rs | 8 | 40000 |
+| Standard_HX176rs | 8 |  80000 |
+| Standard_HX176-144rs | 8 |  80000 |
+| Standard_HX176-96rs | 8 | 80000 |
+| Standard_HX176-48rs | 8 | 80000 |
+| Standard_HX176-24rs | 8 | 80000 |
 
 #### Networking resources
 - [Virtual networks and virtual machines in Azure](/azure/virtual-network/network-overview)
