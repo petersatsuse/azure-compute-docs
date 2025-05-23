@@ -10,7 +10,7 @@ ms.author: wwilliams
 ms.reviewer: mattmcinnes
 ---
 
-# Dnsv6 sizes series
+# Dnsv6 sizes series (Preview)
 
 [!INCLUDE [dnsv6-summary](./includes/dnsv6-series-summary.md)]
 
