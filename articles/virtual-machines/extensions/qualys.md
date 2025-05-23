@@ -6,7 +6,7 @@ ms.service: azure-virtual-machines
 ms.subservice: extensions
 ms.author: gabsta
 author: GabstaMSFT
-ms.date: 04/30/2025
+ms.date: 05/23/2025
 ---
 
 # Qualys Agent on Linux or Windows VMs
@@ -32,7 +32,7 @@ To learn more about embedding Qualys Cloud Agent as a part of Golden Machine Ima
 - **For Linux VMs:** [Steps to Install Qualys Cloud Agent for Linux in Gold Image](https://docs.qualys.com/en/ca/install-guide/linux/gold_image/Cloud_Agent_Installation_in_Gold_Image.htm)
 
 ### Deploy Qualys Cloud Agent via Azure Resource Manager Template
-Qualys supports the Azure Resource Manager (ARM) templates to deploy and install Qualys Cloud Agent as a virtual machine extension on a list of Azure Virtual machines (Windows and Linux). VM extensions can be used whenever a virtual machine requires software installation, anti-virus protection, or running a script inside of it.
+Qualys supports the Azure Resource Manager (ARM) templates to deploy and install Qualys Cloud Agent as a virtual machine extension on a list of Azure Windows and Linux VMs. VM extensions can be used whenever a virtual machine requires software installation, anti-virus protection, or running a script inside of it.
 
 To learn more about deployment steps, refer to [Cloud Agent Deployment via ARM Template](https://docs.qualys.com/en/integration/securing-azure/deploying_sensor/deploy_ca_resource_manager.htm).
 
@@ -49,7 +49,7 @@ Qualys supports the PowerShell command-line tool to deploy Cloud Agent Extension
 - **For Linux VM:** [Deploy Cloud Agent For Linux via PowerShell](https://docs.qualys.com/en/integration/securing-azure/deploying_sensor/deploy_linux_ca_powershell.htm)
 
 ### Deploy Qualys Cloud Agent via Other Tool Sets
-Qualys Cloud Agent can be deployed via automation, orchestration, or configuration management tools in your environment, such as Ansible, Chef, and Puppet. Qualys provides a template for deploying Qualys Cloud Agent via Ansible. Customers can use this to deploy and configure Qualys Cloud Agent in their Azure environment.
+Qualys Cloud Agent can be deployed via automation, orchestration, or configuration management tools in your environment, such as Ansible, Chef, and Puppet. Qualys provides a template for deploying Qualys Cloud Agent via Ansible. You can use this to deploy and configure Qualys Cloud Agent in their Azure environment.
 
 To learn more, refer to [Cloud Agent Deployment via Other Tool Sets](https://docs.qualys.com/en/integration/securing-azure/deploying_sensor/deploy_cat_tool_sets.htm).
 
