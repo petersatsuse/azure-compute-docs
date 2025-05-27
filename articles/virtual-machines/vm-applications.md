@@ -234,7 +234,7 @@ VM application versions are the deployable resource. Versions are defined with t
 }
 
 ```
-
+---
 
 ### Cost
 
