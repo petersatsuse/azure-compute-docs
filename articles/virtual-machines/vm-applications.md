@@ -13,7 +13,7 @@ ms.custom: linux-related-content
 
 # VM Applications Overview
 
-VM Applications are a resource type in Azure Compute Gallery that provides a modern, flexible approach to managing and deploying applications across your virtual machines and scale sets. By decoupling application installation from your base VM images, you can streamline updates, reduce image maintenance overhead, and accelerate deployment cycles. This approach eliminates the need to rebuild and republish VM images for every application change, enabling faster iteration and greater operational agility. VM Applications are best suited for deploying high scale, AI, low latency, and secure workloads on Azure.
+VM Applications are a resource type in Azure Compute Gallery that provides a modern, flexible approach to managing and deploying applications across your virtual machines and scale sets. By decoupling application installation from your base VM images, you can streamline updates, reduce image maintenance overhead, and accelerate deployment cycles. This approach eliminates the need to rebuild and republish VM images for every application change, enabling faster iteration and greater operational agility. VM Applications are best suited for deploying AI, high scale, low latency, micro-services, secure and compliant workloads on Azure VMs.
 
 | Resource | Description|
 |----------|------------|
@@ -30,7 +30,7 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
   - Integrated RBAC: Control publishing and deployment access using Azure Role-Based Access Control (RBAC).
 - **Reliable and Customizable Deployments**
   - Individual Application Control: Install, update, or delete applications independently—no need to rebuild VM images.
-  - Customizable Operations: Define how to install, update, and delete operations for applications, including reboot handling.
+  - Customizable Operations: Customize install, update, and delete operations for applications, including reboot handling.
   - Built-In Failure Handling: Ensure resilient deployments by connecting VM application failure to VM failure.
 - **Scalable and Low-Latency Distribution**
   - Global and Intra-Region Replication: Automatically replicate applications across and within regions to reduce latency and improve resiliency—no need for AzCopy or manual transfers.
