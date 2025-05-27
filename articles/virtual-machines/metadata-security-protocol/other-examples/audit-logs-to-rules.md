@@ -15,11 +15,20 @@ With Metadata Security Protocol (MSP), you can define a custom role-based access
 
 To learn more about RBAC and the `InVMAccessControlProfile` resource type, see [Advanced configuration for MSP](../advanced-configuration.md).
 
+## Structure of an allowlist
+
+An allowlist consists of:
+
+- **Identities**: Processes on the machine.
+- **Privileges**: Endpoints that the identities access.
+- **Roles**: A grouping of privileges.
+- **Role assignments**: Roles and the list of identities granted access for those roles.
+
 ## Collect audit logs
 
 If you enable MSP in `Audit` or `Enforce` mode, the Guest Proxy Agent (GPA) creates audit logs in the following folders inside the virtual machine (VM):
 
-| Opertating system | Audit log location |
+| Operating system | Audit log location |
 |--|--|
 | Linux | `/var/lib/azure-proxy-agent/ProxyAgent.Connection.log` |
 | Windows | `C:\WindowsAzure\ProxyAgent\Logs\ProxyAgent.Connection.log` |
@@ -37,7 +46,12 @@ You can use an allowlist generator tool to generate the access control rules. Th
    - Select `allowListTool.exe` on the [latest release page](https://github.com/Azure/GuestProxyAgent/releases/latest).
    - Select [this direct download link](https://github.com/Azure/GuestProxyAgent/releases/latest/download/allowListTool.exe).
 
-1. Follow the steps in the tool to create and download your allowlist.
+   The tool parses the `ProxyAgentConnection` logs and displays the current privileges and identities on the VM.
+
+1. Create roles and role assignments:
+
+   - To create a role, select a grouping of privileges and give the role a descriptive name.
+   - To create a role assignment, select a role and a grouping of identities. These identities can access the privileges grouped in that role. Give the role assignment a descriptive name.
 
 ### Manually create an allowlist
 

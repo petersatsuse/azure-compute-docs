@@ -7,7 +7,7 @@ ms.service: azure-container-instances
 ms.custom:
   - ignite-2024
 ms.topic: concept-article
-ms.date: 11/6/2024
+ms.date: 5/10/2025
 ms.reviewer: tomvcassidy
 ---
 
@@ -21,7 +21,7 @@ Standby pools for Azure Container Instances enable you to create a pool of pre-p
 :::image type="content" source="media/container-instances-standby-pools/standby-pool-aci-workflow-diagram.png" alt-text="Diagram of the workflow of creating a container using the traditional path vs the standby pool path.":::
 
 ## Limitations
-Standby pools for Azure Container Instances is not available in the Azure portal. 
+Creating and managing a standby pool for Azure Container Instances isn't yet available in the Azure portal. 
 
 ## Prerequisites
 
@@ -34,23 +34,8 @@ Register-AzResourceProvider -ProviderNamespace Microsoft.StandbyPool
 Register-AzProviderFeature -FeatureName StandbyContainerGroupPoolPreview -ProviderNamespace Microsoft.StandbyPool
 ```
 
-### Role-based Access Control Permissions
-To allow standby pools to create container groups in your subscription, assign the appropriate permissions to the standby pool resource provider. 
- 
-1) In the Azure portal, navigate to your subscriptions.
-2) Select the subscription you want to adjust permissions.
-3) Select **Access Control (IAM)**.
-4) Select **Add** and **Add role assignment**.
-5) Under the **Role** tab, search for **Standby Container Group Pool Contributor** and select it.
-6) Move to the **Members** Tab.
-7) Select **+ Select members**.
-8) Search for **Standby Pool Resource Provider** and select it.
-9) Move to the **Review + assign** tab.
-10) Apply the changes. 
-11) Repeat the above steps also assinging the **Azure Container Instances Contributor Role** and the **Network Contributor** to the **Standby Pool Resource Provider**.
-
-
-For more information on assigning roles, see [assign Azure roles using the Azure portal](/azure/role-based-access-control/quickstart-assign-role-user-portal).
+### Configure Role-based Access Control Permissions
+To allow standby pools to create and manage container instances in your subscription, assign the appropriate permissions to the standby pool resource provider. For more detailed steps and information, see [configure role permissions for standby pools in Azure Container Instances](container-instances-standby-pool-configure-permissions.md).
 
 ## Using a container from the standby pool
 
@@ -61,8 +46,7 @@ Standby pools only give out container groups from the pool that are fully provis
 ## Standby pool size
 The number of container groups in a standby pool is determined by setting the `maxReadyCapacity` parameter. When a container group is consumed from the pool, the standby pool automatically begins to refill ensuring that your standby pool maintains the set maximum ready capacity.
 
-The only available refill policy for standby pools on Azure Container instances is `Always`. 
-
+Currently, the only available refill policy for standby pools on Azure Container instances is `Always`. 
 
 | Setting | Description | 
 |---|---|
@@ -174,7 +158,7 @@ For more information, see [use config maps](container-instances-config-map.md).
 Standby pools for Azure container instances support confidential containers. To utilize [confidential containers](container-instances-confidential-overview.md) update the `sku` type to `Confidential` in the container group profile.
 
 > [!IMPORTANT] 
-> Values passed using config maps are not included in the security policy or validated by the runtime before the file mount is made available to the container. Any values that could have an impact to data or application security cannot be trusted by the application during execution and instead should be made available to the container using environment variables.
+> Values passed using config maps are not included in the security policy or validated by the runtime before the file mount is made available to the container. Any values that could have an impact to data or application security can't be trusted by the application during execution and instead should be made available to the container using environment variables.
 
 
 ```json
@@ -220,6 +204,89 @@ Standby pools for Azure container instances support confidential containers. To 
 
 ```
 
+## Availability zones
+Standby pools for Azure Container Instances supports creating and requesting containers across availability zones. To create a standby pool with instances in specific zones, specify the `zones` paramater in the standby pool create request. 
+
+### [CLI](#tab/cli)
+
+```azurecli-interactive
+az standby-container-group-pool create \
+   --resource-group myResourceGroup \
+   --location WestCentralUS \
+   --name myStandbyPool \
+   --max-ready-capacity 20 \
+   --refill-policy always \
+   --zones 1,2,3 \
+   --container-profile-id "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.ContainerInstance/containerGroupProfiles/mycontainergroupprofile"
+```
+### [PowerShell](#tab/powershell)
+
+```azurepowershell-interactive
+New-AzStandbyContainerGroupPool `
+   -ResourceGroup myResourceGroup `
+   -Location "WestCentralUS" `
+   -Name myStandbyPool `
+   -MaxReadyCapacity 20 `
+   -RefillPolicy always `
+   -Zones 1,2,3 `
+   -ContainerProfileId "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.ContainerInstance/containerGroupProfiles/mycontainergroupprofile"
+```
+
+### [REST](#tab/rest)
+
+```HTTP
+PUT https://management.azure.com/subscriptions/{SubscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.StandbyPool/standbyContainerGroupPools/myStandbyPool?api-version=2025-03-01
+ 
+Request Body
+{
+    "properties": {
+        "elasticityProfile": {
+            "maxReadyCapacity": 20,
+            "refillPolicy": "always"
+        },
+        "containerGroupProperties": {
+            "containerGroupProfile": {
+                "id": "/subscriptions/{SubscriptionID}/resourceGroups/myResourceGroup/providers/Microsoft.ContainerInstance/containerGroupProfiles/mycontainergroupprofile",
+                "revision": 1
+          },
+          "subnetIds": [
+            {
+              "id": "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNET/subnets/mySubnet"
+            }
+          ]
+        },
+        "zones": [
+          "1",
+          "2",
+          "3"
+        ]
+      },
+
+    "location": "West Central US"
+}
+```
+---
+
+Zone support for ACI standby pools is currently available in the following regions:
+
+- AustraliaEast
+- BrazilSouth
+- CanadaCentral
+- CentralUS
+- EastUS
+- EastUS2
+- FranceCentral
+- GermanyWestCentral
+- IndiaCentral
+- JapanEast
+- NorthEurope
+- SoutheastAsia
+- SouthCentralUS
+- SwedenCentral
+- WestEurope
+- WestUS
+- WestUS2
+- WestUS3
 
 ## Next steps
 
