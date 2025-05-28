@@ -8,6 +8,7 @@ ms.service: azure-service-fabric
 ms.custom: linux-related-content
 services: service-fabric
 ms.date: 07/11/2022
+# Customer intent: As a cloud architect, I want to deploy and manage microservices on standalone Service Fabric clusters, so that I can efficiently scale resources and ensure secure communication for my applications across various operating environments.
 ---
 
 # Overview of Service Fabric Standalone clusters
