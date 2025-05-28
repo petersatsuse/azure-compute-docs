@@ -9,6 +9,7 @@ ms.custom:
 ms.topic: how-to
 ms.date: 5/10/2025
 ms.reviewer: tomvcassidy
+# Customer intent: As a cloud administrator, I want to create a standby pool for Azure Container Instances, so that I can reduce scale-out latency and improve the responsiveness of my container deployment.
 ---
 
 
