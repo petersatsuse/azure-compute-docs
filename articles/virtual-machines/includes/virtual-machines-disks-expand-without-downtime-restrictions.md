@@ -29,13 +29,13 @@
 Expanding Ultra Disks and Premium SSD v2 disks have the following additional limitations:
 - You can't expand a disk while a [background copy](../scripts/create-managed-disk-from-snapshot.md#performance-impact---background-copy-process) of data is also occurring on that disk, like when a disk is being backfilled from [snapshots](/azure/virtual-machines/disks-incremental-snapshots?tabs=azure-cli).
 - (Preview) VMs using [NVMe controllers](../nvme-overview.md) for Ultra Disks or Premium SSD v2 disks is currently available in select regions.
-    - The following regions can use either the Azure portal, Azure CLI, or Azure PowerShell module:    
+    - In the following regions you can expand VMs using NVMe controllers for Ultra Disks or Premium SSD v2 disks with either the Azure portal, Azure CLI, or Azure PowerShell module:    
         - Southeast Asia
         - Brazil South
         - Canada Central
         - Germany West Central
         - Central India (Not currently supported on V6 VMs)
-    - The following regions can't currently use the Azure portal, they must use either the Azure CLI or Azure PowerShell module:
+    - In the following regions, you can only expand VMs using NVMe controllers for Ultra Disks or Premium SSD v2 disks using the Azure CLI or Azure PowerShell module, you can't currently use the Azure portal:
         - East Asia
         - West Central US (Not currently supported on V6 VMs)
 
