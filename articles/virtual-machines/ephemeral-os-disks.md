@@ -53,9 +53,9 @@ Key differences between persistent and ephemeral OS disks:
 ## Placement options for Ephemeral OS disks
 
 Ephemeral OS Disk utilizes local storage within the VM. Since different VMs have different types of local storage (cache disk, temp disk, and NVMe disk), the placement option defines where the Ephemeral OS Disk is stored. Placement option however doesn't impact the performance or cost of Ephemeral OS disk. Its performance is dependent upon the VM's local storage. Depending upon the VM type, we offer three different types of placement:
- 1. **NVMe Disk Placement (Generally Available)**  - NVMe disk placement type is now generally available (GA) on the latest generation v6 VM series onwards like Dadsv6, Ddsv6, Dpdsv6, etc.
- 2. **Temp Disk Placement (also known as Resource Disk Placement)**  - Temp disk placement type is available on VMs with Temp disk like Dadsv5, Ddsv5, etc.
- 3. **Cache Disk Placement**  - Cache disk placement type is available on older VMs that had cache disk like Dsv2, Dsv3, etc.
+- **NVMe Disk Placement (Generally Available)**  - NVMe disk placement type is now generally available (GA) on the latest generation v6 VM series onwards like Dadsv6, Ddsv6, Dpdsv6, etc.
+- **Temp Disk Placement (also known as Resource Disk Placement)**  - Temp disk placement type is available on VMs with Temp disk like Dadsv5, Ddsv5, etc.
+- **Cache Disk Placement**  - Cache disk placement type is available on older VMs that had cache disk like Dsv2, Dsv3, etc.
 
 [DiffDiskPlacement](/rest/api/compute/virtualmachines/list#diffdiskplacement) is the property that can be used to specify where you want to place the Ephemeral OS disk. By default, Azure will pick up the right placement type, depending on the VM SKU. The customers are recommended to use the latest VM series (v5/v6) with either Temp Disk or NVMe Disk placement.
 
@@ -82,7 +82,7 @@ Basic Linux and Windows Server images in the Marketplace that are denoted with `
 
 > [!NOTE]
 >
-> Ephemeral disk aren't accessible through the portal. You receive a "Resource not Found" or "404" error when accessing the ephemeral disk which is expected.
+> Ephemeral disks aren't accessible through the portal. You receive a "Resource not Found" or "404" error when accessing the ephemeral disk which is expected.
 >
 
 ## Unsupported features
@@ -135,8 +135,8 @@ For more information on [Encryption at host](./disk-encryption.md)
 
 SSD support is a new option that allows customers to choose the type of base disk that is used for the ephemeral OS disk. Previously, the base disk could only be Standard HDD. Now, customers can choose between the three types of disks: Standard HDD(Standard_LRS), Standard SSD (StandardSSD_LRS) or Premium SSD (Premium_LRS). By utilizing SSD with Ephemeral OS disk, customers can benefit from the following enhancements:
 
-1. **Enhanced SLA**: VMs created with Premium SSD provide the maximum 99.9% SLA, while VMs created with Standard HDD provide 95% SLA. Customers can enhance SLA to 99.9% for their VMs by choosing Premium SSD as base disk.
-2. **Improved performance**: By choosing Premium SSD as the base disk, customers can enhance the disk read performance of their VMs. While most writes occur on the local temp disk, some reads are performed from managed disks. Premium SSD disks provide 8-10 times higher IOPS than Standard HDD. 
+- **Enhanced SLA**: VMs created with Premium SSD provide higher SLA than VMs created with Standard HDD. Customers can enhance [SLA](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services) for their Ephemeral VMs by choosing Premium SSD as base disk.
+- **Improved performance**: By choosing Premium SSD as the base disk, customers can enhance the disk read performance of their VMs. While most writes occur on the local temp disk, some reads are performed from managed disks. Premium SSD disks provide 8-10 times higher IOPS than Standard HDD. 
 
 ## Next steps
 
