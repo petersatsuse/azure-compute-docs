@@ -10,6 +10,7 @@ ms.custom:
   - devx-track-azurecli
   - linux-related-content
   - ignite-2023
+# Customer intent: As a cloud administrator, I want to enable end-to-end encryption for my managed disks using encryption at host, so that I can ensure the data is securely encrypted both at rest and in transit for compliance and data protection.
 ---
 
 # Use the Azure CLI to enable end-to-end encryption using encryption at host
