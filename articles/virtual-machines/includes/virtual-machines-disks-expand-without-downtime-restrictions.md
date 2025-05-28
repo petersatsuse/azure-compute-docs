@@ -32,16 +32,16 @@ Expanding Ultra Disks and Premium SSD v2 disks without downtime has the followin
 
 - As a public preview, you can expand VMs using NVMe controllers with Ultra Disks or Premium SSD v2 disks without downtime. Since this is a public preview, you should only use this to test the functionality of expanding without downtime, don't expand VMs in production. 
 
-    - In the following regions you can expand VMs using [NVMe controllers](../nvme-overview.md) for Ultra Disks or Premium SSD v2 disks without downtime, using either the Azure portal, Azure CLI, or Azure PowerShell module:    
-        - Southeast Asia
-        - Brazil South
-        - Canada Central
-        - Germany West Central
-        - Central India (Not currently supported on V6 VMs)
+In the following regions you can expand VMs using [NVMe controllers](../nvme-overview.md) for Ultra Disks or Premium SSD v2 disks without downtime, using either the Azure portal, Azure CLI, or Azure PowerShell module:    
+- Southeast Asia
+- Brazil South
+- Canada Central
+- Germany West Central
+- Central India (Not currently supported on V6 VMs)
 
-    - In the following regions, you can only expand VMs using [NVMe controllers](../nvme-overview.md) for Ultra Disks or Premium SSD v2 disks without downtime, using the Azure CLI or Azure PowerShell module, you can't currently use the Azure portal:
-        - East Asia
-        - West Central US (Not currently supported on V6 VMs)
+In the following regions, you can only expand VMs using [NVMe controllers](../nvme-overview.md) for Ultra Disks or Premium SSD v2 disks without downtime, using the Azure CLI or Azure PowerShell module, you can't currently use the Azure portal:
+- East Asia
+- West Central US (Not currently supported on V6 VMs)
 
 > [!IMPORTANT]
 > Allow up to 10 minutes for the correct size to be reflected in Windows VMs and Linux VMs. For Linux VMs, you must perform a [Linux rescan function](/azure/virtual-machines/linux/expand-disks?tabs=ubuntu#detecting-a-changed-disk-size). For Windows VM that doesn't have a workload, you must perform a [Windows rescan function](/windows-hardware/drivers/devtest/devcon-rescan). You can rescan immediately, but if it's within 10 minutes, you might need to rescan again to display the correct size.
