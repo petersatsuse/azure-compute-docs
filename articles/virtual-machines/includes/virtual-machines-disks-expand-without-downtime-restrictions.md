@@ -28,14 +28,17 @@
 
 Expanding Ultra Disks and Premium SSD v2 disks have the following additional limitations:
 - You can't expand a disk while a [background copy](../scripts/create-managed-disk-from-snapshot.md#performance-impact---background-copy-process) of data is also occurring on that disk, like when a disk is being backfilled from [snapshots](/azure/virtual-machines/disks-incremental-snapshots?tabs=azure-cli).
-- (Preview) VMs using [NVMe controllers](../nvme-overview.md) for Ultra Disks or Premium SSD v2 disks can currently only be expanded without downtime in the following regions:
-    - East Asia (Not currently available in the Azure portal, use either the Azure CLI or Azure PowerShell module)
-    - Southeast Asia
-    - Brazil South
-    - Canada Central
-    - Germany West Central
-    - Central India (Not currently supported on V6 VMs)
-    - West Central US (Not currently supported on V6 VMs, not currently available in the Azure portal, use either the Azure CLI or Azure PowerShell module)
- 
+- (Preview) VMs using [NVMe controllers](../nvme-overview.md) for Ultra Disks or Premium SSD v2 disks is currently available in select regions.
+    - The following regions can use either the Azure portal, Azure CLI, or Azure PowerShell module:    
+        - Southeast Asia
+        - Brazil South
+        - Canada Central
+        - Germany West Central
+        - Central India (Not currently supported on V6 VMs)
+    - The following regions can't currently use the Azure portal, they must use either the Azure CLI or Azure PowerShell module:
+        - East Asia
+        - West Central US (Not currently supported on V6 VMs)
+
+
 > [!IMPORTANT]
 > Allow up to 10 minutes for the correct size to be reflected in Windows VMs and Linux VMs. For Linux VMs, you must perform a [Linux rescan function](/azure/virtual-machines/linux/expand-disks?tabs=ubuntu#detecting-a-changed-disk-size). For Windows VM that doesn't have a workload, you must perform a [Windows rescan function](/windows-hardware/drivers/devtest/devcon-rescan). You can rescan immediately, but if it's within 10 minutes, you might need to rescan again to display the correct size.
