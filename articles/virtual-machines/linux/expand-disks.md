@@ -8,6 +8,7 @@ ms.topic: how-to
 ms.date: 10/28/2024
 ms.author: pagienge
 ms.custom: references_regions, devx-track-azurecli, linux-related-content
+# Customer intent: "As a Linux system administrator, I want to expand virtual hard disks on a Linux VM, so that I can allocate additional storage space without downtime while managing my resources efficiently."
 ---
 
 # Expand virtual hard disks on a Linux VM
