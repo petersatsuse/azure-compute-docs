@@ -7,6 +7,7 @@ ms.topic: include
 ms.date: 03/31/2025
 ms.author: rogarana
 ms.custom: include file
+# Customer intent: As a cloud architect, I want to understand the limitations and requirements of Ultra Disks so that I can evaluate their suitability for my virtual machine deployments and ensure compliance with application needs and infrastructure capabilities.
 ---
 
 The following list contains Ultra Disk's limitations:

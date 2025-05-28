@@ -8,6 +8,7 @@ author: jushiman
  ms.date: 04/18/2023
 ms.author: jushiman
  ms.custom: include
+# Customer intent: "As a cloud administrator using Azure virtual machines, I want to install and manage the appropriate NVIDIA drivers for different VM series, so that I can ensure optimal performance and compatibility for graphics and compute workloads."
 ---
 
 ## Supported operating systems and drivers

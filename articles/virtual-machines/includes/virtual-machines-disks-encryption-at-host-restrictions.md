@@ -9,6 +9,7 @@
 ms.custom:
   - include file
   - ignite-2023
+# Customer intent: As a cloud architect, I want to understand the requirements for enabling encryption on Azure Disks, so that I can ensure compliance and security for my virtual machines and storage solutions.
 ---
 - Supported for 4k sector size Ultra Disks and Premium SSD v2.
 - Only supported on 512e sector size Ultra Disks and Premium SSD v2 if they were created after 5/13/2023.

@@ -8,6 +8,7 @@ author: jushiman
  ms.date: 04/22/2025
 ms.author: vikancha
 ms.custom: include file, linux-related-content
+# Customer intent: "As a cloud engineer managing Linux virtual machines, I want to install the appropriate NVIDIA CUDA and GRID drivers, so that I can ensure optimal performance for graphics and compute workloads in my Azure environment."
 ---
 
 ## Supported distributions and drivers
