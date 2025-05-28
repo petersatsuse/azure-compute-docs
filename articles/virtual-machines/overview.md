@@ -34,6 +34,11 @@ There's always a multitude of [design considerations](/azure/architecture/refere
 * The configuration of the virtual machine after it starts
 * The related resources that the virtual machine needs
 
+> [!NOTE]
+>
+> Trusted Launch as default (TLaD) is available in preview for new [Generation 2](../virtual-machines/generation-2.md) Virtual machines (VMs). With TLaD, any new Generation 2 VMs created through any client tools defaults to [Trusted Launch](../virtual-machines/trusted-launch.md) with secure boot and vTPM enabled.
+> [Register for the TLaD preview](../virtual-machines/trusted-launch.md#preview-trusted-launch-as-default) to validate the default changes in your respective environment and prepare for the upcoming change.
+
 ## Parts of a VM and how they're billed
 
 When you create a virtual machine, you're also creating resources that support the virtual machine. These resources come with their own costs that should be considered.

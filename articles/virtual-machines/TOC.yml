@@ -72,8 +72,8 @@
       href: ./linux/tutorial-manage-disks.md
     - name: Create VM images
       href: ./linux/tutorial-custom-images.md
-    - name: Create & deploy VM Application
-      href: ./vm-applications-how-to.md?tabs=cli%2Ccli1%2Ccli2%2Ccli3
+    - name: Create & deploy VM application
+      href: ./vm-applications-how-to.md?tabs=cli%2Ccli1%2Ccli2%2Ccli3%2Ccli4
     - name: Automate configuration
       href: ./linux/tutorial-automate-vm-deployment.md
     - name: Manage networking
@@ -90,8 +90,8 @@
       href: ./windows/tutorial-manage-data-disk.md
     - name: Create VM images
       href: ./windows/tutorial-custom-images.md
-    - name: Create & deploy VM Application
-      href: ./vm-applications-how-to.md?tabs=powershell%2Cpowershell1%2Cpowershell2%2Cpowershell3
+    - name: Create & deploy VM application
+      href: ./vm-applications-how-to.md?tabs=powershell%2Cpowershell1%2Cpowershell2%2Cpowershell3%2Cpowershell4
     - name: Automate configuration
       href: ./windows/tutorial-automate-vm-deployment.md
     - name: Manage networking
@@ -276,7 +276,7 @@
         - name: Dnlsv6 series
           href: ./sizes/memory-optimized/dnlsv6-series.md
         - name: Dnldsv6 series
-          href: ./sizes/memory-optimized/dnlsv6-series.md
+          href: ./sizes/memory-optimized/dnldsv6-series.md
         - name: Dv4 series
           href: ./sizes/general-purpose/dv4-series.md
         - name: Dsv4 series
@@ -1356,6 +1356,8 @@
       items:
       - name: Chef
         href: ./extensions/chef.md
+      - name: Qualys
+        href: ./extensions/qualys.md
       - name: Salt Minion
         href: ./extensions/salt-minion.md
       - name: Stackify Retrace
