@@ -41,10 +41,7 @@ To create an allowlist, you can use an automated method or a manual method.
 
 You can use an allowlist generator tool to generate the access control rules. The tool helps parse the audit logs and provides a UI to generate the rules.
 
-1. Download and run the allowlist generator tool from either option:
-
-   - Select `allowListTool.exe` on the [latest release page](https://github.com/Azure/GuestProxyAgent/releases/latest).
-   - Select [this direct download link](https://github.com/Azure/GuestProxyAgent/releases/latest/download/allowListTool.exe).
+1. Download and run the allowlist generator tool. On the [latest release page](https://github.com/Azure/GuestProxyAgent/releases/latest), under **Assets**, select `allowListTool.exe`.
 
    The tool parses the `ProxyAgentConnection` logs and displays the current privileges and identities on the VM.
 
