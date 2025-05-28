@@ -28,9 +28,9 @@
 
 Expanding Ultra Disks and Premium SSD v2 disks without downtime has the following additional limitations:
 
-You can't expand a disk while a [background copy](../scripts/create-managed-disk-from-snapshot.md#performance-impact---background-copy-process) of data is also occurring on that disk, like when a disk is being backfilled from [snapshots](/azure/virtual-machines/disks-incremental-snapshots?tabs=azure-cli).
+- You can't expand a disk while a [background copy](../scripts/create-managed-disk-from-snapshot.md#performance-impact---background-copy-process) of data is also occurring on that disk, like when a disk is being backfilled from [snapshots](/azure/virtual-machines/disks-incremental-snapshots?tabs=azure-cli).
 
-As a public preview, you can expand VMs using NVMe controllers with Ultra Disks or Premium SSD v2 disks without downtime. Since this is a public preview, you should only use this to test the functionality of expanding without downtime, don't expand VMs in production. 
+- As a public preview, you can expand VMs using NVMe controllers with Ultra Disks or Premium SSD v2 disks without downtime. Since this is a public preview, you should only use this to test the functionality of expanding without downtime, don't expand VMs in production. 
 
 In the following regions you can expand VMs using [NVMe controllers](../nvme-overview.md) for Ultra Disks or Premium SSD v2 disks without downtime, using either the Azure portal, Azure CLI, or Azure PowerShell module:    
 - Southeast Asia
