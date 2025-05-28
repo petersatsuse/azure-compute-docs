@@ -34,7 +34,7 @@ Expanding Ultra Disks and Premium SSD v2 disks have the following additional lim
     - Canada Central
     - Germany West Central
     - Central India (Not currently supported on V6 VMs)
-- (Preview) In the following regions, you can only expand VMs using [NVMe controllers](../nvme-overview.md)s for Ultra Disks or Premium SSD v2 disks using the Azure CLI or Azure PowerShell module, you can't currently use the Azure portal:
+- (Preview) In the following regions, you can only expand VMs using [NVMe controllers](../nvme-overview.md) for Ultra Disks or Premium SSD v2 disks using the Azure CLI or Azure PowerShell module, you can't currently use the Azure portal:
     - East Asia
     - West Central US (Not currently supported on V6 VMs)
 
