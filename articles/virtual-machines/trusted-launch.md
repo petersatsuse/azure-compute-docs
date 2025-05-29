@@ -9,6 +9,7 @@ ms.topic: concept-article
 ms.date: 04/21/2025
 ms.reviewer: jushiman
 ms.custom: template-concept; references_regions
+# Customer intent: "As a cloud administrator, I want to enable Trusted Launch for Azure virtual machines, so that I can enhance the security of my deployments against advanced threats and ensure the integrity of the boot process."
 ---
 
 # Trusted Launch for Azure virtual machines

@@ -9,6 +9,7 @@ ms.subservice: trusted-launch
 ms.topic: how-to
 ms.date: 06/10/2024
 ms.custom: template-how-to, devx-track-azurepowershell, devx-track-arm-template
+# Customer intent: "As a cloud administrator, I want to enable Trusted launch on existing Uniform scale sets, so that I can enhance the security of virtual machines against advanced threats like boot kits and rootkits."
 ---
 
 # (Preview) Enable Trusted launch on existing Uniform scale set
