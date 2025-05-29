@@ -7,6 +7,7 @@ ms.service: azure-virtual-machines
 ms.topic: concept-article
 ms.date: 03/19/2024
 ms.subservice: sizes
+# Customer intent: As a cloud infrastructure administrator, I want to migrate my NCv3-series virtual machines to a supported VM size by the retirement date, so that I can maintain my workloads without service disruption and ensure ongoing performance enhancements.
 ---
 # Migrate your NCv3-series virtual machines by September 30, 2025
 

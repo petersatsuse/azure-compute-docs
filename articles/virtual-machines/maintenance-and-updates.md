@@ -5,6 +5,7 @@ ms.service: azure-virtual-machines
 ms.topic: concept-article
 ms.date: 04/01/2024
 #pmcontact:shants
+# Customer intent: As a cloud administrator, I want to understand the maintenance processes for virtual machines, so that I can effectively manage uptime and minimize disruptions during scheduled updates.
 ---
 # Maintenance for virtual machines in Azure
 

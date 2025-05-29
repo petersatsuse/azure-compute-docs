@@ -7,6 +7,7 @@ ms.service: azure-virtual-machines
 ms.topic: concept-article
 ms.date: 03/19/2024
 ms.subservice: sizes
+# Customer intent: "As a cloud infrastructure manager, I want to migrate my Standard_NC24rs_v3 virtual machines to a newer VM series, so that I can ensure uninterrupted service and maintain optimized performance before the retirement deadline on September 30, 2025."
 ---
 
 # Migrate your Standard_NC24rs_v3 virtual machine size by September 30, 2025

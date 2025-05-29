@@ -11,6 +11,7 @@ ms.service: azure-virtual-machines
 # ms.prod:   sizes
 ms.topic:    conceptual
 ms.date:     06/26/2024
+# Customer intent: As an IT administrator evaluating cloud VM options, I want to compare the performance and features of the Msv3 and Mdsv3 Medium Memory series, so that I can select the best virtual machines for my organization's memory-intensive applications while optimizing costs.
 ---
 
 # Msv3 and Mdsv3 Medium Memory Series 
