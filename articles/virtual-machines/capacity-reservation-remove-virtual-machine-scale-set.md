@@ -8,6 +8,7 @@ ms.topic: how-to
 ms.date: 11/22/2022
 ms.reviewer: cynthn, jushiman
 ms.custom: template-how-to, devx-track-azurepowershell
+# Customer intent: "As a cloud administrator, I want to remove a virtual machine scale set from a capacity reservation group, so that I can manage resource allocation and avoid conflicts in capacity usage."
 ---
 
 # Remove a virtual machine scale set association from a capacity reservation group

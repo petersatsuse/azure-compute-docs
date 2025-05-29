@@ -8,6 +8,7 @@ ms.topic: how-to
 ms.date: 11/22/2022
 ms.reviewer: cynthn, jushiman
 ms.custom: template-how-to, devx-track-azurecli, devx-track-azurepowershell
+# Customer intent: "As a cloud architect, I want to associate a virtual machine scale set using Uniform Orchestration with a capacity reservation group, so that I can efficiently manage resources and ensure availability for my workloads in Azure."
 ---
 
 # Associate a virtual machine scale set to Uniform Orchestration to a capacity reservation group
