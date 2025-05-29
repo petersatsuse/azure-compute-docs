@@ -10,6 +10,7 @@ ms.topic: how-to
 ms.date: 09/24/2018
 ms.author: vikancha
 ms.custom: H1Hack27Feb2017
+# Customer intent: As a cloud administrator, I want to install and verify NVIDIA GPU drivers on N-series VMs running Windows, so that I can ensure optimal performance for GPU-accelerated applications in my Azure environment.
 ---
 # Install NVIDIA GPU drivers on N-series VMs running Windows 
 
