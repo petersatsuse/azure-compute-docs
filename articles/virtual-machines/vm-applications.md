@@ -22,7 +22,7 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
 | **VM Application version** | The deployable resource which holds your application package and version specific configurations. You can globally replicate your VM application versions to target regions closer to your VM infrastructure. The VM Application version must be replicated to a region before it may be deployed on a VM in that region. |
 | **Storage Account**| Application packages are first uploaded to your storage account. Azure Compute Gallery then downloads the application package from this storage account using SAS URLs and stores it within the VM Application version. Azure Compute Gallery also replicates this package across regions & regional replicas per the VM Application version definition. The application package in the storage account can be deleted after VM application version is created in Azure Compute Gallery. |   
 
-[!Create VM Application Overview](./media/vmapps/vm-application-overview.png)
+:::image type="content" source="media/vmapps/vm-application-overview.png" alt-text="Diagram showing steps to create VM application and deploying it to Azure":::
 
 ### Key Benefits: 
 - **Centralized and Flexible Application Management**: 
