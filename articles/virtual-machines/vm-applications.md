@@ -20,6 +20,9 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
 | **Azure Compute Gallery** | A gallery is a repository for managing and sharing application packages. Users can share the gallery resource and all the child resources are shared automatically. The gallery name must be unique per subscription. For example, you may have one gallery to store all your OS images and another gallery to store all your VM applications.|
 | **VM Application** | The definition of your VM application. It's a *logical* resource that stores the common metadata for all the versions under it. For example, you may have an application definition for Apache Tomcat and have multiple versions within it. |
 | **VM Application version** | The deployable resource which holds your application package and version specific configurations. You can globally replicate your VM application versions to target regions closer to your VM infrastructure. The VM Application version must be replicated to a region before it may be deployed on a VM in that region. |
+| **Storage Account**| Application packages are first uploaded to your storage account. Azure Compute Gallery then downloads the application package from this storage account using SAS URLs and stores it within the VM Application version. Azure Compute Gallery also replicates this package across regions & regional replicas per the VM Application version definition. The application package in the storage account can be deleted after VM application version is created in Azure Compute Gallery. |   
+
+[!Create VM Application Overview](./media/vmapp/vm-application-overview.png)
 
 ### Key Benefits: 
 - **Centralized and Flexible Application Management**: 
@@ -41,6 +44,7 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
 - **Broad Platform Support**
   - VMs and Scale Sets: Deploy to individual VMs, flexible scale sets, or uniform scale sets with full support.
   - Block Blob Support: Efficiently handle large application packages (upto 2 GB) using Azure Block Blobs for chunked uploads and background streaming.
+
 
 ### VM Applications & VM Applications version resource
 
