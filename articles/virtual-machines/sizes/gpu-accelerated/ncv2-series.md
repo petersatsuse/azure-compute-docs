@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 07/31/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: As a cloud architect, I want to understand the specifications and feature support of the NCv2 series virtual machines, so that I can select the appropriate VM size for my resource-intensive workloads.
 ---
 
 # NCv2 sizes series
