@@ -7,6 +7,7 @@ ms.topic: how-to
 ms.date: 11/30/2022
 ms.author: rogarana
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
+# Customer intent: As a cloud administrator, I want to encrypt managed disks across different tenants using customer-managed keys, so that I can ensure data security while complying with customer encryption requirements.
 ---
 
 # Encrypt managed disks with cross-tenant customer-managed keys

@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.service: azure-disk-storage
 ms.custom: references_regions
 #Customer intent: The goal of this article is to help customers understand how each bursting model works, cover their billing implications, utility, and whether it makes sense to change the performance tier entirely.
+# Customer intent: As a cloud architect, I want to understand the disk bursting options for Azure managed disks, so that I can optimize performance and cost for variable workloads in my virtual machine environments.
 ---
 # Managed disk bursting
 

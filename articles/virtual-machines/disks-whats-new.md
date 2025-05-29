@@ -7,6 +7,7 @@ ms.date: 11/11/2024
 ms.topic: concept-article
 ms.service: azure-disk-storage
 ms.custom: references_regions
+# Customer intent: "As a cloud architect, I want to stay informed about new features and enhancements in Azure Disk Storage, so that I can leverage the latest capabilities to optimize performance, cost efficiency, and availability for my virtual machine workloads."
 ---
 
 # What's new for Azure Disk Storage
