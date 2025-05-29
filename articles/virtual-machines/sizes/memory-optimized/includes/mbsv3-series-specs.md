@@ -9,6 +9,7 @@ ms.date: 10/30/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
 ms.custom: include file
+# Customer intent: "As a cloud architect, I want to access the specifications of Mbsv3-series VMs, so that I can determine the appropriate resources for my application's performance needs."
 ---
 | Part | Quantity <br><sup>Count Units | Specs <br><sup>SKU ID, Performance Units, etc.  |
 |---|---|---|

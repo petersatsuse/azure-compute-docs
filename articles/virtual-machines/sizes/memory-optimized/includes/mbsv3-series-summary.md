@@ -9,6 +9,7 @@ ms.date: 10/30/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
 ms.custom: include file
+# Customer intent: "As a cloud architect, I want to assess the Mbsv3 series VM specifications, so that I can determine their suitability for high-memory workloads like SQL Server and data analytics applications."
 ---
 The Memory-and-storage optimized Mbsv3 series is based on the fourth generation Intel® Xeon® Scalable processors and delivers higher remote disk storage performance. These new VM sizes offer up to 650,000 IOPS and 10 GB/s of remote disk storage throughput (Premium SSD v2 and Ultra Disk), up to 4 TiB of RAM and up to 650,000 IOPS and 10 GB/s throughput to remote disk storage (with NVMe interface by using Ultra Disk and Premium SSD v2).
 
