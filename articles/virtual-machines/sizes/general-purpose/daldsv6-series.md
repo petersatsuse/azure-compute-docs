@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 07/29/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: "As a cloud architect, I want to review the specifications of the Daldsv6 size series, so that I can select the appropriate virtual machine sizes that meet my application workload requirements."
 ---
 
 # Daldsv6 sizes series
