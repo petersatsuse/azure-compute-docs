@@ -9,6 +9,7 @@ ms.date: 05/08/2025
 ms.reviewer: cynthn
 ms.author: padmalathas
 author: padmalathas
+# Customer intent: As a cloud architect, I want to understand the architecture and specifications of HX-series virtual machines, so that I can effectively design and optimize high-performance computing workloads within our cloud infrastructure.
 ---
 
 # HX-series virtual machine overview 
