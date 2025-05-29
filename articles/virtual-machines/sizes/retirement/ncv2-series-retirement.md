@@ -7,6 +7,7 @@ ms.subservice: sizes
 ms.topic: concept-article
 ms.date: 11/21/2022
 ms.author: sherrywang
+# Customer intent: "As a cloud administrator managing GPU workloads, I want to migrate my NCv2-series virtual machines to a newer GPU VM size, so that I can ensure uninterrupted service and avoid deallocation after the retirement deadline."
 ---
 # Migrate your NCv2 series virtual machines by September 6, 2023
 We’re happy to announce that we're extending the retirement date by one year to September 6, 2023, for the Azure NCv2-Series virtual machine to give you more time to plan your migration.

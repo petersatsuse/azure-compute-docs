@@ -7,6 +7,7 @@ ms.subservice: sizes
 ms.topic: concept-article
 ms.date: 12/20/2022
 ms.author: sherrywang
+# Customer intent: "As a cloud user with NC-series virtual machines, I want to migrate my GPU workloads to a supported VM size before the retirement deadline, so that I can ensure continued operations and avoid disruption to my services."
 ---
 # Migrate your NC and NC_Promo series virtual machines by September 6, 2023
 Based on feedback we’ve received from customers we’re happy to announce that we're extending the retirement date by one year to 6 September 2023, for the Azure NC-Series virtual machine to give you more time to plan your migration. 

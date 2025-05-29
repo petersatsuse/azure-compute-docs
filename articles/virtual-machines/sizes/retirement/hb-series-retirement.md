@@ -7,6 +7,7 @@ ms.topic: concept-article
 author: iamwilliew
 ms.author: wwilliams
 ms.date: 12/7/2023
+# Customer intent: As a cloud infrastructure admin, I want to migrate existing HB-series virtual machines to the newer HBv2 or HBv3 series, so that I can enhance performance and cost efficiency before the retirement deadline of August 31, 2024.
 ---
 
 # Migrate your HB-series virtual machines by August 31, 2024
