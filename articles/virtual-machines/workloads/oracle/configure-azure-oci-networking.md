@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 10/02/2024
 ms.author: jacobjaygbay
 
+# Customer intent: "As a cloud architect, I want to establish a direct interconnection between Azure and Oracle Cloud Infrastructure, so that I can enable low latency and high throughput for cross-cloud Oracle application solutions."
 ---
 
 # Set up a direct interconnection between Azure and Oracle Cloud Infrastructure  
