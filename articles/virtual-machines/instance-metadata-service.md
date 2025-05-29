@@ -9,6 +9,7 @@ ms.custom: linux-related-content
 ms.date: 04/11/2023
 ms.author: frdavid
 ms.reviewer: azmetadatadev
+# Customer intent: "As a cloud administrator, I want to access the Azure Instance Metadata Service from my virtual machine, so that I can retrieve configuration and runtime information about the VM for management and automation purposes."
 ---
 
 # Azure Instance Metadata Service
