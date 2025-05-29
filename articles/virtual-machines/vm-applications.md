@@ -13,13 +13,16 @@ ms.custom: linux-related-content
 
 # VM Applications Overview
 
-VM Applications are a resource type in Azure Compute Gallery that provides a modern, flexible approach to managing and deploying applications across your virtual machines and scale sets. By decoupling application installation from your base VM images, you can streamline updates, reduce image maintenance overhead, and accelerate deployment cycles. This approach eliminates the need to rebuild and republish VM images for every application change, enabling faster iteration and greater operational agility. VM Applications are best suited for deploying high scale, AI, low latency, and secure workloads on Azure.
+VM Applications are a resource type in Azure Compute Gallery that provides a modern, flexible approach to managing and deploying applications across your virtual machines and scale sets. By decoupling application installation from your base VM images, you can streamline updates, reduce image maintenance overhead, and accelerate deployment cycles. This approach eliminates the need to rebuild and republish VM images for every application change, enabling faster iteration and greater operational agility. VM Applications are best suited for deploying AI, high scale, low latency, micro-services, secure and compliant workloads on Azure VMs.
 
 | Resource | Description|
 |----------|------------|
 | **Azure Compute Gallery** | A gallery is a repository for managing and sharing application packages. Users can share the gallery resource and all the child resources are shared automatically. The gallery name must be unique per subscription. For example, you may have one gallery to store all your OS images and another gallery to store all your VM applications.|
 | **VM Application** | The definition of your VM application. It's a *logical* resource that stores the common metadata for all the versions under it. For example, you may have an application definition for Apache Tomcat and have multiple versions within it. |
 | **VM Application version** | The deployable resource which holds your application package and version specific configurations. You can globally replicate your VM application versions to target regions closer to your VM infrastructure. The VM Application version must be replicated to a region before it may be deployed on a VM in that region. |
+| **Storage Account**| Application packages are first uploaded to your storage account. Azure Compute Gallery then downloads the application package from this storage account using SAS URLs and stores it within the VM Application version. Azure Compute Gallery also replicates this package across regions & regional replicas per the VM Application version definition. The application package in the storage account can be deleted after VM application version is created in Azure Compute Gallery. |   
+
+:::image type="content" source="media/vmapps/vm-application-overview.png" alt-text="Diagram showing steps to create VM application and deploying it to Azure":::
 
 ### Key Benefits: 
 - **Centralized and Flexible Application Management**: 
@@ -30,7 +33,7 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
   - Integrated RBAC: Control publishing and deployment access using Azure Role-Based Access Control (RBAC).
 - **Reliable and Customizable Deployments**
   - Individual Application Control: Install, update, or delete applications independently—no need to rebuild VM images.
-  - Customizable Operations: Define how to install, update, and delete operations for applications, including reboot handling.
+  - Customizable Operations: Customize install, update, and delete operations for applications, including reboot handling.
   - Built-In Failure Handling: Ensure resilient deployments by connecting VM application failure to VM failure.
 - **Scalable and Low-Latency Distribution**
   - Global and Intra-Region Replication: Automatically replicate applications across and within regions to reduce latency and improve resiliency—no need for AzCopy or manual transfers.
@@ -41,6 +44,7 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
 - **Broad Platform Support**
   - VMs and Scale Sets: Deploy to individual VMs, flexible scale sets, or uniform scale sets with full support.
   - Block Blob Support: Efficiently handle large application packages (upto 2 GB) using Azure Block Blobs for chunked uploads and background streaming.
+
 
 ### VM Applications & VM Applications version resource
 
@@ -234,7 +238,7 @@ VM application versions are the deployable resource. Versions are defined with t
 }
 
 ```
-
+---
 
 ### Cost
 
