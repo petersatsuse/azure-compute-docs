@@ -10,6 +10,7 @@ ms.author: leebanhassen
 ms.service: virtual-machines-windows
 ms.topic: concept-article
 ms.date:  10/15/2024
+# Customer intent: As a cloud architect, I want to understand the specifications and capabilities of the Msv3 and Mdsv3 High Memory VM series, so that I can select the appropriate virtual machines for memory-intensive applications and optimize our infrastructure's performance and cost.
 ---
 
 # Msv3 and Mdsv3 High Memory series

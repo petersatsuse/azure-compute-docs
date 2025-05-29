@@ -10,6 +10,7 @@ ms.author:   phgantik # Microsoft alias
 ms.service: virtual-machines-windows
 ms.topic: concept-article
 ms.date:     03/18/2025
+# Customer intent: "As a cloud architect, I want to assess the Mdsv3 Very High Memory VM series specifications, so that I can determine the best configuration for our memory-intensive applications and ensure optimal performance and cost-effectiveness."
 ---
 
 # Mdsv3 Very High Memory Series

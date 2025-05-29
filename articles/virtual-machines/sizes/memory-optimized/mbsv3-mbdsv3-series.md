@@ -7,6 +7,7 @@ ms.reviewer: mattmcinnes
 ms.service: azure-virtual-machines
 ms.topic: concept-article
 ms.date: 11/11/2024
+# Customer intent: "As a cloud architect, I want to assess the Mbsv3 and Mbdsv3 VM series specifications, so that I can determine the best virtual machine options for storage-intensive workloads like SQL Server and data analytics."
 ---
 
 # Mbsv3 and Mbdsv3 series 

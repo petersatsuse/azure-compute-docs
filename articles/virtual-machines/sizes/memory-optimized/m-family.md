@@ -7,6 +7,7 @@ ms.subservice: sizes
 ms.topic: concept-article
 ms.date: 04/18/2024
 ms.author: mattmcinnes
+# Customer intent: As a cloud architect, I want to compare the various M family VM sizes, so that I can select the most suitable configuration for my memory-intensive workloads.
 ---
 
 # 'M' family memory optimized VM size series
