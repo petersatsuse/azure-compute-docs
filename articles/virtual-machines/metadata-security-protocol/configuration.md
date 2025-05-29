@@ -7,6 +7,7 @@ ms.topic: how-to
 ms.date: 04/22/2025
 ms.author: minnielahoti
 ms.reviewer: azmetadatadev
+# Customer intent: "As a system administrator, I want to configure Metadata Security Protocol (MSP) for my virtual machines, so that I can enhance metadata access security and protect my workloads from unauthorized access."
 ---
 
 # MSP Feature Configuration
