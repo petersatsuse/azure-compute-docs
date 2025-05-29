@@ -6,6 +6,7 @@ ms.service: azure-disk-storage
 ms.topic: concept-article
 ms.date: 06/28/2023
 ms.author: rogarana
+# Customer intent: As an Azure user managing virtual machines, I want to migrate my unmanaged disks to managed disks before the retirement deadline, so that I can ensure continued operation and take advantage of the enhanced reliability and features of managed disks.
 ---
 
 # Migrate your Azure unmanaged disks by September 30, 2025

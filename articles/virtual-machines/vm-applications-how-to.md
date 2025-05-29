@@ -9,6 +9,7 @@ ms.date: 09/08/2023
 ms.author: gabsta
 ms.reviewer: jushiman
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
+# Customer intent: As a cloud engineer, I want to create and deploy VM Application packages in an Azure Compute Gallery, so that I can efficiently manage, share, and distribute applications for my virtual machines.
 ---
 
 # Create and deploy VM Application
