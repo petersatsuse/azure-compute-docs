@@ -9,6 +9,7 @@ ms.date: 07/25/2024
 ms.reviewer: padmalathas
 ms.author: litan2
 author: litan2
+# Customer intent: As a cloud administrator, I want to deploy optimized HPC VM images so that I can efficiently manage high-performance computing workloads with reliable configurations and performance optimizations.
 ---
 
 # Azure HPC VM images
