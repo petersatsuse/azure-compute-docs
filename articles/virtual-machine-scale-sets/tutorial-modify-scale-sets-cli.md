@@ -11,6 +11,10 @@ ms.custom: mimckitt, devx-track-azurecli, linux-related-content, innovation-engi
 ---
 
 # Tutorial: Modify a Virtual Machine Scale Set using Azure CLI
+
+> [!div class=""nextstepaction""]
+> [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321931)
+
 Throughout the lifecycle of your applications, you may need to modify or update your Virtual Machine Scale Set. These updates may include how to update the configuration of the scale set, or change the application configuration. This article describes how to modify an existing scale set using the Azure CLI.
 
 Below, we declare environment variables that will be used throughout this document. A random suffix is appended to resource names that need to be unique for each deployment. The `REGION` is set to *WestUS2*.
