@@ -24,7 +24,7 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
 
 :::image type="content" source="media/vmapps/vm-application-overview.png" alt-text="Diagram showing steps to create VM application and deploying it to Azure":::
 
-### Key Benefits: 
+## Key Benefits: 
 - **Centralized and Flexible Application Management**: 
   - Package Once, Deploy Anywhere: Package applications in ZIP, MSI (Microsoft Package Installed), or EXE formats and manage them centrally in Azure Compute Gallery.
   - Version Control: Deploy either the latest or a specific version by maintaining multiple versions of each application. 
@@ -46,7 +46,7 @@ VM Applications are a resource type in Azure Compute Gallery that provides a mod
   - Block Blob Support: Efficiently handle large application packages (upto 2 GB) using Azure Block Blobs for chunked uploads and background streaming.
 
 
-### VM Applications & VM Applications version resource
+## VM Applications & VM Applications version resource
 
 The VM application resource defines the following about your VM application:
 - Azure Compute Gallery where the VM application is stored
@@ -240,7 +240,7 @@ VM application versions are the deployable resource. Versions are defined with t
 ```
 ---
 
-### Cost
+## Cost
 
 There's no extra charge for using VM Application Packages, but you're charged for the following resources:
 
