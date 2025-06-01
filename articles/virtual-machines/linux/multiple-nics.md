@@ -13,6 +13,9 @@ ms.reviewer: cynthn
 
 # How to create a Linux virtual machine in Azure with multiple network interface cards
 
+> [!div class=""nextstepaction""]
+> [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321933)
+
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets
 
 This article details how to create a VM with multiple NICs with the Azure CLI.
