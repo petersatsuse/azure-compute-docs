@@ -113,7 +113,7 @@ Type                         : Microsoft.StandbyPool/standbyContainerGroupPools/
 
 ### [REST API](#tab/rest)
 ```rest
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyContainerGroupPools/{standbyVirtualMachinePoolName}/runtimeViews/{runtimeView}?api-version=2025-03-01
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyContainerGroupPools/{standbyContainerGroupPool}/runtimeViews/{runtimeView}?api-version=2025-03-01
 
 {
   "properties": {

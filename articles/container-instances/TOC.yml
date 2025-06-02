@@ -138,7 +138,7 @@
       href: container-instances-exec.md
     - name: Run a setup container (init)
       href: container-instances-init-container.md
-    - name: Use config maps (Preview)
+    - name: Use config maps
       href: container-instances-config-map.md
     - name: Use a managed identity
       href: container-instances-managed-identity.md
@@ -176,7 +176,7 @@
       href: container-instances-stop-start.md
     - name: Update running containers
       href: container-instances-update.md
-  - name: Manage a standby pool (preview)
+  - name: Manage a standby pool
     items: 
     - name: Overview
       href: container-instances-standby-pool-overview.md
