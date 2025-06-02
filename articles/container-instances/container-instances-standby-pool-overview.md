@@ -208,7 +208,7 @@ Standby pools for Azure container instances support confidential containers. To 
 > [!IMPORTANT]
 > Availability zones for Azure Container Instances is currently in preview. Previews are made available to you on the condition that you agree to the supplemental terms of use. Some aspects of this feature may change prior to general availability (GA).
 
-Standby pools for Azure Container Instances supports creating and requesting containers across availability zones. To create a standby pool with instances in specific zones, specify the `zones` paramater in the standby pool create request. 
+Standby pools for Azure Container Instances supports creating and requesting containers across availability zones. To create a standby pool with instances in specific zones, specify the `zones` parameter in the standby pool create request. 
 
 ### [CLI](#tab/cli)
 
