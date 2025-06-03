@@ -37,7 +37,7 @@ Azure Hybrid Benefit gives you the option to make seamless bidirectional convers
 You might see combined savings estimated to up to 76% with Azure Hybrid Benefit for Linux and three-year Azure Reserved VM Instances. Savings estimates are based on one standard D2s v5 Azure VM with an RHEL or SLES subscription in the East US region running at a PAYG rate versus a reduced rate for a three-year reserved instance plan. The savings estimates are based on Azure pricing as of September 2024. Prices are subject to change. Actual savings might vary based on location, instance type, or usage.
 
 > [!TIP]
-> Try the [Azure Hybrid Benefit savings calculator](https://azure.microsoft.com/pricing/hybrid-benefit/#calculator) to visualize the cost-saving benefits of this feature.
+> Try the [Azure Pricing calculator](https://azure.microsoft.com/pricing/calculator/) to visualize the cost-saving benefits of this feature at a Virtual Machine level. 
 
 ## PAYG vs. BYOS
 
@@ -47,8 +47,9 @@ With BYOS, you can use your existing license subscriptions. You don't pay the li
 
 :::image type="content" source="./media/ahb-linux/azure-hybrid-benefit-compare.png" alt-text="Diagram that shows the use of Azure Hybrid Benefit to switch Linux VMs between pay-as-you-go and bring your own subscription models.":::
 
-> [!NOTE]
-> VMs deployed from PAYG images or VMs converted from BYOS models incur *both* an infrastructure fee and a software fee. If you have your own license, use Azure Hybrid Benefit to convert from a PAYG model to a BYOS model.
+VMs utilizing a PAYG subscription model, whether deployed from PAYG images or VMs converted to PAYG from BYOS, incur *both* an infrastructure fee and a software fee. 
+
+If you have an existing software subscription, use Azure Hybrid Benefit to convert from a PAYG model to a BYOS model.
 
 You can use Azure Hybrid Benefit to switch between the two subscription options at any time.
 
