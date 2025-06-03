@@ -47,8 +47,9 @@ With BYOS, you can use your existing license subscriptions. You don't pay the li
 
 :::image type="content" source="./media/ahb-linux/azure-hybrid-benefit-compare.png" alt-text="Diagram that shows the use of Azure Hybrid Benefit to switch Linux VMs between pay-as-you-go and bring your own subscription models.":::
 
-> [!NOTE]
-> VMs deployed from PAYG images or VMs converted from BYOS models incur *both* an infrastructure fee and a software fee. If you have your own license, use Azure Hybrid Benefit to convert from a PAYG model to a BYOS model.
+VMs utilizing a PAYG subscription model, whether deployed from PAYG images or VMs converted to PAYG from BYOS, incur *both* an infrastructure fee and a software fee. 
+
+If you have an existing software subscription, use Azure Hybrid Benefit to convert from a PAYG model to a BYOS model.
 
 You can use Azure Hybrid Benefit to switch between the two subscription options at any time.
 
