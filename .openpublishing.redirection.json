@@ -79,7 +79,7 @@
     },
     {
       "source_path": "articles/virtual-machines/ncv3-nc6s-nc12s-nc24s-retirement.md",
-      "redirect_url": "/articles/virtual-machines/ncv3-retirement"
+      "redirect_url": "ncv3-retirement"
     }
   ]
 }
