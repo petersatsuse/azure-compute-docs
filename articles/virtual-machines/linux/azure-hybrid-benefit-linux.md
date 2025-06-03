@@ -37,7 +37,7 @@ Azure Hybrid Benefit gives you the option to make seamless bidirectional convers
 You might see combined savings estimated to up to 76% with Azure Hybrid Benefit for Linux and three-year Azure Reserved VM Instances. Savings estimates are based on one standard D2s v5 Azure VM with an RHEL or SLES subscription in the East US region running at a PAYG rate versus a reduced rate for a three-year reserved instance plan. The savings estimates are based on Azure pricing as of September 2024. Prices are subject to change. Actual savings might vary based on location, instance type, or usage.
 
 > [!TIP]
-> Try the [Azure Pricing calculator](https://azure.microsoft.com/en-us/pricing/calculator/) to visualize the cost-saving benefits of this feature at a Virtual Machine level. 
+> Try the [Azure Pricing calculator](https://azure.microsoft.com/pricing/calculator/) to visualize the cost-saving benefits of this feature at a Virtual Machine level. 
 
 ## PAYG vs. BYOS
 
