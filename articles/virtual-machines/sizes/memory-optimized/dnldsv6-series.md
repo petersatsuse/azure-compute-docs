@@ -10,7 +10,7 @@ ms.author: wwilliams
 ms.reviewer: mattmcinnes
 ---
 
-# Dnldsv6 sizes series
+# Dnldsv6 sizes series (Preview)
 
 [!INCLUDE [dnldsv6-summary](./includes/dnldsv6-series-summary.md)]
 

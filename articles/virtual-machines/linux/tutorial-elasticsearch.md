@@ -15,6 +15,9 @@ ms.author: routlaw
 
 # Install the Elastic Stack (ELK) on an Azure VM
 
+> [!div class=""nextstepaction""]
+> [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321850)
+
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets 
 
 This article walks you through how to deploy [Elasticsearch](https://www.elastic.co/products/elasticsearch), [Logstash](https://www.elastic.co/products/logstash), and [Kibana](https://www.elastic.co/products/kibana), on an Ubuntu VM in Azure. To see the Elastic Stack in action, you can optionally connect to Kibana  and work with some sample logging data. 
