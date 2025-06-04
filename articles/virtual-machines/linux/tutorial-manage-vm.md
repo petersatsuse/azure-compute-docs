@@ -13,7 +13,7 @@ ms.custom: mvc, devx-track-azurecli, linux-related-content, innovation-engine
 
 # Tutorial: Create and Manage Linux VMs with the Azure CLI
 
-> [!div class=""nextstepaction""]
+> [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321734)
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets
