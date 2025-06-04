@@ -15,7 +15,7 @@ ms.author: routlaw
 
 # Install the Elastic Stack (ELK) on an Azure VM
 
-> [!div class=""nextstepaction""]
+> [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321850)
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets 

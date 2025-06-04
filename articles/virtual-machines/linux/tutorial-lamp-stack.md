@@ -15,7 +15,7 @@ ms.reviewer: cynthn
 
 # Tutorial: Install a LAMP stack on an Azure Linux VM
 
-> [!div class=""nextstepaction""]
+> [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321739)
 
 **Applies to:** :heavy_check_mark: Linux VMs
