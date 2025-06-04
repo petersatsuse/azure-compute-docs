@@ -47,7 +47,7 @@ vCPUs (Qty.) and Memory for each size
 
 Local (temp) storage info for each size
 
-| Size Name | Max Temp Storage Disks (Qty.) | Max Temp Disk Size (GiB) | Max Temp Disk Random Read (RR)<sup>1</sup> IOPS | Max Temp Disk Random Read (RR)<sup>1</sup> Throughput (MB/s) |
+| Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GiB) | Max Temp Disk Random Read (RR)<sup>1</sup> IOPS | Max Temp Disk Random Read (RR)<sup>1</sup> Throughput (MB/s) |
 | --- | --- | --- | --- | --- |
 | Standard_M16bds_v3 | 1 | 400 | 10,000 | 100 |
 | Standard_M32bds_v3 | 1 | 400 | 20,000 | 200 |

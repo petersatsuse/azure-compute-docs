@@ -42,7 +42,7 @@ vCPUs (Qty.) and Memory for each size
 
 Local (temp) storage info for each size
 
-| Size Name | Max Temp Storage Disks (Qty.) | Max Temp Disk Size (GiB) | Max Temp Disk Random Read (RR)<sup>1</sup> IOPS | Max Temp Disk Random Read (RR)<sup>1</sup> Throughput (MB/s) | Max Temp Disk Cache Size (GiB) |
+| Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GiB) | Max Temp Disk Random Read (RR)<sup>1</sup> IOPS | Max Temp Disk Random Read (RR)<sup>1</sup> Throughput (MB/s) | Max Temp Disk Cache Size (GiB) |
 | --- | --- | --- | --- | --- | --- |
 | Standard_M208s_v2 | 1 | 4,096 | 80,000 | 800 | 7,040 |
 | Standard_M208ms_v2 | 1 | 4,096 | 80,000 | 800 | 7,040 |

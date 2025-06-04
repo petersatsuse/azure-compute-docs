@@ -44,7 +44,7 @@ vCPUs (Qty.) and Memory for each size
 
 Local (temp) storage info for each size
 
-| Size Name | Max Temp Storage Disks (Qty.) | Max Temp Disk Size (GiB) | Max Temp Disk Sequential Read (SR)<sup>1</sup> IOPS | Max Temp Disk Sequential Read (SR)<sup>1</sup> Throughput (MB/s) |
+| Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GiB) | Max Temp Disk Sequential Read (SR)<sup>1</sup> IOPS | Max Temp Disk Sequential Read (SR)<sup>1</sup> Throughput (MB/s) |
 | --- | --- | --- | --- | --- |
 | Standard_M12ds_v3 | 1 | 400 | 10,000 | 100 |
 | Standard_M24ds_v3 | 1 | 400 | 20,000 | 200 |

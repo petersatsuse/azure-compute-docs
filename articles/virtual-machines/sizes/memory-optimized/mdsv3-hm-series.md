@@ -57,7 +57,7 @@ Local (temp) storage info for each size
 
 #### Mdsv3 High Memory series (NVMe)
 
-| Size Name | Max Temp Storage Disks (Qty.) | Max Temp Disk Size (GiB) | Max Temp Disk Sequential Read (SR)<sup>1</sup> IOPS | Max Temp Disk Sequential Read (SR)<sup>1</sup> Throughput (MB/s) |
+| Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GiB) | Max Temp Disk Sequential Read (SR)<sup>1</sup> IOPS | Max Temp Disk Sequential Read (SR)<sup>1</sup> Throughput (MB/s) |
 | --- | --- | --- | --- | --- |
 | Standard_M416ds_6_v3 | 1 | 400 | 250,000 | 1,600 |
 | Standard_M416ds_8_v3 | 1 | 400 | 250,000 | 1,600 |
@@ -68,7 +68,7 @@ Local (temp) storage info for each size
 
 #### Mdsv3 High Memory series (SCSI)
 
-| Size Name | Max Temp Storage Disks (Qty.) | Max Temp Disk Size (GiB) | Max Temp Disk Sequential Read (SR)<sup>1</sup> IOPS | Max Temp Disk Sequential Read (SR)<sup>1</sup> Throughput (MB/s) |
+| Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GiB) | Max Temp Disk Sequential Read (SR)<sup>1</sup> IOPS | Max Temp Disk Sequential Read (SR)<sup>1</sup> Throughput (MB/s) |
 | --- | --- | --- | --- | --- |
 | Standard_M416ds_6_v3 | 1 | 400 | 250,000 | 1,600 |
 | Standard_M416ds_8_v3 | 1 | 400 | 250,000 | 1,600 |
