@@ -13,7 +13,7 @@ ms.custom: mvc, devx-track-azurecli, linux-related-content, innovation-engine
 
 # Tutorial - How to use cloud-init to customize a Linux virtual machine in Azure on first boot
 
-> [!div class=""nextstepaction""]
+> [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321936)
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets
