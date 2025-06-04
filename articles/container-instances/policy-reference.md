@@ -21,7 +21,7 @@ the link in the **Version** column to view the source on the
 
 ## Azure Container Instances
 
-[!INCLUDE [azure-policy-reference-service-storage](~/azure-docs-pr/includes/policy/reference/byrp/microsoft.containerinstance.md)]
+[!INCLUDE [azure-policy-reference-service-storage](~/azure-policy-autogen-docs/includes/policy/reference/byrp/microsoft.containerinstance.md)]
 
 ## Next steps
 

@@ -19,7 +19,7 @@ compliant with the specific standard.
 
 [!INCLUDE [azure-policy-compliancecontrols-introwarning](~/azure-docs-pr/includes/policy/standards/intro-warning.md)]
 
-[!INCLUDE [azure-policy-compliancecontrols-servicefabric](~/azure-docs-pr/includes/policy/standards/byrp/microsoft.servicefabric.md)]
+[!INCLUDE [azure-policy-compliancecontrols-servicefabric](~/azure-policy-autogen-docs/includes/policy/standards/byrp/microsoft.servicefabric.md)]
 
 ## Next steps
 
