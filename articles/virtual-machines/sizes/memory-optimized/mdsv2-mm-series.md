@@ -49,7 +49,7 @@ vCPUs (Qty.) and Memory for each size
 
 Local (temp) storage info for each size
 
-| Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GiB) | Temp Disk Sequential Read (SR)<sup>1</sup> IOPS | Temp Disk Sequential Read (SR)<sup>1</sup> Throughput (MB/s) | Temp Disk Burst<sup>2</sup> IOPS | Temp Disk Burst<sup>2</sup> Throughput (MB/s) |
+| Size Name | Max Temp Storage Disks (Qty.) | Max Temp Disk Size (GiB) | Max Temp Disk Sequential Read (SR)<sup>1</sup> IOPS | Max Temp Disk Sequential Read (SR)<sup>1</sup> Throughput (MB/s) | Max Temp Disk Burst<sup>2</sup> IOPS | Max Temp Disk Burst<sup>2</sup> Throughput (MB/s) |
 | --- | --- | --- | --- | --- | --- | --- |
 | Standard_M32dms_v2 | 1 | 1024 | 40000 | 400 | 40000 | 1000 |
 | Standard_M64ds_v2 | 1 | 2048 | 80000 | 800 | 80000 | 2000 |
@@ -75,7 +75,7 @@ Local (temp) storage info for each size
 
 Remote (uncached) storage info for each size
 
-| Size Name | Max Remote Storage Disks (Qty.) | Uncached Premium SSD Disk IOPS | Uncached Premium SSD Throughput (MB/s) | Uncached Premium SSD Burst<sup>1</sup> IOPS | Uncached Premium SSD Burst<sup>1</sup> Throughput (MB/s) |
+| Size Name | Max Remote Storage Disks (Qty.) | Max Uncached Premium SSD Disk IOPS | Max Uncached Premium SSD Throughput (MB/s) | Max Uncached Premium SSD Burst<sup>1</sup> IOPS | Max Uncached Premium SSD Burst<sup>1</sup> Throughput (MB/s) |
 | --- | --- | --- | --- | --- | --- |
 | Standard_M32dms_v2 | 32 | 20000 | 500 | 40000 | 1000 |
 | Standard_M64ds_v2 | 64 | 40000 | 1000 | 80000 | 2000 |

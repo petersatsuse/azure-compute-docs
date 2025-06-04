@@ -68,7 +68,7 @@ Remote (uncached) storage info for each size
 
 #### Msv3 High Memory series (NVMe)
 
-| Size Name | Max Remote Storage Disks (Qty.) | Uncached Premium SSD Disk IOPS | Uncached Premium SSD Throughput (MB/s) | Uncached Ultra Disk and Premium SSD v2 IOPS | Uncached Ultra Disk and Premium SSD v2 Throughput (MB/s) |
+| Size Name | Max Remote Storage Disks (Qty.) | Max Uncached Premium SSD Disk IOPS | Max Uncached Premium SSD Throughput (MB/s) | Max Uncached Ultra Disk and Premium SSD v2 IOPS | Max Uncached Ultra Disk and Premium SSD v2 Throughput (MB/s) |
 | --- | --- | --- | --- | --- | --- |
 | Standard_M416s_6_v3 | 64 | 130,000 | 4,000 | 130,000 | 4,000 |
 | Standard_M416s_8_v3 | 64 | 130,000 | 4,000 | 130,000 | 4,000 |
@@ -79,7 +79,7 @@ Remote (uncached) storage info for each size
 
 #### Msv3 High Memory series (SCSI)
 
-| Size Name | Max Remote Storage Disks (Qty.) | Uncached Premium SSD Disk IOPS | Uncached Premium SSD Throughput (MB/s) | Uncached Ultra Disk and Premium SSD v2 IOPS | Uncached Ultra Disk and Premium SSD v2 Throughput (MB/s) |
+| Size Name | Max Remote Storage Disks (Qty.) | Max Uncached Premium SSD Disk IOPS | Max Uncached Premium SSD Throughput (MB/s) | Max Uncached Ultra Disk and Premium SSD v2 IOPS | Max Uncached Ultra Disk and Premium SSD v2 Throughput (MB/s) |
 | --- | --- | --- | --- | --- | --- |
 | Standard_M416s_6_v3 | 64 | 130,000 | 4,000 | 130,000 | 4,000 |
 | Standard_M416s_8_v3 | 64 | 130,000 | 4,000 | 130,000 | 4,000 |
