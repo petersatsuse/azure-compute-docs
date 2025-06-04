@@ -5,7 +5,7 @@ author: sherrywangms
 ms.author: sherrywang
 ms.service: azure-virtual-machines
 ms.topic: concept-article
-ms.date: 03/19/2024
+ms.date: 05/28/2025
 ms.subservice: sizes
 ---
 # Migrate your NCv3-series virtual machines by September 30, 2025
