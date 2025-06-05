@@ -4,7 +4,7 @@ description: Time mechanism for Active Directory Windows Virtual Machines in Azu
 author: NDVALPHA
 ms.service: azure-virtual-machines
 ms.collection: windows
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 08/05/2022
 ms.author: ndelvillar
 ---

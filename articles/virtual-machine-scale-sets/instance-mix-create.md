@@ -3,7 +3,7 @@ title: Create a Virtual Machine Scale Set with instance mix
 description: How to create a virtual machine scale set using instance mix on different platforms. 
 author: brittanyrowe 
 ms.author: brittanyrowe
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: azure-virtual-machine-scale-sets
 ms.date: 1/10/2025
 ms.reviewer: jushiman

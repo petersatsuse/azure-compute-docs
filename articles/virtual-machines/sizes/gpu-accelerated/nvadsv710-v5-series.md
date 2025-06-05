@@ -4,7 +4,7 @@ description: Information on and specifications of the NVads-V710 v5-series sizes
 author: iamwilliew
 ms.service: azure-virtual-machines
 ms.subservice: sizes
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 09/16/2024
 ms.author: wwilliams
 ms.reviewer: mattmcinnes
