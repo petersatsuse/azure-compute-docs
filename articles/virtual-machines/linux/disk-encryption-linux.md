@@ -62,7 +62,7 @@ Azure Disk Encryption does not work for the following Linux scenarios, features,
 - 'L' family storage optimized VM size series.
 - M-series VMs with Write Accelerator disks.
 - Applying ADE to a VM that has disks encrypted with [Encryption at Host](../disk-encryption.md#encryption-at-host---end-to-end-encryption-for-your-vm-data) or [server-side encryption with customer-managed keys](../disk-encryption.md) (SSE + CMK). Applying SSE + CMK to a data disk or adding a data disk with SSE + CMK configured to a VM encrypted with ADE is an unsupported scenario as well.
-- Migrating a VM that is encrypted with ADE, or has **ever** been encrypted with ADE, to [Encryption at Host](../disk-encryption.md#encryption-at-host---end-to-end-encryption-for-your-vm-data) or [server-side encryption with customer-managed keys](../disk-encryption.md).
+- Migrating a VM that is encrypted with ADE, or was **ever** encrypted with ADE, to [Encryption at Host](../disk-encryption.md#encryption-at-host---end-to-end-encryption-for-your-vm-data) or [server-side encryption with customer-managed keys](../disk-encryption.md).
 - Encrypting VMs in failover clusters.
 - Encryption of [Azure ultra disks](../disks-enable-ultra-ssd.md).
 - Encryption of [Premium SSD v2 disks](../disks-types.md#premium-ssd-v2-limitations).
@@ -115,7 +115,7 @@ If you have multiple subscriptions and want to specify one, use the [Get-AzSubsc
 Set-AzContext -Subscription <SubscriptionId>
 ```
 
-Running the [Get-AzContext](/powershell/module/Az.Accounts/Get-AzContext) cmdlet will verify that the correct subscription is selected.
+Running the [Get-AzContext](/powershell/module/Az.Accounts/Get-AzContext) cmdlet verifies that the correct subscription is selected.
 
 To confirm the Azure Disk Encryption cmdlets are installed, use the [Get-command](/powershell/module/microsoft.powershell.core/get-command) cmdlet:
 
@@ -132,7 +132,7 @@ For more information, see [Getting started with Azure PowerShell](/powershell/az
 In this scenario, you can enable encryption by using the Resource Manager template, PowerShell cmdlets, or CLI commands. If you need schema information for the virtual machine extension, see the [Azure Disk Encryption for Linux extension](../extensions/azure-disk-enc-linux.md) article.
 
 >[!IMPORTANT]
- >It is mandatory to snapshot and/or backup a managed disk based VM instance outside of, and prior to enabling Azure Disk Encryption. A snapshot of the managed disk can be taken from the portal, or through [Azure Backup](/azure/backup/backup-azure-vms-encryption). Backups ensure that a recovery option is possible in the case of any unexpected failure during encryption. Once a backup is made, the Set-AzVMDiskEncryptionExtension cmdlet can be used to encrypt managed disks by specifying the -skipVmBackup parameter. The Set-AzVMDiskEncryptionExtension command will fail against managed disk based VMs until a backup is made and this parameter is specified.
+ >It is mandatory to snapshot and/or backup a managed disk based VM instance outside of, and prior to enabling Azure Disk Encryption. A snapshot of the managed disk can be taken from the portal, or through [Azure Backup](/azure/backup/backup-azure-vms-encryption). Backups ensure that a recovery option is possible in the case of any unexpected failure during encryption. Once a backup is made, the Set-AzVMDiskEncryptionExtension cmdlet can be used to encrypt managed disks by specifying the -skipVmBackup parameter. The Set-AzVMDiskEncryptionExtension command fails against managed disk based VMs until a backup is made and this parameter is specified.
 >
 > Encrypting or disabling encryption may cause the VM to reboot.
 
@@ -250,7 +250,7 @@ To disable the encryption, see [Disable encryption and remove the encryption ext
 
 The **EncryptFormatAll** parameter reduces the time for Linux data disks to be encrypted. Partitions meeting certain criteria will be formatted, along with their current file systems, then remounted back to where they were before command execution. If you wish to exclude a data disk that meets the criteria, you can unmount it before running the command.
 
- After running this command, any drives that were mounted previously will be formatted, and the encryption layer will be started on top of the now empty drive. When this option is selected, the temporary disk attached to the VM will also be encrypted. If the temporary disk is reset, it will be reformatted and re-encrypted for the VM by the Azure Disk Encryption solution at the next opportunity. Once the resource disk gets encrypted, the [Microsoft Azure Linux Agent](../extensions/agent-linux.md) will not be able to manage the resource disk and enable the swap file, but you may manually configure the swap file.
+ After running this command, any drives that were mounted previously will be formatted, and the encryption layer will be started on top of the now empty drive. When this option is selected, the temporary disk attached to the VM is also encrypted. If the temporary disk is reset, Azure Disk Encryption will reformat and re-encrypt the VM's temporary disk at the next opportunity. Once the resource disk is encrypted, the [Microsoft Azure Linux Agent](../extensions/agent-linux.md) will not be able to manage the resource disk and enable the swap file, but you may manually configure the swap file.
 
 >[!WARNING]
 > EncryptFormatAll shouldn't be used when there is needed data on a VM's data volumes. You may exclude disks from encryption by unmounting them. You should first try out the EncryptFormatAll first on a test VM, understand the feature parameter and its implication before trying it on the production VM. The EncryptFormatAll option formats the data disk and all the data on it will be lost. Before proceeding, verify that disks you wish to exclude are properly unmounted. </br></br>
