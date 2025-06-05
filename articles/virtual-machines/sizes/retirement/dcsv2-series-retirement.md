@@ -22,7 +22,7 @@ This document covers:
 By migrating to newer VM series, you gain access to improved price-performance ratios, broader regional availability, and the latest hardware capabilities.
 
 ### How does the DCsv2-series retirement affect me?
-If you are running your workload on DCsv2-series SKU, either by using virtual machines or by having app-enclave aware containers running on Azure Kubernetes Service (AKS), this retirement will affect you.
+If you are running your workload on DCsv2-series SKU, either by using virtual machines, Virtual Machine Scale Sets (VMSS) or by having app-enclave aware containers running on Azure Kubernetes Service (AKS), this retirement will affect you.
 
 After June 30, 2026, any remaining DCsv2-series virtual machine subscriptions will stop working, and will no longer incur billing compute charges.
 
@@ -235,6 +235,9 @@ If you have active Reserved Instances for DCsv2-series VMs, follow these steps:
 
 ### How can I get transition help and support during migration?
 If you have any questions, you can open a support ticket through the Azure portal for technical help: create a support request. 
+
+### Will other services built on top of the DCsv2 SKU still be available after the SKU retires?
+No, all uses of the DCsv2 SKU will retire simultaneously in June 2026, including those on AKS and VMSS.
 
 ### What will happen after retirement date?
 After June 30, 2026, any remaining DCsv2-series virtual machine subscriptions will stop working and will no longer incur billing charges. Migrate ahead of the retirement schedule to avoid disruption.
