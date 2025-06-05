@@ -426,16 +426,16 @@
           items:
           - name: Mdsv3 Very High Memory Series
             href: ./sizes/memory-optimized/mdsv3-vhm-series.md
-        - name: Migration guides
+        - name: Mb family
+          items:
+          - name: Mbsv3 series
+            href: ./sizes/memory-optimized/mbsv3-series.md
+          - name: Mbdsv3 series
+            href: ./sizes/memory-optimized/mbdsv3-series.md
+        - name: Retirement Migration guides
           items:
           - name: Msv2 and Mdsv2 migration guide
             href: ./sizes/retirement/msv2-mdsv2-retirement.md
-      - name: Mb family
-        items:
-        - name: Mbsv3 series
-          href: ./sizes/memory-optimized/mbsv3-series.md
-        - name: Mbdsv3 series
-          href: ./sizes/memory-optimized/mbdsv3-series.md
     - name: Storage optimized
       items:
       - name: Overview
