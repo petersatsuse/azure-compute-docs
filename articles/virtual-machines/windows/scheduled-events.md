@@ -341,7 +341,7 @@ The `DocumentIncarnation` is changing every time there's new information in `Eve
 
 ## Python Sample 
 
-The following sample queries Metadata Service for scheduled events and approves each outstanding event:
+The sample queries Metadata Service for scheduled events and approves each outstanding event. You can find the code in the [vm-scheduled-events-mock-server](https://github.com/Azure-Samples/scheduled-events-mock-server) repository in the Listener.py file. 
 
 ```python
 #!/usr/bin/python
@@ -434,6 +434,12 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+## Testing Scheduled Events
+Two common ways to test your applications response to scheduled events are manually triggering user imitated events or using a mock server. 
+
+You can manually trigger redeploy and reboot events through the Azure Portal or Azure CLI by selecting the 'reboot' or 'redeploy' VM option from the VM blade. This will create an event and send it to your workload. 
+
+Operations that impact multiple VMs, such as host updates, cannot be triggered on demand so you can use a mock server instead. The [vm-scheduled-events-mock-server](https://github.com/Azure-Samples/scheduled-events-mock-server) provides a framework for testing your application's response to different scenarios by replaying real events flows back for development and testing. By default the server supports 9 different scenarios, all captured from VMs running in Azure and representing the most common cases. The scenarios can be expanded to include more options depending on your applications particular characteristics.  
 
 ## Next steps 
 - Review the Scheduled Events code samples in the [Azure Instance Metadata Scheduled Events GitHub repository](https://github.com/Azure-Samples/virtual-machines-scheduled-events-discover-endpoint-for-non-vnet-vm).
@@ -442,3 +448,4 @@ if __name__ == '__main__':
 - Learn about [planned maintenance for Windows virtual machines in Azure](../maintenance-and-updates.md?bc=/azure/virtual-machines/windows/breadcrumb/toc.json&toc=/azure/virtual-machines/windows/toc.json).
 - Learn how to [monitor scheduled events for your VMs through Log Analytics](./scheduled-event-service.md).
 - Learn how to log scheduled events using Azure Event Hubs in the [Azure Samples GitHub repository](https://github.com/Azure-Samples/virtual-machines-python-scheduled-events-central-logging).
+- Use the [vm-scheduled-events-mock-server](https://github.com/Azure-Samples/scheduled-events-mock-server) to test your application's response to common scheduled events scenarios. 
