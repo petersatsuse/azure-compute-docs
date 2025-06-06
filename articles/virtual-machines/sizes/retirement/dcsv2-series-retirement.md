@@ -30,9 +30,9 @@ After June 30, 2026, any remaining DCsv2-series virtual machine subscriptions wi
 
 **Before June 30, 2026**, migrate your workloads to one of the following options that best aligns with your business needs:
 
-- If you want to continue leveraging the enclave-based offering with Intel SGX technology, migrate your workloads to [DCdsv3 virtual machines](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcdsv3-series?tabs=sizebasic). The DCdsv3 VMs offer significant improvements, including enhanced performance and increased memory capacity, making the DCdsv3-series a more robust and efficient choice.
-- To lift and shift into a VM based programming model, consider [DCasv5/DCadsv5/ECasv5/ECadsv5](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcadsv5-series?tabs=sizebasic) VMs, [DCasv6/ECasv6](https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752) series (currently in preview) or [DC](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcesv6-series?tabs=sizebasic)/[ECesv6](https://learn.microsoft.com/azure/virtual-machines/ecesv5-ecedsv5-series) (currently in preview) confidential VMs (CVMs).
-- If you already have or plan to transition to containerized workloads and want to lift and shift your containerized applications consider using [Azure Confidential Container Instances (C-ACI)](https://learn.microsoft.com/azure/container-instances/container-instances-confidential-overview) serverless infrastructure. If you need to orchestrate containerized workloads, consider using [Virtual nodes on Azure Container Instances (C-VN2) for Azure Kubernetes Service (AKS)](https://learn.microsoft.com/azure/container-instances/container-instances-virtual-nodes).
+- If you want to continue leveraging the enclave-based offering with Intel SGX technology, migrate your workloads to [DCdsv3 virtual machines](../general-purpose/dcdsv3-series?tabs=sizebasic). The DCdsv3 VMs offer significant improvements, including enhanced performance and increased memory capacity, making the DCdsv3-series a more robust and efficient choice.
+- To lift and shift into a VM based programming model, consider [DCasv5/DCadsv5/ECasv5/ECadsv5](../general-purpose/dcadsv5-series?tabs=sizebasic) VMs, [DCasv6/ECasv6](https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752) series (currently in preview) or [DC](../general-purpose/dcesv6-series?tabs=sizebasic)/[ECesv6](../../ecesv5-ecedsv5-series) (currently in preview) confidential VMs (CVMs).
+- If you already have or plan to transition to containerized workloads and want to lift and shift your containerized applications consider using [Azure Confidential Container Instances (C-ACI)](../../../container-instances/container-instances-confidential-overview) serverless infrastructure. If you need to orchestrate containerized workloads, consider using [Virtual nodes on Azure Container Instances (C-VN2) for Azure Kubernetes Service (AKS)](../../../container-instances/container-instances-virtual-nodes).
 
 Additionally, there may be changes to your Azure Virtual Machines billing because of this retirement. Refer to our Azure Virtual Machines [pricing page](https://azure.microsoft.com/pricing/details/virtual-machines/linux-previous/) for more information.
 
@@ -72,7 +72,7 @@ Additionally, if your DCsv2 VMs are running in North Central US, Canada East, Au
 1. Pick a new DCdsv3 size from the list of available sizes and select **Resize**.
 1. **Start the VM** after resizing.
 
-Refer to the full [Azure VM resizing guide](https://learn.microsoft.com/azure/virtual-machines/sizes/resize-vm?tabs=portal) for more detailed instructions.
+Refer to the full [Azure VM resizing guide](../resize-vm?tabs=portal) for more detailed instructions.
 
 ### Azure PowerShell
 
@@ -163,14 +163,14 @@ To migrate your VMs to one of these available regions, follow these steps:
     * If you do not see the size you want, ensure **No infrastructure redundancy required** is selected and that your requested region supports the desired size. 
 
 ## Migrate to new generation offerings 
-- To lift and shift into a VM based programming model, consider [DCasv5/DCadsv5/ECasv5/ECadsv5](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcadsv5-series?tabs=sizebasic) VMs, [DCasv6/ECasv6](https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752) series (currently in preview) or [DC](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcesv6-series?tabs=sizebasic)/[ECesv6](https://learn.microsoft.com/azure/virtual-machines/ecesv5-ecedsv5-series) (currently in preview) confidential VMs (CVMs).
-- If you already have or plan to transition to containerized workloads and want to lift and shift your containerized applications consider using [Azure Confidential Container Instances (C-ACI)](https://learn.microsoft.com/azure/container-instances/container-instances-confidential-overview) serverless infrastructure. 
-- If you need to orchestrate containerized workloads, consider using [Virtual nodes on Azure Container Instances (C-VN2) for Azure Kubernetes Service (AKS)](https://learn.microsoft.com/azure/container-instances/container-instances-virtual-nodes).
+- To lift and shift into a VM based programming model, consider [DCasv5/DCadsv5/ECasv5/ECadsv5](../general-purpose/dcadsv5-series?tabs=sizebasic) VMs, [DCasv6/ECasv6](https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752) series (currently in preview) or [DC](../general-purpose/dcesv6-series?tabs=sizebasic)/[ECesv6](../../ecesv5-ecedsv5-series) (currently in preview) confidential VMs (CVMs).
+- If you already have or plan to transition to containerized workloads and want to lift and shift your containerized applications consider using [Azure Confidential Container Instances (C-ACI)](../../../container-instances/container-instances-confidential-overview) serverless infrastructure. 
+- If you need to orchestrate containerized workloads, consider using [Virtual nodes on Azure Container Instances (C-VN2) for Azure Kubernetes Service (AKS)](../../../container-instances/container-instances-virtual-nodes).
 
 ## Frequently Asked Questions
 
 ### What is the migration timeline?
-On June 30, 2026, DCsv2-series virtual machines (VMs) will be retired. Before that date, please migrate your workloads to DCdsv3-series virtual machines. In case you prefer global availability and want to lift and shift your workloads consider using [DCasv5/DCadsv5/ECasv5/ECadsv5](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcadsv5-series?tabs=sizebasic) VMs, [DCasv6/ECasv6](https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752) series (currently in preview) or [DC](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcesv6-series?tabs=sizebasic)/[ECesv6](https://learn.microsoft.com/azure/virtual-machines/ecesv5-ecedsv5-series) (currently in preview) confidential VMs (CVMs), or [Azure Confidential Container Instances (C-ACI)](https://learn.microsoft.com/azure/container-instances/container-instances-confidential-overview) serverless infrastructure. 
+On June 30, 2026, DCsv2-series virtual machines (VMs) will be retired. Before that date, please migrate your workloads to DCdsv3-series virtual machines. In case you prefer global availability and want to lift and shift your workloads consider using [DCasv5/DCadsv5/ECasv5/ECadsv5](../general-purpose/dcadsv5-series?tabs=sizebasic) VMs, [DCasv6/ECasv6](https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752) series (currently in preview) or [DC](../general-purpose/dcesv6-series?tabs=sizebasic)/[ECesv6](../../ecesv5-ecedsv5-series) (currently in preview) confidential VMs (CVMs), or [Azure Confidential Container Instances (C-ACI)](../../../container-instances/container-instances-confidential-overview) serverless infrastructure. 
 
 ### Will DCsv2-series VMs still allow new customer sign-ups?
 **Starting from July 1, 2025**, capacity restrictions will be applied to DCsv2-series virtual machines and no new subscription will be allowed.
@@ -259,10 +259,10 @@ Follow instructions in the **Solutions** and **Details** tabs, as applicable, an
 
 ## Next steps
 
-- Learn more about [DCdsv3-series VM](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcdsv3-series?tabs=sizebasic)
-- Learn more about [DCasv5/DCadsv5/ECasv5/ECadsv5 CVMs](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcadsv5-series?tabs=sizebasic)
+- Learn more about [DCdsv3-series VM](../general-purpose/dcdsv3-series?tabs=sizebasic)
+- Learn more about [DCasv5/DCadsv5/ECasv5/ECadsv5 CVMs](../general-purpose/dcadsv5-series?tabs=sizebasic)
 - Learn more about [DCasv6/ECasv6 CVMs](https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752) (currently in preview)
-- Learn more about [DC](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcesv6-series?tabs=sizebasic)/[ECesv6 CVMs](https://learn.microsoft.com/azure/virtual-machines/ecesv5-ecedsv5-series) (currently in preview)
-- Learn more about [Azure Confidential Container Instances (C-ACI)](https://learn.microsoft.com/azure/container-instances/container-instances-confidential-overview)
-- Learn more about [Virtual nodes on Azure Container Instances (C-VN2) for Azure Kubernetes Service (AKS)](https://learn.microsoft.com/azure/container-instances/container-instances-virtual-nodes).
+- Learn more about [DC](../general-purpose/dcesv6-series?tabs=sizebasic)/[ECesv6 CVMs](../../ecesv5-ecedsv5-series) (currently in preview)
+- Learn more about [Azure Confidential Container Instances (C-ACI)](../../../container-instances/container-instances-confidential-overview)
+- Learn more about [Virtual nodes on Azure Container Instances (C-VN2) for Azure Kubernetes Service (AKS)](../../../container-instances/container-instances-virtual-nodes).
 
