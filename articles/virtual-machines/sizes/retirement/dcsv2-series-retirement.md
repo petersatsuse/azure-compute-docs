@@ -30,11 +30,11 @@ After June 30, 2026, any remaining DCsv2-series virtual machine subscriptions wi
 
 **Before June 30, 2026**, migrate your workloads to one of the following options that best aligns with your business needs:
 
-- If you want to continue leveraging the enclave-based offering with Intel SGX technology, migrate your workloads to [DCdsv3 virtual machines](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/dcdsv3-series?tabs=sizebasic). The DCdsv3 VMs offer significant improvements, including enhanced performance and increased memory capacity, making the DCdsv3-series a more robust and efficient choice.
-- To lift and shift into a VM based programming model, consider [DCasv5/DCadsv5/ECasv5/ECadsv5](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/dcadsv5-series?tabs=sizebasic) VMs, [DCasv6/ECasv6](https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752) series (currently in preview) or [DC](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/dcesv6-series?tabs=sizebasic)/[ECesv6](https://learn.microsoft.com/en-us/azure/virtual-machines/ecesv5-ecedsv5-series) (currently in preview) confidential VMs (CVMs).
-- If you already have or plan to transition to containerized workloads and want to lift and shift your containerized applications consider using [Azure Confidential Container Instances (C-ACI)](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-confidential-overview) serverless infrastructure. If you need to orchestrate containerized workloads, consider using [Virtual nodes on Azure Container Instances (C-VN2) for Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-virtual-nodes).
+- If you want to continue leveraging the enclave-based offering with Intel SGX technology, migrate your workloads to [DCdsv3 virtual machines](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcdsv3-series?tabs=sizebasic). The DCdsv3 VMs offer significant improvements, including enhanced performance and increased memory capacity, making the DCdsv3-series a more robust and efficient choice.
+- To lift and shift into a VM based programming model, consider [DCasv5/DCadsv5/ECasv5/ECadsv5](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcadsv5-series?tabs=sizebasic) VMs, [DCasv6/ECasv6](https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752) series (currently in preview) or [DC](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcesv6-series?tabs=sizebasic)/[ECesv6](https://learn.microsoft.com/azure/virtual-machines/ecesv5-ecedsv5-series) (currently in preview) confidential VMs (CVMs).
+- If you already have or plan to transition to containerized workloads and want to lift and shift your containerized applications consider using [Azure Confidential Container Instances (C-ACI)](https://learn.microsoft.com/azure/container-instances/container-instances-confidential-overview) serverless infrastructure. If you need to orchestrate containerized workloads, consider using [Virtual nodes on Azure Container Instances (C-VN2) for Azure Kubernetes Service (AKS)](https://learn.microsoft.com/azure/container-instances/container-instances-virtual-nodes).
 
-Additionally, there may be changes to your Azure Virtual Machines billing because of this retirement. Refer to our Azure Virtual Machines [pricing page](https://azure.microsoft.com/en-us/pricing/details/virtual-machines/linux-previous/) for more information.
+Additionally, there may be changes to your Azure Virtual Machines billing because of this retirement. Refer to our Azure Virtual Machines [pricing page](https://azure.microsoft.com/pricing/details/virtual-machines/linux-previous/) for more information.
 
 ## Migration Steps
 Start planning your migration from DCsv2-series today.
@@ -45,12 +45,12 @@ Start planning your migration from DCsv2-series today.
 
 ### Check and Request Quota Increases
 - Before resizing and migration, verify that your subscription has sufficient quota for the target VM series.
-- Request more quota through the [Azure portal](https://learn.microsoft.com/en-us/azure/azure-portal/supportability/per-vm-quota-requests) if needed.
+- Request more quota through the [Azure portal](https://learn.microsoft.com/azure/azure-portal/supportability/per-vm-quota-requests) if needed.
 
 ### Complete Migration
 - Complete migration as soon as possible to prevent business impact and to take advantage of the improved performance, and extensive regional coverage of our new confidential computing offerings.
 - Dependent on chosen migration option follow the documentation below.
-- For technical questions, issues, and help get answers from community experts in [Microsoft Q&A](https://learn.microsoft.com/en-us/search/?terms=confidential%20computing&category=QnA).
+- For technical questions, issues, and help get answers from community experts in [Microsoft Q&A](https://learn.microsoft.com/search/?terms=confidential%20computing&category=QnA).
 
 ## Migrate workloads to DCdsv3-series VMs
 To continue leveraging the enclave-based offering with Intel SGX technology, migrate your workloads to DCdsv3 virtual machines. First, check if your desired DCdsv3-series SKU is available in your current region. If it is, you can resize your virtual machines to the DCdsv3-series using the Azure portal, PowerShell, or the CLI. Below are examples of how to resize your VM using the Azure portal, PowerShell and Azure CLI.
@@ -72,7 +72,7 @@ Additionally, if your DCsv2 VMs are running in North Central US, Canada East, Au
 1. Pick a new DCdsv3 size from the list of available sizes and select **Resize**.
 1. **Start the VM** after resizing.
 
-Refer to the full [Azure VM resizing guide](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/resize-vm?tabs=portal) for more detailed instructions.
+Refer to the full [Azure VM resizing guide](https://learn.microsoft.com/azure/virtual-machines/sizes/resize-vm?tabs=portal) for more detailed instructions.
 
 ### Azure PowerShell
 
@@ -144,7 +144,7 @@ Australia East, Canada Central, Central India, Central US, East US, East US 2, W
 To migrate your VMs to one of these available regions, follow these steps:
 1. Identify the **target region** from the list above.
 1. Prepare your VMs for migration by ensuring all data is backed up.
-1. Verify that your subscription has sufficient quota for the DCdsv3-series VMs in the target region. Request a quota through the [Azure portal](https://learn.microsoft.com/en-us/azure/azure-portal/supportability/per-vm-quota-requests) if needed.
+1. Verify that your subscription has sufficient quota for the DCdsv3-series VMs in the target region. Request a quota through the [Azure portal](https://learn.microsoft.com/azure/azure-portal/supportability/per-vm-quota-requests) if needed.
 1.	Navigate to VM you want to resize in the portal.
 1.	**Stop the VM** and wait for status of the VM to be Stopped (deallocated).
 1. Find the **Capture** drop down in the overview tab of the VM (circled bellow). From the drop down select **capture**, then image.  
@@ -163,14 +163,14 @@ To migrate your VMs to one of these available regions, follow these steps:
     * If you do not see the size you want, ensure **No infrastructure redundancy required** is selected and that your requested region supports the desired size. 
 
 ## Migrate to new generation offerings 
-- To lift and shift into a VM based programming model, consider [DCasv5/DCadsv5/ECasv5/ECadsv5](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/dcadsv5-series?tabs=sizebasic) VMs, [DCasv6/ECasv6](https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752) series (currently in preview) or [DC](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/dcesv6-series?tabs=sizebasic)/[ECesv6](https://learn.microsoft.com/en-us/azure/virtual-machines/ecesv5-ecedsv5-series) (currently in preview) confidential VMs (CVMs).
-- If you already have or plan to transition to containerized workloads and want to lift and shift your containerized applications consider using [Azure Confidential Container Instances (C-ACI)](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-confidential-overview) serverless infrastructure. 
-- If you need to orchestrate containerized workloads, consider using [Virtual nodes on Azure Container Instances (C-VN2) for Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-virtual-nodes).
+- To lift and shift into a VM based programming model, consider [DCasv5/DCadsv5/ECasv5/ECadsv5](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcadsv5-series?tabs=sizebasic) VMs, [DCasv6/ECasv6](https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752) series (currently in preview) or [DC](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcesv6-series?tabs=sizebasic)/[ECesv6](https://learn.microsoft.com/azure/virtual-machines/ecesv5-ecedsv5-series) (currently in preview) confidential VMs (CVMs).
+- If you already have or plan to transition to containerized workloads and want to lift and shift your containerized applications consider using [Azure Confidential Container Instances (C-ACI)](https://learn.microsoft.com/azure/container-instances/container-instances-confidential-overview) serverless infrastructure. 
+- If you need to orchestrate containerized workloads, consider using [Virtual nodes on Azure Container Instances (C-VN2) for Azure Kubernetes Service (AKS)](https://learn.microsoft.com/azure/container-instances/container-instances-virtual-nodes).
 
 ## Frequently Asked Questions
 
 ### What is the migration timeline?
-On June 30, 2026, DCsv2-series virtual machines (VMs) will be retired. Before that date, please migrate your workloads to DCdsv3-series virtual machines. In case you prefer global availability and want to lift and shift your workloads consider using [DCasv5/DCadsv5/ECasv5/ECadsv5](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/dcadsv5-series?tabs=sizebasic) VMs, [DCasv6/ECasv6](https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752) series (currently in preview) or [DC](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/dcesv6-series?tabs=sizebasic)/[ECesv6](https://learn.microsoft.com/en-us/azure/virtual-machines/ecesv5-ecedsv5-series) (currently in preview) confidential VMs (CVMs), or [Azure Confidential Container Instances (C-ACI)](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-confidential-overview) serverless infrastructure. 
+On June 30, 2026, DCsv2-series virtual machines (VMs) will be retired. Before that date, please migrate your workloads to DCdsv3-series virtual machines. In case you prefer global availability and want to lift and shift your workloads consider using [DCasv5/DCadsv5/ECasv5/ECadsv5](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcadsv5-series?tabs=sizebasic) VMs, [DCasv6/ECasv6](https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752) series (currently in preview) or [DC](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcesv6-series?tabs=sizebasic)/[ECesv6](https://learn.microsoft.com/azure/virtual-machines/ecesv5-ecedsv5-series) (currently in preview) confidential VMs (CVMs), or [Azure Confidential Container Instances (C-ACI)](https://learn.microsoft.com/azure/container-instances/container-instances-confidential-overview) serverless infrastructure. 
 
 ### Will DCsv2-series VMs still allow new customer sign-ups?
 **Starting from July 1, 2025**, capacity restrictions will be applied to DCsv2-series virtual machines and no new subscription will be allowed.
@@ -191,13 +191,13 @@ No, we won't deploy DCsv2-series, DCsv3-series and DCdsv3-series VMs in new azur
 No, you cannot continue using Intel SGX Attestation Service Utilizing Intel EPID (IAS for short) on DCdsv3 VM. This feature is not supported and will not be supported, as Intel has announced [IAS EOL on April 2, 2025](https://community.intel.com/t5/Intel-Software-Guard-Extensions/IAS-End-of-Life-Announcement/m-p/1545831). If you haven't transitioned away from IAS yet, please transition now.
 
 ### How can I get a quota for the target VM size?
-Follow the guide to [request an increase in vCPU quota by VM family](https://learn.microsoft.com/en-us/azure/quotas/per-vm-quota-requests).
+Follow the guide to [request an increase in vCPU quota by VM family](https://learn.microsoft.com/azure/quotas/per-vm-quota-requests).
 
 ### Can I resize to a VM size with no local temp disk?
 You can't resize a VM size that has a local temp disk to a VM size with no local temp disk and vice versa. This means that you can resize from DCsv2-series VMs size to DCdsv3-series VMs, but you cannot resize from DCsv2-series VMs size to DCsv3-series VMs.
 
 ### I do not need a local temp disk, and I would like to resize to DCsv3-series virtual machines while keeping the same price as I was charged for DCsv2. How do I migrate from a VM size with a local temp disk to a VM size with no local temp disk?
-If you are sure that you do not need a local temp disk, for a work-around, see [How do I migrate from a VM size with local temp disk to a VM size with no local temp disk?](https://learn.microsoft.com/en-us/azure/virtual-machines/azure-vms-no-temp-disk#how-do-i-migrate-from-a-vm-size-with-local-temp-disk-to-a-vm-size-with-no-local-temp-disk---) The work-around can be used to resize a VM with no local temp disk to VM with a local temp disk. You create a snapshot of the VM with no local temp disk, then create a disk from the snapshot and lastly create VM from the disk with appropriate VM size that supports VMs with a local temp disk.
+If you are sure that you do not need a local temp disk, for a work-around, see [How do I migrate from a VM size with local temp disk to a VM size with no local temp disk?](https://learn.microsoft.com/azure/virtual-machines/azure-vms-no-temp-disk#how-do-i-migrate-from-a-vm-size-with-local-temp-disk-to-a-vm-size-with-no-local-temp-disk---) The work-around can be used to resize a VM with no local temp disk to VM with a local temp disk. You create a snapshot of the VM with no local temp disk, then create a disk from the snapshot and lastly create VM from the disk with appropriate VM size that supports VMs with a local temp disk.
 
 ### Will change to VM without a local temp disk break my custom scripts, custom images or OS images that have scratch files or page files on a local temp disk?
 If the custom OS image points to the local temp disk, the image might not work correctly with this diskless size.
@@ -214,15 +214,15 @@ If there are no DCdsv3-series VMs available in your current region, you can cons
 - Contact Azure Support: Reach out to Azure Support for assistance and to explore alternative solutions that meet your requirements.
 
 ### How will migration affect my current billing? 
-During the migration and resize from DCsv2-series to DCdsv3-series VMs with a local temp disk, there will be a price change. However, you will receive a newer generation CPU, more RAM for the same number of cores, be able to attach more data disks, and have a larger local temp disk. Refer to our Azure Virtual Machines [pricing page](https://azure.microsoft.com/en-us/pricing/details/virtual-machines/linux-previous/) for more information.
+During the migration and resize from DCsv2-series to DCdsv3-series VMs with a local temp disk, there will be a price change. However, you will receive a newer generation CPU, more RAM for the same number of cores, be able to attach more data disks, and have a larger local temp disk. Refer to our Azure Virtual Machines [pricing page](https://azure.microsoft.com/pricing/details/virtual-machines/linux-previous/) for more information.
 
 ### Are there any cost-saving options available during migration?
-If you decide that you do not need a local temp disk, the price will remain the same, and you will still benefit from more RAM and the ability to attach more data disks. Please note that this option will require additional effort after the resize to avoid using the local temp disk. For a workaround, please refer to [how do I migrate from a VM size with local temp disk to a VM size with no local temp disk?](https://learn.microsoft.com/en-us/azure/virtual-machines/azure-vms-no-temp-disk#how-do-i-migrate-from-a-vm-size-with-local-temp-disk-to-a-vm-size-with-no-local-temp-disk---)
+If you decide that you do not need a local temp disk, the price will remain the same, and you will still benefit from more RAM and the ability to attach more data disks. Please note that this option will require additional effort after the resize to avoid using the local temp disk. For a workaround, please refer to [how do I migrate from a VM size with local temp disk to a VM size with no local temp disk?](https://learn.microsoft.com/azure/virtual-machines/azure-vms-no-temp-disk#how-do-i-migrate-from-a-vm-size-with-local-temp-disk-to-a-vm-size-with-no-local-temp-disk---)
 
 ### I'm on Reserved Instances (RIs) with DCsv2. How Do I Handle Migration?
 If you have active Reserved Instances for DCsv2-series VMs, follow these steps:
 - **Step 1**: Review Current Reservations
-    * Check your active RIs in the [Azure portal](https://learn.microsoft.com/en-us/azure/cost-management-billing/reservations/manage-reserved-vm-instance).
+    * Check your active RIs in the [Azure portal](https://learn.microsoft.com/azure/cost-management-billing/reservations/manage-reserved-vm-instance).
     * Identify which RIs are expiring or will be affected by the VM retirement.
 
 - **Step 2**: Migrate and Manage Your RIs <br>Depending on your business needs, consider these options:
@@ -259,10 +259,10 @@ Follow instructions in the **Solutions** and **Details** tabs, as applicable, an
 
 ## Next steps
 
-- Learn more about [DCdsv3-series VM](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/dcdsv3-series?tabs=sizebasic)
-- Learn more about [DCasv5/DCadsv5/ECasv5/ECadsv5 CVMs](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/dcadsv5-series?tabs=sizebasic)
+- Learn more about [DCdsv3-series VM](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcdsv3-series?tabs=sizebasic)
+- Learn more about [DCasv5/DCadsv5/ECasv5/ECadsv5 CVMs](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcadsv5-series?tabs=sizebasic)
 - Learn more about [DCasv6/ECasv6 CVMs](https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752) (currently in preview)
-- Learn more about [DC](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/dcesv6-series?tabs=sizebasic)/[ECesv6 CVMs](https://learn.microsoft.com/en-us/azure/virtual-machines/ecesv5-ecedsv5-series) (currently in preview)
-- Learn more about [Azure Confidential Container Instances (C-ACI)](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-confidential-overview)
-- Learn more about [Virtual nodes on Azure Container Instances (C-VN2) for Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-virtual-nodes).
+- Learn more about [DC](https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcesv6-series?tabs=sizebasic)/[ECesv6 CVMs](https://learn.microsoft.com/azure/virtual-machines/ecesv5-ecedsv5-series) (currently in preview)
+- Learn more about [Azure Confidential Container Instances (C-ACI)](https://learn.microsoft.com/azure/container-instances/container-instances-confidential-overview)
+- Learn more about [Virtual nodes on Azure Container Instances (C-VN2) for Azure Kubernetes Service (AKS)](https://learn.microsoft.com/azure/container-instances/container-instances-virtual-nodes).
 
