@@ -45,12 +45,12 @@ Start planning your migration from DCsv2-series today.
 
 ### Check and Request Quota Increases
 - Before resizing and migration, verify that your subscription has sufficient quota for the target VM series.
-- Request more quota through the [Azure portal](https://learn.microsoft.com/azure/azure-portal/supportability/per-vm-quota-requests) if needed.
+- Request more quota through the [Azure portal](/azure/azure-portal/supportability/per-vm-quota-requests) if needed.
 
 ### Complete Migration
 - Complete migration as soon as possible to prevent business impact and to take advantage of the improved performance, and extensive regional coverage of our new confidential computing offerings.
 - Dependent on chosen migration option follow the documentation below.
-- For technical questions, issues, and help get answers from community experts in [Microsoft Q&A](https://learn.microsoft.com/search/?terms=confidential%20computing&category=QnA).
+- For technical questions, issues, and help get answers from community experts in [Microsoft Q&A](/search/?terms=confidential%20computing&category=QnA).
 
 ## Migrate workloads to DCdsv3-series VMs
 To continue leveraging the enclave-based offering with Intel SGX technology, migrate your workloads to DCdsv3 virtual machines. First, check if your desired DCdsv3-series SKU is available in your current region. If it is, you can resize your virtual machines to the DCdsv3-series using the Azure portal, PowerShell, or the CLI. Below are examples of how to resize your VM using the Azure portal, PowerShell and Azure CLI.
@@ -144,7 +144,7 @@ Australia East, Canada Central, Central India, Central US, East US, East US 2, W
 To migrate your VMs to one of these available regions, follow these steps:
 1. Identify the **target region** from the list above.
 1. Prepare your VMs for migration by ensuring all data is backed up.
-1. Verify that your subscription has sufficient quota for the DCdsv3-series VMs in the target region. Request a quota through the [Azure portal](https://learn.microsoft.com/azure/azure-portal/supportability/per-vm-quota-requests) if needed.
+1. Verify that your subscription has sufficient quota for the DCdsv3-series VMs in the target region. Request a quota through the [Azure portal](/azure/azure-portal/supportability/per-vm-quota-requests) if needed.
 1.	Navigate to VM you want to resize in the portal.
 1.	**Stop the VM** and wait for status of the VM to be Stopped (deallocated).
 1. Find the **Capture** drop down in the overview tab of the VM (circled bellow). From the drop down select **capture**, then image.  
@@ -191,13 +191,13 @@ No, we won't deploy DCsv2-series, DCsv3-series and DCdsv3-series VMs in new azur
 No, you cannot continue using Intel SGX Attestation Service Utilizing Intel EPID (IAS for short) on DCdsv3 VM. This feature is not supported and will not be supported, as Intel has announced [IAS EOL on April 2, 2025](https://community.intel.com/t5/Intel-Software-Guard-Extensions/IAS-End-of-Life-Announcement/m-p/1545831). If you haven't transitioned away from IAS yet, please transition now.
 
 ### How can I get a quota for the target VM size?
-Follow the guide to [request an increase in vCPU quota by VM family](https://learn.microsoft.com/azure/quotas/per-vm-quota-requests).
+Follow the guide to [request an increase in vCPU quota by VM family](/azure/quotas/per-vm-quota-requests).
 
 ### Can I resize to a VM size with no local temp disk?
 You can't resize a VM size that has a local temp disk to a VM size with no local temp disk and vice versa. This means that you can resize from DCsv2-series VMs size to DCdsv3-series VMs, but you cannot resize from DCsv2-series VMs size to DCsv3-series VMs.
 
 ### I do not need a local temp disk, and I would like to resize to DCsv3-series virtual machines while keeping the same price as I was charged for DCsv2. How do I migrate from a VM size with a local temp disk to a VM size with no local temp disk?
-If you are sure that you do not need a local temp disk, for a work-around, see [How do I migrate from a VM size with local temp disk to a VM size with no local temp disk?](https://learn.microsoft.com/azure/virtual-machines/azure-vms-no-temp-disk#how-do-i-migrate-from-a-vm-size-with-local-temp-disk-to-a-vm-size-with-no-local-temp-disk---) The work-around can be used to resize a VM with no local temp disk to VM with a local temp disk. You create a snapshot of the VM with no local temp disk, then create a disk from the snapshot and lastly create VM from the disk with appropriate VM size that supports VMs with a local temp disk.
+If you are sure that you do not need a local temp disk, for a work-around, see [How do I migrate from a VM size with local temp disk to a VM size with no local temp disk?](/azure/virtual-machines/azure-vms-no-temp-disk#how-do-i-migrate-from-a-vm-size-with-local-temp-disk-to-a-vm-size-with-no-local-temp-disk---) The work-around can be used to resize a VM with no local temp disk to VM with a local temp disk. You create a snapshot of the VM with no local temp disk, then create a disk from the snapshot and lastly create VM from the disk with appropriate VM size that supports VMs with a local temp disk.
 
 ### Will change to VM without a local temp disk break my custom scripts, custom images or OS images that have scratch files or page files on a local temp disk?
 If the custom OS image points to the local temp disk, the image might not work correctly with this diskless size.
@@ -217,22 +217,22 @@ If there are no DCdsv3-series VMs available in your current region, you can cons
 During the migration and resize from DCsv2-series to DCdsv3-series VMs with a local temp disk, there will be a price change. However, you will receive a newer generation CPU, more RAM for the same number of cores, be able to attach more data disks, and have a larger local temp disk. Refer to our Azure Virtual Machines [pricing page](https://azure.microsoft.com/pricing/details/virtual-machines/linux-previous/) for more information.
 
 ### Are there any cost-saving options available during migration?
-If you decide that you do not need a local temp disk, the price will remain the same, and you will still benefit from more RAM and the ability to attach more data disks. Please note that this option will require additional effort after the resize to avoid using the local temp disk. For a workaround, please refer to [how do I migrate from a VM size with local temp disk to a VM size with no local temp disk?](https://learn.microsoft.com/azure/virtual-machines/azure-vms-no-temp-disk#how-do-i-migrate-from-a-vm-size-with-local-temp-disk-to-a-vm-size-with-no-local-temp-disk---)
+If you decide that you do not need a local temp disk, the price will remain the same, and you will still benefit from more RAM and the ability to attach more data disks. Please note that this option will require additional effort after the resize to avoid using the local temp disk. For a workaround, please refer to [how do I migrate from a VM size with local temp disk to a VM size with no local temp disk?](/azure/virtual-machines/azure-vms-no-temp-disk#how-do-i-migrate-from-a-vm-size-with-local-temp-disk-to-a-vm-size-with-no-local-temp-disk---)
 
 ### I'm on Reserved Instances (RIs) with DCsv2. How Do I Handle Migration?
 If you have active Reserved Instances for DCsv2-series VMs, follow these steps:
 - **Step 1**: Review Current Reservations
-    * Check your active RIs in the [Azure portal](https://learn.microsoft.com/azure/cost-management-billing/reservations/manage-reserved-vm-instance).
+    * Check your active RIs in the [Azure portal](/azure/cost-management-billing/reservations/manage-reserved-vm-instance).
     * Identify which RIs are expiring or will be affected by the VM retirement.
 
 - **Step 2**: Migrate and Manage Your RIs <br>Depending on your business needs, consider these options:
 1. Exchange Existing Reservations:
    * Swap current RIs for a new VM series without any penalties.
-   * Refer to the [RI Exchange Guide](https://nam06.safelinks.protection.outlook.com/?url=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Fcost-management-billing%2Freservations%2Fexchange-and-refund-azure-reservations&data=05%7C02%7Cmilicaspuzic%40microsoft.com%7C2687c68d5398413794bd08dda19c6edc%7C72f988bf86f141af91ab2d7cd011db47%7C1%7C0%7C638844415438579688%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=UcaQ96KrolRyK0krLtuEkEj4MJoFTvRTdSdyry5SDJE%3D&reserved=0)
+   * Refer to the [RI Exchange Guide](/azure/cost-management-billing/reservations/exchange-and-refund-azure-reservations)
 1. Trade-In for Savings Plan:
    * Convert your existing RIs into an Azure Savings Plan for compute.
    * This offers flexibility across VM families and regions.
-   * Follow the [Azure RI Trade-In Tutorial](https://nam06.safelinks.protection.outlook.com/?url=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Fcost-management-billing%2Fsavings-plan%2Freservation-trade-in&data=05%7C02%7Cmilicaspuzic%40microsoft.com%7C2687c68d5398413794bd08dda19c6edc%7C72f988bf86f141af91ab2d7cd011db47%7C1%7C0%7C638844415438589132%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=NCLYFwpLVwi781P3JtawoKLr%2Bc8t98J70baK3fNir9s%3D&reserved=0).
+   * Follow the [Azure RI Trade-In Tutorial](/azure/cost-management-billing/savings-plan/reservation-trade-in).
 1.  Purchase New RIs:
     * Buy new reservations that align with your new VM series.
     * Consider shorter terms (1-year) for flexibility
