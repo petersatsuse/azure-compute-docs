@@ -10,10 +10,8 @@ ms.author: rishigomatam
 ms.reviewer: mattmcinnes
 ---
 
-# Lasv4 sizes series (Preview)
+# Lasv4 sizes series
 
->[!NOTE]
->This VM series is currently in **Preview**. See the [Preview Terms Of Use | Microsoft Azure](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability. 
 
 [!INCLUDE [lasv4-summary](./includes/lasv4-series-summary.md)]
 
@@ -67,7 +65,7 @@ Local (temp) storage info for each size.
 
 #### Table definitions
 - <sup>1</sup>Temp disk performance depends on many factors including block size, workload patterns of read/writes, queue depth (QD), and others. Temp disk performance specifications should be viewed as best case performance numbers, assuming 4k block sizes and QD=256 for IOPS, and 256k block sizes with QD=64 for throughput. Additionally, write performance is heavily impacted by how many blocks in use on a device. Temp disk write performance specs assume a device has a clean slate to enable the best performance. During steady state operations, write performance is expected to be lower than the published specs. 
-- Storage capacity is shown in units of GiB or 1024^3 bytes. When you compare disks measured in GB (1000^3 bytes) to disks measured in GiB (1024^3) remember that capacity numbers given in GiB may appear smaller. For example, 1023 GiB = 1098.4 GB.
+- For Lasv4, temp disk refers to the NVMe local data disks used by the VM. While Lsv3/Lasv3 have NVMe local data disks and a SCSI local temp disk, Lasv4 only has NVMe local temp disks. There is no SCSI local temp disk on Lasv4.
 - Disk throughput is measured in input/output operations per second (IOPS) and MBps where MBps = 10^6 bytes/sec.
 - To learn how to get the best local storage performance for your VMs, see the [NVMe Temp Disk FAQ](/azure/virtual-machines/enable-nvme-temp-faqs).
 
