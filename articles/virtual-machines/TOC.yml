@@ -482,16 +482,12 @@
         - name: Overview
           displayName: NC-series, sizes, size, vm size
           href: ./sizes/gpu-accelerated/nc-family.md
-        - name: NC series
-          href: ./sizes/gpu-accelerated/nc-series.md
         - name: NC series retirement
           href: nc-series-retirement.md
         - name: NCads_H100_v5 series
           href: ./sizes/gpu-accelerated/ncadsh100v5-series.md
         - name: NCCads_H100_v5 series
           href: ./sizes/gpu-accelerated/nccadsh100v5-series.md
-        - name: NCv2 series
-          href: ./sizes/gpu-accelerated/ncv2-series.md
         - name: NCv2 series retirement
           href: ncv2-series-retirement.md
         - name: NCv3 series
@@ -1475,7 +1471,7 @@
       href: ./windows/change-availability-set.yml
     - name: Availability set support for Premium SSD v2
       displayName: availability and scale, availability, scale, autoscale, availability sets, AV sets
-      href: use-premium-ssd-v2-with-availability-set.md      
+      href: use-premium-ssd-v2-with-availability-set.md
 - name: Disks
   items:
   - name: Overview

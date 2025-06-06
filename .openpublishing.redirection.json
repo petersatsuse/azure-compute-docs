@@ -1,6 +1,26 @@
 {
   "redirections": [
     {
+      "source_path": "articles/virtual-machines/sizes/gpu-accelerated/nc-series.md",
+      "redirect_url": "/previous-versions/azure/virtual-machines/sizes/gpu-accelerated/nc-series",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/virtual-machines/sizes/retirement/nc-series-retirement.md",
+      "redirect_url": "/previous-versions/azure/virtual-machines/sizes/retirement/nc-series-retirement",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/virtual-machines/sizes/retirement/ncv2-series-retirement.md",
+      "redirect_url": "/previous-versions/azure/virtual-machines/sizes/retirement/ncv2-series-retirement",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/virtual-machines/sizes/gpu-accelerated/ncv2-series.md",
+      "redirect_url": "/previous-versions/azure/virtual-machines/sizes/gpu-accelerated/ncv2-series",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/virtual-machines/classic-vm-deprecation.md",
       "redirect_url": "/previous-versions/azure/virtual-machines/classic-vm-deprecation",
       "redirect_document_id": false
