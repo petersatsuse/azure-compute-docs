@@ -25,6 +25,7 @@ To cover as many scenarios as possible, it is suggested to provide the following
 - **Container Instance Contributor**
 - **Network Contributor**
 - **Managed Identity Contributor**
+- **Managed Identity Operator**
 - **Storage Blob Data Contributor** (if using Azure Storage for container data)
 - **Azure Container Registry Reader** (if using images stored in Azure Container Registry)
 
