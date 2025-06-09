@@ -22,11 +22,20 @@ If you have questions about cross-tenant customer-managed keys with managed disk
 - Managed Disks and the customer's Key Vault must be in the same Azure region, but they can be in different subscriptions.
 - This feature isn't available in Microsoft Azure operated by 21Vianet or Government clouds.
 
-The following limitation only applies to Ultra Disks and Premium SSD v2 managed disks:
+### Ultra Disk and Premium SSD v2
+
+The following limitations only apply to Ultra Disks and Premium SSD v2 managed disks:
+
+This configuration is also available for Ultra Disks and Premium SSD v2 disks, as a preview configuration.
 
 Currently only available as a preview feature, in select regions.
 
 Sign up for the preview using either the PowerShell:
+
+```azurepowershell
+Register-AzProviderFeature -FeatureName UserAssignedIdentityForDirectDriveDisks -ProviderNamespace Microsoft.Compute
+Register-AzProviderFeature -FeatureName CrossTenantCMKForDirectDriveDisks -ProviderNamespace Microsoft.Compute
+```
 
 Or the CLI:
 
