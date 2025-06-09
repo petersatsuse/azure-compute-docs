@@ -40,7 +40,7 @@ Additionally, there may be changes to your Azure Virtual Machines billing becaus
 Start planning your migration from DCsv2-series today.
 
 ### Identify the Target Migration Option
-- Learn more about the different migration options and their benefits in the section Recommended options for migration.
+- Learn more about the different migration options and their benefits in the section [*Recommended options for migration*](#recommended-options-for-migration).
 - Evaluate your current VM's workload and performance requirements and identify the target migration option.
 
 ### Check and Request Quota Increases
