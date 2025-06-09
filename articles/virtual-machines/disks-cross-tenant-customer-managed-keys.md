@@ -24,11 +24,7 @@ If you have questions about cross-tenant customer-managed keys with managed disk
 
 ### Preview - Ultra Disk and Premium SSD v2
 
-The following limitations only apply to Ultra Disks and Premium SSD v2 managed disks:
-
-This configuration is also available for Ultra Disks and Premium SSD v2 disks, as a preview configuration.
-
-Currently only available as a preview feature, in select regions.
+This configuration is also available for Ultra Disks and Premium SSD v2 disks, as a preview configuration, in [select regions](#preview-regional-availability).
 
 Sign up for the preview using either the PowerShell:
 
