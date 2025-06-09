@@ -37,7 +37,7 @@ az container container-group-profile create \
     --resource-group myResourceGroup \
     --name mycontainergroupprofile \
     --location WestCentralUS \
-    --image nginx \
+    --image mcr.microsoft.com/azuredocs/aci-helloworld \
     --os-type Linux \ 
     --ip-address Public \ 
     --ports 8000 \ 
