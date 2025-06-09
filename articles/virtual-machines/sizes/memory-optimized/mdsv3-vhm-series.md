@@ -1,24 +1,24 @@
 ---
-title: NCv2 size series
-description: Information on and specifications of the NCv2-series sizes
+title: Mdsv3 Very High Memory size series
+description: Information on and specifications of the Mdsv3-VHM-series sizes
 author: mattmcinnes
 ms.service: azure-virtual-machines
 ms.subservice: sizes
-ms.topic: concept-article
-ms.date: 07/31/2024
+ms.topic: conceptual
+ms.date: 04/08/2025
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
 ---
 
-# NCv2 sizes series
+# Mdsv3 Very High Memory sizes series
 
-[!INCLUDE [ncv2-summary](./includes/ncv2-series-summary.md)]
+[!INCLUDE [mdsv3-vhm-summary](./includes/mdsv3-vhm-series-summary.md)]
 
 ## Host specifications
-[!INCLUDE [ncv2-series-specs](./includes/ncv2-series-specs.md)]
+[!INCLUDE [mdsv3-vhm-series-specs](./includes/mdsv3-vhm-series-specs.md)]
 
 ## Feature support
-[Premium Storage](../../premium-storage-performance.md): Supported <br>[Premium Storage caching](../../premium-storage-performance.md): Supported <br>[Live Migration](../../maintenance-and-updates.md): Not Supported <br>[Memory Preserving Updates](../../maintenance-and-updates.md): Not Supported <br>[Generation 2 VMs](../../generation-2.md): Supported <br>[Generation 1 VMs](../../generation-2.md): Supported <br>[Accelerated Networking](/azure/virtual-network/create-vm-accelerated-networking-cli): Not Supported <br>[Ephemeral OS Disk](../../ephemeral-os-disks.md): Supported <br>[Nested Virtualization](/virtualization/hyper-v-on-windows/user-guide/nested-virtualization): Not Supported <br>
+[Premium Storage](../../premium-storage-performance.md): Supported <br>[Premium Storage caching](../../premium-storage-performance.md): Supported <br>[Live Migration](../../maintenance-and-updates.md): Not Supported <br>[Memory Preserving Updates](../../maintenance-and-updates.md): Not Supported <br>[Generation 2 VMs](../../generation-2.md): Supported <br>[Generation 1 VMs](../../generation-2.md): Not Supported <br>[Accelerated Networking](/azure/virtual-network/create-virtual-machine-accelerated-networking): Supported <br>[Ephemeral OS Disk](../../ephemeral-os-disks.md): Supported <br>[Nested Virtualization](/virtualization/hyper-v-on-windows/user-guide/nested-virtualization): Not Supported <br>[Hibernation](../../hibernate-resume.md): Not Supported <br> [Write Accelerator](/azure/virtual-machines/how-to-enable-write-accelerator): Supported
 
 ## Sizes in series
 
@@ -26,14 +26,21 @@ ms.reviewer: mattmcinnes
 
 vCPUs (Qty.) and Memory for each size
 
-| Size Name | vCPUs (Qty.) | Memory (GB) |
+| Size Name | vCPUs (Qty.) | Memory (GiB) |
 | --- | --- | --- |
-| Standard_NC6s_v2 | 6 | 112 |
-| Standard_NC12s_v2 | 12 | 224 |
-| Standard_NC24s_v2 | 24 | 448 |
-| Standard_NC24rs_v2 | 24 | 448 |
+| Standard_M896ixds_32_v3 | 896 | 30,400 |
+| Standard_M1792ixds_32_v3 | 1,792 | 30,400 |
 
 #### VM Basics resources
+- [Disable SMT](/sql/sql-server/compute-capacity-limits-by-edition-of-sql-server#limit-number-of-logical-cores-per-numa-node-to-64) to run SQL Server on a VM with more than 64 vCores per NUMA node.
+- VHM VM Sizes are virtual machine sizes that are Isolated to a specific hardware type and dedicated to a single customer.
+- The Standard_M896ixds_32_v3 VM is the Microsoft recommended VM type with 32TB to host S/4HANA workload. This VM type has Simultaneous Multithreading (SMT) disabled. With that complies with the SAP recommendations stated in SAP note #2711650 for the specific underlying hardware used in Azure to host this Virtual Machine (VM) type. With typical S/4HANA workload, tests this VM realized the best performance.
+- The Standard_M1792ixds_32_v3 VM has Simultaneous Multithreading (SMT) enabled and is ideal for analytical workloads as documented in SAP note #2711650 for the specific underlying hardware used in Azure to host this VM type. Typical S/4HANA workloads may show performance regressions compared to the Standard_M896ixds_32_v3 VM type. It is acknowledged that S/4HANA customer workloads are varying and can be different in nature. As a result, there might be cases where S/4HANA customer workloads could eventually benefit. And the Standard_M1792ixds_32_v3 VM type could provide performance improvements compared to the Standard_M896ixds_32_v3 VM type for a customer specific S/4HANA workload. Evaluating and hosting S/4HANA workload on Standard_M1792ixds_32_v3 is in the customer’s own responsibilities.
+- It's also important to note that these VMs are compatible with only certain generation 2 Images. For a list of images that are compatible with the Mdsv3-series, please see below
+    - Windows Server 2022 Datacenter Edition latest builds
+    - SUSE Linux enterprise Server 15 SP4 and later
+    - Red Hat Enterprise Linux 8.8 or later
+    - Ubuntu 23.10 or later
 - [Check vCPU quotas](../../../virtual-machines/quotas.md)
 
 ### [Local Storage](#tab/sizestoragelocal)
@@ -42,11 +49,8 @@ Local (temp) storage info for each size
 
 | Size Name | Max Temp Storage Disks (Qty.) | Temp Disk Size (GiB) |
 | --- | --- | --- |
-| Standard_NC6s_v2 | 1 | 736 |
-| Standard_NC12s_v2 | 1 | 1474 |
-| Standard_NC24s_v2 | 1 | 2948 |
-| Standard_NC24rs_v2 | 1 | 2948 |
-
+| Standard_M896ixds_32_v3 | 1 | 4,096 |
+| Standard_M1792ixds_32_v3 | 1 | 4,096 |
 #### Storage resources
 - [Introduction to Azure managed disks](../../../virtual-machines/managed-disks-overview.md)
 - [Azure managed disk types](../../../virtual-machines/disks-types.md)
@@ -62,12 +66,10 @@ Local (temp) storage info for each size
 
 Remote (uncached) storage info for each size
 
-| Size Name | Max Remote Storage Disks (Qty.) | Uncached Disk IOPS | Uncached Disk Speed (MBps) |
-| --- | --- | --- | --- |
-| Standard_NC6s_v2 | 12 | 20000 | 200 |
-| Standard_NC12s_v2 | 24 | 40000 | 400 |
-| Standard_NC24s_v2 | 32 | 80000 | 800 |
-| Standard_NC24rs_v2 | 32 | 80000 | 800 |
+| Size Name | Max Remote Storage Disks (Qty.) | Max Uncached Premium SSD Disk IOPS | Max Uncached Premium SSD Throughput (MB/s) | Max Uncached Ultra Disk and Premium SSD v2 IOPS | Max Uncached Ultra Disk and Premium SSD v2 Throughput (MB/s) |
+| --- | --- | --- | --- | --- | --- |
+| Standard_M896ixds_32_v3 | 64 | 110,000 | 8,000 | 200,000 | 8,000 |
+| Standard_M1792ixds_32_v3 | 64 | 110,000 | 8,000 | 200,000 | 8,000 |
 
 #### Storage resources
 - [Introduction to Azure managed disks](../../../virtual-machines/managed-disks-overview.md)
@@ -87,12 +89,10 @@ Remote (uncached) storage info for each size
 
 Network interface info for each size
 
-| Size Name | Max NICs (Qty.) |
-| --- | --- |
-| Standard_NC6s_v2 | 4 |
-| Standard_NC12s_v2 | 8 |
-| Standard_NC24s_v2 | 8 |
-| Standard_NC24rs_v2 | 8 |
+| Size Name | Max NICs (Qty.) | Max Network Bandwidth (Mb/s) |
+| --- | --- | --- |
+| Standard_M896ixds_32_v3 | 8 | 185,000 |
+| Standard_M1792ixds_32_v3 | 8 | 185,000 |
 
 #### Networking resources
 - [Virtual networks and virtual machines in Azure](/azure/virtual-network/network-overview)
@@ -107,12 +107,8 @@ Network interface info for each size
 
 Accelerator (GPUs, FPGAs, etc.) info for each size
 
-| Size Name | Accelerators (Qty.) | Accelerator-Memory (GB) |
-| --- | --- | --- |
-| Standard_NC6s_v2 | 1 | 16 |
-| Standard_NC12s_v2 | 2 | 32 |
-| Standard_NC24s_v2 | 4 | 64 |
-| Standard_NC24rs_v2 | 4 | 64 |
+> [!NOTE]
+> No accelerators are present in this series.
 
 ---
 
