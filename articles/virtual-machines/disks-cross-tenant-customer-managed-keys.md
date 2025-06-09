@@ -44,17 +44,17 @@ az feature register --name CrossTenantCMKForDirectDriveDisks  --namespace Micros
 
 The preview for Ultra Disks and Premium SSD v2 disks is currently only available in the following regions:
 
-- France central
+- Australia East
+-  Southeast Asia
 - Canada Central
+- North Europe
+- France Central
+- Germany West Central
 - Korea Central
 - Sweden Central
-- Germany WC
-- Asia South East
-- Uk South
-- US West
-- Europe North
-- Australia East
-- US Central
+- UK South
+- West US
+- Central US
 
 [!INCLUDE [entra-msi-cross-tenant-cmk-overview](~/reusable-content/ce-skilling/azure/includes/entra-msi-cross-tenant-cmk-overview.md)]
 
