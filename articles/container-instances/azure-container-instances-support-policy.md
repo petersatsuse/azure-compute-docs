@@ -76,6 +76,9 @@ Microsoft provides technical support for the following Azure Container Instances
 
 ### Unsupported scenarios
 
+> [!NOTE]
+> Microsoft may offer best-effort guidance for issues related to integration points with Azure-native services (e.g., connecting a Helm-deployed app to Azure Files, Azure Firewall, Application Gateway, or Private Endpoints).
+
 Microsoft doesn't provide technical support for the following scenarios:
 
 - **Custom application logic or container internals**  
@@ -84,14 +87,8 @@ Microsoft doesn't provide technical support for the following scenarios:
 - **Third-party open-source or commercial tools inside containers**  
   Troubleshooting the behavior of tools like Helm, Istio, Envoy, or any other software not managed by Microsoft and running inside ACI containers is outside of support scope. This includes frameworks installed as part of your container image or via runtime scripts.
 
-> [!NOTE]
-> Microsoft may offer best-effort guidance for issues related to integration points with Azure-native services (e.g., connecting a Helm-deployed app to Azure Files).
-
 - **Non-Microsoft networking solutions or custom network topologies**  
   While ACI supports VNET integration, configuring or debugging third-party VPNs, SD-WAN appliances, custom DNS servers, firewalls, or other advanced network solutions is not supported.
-
-> [!NOTE]
-> Best-effort support may be provided for Azure-native components like Azure Firewall, Application Gateway, or Private Endpoints.
 
 - **Ingress and proxy configurations within containers**  
   Microsoft does not support troubleshooting self-managed ingress controllers or reverse proxies (e.g., NGINX, Traefik) deployed inside ACI containers.
@@ -107,9 +104,6 @@ Microsoft doesn't provide technical support for the following scenarios:
 
 - **Security scanning or vulnerability management of your container images**  
   You are responsible for scanning and patching container images. Microsoft provides vulnerability support only for Microsoft-maintained base images.
-
-> [!NOTE]
-> You should filter CVEs with vendor patches older than 30 days before filing a support case.
 
 - **Custom code samples or development requests**  
   Microsoft does not offer application-specific code, but may provide basic usage examples.
