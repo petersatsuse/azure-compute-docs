@@ -16,13 +16,10 @@ This migration guide is designed for users of DCsv2-series virtual machines (VMs
 
 This document covers:
 - Recommended options for migration
+- Detailed migration steps
+- Frequently Asked Questions
 
 By migrating to newer VM series, you gain access to improved price-performance ratios, broader regional availability, and the latest hardware capabilities.
-
-### How does the DCsv2-series retirement affect me?
-If you're running your workload on DCsv2-series, either by using virtual machines, Virtual Machine Scale Sets or by having app-enclave aware containers running on Azure Kubernetes Service, this retirement affects you.
-
-After June 30, 2026, any remaining DCsv2-series virtual machine subscriptions will stop working, and will no longer incur billing compute charges.
 
 ## Recommended options for migration
 
@@ -166,6 +163,9 @@ To migrate your VMs to one of these available regions, follow these steps:
 - If you need to orchestrate containerized workloads, consider using [Virtual nodes on Azure Container Instances (C-VN2) for Azure Kubernetes Service (AKS)](../../../container-instances/container-instances-virtual-nodes.md).
 
 ## Frequently Asked Questions
+
+### How does the DCsv2-series retirement affect me?
+If you're running your workload on DCsv2-series, either by using virtual machines, Virtual Machine Scale Sets or by having app-enclave aware containers running on Azure Kubernetes Service, this retirement affects you.
 
 ### What is the migration timeline?
 On June 30, 2026, DCsv2-series virtual machines (VMs) will be retired. Before that date, please migrate your workloads to DCdsv3-series virtual machines. In case you prefer global availability and want to lift and shift your workloads consider using [DCasv5/DCadsv5/ECasv5/ECadsv5](../general-purpose/dcadsv5-series.md?tabs=sizebasic) VMs, [DCasv6/ECasv6](https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752) series (currently in preview) or [DC](../general-purpose/dcesv6-series.md?tabs=sizebasic)/[ECesv6](../../ecesv5-ecedsv5-series.md) (currently in preview) confidential VMs (CVMs), or [Azure Confidential Container Instances (C-ACI)](../../../container-instances/container-instances-confidential-overview.md) serverless infrastructure. 
