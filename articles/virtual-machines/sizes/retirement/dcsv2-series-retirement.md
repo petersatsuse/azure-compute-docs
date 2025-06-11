@@ -16,7 +16,6 @@ This migration guide is designed for users of DCsv2-series virtual machines (VMs
 
 This document covers:
 - Recommended options for migration
-- Detailed migration steps
 
 By migrating to newer VM series, you gain access to improved price-performance ratios, broader regional availability, and the latest hardware capabilities.
 
