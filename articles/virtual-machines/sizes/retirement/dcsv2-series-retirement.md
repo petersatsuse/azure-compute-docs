@@ -143,7 +143,7 @@ To migrate your VMs to one of these available regions, follow these steps:
 1.	Navigate to VM you want to resize in the portal.
 1.	**Stop the VM** and wait for status of the VM to be Stopped (deallocated).
 1. Find the **Capture** drop down in the overview tab of the VM (circled bellow). From the drop-down select **capture**, then image.  
-![screenshot with the capture drop down](../media/capture-drop-down.jpg)
+[screenshot of the capture drop down selection](articles/virtual-machines/sizes/media/capture-drop-down.jpg)
 1. When you reach **the image creation page**:
     * Ensure you select **Automatically delete this virtual machine** after creating the image.
     * If you don't have a gallery, select **Create new** in the gallery option and name your gallery.
