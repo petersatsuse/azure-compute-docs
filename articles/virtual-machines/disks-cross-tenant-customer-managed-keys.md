@@ -4,7 +4,7 @@ description: Learn how to use customer-managed keys with your Azure disks in dif
 author: roygara
 ms.service: azure-disk-storage
 ms.topic: how-to
-ms.date: 06/05/2025
+ms.date: 06/12/2025
 ms.author: rogarana
 ms.custom: devx-track-azurecli, devx-track-azurepowershell, references_regions
 
@@ -21,7 +21,6 @@ If you have questions about cross-tenant customer-managed keys with managed disk
 ## Limitations
 
 - Managed Disks and the customer's Key Vault must be in the same Azure region, but they can be in different subscriptions.
-- This feature isn't available in Microsoft Azure operated by 21Vianet or Government clouds.
 
 ### Preview - Ultra Disk and Premium SSD v2
 
