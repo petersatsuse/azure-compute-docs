@@ -6,7 +6,8 @@ ms.service: azure-disk-storage
 ms.topic: how-to
 ms.date: 06/05/2025
 ms.author: rogarana
-ms.custom: devx-track-azurecli, devx-track-azurepowershell
+ms.custom: devx-track-azurecli, devx-track-azurepowershell, references_regions
+
 ---
 
 # Encrypt managed disks with cross-tenant customer-managed keys
