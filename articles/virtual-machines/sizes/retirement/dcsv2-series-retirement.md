@@ -150,7 +150,7 @@ To migrate your VMs to one of these available regions, follow these steps:
     * Fill in the name and other required options. 
     * Create an image definition if none is available.
     * Read the descriptions for specialized vs generalized images and choose your option.  (If not sure, generalized should work for most cases.)
-![screenshot of the image creation page](../media/image-creation-page.png)
+:::image type="content" source="../media/image-creation-page.png" alt-text="Screenshot of an example of the drop down selection.":::
     * Continue to fill in the other options. In the replication section of the image capture option, add the region where you wish to relocate your VM. You'll need to select the target region from the dropdown menu.
     ![screenshot of the replication section](../media/select-target-region.png)
 1. Go to your gallery and select the image you captured. In the top left, select **Create a VM**. 
