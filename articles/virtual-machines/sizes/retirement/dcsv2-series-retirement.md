@@ -7,7 +7,7 @@ ms.subservice: sizes
 ms.topic: how-to
 ms.date: 06/30/2025
 ms.author: milicaspuzic
-ms.custom: n/a
+ms.custom: references_regions
 ---
 
 # DCsv2-series retirement
@@ -51,9 +51,13 @@ Start planning your migration from DCsv2-series today.
 To continue using the enclave-based offering with Intel SGX technology, migrate your workloads to DCdsv3 virtual machines. First, check if your desired DCdsv3-series SKU is available in your current region. If it is, you can resize your virtual machines to the DCdsv3-series using the Azure portal, PowerShell, or the CLI. Below are examples of how to resize your VM using the Azure portal, PowerShell, and Azure CLI.
 
 
-> **Important notice:**<br><br> Resizing a virtual machine results in a restart. We recommend that you perform actions that result in a restart during off-peak business hours.<br>
-Deallocating the VM also releases any dynamic IP addresses assigned to the VM. The OS and data disks are not affected.<br><br>
-Additionally, if your DCsv2 VMs are running in North Central US, Canada East, Australia Southeast, or UK West, please follow the instructions in the next section.
+> [!IMPORTANT]
+> Resizing a virtual machine results in a restart. We recommend that you perform actions that result in a restart during off-peak business hours.
+>
+> Deallocating the VM also releases any dynamic IP addresses assigned to the VM. The OS and data disks are not affected.
+>
+> Additionally, if your DCsv2 VMs are running in North Central US, Canada East, Australia Southeast, or UK West, please follow the instructions in the next section.
+
 
 
 ### Azure portal
@@ -133,8 +137,10 @@ Refer to the full [Azure VM resizing guide](../resize-vm.md?tabs=portal) for mor
 ### Important Notice for DCsv2 VMs running in North Central US, Canada East, Australia Southeast, or UK West
 If your DCsv2 VMs are running in North Central US, Canada East, Australia Southeast, or UK West, please consider migrating them to the available regions listed below where the DCdsv3 SKU is available or explore our new generation of confidential computing offerings.
 
->Available Regions:<br> 
-Australia East, Canada Central, Central India, Central US, East US, East US 2, West US, West US 2, South Central US, Germany North, Germany West Central, Italy North, Japan East, Japan West, North Europe, South India, Southeast Asia, UK South, West Europe, UAE Central, UAE North, Switzerland North
+> [!NOTE]
+> **Available Regions:**  
+> Australia East, Canada Central, Central India, Central US, East US, East US 2, West US, West US 2, South Central US, Germany North, Germany West Central, Italy North, Japan East, Japan West, North Europe, South India, Southeast Asia, UK South, West Europe, UAE Central, UAE North, Switzerland North
+
 
 To migrate your VMs to one of these available regions, follow these steps:
 1. Identify the **target region** from the list above.
@@ -219,19 +225,19 @@ If you decide that you don't need a local temp disk, the price remains the same,
 
 ### I'm on Reserved Instances (RIs) with DCsv2. How Do I Handle Migration?
 If you have active Reserved Instances for DCsv2-series VMs, follow these steps:
-- **Step 1**: Review Current Reservations
+1. Review Current Reservations
     * Check your active RIs in the [Azure portal](/azure/cost-management-billing/reservations/manage-reserved-vm-instance).
     * Identify which RIs expires or are affected by the VM retirement.
 
-- **Step 2**: Migrate and Manage Your RIs <br>Depending on your business needs, consider these options:
-1. Exchange Existing Reservations:
+1. Migrate and Manage Your RIs <br>Depending on your business needs, consider these options:
+- Exchange Existing Reservations:
    * Swap current RIs for a new VM series without any penalties.
    * Refer to the [RI Exchange Guide](/azure/cost-management-billing/reservations/exchange-and-refund-azure-reservations)
-1. Trade-In for Savings Plan:
+- Trade-In for Savings Plan:
    * Convert your existing RIs into an Azure Savings Plan for compute.
    * This offers flexibility across VM families and regions.
    * Follow the [Azure RI Trade-In Tutorial](/azure/cost-management-billing/savings-plan/reservation-trade-in).
-1.  Purchase New RIs:
+- Purchase New RIs:
     * Buy new reservations that align with your new VM series.
     * Consider shorter terms (1-year) for flexibility
 
