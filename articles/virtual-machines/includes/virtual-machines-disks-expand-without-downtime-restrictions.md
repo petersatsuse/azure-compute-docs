@@ -21,7 +21,7 @@
     - The [latest Azure PowerShell module](/powershell/azure/install-azure-powershell).
     - The [Azure portal](https://portal.azure.com/).
     - Or an Azure Resource Manager template with an API version that's `2021-04-01` or newer.
-- Not available on some classic VMs. Use [this script](#expanding-without-downtime-classic-vm-sku-support) to get a list of classic VM products that support expanding without downtime.
+- Not available on some classic VMs. Use [this script](#expand-without-downtime-classic-vm-sku-support) to get a list of classic VM products that support expanding without downtime.
 
 ### Expand with Ultra Disk and Premium SSD v2
 
