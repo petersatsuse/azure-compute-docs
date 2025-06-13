@@ -149,7 +149,7 @@ To migrate your VMs to one of these available regions, follow these steps:
 1.	Navigate to VM you want to resize in the portal.
 1.	**Stop the VM** and wait for status of the VM to be Stopped (deallocated).
 1. Find the **Capture** drop down in the overview tab of the VM (circled bellow). From the drop-down select **capture**, then image.  
-![screenshot of the capture drop down selection](./media/dcsv2-series-retirement/capture-drop-down.jpg)
+![Screenshot of the capture drop down selection.](./media/dcsv2-series-retirement/capture-drop-down.jpg)
 1. When you reach **the image creation page**:
     * Ensure you select **Automatically delete this virtual machine** after creating the image.
     * If you don't have a gallery, select **Create new** in the gallery option and name your gallery.
@@ -158,7 +158,7 @@ To migrate your VMs to one of these available regions, follow these steps:
     * Read the descriptions for specialized vs generalized images and choose your option.  (If not sure, generalized should work for most cases.)
 :::image type="content" source="./media/dcsv2-series-retirement/image-creation-page.png" alt-text="Screenshot of an example of the drop down selection.":::
     * Continue to fill in the other options. In the replication section of the image capture option, add the region where you wish to relocate your VM. You'll need to select the target region from the dropdown menu.
-    ![screenshot of the replication section](./media/dcsv2-series-retirement/select-target-region.png)
+    ![Screenshot of the replication section.](./media/dcsv2-series-retirement/select-target-region.png)
 1. Go to your gallery and select the image you captured. In the top left, select **Create a VM**. 
     * Fill in all options and ensure you select the new region and new size.
     * If you don't see the size you want, ensure **No infrastructure redundancy required** is selected and that your requested region supports the desired size. 
@@ -183,7 +183,7 @@ On June 30, 2026, DCsv2-series virtual machines (VMs) will be retired. Before th
 Yes, support continues for your workloads on DCsv2 virtual machines until the retirement date. You continue to receive SLA assurance, infrastructure updates, and maintenance.
 
 ### Will other services built on top of the DCsv2 SKU still be available after the SKU retires?
-No, all uses of the DCsv2 SKU retires simultaneously in June 2026, including those on AKS and VMSS.
+No, all uses of the DCsv2 SKU retires simultaneously in June 2026, including those on Azure Kubernetes Service and Azure Virtual Machine Scale Sets.
 
 ### Will DCsv2-series VMs provide any new features during the retirement period?
 No, we aren't taking any feature requests or building new features for the DCsv2-series VMs. Instead, we focus on next-generation lift-and-shift offerings with more memory per vCPU, faster SSD storage, global availability, and a cloud-native approach with containerized workloads and serverless infrastructure.
