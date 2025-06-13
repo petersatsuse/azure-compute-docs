@@ -673,11 +673,11 @@ To use the same procedure to resize any other logical volume, change the `lv` na
 
 ---
 
-## Expand without downtime classic VM product support
+## Expand without downtime classic VM version support
 
-If you're using a classic VM product, it might not support expanding disks without downtime.
+If you're using a classic VM version, it might not support expanding disks without downtime.
 
-Use the following PowerShell script to determine which VM products it's available with:
+Use the following PowerShell script to determine which VM versions it's available with:
 
 ```azurepowershell
 Connect-AzAccount
