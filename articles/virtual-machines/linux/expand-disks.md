@@ -117,7 +117,7 @@ After you expand the disks, expand the volume in the OS to take advantage of the
     az vm start --resource-group myResourceGroup --name myVM
     ```
 
-## Expand a disk partition and file system
+## <a name = "expand-a-disk-partition-and-filesystem"></a>Expand a disk partition and file system
 
 There are many tools that might be used to perform the partition resizing. The tools detailed in the remainder of this article are the same tools that are used by certain automated processes, such as cloud-init. As described here, the `growpart` tool with the `gdisk` package provides universal compatibility with GPT disks because older versions of some tools such as `fdisk` didn't support GPT.
 
@@ -673,9 +673,9 @@ To use the same procedure to resize any other logical volume, change the `lv` na
 
 ---
 
-## Expand without downtime classic VM version support
+## Expand without downtime classic VM SKU support
 
-If you're using a classic VM version, it might not support expanding disks without downtime.
+If you're using a classic VM SKU, or version, it might not support expanding disks without downtime.
 
 Use the following PowerShell script to determine which VM versions it's available with:
 

@@ -145,9 +145,9 @@ After you expand the disk for the VM, go into the OS and expand the volume to en
 
     :::image type="content" source="media/expand-os-disk/disk-mgr-3.png" alt-text="Screenshot that shows the larger C: volume in Disk Manager.":::
 
-## Expand without downtime classic VM version support
+## Expand without downtime classic VM SKU support
 
-If you're using a classic VM version, it might not support expanding disks without downtime.
+If you're using a classic VM SKU, or version, it might not support expanding disks without downtime.
 
 Use the following PowerShell script to determine which VM versions it's available with:
 
