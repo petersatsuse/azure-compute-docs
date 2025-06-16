@@ -70,7 +70,7 @@ Availability Set support for Premium SSD v2 disk storage is now [generally avail
 
 #### Expanded regional availability for Premium SSD v2
 
-Premium SSD v2 disks were made available in Australia Central 2, Australia Southeast, Canada East, Indonesia Central, Japan West, Malaysia West, New Zealand North, North Central US, Norway West, UK West, US West, West Central US.
+Premium SSD v2 disks were made available in Australia Central 2, Australia Southeast, Canada East, Indonesia Central, Japan West, Malaysia West, New Zealand North, North Central US, Norway West, UK West, US West, and West Central US.
 
 ### Quarter 1 (January, February, March)
 
