@@ -6,7 +6,7 @@ ms.author: mimckitt
 ms.service: azure-container-instances
 ms.custom:
   - ignite-2024
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 5/19/2025
 ms.reviewer: tomvcassidy
 ---

@@ -4,7 +4,7 @@ description: Information on and specifications of the Lsv4-series sizes
 author: rrgomatam1
 ms.service: azure-virtual-machines
 ms.subservice: sizes
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 03/18/2025
 ms.author: rishigomatam
 ms.reviewer: mattmcinnes
