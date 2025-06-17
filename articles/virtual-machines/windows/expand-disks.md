@@ -16,7 +16,7 @@ ms.custom: devx-track-azurepowershell, references_regions
 
 When you create a new virtual machine (VM) in a resource group by deploying an image from [Azure Marketplace](https://azure.microsoft.com/marketplace/), the default operating system (OS) disk is usually 127 GiB. (Some images have smaller OS disk sizes by default.) You can add data disks to your VM. (The amount depends on the VM version you selected.)
 
-We recommend that you install applications and CPU-intensive workloads on data disks. You might need to expand the OS disk if you're supporting a legacy application that installs components on the OS disk or if you're migrating a physical PC or VM from on-premises that has a larger OS disk. This article covers expanding either OS disks or data disks.
+You should install applications and CPU-intensive workloads on data disks. You might need to expand the OS disk if you're supporting a legacy application that installs components on the OS disk or if you're migrating a physical PC or VM from on-premises that has a larger OS disk. This article covers expanding either OS disks or data disks.
 
 An OS disk has a maximum capacity of 4,095 GiB. However, many operating systems are partitioned with [master boot record (MBR)](https://wikipedia.org/wiki/Master_boot_record) by default. MBR limits the usable size to 2 TiB. If you need more than 2 TiB, create and attach data disks and use them for data storage. If you need to store data on the OS disk and require the extra space, [convert it to a GUID Partition Table](/windows-server/storage/disk-management/change-an-mbr-disk-into-a-gpt-disk) (GPT). To learn about the differences between MBR and GPT on Windows deployments, see [Windows and GPT FAQ](/windows-hardware/manufacture/desktop/windows-and-gpt-faq).
 
@@ -38,7 +38,8 @@ This feature has the following limitations:
 
 ## Resize a managed disk in the Azure portal
 
-If your disk meets the requirements in [Expand without downtime](#expand-without-downtime), you can skip step 1.
+> [!IMPORTANT]
+> If your disk meets the requirements in [Expand without downtime](#expand-without-downtime), you can skip step 1.
 
 1. In the [Azure portal](https://portal.azure.com/), go to the VM in which you want to expand the disk. Select **Stop** to deallocate the VM.
 1. On the left menu under **Settings**, select **Disks**.
@@ -65,7 +66,7 @@ If your disk meets the requirements in [Expand without downtime](#expand-without
 
 ## Resize a managed disk by using PowerShell
 
-Open your PowerShell Integrated Scripting Environment or PowerShell window in administrative mode and follow these steps:
+Open a PowerShell window in administrative mode and follow these steps:
 
 1. Sign in to your Azure account in resource management mode, and select your subscription:
 
@@ -88,7 +89,8 @@ Open your PowerShell Integrated Scripting Environment or PowerShell window in ad
     $vm = Get-AzVM -ResourceGroupName $rgName -Name $vmName
     ```
 
-    If your disk meets the requirements in [Expand without downtime](#expand-without-downtime), you can skip steps 4 and 6.
+    > [!IMPORTANT]
+    > If your disk meets the requirements in [Expand without downtime](#expand-without-downtime), you can skip steps 4 and 6.
 
 1. Stop the VM before you resize the disk:
 
@@ -146,6 +148,7 @@ After you expand the disk for the VM, go into the OS and expand the volume to en
     :::image type="content" source="media/expand-os-disk/disk-mgr-3.png" alt-text="Screenshot that shows the larger C: volume in Disk Manager.":::
 
 ## Expand without downtime classic VM SKU support
+
 
 If you're using a classic VM SKU, or version, it might not support expanding disks without downtime.
 
