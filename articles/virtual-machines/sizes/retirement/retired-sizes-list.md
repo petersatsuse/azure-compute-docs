@@ -56,8 +56,8 @@ Currently there are no memory optimized series retired or announced for retireme
 
 | Series name        | Retirement Status |Retirement Announcement      | Planned Retirement Date | Migration Guide |
 |--------------------|-------------------|-----------------------------|-------------------------|-----------------|
-| NCv3-NC24rs Series | **Retired**       | -                           | 30/9/25                 | [NCv3-NC24rs-series Retirement](./ncv3-nc24rs-retirement.md) |
-| NCv3-Series        | **Retired**       | -                           | 30/9/25                 | [NCv3-series Retirement](./ncv3-retirement.md)     |
+| NCv3-NC24rs Series | **Retired**       | -                           | 30/9/25                 | [NCv3-NC24rs-series Retirement](../../ncv3-nc24rs-retirement.md) |
+| NCv3-Series        | **Retired**       | -                           | 30/9/25                 | [NCv3-series Retirement](../../ncv3-retirement.md)     |
 
 ## FPGA accelerated retired sizes
 
