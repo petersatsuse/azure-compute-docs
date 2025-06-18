@@ -5047,7 +5047,7 @@
         },
         {
             "source_path_from_root": "/articles/virtual-machines/sizes/retirement/hb-series-retirement.md",
-            "redirect_url": "/previous-versions/azure/virtual-machines/articles/virtual-machines/sizes/retirement/hb-series-retirement",
+            "redirect_url": "/azure/virtual-machines/sizes/high-performance-compute/hb-family",
             "redirect_document_id": false
         },         
         {

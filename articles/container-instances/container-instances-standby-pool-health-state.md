@@ -4,7 +4,7 @@ description: Learn how to get and understand the health state of your standby po
 author: mimckitt
 ms.author: mimckitt
 ms.service: azure-container-instances
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 5/6/2025
 ms.reviewer: ju-shim
 ---
