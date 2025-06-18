@@ -14,19 +14,15 @@ ms.custom: devx-track-azurepowershell, references_regions
 
 **Applies to:** :heavy_check_mark: Windows VMs :heavy_check_mark: Flexible scale sets 
 
-When you create a new virtual machine (VM) in a resource group by deploying an image from [Azure Marketplace](https://azure.microsoft.com/marketplace/), the default operating system (OS) disk is usually 127 GiB. (Some images have smaller OS disk sizes by default.) You can add data disks to your VM. (The amount depends on the VM version you selected.)
+When you create a new virtual machine (VM) in a resource group by deploying an image from [Azure Marketplace](https://azure.microsoft.com/marketplace/), the default operating system (OS) disk is usually 127 GiB. (Some images have smaller OS disk sizes by default.) You can add data disks to your VM. The amount depends on the VM version that you selected.
 
 You should install applications and CPU-intensive workloads on data disks. You might need to expand the OS disk if you're supporting a legacy application that installs components on the OS disk or if you're migrating a physical PC or VM from on-premises that has a larger OS disk. This article covers expanding either OS disks or data disks.
 
 An OS disk has a maximum capacity of 4,095 GiB. However, many operating systems are partitioned with [master boot record (MBR)](https://wikipedia.org/wiki/Master_boot_record) by default. MBR limits the usable size to 2 TiB. If you need more than 2 TiB, create and attach data disks and use them for data storage. If you need to store data on the OS disk and require the extra space, [convert it to a GUID Partition Table](/windows-server/storage/disk-management/change-an-mbr-disk-into-a-gpt-disk) (GPT). To learn about the differences between MBR and GPT on Windows deployments, see [Windows and GPT FAQ](/windows-hardware/manufacture/desktop/windows-and-gpt-faq).
 
-Unless you use [Expand without downtime](#expand-without-downtime), expanding a data disk requires the VM to be deallocated.
+Unless you use [Expand without downtime](#expand-without-downtime), expanding a data disk requires the VM to be deallocated. Shrinking an existing disk isn't supported and might result in data loss.
 
-Shrinking an existing disk isn't supported and might result in data loss.
-
-After you expand the disks, [expand the volume in the OS](#expand-the-volume-in-the-operating-system) to take advantage of the larger disk.
-
-You can't expand the size of striped volumes.
+After you expand the disks, [expand the volume in the OS](#expand-the-volume-in-the-operating-system) to take advantage of the larger disk. You can't expand the size of striped volumes.
 
 ## Expand without downtime
 
@@ -42,19 +38,19 @@ This feature has the following limitations:
 > If your disk meets the requirements in [Expand without downtime](#expand-without-downtime), you can skip step 1.
 
 1. In the [Azure portal](https://portal.azure.com/), go to the VM in which you want to expand the disk. Select **Stop** to deallocate the VM.
-1. On the left menu under **Settings**, select **Disks**.
+1. On the left menu, under **Settings**, select **Disks**.
 
     :::image type="content" source="./media/expand-os-disk/select-disks.png" alt-text="Screenshot that shows the Disks option selected in the Settings section of the menu.":::
 
-1. Under **Disk name**, select the disk you want to expand.
+1. Under **Disk name**, select the disk that you want to expand.
 
     :::image type="content" source="./media/expand-os-disk/disk-name.png" alt-text="Screenshot that shows the Disks pane with a disk name selected.":::
 
-1. On the left menu under **Settings**, select **Size + performance**.
+1. On the left menu, under **Settings**, select **Size + performance**.
 
     :::image type="content" source="./media/expand-os-disk/configuration.png" alt-text="Screenshot that shows the Size and performance option selected in the Settings section of the menu.":::
 
-1. On **Size + performance**, select the disk size you want.
+1. On **Size + performance**, select the disk size that you want.
 
    The new size should be greater than the existing disk size. The maximum allowed is 4,095 GB for OS disks. It's possible to expand the virtual hard disk (VHD) blob beyond that size, but the OS works only with the first 4,095 GB of space.
 

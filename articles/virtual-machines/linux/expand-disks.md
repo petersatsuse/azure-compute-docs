@@ -58,7 +58,7 @@ lrwxrwxrwx. 1 root root  12 Sep  9 21:54 lun2 -> ../../../sde
 lrwxrwxrwx. 1 root root  13 Sep  9 21:54 lun2-part1 -> ../../../sde1
 ```
 
-## Expand an Azure Managed Disk
+## Expand an Azure managed disk
 
 ### Expand without downtime
 
@@ -68,7 +68,7 @@ This feature has the following limitations:
 
 [!INCLUDE [virtual-machines-disks-expand-without-downtime-restrictions](../includes/virtual-machines-disks-expand-without-downtime-restrictions.md)]
 
-### Expand Azure Managed Disk
+### Expand Azure managed disk
 
 Make sure that you have the latest [Azure CLI](/cli/azure/install-az-cli2) installed and are signed in to an Azure account by using [az login](/cli/azure/reference-index#az-login).
 
@@ -120,11 +120,11 @@ After you expand the disks, expand the volume in the OS to take advantage of the
 
 ## Expand a disk partition and filesystem
 
-There are many tools that might be used to perform the partition resizing. The tools detailed in the remainder of this article are the same tools that are used by certain automated processes, such as cloud-init. As described here, the `growpart` tool with the `gdisk` package provides universal compatibility with GPT disks because older versions of some tools such as `fdisk` didn't support GPT.
+You can use many tools to perform partition resizing. The tools detailed in the remainder of this article are the same ones that certain automated processes use, such as cloud-init. As described here, the `growpart` tool with the `gdisk` package provides universal compatibility with GPT disks because older versions of some tools such as `fdisk` didn't support GPT.
 
 ### Detect a changed disk size
 
-If a data disk was expanded without downtime by using the procedure mentioned previously, the reported disk size doesn't change until the device is rescanned. Rescanning normally happens only during the boot process. To call this rescan on demand, use the following procedure. When you use the methods in this article, notice that in this example the data disk is currently `/dev/sda` and was resized from 256 GiB to 512 GiB.
+If you used the previously mentioned procedure to expand a data disk without downtime, the reported disk size doesn't change until the device is rescanned. Rescanning normally happens only during the boot process. To call this rescan on demand, use the following procedure. When you use the methods in this article, notice that in this example the data disk is currently `/dev/sda` and was resized from 256 GiB to 512 GiB.
 
 1. Identify the currently recognized size on the first line of output from `fdisk -l /dev/sda`:
 
@@ -451,7 +451,7 @@ To increase the OS disk size in SUSE 12 SP4, SUSE SLES 12 for SAP, SUSE SLES 15,
    CHANGED: partition=4 start=2054144 old: size=132161536 end=134215680 new: size=199272414 end=201326558
    ```
 
-1. Verify that the partition was resized to the expected size by using the `lsblk` command again. Notice that in the example, `sda4` changed from 63G to 95G.
+1. Verify that the partition was resized to the expected size by using the `lsblk` command again. Notice that in the example, `sda4` changed from `63G` to `95G`.
 
    ```bash
    lsblk /dev/sda4
@@ -514,11 +514,10 @@ To increase the OS disk size in SUSE 12 SP4, SUSE SLES 12 for SAP, SUSE SLES 15,
 
 1. The `lvresize` command automatically calls the appropriate resize command for the filesystem in the LV. Verify whether `/dev/mapper/rootvg-rootlv`, which is mounted on `/`, has an increased filesystem size by using the `df -Th` command:
 
-   Example output:
-
    ```bash
    df -Th /
    ```
+    Example output:
 
    ```output
    Filesystem                Type  Size  Used Avail Use% Mounted on
