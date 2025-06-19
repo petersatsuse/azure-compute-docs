@@ -40,7 +40,7 @@ You can verify driver installation in Device Manager. The following example show
 ![GPU driver properties](./media/n-series-driver-setup/GPU_driver_properties.png)
 
 > [!NOTE]
-> If you're running Windows 10 build 1903 or higher, dxdiag shows no information in the 'Display' tab. Use the 'Save All Information' option at the bottom and the output file shows the information related to AMD MI25 GPU.
+> If you're running Windows 10 build 1903 or higher, dxdiag shows no information in the 'Display' tab. Use the 'Save All Information' option at the bottom and the output file shows the information related to NVIDIA GPU.
 
 To query the GPU device state, run the [nvidia-smi](https://developer.nvidia.com/nvidia-system-management-interface) command-line utility installed with the driver.
 
