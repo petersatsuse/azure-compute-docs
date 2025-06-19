@@ -16,11 +16,11 @@
 
 - Is supported only for data disks.
 - Isn't supported for shared disks.
-- Install and use either:
+- Must be installed and use one of the following options:
     - The [latest Azure CLI](/cli/azure/install-azure-cli).
     - The [latest Azure PowerShell module](/powershell/azure/install-azure-powershell).
     - The [Azure portal](https://portal.azure.com/).
-    - Or an Azure Resource Manager template with an API version that's `2021-04-01` or newer.
+    - An Azure Resource Manager template with an API version that's `2021-04-01` or newer.
 - Isn't available on some classic VMs. Use [this script](#expand-without-downtime-classic-vm-sku-support) to get a list of classic VM products that support expanding without downtime.
 
 ### Expand with Ultra Disks and Premium SSD v2

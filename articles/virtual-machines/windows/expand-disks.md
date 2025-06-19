@@ -28,7 +28,7 @@ After you expand the disks, [expand the volume in the OS](#expand-the-volume-in-
 
 You can expand data disks without deallocating your VM. The host cache setting of your disk doesn't change whether or not you can expand a data disk without deallocating your VM.
 
-This feature has the following limitations:
+This feature has the following limitations.
 
 [!INCLUDE [virtual-machines-disks-expand-without-downtime-restrictions](../includes/virtual-machines-disks-expand-without-downtime-restrictions.md)]
 
