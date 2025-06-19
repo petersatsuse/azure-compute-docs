@@ -17,7 +17,6 @@
 - Is supported only for data disks.
 - Isn't supported for shared disks.
 - Must be installed and use one of the following options:
-
     - The [latest Azure CLI](/cli/azure/install-azure-cli).
     - The [latest Azure PowerShell module](/powershell/azure/install-azure-powershell).
     - The [Azure portal](https://portal.azure.com/).
