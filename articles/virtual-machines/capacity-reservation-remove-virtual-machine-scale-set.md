@@ -227,7 +227,7 @@ To learn more, see the Azure PowerShell commands [New-AzCapacityReservation](/po
 
 ### [Portal](#tab/portal2)
 	
-	<!-- no images necessary if steps are straightforward --> 
+<!-- no images necessary if steps are straightforward --> 
 	
 1. Open the [Azure portal](https://portal.azure.com).
 1. Go to your capacity reservation group and select **Overview**.
