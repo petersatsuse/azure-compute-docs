@@ -533,7 +533,7 @@ To associate a Virtual Machine Scale Set with a Capacity Reservation Group, see 
 1. Under **Administrator account**, enter a username and a password. The password must be at least 12 characters long and meet the defined complexity requirements.
 1.Go to the **Management section** and select the **Upgrade mode** needed
 1. Go to the **Advanced section**.
-1. In the **Capacity Reservations** dropdown list, select the capacity reservation group that you want to associate to the VMSS.
+1. In the **Capacity Reservations** dropdown list, select the capacity reservation group that you want to associate to the scale set.
 1. Select **Review + create**.
 1. After validation runs, select **Create**.
 1. After the deployment is finished, select **Go to resource**.
