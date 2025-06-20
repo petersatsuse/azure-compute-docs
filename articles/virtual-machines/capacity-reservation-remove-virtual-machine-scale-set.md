@@ -115,7 +115,7 @@ To learn more, see the Azure PowerShell commands [Stop-AzVmss](/powershell/modul
 1. Go to your Virtual Machine Scale Set and select **Overview**.
 1. Select **Stop**.
 	- You know your scale set is deallocated when the status changes to *Stopped (deallocated)*.
-	- At this point in the process, the VMSS is still associated to the capacity reservation group. This association is reflected in the `virtualMachinesAssociated` property of the capacity reservation.
+	- At this point in the process, the scale set is still associated to the capacity reservation group. This association is reflected in the `virtualMachinesAssociated` property of the capacity reservation.
 1. Select **Configuration**.
 1. Set the **Capacity Reservation group** value to **None**. The VMSS is no longer associated to the capacity reservation group.
 
