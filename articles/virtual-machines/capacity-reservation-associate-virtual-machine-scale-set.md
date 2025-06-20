@@ -586,18 +586,6 @@ This process ensures that the placement for the capacity reservations and scale 
     }
     ```
 
-### [Portal](#tab/portal2)
-	
-<!-- no images necessary if steps are straightforward --> 
-	
-1. Open the [Azure portal](https://portal.azure.com).
-1. Go to your VMSS.
-1. Select **Overview**.
-1. Select **Stop** at the top of the page to deallocate the VMSS.
-1. Go to **Configurations** on the left.
-1. In the **Capacity Reservation group** dropdown list, select the group that you want to associate to the VMSS.
-    ```
-
 ### [CLI](#tab/cli2)
 
 1. Deallocate the virtual machine scale set:
@@ -644,6 +632,17 @@ This process ensures that the placement for the capacity reservations and scale 
     ```
 
 To learn more, see the Azure PowerShell commands [Stop-AzVmss](/powershell/module/az.compute/stop-azvmss), [Get-AzVmss](/powershell/module/az.compute/get-azvmss), and [Update-AzVmss](/powershell/module/az.compute/update-azvmss).
+
+### [Portal](#tab/portal2)
+	
+<!-- no images necessary if steps are straightforward --> 
+	
+1. Open the [Azure portal](https://portal.azure.com).
+1. Go to your VMSS.
+1. Select **Overview**.
+1. Select **Stop** at the top of the page to deallocate the VMSS.
+1. Go to **Configurations** on the left.
+1. In the **Capacity Reservation group** dropdown list, select the group that you want to associate to the VMSS.
 
 --- 
 <!-- The three dashes above show that your section of tabbed content is complete. Don't remove them :) -->
