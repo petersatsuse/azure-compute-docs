@@ -79,26 +79,6 @@ Add the `capacityReservationGroup` property in the `virtualMachineProfile` prope
     } 
 ```
 
-### [Portal](#tab/portal1)
-	
-<!-- no images necessary if steps are straightforward --> 
-	
-1. Open the [Azure portal](https://portal.azure.com).
-1. In the search bar, enter **virtual machine scale sets**.
-1. On the **Virtual machines scale sets** page, select **Create** 
-1. On the **Basics** tab, under **Project details**, select the correct subscription. Then choose to create a new resource group or use an existing one.
-1. Under **Scale set details**, enter the VMSS name and choose your region.
-1. Under **Orchestration mode**, choose the orchestration needed.
-1. Select an **Image** and the VM size.
-1. Under **Administrator account**, enter a username and a password. The password must be at least 12 characters long and meet the defined complexity requirements.
-1.Go to the **Management section** and select the **Upgrade mode** needed
-1. Go to the **Advanced section**.
-1. In the **Capacity Reservations** dropdown list, select the capacity reservation group that you want to associate to the VMSS.
-1. Select **Review + create**.
-1. After validation runs, select **Create**.
-1. After the deployment is finished, select **Go to resource**.
---- 
-
 ### [CLI](#tab/cli1)
 
 Use `az vmss create` to create a new virtual machine scale set and add the `capacity-reservation-group` property to associate the scale set to an existing capacity reservation group. The following example creates a uniform scale set for a Standard_Ds1_v2 VM in the East US location and associates the scale set to a capacity reservation group.
@@ -539,6 +519,24 @@ To associate a Virtual Machine Scale Set with a Capacity Reservation Group, see 
 }
 
 ```
+### [Portal](#tab/portal1)
+	
+<!-- no images necessary if steps are straightforward --> 
+	
+1. Open the [Azure portal](https://portal.azure.com).
+1. In the search bar, enter **virtual machine scale sets**.
+1. On the **Virtual machines scale sets** page, select **Create** 
+1. On the **Basics** tab, under **Project details**, select the correct subscription. Then choose to create a new resource group or use an existing one.
+1. Under **Scale set details**, enter the VMSS name and choose your region.
+1. Under **Orchestration mode**, choose the orchestration needed.
+1. Select an **Image** and the VM size.
+1. Under **Administrator account**, enter a username and a password. The password must be at least 12 characters long and meet the defined complexity requirements.
+1.Go to the **Management section** and select the **Upgrade mode** needed
+1. Go to the **Advanced section**.
+1. In the **Capacity Reservations** dropdown list, select the capacity reservation group that you want to associate to the VMSS.
+1. Select **Review + create**.
+1. After validation runs, select **Create**.
+1. After the deployment is finished, select **Go to resource**.
 
 --- 
 <!-- The three dashes above show that your section of tabbed content is complete. Don't remove them :) -->
