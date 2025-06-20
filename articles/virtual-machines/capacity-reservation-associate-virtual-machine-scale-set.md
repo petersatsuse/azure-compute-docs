@@ -98,9 +98,7 @@ Add the `capacityReservationGroup` property in the `virtualMachineProfile` prope
 1. After validation runs, select **Create**.
 1. After the deployment is finished, select **Go to resource**.
 
-
 --- 
-
 
 ### [CLI](#tab/cli1)
 
@@ -602,9 +600,7 @@ This process ensures that the placement for the capacity reservations and scale 
 1. Go to **Configurations** on the left.
 1. In the **Capacity Reservation group** dropdown list, select the group that you want to associate to the VMSS.
 
-
 --- 
-
 
 ### [CLI](#tab/cli2)
 
