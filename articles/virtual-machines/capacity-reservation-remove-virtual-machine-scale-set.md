@@ -234,7 +234,7 @@ To learn more, see the Azure PowerShell commands [New-AzCapacityReservation](/po
 1. Select **Reservations**.
 1. Select **Manage Reservation** at the top of the page.
 1. On the **Manage Reservations** pane, enter **0** in the **Instances** field and select **Save**.
-1. Go to your VMSS and select **Configuration**.
+1. Go to your Virtual Machine Scale Set and select **Configuration**.
 1. Set the **Capacity Reservation group** value to **None**. The VMSS is no longer associated to the capacity reservation group.
 
 --- 
