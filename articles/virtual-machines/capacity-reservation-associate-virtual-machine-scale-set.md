@@ -638,7 +638,7 @@ To learn more, see the Azure PowerShell commands [Stop-AzVmss](/powershell/modul
 <!-- no images necessary if steps are straightforward --> 
 	
 1. Open the [Azure portal](https://portal.azure.com).
-1. Go to your VMSS.
+1. Go to your Virtual Machine Scale Set.
 1. Select **Overview**.
 1. Select **Stop** at the top of the page to deallocate the scale set.
 1. Go to **Configurations** on the left.
