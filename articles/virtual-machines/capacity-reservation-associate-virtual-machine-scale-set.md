@@ -640,7 +640,7 @@ To learn more, see the Azure PowerShell commands [Stop-AzVmss](/powershell/modul
 1. Open the [Azure portal](https://portal.azure.com).
 1. Go to your VMSS.
 1. Select **Overview**.
-1. Select **Stop** at the top of the page to deallocate the VMSS.
+1. Select **Stop** at the top of the page to deallocate the scale set.
 1. Go to **Configurations** on the left.
 1. In the **Capacity Reservation group** dropdown list, select the group that you want to associate to the scale set.
 
