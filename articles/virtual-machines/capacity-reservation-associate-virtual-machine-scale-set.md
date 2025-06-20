@@ -527,7 +527,7 @@ To associate a Virtual Machine Scale Set with a Capacity Reservation Group, see 
 1. In the search bar, enter **virtual machine scale sets**.
 1. On the **Virtual machines scale sets** page, select **Create** 
 1. On the **Basics** tab, under **Project details**, select the correct subscription. Then choose to create a new resource group or use an existing one.
-1. Under **Scale set details**, enter the VMSS name and choose your region.
+1. Under **Scale set details**, enter the Virtual Machine Scale Set name and choose your region.
 1. Under **Orchestration mode**, choose the orchestration needed.
 1. Select an **Image** and the VM size.
 1. Under **Administrator account**, enter a username and a password. The password must be at least 12 characters long and meet the defined complexity requirements.
