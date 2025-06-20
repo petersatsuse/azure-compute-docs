@@ -28,7 +28,7 @@ ms.author: jushiman
 During an in-place upgrade, the earlier RHEL OS major version will be replaced with the new RHEL OS major version without removing the earlier version first. The installed applications and utilities, along with the configurations and preferences, are incorporated into the new version.
 
 ## Upgrade RHEL VMs
-In general Red Hat only supports upgrading from version to the next; you cannot skip versions. See the Red Hat's documentation on in-place upgrades:
+In general, Red Hat only supports upgrading from version to the next; you cannot skip versions. See the Red Hat's documentation on in-place upgrades:
 
 [Upgrading from RHEL 7 to RHEL 8.](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/upgrading_from_rhel_7_to_rhel_8/index)
 
