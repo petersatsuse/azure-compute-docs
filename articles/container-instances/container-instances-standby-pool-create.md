@@ -37,7 +37,7 @@ az container container-group-profile create \
     --resource-group myResourceGroup \
     --name mycontainergroupprofile \
     --location WestCentralUS \
-    --image nginx \
+    --image mcr.microsoft.com/azuredocs/aci-helloworld \
     --os-type Linux \ 
     --ip-address Public \ 
     --ports 8000 \ 
@@ -54,7 +54,7 @@ Create a container group profile using [New-AzContainerInstanceContainerGroupPro
 $port1 = New-AzContainerInstancePortObject -Port 8000 -Protocol TCP
 $port2 = New-AzContainerInstancePortObject -Port 8001 -Protocol TCP
 
-$container = New-AzContainerInstanceObject -Name mycontainer -Image nginx -RequestCpu 1 -RequestMemoryInGb 1.5 -Port @($port1, $port2)
+$container = New-AzContainerInstanceObject -Name mycontainer -Image mcr.microsoft.com/azuredocs/aci-helloworld -RequestCpu 1 -RequestMemoryInGb 1.5 -Port @($port1, $port2)
 
 New-AzContainerInstanceContainerGroupProfile `
     -ResourceGroupName myResourceGroup `
