@@ -107,6 +107,19 @@ For more information about automatic, rolling, and manual upgrades, see [Upgrade
 
 To learn more, see the Azure PowerShell commands [Stop-AzVmss](/powershell/module/az.compute/stop-azvmss), [Get-AzVmss](/powershell/module/az.compute/get-azvmss), and [Update-AzVmss](/powershell/module/az.compute/update-azvmss).
 
+### [Portal](#tab/portal1)
+	
+<!-- no images necessary if steps are straightforward --> 
+	
+1. Open the [Azure portal](https://portal.azure.com).
+1. Go to your VMSS and select **Overview**.
+1. Select **Stop**.
+	- You know your VMSS is deallocated when the status changes to *Stopped (deallocated)*.
+	- At this point in the process, the VMSS is still associated to the capacity reservation group. This association is reflected in the `virtualMachinesAssociated` property of the capacity reservation.
+1. Select **Configuration**.
+1. Set the **Capacity Reservation group** value to **None**. The VMSS is no longer associated to the capacity reservation group.
+
+ 
 --- 
 <!-- The three dashes above show that your section of tabbed content is complete. Don't remove them :) -->
 
@@ -211,6 +224,18 @@ For more information about automatic, rolling, and manual upgrades, see [Upgrade
     ```
 
 To learn more, see the Azure PowerShell commands [New-AzCapacityReservation](/powershell/module/az.compute/new-azcapacityreservation), [Get-AzVmss](/powershell/module/az.compute/get-azvmss), and [Update-AzVmss](/powershell/module/az.compute/update-azvmss).
+
+### [Portal](#tab/portal2)
+	
+	<!-- no images necessary if steps are straightforward --> 
+	
+1. Open the [Azure portal](https://portal.azure.com).
+1. Go to your capacity reservation group and select **Overview**.
+1. Select **Reservations**.
+1. Select **Manage Reservation** at the top of the page.
+1. On the **Manage Reservations** pane, enter **0** in the **Instances** field and select **Save**.
+1. Go to your VMSS and select **Configuration**.
+1. Set the **Capacity Reservation group** value to **None**. The VMSS is no longer associated to the capacity reservation group.
 
 --- 
 <!-- The three dashes above show that your section of tabbed content is complete. Don't remove them :) -->
