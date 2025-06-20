@@ -79,7 +79,7 @@ Add the `capacityReservationGroup` property in the `virtualMachineProfile` prope
     } 
 ```
 
-### [Portal](#tab/portal99)
+### [Portal](#tab/portal1)
 	
 <!-- no images necessary if steps are straightforward --> 
 	
@@ -97,7 +97,6 @@ Add the `capacityReservationGroup` property in the `virtualMachineProfile` prope
 1. Select **Review + create**.
 1. After validation runs, select **Create**.
 1. After the deployment is finished, select **Go to resource**.
-
 --- 
 
 ### [CLI](#tab/cli1)
@@ -589,7 +588,7 @@ This process ensures that the placement for the capacity reservations and scale 
     }
     ```
 
-### [Portal](#tab/portal100)
+### [Portal](#tab/portal2)
 	
 <!-- no images necessary if steps are straightforward --> 
 	
@@ -599,8 +598,7 @@ This process ensures that the placement for the capacity reservations and scale 
 1. Select **Stop** at the top of the page to deallocate the VMSS.
 1. Go to **Configurations** on the left.
 1. In the **Capacity Reservation group** dropdown list, select the group that you want to associate to the VMSS.
-
---- 
+    ```
 
 ### [CLI](#tab/cli2)
 
