@@ -253,34 +253,57 @@ sections:
           ```azurecli
           az vm image show --location eastus --urn <MicrosoftWindowsServer:WindowsServer:2016-Datacenter:14393.4169.2101090332> --query [imageDeprecationStatus]
           ```
-          
-          PowerShell:
+            PowerShell:
           
           ```powershell
           Get-AzVMImage -Location "eastus" -PublisherName <MicrosoftWindowsServer> -Offer "WindowsServer" -Skus <2016-Datacenter> -Version <14393.4169.2101090332> | Select-Object -ExpandProperty "ImageDeprecationStatus"
           ```
+
+          To check all versions of a specific SKU with their deprecation details:
+
+          ```powershell
+          Get-AzVMImage -Location "westus" `
+            -PublisherName "center-for-internet-security-inc" `
+            -Offer "cis-rocky" `
+            -Skus "cis-rockylinux-9-l1-gen2-azure-observability" `
+            -Expand "properties/imageDeprecationStatus" |
+            Select-Object Version, @{
+              Name = "DeprecationDetails"
+              Expression = { $_.ImageDeprecationStatus | Out-String }
+            } | Format-Table -Wrap -AutoSize
+          ```
           
-          The response indicates that this image is deprecated: 
+          The response indicates that this image is deprecated:
           
           ```
           Get-AzVMImage: VM Image from publisher: MicrosoftWindowsServer with - Offer: WindowsServer, Sku: 2016-Datacenter, Version: 14393.4169.2101090332 is deprecated.
           ErrorCode: ImageVersionDeprecated
           ErrorMessage: VM Image from publisher: MicrosoftWindowsServer with - Offer: WindowsServer, Sku: 2016-Datacenter, Version: 14393.4169.2101090332 is deprecated.
-          ErrorTarget:
-          StatusCode: 404
+          ErrorTarget:          StatusCode: 404
           ReasonPhrase: Not Found
           
       - question: What happens to my SQL Server instance if a SQL Server Azure Marketplace image is deprecated? 
         answer: |
           Nothing happens to your SQL Server instance if a SQL Server image is deprecated. You can continue using your Azure VM and your SQL Server instance without interruption. However, you will no longer be able to deploy that image in the future. 
           
-         
       - question: How do I check for active image versions under a particular SKU?
         answer: |
-          Active images are images not scheduled for deprecation or already deprecated. List active images versions under a SKU by using the following Azure CLI command:
+          Active images are images not scheduled for deprecation or already deprecated. List active images versions under a SKU by using the following commands:
 
           Azure CLI:
           
           ```azurecli
           az vm image list --<location> eastus --publisher <MicrosoftWindowsServer> --offer <WindowsServer> --sku <2022-Datacenter> --all --query "[?imageDeprecationStatus.imageState=='Active']"
+          ```
+
+          PowerShell:
+
+          ```powershell
+          Get-AzVMImage -Location "westus" `
+            -PublisherName "center-for-internet-security-inc" `
+            -Offer "cis-rocky" `
+            -Skus "cis-rockylinux-9-l1-gen2-azure-observability" `
+            -Expand "properties/imageDeprecationStatus" |
+            Where-Object { $_.ImageDeprecationStatus.ImageState -eq "Active" } |
+            Select-Object Version
           ```
