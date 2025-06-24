@@ -205,7 +205,7 @@ sections:
       - question: What happens when a paid Marketplace image with the Purchase Plan Information is deprecated?
         answer: |
           If you're using a Paid Marketplace Image, when the image is deprecated attempting to restore the VM from backups can fail for images with Plan information once the image is removed or deprecated from the marketplace. We recommend creating new VMs and migrating your workload to that image if you're using a Paid Marketplace Image with Plan Information. 
-          If the VM Image is Free (doesn't require plan info), you can continue using the single VM and should be able to restore from backups. This only impacts single VMs and not VMSS workloads.
+          If the VM Image is Free, in that it doesn't require plan info, you can continue using the single VM and should be able to restore from backups. This only impacts single VMs and not Virtual Machine Scale Set workloads.
       
       - question: What happens when a free Marketplace image is deprecated?
         answer: |
