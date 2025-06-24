@@ -7,6 +7,7 @@ author: tomvcassidy
 ms.service: azure-service-fabric
 services: service-fabric
 ms.date: 03/02/2023
+# Customer intent: As a developer, I want to set up a Windows development environment for Azure Service Fabric, so that I can build and run applications efficiently.
 ---
 
 # Prepare your development environment on Windows
