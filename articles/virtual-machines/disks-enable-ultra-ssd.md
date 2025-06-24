@@ -20,7 +20,7 @@ Azure Ultra Disks offer high throughput, high IOPS, and consistent low latency d
 
 ## GA scope and limitations
 
-[!INCLUDE [managed-disks-ultra-disks-GA-scope-and-limitations](./includes/managed-disks-ultra-disks-GA-scope-and-limitations.md)]
+[!INCLUDE [managed-disks-ultra-disks-ga-scope-and-limitations](includes/managed-disks-ultra-disks-ga-scope-and-limitations.md)]
 
 ## Determine VM size and region availability
 

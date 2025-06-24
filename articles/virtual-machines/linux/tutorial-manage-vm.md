@@ -13,6 +13,9 @@ ms.custom: mvc, devx-track-azurecli, linux-related-content, innovation-engine
 
 # Tutorial: Create and Manage Linux VMs with the Azure CLI
 
+> [!div class="nextstepaction"]
+> [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321734)
+
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets
 
 Azure virtual machines provide a fully configurable and flexible computing environment. This tutorial covers basic Azure virtual machine deployment items such as selecting a VM size, selecting a VM image, and deploying a VM. You learn how to:
