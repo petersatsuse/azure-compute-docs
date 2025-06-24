@@ -192,7 +192,7 @@ Azure standard HDDs deliver reliable, low-cost disk support for VMs running late
 
 ### Standard HDD Transactions
 
-For Standard HDDs, each I/O operation is considered as a single transaction, whatever the I/O size. These transactions have a billing impact.
+Standard HDD transactions incur a billable cost for every 10,000 disk operations.
 
 ## Billing
 
