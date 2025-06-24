@@ -9,6 +9,7 @@ ms.service: azure-service-fabric
 services: service-fabric
 hide_comments: true
 hideEdit: true
+# Customer intent: "As a cloud application developer, I want to access the latest Service Fabric release notes, so that I can stay informed about new features, enhancements, and best practices for maintaining robust application architectures."
 ---
 
 # Service Fabric releases
