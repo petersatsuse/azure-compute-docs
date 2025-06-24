@@ -200,7 +200,7 @@ sections:
                - If set to rolling, existing instances will be automatically upgraded and reimaged by batch. 	
           - Update image reference using the steps in [Modify an Azure virtual machine scale set](../virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-scale-set.md).
           - Ensure that all existing instances are upgraded and on the latest model. You can also scale out and migrate workload to the new instances then delete the old instances, instead of upgrading the existing instances. 
-          - Once the existing instances are all upgraded to the new image, change the upgrade policy back to what it was if needed.            If you are using VMSS, we recommend enabling Automatic OS image upgrades so that the latest image published by image publishers is automatically applied to your scale set or VMSS without manual user intervention. Learn how to enable [Automatic OS Image Upgrade](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-upgrade?toc=/azure/virtual-machines/toc.json) 
+          - Once the existing instances are all upgraded to the new image, change the upgrade policy back to what it was if needed. If you are using Virtual Machine Scale Sets, we recommend enabling Automatic OS image upgrades so that the latest image published by image publishers is automatically applied to your scale set without manual user intervention. Learn how to enable [Automatic OS Image Upgrade](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-upgrade?toc=/azure/virtual-machines/toc.json).
 
       - question: What happens when a paid Marketplace image with the Purchase Plan Information is deprecated?
         answer: |
