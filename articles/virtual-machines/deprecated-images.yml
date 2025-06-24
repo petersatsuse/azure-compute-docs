@@ -37,7 +37,7 @@ sections:
           
           - Active VM instances aren't impacted.  
           - New VM instances can't be created from any of the impacted images.
-          - Existing virtual machine scale sets deployments can't be scaled out if configured with any of the impacted images. When a plan or offer is being deprecated, all existing scale sets deployments pinned to any image within the plan or offer respectively can't be scaled out.
+          - Existing Virtual Machine Scale Set deployments can't be scaled out if configured with any of the impacted images. When a plan or offer is being deprecated, all existing scale sets deployments pinned to any image within the plan or offer respectively can't be scaled out.
           
           
           **What do I need to do?**
