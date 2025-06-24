@@ -276,7 +276,8 @@ sections:
           Get-AzVMImage: VM Image from publisher: MicrosoftWindowsServer with - Offer: WindowsServer, Sku: 2016-Datacenter, Version: 14393.4169.2101090332 is deprecated.
           ErrorCode: ImageVersionDeprecated
           ErrorMessage: VM Image from publisher: MicrosoftWindowsServer with - Offer: WindowsServer, Sku: 2016-Datacenter, Version: 14393.4169.2101090332 is deprecated.
-          ErrorTarget:          StatusCode: 404
+          ErrorTarget:  
+          StatusCode: 404
           ReasonPhrase: Not Found
           
       - question: What happens to my SQL Server instance if a SQL Server Azure Marketplace image is deprecated? 
