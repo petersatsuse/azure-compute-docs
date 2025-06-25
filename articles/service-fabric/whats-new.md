@@ -6,6 +6,7 @@ ms.service: azure-service-fabric
 ms.topic: whats-new
 ms.date: 06/13/2025
 ms.author: tomcassidy
+# Customer intent: "As a system administrator, I want to stay informed about the latest updates and features for Service Fabric, so that I can ensure my applications utilize the most current and efficient functionalities for improved performance and reliability."
 ---
 
 # What's new for Service Fabric
