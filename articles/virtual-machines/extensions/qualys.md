@@ -16,7 +16,7 @@ The Qualys Cloud Agent is a lightweight, cloud-based security and monitoring too
 Qualys supports Cloud Agent deployment on Windows and Linux Azure VMs via Microsoft’s Azure portal. The [Cloud Agent Platform Availability Matrix](https://success.qualys.com/customersupport/s/cloud-agent-pam) provides more information about the supported platforms.
 
 > [!IMPORTANT]
-> Qualys has removed support for the Windows Cloud Agent extension version 3.1.3.34. We recommend that you uninstall it and install the latest Windows Cloud Agent extension version on your Azure portal. To learn more about the uninstallation steps, refer to [Uninstalling and Reinstalling Qualys Extension on Azure VMs](https://success.qualys.com/support/s/article/000007473).
+> Qualys has removed support for the Windows Cloud Agent extension version 3.1.3.34.  This version will become inoperable starting January 31, 2026. We recommend that you uninstall it and install the latest Windows Cloud Agent extension version (1.6.x.x) on your Azure portal. To learn more about the uninstallation steps, refer to [Uninstalling and Reinstalling Qualys Extension on Azure VMs](https://success.qualys.com/support/s/article/000007473).
 
 ## Installation Methods
 The following are the different deployment methods to deploy Cloud Agent extensions on Azure VMs.

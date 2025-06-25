@@ -7,6 +7,7 @@ author: tomvcassidy
 ms.service: azure-service-fabric
 services: service-fabric
 ms.date: 03/02/2023
+# Customer intent: As a developer, I want to set up a Windows development environment for Azure Service Fabric, so that I can build and run applications efficiently.
 ---
 
 # Prepare your development environment on Windows
@@ -32,8 +33,8 @@ The runtime can be installed independently. However, the SDK requires the runtim
 
 | Package |Version|
 | --- | --- |
-|[Install Service Fabric Runtime for Windows](https://download.microsoft.com/download/b/8/a/b8a2fb98-0ec1-41e5-be98-9d8b5abf7856/MicrosoftServiceFabric.10.1.2493.9590.exe) | 10.1.2493.9590 |
-|[Install Service Fabric SDK](https://download.microsoft.com/download/b/8/a/b8a2fb98-0ec1-41e5-be98-9d8b5abf7856/MicrosoftServiceFabricSDK.7.1.2493.msi) | 7.1.2493 |
+|[Install Service Fabric Runtime for Windows](https://download.microsoft.com/download/b/8/a/b8a2fb98-0ec1-41e5-be98-9d8b5abf7856/MicrosoftServiceFabric.11.0.2707.1.exe) | 11.0.2707.1 |
+|[Install Service Fabric SDK](https://download.microsoft.com/download/b/8/a/b8a2fb98-0ec1-41e5-be98-9d8b5abf7856/MicrosoftServiceFabricSDK.8.0.2707.msi) | 8.0.2707 |
 
 You can find direct links to the installers for previous releases on [Service Fabric Releases.](https://github.com/microsoft/service-fabric/tree/master/release_notes)
 
