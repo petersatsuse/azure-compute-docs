@@ -8,6 +8,7 @@ ms.service: azure-service-fabric
 ms.custom: linux-related-content
 services: service-fabric
 ms.date: 06/13/2025
+# Customer intent: "As a system administrator, I want to understand the supported versions of Service Fabric and their upgrade paths, so that I can ensure the cluster is running a version that receives updates and maintains compatibility with my applications."
 ---
 
 # Service Fabric supported versions
