@@ -1,5 +1,5 @@
 ---
- title: include
+title: include
  description: include
  services: virtual-machines-windows
 author: jushiman
@@ -17,6 +17,9 @@ ms.author: jushiman
 > [!Note]
 > The Azure NVads A10 v5 VMs only support vGPU 16.x(536.25) or higher driver version. The vGPU driver for the A10 SKU is a unified driver that supports both graphics and compute workloads.
 >
+
+> [!NOTE]
+> vGPU18 is available for the NCasT4_v3-series. We will provide an update once vGPU18 becomes available for the NVadsA10_v5-series. 
 
 NVIDIA Tesla (CUDA) drivers for all NC* and ND*-series VMs (optional for NV*-series) are generic and not Azure specific. For the latest drivers, visit the [NVIDIA](https://www.nvidia.com/) website.
 
