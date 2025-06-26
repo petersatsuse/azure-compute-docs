@@ -12,9 +12,9 @@ ms.date: 06/26/2025
 
 # Migrating from Azure Cloud Services to Service Fabric
 
-This guide provides detailed steps and best practices for migrating applications from Azure Cloud Services to Azure Service Fabric. Throughout this guide, we recommend using [Service Fabric Managed Clusters](https://learn.microsoft.com/en-us/azure/service-fabric/overview-managed-cluster) as they provide simplified cluster management, enhanced security, and automated patching.
+This guide provides detailed steps and best practices for migrating applications from Azure Cloud Services to Azure Service Fabric. Throughout this guide, we recommend using [Service Fabric Managed Clusters](https://learn.microsoft.com/azure/service-fabric/overview-managed-cluster) as they provide simplified cluster management, enhanced security, and automated patching.
 
-You should review the [decision matrix for migrating from Cloud Services](cloud-services-to-service-fabric-migration-decision-matrix.md) to make sure you're choosing the right Azure services from your architecture.
+You should review the [decision matrix for migrating from Cloud Services](cloud-services-migration-decision-matrix.md) to make sure you're choosing the right Azure services from your architecture.
 
 ## Pre-Migration Assessment
 
@@ -43,7 +43,7 @@ Before migrating from Azure Cloud Services to Service Fabric, conduct a thorough
 - Authentication and security constraints
 
 ### 5. Production Readiness Assessment
-Review the [Service Fabric Production Readiness Checklist](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-production-readiness-checklist) to ensure your future Service Fabric application meets production standards.
+Review the [Service Fabric Production Readiness Checklist](https://learn.microsoft.com/azure/service-fabric/service-fabric-production-readiness-checklist) to ensure your future Service Fabric application meets production standards.
 
 ## Architecture Planning
 
@@ -56,7 +56,7 @@ Service Fabric offers two deployment models:
   - Simplified deployment and management
   - Reduced operational overhead
   - Built-in security best practices
-  - [Learn more about Service Fabric Managed Clusters](https://learn.microsoft.com/en-us/azure/service-fabric/overview-managed-cluster)
+  - [Learn more about Service Fabric Managed Clusters](https://learn.microsoft.com/azure/service-fabric/overview-managed-cluster)
 
 - **Traditional Service Fabric Clusters**: Customizable but requires more operational management.
 
@@ -79,7 +79,7 @@ Map your Cloud Services components to Service Fabric architectural patterns:
 
 For setting up a Service Fabric Managed Cluster, refer to the official ARM templates available in the [Azure Quickstart Templates repository](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.servicefabric/sf-managed-cluster).
 
-A basic managed cluster ARM template looks like this (as shown in the [official documentation](https://learn.microsoft.com/en-us/azure/service-fabric/quickstart-managed-cluster-template)):
+A basic managed cluster ARM template looks like this (as shown in the [official documentation](https://learn.microsoft.com/azure/service-fabric/quickstart-managed-cluster-template)):
 
 ```json
 {
@@ -155,7 +155,7 @@ A basic managed cluster ARM template looks like this (as shown in the [official 
 }
 ```
 
-For detailed setup instructions, see [Quickstart: Deploy a Service Fabric managed cluster using ARM templates](https://learn.microsoft.com/en-us/azure/service-fabric/quickstart-managed-cluster-template).
+For detailed setup instructions, see [Quickstart: Deploy a Service Fabric managed cluster using ARM templates](https://learn.microsoft.com/azure/service-fabric/quickstart-managed-cluster-template).
 
 ### 4. Security Considerations
 
@@ -171,8 +171,8 @@ For client authentication to clusters, you need to configure client certificates
   - CA-issued certificates (recommended for production)
   - Add client certificates to your managed cluster configuration
 
-- **Application Security**: Implement [Application and Service Security](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-application-and-service-security) recommendations
-- **Network Security**: Configure NSGs and firewalls according to [Service Fabric Best Practices for Security](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-best-practices-security)
+- **Application Security**: Implement [Application and Service Security](https://learn.microsoft.com/azure/service-fabric/service-fabric-application-and-service-security) recommendations
+- **Network Security**: Configure NSGs and firewalls according to [Service Fabric Best Practices for Security](https://learn.microsoft.com/azure/service-fabric/service-fabric-best-practices-security)
 
 With Managed Clusters, you can focus primarily on application-level security and controlled access to your cluster, while Microsoft handles the underlying cluster security infrastructure.
 
@@ -192,7 +192,7 @@ Minimal changes to application architecture, focusing on adapting existing code 
 - Doesn't fully leverage Service Fabric capabilities
 - May require future refactoring to optimize
 
-**Important Limitation**: Service Fabric Managed Clusters currently **do not support containers**. If your application requires IIS, Windows-specific server components, or other dependencies that would be best containerized, you need to use a traditional Service Fabric cluster with Windows Container support instead of a Managed Cluster. Consider this limitation carefully when planning your lift-and-shift migration approach.  Refer to [Containerize existing Windows applications](https://learn.microsoft.com/en-us/previous-versions/azure/architecture/service-fabric/modernize-app-azure-service-fabric#containerize-existing-windows-applications)
+**Important Limitation**: Service Fabric Managed Clusters currently **do not support containers**. If your application requires IIS, Windows-specific server components, or other dependencies that would be best containerized, you need to use a traditional Service Fabric cluster with Windows Container support instead of a Managed Cluster. Consider this limitation carefully when planning your lift-and-shift migration approach.  Refer to [Containerize existing Windows applications](https://learn.microsoft.com/previous-versions/azure/architecture/service-fabric/modernize-app-azure-service-fabric#containerize-existing-windows-applications)
 
 #### Refactor to Microservices
 Decompose application into microservices for greater scalability and easier maintenance.
@@ -224,8 +224,8 @@ Decompose application into microservices for greater scalability and easier main
 ### 3. Migration Phases
 
 1. **Setup Service Fabric Environment**
-   - For applications without container dependencies: Create a managed cluster using [Service Fabric Managed Cluster deployment tutorial](https://learn.microsoft.com/en-us/azure/service-fabric/tutorial-managed-cluster-deploy)
-   - For applications requiring containers: Create a traditional Service Fabric cluster with [Windows Container support](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started-containers-windows)
+   - For applications without container dependencies: Create a managed cluster using [Service Fabric Managed Cluster deployment tutorial](https://learn.microsoft.com/azure/service-fabric/tutorial-managed-cluster-deploy)
+   - For applications requiring containers: Create a traditional Service Fabric cluster with [Windows Container support](https://learn.microsoft.com/azure/service-fabric/service-fabric-get-started-containers-windows)
    - Configure networking and security
    - Establish CI/CD pipeline for Service Fabric
 
@@ -255,7 +255,7 @@ Decompose application into microservices for greater scalability and easier main
 
 ### 1. Setting Up a Service Fabric Managed Cluster
 
-To deploy a Service Fabric managed cluster, you can use PowerShell commands as documented in [Tutorial: Deploy a Service Fabric managed cluster](https://learn.microsoft.com/en-us/azure/service-fabric/tutorial-managed-cluster-deploy).
+To deploy a Service Fabric managed cluster, you can use PowerShell commands as documented in [Tutorial: Deploy a Service Fabric managed cluster](https://learn.microsoft.com/azure/service-fabric/tutorial-managed-cluster-deploy).
 
 **Using PowerShell:**
 
@@ -286,18 +286,18 @@ Important notes:
 - For production deployments, use the Standard SKU (Basic SKU is only for testing)
 - You need to provide a client certificate thumbprint for accessing the cluster
 - Every Service Fabric cluster requires one primary node type and may have one or more secondary node types
-- [Visualize your cluster with Service Fabric Explorer](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-visualizing-your-cluster)
+- [Visualize your cluster with Service Fabric Explorer](https://learn.microsoft.com/azure/service-fabric/service-fabric-visualizing-your-cluster)
 
-You can also use the Azure portal or Azure CLI for deployment. For a portal-based setup, follow the [Quickstart: Create a Service Fabric managed cluster](https://learn.microsoft.com/en-us/azure/service-fabric/quickstart-managed-cluster-portal) tutorial.
+You can also use the Azure portal or Azure CLI for deployment. For a portal-based setup, follow the [Quickstart: Create a Service Fabric managed cluster](https://learn.microsoft.com/azure/service-fabric/quickstart-managed-cluster-portal) tutorial.
 
 ### 2. Creating Service Fabric Application Projects
 
 Use Visual Studio to create Service Fabric applications 
 
 **Using Visual Studio:**
-1. [Prepare your development environment on Windows](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started)
-2. [Create a new Stateless Service - Service Fabric project](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-quick-start)
-3. [Create a new Stateful Service - Service Fabric project](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-create-your-first-application-in-visual-studio):
+1. [Prepare your development environment on Windows](https://learn.microsoft.com/azure/service-fabric/service-fabric-get-started)
+2. [Create a new Stateless Service - Service Fabric project](https://learn.microsoft.com/azure/service-fabric/service-fabric-reliable-services-quick-start)
+3. [Create a new Stateful Service - Service Fabric project](https://learn.microsoft.com/azure/service-fabric/service-fabric-create-your-first-application-in-visual-studio):
 
 ### 3. Migrating Cloud Service Web Roles - [Comprehensive Example](https://github.com/Azure/Service-Fabric-Troubleshooting-Guides/blob/master/MigrationGuides/WebRole_Migration_Example.md)
 
@@ -544,7 +544,7 @@ Register-ServiceFabricApplicationType -ApplicationPackagePathInImageStore MyServ
 New-ServiceFabricApplication -ApplicationName fabric:/MyServiceFabricApp -ApplicationTypeName MyServiceFabricAppType -ApplicationTypeVersion 1.0.0
 ```
 
-You can also use [Azure Pipelines for automated deployments](https://learn.microsoft.com/en-us/azure/service-fabric/how-to-managed-cluster-app-deployment-template) to Service Fabric managed clusters.
+You can also use [Azure Pipelines for automated deployments](https://learn.microsoft.com/azure/service-fabric/how-to-managed-cluster-app-deployment-template) to Service Fabric managed clusters.
 
 ## Testing and Validation
 
@@ -580,9 +580,9 @@ You can also use [Azure Pipelines for automated deployments](https://learn.micro
 
 ### 1. Monitoring and Diagnostics
 
-[Visualize your cluster with Service Fabric Explorer](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-visualizing-your-cluster)
+[Visualize your cluster with Service Fabric Explorer](https://learn.microsoft.com/azure/service-fabric/service-fabric-visualizing-your-cluster)
 
-Configure [Service Fabric monitoring and diagnostics](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-diagnostics-overview) for your application:
+Configure [Service Fabric monitoring and diagnostics](https://learn.microsoft.com/azure/service-fabric/service-fabric-diagnostics-overview) for your application:
 
 - Enable Application Insights
 - Configure Service Fabric diagnostic collection
@@ -604,7 +604,7 @@ await healthClient.ReportHealthAsync(healthReport);
 
 ### 2. Scaling and Optimizing
 
-Service Fabric managed clusters support [manual scaling](https://learn.microsoft.com/en-us/azure/service-fabric/tutorial-managed-cluster-scale) and automatic scaling:
+Service Fabric managed clusters support [manual scaling](https://learn.microsoft.com/azure/service-fabric/tutorial-managed-cluster-scale) and automatic scaling:
 
 ```json
 {
@@ -623,7 +623,7 @@ Service Fabric managed clusters support [manual scaling](https://learn.microsoft
 
 ### 3. Disaster Recovery Planning
 
-- Configure [Service Fabric backup and restore service](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-backuprestoreservice-overview)
+- Configure [Service Fabric backup and restore service](https://learn.microsoft.com/azure/service-fabric/service-fabric-backuprestoreservice-overview)
 - Implement geo-replication where needed
 - Document recovery procedures
 - Test disaster recovery scenarios
@@ -631,7 +631,7 @@ Service Fabric managed clusters support [manual scaling](https://learn.microsoft
 ### 4. Security Posture
 
 Follow security best practices:
-- Apply [Service Fabric security best practices](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-best-practices-security)
+- Apply [Service Fabric security best practices](https://learn.microsoft.com/azure/service-fabric/service-fabric-best-practices-security)
 - Regularly update client certificates
 - Review network security
 - Implement proper authentication and authorization in applications
@@ -652,7 +652,7 @@ Follow security best practices:
 
 ### 3. Performance Issues
 - Analyze resource usage
-- Check [partition load](https://learn.microsoft.com/en-us/powershell/module/servicefabric/get-servicefabricpartitionloadinformation?view=azureservicefabricps)
+- Check [partition load](https://learn.microsoft.com/powershell/module/servicefabric/get-servicefabricpartitionloadinformation?view=azureservicefabricps)
 - Validate scaling policies
 - Review service code for bottlenecks
 
@@ -678,15 +678,15 @@ For in-depth guidance on migrating application state management to Service Fabri
 
 ## Additional Resources
 
-- [Azure Service Fabric Documentation](https://learn.microsoft.com/en-us/azure/service-fabric/)
-- [Service Fabric Managed Clusters Overview](https://learn.microsoft.com/en-us/azure/service-fabric/overview-managed-cluster)
-- [Connect to a Service Fabric managed cluster](https://learn.microsoft.com/en-us/azure/service-fabric/how-to-managed-cluster-connect)
-- [Service Fabric Programming Models](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-choose-framework)
-- [Service Fabric Architecture](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-architecture)
-- [Service Fabric Production Readiness Checklist](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-production-readiness-checklist)
-- [Service Fabric Best Practices for Security](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-best-practices-security)
-- [Service Fabric Application and Service Security](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-application-and-service-security)
-- [Service Fabric Cluster Security](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-security)
-- [Microsoft Training: Introduction to Azure Service Fabric](https://learn.microsoft.com/en-us/training/modules/intro-to-azure-service-fabric/)
+- [Azure Service Fabric Documentation](https://learn.microsoft.com/azure/service-fabric/)
+- [Service Fabric Managed Clusters Overview](https://learn.microsoft.com/azure/service-fabric/overview-managed-cluster)
+- [Connect to a Service Fabric managed cluster](https://learn.microsoft.com/azure/service-fabric/how-to-managed-cluster-connect)
+- [Service Fabric Programming Models](https://learn.microsoft.com/azure/service-fabric/service-fabric-choose-framework)
+- [Service Fabric Architecture](https://learn.microsoft.com/azure/service-fabric/service-fabric-architecture)
+- [Service Fabric Production Readiness Checklist](https://learn.microsoft.com/azure/service-fabric/service-fabric-production-readiness-checklist)
+- [Service Fabric Best Practices for Security](https://learn.microsoft.com/azure/service-fabric/service-fabric-best-practices-security)
+- [Service Fabric Application and Service Security](https://learn.microsoft.com/azure/service-fabric/service-fabric-application-and-service-security)
+- [Service Fabric Cluster Security](https://learn.microsoft.com/azure/service-fabric/service-fabric-cluster-security)
+- [Microsoft Training: Introduction to Azure Service Fabric](https://learn.microsoft.com/training/modules/intro-to-azure-service-fabric/)
 - [Service Fabric Sample Applications](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started) 
-- [Service Fabric managed cluster configuration options](https://learn.microsoft.com/en-us/azure/service-fabric/how-to-managed-cluster-configuration)
+- [Service Fabric managed cluster configuration options](https://learn.microsoft.com/azure/service-fabric/how-to-managed-cluster-configuration)
