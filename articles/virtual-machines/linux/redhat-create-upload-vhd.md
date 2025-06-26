@@ -1245,16 +1245,20 @@ This section shows you how to use KVM to prepare RHEL 7 to upload to Azure.
         > of indentation 
         >
         > Example of an incorrect setting:
+        > ```
         > cloud_init_modules:
         >  - disk_setup
         >  - mounts 
         >   - migrators
-        >
+        > ```
+        > 
         > Example of a correct setting:
+        > ```
         > cloud_init_modules:
         >   - disk_setup
         >   - mounts 
         >   - migrators
+        > ```
 
     1. Configure the Azure data source:
 
