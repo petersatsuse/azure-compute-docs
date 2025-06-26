@@ -12,7 +12,7 @@ ms.date: 06/26/2025
 
 # Migrating from Azure Cloud Services to Service Fabric
 
-This guide provides detailed steps and best practices for migrating applications from Azure Cloud Services to Azure Service Fabric. Throughout this guide, we recommend using [Service Fabric Managed Clusters](https://learn.microsoft.com/azure/service-fabric/overview-managed-cluster) as they provide simplified cluster management, enhanced security, and automated patching.
+This guide provides detailed steps and best practices for migrating applications from Azure Cloud Services to Azure Service Fabric. Throughout this guide, we recommend using [Service Fabric Managed Clusters](overview-managed-cluster.md) as they provide simplified cluster management, enhanced security, and automated patching.
 
 You should review the [decision matrix for migrating from Cloud Services](cloud-services-migration-decision-matrix.md) to make sure you're choosing the right Azure services from your architecture.
 
@@ -192,7 +192,7 @@ Minimal changes to application architecture, focusing on adapting existing code 
 - Doesn't fully leverage Service Fabric capabilities
 - May require future refactoring to optimize
 
-**Important Limitation**: Service Fabric Managed Clusters currently **do not support containers**. If your application requires IIS, Windows-specific server components, or other dependencies that would be best containerized, you need to use a traditional Service Fabric cluster with Windows Container support instead of a Managed Cluster. Consider this limitation carefully when planning your lift-and-shift migration approach.  Refer to [Containerize existing Windows applications](/previous-versions/azure/architecture/service-fabric/modernize-app-azure-service-fabric.md#containerize-existing-windows-applications)
+**Important Limitation**: Service Fabric Managed Clusters currently **do not support containers**. If your application requires IIS, Windows-specific server components, or other dependencies that would be best containerized, you need to use a traditional Service Fabric cluster with Windows Container support instead of a Managed Cluster. Consider this limitation carefully when planning your lift-and-shift migration approach.  Refer to [Containerize existing Windows applications](/previous-versions/azure/architecture/service-fabric/modernize-app-azure-service-fabric#containerize-existing-windows-applications)
 
 #### Refactor to Microservices
 Decompose application into microservices for greater scalability and easier maintenance.
@@ -225,7 +225,7 @@ Decompose application into microservices for greater scalability and easier main
 
 1. **Setup Service Fabric Environment**
    - For applications without container dependencies: Create a managed cluster using [Service Fabric Managed Cluster deployment tutorial](tutorial-managed-cluster-deploy.md)
-   - For applications requiring containers: Create a traditional Service Fabric cluster with [Windows Container support](service-fabric-get-started-containers-windows.md)
+   - For applications requiring containers: Create a traditional Service Fabric cluster with [Windows Container support](service-fabric-get-started-containers.md)
    - Configure networking and security
    - Establish CI/CD pipeline for Service Fabric
 
@@ -623,7 +623,7 @@ Service Fabric managed clusters support [manual scaling](tutorial-managed-cluste
 
 ### 3. Disaster Recovery Planning
 
-- Configure [Service Fabric backup and restore service](service-fabric-backuprestoreservice-overview.md)
+- Configure [Service Fabric backup and restore service](service-fabric-reliable-services-backup-restore.md)
 - Implement geo-replication where needed
 - Document recovery procedures
 - Test disaster recovery scenarios
@@ -652,7 +652,7 @@ Follow security best practices:
 
 ### 3. Performance Issues
 - Analyze resource usage
-- Check [partition load](/powershell/module/servicefabric/get-servicefabricpartitionloadinformation.md?view=azureservicefabricps)
+- Check [partition load](/powershell/module/servicefabric/get-servicefabricpartitionloadinformation?view=azureservicefabricps&preserve-view=true)
 - Validate scaling policies
 - Review service code for bottlenecks
 
@@ -678,7 +678,7 @@ For in-depth guidance on migrating application state management to Service Fabri
 
 ## Additional Resources
 
-- [Azure Service Fabric Documentation](https://learn.microsoft.com/azure/service-fabric/)
+- [Azure Service Fabric Documentation](index.yml)
 - [Service Fabric Managed Clusters Overview](overview-managed-cluster.md)
 - [Connect to a Service Fabric managed cluster](how-to-managed-cluster-connect.md)
 - [Service Fabric Programming Models](service-fabric-choose-framework.md)
