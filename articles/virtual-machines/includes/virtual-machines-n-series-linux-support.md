@@ -1,5 +1,5 @@
 ---
- title: include file
+title: include file
  description: include file
  services: virtual-machines-linux
 author: jushiman
@@ -15,6 +15,9 @@ ms.custom: include file, linux-related-content
 ### NVIDIA CUDA drivers
 
 For the latest CUDA drivers and supported operating systems, visit the [NVIDIA](https://developer.nvidia.com/cuda-zone) website. Ensure that you install or upgrade to the latest supported CUDA drivers for your distribution. 
+
+> [!NOTE]
+> vGPU18 is available for the NCasT4_v3-series. We will provide an update once vGPU18 becomes available for the NVadsA10_v5-series. 
 
 > [!NOTE]
 > The latest supported CUDA driver for original NC-series SKU VMs is currently 470.82.01. Later driver versions aren't supported on the K80 cards in NC.
