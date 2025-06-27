@@ -17,9 +17,6 @@ ms.custom: include file, linux-related-content
 For the latest CUDA drivers and supported operating systems, visit the [NVIDIA](https://developer.nvidia.com/cuda-zone) website. Ensure that you install or upgrade to the latest supported CUDA drivers for your distribution. 
 
 > [!NOTE]
-> vGPU18 is available for the NCasT4_v3-series. We will provide an update once vGPU18 becomes available for the NVadsA10_v5-series. 
-
-> [!NOTE]
 > The latest supported CUDA driver for original NC-series SKU VMs is currently 470.82.01. Later driver versions aren't supported on the K80 cards in NC.
 >
 > [!NOTE]
@@ -33,6 +30,9 @@ For the latest CUDA drivers and supported operating systems, visit the [NVIDIA](
 
 
 ### NVIDIA GRID drivers
+
+> [!NOTE]
+> vGPU18 is available for the NCasT4_v3-series. We will provide an update once vGPU18 becomes available for the NVadsA10_v5-series. 
 
 Microsoft redistributes NVIDIA GRID driver installers for NV and NVv3-series VMs used as virtual workstations or for virtual applications. Install only these GRID drivers on Azure NV VMs, only on the operating systems listed in the following table. These drivers include licensing for GRID Virtual GPU Software in Azure. You don't need to set up a NVIDIA vGPU software license server.
 
