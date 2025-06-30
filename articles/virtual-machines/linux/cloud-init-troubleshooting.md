@@ -120,7 +120,7 @@ Gathers essential logs: /var/log/cloud-init*.log, instance metadata, system info
 
 Packages everything into a timestamped .tar.gz archive.
 
-Saves the archive locally (for example, /tmp/cloud-init-logs-<timestamp>.tar.gz).
+Saves the archive locally (for example, `/tmp/cloud-init-logs-timestamp.tar.gz`).
 
 > [!TIP]
 > If you are troubleshooting a custom image, you should consider adding a user during the image. If the provisioning fails to set the admin user, you can still log in to the OS.
