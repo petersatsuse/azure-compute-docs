@@ -99,7 +99,6 @@ Within these offers, associated plans and images are described as a "Pay-As-You-
 * [SUSE Enterprise Linux 15 SP6 Arm64 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp6-arm64?tab=PlansAndPrice)
 * [SUSE Enterprise Linux 15 SP6 + Patching](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp6-basic?tab=Overview)
 * [SUSE Enterprise Linux for SAP 12 SP5 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-12-sp5?tab=Overview)
-* [SUSE Enterprise Linux for SAP 15 SP1 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-15-sp1?tab=Overview)
 * [SUSE Enterprise Linux for SAP 15 SP3 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-15-sp3?tab=Overview)
 * [SUSE Enterprise Linux for SAP 15 SP4 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-15-sp4?tab=Overview)
 * [SUSE Enterprise Linux for SAP 15 SP4 Hardened + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-15-sp4-hardened?tab=Overview)
