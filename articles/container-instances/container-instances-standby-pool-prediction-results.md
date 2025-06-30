@@ -9,6 +9,7 @@ ms.custom:
 ms.topic: concept-article
 ms.date: 5/19/2025
 ms.reviewer: tomvcassidy
+# Customer intent: As a cloud administrator, I want to retrieve prediction results for my standby pool, so that I can optimize resource allocation and improve operational efficiency based on forecasted demand.
 ---
 
 # Get prediction results for standby pools for Azure Container Instances (Preview)

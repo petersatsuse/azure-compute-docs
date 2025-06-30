@@ -177,8 +177,7 @@ The price of an Azure Standard HDD is determined by the performance tier of the 
 The initial billing of Standard HDDs is determined by the performance tier. The performance tier is set when you select the capacity you require (if you deploy a 1 TiB Standard HDD, it has the S30 tier), your disk is billed at that tier. If you increase the capacity of your disk into the next tier, it's billed at that tier. For example, if you increased your 1-TiB disk to a 3-TiB disk, it's billed at the S50 tier.
 
 ### Standard HDD Transactions
-For Standard HDDs, each I/O operation is considered as a single transaction, whatever the I/O size. These transactions have a billing impact.
-
+Standard HDD transactions incur a billable cost for every 10,000 disk operations.
 
 ### Standard HDD billing example 
 In this example, we provision a 512 GiB Standard HDD Disk with LRS redundancy. 

@@ -4,7 +4,7 @@ description: Use encryption at host to enable end-to-end encryption on your Azur
 author: roygara
 ms.service: azure-disk-storage
 ms.topic: how-to
-ms.date: 02/25/2025
+ms.date: 06/25/2025
 ms.author: rogarana
 ms.custom:
   - devx-track-azurecli
@@ -226,7 +226,7 @@ az vmss update -n $vmssName \
 
 ## Finding supported VM sizes
 
-Legacy VM Sizes aren't supported. You can find the list of supported VM sizes by either using resource SKU APIs or the Azure PowerShell module. You can't find the supported sizes using the CLI.
+Legacy VM Sizes aren't supported. You can find the list of supported VM sizes by either using resource SKU APIs or the Azure CLI.
 
 When calling the [Resource Skus API](/rest/api/compute/resourceskus/list), check that the `EncryptionAtHostSupported` capability is set to **True**.
 
@@ -249,24 +249,17 @@ When calling the [Resource Skus API](/rest/api/compute/resourceskus/list), check
     }
 ```
 
-For the Azure PowerShell module, use the [Get-AzComputeResourceSku](/powershell/module/az.compute/get-azcomputeresourcesku) cmdlet.
+For the Azure CLI, use the [az vm image list-skus](/cli/azure/vm/image?view=azure-cli-latest#az-vm-image-list-skus) command.
 
-```azurepowershell-interactive
-$vmSizes=Get-AzComputeResourceSku | where{$_.ResourceType -eq 'virtualMachines' -and $_.Locations.Contains('CentralUS')}
+```azurecli
+location=centralus
 
-foreach($vmSize in $vmSizes)
-{
-    foreach($capability in $vmSize.capabilities)
-    {
-        if($capability.Name -eq 'EncryptionAtHostSupported' -and $capability.Value -eq 'true')
-        {
-            $vmSize
-
-        }
-
-    }
-}
+az vm list-skus --location $location --all \
+--resource-type virtualMachines \
+--query "[?capabilities[?name=='EncryptionAtHostSupported' && value=='True']].{VMName:name, EncryptionAtHost:capabilities[?name=='EncryptionAtHostSupported'].value | [0]}" \
+--output table
 ```
+
 
 ## Next steps
 
