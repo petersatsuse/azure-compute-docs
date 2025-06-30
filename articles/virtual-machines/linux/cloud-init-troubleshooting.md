@@ -34,14 +34,14 @@ This article steps you through how to troubleshoot cloud-init. For more in-depth
 
 ## Troubleshooting failures reported by cloud-init and logged as error
 
-Cloud-init emits structured errors when reporting failure to Azure during provisioning.  These error messages include a reason and supporting data (such as timestamp, VM identifier, documentation URL, etc.) to help investigate the failure.
+Cloud-init emits structured errors when reporting failure to Azure during provisioning. These error messages include a reason and supporting data (such as timestamp, VM identifier, documentation URL, etc.) to help investigate the failure.
 
 | Reason | Description | Action |
 |:---|:---|:---|
-| failure to find DHCP interface | No network interface was found. | Delete and re-create VM.  If issue persists, ensure networking drivers or Azure-specific kernel is installed and check boot diagnostics to verify eth0 is enumerated. |
+| failure to find DHCP interface | No network interface was found. | Delete and re-create VM. If issue persists, ensure networking drivers or Azure-specific kernel is installed and check boot diagnostics to verify eth0 is enumerated. |
 | failure to obtain DHCP lease | DHCP service fails to respond due to transient platform issue. | Delete and re-create VM. |
 | failure to find primary DHCP interface | Primary DHCP interface was not found. | Check boot diagnostics to ensure primary network interface is named `eth0` and it is not renamed. |
-| connection timeout querying IMDS | Connections to IMDS may timeout due to transient platform issue, NSG, or OS firewall configuration. | Delete and re-create VM.  If issue persists, validate that NSG or OS firewall is not preventing access to IMDS.  |
+| connection timeout querying IMDS | Connections to IMDS may timeout due to transient platform issue, NSG, or OS firewall configuration. | Delete and re-create VM. If issue persists, validate that NSG or OS firewall is not preventing access to IMDS.  |
 | read timeout querying IMDS | Connections to IMDS may timeout due to transient platform issue or OS firewall configuration. | Delete and re-create VM. If issue persists, validate OS firewall is not preventing access to IMDS. |
 | unexpected metadata parsing ovf-env.xml | Malformed VM metadata in `ovf-env.xml`. | Submit the issue to the cloud-init tracker using the provided link. |
 | error waiting for host shutdown | Failure during host shutdown handling. | Submit the issue to the cloud-init tracker using the provided link. |
@@ -82,7 +82,7 @@ For the [supported Azure cloud-init images](./using-cloud-init.md), the Linux di
 
 When the VM fails to provision, Azure shows 'creating' status, for 20 minutes, and then reboot the VM, and wait another 20 minutes before finally marking the VM deployment as failed, before finally marking it with an `OSProvisioningTimedOut` error.
 
-While the VM is running, you need the logs from the VM to understand why provisioning failed.  To understand why VM provisioning failed, do not stop the VM. Keep the VM running. You need to keep the failed VM in a running state in order to collect logs. To collect the logs, use one of the following methods:
+While the VM is running, you need the logs from the VM to understand why provisioning failed. To understand why VM provisioning failed, do not stop the VM. Keep the VM running. You need to keep the failed VM in a running state in order to collect logs. To collect the logs, use one of the following methods:
 
 - [Enable Boot Diagnostics](/previous-versions/azure/virtual-machines/linux/tutorial-monitor#enable-boot-diagnostics) before creating the VM and then [View](/previous-versions/azure/virtual-machines/linux/tutorial-monitor#view-boot-diagnostics) them during the boot.
 
@@ -110,7 +110,7 @@ To start initial troubleshooting, start with the cloud-init logs, and understand
 * /var/log/cloud-init-output.log
 * Serial/boot logs
 
-In all logs, start searching for "Failed", "WARNING", "WARN", "err", "error", "ERROR". Setting configuration to ignore case-sensitive searches is recommended.
+In all logs, start searching for "Failed," "WARNING", "WARN", "err", "error", "ERROR". Setting configuration to ignore case-sensitive searches is recommended.
 
 Alternatively, use command `cloud‑init collect‑logs` to collect all necessary logs.
 Azure’s latest cloud-init versions (≥ 18.2) include the collect‑logs command, which:
@@ -152,7 +152,7 @@ When you find an error or warning, read backwards in the cloud-init log to under
 
 If you have access to the [Serial Console](/troubleshoot/azure/virtual-machines/serial-console-grub-single-user-mode), you can try to rerun the command that cloud-init was trying to run.
 
-The logging for `/var/log/cloud-init.log` can also be reconfigured within /etc/cloud/cloud.cfg.d/05_logging.cfg. For more details of cloud-init logging, refer to the [cloud-init documentation](https://cloudinit.readthedocs.io/en/latest/development/logging.html).
+The logging for `/var/log/cloud-init.log` can also be reconfigured within /etc/cloud/cloud.cfg.d/05_logging.cfg. For more information of cloud-init logging, see the [cloud-init documentation](https://cloudinit.readthedocs.io/en/latest/development/logging.html).
 
 #### /var/log/cloud-init-output.log
 
@@ -162,11 +162,11 @@ You can get information from the `stdout` and `stderr` during the [stages of clo
 
 Cloud-init has multiple dependencies. These dependencies are documented in the required prerequisites for images on Azure, such as networking, storage, the ability to mount an ISO, and to mount and format the temporary disk. Any of these dependencies may throw errors and cause cloud-init to fail. For example, If the VM cannot get a DHCP lease, cloud-init fails.
 
-If you still cannot isolate why cloud-init failed to provision then you need to understand what cloud-init stages, and when modules run. See [Diving deeper into cloud-init](cloud-init-deep-dive.md) for more details.
+If you still cannot isolate why cloud-init failed to provision then you need to understand what cloud-init stages, and when modules run. For more information, see [Diving deeper into cloud-init](cloud-init-deep-dive.md).
 
 ### <a id="step4"></a> Step 4: Investigate why the configuration isn't being applied
 
-Not every failure in cloud-init results in a fatal provisioning failure. For example, if you use the `runcmd` module in a cloud-init config, a non-zero exit code from the command cause the VM provisioning to fail. This behavior occurs because the module runs after the core provisioning steps in the first three stages of cloud-init. To troubleshoot why the configuration did not apply, review the logs in Step 3, and cloud-init modules manually. For example:
+Not every failure in cloud-init results in a fatal provisioning failure. For example, if you use the `runcmd` module in a cloud-init config, a nonzero exit code from the command cause the VM provisioning to fail. This behavior occurs because the module runs after the core provisioning steps in the first three stages of cloud-init. To troubleshoot why the configuration did not apply, review the logs in Step 3, and cloud-init modules manually. For example:
 
 - `runcmd` - do the scripts run without errors? Run the configuration manually from the terminal to ensure they run as expected.
 - Installing packages - does the VM have access to package repositories?
@@ -174,4 +174,4 @@ Not every failure in cloud-init results in a fatal provisioning failure. For exa
 
 ## Next steps
 
-If cloud-init skips the configuration, examine each cloud-init stage and the timing of module execution to identify the cause. See [Diving deeper into cloud-init configuration](./cloud-init-deep-dive.md) for more information.
+If cloud-init skips the configuration, examine each cloud-init stage and the timing of module execution to identify the cause. For more information, see [Diving deeper into cloud-init configuration](./cloud-init-deep-dive.md).
