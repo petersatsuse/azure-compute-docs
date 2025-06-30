@@ -6,7 +6,7 @@ ms.service: azure-virtual-machines
 ms.subservice: sizes
 ms.topic: concept-article
 ms.workload: infrastructure-services
-ms.date: 06/17/2025
+ms.date: 06/30/2025
 ms.author: mattmcinnes
 ---
 
