@@ -63,7 +63,7 @@ The following PAYG RHEL and SLES Marketplace offers are eligible to use with Azu
 
 ## Limitations
 
-Only RHEL images *published by Red Hat, Inc.* are eligible for the PAYG to BYOS conversion using the Azure Hybrid Benefit. Images that are published by other vendors aren't supported.
+Only RHEL images *published by Red Hat, Inc.* are eligible for the PAYG to BYOS conversion using the Azure Hybrid Benefit. Images from other vendors aren't supported.
 
 ### Red Hat-published RHEL PAYG offers eligible for Azure Hybrid Benefit
 
@@ -84,7 +84,7 @@ Within these offers, associated images are described as "Pay-As-You-Go".
 
 ## Limitations
 
-Only SLES images *published by SUSE* are eligible to use for the PAYG to BYOS conversion with the Azure Hybrid Benefit. Images that are published by other vendors aren't supported.
+Only SLES images *published by SUSE* are eligible to use for the PAYG to BYOS conversion with the Azure Hybrid Benefit. Images from other vendors aren't supported.
 
 ### SUSE-published SLES PAYG offers eligible for Azure Hybrid Benefit
 
@@ -113,7 +113,7 @@ Within these offers, associated plans and images are described as a "Pay-As-You-
 
 ### BYOS
 
-Azure Hybrid Benefit is also available for RHEL and SLES BYOS Azure Marketplace images, as well as for images brought from on-prem or other public cloud.
+Azure Hybrid Benefit is also available for RHEL and SLES BYOS Azure Marketplace images and images brought from on-prem or other cloud providers.
 
 Currently, one RHEL BYOS offer is available. This offer is a private listing. To gain access to this private listing, you must join the Red Hat Cloud Access program.
 
@@ -210,7 +210,7 @@ You can use the `az vm extension` and `az vm update` commands to update an exist
    ```
 
    > [!NOTE]
-   > The complete `az vm extension` command depends on the particular distribution you are using. For complete information, see the next section.
+   > The complete `az vm extension` command depends on the particular distribution you're using. For complete information, see the next section.
 
 1. Update the VM with the correct license type:
 
@@ -280,7 +280,7 @@ The Azure Hybrid Benefit extension must be installed on the VM to switch the lic
 
    * SLES_BYOS
 
-   If the license type of the VM hasn't been modified, this command returns an empty string and the VM continues to use the billing model of the image that you used to deploy it.
+   If the license type of the VM isn't modified, this command returns an empty string and the VM continues to use the billing model of the image that you used to deploy it.
 
 ### [Azure PowerShell](#tab/licensepowershell)
 
@@ -290,7 +290,7 @@ The Azure Hybrid Benefit extension must be installed on the VM to switch the lic
    Get-AzVM -ResourceGroupName MyResourceGroup -Name myVM -Status | Select-Object -ExpandProperty Extensions
    ```
 
-1. When the corresponding Red Hat or SUSE Azure Hybrid Benefit extension is installed, use the following command to review the license type that's applied to the VM:
+1. When the corresponding Red Hat or SUSE Azure Hybrid Benefit extension is installed, use the following command to review the VM's license type:
 
    ```azurepowershell
    (Get-AzVM -ResourceGroupName MyResourceGroup -Name myVM).LicenseType
@@ -323,7 +323,7 @@ The Azure Hybrid Benefit extension must be installed on the VM to switch the lic
 
    * SLES_BYOS
 
-   If the license type of the VM hasn't been modified, this command returns an empty string and the VM continues to use the billing model of the image that you used to deploy it.
+   If the license type of the VM isn't modified, this command returns an empty string and the VM continues to use the billing model of the image that you used to deploy it.
 
 ---
 
@@ -554,7 +554,7 @@ Customers who use Azure Hybrid Benefit for PAYG RHEL VMs have three options for 
 
 Customers can use RHUI as the main update source for Azure Hybrid Benefit for PAYG RHEL VMs without attaching subscriptions. Customers who choose the RHUI option are responsible for ensuring RHEL subscription compliance.
 
-Customers who choose either Red Hat Satellite Server or Red Hat Subscription Manager should remove the RHUI configuration and then attach a cloud-access-enabled RHEL subscription to Azure Hybrid Benefit for PAYG RHEL VMs.
+Customers using either Red Hat Satellite Server or Red Hat Subscription Manager should remove the RHUI configuration and attach a cloud-access-enabled RHEL subscription to Azure Hybrid Benefit for PAYG RHEL VMs.
 
 For more information about Red Hat subscription compliance, software updates, and sources for Azure Hybrid Benefit for PAYG RHEL VMs, see the [Red Hat article about using RHEL subscriptions with Azure Hybrid Benefit](https://access.redhat.com/articles/5419341).
 
