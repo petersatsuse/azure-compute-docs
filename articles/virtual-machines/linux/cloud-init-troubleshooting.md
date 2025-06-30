@@ -14,15 +14,16 @@ ms.custom: linux-related-content
 # Troubleshooting VM provisioning with cloud-init
 
 > [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and plan accordingly. For more information, see the [CentOS End Of Life guidance](~/articles/virtual-machines/workloads/centos/centos-end-of-life.md).
+> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Consider your use and plan accordingly. For more information, see the [CentOS End Of Life guidance](~/articles/virtual-machines/workloads/centos/centos-end-of-life.md).
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets
 
-If you have been creating generalized custom images, using cloud-init to do provisioning, but have found that VM did not create correctly, you will need to troubleshoot your custom images.
+If you create generalized custom images and use cloud-init for provisioning, but the VM doesn’t build correctly, you’ll need to troubleshoot the image.
+Start by checking whether the provisioning steps in cloud-init are causing the issue.
 
 Some examples, of issues with provisioning:
 
-- Cloud-init reports failure that is returned by Compute Resource Provider API on error.
+- The Compute Resource Provider API returns an error, and cloud-init reports the resulting failure..
 - VM gets stuck at 'creating' for 40 minutes, and the VM creation is marked as failed.
 - [Custom data](/azure/virtual-machines/custom-data) or [User data](/azure/virtual-machines/user-data) does not get processed.
 - The ephemeral disk fails to mount (for VM skus that come with SCSI resource disks).
@@ -34,7 +35,7 @@ This article steps you through how to troubleshoot cloud-init. For more in-depth
 
 ## Troubleshooting failures reported by cloud-init and logged as error
 
-Cloud-init emits structured errors when reporting failure to Azure during provisioning.  These include a reason and supporting data (such as timestamp, VM identifier, documentation URL, etc.) to help investigate the failure.
+Cloud-init emits structured errors when reporting failure to Azure during provisioning.  These error messages include a reason and supporting data (such as timestamp, VM identifier, documentation URL, etc.) to help investigate the failure.
 
 | Reason | Description | Action |
 |:---|:---|:---|
@@ -43,15 +44,15 @@ Cloud-init emits structured errors when reporting failure to Azure during provis
 | failure to find primary DHCP interface | Primary DHCP interface was not found. | Check boot diagnostics to ensure primary network interface is named `eth0` and it is not renamed. |
 | connection timeout querying IMDS | Connections to IMDS may timeout due to transient platform issue, NSG, or OS firewall configuration. | Delete and re-create VM.  If issue persists, validate that NSG or OS firewall is not preventing access to IMDS.  |
 | read timeout querying IMDS | Connections to IMDS may timeout due to transient platform issue or OS firewall configuration. | Delete and re-create VM. If issue persists, validate OS firewall is not preventing access to IMDS. |
-| unexpected metadata parsing ovf-env.xml | Malformed VM metadata in `ovf-env.xml`. | Report to cloud-init issue tracker (see below). |
-| error waiting for host shutdown | Failure during host shutdown handling. | Report to cloud-init issue tracker (see below). |
+| unexpected metadata parsing ovf-env.xml | Malformed VM metadata in `ovf-env.xml`. | Submit the issue to the cloud-init tracker using the provided link. |
+| error waiting for host shutdown | Failure during host shutdown handling. | Submit the issue to the cloud-init tracker using the provided link. |
 | azure-proxy-agent not found | The `azure-proxy-agent` binary is missing. | Ensure Azure proxy agent is installed in the image. For more troubleshooting, check out [MSP troubleshooting guide](/azure/virtual-machines/metadata-security-protocol/troubleshoot-guide). |
 | azure-proxy-agent status failure | Proxy agent reported a status error. | Review proxy agent logs and update if needed. For more troubleshooting, check out [MSP troubleshooting guide](/azure/virtual-machines/metadata-security-protocol/troubleshoot-guide). |
-| unhandled exception | An unexpected error occurred inside cloud-init. | Report to cloud-init issue tracker (see below). |
+| unhandled exception | An unexpected error occurred inside cloud-init. | Submit the issue to the cloud-init tracker using the provided link. |
 
 For help enabling and checking boot diagnostics, see [Boot Diagnostics](/azure/virtual-machines/boot-diagnostics).
 
-If any of these issues persist on subsequent attempts at provisioning, it is usually due to a misconfiguration in the image. If there is reason to believe there is a cloud-init issue, please report it to [cloud-init GitHub issue tracker](https://github.com/canonical/cloud-init/issues/).
+If any of these issues persist on subsequent attempts at provisioning, it is due to a misconfiguration in the image. If there is reason to believe there is a cloud-init issue, report it to [cloud-init GitHub issue tracker](https://github.com/canonical/cloud-init/issues/).
 
 ## Troubleshooting other failures unreported by cloud-init
 
@@ -80,9 +81,9 @@ For the [supported Azure cloud-init images](./using-cloud-init.md), the Linux di
 
 ### <a id="step3"></a> Step 3: Collect & review VM logs
 
-When the VM fails to provision, Azure will show 'creating' status, for 20 minutes, and then reboot the VM, and wait another 20 minutes before finally marking the VM deployment as failed, before finally marking it with an `OSProvisioningTimedOut` error.
+When the VM fails to provision, Azure shows 'creating' status, for 20 minutes, and then reboot the VM, and wait another 20 minutes before finally marking the VM deployment as failed, before finally marking it with an `OSProvisioningTimedOut` error.
 
-While the VM is running, you will need the logs from the VM to understand why provisioning failed.  To understand why VM provisioning failed, do not stop the VM. Keep the VM running. You will need to keep the failed VM in a running state in order to collect logs. To collect the logs, use one of the following methods:
+While the VM is running, you need the logs from the VM to understand why provisioning failed.  To understand why VM provisioning failed, do not stop the VM. Keep the VM running. You need to keep the failed VM in a running state in order to collect logs. To collect the logs, use one of the following methods:
 
 - [Enable Boot Diagnostics](/previous-versions/azure/virtual-machines/linux/tutorial-monitor#enable-boot-diagnostics) before creating the VM and then [View](/previous-versions/azure/virtual-machines/linux/tutorial-monitor#view-boot-diagnostics) them during the boot.
 
@@ -104,13 +105,22 @@ sudo cat /rescue/var/log/boot*
 > [!NOTE]
 > Alternatively, you can create a rescue VM manually by using the Azure portal. For more information, see [Troubleshoot a Linux VM by attaching the OS disk to a recovery VM using the Azure portal](/troubleshoot/azure/virtual-machines/troubleshoot-recovery-disks-portal-linux).
 
-To start initial troubleshooting, start with the cloud-init logs, and understand where the failure occurred, then use the other logs to deep dive, and provide additional insights.
+To start initial troubleshooting, start with the cloud-init logs, and understand where the failure occurred, then use the other logs to deep dive, and provide more insights.
 
 * /var/log/cloud-init.log
 * /var/log/cloud-init-output.log
 * Serial/boot logs
 
 In all logs, start searching for "Failed", "WARNING", "WARN", "err", "error", "ERROR". Setting configuration to ignore case-sensitive searches is recommended.
+
+Alternatively, use command `cloud‑init collect‑logs` to collect all necessary logs.
+Azure’s latest cloud-init versions (≥ 18.2) include the collect‑logs command, which:
+
+Gathers essential logs: /var/log/cloud-init*.log, instance metadata, system info.
+
+Packages everything into a timestamped .tar.gz archive.
+
+Saves the archive locally (for example, /tmp/cloud-init-logs-<timestamp>.tar.gz).
 
 > [!TIP]
 > If you are troubleshooting a custom image, you should consider adding a user during the image. If the provisioning fails to set the admin user, you can still log in to the OS.
@@ -121,7 +131,7 @@ Here are more details about what to look for in each cloud-init log.
 
 #### /var/log/cloud-init.log
 
-By default, all cloud-init events with a priority of debug or higher, are written to `/var/log/cloud-init.log`. This provides verbose logs of every event that occurred during cloud-init initialization.
+By default, all cloud-init events with a priority of debug or higher, are written to `/var/log/cloud-init.log`. This log provides verbose logs of every event that occurred during cloud-init initialization.
 
 For example:
 
@@ -135,7 +145,7 @@ Stderr: mount: unknown filesystem type 'udf'
 2020-01-31 00:21:53,352 - DataSourceAzure.py[WARNING]: /dev/sr0 was not mountable
 ```
 
-Once you have found an error or warning, read backwards in the cloud-init log to understand what cloud-init was attempting before it hit the error or warning. In many cases cloud-init will have run OS commands or performed provisioning operations prior to the error, which can provide insights as to why errors appeared in the logs. The following example shows that cloud-init attempted to mount a device right before it hit an error.
+Once you have found an error or warning, read backwards in the cloud-init log to understand what cloud-init was attempting before it hit the error or warning. In many cases, cloud-init runs OS commands or performs provisioning steps before the error occurs. These actions can help explain why the error appears in the logs. The following example shows that cloud-init attempted to mount a device right before it encountered the issue.
 
 ```output
 2019-10-10 04:51:24,010 - util.py[DEBUG]: Running command ['mount', '-o', 'ro,sync', '-t', 'auto', u'/dev/sr0', '/run/cloud-init/tmp/tmpXXXXX'] with allowed return codes [0] (shell=False, capture=True)
