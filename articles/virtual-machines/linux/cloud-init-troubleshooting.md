@@ -45,13 +45,13 @@ Cloud-init emits structured errors when reporting failure to Azure during provis
 | read timeout querying IMDS | Connections to IMDS may timeout due to transient platform issue or OS firewall configuration. | Delete and re-create VM. If issue persists, validate OS firewall isn't preventing access to IMDS. |
 | unexpected metadata parsing ovf-env.xml | Malformed VM metadata in `ovf-env.xml`. | Submit the issue to the cloud-init tracker using the provided link. |
 | error waiting for host shutdown | Failure during host shutdown handling. | Submit the issue to the cloud-init tracker using the provided link. |
-| azure-proxy-agent not found | The `azure-proxy-agent` binary is missing. | Ensure Azure proxy agent is installed in the image. For more troubleshooting, check out [MSP troubleshooting guide](/azure/virtual-machines/metadata-security-protocol/troubleshoot-guide). |
-| azure-proxy-agent status failure | Proxy agent reported a status error. | Review proxy agent logs and update if needed. For more troubleshooting, check out [MSP troubleshooting guide](/azure/virtual-machines/metadata-security-protocol/troubleshoot-guide). |
+| Azure-proxy-agent not found | The `azure-proxy-agent` binary is missing. | Ensure Azure proxy agent is installed in the image. For more troubleshooting, check out [MSP troubleshooting guide](/azure/virtual-machines/metadata-security-protocol/troubleshoot-guide). |
+| Azure-proxy-agent status failure | Proxy agent reported a status error. | Review proxy agent logs and update if needed. For more troubleshooting, check out [MSP troubleshooting guide](/azure/virtual-machines/metadata-security-protocol/troubleshoot-guide). |
 | unhandled exception | An unexpected error occurred inside cloud-init. | Submit the issue to the cloud-init tracker using the provided link. |
 
-For help enabling and checking boot diagnostics, see [Boot Diagnostics](/azure/virtual-machines/boot-diagnostics).
+For help with enabling and checking boot diagnostics, see [Boot Diagnostics](/azure/virtual-machines/boot-diagnostics).
 
-If any of these issues persist on subsequent attempts at provisioning, its due to a misconfiguration in the image. If there's reason to believe there's a cloud-init issue, report it to [cloud-init GitHub issue tracker](https://github.com/canonical/cloud-init/issues/).
+If any of these issues persist on subsequent attempts at provisioning, it's due to a misconfiguration in the image. If there's reason to believe there's a cloud-init issue, report it to [cloud-init GitHub issue tracker](https://github.com/canonical/cloud-init/issues/).
 
 ## Troubleshooting other failures unreported by cloud-init
 
@@ -59,7 +59,7 @@ Depending on the failure, consider these steps.
 
 ### <a id="step1"></a> Step 1: Test the deployment without `customData`
 
-Cloud-init can accept `customData`, that is passed to it, when the VM is created. First, you should ensure this configuration isn't causing any issues with deployments. Try to provisioning the VM without passing in any configuration. If the VM fails to provision, follow the recommended troubleshooting steps. If the configuration isn't applied, refer [step 4](#step4).
+Cloud-init can accept `customData` that is passed to it, when the VM is created. First, you should ensure this configuration isn't causing any issues with deployments. Try to provisioning the VM without passing in any configuration. If the VM fails to provision, follow the recommended troubleshooting steps. If the configuration isn't applied, refer [step 4](#step4).
 
 ### <a id="step2"></a> Step 2: Review image requirements
 
@@ -110,7 +110,7 @@ To start initial troubleshooting, start with the cloud-init logs, and understand
 * /var/log/cloud-init-output.log
 * Serial/boot logs
 
-In all logs, start searching for "Failed," "WARNING," "WARN," "err," "error," "ERROR". Setting configuration to ignore case-sensitive searches is recommended.
+In all logs, start searching for "Failed," "WARNING," "WARN," "err," "error," and "ERROR." Setting configuration to ignore case-sensitive searches is recommended.
 
 Alternatively, use command `cloud‑init collect‑logs` to collect all necessary logs.
 Azure’s latest cloud-init versions (≥ 18.2) include the collect‑logs command, which:
@@ -166,9 +166,9 @@ If you still can't isolate why cloud-init failed to provision then you need to u
 
 ### <a id="step4"></a> Step 4: Investigate why the configuration isn't being applied
 
-Not every failure in cloud-init results in a fatal provisioning failure. For example, if you use the `runcmd` module in a cloud-init config, a nonzero exit code from the command cause the VM provisioning to fail. This behavior occurs because the module runs after the core provisioning steps in the first three stages of cloud-init. To troubleshoot why the configuration didn't apply, review the logs in Step 3, and cloud-init modules manually. For example:
+Not every failure in cloud-init results in a fatal provisioning failure. For example, if you use the `runcmd` module in a cloud-init config, a nonzero exit code from the command causes the VM provisioning to fail. This behavior occurs because the module runs after the core provisioning steps in the first three stages of cloud-init. To troubleshoot why the configuration didn't apply, review the logs in Step 3, and cloud-init modules manually. For example:
 
-- `runcmd` - do the scripts run without errors? Run the configuration manually from the terminal to ensure they run as expected.
+- `runcmd` - do the scripts run without errors? To ensure they run as expected, run the configuration manually from the terminal.
 - Installing packages - does the VM have access to package repositories?
 - Check the `customData` configuration that was provided to the VM. This file is located in `/var/lib/cloud/instances/<unique-instance-identifier>/user-data.txt`.
 
