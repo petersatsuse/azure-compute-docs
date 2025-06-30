@@ -37,7 +37,7 @@ sections:
           
           - Active VM instances aren't impacted.  
           - New VM instances can't be created from any of the impacted images.
-          - Existing virtual machine scale sets deployments can't be scaled out if configured with any of the impacted images. When a plan or offer is being deprecated, all existing scale sets deployments pinned to any image within the plan or offer respectively can't be scaled out.
+          - Existing Virtual Machine Scale Set deployments can't be scaled out if configured with any of the impacted images. When a plan or offer is being deprecated, all existing scale sets deployments pinned to any image within the plan or offer respectively can't be scaled out.
           
           
           **What do I need to do?**
@@ -120,7 +120,7 @@ sections:
 
           - Run [Get-AzVMImageDeprecationStatus.ps1](https://github.com/Azure/azure-support-scripts/tree/master/VMImages#readme) to list if any VMs or VM scale sets in a subscription were created from VM images that are scheduled for deprecation.
           
-          When an image is deprecated, there's no impact on existing VMs and no action is required. When an image is deprecated, only VMSS scale-out operations and new VM and VMSS create operations are impacted.
+          When an image is deprecated, there's no impact on existing VMs and no action is required. When an image is deprecated, only Virtual Machine Scale Set scale-out operations and new VM and Virtual Machine Scale Set create operations are impacted.
           
       - question: How do I migrate my workloads to another image?
         answer: |
@@ -200,16 +200,16 @@ sections:
                - If set to rolling, existing instances will be automatically upgraded and reimaged by batch. 	
           - Update image reference using the steps in [Modify an Azure virtual machine scale set](../virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-scale-set.md).
           - Ensure that all existing instances are upgraded and on the latest model. You can also scale out and migrate workload to the new instances then delete the old instances, instead of upgrading the existing instances. 
-          - Once the existing instances are all upgraded to the new image, change the upgrade policy back to what it was if needed.            If you are using VMSS, we recommend enabling Automatic OS image upgrades so that the latest image published by image publishers is automatically applied to your scale set or VMSS without manual user intervention. Learn how to enable [Automatic OS Image Upgrade](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-upgrade?toc=/azure/virtual-machines/toc.json) 
+          - Once the existing instances are all upgraded to the new image, change the upgrade policy back to what it was if needed. If you are using Virtual Machine Scale Sets, we recommend enabling Automatic OS image upgrades so that the latest image published by image publishers is automatically applied to your scale set without manual user intervention. Learn how to enable [Automatic OS Image Upgrade](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-upgrade?toc=/azure/virtual-machines/toc.json).
 
       - question: What happens when a paid Marketplace image with the Purchase Plan Information is deprecated?
         answer: |
           If you're using a Paid Marketplace Image, when the image is deprecated attempting to restore the VM from backups can fail for images with Plan information once the image is removed or deprecated from the marketplace. We recommend creating new VMs and migrating your workload to that image if you're using a Paid Marketplace Image with Plan Information. 
-          If the VM Image is Free (doesn't require plan info), you can continue using the single VM and should be able to restore from backups. This only impacts single VMs and not VMSS workloads.
+          If the VM Image is Free, in that it doesn't require plan info, you can continue using the single VM and should be able to restore from backups. This only impacts single VMs and not Virtual Machine Scale Set workloads.
       
       - question: What happens when a free Marketplace image is deprecated?
         answer: |
-          There's no impact to existing VM or VMSS workloads when a free Marketplace Image is deprecated. However, you can't create new VMs or VMSS workloads from a deprecated free Marketplace Image.
+          There's no impact to existing VM or Virtual Machine Scale Set workloads when a free Marketplace Image is deprecated. However, you can't create new VMs or Virtual Machine Scale Set workloads from a deprecated free Marketplace Image.
 
       - question: Are all image versions lower than the indicated version also deprecated? 
         answer: |
@@ -276,7 +276,8 @@ sections:
           Get-AzVMImage: VM Image from publisher: MicrosoftWindowsServer with - Offer: WindowsServer, Sku: 2016-Datacenter, Version: 14393.4169.2101090332 is deprecated.
           ErrorCode: ImageVersionDeprecated
           ErrorMessage: VM Image from publisher: MicrosoftWindowsServer with - Offer: WindowsServer, Sku: 2016-Datacenter, Version: 14393.4169.2101090332 is deprecated.
-          ErrorTarget:          StatusCode: 404
+          ErrorTarget:  
+          StatusCode: 404
           ReasonPhrase: Not Found
           
       - question: What happens to my SQL Server instance if a SQL Server Azure Marketplace image is deprecated? 
