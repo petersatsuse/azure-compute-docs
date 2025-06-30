@@ -14,7 +14,7 @@ ms.custom: linux-related-content
 # Troubleshooting VM provisioning with cloud-init
 
 > [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Consider your use and plan accordingly. For more information, see the [CentOS End Of Life guidance](~/articles/virtual-machines/workloads/centos/centos-end-of-life.md).
+> This article references CentOS, a Linux distribution that is End Of Support (EOS) status. Consider your use and plan accordingly. For more information, see the [CentOS End Of Life guidance](~/articles/virtual-machines/workloads/centos/centos-end-of-life.md).
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Flexible scale sets
 
@@ -22,7 +22,7 @@ If you create generalized custom images and use cloud-init for provisioning, the
 
 Some examples, of issues with provisioning:
 
-- The Compute Resource Provider API returns an error, and cloud-init reports the resulting failure..
+- The Compute Resource Provider API returns an error, and cloud-init reports the resulting failure.
 - VM gets stuck at 'creating' for 40 minutes, and the VM creation is marked as failed.
 - [Custom data](/azure/virtual-machines/custom-data) or [User data](/azure/virtual-machines/user-data) doesn't get processed.
 - The ephemeral disk fails to mount (for VM skus that come with SCSI resource disks).
@@ -156,7 +156,8 @@ The logging for `/var/log/cloud-init.log` can also be reconfigured within /etc/c
 
 #### /var/log/cloud-init-output.log
 
-You can get information from the `stdout` and `stderr` during the [stages of cloud-init](cloud-init-deep-dive.md). This data normally involves routing table information, networking information, ssh host key verification information, `stdout` and `stderr` for each stage of cloud-init, along with the timestamps. If desired, `stderr` and `stdout` logging can be reconfigured from `/etc/cloud/cloud.cfg.d/05_logging.cfg`.
+You can get information from the `stdout` and `stderr` during the [stages of cloud-init](cloud-init-deep-dive.md). This data normally involves routing table information, networking information, ssh host key verification information, `stdout,` and `stderr` for each stage of cloud-init, along with the timestamps. If desired, `stderr` and `stdout` logging can be reconfigured from `/etc/cloud/cloud.cfg.d/05_logging.cfg`.
+
 
 #### Serial/boot logs
 
