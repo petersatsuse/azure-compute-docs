@@ -63,11 +63,11 @@ The following PAYG RHEL and SLES Marketplace offers are eligible to use with Azu
 
 ## Limitations
 
-Only RHEL images *published by Red Hat, Inc.* are eligible to use with Azure Hybrid Benefit. Images that are published by other vendors aren't supported.
+Only RHEL images *published by Red Hat, Inc.* are eligible for the PAYG to BYOS conversion using the Azure Hybrid Benefit. Images that are published by other vendors aren't supported.
 
 ### Red Hat-published RHEL PAYG offers eligible for Azure Hybrid Benefit
 
-The following Red Hat-published RHEL PAYG offers are eligible to use with Azure Hybrid Benefit. Links to the offers in Azure Marketplace are included.
+The following Red Hat-published RHEL PAYG offers are eligible to use with the Azure Hybrid Benefit. Links to the offers in Azure Marketplace are included.
 
 Within these offers, associated images are described as "Pay-As-You-Go".
 
@@ -84,7 +84,7 @@ Within these offers, associated images are described as "Pay-As-You-Go".
 
 ## Limitations
 
-Only SLES images *published by SUSE* are eligible to use with Azure Hybrid Benefit. Images that are published by other vendors aren't supported.
+Only SLES images *published by SUSE* are eligible to use for the PAYG to BYOS conversion with the Azure Hybrid Benefit. Images that are published by other vendors aren't supported.
 
 ### SUSE-published SLES PAYG offers eligible for Azure Hybrid Benefit
 
@@ -113,7 +113,7 @@ Within these offers, associated plans and images are described as a "Pay-As-You-
 
 ### BYOS
 
-Azure Hybrid Benefit is also available for RHEL and SLES BYOS Azure Marketplace images.
+Azure Hybrid Benefit is also available for RHEL and SLES BYOS Azure Marketplace images, as well as for images brought from on-prem or other public cloud.
 
 Currently, one RHEL BYOS offer is available. This offer is a private listing. To gain access to this private listing, you must join the Red Hat Cloud Access program.
 
@@ -348,10 +348,10 @@ Use the Azure CLI to convert a PAYG Azure Marketplace image to a BYOS subscripti
 
 1. When the PAYG to BYOS conversion is finished, you must register the VM with Red Hat for system updates and usage compliance.
 
-1. If you want to return to a PAYG subscription model, set `license-type` to `None`. Otherwise, the subscription model continues to be BYOS.
+1. If you want to return the original subscription model, set `license-type` to `None`.
 
     ```azurecli
-    # If the image started as PAYG and and was converted to BYOS, the following command reverts it back to PAYG.
+    # In order to revert back to the original licensing model, set license-type to None.
     az vm update -g myResourceGroup -n myVmName --license-type NONE
     ```
 
@@ -366,10 +366,9 @@ Use the Azure CLI to convert a PAYG Azure Marketplace image to a BYOS subscripti
 
 1. When the conversion from PAYG to BYOS is finished, you must register the VM directly with SUSE for software updates and usage compliance.
 
-1. If you want to return to the PAYG model, set `license-type` to `None`. Otherwise, the subscription model continues to be BYOS.
-
+1. If you want to return the original subscription model, set `license-type` to `None`.
     ```azurecli
-    # If the image started as PAYG and and was converted to BYOS, the following command reverts it back to PAYG.
+    # In order to revert back to the original licensing model, set license-type to None.
     az vm update -g myResourceGroup -n myVmName --license-type NONE
     ```
 
@@ -415,10 +414,9 @@ Converting to a PAYG subscription model is supported for Azure Marketplace image
     az feature list --namespace Microsoft.Compute | grep "AHBEnabledForRHEL" -A 3
     ```
 
-1. If you want to return to the BYOS model, set `license-type` to `None`. Otherwise, the subscription model continues to be PAYG.
-
+1. If you want to return the original subscription model, set `license-type` to `None`.
     ```azurecli
-    # If the image started as BYOS and was converted to PAYG, the following command reverts it back to BYOS.
+    # In order to revert back to the original licensing model, set license-type to None.
     az vm update -g myResourceGroup -n myVmName --license-type NONE
     ```
 
@@ -443,16 +441,11 @@ Converting to a PAYG subscription model is supported for Azure Marketplace image
     az vm update -g myResourceGroup -n myVmName --license-type SLES_HPC
     ```
 
-1. If you want to return to the BYOS model, set `license-type` to `None`. Otherwise, the subscription model continues to be PAYG.
-
+1. If you want to return the original subscription model, set `license-type` to `None`.
     ```azurecli
-    # If the image originally was BYOS and was converted to PAYG, the following command reverts it back to BYOS.
+    # In order to revert back to the original licensing model, set license-type to None.
     az vm update -g myResourceGroup -n myVmName --license-type NONE
     ```
-
----
-> [!NOTE]
-> If the `license-type` is set to `RHEL_BYOS` or to `None`, indicating the VM has been converted back to the BYOS model, this results in the removal of all client update packages from the VM and stops associated billing.
 
 #### Multiple VMs
 
