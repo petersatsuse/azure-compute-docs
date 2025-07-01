@@ -9,7 +9,7 @@ ms.collection: linux
 ms.topic: concept-article
 ms.tgt_pltfrm: vm-linux
 ms.custom: linux-related-content
-ms.date: 07/25/2024
+ms.date: 06/30/2025
 ms.author: jushiman
 author: ju-shim
 ---
@@ -32,10 +32,10 @@ Instructions on manual installation of the drivers and the current supported ver
 
 This extension supports the following OS distros, depending on driver support for the specific OS version:
 
-| Distribution | Version |
-|---|---|
-| Linux: Ubuntu | 20.04 LTS |
-| Linux: Red Hat Enterprise Linux | 7.9 |
+|Driver | Linux: Ubuntu| Linux: Red Hat Enterprise Linux |
+|:---|:---|:---|
+|CUDA | 20.04 LTS | 7.9 |
+|GRID | 22.04 LTS | 8.2 |
 
 > [!NOTE]
 > The latest supported CUDA drivers for NC-series VMs are currently 470.82.01. Later driver versions aren't supported on the K80 cards in NC. While the extension is being updated with this end of support for NC, install CUDA drivers manually for K80 cards on the NC-series.
