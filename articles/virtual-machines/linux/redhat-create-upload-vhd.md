@@ -11,6 +11,7 @@ ms.topic: how-to
 ms.date: 09/22/2024
 ms.author: maries
 ms.reviewer: mattmcinnes
+# Customer intent: "As a system administrator, I want to prepare a Red Hat Enterprise Linux VHD for Azure, so that I can deploy a customizable virtual machine in the cloud environment."
 ---
 # Prepare a Red Hat-based virtual machine for Azure
 
