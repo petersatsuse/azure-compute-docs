@@ -211,6 +211,19 @@ PS /home/philipp> ./NVMe-Conversion.ps1 -ResourceGroupName testrg -VMName testvm
 PS /home/philipp>
 ```
 
+If you have challenges accessing the operating system afterwards try to check
+
+- Serial Console for Linux operating systems
+
+- Screenshot from the operating system in Azure portal
+
+When something happens you can always revert back to SCSI using the command shown at the end of the script:
+
+
+```powershell
+.\Azure-NVMe-Conversion.ps1 -ResourceGroupName testrg -VMName testvm -NewControllerType SCSI -VMSize Standard_E4s_v3 -StartVM
+```
+
 #### 2.4 Check the result
 
 ##### 2.4.1 Check result in Azure portal
