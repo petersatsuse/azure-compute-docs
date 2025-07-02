@@ -8,6 +8,7 @@ ms.author: cynthn
 ms.service: azure-virtual-machines
 ms.subservice: security
 ms.custom: subject-policy-reference
+# Customer intent: "As an IT administrator managing Azure Virtual Machines, I want to access built-in policy definitions, so that I can efficiently enforce compliance and governance across my virtual machine resources."
 ---
 # Azure Policy built-in definitions for Azure Virtual Machines
 

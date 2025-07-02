@@ -15,6 +15,9 @@ ms.reviewer: mattmcinnes
 
 [!INCLUDE [nc_a100_v4-summary](./includes/nca100v4-series-summary.md)]
 
+> [!NOTE]
+> We are currently only deploying net new capacity for the latest generation of the NC product line, the NCads_H100_v5-series. 
+
 ## Host specifications
 [!INCLUDE [nca100v4-series-specs](./includes/nca100v4-series-specs.md)]
 

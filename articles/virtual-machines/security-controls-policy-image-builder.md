@@ -10,6 +10,7 @@ ms.service: azure-virtual-machines
 ms.subservice: image-builder
 ms.custom: subject-policy-compliancecontrols
 
+# Customer intent: "As a compliance officer, I want to understand the regulatory compliance controls available for Azure VM Image Builder, so that I can ensure our Azure resources meet necessary compliance standards."
 ---
 # Azure Policy Regulatory Compliance controls for Azure VM Image Builder
 
