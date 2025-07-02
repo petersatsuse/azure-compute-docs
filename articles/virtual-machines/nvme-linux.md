@@ -268,7 +268,7 @@ To download the new udev rules file, use this command:
 and then run `udevadm control --reload-rules && udevadm trigger`
 to reload the udev rules.
 
-##### 3.2.2 Ready to install packages using [Azure NVMe utils](https://github.com/azure/azure-nvme-utils )
+##### 3.2.2 Ready to install packages using [Azure VM utils](https://github.com/azure/azure-vm-utils )
 There are precompiled packages available on [Index of /results/cjp256/azure-vm-utils/](https://download.copr.fedorainfracloud.org/results/cjp256/azure-vm-utils/)for multiple distributions. 
 
 Multiple distributions started already to integrate the package. You can directly install it from their repository.
