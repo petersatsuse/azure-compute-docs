@@ -98,7 +98,7 @@ To start the script, use the following command (curl):
 > This step is not required when running the script in Azure CloudShell
 
 1. Install PowerShell using [https://aka.ms/powershell](https://aka.ms/powershell)
-1. Connect to Azure using `Connect-AzAccount` and select the correct subscription using `Select-AzSubscription -Subscription [your-subscription-id]`
+2. Connect to Azure using `Connect-AzAccount` and select the correct subscription using `Select-AzSubscription -Subscription [your-subscription-id]`
 
 ##### 2.1.2 Download the script
 
