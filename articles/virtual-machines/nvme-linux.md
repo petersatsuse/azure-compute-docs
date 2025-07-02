@@ -90,7 +90,7 @@ If you want to manually take care of the required changes validate
 - GRUB configuration includes the parameter nvme_core.io_timeout=240
 - /etc/fstab checks for devices
 
-To start the script, use the following command (curl):
+Please check back with your OS vendor to cover all required commands to update initrd/initramfs.
 
 ##### 2.1.1 Prepare PowerShell
 
