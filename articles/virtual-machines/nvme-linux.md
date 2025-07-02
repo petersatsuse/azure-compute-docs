@@ -98,7 +98,9 @@ Please check back with your OS vendor to cover all required commands to update i
 > This step is not required when running the script in Azure CloudShell
 
 1. Install PowerShell using [https://aka.ms/powershell](https://aka.ms/powershell)
-2. Connect to Azure using `Connect-AzAccount` and select the correct subscription using `Select-AzSubscription -Subscription [your-subscription-id]`
+1. Connect to Azure using `Connect-AzAccount` and select the correct subscription using `Select-AzSubscription -Subscription [your-subscription-id]`
+
+1. Set the Execution Policy using `Set-ExecutionPolicy -ExecutionPolicy Unrestricted`
 
 ##### 2.2.2 Download the script
 
