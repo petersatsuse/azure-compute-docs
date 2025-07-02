@@ -9,6 +9,7 @@ ms.author: mattmcinnes
 ms.reviewer: cynthn
 ms.subservice: cloud-init
 ms.custom: linux-related-content
+# Customer intent: As a cloud administrator, I want to troubleshoot VM provisioning failures using cloud-init, so that I can ensure successful deployment and configuration of Linux VMs in the cloud.
 ---
 
 # Troubleshooting VM provisioning with cloud-init

@@ -12,6 +12,7 @@ ms.date: 12/19/2024
 ms.author: clausw
 ms.reviewer: mattmcinnes
 ms.custom: kr2b-contr-experiment, linux-related-content, devx-track-azurecli
+# Customer intent: "As a cloud engineer managing Linux virtual machines, I want to utilize Azure Hybrid Benefit to optimize my subscription model, so that I can reduce costs and maintain flexibility without incurring downtime."
 ---
 
 # Azure Hybrid Benefit for Linux virtual machines
