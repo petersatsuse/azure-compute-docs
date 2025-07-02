@@ -8,7 +8,7 @@ ms.topic: concept-article
 ms.date: 03/24/2025
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
-# Customer intent: As an IT administrator evaluating cloud VM options, I want to compare the performance and features of the Msv3 and Mdsv3 Medium Memory series, so that I can select the best virtual machines for my organization's memory-intensive applications while optimizing costs.
+# Customer intent: As a cloud architect, I want to understand the specifications and capabilities of the Msv3 High Memory VM series, so that I can select the appropriate virtual machines for memory-intensive applications and optimize our infrastructure's performance and cost.
 ---
 
 # Msv3 High Memory sizes series

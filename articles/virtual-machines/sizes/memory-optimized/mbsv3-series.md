@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 03/24/2025
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: "As a cloud architect, I want to assess the Mbsv3 and Mbdsv3 VM series specifications, so that I can determine the best virtual machine options for storage-intensive workloads like SQL Server and data analytics."
 ---
 
 # Mbsv3 sizes series
