@@ -80,7 +80,7 @@ $ az vm show --name [your-vm-name] --resource-group [your-resource-group-name]
 
 :::image type="content" source="./media/enable-nvme/nvme-vs-scsi-2.png" alt-text="Screenshot of Azure portal to check controller.":::
 
-#### 2.1 Prepare for migration
+#### 2.2 Prepare for migration
 
 The Migration script can automatically take care about the prerequisites when using the `-FixOperatingSystemSettings` parameter.
 
@@ -92,7 +92,7 @@ If you want to manually take care of the required changes validate
 
 Please check back with your OS vendor to cover all required commands to update initrd/initramfs.
 
-##### 2.1.1 Prepare PowerShell
+##### 2.2.1 Prepare PowerShell
 
 > [!TIP] 
 > This step is not required when running the script in Azure CloudShell
@@ -100,7 +100,7 @@ Please check back with your OS vendor to cover all required commands to update i
 1. Install PowerShell using [https://aka.ms/powershell](https://aka.ms/powershell)
 2. Connect to Azure using `Connect-AzAccount` and select the correct subscription using `Select-AzSubscription -Subscription [your-subscription-id]`
 
-##### 2.1.2 Download the script
+##### 2.2.2 Download the script
 
 You can download the script using a PowerShell command
 
@@ -108,7 +108,7 @@ You can download the script using a PowerShell command
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Azure/SAP-on-Azure-Scripts-and-Utilities/refs/heads/main/Azure-NVMe-Utils/Azure-NVMe-Conversion.ps1" -OutFile ".\NVMe-Conversion.ps1"
 ```
 
-#### 2.2 Run the migration
+#### 2.3 Run the migration
 
 The script has multiple parameters available:
 
@@ -134,7 +134,7 @@ Sample Command:
 .\Azure-NVMe-Conversion.ps1 -ResourceGroupName <your-RG> -VMName <your-VMname> -NewControllerType <NVMe/SCSI> -VMSize <new-VM-SKU> -StartVM -FixOperatingSystemSettings
 ```
 
-##### 2.2.1 Sample output
+##### 2.3.1 Sample output
 
 ```powershell
 PS /home/philipp> ./NVMe-Conversion.ps1 -ResourceGroupName testrg -VMName testvm -NewControllerType NVMe -VMSize Standard_E4bds_v5 -StartVM -FixOperatingSystemSettings                                          
@@ -206,11 +206,14 @@ PS /home/philipp> ./NVMe-Conversion.ps1 -ResourceGroupName testrg -VMName testvm
 PS /home/philipp>
 ```
 
-#### 2.3 Check the result
-##### 2.3.1 Check result in Azure portal
+#### 2.4 Check the result
+
+##### 2.4.1 Check result in Azure portal
+
 :::image type="content" source="./media/enable-nvme/nvme-vs-scsi-3.png" alt-text="Screenshot of Azure portal.":::
 
-##### 2.3.2 Check result in PowerShell
+##### 2.4.2 Check result in PowerShell
+
 ```Powershell
 PS C:\Users> $vm = Get-AzVM -name [your-vm-name]
 PS C:\Users> $vm.StorageProfile.DiskControllerType
