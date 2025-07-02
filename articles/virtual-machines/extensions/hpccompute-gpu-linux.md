@@ -12,6 +12,7 @@ ms.custom: linux-related-content
 ms.date: 06/30/2025
 ms.author: jushiman
 author: ju-shim
+# Customer intent: "As a cloud administrator, I want to install NVIDIA GPU drivers on Linux N-series virtual machines, so that I can optimize GPU performance for compute-intensive applications."
 ---
 # NVIDIA GPU Driver Extension for Linux
 

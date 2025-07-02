@@ -8,6 +8,7 @@ ms.author: gabsta
 author: GabstaMSFT
 ms.collection: linux
 ms.date: 02/25/2025
+# Customer intent: As a system administrator, I want to reset administrative access to an Azure Windows VM using the VMAccess extension, so that I can regain control and manage user permissions effectively after encountering access issues.
 ---
 
 # VMAccess Extension for Windows

@@ -7,6 +7,7 @@ ms.subservice: extensions
 ms.author: gabsta
 author: GabstaMSFT
 ms.date: 05/23/2025
+# Customer intent: As a cloud administrator, I want to install and configure the Qualys Cloud Agent on Azure VMs using various deployment methods, so that I can ensure continuous security monitoring and data analysis for my virtual machines.
 ---
 
 # Qualys Agent on Linux or Windows VMs

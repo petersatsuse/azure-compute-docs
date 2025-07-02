@@ -9,6 +9,7 @@ author: GabstaMSFT
 ms.reviewer: jushiman
 ms.collection: windows
 ms.date: 04/04/2023
+# Customer intent: As a cloud administrator, I want to automate post-deployment configuration and management tasks on Windows VMs using scripts, so that I can ensure efficient and consistent setup without manual intervention.
 ---
 # Custom Script Extension for Windows
 

@@ -8,6 +8,7 @@ ms.author: gabsta
 author: GabstaMSFT
 ms.collection: windows
 ms.date: 02/27/2023 
+# Customer intent: "As a cloud administrator, I want to install and manage the Azure Windows VM Agent on my virtual machines, so that I can enable and utilize necessary extensions for configuration and recovery tasks effectively."
 ---
 
 # Azure Windows VM Agent overview
