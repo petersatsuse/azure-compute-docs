@@ -6,6 +6,7 @@ ms.subservice: maintenance
 ms.topic: concept-article
 ms.date: 8/12/2020
 #pmcontact: shants
+# Customer intent: "As a virtual machine manager, I want to receive and manage planned maintenance notifications, so that I can schedule updates with minimal impact on service availability and ensure my virtual machines remain reliable and secure."
 ---
 
 # Handling planned maintenance notifications
