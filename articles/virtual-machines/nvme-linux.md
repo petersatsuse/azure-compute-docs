@@ -16,9 +16,6 @@ In this article, we discuss the process of converting virtual machines (VM) runn
 
 Azure VMs support two types of storage interfaces: Small Computer System Interface (SCSI) and NVMe. The SCSI interface is a legacy standard that provides physical connectivity and data transfer between computers and peripheral devices. NVMe is similar to SCSI in that it provides connectivity and data transfer, but NVMe is a faster and more efficient interface for data transfer between servers and storage systems.
 
-> [!NOTE]
-> VMs configured with Trusted Launch can't move from SCSI to NVMe.
-
 ### Support for SCSI interface VMs
 
 Azure continues to support the SCSI interface on the versions of VM offerings that provide SCSI storage. However, not all new VM series have SCSI storage as an option going forward.
@@ -27,11 +24,15 @@ Azure continues to support the SCSI interface on the versions of VM offerings th
 ## What is changing for your VM?
 Changing the host interface from SCSI to NVMe doesn't change the remote storage (OS disk or data disks), but change the way the operating systems sees the disks.
 
-|| SCSI enabled VM | NVMe enabled VM |
-|-----------------|-----------------|----------------|
-| **OS disk**        | /dev/sda        | /dev/nvme0n1   |
-| **Temp Disk**      | /dev/sdb        | /dev/sda       |
-| **First Data Disk**| /dev/sdc        | /dev/nvme0n2   |
+| Disk               | SCSI enabled VM   | NVMe VM with SCSI tempdisk (e.g. Ebds_v5) | NVMe VM with NVMe tempdisk  |
+|--------------------|-------------------|-------------------------------------------|------------------------------
+| **OS disk**        | /dev/sda          | /dev/nvme0n1                              | /dev/nvme0n1                |
+| **Temp Disk**      | /dev/sdb          | /dev/sda                                  | /dev/nvme1n1                |
+| **First Data Disk**| /dev/sdc          | /dev/nvme0n2                              | /dev/nvme0n2                |
+
+> [!TIP] 
+> Some VM types have more than one temporary disk (e.g. E64ds_v6)
+
 
 In the following sections, we provide a guide to convert your Azure VM from SCSI to NVMe using Azure Boost ensuring you can take full advantage of these performance improvements and maintain a competitive edge in the cloud computing landscape.
 
