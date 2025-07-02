@@ -6,6 +6,7 @@ ms.topic: how-to
 ms.service: azure-virtual-machines
 title: SCSI to NVMe for Linux VMs
 description: How to convert SCSI to NVMe using Linux
+# Customer intent: As a cloud solutions architect, I want to convert virtual machines running Linux from SCSI to NVMe storage, so that I can enhance their performance and scalability while ensuring compatibility with modern cloud infrastructure.
 ---
 
 # Converting Virtual Machines Running Linux from SCSI to NVMe
