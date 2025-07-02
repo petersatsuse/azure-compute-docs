@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 03/24/2025
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: As a cloud architect, I want to understand the specifications and capabilities of the Msv3 High Memory VM series, so that I can select the appropriate virtual machines for memory-intensive applications and optimize our infrastructure's performance and cost.
 ---
 
 # Msv3 High Memory sizes series

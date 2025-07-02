@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 03/24/2025
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: "As a cloud architect, I want to assess the Mdsv3 Very High Memory VM series specifications, so that I can determine the best configuration for our memory-intensive applications and ensure optimal performance and cost-effectiveness."
 ---
 
 # Mdsv3 Medium Memory sizes series

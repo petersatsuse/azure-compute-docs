@@ -9,6 +9,7 @@ ms.collection: linux
 ms.topic: how-to
 ms.date: 04/16/2020
 ms.author: jushiman
+# Customer intent: "As a system administrator managing RHEL VMs on Azure, I want to perform in-place upgrades from RHEL 7 to RHEL 8, and RHEL 8 to RHEL 9, so that I can keep the operating systems up to date while retaining applications and configurations."
 ---
 
 # Red Hat Enterprise Linux in-place upgrades
