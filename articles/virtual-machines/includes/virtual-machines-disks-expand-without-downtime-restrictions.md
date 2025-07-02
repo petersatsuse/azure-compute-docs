@@ -8,6 +8,7 @@
  ms.date: 05/28/2025
  ms.author: rogarana
  ms.custom: include file, references_regions
+# Customer intent: As a cloud administrator, I want to expand virtual machine disks efficiently, so that I can manage storage capacity without downtime and ensure optimal performance in my infrastructure.
 ---
 > [!IMPORTANT]
 > This limitation doesn't apply to Premium SSD v2 or Ultra Disks.

@@ -6,6 +6,7 @@ ms.author: rogarana
 ms.date: 08/12/2024
 ms.topic: concept-article
 ms.service: azure-disk-storage
+# Customer intent: As a cloud administrator, I want to understand the billing factors for Azure managed disks, so that I can accurately forecast and manage the costs related to disk storage usage in my organization.
 ---
 
 # Understand Azure Disk Storage billing

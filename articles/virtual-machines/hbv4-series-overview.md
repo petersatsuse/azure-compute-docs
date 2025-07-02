@@ -9,6 +9,7 @@ ms.date: 06/30/2025
 ms.reviewer: cynthn
 ms.author: padmalathas
 author: padmalathas
+# Customer intent: As a cloud architect, I want to understand the architecture and specifications of the HBv4-series virtual machines, so that I can select the optimal VM size for my high-performance computing workloads.
 ---
 
 # HBv4-series virtual machine overview 

@@ -9,6 +9,7 @@ ms.topic: how-to
 ms.date: 11/17/2021
 ms.author: kirpas
 ms.custom: devx-track-azurepowershell
+# Customer intent: "As a cloud administrator, I want to expand unmanaged virtual hard disks for virtual machines using PowerShell, so that I can accommodate legacy applications and manage disk space effectively."
 ---
 # Expand unmanaged virtual hard disks attached to a virtual machine
 
