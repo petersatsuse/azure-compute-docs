@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 04/09/2025
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: "As a cloud architect, I want to evaluate the specifications of the Mv2-series virtual machines, so that I can determine their suitability for hosting large in-memory databases and high-performance workloads."
 ---
 
 # Mv2 sizes series
