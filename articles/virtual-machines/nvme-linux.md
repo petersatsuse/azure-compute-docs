@@ -136,6 +136,9 @@ Sample Command:
 .\Azure-NVMe-Conversion.ps1 -ResourceGroupName <your-RG> -VMName <your-VMname> -NewControllerType <NVMe/SCSI> -VMSize <new-VM-SKU> -StartVM -FixOperatingSystemSettings
 ```
 
+> [!TIP] 
+> You can always revert back to SCSI, the script will share a command with you to directly revert to your original configuration.
+
 ##### 2.3.1 Sample output
 
 ```powershell
