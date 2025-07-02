@@ -248,4 +248,12 @@ and then run `udevadm control --reload-rules && udevadm trigger`
 to reload the udev rules.
 
 ##### 3.2.2 Ready to install packages using [Azure NVMe utils](https://github.com/azure/azure-nvme-utils )
-There are precompiled packages available on [Index of /results/cjp256/azure-nvme-utils/](https://download.copr.fedorainfracloud.org/results/cjp256/azure-nvme-utils/)for multiple distributions. We're working on enabling and integrating Azure NVMe utils in all major distributions.
+There are precompiled packages available on [Index of /results/cjp256/azure-vm-utils/](https://download.copr.fedorainfracloud.org/results/cjp256/azure-vm-utils/)for multiple distributions. 
+
+Multiple distributions started already to integrate the package. You can directly install it from their repository.
+
+| Distribution | Minimum version               |
+| ------------ | ----------------------------- |
+| SUSE         | SLES 15 SP5 or newer          |
+| RedHat       | RHEL 9.6 or newer             |
+| Ubuntu       | Ubuntu 25.04 or newer         |
