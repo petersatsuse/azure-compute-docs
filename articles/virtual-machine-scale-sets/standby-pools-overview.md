@@ -8,6 +8,7 @@ ms.custom:
   - ignite-2024
 ms.topic: concept-article
 ms.date: 5/6/2025
+# Customer intent: As a cloud architect, I want to configure and manage standby pools for Virtual Machine Scale Sets, so that I can optimize scaling performance and reduce latency during resource scaling events.
 ---
 
 # Standby pools for Virtual Machine Scale Sets
