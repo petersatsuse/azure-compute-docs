@@ -7,6 +7,7 @@ ms.service: oracle-on-azure
 ms.collection: oracle
 ms.topic: concept-article
 ms.date: 10/02/2024
+# Customer intent: As an IT architect, I want to deploy Oracle applications on Azure Virtual Machines, so that I can utilize cloud benefits like scalability, availability, and improved security while ensuring optimal performance and compliance with best practices specific to each application type.
 ---
 
 # Architectures for Oracle applications with database on Azure Virtual Machines
