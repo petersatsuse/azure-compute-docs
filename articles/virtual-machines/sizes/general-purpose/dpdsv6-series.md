@@ -10,6 +10,7 @@ ms.topic: concept-article
 ms.date: 08/27/2024
 ms.author: archat
 ms.reviewer: mattmcinnes, tomcassidy
+# Customer intent: "As a cloud architect, I want to understand the specifications and features of the Dpdsv6 series of virtual machines, so that I can select the appropriate size for my workload requirements."
 ---
 
 # Dpdsv6 sizes series
