@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 07/31/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: "As a cloud infrastructure architect, I want to review the specifications and capabilities of the ND series virtual machine sizes, so that I can select the appropriate size for my high-performance computing workloads."
 ---
 
 # ND sizes series
