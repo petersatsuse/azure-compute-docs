@@ -42,7 +42,7 @@ This article describes the latest versions of the Linux diagnostic extension (LA
 >
 > This produces results similar to the following:
 > 
-> :::image type="content" source="/azure/azure-monitor/agents/media/diagnostics-extension-overview/query-results.png" lightbox="media/diagnostics-extension-overview/query-results.png" alt-text="Screenshot showing the results of a sample Azure Resource Graph Query.":::
+> :::image type="content" source="/azure/azure-monitor/agents/media/diagnostics-extension-overview/query-results.png" lightbox="/azure/azure-monitor/agents/media/diagnostics-extension-overview/query-results.png#lightbox" alt-text="Screenshot showing the results of a sample Azure Resource Graph Query.":::
 
 > [!IMPORTANT]
 > For information about version 3.x, see [Use the Linux diagnostic extension 3.0 to monitor metrics and logs](./diagnostics-linux-v3.md).
