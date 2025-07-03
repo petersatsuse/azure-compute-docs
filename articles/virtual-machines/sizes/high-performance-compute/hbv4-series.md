@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 06/30/2025
 ms.author: padmalathas
 ms.reviewer: mattmcinnes
+# Customer intent: "As a cloud architect, I want to understand the specifications and features of the HBv4 virtual machine sizes, so that I can choose the right model for my application's performance and resource requirements."
 ---
 
 # HBv4 sizes series

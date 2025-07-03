@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 07/31/2024
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: "As a cloud architect, I want to compare NV series VM sizes and specifications, so that I can select the optimal configuration for my workloads requiring GPU support and specific memory and network performance."
 ---
 
 # NV sizes series

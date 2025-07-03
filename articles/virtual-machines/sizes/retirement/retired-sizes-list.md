@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 06/13/2025
 ms.author: mattmcinnes
 ms.reviewer: iamwilliew
+# Customer intent: As a cloud administrator, I want to review the list of retired virtual machine size series and their migration guides, so that I can ensure my systems are updated and transition to supported VM sizes before any planned retirements.
 ---
 
 # Retired Azure VM size series

@@ -9,6 +9,7 @@ author: ju-shim
 ms.author: gabsta
 ms.reviewer: jushiman
 ms.custom: linux-related-content
+# Customer intent: As a cloud engineer, I want to leverage VM Applications in the Azure Compute Gallery, so that I can efficiently deploy and manage applications across virtual machines without the overhead of rebuilding VM images for every change.
 ---
 
 # VM Applications Overview

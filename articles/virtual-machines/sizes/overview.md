@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.workload: infrastructure-services
 ms.date: 06/30/2025
 ms.author: mattmcinnes
+# Customer intent: As a cloud architect, I want to compare different virtual machine sizes and their specifications, so that I can select the most appropriate instance for my applications and workloads.
 ---
 
 # Sizes for virtual machines in Azure

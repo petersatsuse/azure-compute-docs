@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 04/08/2025
 ms.author: mattmcinnes
 ms.reviewer: mattmcinnes
+# Customer intent: As a cloud architect, I want to understand the specifications and feature support of the NC-series virtual machine sizes, so that I can select the appropriate size for high-performance computing applications.
 ---
 
 # Mdsv3 Very High Memory sizes series
