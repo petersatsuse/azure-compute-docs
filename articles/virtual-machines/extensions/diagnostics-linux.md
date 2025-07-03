@@ -24,9 +24,9 @@ This article describes the latest versions of the Linux diagnostic extension (LA
 > 
 > Azure Diagnostics extension will be deprecated on March 31, 2026. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension. 
 > 
-> To ensure continued support and access to new features, you should migrate from Azure Diagnostics extensions for Linux (LAD) and Windows (WAD) to [Azure Monitor Agent](./azure-monitor/agents/azure-monitor-agent-overview.md), which can collect the same data and send it to multiple destinations including Log Analytics workspaces, Azure Event Hubs, and Azure Storage. Remove LAD or WAD after you configure Azure Monitor Agent to avoid duplicate data. 
+> To ensure continued support and access to new features, you should migrate from Azure Diagnostics extensions for Linux (LAD) and Windows (WAD) to [Azure Monitor Agent](/azure/azure-monitor/agents/azure-monitor-agent-overview), which can collect the same data and send it to multiple destinations including Log Analytics workspaces, Azure Event Hubs, and Azure Storage. Remove LAD or WAD after you configure Azure Monitor Agent to avoid duplicate data. 
 >
-> As an alternative to storage, you should send data to a table with the [Auxiliary plan](./azure-monitor/agents/logs/data-platform-logs.md#table-plans) in your Log Analytics workspace for cost-effective logging.
+> As an alternative to storage, you should send data to a table with the [Auxiliary plan](/azure/azure-monitor/logs/data-platform-logs#table-plans) in your Log Analytics workspace for cost-effective logging.
 >
 > To check which extensions are installed on a single VM, select **Extensions + applications** under **Settings** on your VM. To review the extensions installed on all virtual machines in subscriptions where you have access, use the following query in [Azure Resource Graph](/azure/governance/resource-graph/first-query-portal):
 >
