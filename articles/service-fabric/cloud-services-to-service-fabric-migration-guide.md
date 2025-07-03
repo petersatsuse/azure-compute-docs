@@ -1,5 +1,5 @@
 ---
-title: Migrating from Azure Cloud Services to Service Fabric 
+title: Migrate from Azure Cloud Services to Service Fabric 
 description: This guide provides detailed steps and best practices for migrating applications from Azure Cloud Services to Azure Service Fabric.
 ms.topic: how-to
 ms.author: tomcassidy
@@ -10,48 +10,48 @@ ms.date: 06/26/2025
 # Customer intent: As a cloud architect currently using Cloud Services, I want to know the steps involved in migrating from Cloud Services to Service Fabric, so that I can efficiently migrate my existing cloud architecture to Service Fabric.
 ---
 
-# Migrating from Azure Cloud Services to Service Fabric
+# Migrate from Azure Cloud Services to Service Fabric
 
 This guide provides detailed steps and best practices for migrating applications from Azure Cloud Services to Azure Service Fabric. Throughout this guide, we recommend using [Service Fabric Managed Clusters](overview-managed-cluster.md) as they provide simplified cluster management, enhanced security, and automated patching.
 
 You should review the [decision matrix for migrating from Cloud Services](cloud-services-migration-decision-matrix.md) to make sure you're choosing the right Azure services from your architecture.
 
-## Pre-Migration Assessment
+## Pre-migration assessment
 
 Before migrating from Azure Cloud Services to Service Fabric, conduct a thorough assessment:
 
-### 1. Application Inventory
+### Application inventory
 - Document all Web and Worker roles
 - Identify dependencies and integration points
 - Map storage requirements (local disk, Azure Storage, etc.)
 - Document scaling requirements
 
-### 2. Traffic Patterns and Scaling Requirements
+### Traffic patterns and scaling requirements
 - Analyze current traffic patterns
 - Document scaling triggers and rules
 - Assess autoscaling requirements
 
-### 3. State Management
+### State management
 - Identify stateful components
 - Document data persistence mechanisms
 - Assess cache dependencies
 
-### 4. Identify Application Constraints
+### Identify application constraints
 - Startup dependencies
 - Role communication patterns
 - Deployment requirements
 - Authentication and security constraints
 
-### 5. Production Readiness Assessment
+### Production readiness assessment
 Review the [Service Fabric Production Readiness Checklist](service-fabric-production-readiness-checklist.md) to ensure your future Service Fabric application meets production standards.
 
-## Architecture Planning
+## Architecture planning
 
-### 1. Service Fabric Managed Cluster vs. Traditional Cluster
+### Service Fabric Managed Cluster vs. Classic Cluster
 
 Service Fabric offers two deployment models:
 
-- **Service Fabric Managed Clusters (Recommended)**: Simplified cluster resource model where Microsoft manages underlying cluster infrastructure.
+- **Service Fabric Managed Clusters (recommended)**: Simplified cluster resource model where Microsoft manages underlying cluster infrastructure.
   - Automated OS patching
   - Simplified deployment and management
   - Reduced operational overhead
@@ -62,7 +62,7 @@ Service Fabric offers two deployment models:
 
 We strongly recommend using **Service Fabric Managed Clusters** for migrations from Cloud Services to simplify operations and ensure better security posture.
 
-### 2. Service Fabric Architecture Patterns
+### Service Fabric architecture patterns
 
 Map your Cloud Services components to Service Fabric architectural patterns:
 
@@ -75,7 +75,7 @@ Map your Cloud Services components to Service Fabric architectural patterns:
 | Local Storage | Service Fabric local storage volumes |
 | RoleEntryPoint | ServiceInstanceListener or RunAsync method |
 
-### 3. Service Fabric Cluster Structure for Managed Clusters
+### Service Fabric Cluster structure for Managed Clusters
 
 For setting up a Service Fabric Managed Cluster, refer to the official ARM templates available in the [Azure Quickstart Templates repository](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.servicefabric/sf-managed-cluster).
 
@@ -157,7 +157,7 @@ A basic managed cluster ARM template looks like this (as shown in the [official 
 
 For detailed setup instructions, see [Quickstart: Deploy a Service Fabric managed cluster using ARM templates](quickstart-managed-cluster-template.md).
 
-### 4. Security Considerations
+### Security considerations
 
 Service Fabric Managed Clusters automatically handle most security configurations, including:
 - Automatic cluster certificate rotation
@@ -176,11 +176,11 @@ For client authentication to clusters, you need to configure client certificates
 
 With Managed Clusters, you can focus primarily on application-level security and controlled access to your cluster, while Microsoft handles the underlying cluster security infrastructure.
 
-## Migration Strategy
+## Migration strategy
 
-### 1. Choose a Migration Approach
+### Choose a migration approach
 
-#### Lift and Shift
+#### Lift and shift
 Minimal changes to application architecture, focusing on adapting existing code to run in Service Fabric.
 
 **Pros:**
@@ -194,7 +194,7 @@ Minimal changes to application architecture, focusing on adapting existing code 
 
 **Important Limitation**: Service Fabric Managed Clusters currently **do not support containers**. If your application requires IIS, Windows-specific server components, or other dependencies that would be best containerized, you need to use a traditional Service Fabric cluster with Windows Container support instead of a Managed Cluster. Consider this limitation carefully when planning your lift-and-shift migration approach.  Refer to [Containerize existing Windows applications](/previous-versions/azure/architecture/service-fabric/modernize-app-azure-service-fabric#containerize-existing-windows-applications)
 
-#### Refactor to Microservices
+#### Refactor to microservices
 Decompose application into microservices for greater scalability and easier maintenance.
 
 **Pros:**
@@ -207,53 +207,53 @@ Decompose application into microservices for greater scalability and easier main
 - Requires architectural expertise
 - Longer migration timeline
 
-### 2. Migration Approaches Based on Application Requirements
+### Migration approaches based on application requirements
 
-#### When to Use Managed Clusters:
+#### When to use Managed Clusters:
 - Applications built on .NET that can be directly migrated to Service Fabric services
 - ASP.NET Core web applications that can run without IIS
 - Applications with lightweight dependencies
 - New applications written specifically for Service Fabric
 
-#### When to Use Traditional Service Fabric Clusters:
+#### When to use Classic Service Fabric Clusters:
 - Applications requiring Windows Containers
 - Workloads with IIS dependencies (should containerize)
 - Applications with complex server component dependencies
 - Scenarios requiring containerization
 
-### 3. Migration Phases
+### Migration phases
 
-1. **Setup Service Fabric Environment**
+1. **Set up Service Fabric environment**
    - For applications without container dependencies: Create a managed cluster using [Service Fabric Managed Cluster deployment tutorial](tutorial-managed-cluster-deploy.md)
    - For applications requiring containers: Create a traditional Service Fabric cluster with [Windows Container support](service-fabric-get-started-containers.md)
    - Configure networking and security
    - Establish CI/CD pipeline for Service Fabric
 
-2. **Migrate Configuration and Settings**
+2. **Migrate configuration and settings**
    - Map Cloud Service configuration (.cscfg, .csdef) to Service Fabric application manifests
    - Migrate environment settings to Service Fabric parameters
 
-3. **Migrate Code**
+3. **Migrate code**
    - Adapt Web Roles to Stateless Services or containerized applications
    - Adapt Worker Roles to Stateless Services or Reliable Services
    - Migrate Startup Tasks to Service Fabric setup code
 
-4. **Migrate State Management**
+4. **Migrate state management**
    - Implement appropriate state management solutions (Reliable Collections)
    - Migrate persistent state from external stores
 
-5. **Implement Service Communication**
+5. **Implement service communication**
    - Replace role communication with Service Fabric communication patterns
    - Configure service discovery
 
-6. **Test and Optimize**
+6. **Test and optimize**
    - Validate functionality and performance
    - Test scaling and failover scenarios
    - Optimize resource usage
 
-## Step-by-Step Migration Process
+## Step-by-step migration process
 
-### 1. Setting Up a Service Fabric Managed Cluster
+### 1. Set up a Service Fabric Managed Cluster
 
 To deploy a Service Fabric managed cluster, you can use PowerShell commands as documented in [Tutorial: Deploy a Service Fabric managed cluster](tutorial-managed-cluster-deploy.md).
 
@@ -290,11 +290,11 @@ Important notes:
 
 You can also use the Azure portal or Azure CLI for deployment. For a portal-based setup, follow the [Quickstart: Create a Service Fabric managed cluster](quickstart-managed-cluster-portal.md) tutorial.
 
-### 2. Creating Service Fabric Application Projects
+### 2. Create Service Fabric application projects
 
-Use Visual Studio to create Service Fabric applications 
+Use Visual Studio to create Service Fabric applications:
 
-**Using Visual Studio:**
+**Use Visual Studio:**
 1. [Prepare your development environment on Windows](service-fabric-get-started.md)
 2. [Create a new Stateless Service - Service Fabric project](service-fabric-reliable-services-quick-start.md)
 3. [Create a new Stateful Service - Service Fabric project](service-fabric-create-your-first-application-in-visual-studio.md):
@@ -378,7 +378,7 @@ internal sealed class WebFrontEnd : StatelessService
 }
 ```
 
-### 4. Migrating Cloud Service Worker Roles - [Comprehensive Example](https://github.com/Azure/Service-Fabric-Troubleshooting-Guides/blob/master/MigrationGuides/WorkerRole_Migration_Example.md)
+### 4. Migrate Cloud Service Worker Roles - [Comprehensive Example](https://github.com/Azure/Service-Fabric-Troubleshooting-Guides/blob/master/MigrationGuides/WorkerRole_Migration_Example.md)
 
 1. Create a stateless service with background processing
 2. Move worker logic to RunAsync method
@@ -418,7 +418,7 @@ internal sealed class WorkerBackgroundService : StatelessService
 }
 ```
 
-### 5. Configuration Migration
+### 5. Configuration migration
 
 Service Fabric uses a hierarchical configuration model:
 
@@ -492,7 +492,7 @@ Service Fabric uses a hierarchical configuration model:
 </Settings>
 ```
 
-### 6. Accessing Configuration in Service Fabric
+### 6. Access configuration in Service Fabric
 
 ```csharp
 // Accessing configuration in a Service Fabric service
@@ -546,27 +546,27 @@ New-ServiceFabricApplication -ApplicationName fabric:/MyServiceFabricApp -Applic
 
 You can also use [Azure Pipelines for automated deployments](how-to-managed-cluster-app-deployment-template.md) to Service Fabric managed clusters.
 
-## Testing and Validation
+## Testing and validation
 
-### 1. Functional Testing
+### Functional testing
 - Validate all application features
 - Test service discovery and communication
 - Verify configuration is correctly loaded
 - Validate user experience and flows
 
-### 2. Performance Testing
+### Performance testing
 - Compare response times with Cloud Services
 - Test under expected user load
 - Validate autoscaling parameters
 - Measure resource usage
 
-### 3. Resilience Testing
+### Resilience testing
 - Test failover scenarios
 - Validate instance recycling behavior
 - Test upgrade and rollback processes
 - Simulate infrastructure failures
 
-### 4. Validation Checklist
+### Validation checklist
 - [ ] All features function correctly
 - [ ] Performance meets or exceeds Cloud Services
 - [ ] Configuration migration is complete
@@ -576,9 +576,9 @@ You can also use [Azure Pipelines for automated deployments](how-to-managed-clus
 - [ ] Monitoring and alerting are configured
 - [ ] Rollback procedures are documented
 
-## Post-Migration Considerations
+## Post-migration considerations
 
-### 1. Monitoring and Diagnostics
+### Monitoring and diagnostics
 
 [Visualize your cluster with Service Fabric Explorer](service-fabric-visualizing-your-cluster.md)
 
@@ -602,7 +602,7 @@ var healthReport = new HealthReport(
 await healthClient.ReportHealthAsync(healthReport);
 ```
 
-### 2. Scaling and Optimizing
+### Scaling and optimizing
 
 Service Fabric managed clusters support [manual scaling](tutorial-managed-cluster-scale.md) and automatic scaling:
 
@@ -621,14 +621,14 @@ Service Fabric managed clusters support [manual scaling](tutorial-managed-cluste
 }
 ```
 
-### 3. Disaster Recovery Planning
+### Disaster recovery planning
 
 - Configure [Service Fabric backup and restore service](service-fabric-reliable-services-backup-restore.md)
 - Implement geo-replication where needed
 - Document recovery procedures
 - Test disaster recovery scenarios
 
-### 4. Security Posture
+### Security posture
 
 Follow security best practices:
 - Apply [Service Fabric security best practices](service-fabric-best-practices-security.md)
@@ -636,27 +636,27 @@ Follow security best practices:
 - Review network security
 - Implement proper authentication and authorization in applications
 
-## Troubleshooting Guide
+## Troubleshooting guide
 
-### 1. Deployment Issues
+### Deployment issues
 - Verify application manifest is correct
 - Check cluster health and capacity
 - Validate service package versions
 - Review deployment logs
 
-### 2. Runtime Errors
+### Runtime errors
 - Check service logs
 - Verify configuration settings
 - Validate service communication
 - Review health events
 
-### 3. Performance Issues
+### Performance issues
 - Analyze resource usage
 - Check [partition load](/powershell/module/servicefabric/get-servicefabricpartitionloadinformation?view=azureservicefabricps&preserve-view=true)
 - Validate scaling policies
 - Review service code for bottlenecks
 
-### 4. Common Error Scenarios and Resolutions
+### Common error scenarios and resolutions
 
 | Error | Possible Cause | Resolution |
 |-------|----------------|------------|
@@ -665,18 +665,18 @@ Follow security best practices:
 | Configuration errors | Parameter mismatches | Validate configuration settings across all layers |
 | Scaling issues | Cluster capacity | Review node resource utilization and increase capacity if needed |
 
-## Common Migration Scenarios
+## Common migration scenarios
 
-### 1. Web Role Migration
+### Web Role migration
 For a comprehensive step-by-step guide on migrating ASP.NET Web Roles to Service Fabric Stateless Services, see [Web Role Migration Example](https://github.com/Azure/Service-Fabric-Troubleshooting-Guides/blob/master/MigrationGuides/WebRole_Migration_Example.md). This guide provides detailed code comparisons between original Web Roles and Service Fabric implementations, covering project structure, configuration files, middleware migration, and deployment strategies with side-by-side code samples.
 
-### 2. Worker Role Migration
+### Worker Role migration
 For a detailed guide on transforming Worker Role background processing to Service Fabric, see [Worker Role Migration Example](https://github.com/Azure/Service-Fabric-Troubleshooting-Guides/blob/master/MigrationGuides/WorkerRole_Migration_Example.md). This guide demonstrates the architectural transition from Cloud Services background processing to reliable task execution in Service Fabric, including implementations for reliable timers, queue processing, and state persistence with practical code examples.
 
-### 3. State Management Migration
+### State management migration
 For in-depth guidance on migrating application state management to Service Fabric, see [State Management Migration Example](https://github.com/Azure/Service-Fabric-Troubleshooting-Guides/blob/master/MigrationGuides/StateManagement_Migration_Example.md). This technical guide covers transitioning to Reliable Collections with implementation patterns for session management, workflow processing, and caching, as well as data migration strategies, backup/restore procedures, and hybrid approaches combining Service Fabric state management with external stores.
 
-## Additional Resources
+## Additional resources
 
 - [Azure Service Fabric Documentation](index.yml)
 - [Service Fabric Managed Clusters Overview](overview-managed-cluster.md)

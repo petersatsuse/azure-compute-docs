@@ -1,5 +1,5 @@
 ---
-title: Azure Cloud Services Migration Decision Matrix 
+title: Azure Cloud Services migration decision matrix 
 description: This article provides a decision matrix to help evaluate migration options for an Azure solution currently built on Cloud Services.
 ms.topic: how-to
 ms.author: tomcassidy
@@ -10,11 +10,11 @@ ms.date: 06/26/2025
 # Customer intent: As a cloud architect currently using Cloud Services, I want to evaluate my options to migrate my current Cloud Services solution to other Azure services, so that I can make the right choice for my architecture.
 ---
 
-# Azure Cloud Services Migration Decision Matrix
+# Azure Cloud Services migration decision matrix
 
 This article provides a decision matrix to help evaluate migration options for an Azure solution currently built on Cloud Services. The matrix compares various Azure platform technologies to help guide your rearchitecting decisions.
 
-## Decision Matrix
+## Decision matrix
 
 | **Criteria / Option**          | **Service Fabric**                                        | **Azure Functions**                                           | **Azure Web Apps**                              | **Azure App Service (Container Apps, Logic Apps, etc.)** | **Azure Kubernetes Service (AKS)**                         | **Virtual Machine Scale Sets**                              | **Azure Virtual Machines**                                  |
 |--------------------------------|-----------------------------------------------------------|---------------------------------------------------------------|------------------------------------------------|--------------------------------------------------------|------------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------|
@@ -27,7 +27,7 @@ This article provides a decision matrix to help evaluate migration options for a
 
 ---
 
-## Additional Considerations
+## Additional considerations
 
 - **Legacy vs. Re-architected:**  
   If you're looking to modernize your architecture beyond a lift-and-shift, then options like Service Fabric, AKS, or even a serverless approach with Functions might provide better long-term benefits despite higher initial rearchitecting costs.
@@ -46,22 +46,22 @@ This article provides a decision matrix to help evaluate migration options for a
 
 ---
 
-## Next Steps
+## Next steps
 
-1. **Assess Your Workloads:**  
-   Identify which components of your solution are best suited for each architecture—consider both compute-bound and stateful components.
+**Assess your workloads:**  
+Identify which components of your solution are best suited for each architecture—consider both compute-bound and stateful components.
 
-2. **Prototype Migration:**  
+**Prototype migration:**  
    Consider building a proof-of-concept for the top two or three options. This can help uncover unforeseen challenges and better estimate migration complexity.
 
-3. **Cost-Benefit Analysis:**  
-   Include not only migration effort and operational overhead but also long-term benefits such as ease of updates, resilience, and scalability.
+**Cost-benefit analysis:**  
+Include not only migration effort and operational overhead but also long-term benefits such as ease of updates, resilience, and scalability.
 
-4. **Stakeholder Review:**  
+**Stakeholder review:**  
    Share the decision matrix with your team and other stakeholders for feedback and to align on priorities.
 
-5. **Review Migration Guides:**  
-   - [Comprehensive Migration Guide](cloud-services-to-service-fabric-migration-guide.md) - Detailed steps and best practices for migrating from Azure Cloud Services to Service Fabric
-   - [Web Role Migration Example](https://github.com/Azure/Service-Fabric-Troubleshooting-Guides/blob/master/MigrationGuides/WebRole_Migration_Example.md) - Complete example of migrating an ASP.NET Web Role to a Service Fabric Stateless Service
-   - [Worker Role Migration Example](https://github.com/Azure/Service-Fabric-Troubleshooting-Guides/blob/master/MigrationGuides/WorkerRole_Migration_Example.md) - Detailed guide for transforming Worker Role background processing to Service Fabric
-   - [State Management Migration Example](https://github.com/Azure/Service-Fabric-Troubleshooting-Guides/blob/master/MigrationGuides/StateManagement_Migration_Example.md) - Technical guide for migrating application state management to Service Fabric
+**Review migration guides:**  
+  - [Comprehensive migration guide](cloud-services-to-service-fabric-migration-guide.md) - Detailed steps and best practices for migrating from Azure Cloud Services to Service Fabric
+  - [Web Role migration example](https://github.com/Azure/Service-Fabric-Troubleshooting-Guides/blob/master/MigrationGuides/WebRole_Migration_Example.md) - Complete example of migrating an ASP.NET Web Role to a Service Fabric Stateless Service
+  - [Worker Role migration example](https://github.com/Azure/Service-Fabric-Troubleshooting-Guides/blob/master/MigrationGuides/WorkerRole_Migration_Example.md) - Detailed guide for transforming Worker Role background processing to Service Fabric
+  - [State Management migration example](https://github.com/Azure/Service-Fabric-Troubleshooting-Guides/blob/master/MigrationGuides/StateManagement_Migration_Example.md) - Technical guide for migrating application state management to Service Fabric
