@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 06/17/2025
 ms.author: mattmcinnes
 ms.reviewer: iamwilliew
+# Customer intent: As a cloud architect, I want to understand the previous generation Azure VM size series, so that I can make informed decisions about migrating to newer VM sizes to optimize performance and capacity for my applications.
 ---
 
 # Previous generation Azure VM size series

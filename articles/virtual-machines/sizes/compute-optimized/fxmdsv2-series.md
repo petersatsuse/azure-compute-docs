@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 05/23/2025
 ms.author: archat
 ms.reviewer: mattmcinnes
+# Customer intent: "As a cloud architect, I want to compare the specifications and features of the FXmdsv2 VM sizes, so that I can select the appropriate size for my application workloads and optimize performance."
 ---
 
 # FXmdsv2 sizes series 
