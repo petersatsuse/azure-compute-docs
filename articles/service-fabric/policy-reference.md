@@ -22,7 +22,7 @@ the link in the **Version** column to view the source on the
 
 ## Azure Service Fabric
 
-[!INCLUDE [azure-policy-reference-rp-servicefabric](~/azure-docs-pr/includes/policy/reference/byrp/microsoft.servicefabric.md)]
+[!INCLUDE [azure-policy-reference-rp-servicefabric](~/azure-policy-autogen-docs/includes/policy/reference/byrp/microsoft.servicefabric.md)]
 
 ## Next steps
 

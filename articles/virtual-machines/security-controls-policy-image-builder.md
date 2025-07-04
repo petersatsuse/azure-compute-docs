@@ -22,7 +22,7 @@ In this article, you can refer to a list of the compliance domains and security 
 
 [!INCLUDE [azure-policy-compliancecontrols-introwarning](~/azure-docs-pr/includes/policy/standards/intro-warning.md)]
 
-[!INCLUDE [azure-policy-compliancecontrols-vmimages](~/azure-docs-pr/includes/policy/standards/byrp/microsoft.virtualmachineimages.md)]
+[!INCLUDE [azure-policy-compliancecontrols-vmimages](~/azure-policy-autogen-docs/includes/policy/standards/byrp/microsoft.virtualmachineimages.md)]
 
 ## Next steps
 

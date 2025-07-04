@@ -22,7 +22,7 @@ compliant with the specific standard.
 
 [!INCLUDE [azure-policy-compliancecontrols-introwarning](~/azure-docs-pr/includes/policy/standards/intro-warning.md)]
 
-[!INCLUDE [azure-policy-compliancecontrols-vms](~/azure-docs-pr/includes/policy/standards/byrp/microsoft.compute.md)]
+[!INCLUDE [azure-policy-compliancecontrols-vms](~/azure-policy-autogen-docs/includes/policy/standards/byrp/microsoft.compute.md)]
 
 ## Next steps
 
