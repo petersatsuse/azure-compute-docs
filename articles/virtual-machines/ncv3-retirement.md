@@ -18,7 +18,7 @@ Microsoft is recommending the Azure [NCadsH100_v5-series ](/azure/virtual-mach
 Depending on the workload being run, regional affinity, and cost preferences, other VMs that may be migrated to from the NCv3-series VMs include [NVadsA10_v5](/azure/virtual-machines/sizes/gpu-accelerated/nvadsa10v5-series?tabs=sizebasic), [NCasT4_v3](/azure/virtual-machines/sizes/gpu-accelerated/ncast4v3-series?tabs=sizebasic), and [NVadsV710_v5](/azure/virtual-machines/sizes/gpu-accelerated/nvadsv710-v5-series?tabs=sizebasic): 
 
 > [!NOTE]
-> Please note that certain recommended migration SKUs, such as the NCadsH100_v5-series, may have limited regional availability and are currently not offered in Mooncake. Please check [Azure Regions by Product page](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/) for product region availability. 
+> Certain migration SKUs, such as the NCadsH100_v5-series, may have limited regional availability and are currently not offered in the Mooncake regions. Please check [Azure Regions by Product page](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/) for region availability. 
 
 |Workload|Recommended SKU to Migrate to|
 | -------- | -------- |
