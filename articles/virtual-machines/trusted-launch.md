@@ -57,7 +57,8 @@ Azure offers Trusted Launch as a seamless way to improve the security of [Genera
 | Azure Linux | 1.0, 2.0 |
 | Debian |11, 12 |
 | Oracle Linux |8.3, 8.4, 8.5, 8.6, 8.7, 8.8 LVM, 9.0, 9.1 LVM |
-| RedHat Enterprise Linux | 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 8.10, 9.0, 9.1, 9.2, 9.3, 9.4, 9.5 |
+| Red Hat Enterprise Linux | 8.6, 8.8, 8.10, 9.4, 9.5, 9.6 |
+| Rocky Linux from CIQ | 8.6, 8.10, 9.2, 9.4, 9.6 |
 | SUSE Enterprise Linux |15SP3, 15SP4, 15SP5 |
 | Ubuntu Server |18.04 LTS, 20.04 LTS, 22.04 LTS, 23.04, 23.10 |
 | Windows 10 |Pro, Enterprise, Enterprise Multi-Session &#42; |
