@@ -23,6 +23,7 @@ For example, if you run the Microsoft aci-wordcount container image, you can mod
 
 *MinLength*: The minimum number of characters in a word for it to be counted. A higher number ignores common words like "of" and "the."
 
+[!IMPORTANT]
 If you need to pass secrets as environment variables, Azure Container Instances supports [secure values](#secure-values) for both Windows and Linux containers.
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
