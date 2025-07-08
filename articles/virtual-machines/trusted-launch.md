@@ -82,7 +82,6 @@ Trusted Launch doesn't increase existing VM pricing costs.
 
 Currently, the following VM features aren't supported with Trusted Launch:
 
-- [Azure Site Recovery](/azure/site-recovery/concepts-trusted-vm) (*Generally available for Windows, Public preview for Linux*).
 - [Managed Image](capture-image-resource.yml) (customers are encouraged to use [Azure Compute Gallery](trusted-launch-portal.md#trusted-launch-vm-supported-images)).
 - [Linux VM Hibernation](./linux/hibernate-resume-linux.md)
 
