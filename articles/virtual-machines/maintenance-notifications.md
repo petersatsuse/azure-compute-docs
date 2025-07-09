@@ -122,6 +122,9 @@ In case you deploy a virtual machine to a region where planned maintenance is al
 3.	You have selected to stop (deallocate) and restart the VM.
 4.	You have **auto shutdown** turned on for the VM.
 
+**Q: Can I find out exactly when my VM will be rebooted during the planned maintenance window?**  
+
+**A:** Azure provides a general maintenance window, but doesn’t share the exact time when VM will be rebooted within that window. The reboot can happen at any point during that time. You can utilize self-maintenance window to control the maintenance from your end.
 
 
 ## Next steps
