@@ -13,8 +13,8 @@ ms.reviewer: mattmcinnes
 
 # ND sizes series
 
-> [!NOTE]
-> The ND-series has retired as of September 30th, 2023, and is no longer available. Please refer to the [ND-series retirement page](/azure/virtual-machines/sizes/retirement/nd-series-retirement) for more information. 
+> [!IMPORTANT]
+> The ND-series has retired as of September 6th, 2023, and is no longer available. Please refer to the [ND-series retirement page](/azure/virtual-machines/sizes/retirement/nd-series-retirement) for more information. 
 
 [!INCLUDE [nd-summary](./includes/nd-series-summary.md)]
 
