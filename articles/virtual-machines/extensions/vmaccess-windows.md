@@ -159,7 +159,7 @@ Set-AzVMExtension `
 ## CLI
 
 ### Azure CLI - Reset Password
-[az vm extension set](/cli/azure/vm/extension?view=azure-cli-latest#az_vm_extension_set)
+[az vm extension set](/cli/azure/vm/extension#az_vm_extension_set)
 
 ```
 az vm extension set --name VMAccessAgent --publisher Microsoft.Compute --version 2.0 --vm-name "myVM" --resource-group "myRG" --settings '{"username":"myuser"}' --protected-settings '{"password":"myPassWord"}'
