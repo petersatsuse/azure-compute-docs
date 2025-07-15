@@ -84,7 +84,7 @@ The regions that a resource is replicated to can be updated after creation time.
 
 <a name=community></a>
 
-## (Preview) Trusted Launch Validation for Azure Compute Gallery(ACG) Images
+## (Preview) Trusted Launch Validation for Azure Compute Gallery (ACG) Images
 > [!IMPORTANT]
 >
 > Trusted Launch Validation for ACG images is currently in preview. This Preview is intended for testing, evaluation, and feedback purposes only. Production workloads aren't recommended. When registering to preview, you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature might change with general availability (GA).
@@ -92,13 +92,13 @@ The regions that a resource is replicated to can be updated after creation time.
 ### What's Changing?
 Starting with API 2025-03-03, all new ACG image definitions will default to:
 
-- HyperV Generation : V2 and
-- Security Type : TrustedLaunchSupported
+- Hyper-V Generation: V2 and
+- Security Type: TrustedLaunchSupported
 
-These changes are designed to improve the default security posture of virtual machines (VMs) and virtual machine scale sets (VMSS) created from ACG Images. As TrustedLaunchSupported becomes the default Security Type for ACG image definitions, the platform will run a validation on "TrustedLaunchSupported" and "TrustedLaunchandConfidentialVMSupported" ACG image definitions to ensure that the images published in the image definition are indeed Trusted Launch Capable, such that the VM/VMSS deployments can default to Trusted launch based on successful image validation.
+These changes are designed to improve the default security posture of virtual machines (VMs) and virtual machine scale sets (VMSS) created from ACG Images. As TrustedLaunchSupported becomes the default Security Type for ACG image definitions, the platform will run a validation on "TrustedLaunchSupported" and "TrustedLaunchandConfidentialVMSupported" ACG image definitions to ensure that the images published in the image definition are indeed Trusted Launch Capable, such that the virtual machines (VMs) and virtual machine scale sets (VMSS) deployments can default to Trusted launch based on successful image validation.
 
 ### How Trusted Launch Validation Works
-When "TrustedLaunchSupported" (or) "TrustedLaunchandConfidentialVMSupported" is specified in the ACG image definition, the platform will automatically validate that the image is Trusted Launch capable and adds the validation result to the Image Version property. This ensures that the VMs and VMSS deployments using these images can default to Trusted Launch if the validation is successful.
+When "TrustedLaunchSupported" (or) "TrustedLaunchandConfidentialVMSupported" is specified in the ACG image definition, the platform will automatically validate that the image is Trusted Launch capable and adds the validation result to the Image Version property. This ensures that the virtual machines (VMs) and virtual machine scale sets (VMSS) deployments using these images can default to Trusted Launch if the validation is successful.
 
 ### How to Enable the Preview
 To try out Trusted Launch Validation for ACG Images:
@@ -232,7 +232,7 @@ The following table lists a few example operations that relate to gallery operat
 
 
 ## Billing
-There is no extra charge for using the Azure Compute Gallery service. you'll be charged for the following resources:
+There is no extra charge for using the Azure Compute Gallery service. You'll be charged for the following resources:
 - Storage costs of storing each replica. For images, the storage cost is charged as a snapshot and is based on the occupied size of the image version, the number of replicas of the image version and the number of regions the version is replicated to. 
 - Network egress charges for replication of the first resource version from the source region to the replicated regions. Subsequent replicas are handled within the region, so there are no additional charges. 
 
