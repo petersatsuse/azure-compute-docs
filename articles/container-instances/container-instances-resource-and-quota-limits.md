@@ -67,18 +67,7 @@ The following limits are default limits that can’t be increased through a quot
 
 By default, the following resources are available general purpose (standard core SKU) containers in general deployments and [Azure virtual network](container-instances-vnet.md) deployments) for Linux & Windows containers. These maximums are hard limits and can't be increased.
 
-#### Generally Available Limits: 
-
-| Max CPU | Max Memory (GB) | Virtual network Max CPU | Virtual network Max Memory (GB) | Storage (GB) | 
-| :---: | :---: | :----: | :-----: | :-------: |
-| 4 | 16 | 4 | 16 | 50 | 
-
 For a general list of available regions for Azure Container Instances, see [available regions](https://azure.status.microsoft/status/#services/). 
-
-#### Preview Limits: 
-
-> [!NOTE]
-> Big Container SKUs are in preview, and you may experience errors in some regions that you deploy. Preview features aren't ideal for critical workloads. If you're experiencing errors when deploying containers with greater than 4 vCPU and 16 GB in a certain region, please submit an [Azure support request][azure-support] (select "Quota" for **Support type**).
 
 | Max CPU | Max Memory (GB) | Virtual network Max CPU | Virtual network Max Memory (GB) | Storage (GB) | 
 | :---: | :---: | :----: | :-----: | :-------: |
@@ -89,17 +78,6 @@ The following resources are available in all Azure Regions supported by Azure Co
 ## Confidential Container Resources
 
 The following maximum resources are available to a container group deployed using [Confidential Containers](container-instances-confidential-overview.md). These maximums are hard limits and can't be increased.
-
-#### Generally Available Limits: 
-
-| Max CPU | Max Memory (GB) | Virtual network Max CPU | Virtual network Max Memory (GB) | Storage (GB) | 
-| :---: | :---: | :----: | :-----: | :-------: |
-| 4 | 16 | 4 | 256 | 50 | 
-
-#### Preview Limits: 
-
-> [!NOTE]
-> Big Container SKUs are in preview, and you may experience errors in some regions that you deploy. Preview features aren't ideal for critical workloads. If you're experiencing errors when deploying containers with greater than 4 vCPU and 16 GB in a certain region, please submit an [Azure support request][azure-support] (select "Quota" for **Support type**).
 
 | Max CPU | Max Memory (GB) | Virtual network Max CPU | Virtual network Max Memory (GB) | Storage (GB) | 
 | :---: | :---: | :----: | :-----: | :-------: |
