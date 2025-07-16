@@ -30,6 +30,8 @@ To learn more about previous-gen sizes, retirement, and the status states of pre
 | Standard D-series          | [Capacity limited](./retirement-overview.md#capacity-limited) | 
 | Preview DC-series          | [Capacity limited](./retirement-overview.md#capacity-limited) |
 | DS-series                  | [Capacity limited](./retirement-overview.md#capacity-limited) |
+| Dv1 and Dsv1-series        | [Capacity limited](./retirement-overview.md#capacity-limited) |
+| Dv2 and Dsv2-series        | [Capacity limited](./retirement-overview.md#capacity-limited) |
 
 For a list of general purpose sizes listed as "retired" and "announced for retirement" (sizes that are no longer available or soon to be unavailable for use), see [retired general purpose sizes](./retired-sizes-list.md#general-purpose-retired-sizes).
 
@@ -61,6 +63,7 @@ For a list of memory optimized sizes listed as "retired" and "announced for reti
 
 |Series name                | Replacement series   | Migration guide|
 |---------------------------|----------------------|----------------|
+| Lsv1-series               | [Capacity limited](./retirement-overview.md#capacity-limited) |                |
 | Lsv2-series               | [Capacity limited](./retirement-overview.md#capacity-limited) |                |
 
 For a list of storage optimized sizes listed as "retired" and "announced for retirement" (sizes that are no longer available or soon to be unavailable for use), see [retired storage optimized sizes](./retired-sizes-list.md#storage-optimized-retired-sizes).
