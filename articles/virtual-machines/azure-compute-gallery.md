@@ -84,34 +84,34 @@ The regions that a resource is replicated to can be updated after creation time.
 
 <a name=community></a>
 
-## (Preview) Trusted Launch Validation for Azure Compute Gallery (ACG) Images
+## Trusted Launch validation for Azure Compute Gallery (ACG) images (Preview) 
+
 > [!IMPORTANT]
 >
-> Trusted Launch Validation for ACG images is currently in preview. This Preview is intended for testing, evaluation, and feedback purposes only. Production workloads aren't recommended. When registering to preview, you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature might change with general availability (GA).
+> Trusted Launch validation for ACG images is currently in preview. This Preview is intended for testing, evaluation, and feedback purposes only. Production workloads aren't recommended. When registering to preview, you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature might change with general availability (GA).
 
-### What's Changing?
+### What is changing?
 Starting with API 2025-03-03, all new ACG image definitions will default to:
 
-- Hyper-V Generation: V2 and
-- Security Type: TrustedLaunchSupported
+- Hyper-V Generation: `V2`
+- Security Type: `TrustedLaunchSupported`
 
-These changes are designed to improve the default security posture of virtual machines (VMs) and virtual machine scale sets (VMSS) created from ACG Images. As TrustedLaunchSupported becomes the default Security Type for ACG image definitions, the platform will run a validation on "TrustedLaunchSupported" and "TrustedLaunchandConfidentialVMSupported" ACG image definitions to ensure that the images published in the image definition are indeed Trusted Launch Capable, such that the virtual machines (VMs) and virtual machine scale sets (VMSS) deployments can default to Trusted launch based on successful image validation.
+### How Trusted Launch validation works
+When `TrustedLaunchSupported` or `TrustedLaunchandConfidentialVMSupported` is specified in the ACG image definition, the platform will automatically validate that the image is Trusted Launch capable and add the validation result to the Image Version property. This ensures that the VMs and Virtual Machine Scale Sets deployments using these images can default to Trusted Launch if the validation is successful.
 
-### How Trusted Launch Validation Works
-When "TrustedLaunchSupported" (or) "TrustedLaunchandConfidentialVMSupported" is specified in the ACG image definition, the platform will automatically validate that the image is Trusted Launch capable and adds the validation result to the Image Version property. This ensures that the virtual machines (VMs) and virtual machine scale sets (VMSS) deployments using these images can default to Trusted Launch if the validation is successful.
-
-### How to Enable the Preview
-To try out Trusted Launch Validation for ACG Images:
+### Enable the Preview
+To try out Trusted Launch validation for ACG images, complete the following steps:
 
 1. Register for (Trusted Launch as Default Feature)[https://learn.microsoft.com/azure/virtual-machines/trusted-launch#preview-trusted-launch-as-default]
 2. Register for (Trusted Launch Validation Preview)[https://aka.ms/ACGTLValidationPreview]
 
-Once the two features are enabled, all new VM and VMSS deployments using ACG Image Versions and validated successfully for Trusted launch will default to Trusted Launch Security Type as described in the (blog post)[https://techcommunity.microsoft.com/blog/azurecompute/preview-trusted-launch-default-for-new-azure-virtual-machine-scale-set-compute-g/4417865]. You can try out the VM & Scale set default using ACG experience in preview starting July 2025.
+Once the two features are enabled, all new VM and scale set deployments using ACG image versions and validated successfully for Trusted Launch will default to the Trusted Launch security type. 
 
-### VM deployments from Azure compute gallery (ACG) images
+### VM deployments from ACG images
+The following compares the current and new behaviors of VM deployments from ACG images, depending on Trusted Launch validation. 
 
-#### Current behavior
-To create Trusted launch supported Gen2 ACG OS image definition, you need to add following features element in deployment:
+#### Current behavior without Trusted Launch validation 
+To create a Trusted launch supported Gen2 ACG OS image definition, you need to add the following `features` element in your deployment:
 
 ```json
 "features": [
@@ -123,10 +123,15 @@ To create Trusted launch supported Gen2 ACG OS image definition, you need to add
 "hyperVGeneration": "V2"
 ```
 
-#### New behavior with TL Validation Preview
-By using API version 2025-03-03 or above for Microsoft.Compute/galleries resource, absence of securityType feature from deployment, i.e., securityType = null or absent will enable TrustedLaunchSupported by default on new ACG image definitions.
+#### New behavior with Trusted Launch validation
+`TrustedLaunchSupported` is enabled by default on new ACG image definitions if any of the following criteria is met:
 
-Additionally, platform will trigger validation for the OS image to ensure it supports Trusted launch capabilities. The validation will take minimum 1 hour and results will be available as image version property:
+- Using API version 2025-03-03 or above for `Microsoft.Compute/galleries` resource
+- The absence of `securityType` feature from deployment
+- A `null` value for `securityType` feature in deployment
+
+Additionally, the Azure platform will trigger validation for the OS image to ensure it supports Trusted launch capabilities. The validation will take a minimum of 1 hour and results will be available as the image version property:
+
 ```json
 "validationsProfile": {
   "executedValidations": [
@@ -139,9 +144,9 @@ Additionally, platform will trigger validation for the OS image to ensure it sup
     ],
 }
 ```
-Any new VM & Scale set created using image versions which have been validated successfully will default to Trusted launch security type as described in the (blog post)[https://techcommunity.microsoft.com/blog/azurecompute/preview-trusted-launch-default-for-new-azure-virtual-machine-scale-set-compute-g/4417865]. You can try out the VM & Scale set default using ACG experience in preview starting July 2025.
 
-You can choose to explicitly bypass default for new ACG image definitions by setting Standard as value of parameter securityType under features:
+You can choose to explicitly bypass default for new ACG image definitions by setting `Standard` as the value for `securityType` under features:
+
 ```json
 "features": [
     {
