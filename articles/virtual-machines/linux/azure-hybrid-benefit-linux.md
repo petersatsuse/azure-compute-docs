@@ -93,22 +93,27 @@ The following SUSE-published SLES PAYG offers are eligible for Azure Hybrid Bene
 
 Within these offers, associated plans and images are described as a "Pay-As-You-Go" subscription of SLES.
 
-* [SUSE Enterprise Linux 15 SP5 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp5?tab=Overview)
-* [SUSE Enterprise Linux 15 SP5 Arm64 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp5-arm64?tab=Overview)
-* [SUSE Enterprise Linux 15 SP5 + Patching](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp5-basic?tab=Overview)
+SUSE Linux Enterprise Server
 * [SUSE Enterprise Linux 15 SP6 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp6?tab=Overview)
 * [SUSE Enterprise Linux 15 SP6 Arm64 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp6-arm64?tab=PlansAndPrice)
-* [SUSE Enterprise Linux 15 SP6 + Patching](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp6-basic?tab=Overview)
-* [SUSE Enterprise Linux for SAP 12 SP5 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-12-sp5?tab=Overview)
+* [SUSE Enterprise Linux 15 SP7 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp7?tab=Overview)
+* [SUSE Enterprise Linux 15 SP7 Arm64 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp7-arm64?tab=PlansAndPrice)
+
+SUSE Linux Enterprise Server for SAP applications
 * [SUSE Enterprise Linux for SAP 15 SP3 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-15-sp3?tab=Overview)
 * [SUSE Enterprise Linux for SAP 15 SP4 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-15-sp4?tab=Overview)
 * [SUSE Enterprise Linux for SAP 15 SP4 Hardened + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-15-sp4-hardened?tab=Overview)
 * [SUSE Enterprise Linux for SAP 15 SP5 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-15-sp5?tab=Overview)
-* [SUSE Enterprise Linux for SAP 15 SP5 + 24x7 Support (CVM)](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp5?tab=Overview)
 * [SUSE Enterprise Linux for SAP 15 SP5 Hardened + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-15-sp5-hardened?tab=Overview)
 * [SUSE Enterprise Linux for SAP 15 SP6 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-15-sp6?tab=Overview)
 * [SUSE Enterprise Linux for SAP 15 SP6 Hardened + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-15-sp6-hardened?tab=Overview)
+* [SUSE Enterprise Linux for SAP 15 SP7 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-15-sp7?tab=Overview)
+* [SUSE Enterprise Linux for SAP 15 SP7 Hardened + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-15-sp7-hardened?tab=Overview)
 
+SUSE Linux Enterprise HPC
+* [SUSE Linux Enterprise HPC 15 SP5 +24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sle-hpc-15-sp6?tab=Overview)
+* [SUSE Linux Enterprise HPC 15 SP6 +24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sle-hpc-15-sp7?tab=Overview)
+  
 ---
 
 ### BYOS
@@ -117,7 +122,7 @@ Azure Hybrid Benefit is also available for RHEL and SLES BYOS Azure Marketplace 
 
 Currently, one RHEL BYOS offer is available. This offer is a private listing. To gain access to this private listing, you must join the Red Hat Cloud Access program.
 
-You can identify SLES BYOS marketplace offers by their name, which includes "BYOS". An example is the **SUSE Enterprise Linux 12 SP5 - BYOS** offering.
+You can identify SLES BYOS marketplace offers by their name, which includes "BYOS". An example is the "SUSE Enterprise Linux 15 SP7 - **BYOS**" offering.
 
 Azure dedicated host instances and SQL hybrid benefits aren't eligible to use with Azure Hybrid Benefit if you already use Azure Hybrid Benefit with Linux VMs.
 
@@ -266,7 +271,7 @@ The Azure Hybrid Benefit extension must be installed on the VM to switch the lic
 
    For SLES:
 
-   * SLES
+   * SLES_STANDART
    * SLES_SAP
    * SLES_HPC
 
