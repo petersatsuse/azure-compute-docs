@@ -17,6 +17,8 @@ This article provides a list of all sizes that are retired or have been announce
 
 > [!WARNING]
 > Series with *Retirement Status* listed as *Retired* are **no longer available** and can't be provisioned.
+> 
+> Virtual Machines (VMs) announced for retirement will have restrictions when deploying through new subscriptions. We recommend using the latest generation VMs to ensure best price-performance and to benefit from extended capacity availability over time for new deployments.
 
 ## What are retired size series?
 Retired virtual machine size series are running on older hardware which is no longer supported. The hardware is with newer generations of hardware.
