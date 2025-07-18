@@ -102,7 +102,7 @@ When `TrustedLaunchSupported` or `TrustedLaunchandConfidentialVMSupported` is sp
 ### Enable the Preview
 To try out Trusted Launch validation for ACG images, complete the following steps:
 
-1. Register for [Trusted Launch as Default Feature](/articles/virtual-machines/trusted-launch.mdpreview-trusted-launch-as-default)
+1. Register for [Trusted Launch as Default Feature](/articles/virtual-machines/trusted-launch.md#preview-trusted-launch-as-default)
 2. Register for [Trusted Launch Validation Preview](https://aka.ms/ACGTLValidationPreview)
 
 Once the two features are enabled, all new VM and scale set deployments using ACG image versions and validated successfully for Trusted Launch will default to the Trusted Launch security type. 
