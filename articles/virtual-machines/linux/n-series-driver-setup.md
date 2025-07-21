@@ -30,7 +30,7 @@ For N-series VM specs, storage capacities, and disk details, see [GPU Linux VM s
 [!INCLUDE [virtual-machines-n-series-linux-support](../includes/virtual-machines-n-series-linux-support.md)]
 
 > [!WARNING]
-> Installing NVIDIA drivers using methods other than those outlined in this guide may result in failure of the intended driver installation. To ensure proper functionality, please follow only the installation steps and use the driver versions specified in this documentation. 
+> Installing NVIDIA drivers using methods other than those outlined in this guide may result in failure of the intended driver installation. To ensure proper functionality and support, please only follow the installation steps and use the driver versions specified in this documentation. 
 
 ## Install CUDA drivers on N-series VMs
 
