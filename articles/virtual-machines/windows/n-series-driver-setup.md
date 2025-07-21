@@ -24,6 +24,9 @@ For basic specs, storage capacities, and disk details, see [GPU Windows VM sizes
 
 [!INCLUDE [virtual-machines-n-series-windows-support](../includes/virtual-machines-n-series-windows-support.md)]
 
+> [!WARNING]
+> Installing NVIDIA drivers using methods other than those outlined in this guide may result in failure of the intended driver installation. To ensure proper functionality and support, please follow only the installation steps and use the driver versions specified in this documentation. 
+
 ## Driver installation
 
 1. Connect by Remote Desktop to each N-series VM.
