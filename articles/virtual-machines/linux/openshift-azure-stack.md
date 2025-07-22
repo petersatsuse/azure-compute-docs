@@ -2,7 +2,6 @@
 title: Deploy OpenShift to Azure Stack Hub
 description: Deploy OpenShift to Azure Stack Hub.
 author: ronmiab
-manager: femila
 ms.author: robess
 ms.service: azure-stack
 ms.custom: linux-related-content
@@ -27,7 +26,7 @@ Red Hat manages the Red Hat Enterprise Linux CoreOS (RHCOS) image for OpenShift 
 You can follow the steps in the OpenShift documentation at [Installing a cluster on Azure Stack Hub using ARM templates](https://docs.openshift.com/container-platform/4.9/installing/installing_azure_stack_hub/installing-azure-stack-hub-user-infra.html).
 
 > [!WARNING]
-> If you have an issue with OpenShift, please contact Red Hat for support.
+> If you have an issue with OpenShift, contact Red Hat for support.
 ## Next steps
 
 [Installing a cluster on Azure Stack Hub using ARM templates](https://docs.openshift.com/container-platform/4.9/installing/installing_azure_stack_hub/installing-azure-stack-hub-user-infra.html).
