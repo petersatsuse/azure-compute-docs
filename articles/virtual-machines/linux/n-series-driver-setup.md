@@ -27,10 +27,10 @@ If you choose to install NVIDIA GPU drivers manually, this article provides supp
 
 For N-series VM specs, storage capacities, and disk details, see [GPU Linux VM sizes](../sizes-gpu.md?toc=/azure/virtual-machines/linux/toc.json).
 
-[!INCLUDE [virtual-machines-n-series-linux-support](../includes/virtual-machines-n-series-linux-support.md)]
-
 > [!WARNING]
 > Installing NVIDIA drivers using methods other than those outlined in this guide may result in failure of the intended driver installation. To ensure proper functionality and support, follow only the installation steps and use the driver versions specified in this documentation. 
+
+[!INCLUDE [virtual-machines-n-series-linux-support](../includes/virtual-machines-n-series-linux-support.md)]
 
 ## Install CUDA drivers on N-series VMs
 
