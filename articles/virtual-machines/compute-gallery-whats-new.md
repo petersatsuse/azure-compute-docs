@@ -14,6 +14,14 @@ ms.reviewer: cynthn
 # What's new for Azure Compute Gallery
 This article is a list of updates to Compute Gallery features in Azure.
 
+## July 2025 updates:
+- [Trusted Launch Validation in Preview](./azure-compute-gallery.md#trusted-launch-validation-for-azure-compute-gallery-acg-images-preview) launched.
+- [`ExcludefromLatest`](/cli/azure/sig/image-version?view=azure-cli-latest#az-sig-image-version-create) property to exclude an image version from being used for creating resources for testing images and safely rolling out the image to production. This property can also be set at the region level to exclude specific regions.
+- [Allow Deletion of Replicated Locations](https://learn.microsoft.com/rest/api/compute/gallery-image-versions/create-or-update?view=rest-compute-2025-02-01&tabs=HTTP#galleryimageversionsafetyprofile) property to indicate whether or not removing the gallery image version from replicated regions is allowed and prevents accidental deletion of regions.
+- [`BlockDeletionBeforeEndOfLife`](/rest/api/compute/gallery-image-versions/create-or-update?view=rest-compute-2025-02-01&tabs=HTTP#galleryimageversionsafetyprofile) property enables customers to prevent deletion of image before end of life date. You can opt-out by explicitly setting `BlockDeletionBeforeEndOfLife` to *False*.
+- [Platform metadata](/rest/api/compute/gallery-image-versions/create-or-update?view=rest-compute-2024-11-04&tabs=HTTP#platformattribute) such as Publisher, offer, or SKU information from a VM created from Marketplace image is carried over to the ACG image.
+
+
 ## January 2023 updates:
 - [Launched public preview of Direct shared gallery on 07/25](./share-gallery-direct.md?tabs=portaldirect)
 - [Best Practices document now available](./azure-compute-gallery.md#best-practices)
