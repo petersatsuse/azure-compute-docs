@@ -19,7 +19,7 @@ This article is a list of updates to Compute Gallery features in Azure.
 - [`ExcludefromLatest`](/cli/azure/sig/image-version?view=azure-cli-latest#az-sig-image-version-create) property to exclude an image version from being used for creating resources for testing images and safely rolling out the image to production. This property can also be set at the region level to exclude specific regions.
 - [Allow Deletion of Replicated Locations](https://learn.microsoft.com/rest/api/compute/gallery-image-versions/create-or-update?view=rest-compute-2025-02-01&tabs=HTTP#galleryimageversionsafetyprofile) property to indicate whether or not removing the gallery image version from replicated regions is allowed and prevents accidental deletion of regions.
 - [`BlockDeletionBeforeEndOfLife`](/rest/api/compute/gallery-image-versions/create-or-update?view=rest-compute-2025-02-01&tabs=HTTP#galleryimageversionsafetyprofile) property enables customers to prevent deletion of image before end of life date. You can opt-out by explicitly setting `BlockDeletionBeforeEndOfLife` to *False*.
-- [Platform metadata](https://learn.microsoft.com/rest/api/compute/gallery-image-versions/create-or-update?view=rest-compute-2024-11-04&tabs=HTTP#platformattribute) such as Publisher/Offer/SKU information from a VM created from Marketplace image is carried over to ACG Image
+- [Platform metadata](/rest/api/compute/gallery-image-versions/create-or-update?view=rest-compute-2024-11-04&tabs=HTTP#platformattribute) such as Publisher, offer, or SKU information from a VM created from Marketplace image is carried over to the ACG image.
 
 
 ## January 2023 updates:
