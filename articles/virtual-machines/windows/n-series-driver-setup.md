@@ -22,10 +22,10 @@ If you choose to install NVIDIA GPU drivers manually, this article provides supp
 
 For basic specs, storage capacities, and disk details, see [GPU Windows VM sizes](../sizes-gpu.md?toc=/azure/virtual-machines/windows/toc.json). 
 
-[!INCLUDE [virtual-machines-n-series-windows-support](../includes/virtual-machines-n-series-windows-support.md)]
-
 > [!WARNING]
 > Installing NVIDIA drivers using methods other than those outlined in this guide may result in failure of the intended driver installation. To ensure proper functionality and support, please follow only the installation steps and use the driver versions specified in this documentation. 
+
+[!INCLUDE [virtual-machines-n-series-windows-support](../includes/virtual-machines-n-series-windows-support.md)]
 
 ## Driver installation
 
