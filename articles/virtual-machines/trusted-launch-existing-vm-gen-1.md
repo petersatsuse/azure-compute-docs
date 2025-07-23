@@ -348,19 +348,19 @@ Follow the steps to enable Trusted launch on an existing Azure Generation 2 VM b
 
 ---
 
-## Roll-back
+## Roll back
 
 Azure VM once upgraded to Trusted launch can't be rolled back to Gen1 configuration. You can [disable Trusted launch](trusted-launch-existing-vm.md#roll-back) to roll-back VM from Trusted launch to Gen2 (Non-Trusted launch) configuration.
 
-Use the Backup or Restore point of Gen1 VM taken before upgrade and restore entire VM along with disks to roll-back fully to Gen1 VM.
+Use the Backup or Restore point of Gen1 VM taken before upgrade and restore entire VM along with disks to roll back fully to Gen1 VM.
 
 ## Known issues
 
 ### VM image reference doesn't change post Trusted launch upgrade
 
-Post upgrade of Azure Gen1 VM to Trusted launch, the image reference still reflects source as Gen1 OS image. Image reference not updated is a known limitation and will be addressed in near future.
+Post upgrade of Azure Gen1 VM to Trusted launch, the image reference still reflects source as Gen1 OS image. Image reference not updated is a known limitation.
 
-Following VM operations are impacted due to disconnect between image reference and running OS:
+This limitation does not impacts the VM or hosted application functionality post Trusted launch upgrade. Following VM operations are impacted due to disconnect between image reference and running OS:
 
 - **Guest patching**: For *Server* OS, [Automatic guest patching](automatic-vm-guest-patching.md) installs updates based on the image reference of VM.
 - **Reimage**: Reimaging VM using Gen1 image reference post Trusted launch upgrade will cause VM boot failure.
