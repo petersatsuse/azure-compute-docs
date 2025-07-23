@@ -49,7 +49,7 @@ Gen1 to Trusted launch VM upgrade is **NOT** supported if Gen1 VM is configured 
 
 > [!IMPORTANT]
 >
-> VM once upgraded to Trusted launch cannot be rolled back to Gen1 configuration. It has to be fully recovered using Backup taken prior to upgrade.
+> VM once upgraded to Trusted launch can't be rolled back to Gen1 configuration. It has to be fully recovered using Backup taken before upgrade.
 
 - [Take full backup](/azure/backup/quick-backup-vm-portal) OR [Create restore points](create-restore-points.md) for Azure VMs associated with production workloads before you enable the Trusted launch security type. You can use the backup OR restore points to re-create the disks and VM with the previous Gen1 configuration well-known state.
 - Review [known issues](#known-issues) and [roll-back steps](#roll-back) before executing Trusted launch upgrade.
@@ -74,12 +74,12 @@ Complete the update of OS volume with required configuration before upgrading Az
 Using in-built [MBR2GPT.exe](/windows/deployment/mbr-to-gpt) utility, you can enable `GPT` disk layout AND add `EFI system partition` required for Gen2 upgrade.
 
 > [!CAUTION]
-> You will not be able to extend Windows OS disk system volume after `MBR to GPT conversion`. Recommendation is to extend system volume for future before executing the upgrade.
+> You won't be able to extend Windows OS disk system volume after `MBR to GPT conversion`. Recommendation is to extend system volume for future before executing the upgrade.
 
 > [!NOTE]
-> Windows Server 2016 does not support `MBR2GPT.exe`. Workaround is to update the Guest OS to Windows Server 2019 or 2022 and then perform `MBR to GPT conversion`. Refer to [In-place upgrade for VMs running Windows Server in Azure](windows-in-place-upgrade.md#perform-in-place-upgrade-to-windows-server-2016-2019-or-2022).
+> Windows Server 2016 doesn't support `MBR2GPT.exe`. Workaround is to update the Guest OS to Windows Server 2019 or 2022 and followed by `MBR to GPT conversion`. Refer to [In-place upgrade for VMs running Windows Server in Azure](windows-in-place-upgrade.md#perform-in-place-upgrade-to-windows-server-2016-2019-or-2022).
 
-1. RDP or remotely connect to Gen1 Windows VM for executing conversion.
+1. Remotely connect (using RDP or command-line) to Gen1 Windows VM for executing conversion.
 2. Run command `MBR2GPT /validate /allowFullOS` and ensure `Disk layout validation` completes successfully. **Do not proceed** if the `Disk layout validation` fails. Refer to [Known issues](#known-issues) for list of common causes and associated resolution for failure. For more information and troubleshooting, see [MBR2GPT troubleshooting](/windows/deployment/mbr-to-gpt#troubleshooting).
 3. Run command `MBR2GPT /convert /allowFullOS` to **execute** MBR to GPT conversion. Sample successful output:
 
@@ -130,9 +130,8 @@ Validate Guest OS volume readiness for Trusted launch upgrade with following com
 
 > [!NOTE]
 >
-> - After you enable Trusted launch, currently VMs can't be rolled back to the Standard security type (non-Trusted launch configuration).
 > - vTPM is enabled by default.
-> - We recommend that you enable Secure Boot, if you aren't using custom unsigned kernel or drivers. It's not enabled by default. Secure Boot preserves boot integrity and enables foundational security for VMs.
+> - Secure boot isn't enabled by default. We strongly recommend that you enable Secure Boot, if you aren't using custom unsigned kernel or drivers. Secure Boot preserves boot integrity and enables foundational security for VMs.
 
 ### [PowerShell](#tab/powershell)
 
@@ -351,9 +350,9 @@ Follow the steps to enable Trusted launch on an existing Azure Generation 2 VM b
 
 ## Roll-back
 
-Azure VM once upgraded to Trusted launch cannot be rolled back to Gen1 configuraiton.  You can [disable Trusted launch](trusted-launch-existing-vm.md#roll-back) to roll-back VM from Trusted launch to Gen2 (Non-Trusted launch) configuration.
+Azure VM once upgraded to Trusted launch can't be rolled back to Gen1 configuration. You can [disable Trusted launch](trusted-launch-existing-vm.md#roll-back) to roll-back VM from Trusted launch to Gen2 (Non-Trusted launch) configuration.
 
-Use the Backup or Restore point of Gen1 VM taken prior to upgrade and restore entire VM along with disks to roll-back fully to Gen1 VM.
+Use the Backup or Restore point of Gen1 VM taken before upgrade and restore entire VM along with disks to roll-back fully to Gen1 VM.
 
 ## Known issues
 

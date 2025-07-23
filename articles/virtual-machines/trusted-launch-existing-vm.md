@@ -43,7 +43,7 @@ Azure Virtual Machines supports enabling Azure Trusted launch on existing [Azure
 > [!NOTE]
 >
 > - vTPM is enabled by default.
-> - We recommend that you enable Secure Boot, if you aren't using custom unsigned kernel or drivers. It's not enabled by default. Secure Boot preserves boot integrity and enables foundational security for VMs.
+> - Secure boot isn't enabled by default. We strongly recommend that you enable Secure Boot, if you aren't using custom unsigned kernel or drivers. Secure Boot preserves boot integrity and enables foundational security for VMs.
 
 ### [Portal](#tab/portal)
 
@@ -412,7 +412,7 @@ For a Generation 2 VM that doesn't meet the [prerequisites](#prerequisites) to u
 
 > [!NOTE]
 >
-> Please dismiss the recommendation if Gen2 virtual machine is configured with VM size families which are currently not supported with Trusted launch like MSv2-series.
+> Dismiss the recommendation if Gen2 virtual machine is configured with VM size families that are currently not supported with Trusted launch like MSv2-series.
 
 ## Related content
 
