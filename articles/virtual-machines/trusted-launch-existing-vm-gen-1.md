@@ -47,8 +47,12 @@ Gen1 to Trusted launch VM upgrade is **NOT** supported if Gen1 VM is configured 
 
 ## Best practices
 
-- [Create restore points](create-restore-points.md) for Azure VMs associated with production workloads before you enable the Trusted launch security type. You can use the restore points to re-create the disks and VM with the previous well-known state.
-- Review [known issues](#known-issues) before executing Trusted launch upgrade.
+> [!IMPORTANT]
+>
+> VM once upgraded to Trusted launch cannot be rolled back to Gen1 configuration. It has to be fully recovered using Backup taken prior to upgrade.
+
+- [Take full backup](/azure/backup/quick-backup-vm-portal) OR [Create restore points](create-restore-points.md) for Azure VMs associated with production workloads before you enable the Trusted launch security type. You can use the backup OR restore points to re-create the disks and VM with the previous Gen1 configuration well-known state.
+- Review [known issues](#known-issues) and [roll-back steps](#roll-back) before executing Trusted launch upgrade.
 - You won't be able to extend Windows OS disk system volume after `MBR to GPT conversion` as part of upgrade. Recommendation is to extend system volume for future before upgrading to Trusted launch.
 - *Windows OS disk volume* should be defragmented using command `Defrag C: /U /V`. Defragmentation of OS volume reduces the risk of MBR (Master boot record) to GPT (GUID partition table) conversion failure by freeing up end of partitions. Refer to [defrag](/windows-server/administration/windows-commands/defrag).
 
@@ -345,13 +349,28 @@ Follow the steps to enable Trusted launch on an existing Azure Generation 2 VM b
 
 ---
 
+## Roll-back
+
+Azure VM once upgraded to Trusted launch cannot be rolled back to Gen1 configuraiton.  You can [disable Trusted launch](trusted-launch-existing-vm.md#roll-back) to roll-back VM from Trusted launch to Gen2 (Non-Trusted launch) configuration.
+
+Use the Backup or Restore point of Gen1 VM taken prior to upgrade and restore entire VM along with disks to roll-back fully to Gen1 VM.
+
 ## Known issues
+
+### VM image reference doesn't change post Trusted launch upgrade
+
+Post upgrade of Azure Gen1 VM to Trusted launch, the image reference still reflects source as Gen1 OS image. Image reference not updated is a known limitation and will be addressed in near future.
+
+Following VM operations are impacted due to disconnect between image reference and running OS:
+
+- **Guest patching**: For *Server* OS, [Automatic guest patching](automatic-vm-guest-patching.md) installs updates based on the image reference of VM.
+- **Reimage**: Reimaging VM using Gen1 image reference post Trusted launch upgrade will cause VM boot failure.
 
 ### Windows 11 boot fails after Trusted launch upgrade of Windows 10 VM
 
 Windows 10 Gen1 VM is successfully upgraded to Trusted launch followed by successful Windows 11 in-place upgrade. However, the Windows 11 boot fails after Azure VM is stopped and started with error shown.
 
-**Resolution**: This issue is fixed with [24H2 build version 26100.2314](/windows/release-health/windows11-release-information#windows-11-current-versions-by-servicing-option).
+**Resolution**: This issue is fixed with [24H2 build version 26100.2314](/windows/release-health/windows11-release-information#windows-11-current-versions-by-servicing-option) and [23H2 build version 22631.5624](/windows/release-health/windows11-release-information#windows-11-current-versions-by-servicing-option).
 
 :::image type="content" source="./media/trusted-launch/01-error-windows-11-boot.jpg" alt-text="Screenshot that shows boot failure of Azure Windows VM.":::
 
@@ -393,10 +412,6 @@ After the upgrade check the disks on the server, if system reserved partition ha
 2. Reboot the VM
 3. Remove letter D: from the partition
 4. Reboot the VM to show the temporary storage disk with D: letter
-
-### VM image reference doesn't change post Trusted launch upgrade
-
-Post upgrade of Azure Gen1 VM to Trusted launch, the image reference still reflects source as Gen1 OS image. Image reference not updated is a known limitation and will be addressed with general availability release of Gen1 to Trusted launch VM upgrade support.
 
 ## Frequently asked questions
 

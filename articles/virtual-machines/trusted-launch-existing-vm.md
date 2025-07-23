@@ -42,7 +42,6 @@ Azure Virtual Machines supports enabling Azure Trusted launch on existing [Azure
 
 > [!NOTE]
 >
-> - After you enable Trusted launch, currently VMs can't be rolled back to the Standard security type (non-Trusted launch configuration).
 > - vTPM is enabled by default.
 > - We recommend that you enable Secure Boot, if you aren't using custom unsigned kernel or drivers. It's not enabled by default. Secure Boot preserves boot integrity and enables foundational security for VMs.
 
@@ -289,6 +288,117 @@ Follow the steps to enable Trusted launch on an existing Azure Generation 2 VM b
     :::image type="content" source="./media/trusted-launch/generation-2-trusted-launch-settings.png" alt-text="Screenshot that shows the Trusted launch properties of the VM.":::
 
 5. Start the upgraded Trusted launch VM. Verify that you can sign in to the VM by using either RDP (for Windows VMs) or SSH (for Linux VMs).
+
+---
+
+## Roll-back
+
+> [!NOTE]
+>
+> Register feature `UseStandardSecurityType` under `Microsoft.Compute` namespace on virtual machine  subscription for roll-back support. For more information, see [Set up preview features in Azure subscription](/azure/azure-resource-manager/management/preview-features)
+
+To roll-back changes from Trusted launch to previous Gen2 known good configuration, you need to set `securityType` of VM to **Standard**.
+
+### [Portal](#tab/portal)
+
+Currently roll-back of Trusted launch to Gen2 (Non-Trusted launch) configuration is not supported in Azure portal.
+
+### [Template](#tab/template)
+
+To roll-back changes from Trusted launch to previous known good configuration, set `securityProfile` to **Standard** as shown in the sample template used for executing Trusted launch upgrade.
+
+```json
+"securityProfile": {
+    "securityType": "Standard",
+    "uefiSettings": "[null()]"
+}
+```
+
+### [CLI](#tab/cli)
+
+Follow the steps to disable Trusted launch on an existing Azure Generation 2 VM by using the Azure CLI.
+
+Make sure that you install the latest [Azure CLI](/cli/azure/install-az-cli2) and are signed in to an Azure account with [az login](/cli/azure/reference-index).
+
+1. Sign in to the VM Azure subscription.
+
+    ```azurecli-interactive
+    az login
+    
+    az account set --subscription 00000000-0000-0000-0000-000000000000
+    ```
+
+2. Deallocate the VM.
+
+     ```azurecli-interactive
+    az vm deallocate \
+        --resource-group myResourceGroup --name myVm
+    ```
+
+3. Enable Trusted launch by setting `--security-type` to `Standard`.
+
+    ```azurecli-interactive
+    az vm update \
+        --resource-group myResourceGroup --name myVm \
+        --security-type Standard
+    ```
+
+4. Validate the output of the previous command. Ensure that the `securityProfile` configuration is returned with the command output.
+
+    ```json
+    {
+      "securityProfile": {
+        "securityType": null,
+        "uefiSettings": null
+      }
+    }
+    ```
+
+5. Start the VM.
+
+    ```azurecli-interactive
+    az vm start \
+        --resource-group myResourceGroup --name myVm
+    ```
+
+### [PowerShell](#tab/powershell)
+
+To roll-back changes from Trusted launch to previous known good configuration, set `-SecurityType` to `Standard` as shown.
+
+1. Sign in to the VM Azure subscription.
+
+    ```azurepowershell-interactive
+    Connect-AzAccount -SubscriptionId 00000000-0000-0000-0000-000000000000
+    ```
+
+2. Deallocate the VM.
+
+    ```azurepowershell-interactive
+    Stop-AzVM -ResourceGroupName myResourceGroup -Name myVm
+    ```
+
+3. Enable Trusted launch by setting `-SecurityType` to `TrustedLaunch`.
+
+    ```azurepowershell-interactive
+    Get-AzVM -ResourceGroupName myResourceGroup -VMName myVm `
+        | Update-AzVM -SecurityType Standard
+    ```
+
+4. Validate `securityProfile` in the updated VM configuration.
+
+    ```azurepowershell-interactive
+    # Following command output should be `null`
+    
+    (Get-AzVM -ResourceGroupName myVm -VMName myResourceGroup `
+        | Select-Object -Property SecurityProfile `
+            -ExpandProperty SecurityProfile).SecurityProfile.SecurityType
+    ```
+
+5. Start the VM.
+
+    ```azurepowershell-interactive
+    Start-AzVM -ResourceGroupName myResourceGroup -Name myVm
+    ```
 
 ---
 
