@@ -30,8 +30,6 @@ Certain default limits and quotas can be increased. To request an increase of on
 
 > [!IMPORTANT]  
 > Not all limit increase requests are guaranteed to be approved.
-> Deployments with GPU resources aren't supported in an Azure virtual network deployment and are only available on Linux container groups.
-> Using GPU resources (preview) isn't fully supported yet and any support is provided on a best-effort basis.
 
 ### Unchangeable (Hard) Limits 
 
@@ -93,24 +91,6 @@ The following maximum resources are available to a container group deployed usin
 | Max CPU | Max Memory (GB) | Virtual network Max CPU | Virtual network Max Memory (GB) | Storage (GB) | 
 | :---: | :---: | :----: | :-----: | :-------: |
 | 4 | 16 | N/A | N/A | 50 | 
-
-## GPU Container Resources (Preview) 
-
-> [!IMPORTANT]
-> K80 and P100 GPU SKUs were retired on August 31st, 2023. This is due to the retirement of the underlying VMs used: [NC Series](../virtual-machines/nc-series-retirement.md) and [NCv2 Series](../virtual-machines/ncv2-series-retirement.md) Although V100 SKUs will be available, it's recommended to use Azure Kubernetes Service instead. GPU resources aren't fully supported and shouldn't be used for production workloads. Use the following resources to migrate to AKS today: [How to Migrate to AKS](/azure/aks/aks-migration).
-
-> [!NOTE]
-> Not all limit increase requests are guaranteed to be approved.
-> Deployments with GPU resources aren't supported in an Azure virtual network deployment and are only available on Linux container groups.
-> Using GPU resources (preview) isn't fully supported yet and any support is provided on a best-effort basis.
-
-The following maximum resources are available to a container group deployed with [GPU resources](container-instances-gpu.md) (preview). These maximums are hard limits and can't be increased.
-
-| GPU SKUs | GPU count | Max CPU | Max Memory (GB) | Storage (GB) | 
-| --- | --- | --- | --- | --- | 
-| V100 | 1 | 6 | 112 | 50 | 
-| V100 | 2 | 12 | 224 | 50 | 
-| V100 | 4 | 24 | 448 | 50 | 
 
 ## Next steps 
 
