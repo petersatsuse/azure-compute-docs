@@ -50,7 +50,6 @@ The following limits are default limits that can’t be increased through a quot
 | --- | :--- | 
 | Standard sku container groups per region per subscription | 100 | 
 | Standard sku cores (CPUs) per region per subscription | 100 |  
-| Standard sku cores (CPUs) for V100 GPU per region per subscription | 0 | 
 | Container group creates per hour |300<sup>1</sup> | 
 | Container group creates per 5 minutes | 100<sup>1</sup> | 
 | Container group deletes per hour | 300<sup>1</sup> | 
@@ -91,6 +90,19 @@ The following maximum resources are available to a container group deployed usin
 | Max CPU | Max Memory (GB) | Virtual network Max CPU | Virtual network Max Memory (GB) | Storage (GB) | 
 | :---: | :---: | :----: | :-----: | :-------: |
 | 4 | 16 | N/A | N/A | 50 | 
+
+## GPU Container Resources (Preview) 
+
+> [!IMPORTANT]
+> This product is retired as of July 14, 2025.
+
+The following maximum resources are available to a container group deployed with [GPU resources](container-instances-gpu.md) (preview). These maximums are hard limits and can't be increased.
+
+| GPU SKUs | GPU count | Max CPU | Max Memory (GB) | Storage (GB) | 
+| --- | --- | --- | --- | --- | 
+| V100 | 1 | 6 | 112 | 50 | 
+| V100 | 2 | 12 | 224 | 50 | 
+| V100 | 4 | 24 | 448 | 50 | 
 
 ## Next steps 
 
