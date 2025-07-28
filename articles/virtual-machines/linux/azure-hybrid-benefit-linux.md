@@ -101,12 +101,12 @@ Within these offers, associated plans and images are described as a "Pay-As-You-
 * [ SUSE Linux Enterprise Server 15 SP7 Arm64 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp7-arm64?tab=PlansAndPrice)
 * [ SUSE Linux Enterprise Server 15 SP7 + Patching](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp7-basic?tab=Overview)
 
-_SLES 15 SP6 - EOL 31-Dec-2025 - LTSS 31-Dec-2028_
+ _SLES 15 SP6 - EOL 31-Dec-2025 - LTSS 31-Dec-2028_
 * [ SUSE Linux Enterprise Server 15 SP6 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp6?tab=Overview)
 * [ SUSE Linux Enterprise Server 15 SP6 Arm64 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp6-arm64?tab=PlansAndPrice)
 * [ SUSE Linux Enterprise Server 15 SP6 + Patching](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp6-basic?tab=Overview)
 
-_SLES 15 SP5 - EOL 31-Dec-2024 - LTSS 31-Dec-2027_
+ _SLES 15 SP5 - EOL 31-Dec-2024 - LTSS 31-Dec-2027_
 * [ SUSE Linux Enterprise Server 15 SP5 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp5?tab=Overview)
 * [ SUSE Linux Enterprise Server 15 SP5 Arm64 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp5-arm64?tab=Overview)
 * [ SUSE Linux Enterprise Server 15 SP5 + Patching](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-15-sp5-basic?tab=Overview)
@@ -126,10 +126,10 @@ _SLES 15 SP5 - EOL 31-Dec-2024 - LTSS 31-Dec-2027_
 * [ SUSE Linux Enterprise Server for SAP applications 15 SP4 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-15-sp4?tab=Overview)
 * [ SUSE Linux Enterprise Server for SAP applications 15 SP4 Hardened + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-15-sp4-hardened?tab=Overview)
 
-_SLES for SAP applications 15 SP3 - EOL 31-Dec-2025_
+ _SLES for SAP applications 15 SP3 - EOL 31-Dec-2025_
 * [ SUSE Linux Enterprise Server for SAP applications 15 SP3 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-15-sp3?tab=Overview)
 
-_SLES for SAP applications 12 SP5 - EOL 31-Oct-2024 - LTSS 31-Oct-2027_
+ _SLES for SAP applications 12 SP5 - EOL 31-Oct-2024 - LTSS 31-Oct-2027_
 * [ SUSE Linux Enterprise Server for SAP applications 12 SP5 + 24x7 Support](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/suse.sles-sap-12-sp5?tab=Overview)
 
 ---
@@ -351,7 +351,7 @@ For SUSE you do not need the extension, the functionality is covered by the SUSE
 
    * SLES_BYOS
 
-   If the license type of the VM isn't modified, this command returns an empty string and the VM continues to use the billing model of the image that you used to deploy it.
+   **If the license type of the VM isn't modified, this command returns an empty string and the VM continues to use the billing model of the image that you used to deploy it.**
 
 ---
 
