@@ -35,6 +35,6 @@ You can expand [NVMe controllers](../nvme-overview.md) Ultra Disks or Premium SS
 - US East 2
 - US South Central
   
-Use either the Azure portal, the Azure CLI, or the Azure PowerShell module.
+Use either the Azure CLI or the Azure PowerShell module to make the change.
 
 Allow up to 10 minutes for the correct size to be reflected in Windows VMs and Linux VMs. For Linux VMs, you must perform a [Linux rescan function](/azure/virtual-machines/linux/expand-disks?tabs=ubuntu#detecting-a-changed-disk-size). For a Windows VM that doesn't have a workload, you must perform a [Windows rescan function](/windows-hardware/drivers/devtest/devcon-rescan). You can rescan immediately, but if the time is within 10 minutes, you might need to rescan again to display the correct size. In the rare chance the rescan does not work properly, either try it again or restart the VM to see size reflected. 
