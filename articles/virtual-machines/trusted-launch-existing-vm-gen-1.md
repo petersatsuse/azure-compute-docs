@@ -12,7 +12,7 @@ ms.custom: template-how-to, devx-track-azurepowershell
 # Customer intent: As a cloud administrator, I want to upgrade existing Azure Generation 1 VMs to Trusted launch, so that I can enhance security against advanced threats and comply with organizational security policies.
 ---
 
-# (Preview) Upgrade existing Azure Gen1 VMs to Trusted launch
+# Upgrade existing Azure Gen1 VMs to Trusted launch
 
 **Applies to:** :heavy_check_mark: Linux VM :heavy_check_mark: Windows VM :heavy_check_mark: Generation 1 VM
 
@@ -20,12 +20,12 @@ Azure Virtual Machines supports upgrading Generation 1 virtual machines (VM) to 
 
 [Trusted launch](trusted-launch.md) is a way to enable foundational compute security on [Azure Generation 2 VMs](generation-2.md) and protects against advanced and persistent attack techniques like boot kits and rootkits. It does so by combining infrastructure technologies like Secure Boot, virtual Trusted Platform Module (vTPM), and boot integrity monitoring on your VM.
 
-> [!IMPORTANT]
-> Support for *upgrade of existing Gen1 VMs to Trusted launch* is currently in preview. *Upgrade of Gen1 VMs to Gen2 without enabling Trusted launch* is **not supported**.
+> [!NOTE]
+>
+> Support for *Upgrade of Gen1 VMs to Gen2 without enabling Trusted launch* is **not supported**.
 
 ## Prerequisites
 
-- Subscription is on-boarded to preview feature `Gen1ToTLMigrationPreview` under `Microsoft.Compute` namespace. Refer to [Set up preview features in Azure subscription](/azure/azure-resource-manager/management/preview-features)
 - Azure VM is configured with:
   - [Trusted launch supported size family](trusted-launch.md#virtual-machines-sizes).
   - [Trusted launch supported operating system (OS) version](trusted-launch.md#operating-systems-supported) (*excluding Windows Server 2016, Debian, Azure Linux*). For custom OS images or disks, the base image should be *Trusted launch capable*.
