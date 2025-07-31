@@ -40,7 +40,7 @@ Azure Virtual Machines supports upgrading Generation 1 virtual machines (VM) to 
 Gen1 to Trusted launch VM upgrade is **NOT** supported if Gen1 VM is configured with:
 
 - **Production workloads**: The preview feature should only be used for testing, evaluation, and feedback. Production workloads aren't recommended.
-- **Operating system**: Windows Server 2016, Azure Linux, Debian, and any other operating system not listed under [Trusted launch supported operating system (OS) version](trusted-launch.md#operating-systems-supported). For *Windows Server 2016 only*, workaround is to [update the Guest OS to Windows Server 2019 or 2022](windows-in-place-upgrade.md#perform-in-place-upgrade-to-windows-server-2016-2019-or-2022).
+- **Operating system**: Windows Server 2016, Azure Linux, Debian, and any other operating system not listed under [Trusted launch supported operating system (OS) version](trusted-launch.md#operating-systems-supported). For *Windows Server 2016 only*, workaround is to [update the Guest OS to Windows Server 2019 or 2022](windows-in-place-upgrade.md#perform-in-place-upgrade-to-windows-server-2016-2019-2022-or-2025).
 - **VM size**: Gen1 VM configured with VM size not listed under [Trusted launch supported size families](trusted-launch.md#virtual-machines-sizes). As workaround, update the VM size to Trusted launch supported VM size family.
 - **Azure Backup**: Gen1 VM configured with Azure Backup using *Standard policy*. As workaround, [migrate Gen1 VM backups from Standard to Enhanced policy](/azure/backup/backup-azure-vm-migrate-enhanced-policy).
 - **BitLocker or equivalent encryption**: Windows Gen1 VM *guest OS volume* is encrypted using BitLocker or equivalent encryption technology. As workaround, disable Windows OS volume encryption before upgrade and re-enable post successful completion of Trusted launch upgrade.
@@ -77,7 +77,7 @@ Using in-built [MBR2GPT.exe](/windows/deployment/mbr-to-gpt) utility, you can en
 > You won't be able to extend Windows OS disk system volume after `MBR to GPT conversion`. Recommendation is to extend system volume for future before executing the upgrade.
 
 > [!NOTE]
-> Windows Server 2016 doesn't support `MBR2GPT.exe`. Workaround is to update the Guest OS to Windows Server 2019 or 2022 and followed by `MBR to GPT conversion`. Refer to [In-place upgrade for VMs running Windows Server in Azure](windows-in-place-upgrade.md#perform-in-place-upgrade-to-windows-server-2016-2019-or-2022).
+> Windows Server 2016 doesn't support `MBR2GPT.exe`. Workaround is to update the Guest OS to Windows Server 2019 or 2022 and followed by `MBR to GPT conversion`. Refer to [In-place upgrade for VMs running Windows Server in Azure](windows-in-place-upgrade.md#perform-in-place-upgrade-to-windows-server-2016-2019-2022-or-2025).
 
 1. Remotely connect (using RDP or command-line) to Gen1 Windows VM for executing conversion.
 2. Run command `MBR2GPT /validate /allowFullOS` and ensure `Disk layout validation` completes successfully. **Do not proceed** if the `Disk layout validation` fails. Refer to [Known issues](#known-issues) for list of common causes and associated resolution for failure. For more information and troubleshooting, see [MBR2GPT troubleshooting](/windows/deployment/mbr-to-gpt#troubleshooting).
