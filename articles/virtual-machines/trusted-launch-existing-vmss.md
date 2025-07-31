@@ -277,10 +277,10 @@ Make sure the latest [Azure PowerShell](/powershell/azure/install-azps-windows) 
     $vmss = Get-AzVmss -VMScaleSetName MyVmssName -ResourceGroupName MyResourceGroup
 
     # Enable Trusted Launch
-    Set-AzVmssSecurityProfile -virtualMachineScaleSet $vmss -SecurityType TrustedLaunch
+    $vmss = Set-AzVmssSecurityProfile -virtualMachineScaleSet $vmss -SecurityType TrustedLaunch
 
     # Enable Trusted Launch settings
-    Set-AzVmssUefi -VirtualMachineScaleSet $vmss -EnableVtpm $true -EnableSecureBoot $true
+    $vmss = Set-AzVmssUefi -VirtualMachineScaleSet $vmss -EnableVtpm $true -EnableSecureBoot $true
 
     Update-AzVmss -ResourceGroupName $vmss.ResourceGroupName `
         -VMScaleSetName $vmss.Name -VirtualMachineScaleSet $vmss `
