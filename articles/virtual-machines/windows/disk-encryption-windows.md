@@ -7,7 +7,7 @@ ms.subservice: security
 ms.collection: windows
 ms.topic: how-to
 ms.author: mbaldwin
-ms.date: 06/06/2025
+ms.date: 08/01/2025
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ---
 
