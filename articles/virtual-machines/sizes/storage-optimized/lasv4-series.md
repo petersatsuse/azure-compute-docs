@@ -28,7 +28,7 @@ ms.reviewer: mattmcinnes
 
 vCPUs (Qty.) and Memory for each size.
 
-| Size Name | vCPUs (Qty.) | Memory (GB) |
+| Size Name | vCPUs (Qty.) | Memory (GiB) |
 | --- | --- | --- |
 | Standard_L2as_v4 | 2 | 16 |
 | Standard_L4as_v4 | 4 | 32 |
