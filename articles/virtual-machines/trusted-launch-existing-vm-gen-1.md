@@ -31,7 +31,7 @@ Azure Virtual Machines supports upgrading Generation 1 virtual machines (VM) to 
   - [Trusted launch supported operating system (OS) version](trusted-launch.md#operating-systems-supported) (*excluding Windows Server 2016, Debian, Azure Linux*). For custom OS images or disks, the base image should be *Trusted launch capable*.
 - Azure VM isn't using [features currently not supported with Trusted launch](trusted-launch.md#unsupported-features).
 - Azure Backup, if enabled, for VMs should be configured with the [Enhanced Backup policy](/azure/backup/backup-azure-vms-enhanced-policy). The Trusted launch security type can't be enabled for VMs configured with *Standard policy* backup protection.
-  - Existing Azure VM backup can be migrated from the *Standard* to the *Enhanced* policy. Follow the steps in [Migrate Azure VM backups from Standard to Enhanced policy (preview)](/azure/backup/backup-azure-vm-migrate-enhanced-policy).
+  - Existing Azure VM backup can be migrated from the *Standard* to the *Enhanced* policy. Follow the steps in [Migrate Azure VM backups from Standard to Enhanced policy](/azure/backup/backup-azure-vm-migrate-enhanced-policy).
 - Upgrade a test Gen1 VM to Trusted launch and determine if any changes are required to meet the prerequisites before you upgrade Gen1 VMs associated with production workloads to Trusted launch.
 - Disable any *Windows OS volume encryption* including BitLocker before upgrade if enabled. All Windows OS volume encryptions should be re-enabled post successful upgrade. This action isn't required for data disks or Linux OS volume.
 
@@ -39,7 +39,6 @@ Azure Virtual Machines supports upgrading Generation 1 virtual machines (VM) to 
 
 Gen1 to Trusted launch VM upgrade is **NOT** supported if Gen1 VM is configured with:
 
-- **Production workloads**: The preview feature should only be used for testing, evaluation, and feedback. Production workloads aren't recommended.
 - **Operating system**: Windows Server 2016, Azure Linux, Debian, and any other operating system not listed under [Trusted launch supported operating system (OS) version](trusted-launch.md#operating-systems-supported). For *Windows Server 2016 only*, workaround is to [update the Guest OS to Windows Server 2019 or 2022](windows-in-place-upgrade.md#perform-in-place-upgrade-to-windows-server-2016-2019-2022-or-2025).
 - **VM size**: Gen1 VM configured with VM size not listed under [Trusted launch supported size families](trusted-launch.md#virtual-machines-sizes). As workaround, update the VM size to Trusted launch supported VM size family.
 - **Azure Backup**: Gen1 VM configured with Azure Backup using *Standard policy*. As workaround, [migrate Gen1 VM backups from Standard to Enhanced policy](/azure/backup/backup-azure-vm-migrate-enhanced-policy).
