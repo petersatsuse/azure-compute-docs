@@ -403,7 +403,7 @@ Use the Azure CLI to convert a PAYG Azure Marketplace image to a BYOS subscripti
     az vm update -g myResourceGroup -n myVmName --license-type NONE
    ```
 > [!NOTE]
-> This is not possible for the SUSE offerings "+ Patching", they can only be moved back to "SLES"
+> This is not possible for the SUSE offerings "+ Patching", they can only be moved back to "SLES".
 ---
 
 ## Convert BYOS to PAYG
