@@ -180,9 +180,10 @@ To enable Azure Hybrid Benefit when you create a VM:
 
 You can use the `az vm extension` and `az vm update` commands to update a new VM after you create them.
 
-1. Install the extension:
 > [!NOTE]
 > You do **not** need to install the extension for SUSE offerings
+
+1. Install the extension:
 
    ```azurecli
    az vm extension
@@ -228,9 +229,10 @@ To enable Azure Hybrid Benefit on an existing VM:
 
 You can use the `az vm extension` and `az vm update` commands to update an existing VM.
 
-1. Install the extension:
 > [!NOTE]
 > You do **not** need to install the extension for SUSE offerings
+
+1. Install the extension:
 
    ```azurecli
    az vm extension
@@ -384,6 +386,8 @@ Use the Azure CLI to convert a PAYG Azure Marketplace image to a BYOS subscripti
     ```
 
 #### [SUSE (SLES)](#tab/slesAzcliByosConv)
+> [!NOTE]
+> This is not possible for the SUSE offerings "+ Patching", they can only be moved back to "SLES"
 
 1. Apply the `SLES_BYOS` license type to the VM:
 
@@ -395,13 +399,11 @@ Use the Azure CLI to convert a PAYG Azure Marketplace image to a BYOS subscripti
 1. When the conversion from PAYG to BYOS is finished, you must register the VM directly with SUSE for software updates and usage compliance.
 
 1. If you want to return the original subscription model, set `license-type` to `None`.
-> [!NOTE]
-> This is not possible for the SUSE offerings "+ Patching", they can only be moved back to "SLES"
 
-    ```azurecli
+   ```azurecli
     # In order to revert back to the original licensing model, set license-type to None.
     az vm update -g myResourceGroup -n myVmName --license-type NONE
-    ```
+   ```
 ---
 
 ## Convert BYOS to PAYG
@@ -452,14 +454,15 @@ Converting to a PAYG subscription model is supported for Azure Marketplace image
 
 #### [SUSE (SLES)](#tab/slesazclipaygconv)
 
-1. You do *not* need to install the Azure Hybrid Benefit extension on a running VM.
-
-1. Simply change the license type based on what you need:
 > [!NOTE]
 > You can NOT switch products, you can only switch between the billing types.
 
+1. You do *not* need to install the Azure Hybrid Benefit extension on a running VM.
+
+1. Simply change the license type based on what you need:
+
    ```azurecli
-    # This enables Azure Hybrid Benefit to fetch software updates for SLES Standard repositories.
+    # This enables Azure Hybrid Benefit to fetch software updates for SLES repositories.
     az vm update -g myResourceGroup -n myVmName --license-type SLES
 
     # This enables Azure Hybrid Benefit to fetch software updates for SLES SAP repositories.
