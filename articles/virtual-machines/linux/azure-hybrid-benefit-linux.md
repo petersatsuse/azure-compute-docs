@@ -181,7 +181,7 @@ To enable Azure Hybrid Benefit when you create a VM:
 You can use the `az vm extension` and `az vm update` commands to update a new VM after you create them.
 
 1. Install the extension:
-> [!NOTE]>
+> [!NOTE]
 > You do **not** need to install the extension for SUSE offerings
 
    ```azurecli
@@ -455,7 +455,7 @@ Converting to a PAYG subscription model is supported for Azure Marketplace image
 1. You do *not* need to install the Azure Hybrid Benefit extension on a running VM.
 
 1. Simply change the license type based on what you need:
-> [!NOTE] 
+> [!NOTE]
 > You can NOT switch products, you can only switch between the billing types.
 
    ```azurecli
