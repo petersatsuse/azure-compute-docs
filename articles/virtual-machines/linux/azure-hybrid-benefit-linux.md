@@ -181,7 +181,7 @@ To enable Azure Hybrid Benefit when you create a VM:
 You can use the `az vm extension` and `az vm update` commands to update a new VM after you create them.
 
 > [!NOTE]
-> You do **not** need to install the extension for SUSE offerings
+> You do **not** need to install the extension for SUSE offerings.
 
 1. Install the extension:
 
@@ -230,7 +230,7 @@ To enable Azure Hybrid Benefit on an existing VM:
 You can use the `az vm extension` and `az vm update` commands to update an existing VM.
 
 > [!NOTE]
-> You do **not** need to install the extension for SUSE offerings
+> You do **not** need to install the extension for SUSE offerings.
 
 1. Install the extension:
 
@@ -238,8 +238,8 @@ You can use the `az vm extension` and `az vm update` commands to update an exist
    az vm extension
    ```
 
-> [!NOTE]
-> The complete `az vm extension` command depends on the particular distribution you're using. For complete information, see the next section.
+   > [!NOTE]
+   > The complete `az vm extension` command depends on the particular distribution you're using. For complete information, see the next section.
 
 1. Update the VM with the correct license type:
 
